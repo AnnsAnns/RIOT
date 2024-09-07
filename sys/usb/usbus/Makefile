@@ -7,4 +7,13 @@ endif
 ifneq (,$(filter usbus_cdc_acm,$(USEMODULE)))
     DIRS += cdc/acm
 endif
+ifneq (,$(filter usbus_dfu,$(USEMODULE)))
+    DIRS += dfu/
+endif
+ifneq (,$(filter usbus_hid,$(USEMODULE)))
+    DIRS += hid
+endif
+ifneq (,$(filter usbus_msc,$(USEMODULE)))
+    DIRS += msc
+endif
 include $(RIOTBASE)/Makefile.base

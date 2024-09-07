@@ -25,9 +25,13 @@
 #include "lualib.h"
 #include "lua_run.h"
 
-#include "main.lua.h"
+#include "blob/main.lua.h"
 
+#if (__SIZEOF_POINTER__ == 8)
+#define LUA_MEM_SIZE (22000)
+#else
 #define LUA_MEM_SIZE (11000)
+#endif
 static char lua_mem[LUA_MEM_SIZE] __attribute__ ((aligned(__BIGGEST_ALIGNMENT__)));
 
 int lua_run_script(const uint8_t *buffer, size_t buffer_len)

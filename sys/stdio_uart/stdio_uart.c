@@ -28,71 +28,65 @@
  */
 
 #include <errno.h>
-
-#include "stdio_uart.h"
+#include <string.h>
 
 #include "board.h"
+#include "kernel_defines.h"
 #include "periph/uart.h"
-#include "isrpipe.h"
-
-#ifdef MODULE_STDIO_ETHOS
-#include "ethos.h"
-extern ethos_t ethos;
-#endif
-
-#if MODULE_VFS
-#include "vfs.h"
-#endif
+#include "stdio_base.h"
+#include "stdio_uart.h"
 
 #define ENABLE_DEBUG 0
 #include "debug.h"
 
-#ifdef MODULE_STDIO_UART_RX
-static uint8_t _rx_buf_mem[STDIO_UART_RX_BUFSIZE];
-isrpipe_t stdio_uart_isrpipe = ISRPIPE_INIT(_rx_buf_mem);
-#endif
-
-void stdio_init(void)
+static void _isrpipe_write_one_wrapper(void *arg, uint8_t value)
 {
-    uart_rx_cb_t cb;
-    void *arg;
+    isrpipe_write_one(arg, value);
+}
 
-#ifdef MODULE_STDIO_UART_RX
-    cb = (uart_rx_cb_t) isrpipe_write_one;
-    arg = &stdio_uart_isrpipe;
-#else
-    cb = NULL;
-    arg = NULL;
-#endif
+static void _init(void)
+{
+    uart_rx_cb_t cb = NULL;
+    void *arg = NULL;
 
-#ifdef MODULE_STDIO_ETHOS
-    uart_init(ETHOS_UART, ETHOS_BAUDRATE, cb, arg);
-#else
+    if (IS_USED(MODULE_STDIO_UART_RX)) {
+        cb = _isrpipe_write_one_wrapper;
+        arg = &stdin_isrpipe;
+    }
+
     uart_init(STDIO_UART_DEV, STDIO_UART_BAUDRATE, cb, arg);
-#endif
-
-#if MODULE_VFS
-    vfs_bind_stdio();
-#endif
 }
 
-ssize_t stdio_read(void* buffer, size_t count)
+static ssize_t _write(const void *buffer, size_t len)
 {
-#ifdef MODULE_STDIO_UART_RX
-    return (ssize_t)isrpipe_read(&stdio_uart_isrpipe, buffer, count);
-#else
-    (void)buffer;
-    (void)count;
-    return -ENOTSUP;
-#endif
+    ssize_t result = len;
+    if (IS_USED(MODULE_STDIO_UART_ONLCR)) {
+        static const uint8_t crlf[2] = { (uint8_t)'\r', (uint8_t)'\n' };
+        const uint8_t *buf = buffer;
+        while (len) {
+            const uint8_t *pos = memchr(buf, '\n', len);
+            size_t chunk_len = (pos != NULL)
+                             ? (uintptr_t)pos - (uintptr_t)buf
+                             : len;
+            uart_write(STDIO_UART_DEV, buf, chunk_len);
+            buf += chunk_len;
+            len -= chunk_len;
+            if (len) {
+                uart_write(STDIO_UART_DEV, crlf, sizeof(crlf));
+                buf++;
+                len--;
+            }
+        }
+    }
+    else {
+        uart_write(STDIO_UART_DEV, (const uint8_t *)buffer, len);
+    }
+    return result;
 }
 
-ssize_t stdio_write(const void* buffer, size_t len)
+static void _detach(void)
 {
-#ifdef MODULE_STDIO_ETHOS
-    ethos_send_frame(&ethos, (const uint8_t *)buffer, len, ETHOS_FRAME_TYPE_TEXT);
-#else
-    uart_write(STDIO_UART_DEV, (const uint8_t *)buffer, len);
-#endif
-    return len;
+    uart_poweroff(STDIO_UART_DEV);
 }
+
+STDIO_PROVIDER(STDIO_UART, _init, _detach, _write)

@@ -51,17 +51,11 @@ extern "C" {
 /** @} */
 
 /**
- * @name    CPU core configuration
+ * @name    ztimer configuration values
  * @{
  */
-/** @todo   Move this to the periph_conf.h */
-#define MSP430_INITIAL_CPU_SPEED    8000000uL
-#ifndef F_CPU
-#define F_CPU                       MSP430_INITIAL_CPU_SPEED
-#endif
-#define F_RC_OSCILLATOR             32768
-#define MSP430_HAS_DCOR             0
-#define MSP430_HAS_EXTERNAL_CRYSTAL 1
+#define CONFIG_ZTIMER_USEC_ADJUST_SET     (99)
+#define CONFIG_ZTIMER_USEC_ADJUST_SLEEP   (100)
 /** @} */
 
 /**

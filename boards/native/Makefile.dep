@@ -1,21 +1,28 @@
-ifneq (,$(filter netdev_default gnrc_netdev_default,$(USEMODULE)))
-  USEMODULE += netdev_tap
+ifneq (,$(filter netdev_default,$(USEMODULE)))
+  ifeq (,$(filter socket_zep,$(USEMODULE)))
+    USEMODULE += netdev_tap
+  endif
 endif
 
 ifneq (,$(filter mtd,$(USEMODULE)))
   USEMODULE += mtd_native
 endif
 
-ifneq (,$(filter can,$(USEMODULE)))
-  ifeq ($(OS),Linux)
-    USEMODULE += can_linux
-    CFLAGS += -DCAN_DLL_NUMOF=2
-  endif
+ifneq (,$(filter periph_can,$(FEATURES_USED)))
+  USEPKG += libsocketcan
 endif
 
-ifneq (,$(filter socket_zep,$(USEMODULE)))
-  USEMODULE += iolist
-  USEMODULE += netdev_ieee802154
-  USEMODULE += checksum
-  USEMODULE += random
+# default to host fs pass-through if no other fs was selected
+ifneq (,$(filter vfs_default,$(USEMODULE)))
+  ifeq (,$(filter lwext%_vfs spiffs littlefs% fatfs_vfs,$(USEMODULE)))
+    USEMODULE += fs_native
+  endif
+  USEMODULE += mtd
 endif
+
+ifneq (,$(filter lvgl,$(USEPKG)))
+  USEPKG += lv_drivers
+  USEMODULE += lv_drivers_sdl
+endif
+
+USEMODULE += native_drivers

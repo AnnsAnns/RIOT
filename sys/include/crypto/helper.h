@@ -37,7 +37,6 @@ extern "C" {
  */
 void crypto_block_inc_ctr(uint8_t block[16], int L);
 
-
 /**
  * @brief   Compares two blocks of same size in deterministic time.
  *
@@ -69,3 +68,4 @@ void crypto_secure_wipe(void *buf, size_t len);
 #endif
 
 #endif /* CRYPTO_HELPER_H */
+/** @} */

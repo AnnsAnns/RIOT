@@ -11,8 +11,7 @@ IF YOUR ISSUE IS RELATED TO SECURITY
 please submit it to the security mailing-list security@riot-os.org.
 
 If your issue is a question related to the usage of RIOT, please submit it to
-the user mailing-list users@riot-os.org or to the developer mailing-list
-devel@riot-os.org.
+our forum at https://forum.riot-os.org.
 -->
 
 #### Description
@@ -39,7 +38,7 @@ Please paste or specifically describe the actual output.
 
 #### Versions
 <!--
-Operating system: Mac OSX, Linux, Vagrant VM
+Operating system: macOS, Linux, Vagrant VM
 Build environment: GCC, CLang versions (you can run the following command from
 the RIOT base directory: make print-versions).
 -->

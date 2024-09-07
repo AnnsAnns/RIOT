@@ -8,7 +8,6 @@ ifneq (,$(filter wolfcrypt-benchmark,$(USEMODULE)))
   USEMODULE += wolfcrypt
   USEMODULE += wolfcrypt_coding
   USEMODULE += printf_float
-  USEMODULE += xtimer
 endif
 
 ifneq (,$(filter wolfcrypt_poly1305,$(USEMODULE)))
@@ -83,5 +82,13 @@ ifneq (,$(filter wolfcrypt_random,$(USEMODULE)))
   USEMODULE += random
 endif
 
+ifneq (,$(filter newlib_syscalls_default,$(USEMODULE)))
+  USEMODULE += libc_gettimeofday
+endif
+
+ifneq (,$(filter native,$(CPU)))
+  USEMODULE += libc_gettimeofday
+endif
+
 # wolfssl is only supported by 32 bit architectures
-FEATURES_REQUIRED += arch_32bit
+FEATURES_REQUIRED_ANY += arch_32bit|arch_64bit

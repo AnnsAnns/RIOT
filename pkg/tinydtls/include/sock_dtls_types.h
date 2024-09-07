@@ -22,6 +22,10 @@
 #include "dtls.h"
 #include "net/sock/udp.h"
 #include "net/credman.h"
+#include "net/sock/dtls/creds.h"
+#ifdef SOCK_HAS_ASYNC
+#include "net/sock/async/types.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,24 +41,52 @@ extern "C" {
 struct sock_dtls {
     dtls_context_t *dtls_ctx;               /**< TinyDTLS context for sock */
     sock_udp_t *udp_sock;                   /**< Underlying UDP sock to use */
+#if defined(SOCK_HAS_ASYNC) || defined(DOXYGEN)
+    /**
+     * @brief   Network stack internal buffer context.
+     */
+    void *buf_ctx;
+    /**
+     * @brief   Asynchronous event callback
+     *
+     * @note    Only available if @ref SOCK_HAS_ASYNC is defined
+     */
+    sock_dtls_cb_t async_cb;
+    void *async_cb_arg;                     /**< asynchronous callback arg */
+    session_t async_cb_session;             /**< asynchronous callback session */
+#if defined(SOCK_HAS_ASYNC_CTX) || defined(DOXYGEN)
+    /**
+     * @brief   Asynchronous event context
+     *
+     * @note    Only available if @ref SOCK_HAS_ASYNC_CTX is defined
+     */
+    sock_async_ctx_t async_ctx;
+#endif
+#endif
     mbox_t mbox;                            /**< Mailbox for internal event
                                                 handling */
     msg_t mbox_queue[SOCK_DTLS_MBOX_SIZE];  /**< Queue for struct
                                                 sock_dtls::mbox */
-    uint8_t *buf;                           /**< Buffer to pass decrypted data
-                                                back to user */
-    size_t buflen;                          /**< Size of buffer */
-    credman_tag_t tag;                      /**< Credential tag of a registered
-                                                (D)TLS credential */
+    /**
+     * @brief Buffer used to pass decrypted data and its session information.
+     */
+    struct {
+        uint8_t *data;                      /**< Pointer to the decrypted data */
+        size_t datalen;                     /**< data length */
+        session_t *session;                 /**< Session information */
+    } buffer;
+    char psk_hint[CONFIG_DTLS_PSK_ID_HINT_MAX_SIZE]; /**< PSK Identity hint */
+    credman_tag_t tags[CONFIG_DTLS_CREDENTIALS_MAX]; /**< Tags of the available credentials */
+    unsigned tags_len;                      /**< Number of tags in the list 'tags' */
     dtls_peer_type role;                    /**< DTLS role of the socket */
+    sock_dtls_client_psk_cb_t client_psk_cb;/**< Callback to determine PSK credential for session */
+    sock_dtls_rpk_cb_t rpk_cb;              /**< Callback to determine RPK credential for session */
 };
 
 /**
  * @brief Information about remote client connected to the server
  */
 struct sock_dtls_session {
-    sock_udp_ep_t   ep;              /**< Remote endpoint the session
-                                         is connected to */
     session_t       dtls_session;    /**< TinyDTLS session */
 };
 

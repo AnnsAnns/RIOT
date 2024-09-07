@@ -7,14 +7,14 @@
  */
 
 /**
- * @defgroup    drivers_mtd_sdcard mtd wrapper for sdcard_spi
+ * @defgroup    drivers_mtd_sdcard MTD wrapper for SPI SD Cards
  * @ingroup     drivers_storage
- * @brief       Driver for SD-cards using mtd interface
+ * @brief       Driver for SPI SD Cards using the MTD interface
  *
  * @{
  *
  * @file
- * @brief       Interface definition for mtd_sdcard driver
+ * @brief       Interface definition for the mtd_sdcard driver
  *
  * @author      Michel Rottleuthner <michel.rottleuthner@haw-hamburg.de>
  */
@@ -43,16 +43,25 @@ typedef struct {
     const sdcard_spi_params_t *params; /**< params for sdcard_spi init */
 } mtd_sdcard_t;
 
-
 /**
- * @brief   sdcards handle sector erase internally so it's possible to directly
- *          write to the card without erasing the sector first.
- *          Attention: an erase call will therefore NOT touch the content,
- *                     so disable this feature to ensure overriding the data.
+ * @defgroup drivers_mtd_sdcard_config     SDCard driver compile configuration
+ * @ingroup config_drivers_storage
+ * @{
  */
-#ifndef MTD_SDCARD_SKIP_ERASE
-#define MTD_SDCARD_SKIP_ERASE (1)
+/**
+ * @brief   Enable SDCard Erase
+ * @note    SDCards handle sector erase internally so it's
+ *          possible to directly write to the card without erasing
+ *          the sector first.
+ *          Attention: an erase call will therefore NOT touch the content,
+ *          so enable this feature to ensure overriding the data.
+ *
+ *          This feature requires the `mtd_write_page` module.
+ */
+#ifdef DOXYGEN
+#define CONFIG_MTD_SDCARD_ERASE
 #endif
+/** @} */
 
 /**
  * @brief   sdcard device operations table for mtd

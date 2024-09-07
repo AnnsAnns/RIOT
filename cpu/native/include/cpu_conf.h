@@ -27,27 +27,30 @@ extern "C" {
  *
  * @{
  */
-#ifdef __MACH__ /* OSX */
-#define THREAD_STACKSIZE_DEFAULT            (163840)
-#define THREAD_STACKSIZE_IDLE               (163840)
-#define THREAD_EXTRA_STACKSIZE_PRINTF       (81920)
-#define THREAD_EXTRA_STACKSIZE_PRINTF_FLOAT (81920)
-/* for core/include/thread.h */
-#define THREAD_STACKSIZE_MINIMUM            (163840)
-/* native internal */
-#define THREAD_STACKSIZE_MINIMUM            (163840)
-#define ISR_STACKSIZE                       (163840)
-
-#else /* Linux etc. */
+#ifndef THREAD_STACKSIZE_DEFAULT
+#if (__SIZEOF_POINTER__ == 8)
+#define THREAD_STACKSIZE_DEFAULT            (16384)
+#else
 #define THREAD_STACKSIZE_DEFAULT            (8192)
-#define THREAD_STACKSIZE_IDLE               (8192)
+#endif
+#endif
+#ifndef THREAD_STACKSIZE_IDLE
+#define THREAD_STACKSIZE_IDLE               (THREAD_STACKSIZE_DEFAULT)
+#endif
+#ifndef THREAD_EXTRA_STACKSIZE_PRINTF
 #define THREAD_EXTRA_STACKSIZE_PRINTF       (4096)
+#endif
+#ifndef THREAD_EXTRA_STACKSIZE_PRINTF_FLOAT
 #define THREAD_EXTRA_STACKSIZE_PRINTF_FLOAT (4096)
+#endif
 /* for core/include/thread.h */
-#define THREAD_STACKSIZE_MINIMUM            (8192)
+#ifndef THREAD_STACKSIZE_MINIMUM
+#define THREAD_STACKSIZE_MINIMUM            (THREAD_STACKSIZE_DEFAULT)
+#endif
 /* native internal */
-#define ISR_STACKSIZE                       (8192)
-#endif /* OS */
+#ifndef ISR_STACKSIZE
+#define ISR_STACKSIZE                       (THREAD_STACKSIZE_DEFAULT)
+#endif
 /** @} */
 
 /**
@@ -55,10 +58,36 @@ extern "C" {
  */
 #define NATIVE_ETH_PROTO 0x1234
 
-#if (defined(GNRC_PKTBUF_SIZE)) && (GNRC_PKTBUF_SIZE < 2048)
-#   undef  GNRC_PKTBUF_SIZE
-#   define GNRC_PKTBUF_SIZE     (2048)
+#if (defined(CONFIG_GNRC_PKTBUF_SIZE)) && (CONFIG_GNRC_PKTBUF_SIZE < 2048)
+#   undef  CONFIG_GNRC_PKTBUF_SIZE
+#   define CONFIG_GNRC_PKTBUF_SIZE     (2048)
 #endif
+
+/**
+ * @brief   Native Flash emulation
+ *          Use unusual parameters to trigger edge cases
+ * @{
+ */
+#ifndef FLASHPAGE_SIZE
+#define FLASHPAGE_SIZE                      (512)
+#endif
+#ifndef FLASHPAGE_NUMOF
+#define FLASHPAGE_NUMOF                     (32)
+#endif
+#ifndef FLASHPAGE_WRITE_BLOCK_ALIGNMENT
+#define FLASHPAGE_WRITE_BLOCK_ALIGNMENT     (8)
+#endif
+#ifndef FLASHPAGE_WRITE_BLOCK_SIZE
+#define FLASHPAGE_WRITE_BLOCK_SIZE          (16)
+#endif
+#ifndef FLASHPAGE_ERASE_STATE
+#define FLASHPAGE_ERASE_STATE               (0x0)
+#endif
+
+extern char _native_flash[FLASHPAGE_SIZE * FLASHPAGE_NUMOF];
+
+#define CPU_FLASH_BASE ((uintptr_t)_native_flash)
+/** @} */
 
 #ifdef __cplusplus
 }

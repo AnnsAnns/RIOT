@@ -25,9 +25,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "thread.h"
 #include "shell.h"
-#include "shell_commands.h"
 
 #ifdef MODULE_NETIF
 #include "net/gnrc/pktdump.h"

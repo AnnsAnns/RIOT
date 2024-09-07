@@ -21,18 +21,11 @@
 
 #include "cpu.h"
 #include "board_common.h"
+#include "periph/gpio.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @name    xtimer configuration
- * @{
- */
-#define XTIMER              TIMER_1
-#define XTIMER_CHAN         (0)
-/** @} */
 
 /**
  * @name    LED pin definitions and handlers

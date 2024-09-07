@@ -21,6 +21,7 @@
 #ifndef NET_GNRC_MAC_TIMEOUT_H
 #define NET_GNRC_MAC_TIMEOUT_H
 
+#include <assert.h>
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -145,3 +146,4 @@ void gnrc_mac_reset_timeouts(gnrc_mac_timeout_t *mac_timeout);
 #endif
 
 #endif /* NET_GNRC_MAC_TIMEOUT_H */
+/** @} */

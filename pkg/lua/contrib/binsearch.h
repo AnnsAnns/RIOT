@@ -8,9 +8,8 @@
 
 /**
  * @internal
- * @{
  * @file
- *
+ * @ingroup  pkg_lua
  * @brief   Generic binary search for tables containing strings.
  * @author  Juan Carrano <j.carrano@fu-berlin.de>
  *
@@ -39,6 +38,7 @@
  * "name" field as:
  *      [address of my_table] + offset + i*stride
  * Where stride=12 bytes and offset = 4 bytes.
+ * @{
  */
 
 #ifndef BINSEARCH_H
@@ -129,11 +129,10 @@ int binsearch_str(const void *start, size_t offset, size_t stride, size_t nmemb,
 const void *binsearch_str_p(const void *start, size_t offset, size_t stride,
                             size_t nmemb, const char *str, size_t n);
 
-
 #ifdef __cplusplus
 }
 #endif
 
-/** @} */
-
 #endif /* BINSEARCH_H */
+/** @internal
+ * @} */

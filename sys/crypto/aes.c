@@ -32,25 +32,55 @@
  * @}
  */
 
-#include <stdio.h>
-#include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include "crypto/aes.h"
 #include "crypto/ciphers.h"
+#include "kernel_defines.h"
 
+#if !IS_USED(MODULE_CRYPTO_AES_128) && !IS_USED(MODULE_CRYPTO_AES_192) && \
+    !IS_USED(MODULE_CRYPTO_AES_256)
+    #error "sys/crypto/aes: No aes module used."
+#endif
+
+/**
+ * @brief AES key size used
+ */
+#if IS_USED(MODULE_CRYPTO_AES_128) && !IS_USED(MODULE_CRYPTO_AES_192) && \
+    !IS_USED(MODULE_CRYPTO_AES_256)
+#  define AES_KEY_SIZE(ctx) AES_KEY_SIZE_128
+#elif !IS_USED(MODULE_CRYPTO_AES_128) && IS_USED(MODULE_CRYPTO_AES_192) && \
+    !IS_USED(MODULE_CRYPTO_AES_256)
+#  define AES_KEY_SIZE(ctx) AES_KEY_SIZE_192
+#elif !IS_USED(MODULE_CRYPTO_AES_128) && !IS_USED(MODULE_CRYPTO_AES_192) && \
+    IS_USED(MODULE_CRYPTO_AES_256)
+#  define AES_KEY_SIZE(ctx) AES_KEY_SIZE_256
+#else
+#  define AES_KEY_SIZE(ctx) ctx->key_size
+#endif
+
+/**
+ * @brief AES key
+ * @see cipher_context_t
+ */
+typedef struct {
+    /** @cond INTERNAL */
+    uint32_t rd_key[4 * (AES_MAXNR + 1)];
+    int rounds;
+    /** @endcond */
+} aes_key_t;
 /**
  * Interface to the aes cipher
  */
 static const cipher_interface_t aes_interface = {
     AES_BLOCK_SIZE,
-    AES_KEY_SIZE,
     aes_init,
     aes_encrypt,
     aes_decrypt
 };
-const cipher_id_t CIPHER_AES_128 = &aes_interface;
+
+const cipher_id_t CIPHER_AES = &aes_interface;
 
 static const u32 Te0[256] = {
     0xc66363a5U, 0xf87c7c84U, 0xee777799U, 0xf67b7b8dU,
@@ -795,19 +825,26 @@ static const u32 rcon[] = {
     0x1B000000, 0x36000000,
 };
 
-
 int aes_init(cipher_context_t *context, const uint8_t *key, uint8_t keySize)
 {
     uint8_t i;
 
-    /* This implementation only supports a single key size (defined in AES_KEY_SIZE) */
-    if (keySize != AES_KEY_SIZE) {
+    if (keySize != AES_KEY_SIZE_128 && keySize != AES_KEY_SIZE_192 &&
+        keySize != AES_KEY_SIZE_256) {
         return CIPHER_ERR_INVALID_KEY_SIZE;
     }
 
+    if ((keySize == AES_KEY_SIZE_128 && !IS_USED(MODULE_CRYPTO_AES_128)) ||
+        (keySize == AES_KEY_SIZE_192 && !IS_USED(MODULE_CRYPTO_AES_192)) ||
+        (keySize == AES_KEY_SIZE_256 && !IS_USED(MODULE_CRYPTO_AES_256))) {
+        return CIPHER_ERR_INVALID_KEY_SIZE;
+    }
+
+    context->key_size = keySize;
+
     /* Make sure that context is large enough. If this is not the case,
        you should build with -DAES */
-    if (CIPHER_MAX_CONTEXT_SIZE < AES_KEY_SIZE) {
+    if (CIPHER_MAX_CONTEXT_SIZE < keySize) {
         return CIPHER_ERR_BAD_CONTEXT_SIZE;
     }
 
@@ -831,7 +868,7 @@ int aes_init(cipher_context_t *context, const uint8_t *key, uint8_t keySize)
  * Expand the cipher key into the encryption key schedule.
  */
 static int aes_set_encrypt_key(const unsigned char *userKey, const int bits,
-                               AES_KEY *key)
+                               aes_key_t *key)
 {
     u32 *rk;
     int i = 0;
@@ -950,7 +987,7 @@ static int aes_set_encrypt_key(const unsigned char *userKey, const int bits,
  * Expand the cipher key into the decryption key schedule.
  */
 static int aes_set_decrypt_key(const unsigned char *userKey, const int bits,
-                               AES_KEY *key)
+                               aes_key_t *key)
 {
     u32 *rk;
     int i, j;
@@ -1033,17 +1070,18 @@ int aes_encrypt(const cipher_context_t *context, const uint8_t *plainBlock,
 {
     /* setup AES_KEY */
     int res;
-    AES_KEY aeskey;
-    const AES_KEY *key = &aeskey;
+    aes_key_t aeskey;
+    const aes_key_t *key = &aeskey;
 
     res = aes_set_encrypt_key((unsigned char *)context->context,
-                              AES_KEY_SIZE * 8, &aeskey);
+                              AES_KEY_SIZE(context) * 8, &aeskey);
     if (res < 0) {
         return res;
     }
 
     const u32 *rk;
     u32 s0, s1, s2, s3, t0, t1, t2, t3;
+
 #ifndef MODULE_CRYPTO_AES_UNROLL
     int r;
 #endif /* ?MODULE_CRYPTO_AES_UNROLL */
@@ -1301,11 +1339,11 @@ int aes_decrypt(const cipher_context_t *context, const uint8_t *cipherBlock,
 {
     /* setup AES_KEY */
     int res;
-    AES_KEY aeskey;
-    const AES_KEY *key = &aeskey;
+    aes_key_t aeskey;
+    const aes_key_t *key = &aeskey;
 
     res = aes_set_decrypt_key((unsigned char *)context->context,
-                              AES_KEY_SIZE * 8, &aeskey);
+                              AES_KEY_SIZE(context) * 8, &aeskey);
 
     if (res < 0) {
         return res;
@@ -1313,6 +1351,7 @@ int aes_decrypt(const cipher_context_t *context, const uint8_t *cipherBlock,
 
     const u32 *rk;
     u32 s0, s1, s2, s3, t0, t1, t2, t3;
+
 #ifndef MODULE_CRYPTO_AES_UNROLL
     int r;
 #endif /* ?MODULE_CRYPTO_AES_UNROLL */

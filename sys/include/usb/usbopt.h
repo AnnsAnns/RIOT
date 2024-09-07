@@ -70,6 +70,15 @@ typedef enum {
      */
     USBOPT_MAX_SPEED,
 
+    /**
+     * @brief   (usb_version_t) Speed at which the usb peripheral got enumerated by the host
+     *
+     * Should be equal or slower than @ref USBOPT_MAX_SPEED
+     *
+     * Setting this option must return -ENOTSUP
+     */
+    USBOPT_ENUMERATED_SPEED,
+
     /* expand list if required */
 } usbopt_t;
 
@@ -92,11 +101,6 @@ typedef enum {
     USBOPT_EP_STALL,
 
     /**
-     * @brief   (usbopt_enable_t) Signal data ready or not ready anymore
-     */
-    USBOPT_EP_READY,
-
-    /**
      * @brief   (size_t) Retrieve number of bytes available on endpoint.
      */
     USBOPT_EP_AVAILABLE,
@@ -107,12 +111,10 @@ typedef enum {
 /**
  * @brief   Binary parameter for enabling and disabling options
  */
-typedef enum
-{
+typedef enum {
     USBOPT_DISABLE = 0,         /**< disable a given option */
     USBOPT_ENABLE = 1,          /**< enable a given option */
 } usbopt_enable_t;
-
 
 #ifdef __cplusplus
 }

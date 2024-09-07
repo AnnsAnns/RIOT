@@ -19,56 +19,19 @@
 #ifndef PERIPH_CONF_H
 #define PERIPH_CONF_H
 
+/* Add specific clock configuration (HSE, LSE) for this board here */
+#ifndef CONFIG_BOARD_HAS_LSE
+#define CONFIG_BOARD_HAS_LSE            1
+#endif
+
 #include "periph_cpu.h"
+#include "clk_conf.h"
 #include "cfg_rtt_default.h"
+#include "cfg_usb_otg_fs.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @name    Clock system configuration
- * @{
- */
-/* 0: no external high speed crystal available
- * else: actual crystal frequency [in Hz] */
-#define CLOCK_HSE           (0)
-/* 0: no external low speed crystal available,
- * 1: external crystal available (always 32.768kHz) */
-#define CLOCK_LSE           (1)
-/* 0: enable MSI only if HSE isn't available
- * 1: always enable MSI (e.g. if USB or RNG is used)*/
-#define CLOCK_MSI_ENABLE    (1)
-/* 0: disable Hardware auto calibration with LSE
- * 1: enable Hardware auto calibration with LSE (PLL-mode)*/
-#define CLOCK_MSI_LSE_PLL   (1)
-/* give the target core clock (HCLK) frequency [in Hz], maximum: 80MHz */
-#define CLOCK_CORECLOCK     (80000000U)
-/* PLL configuration: make sure your values are legit!
- *
- * compute by: CORECLOCK = (((PLL_IN / M) * N) / R)
- * with:
- * PLL_IN:  input clock, HSE or MSI @ 48MHz
- * M:       pre-divider,  allowed range: [1:8]
- * N:       multiplier,   allowed range: [8:86]
- * R:       post-divider, allowed range: [2,4,6,8]
- *
- * Also the following constraints need to be met:
- * (PLL_IN / M)     -> [4MHz:16MHz]
- * (PLL_IN / M) * N -> [64MHz:344MHz]
- * CORECLOCK        -> 80MHz MAX!
- */
-#define CLOCK_PLL_M         (6)
-#define CLOCK_PLL_N         (20)
-#define CLOCK_PLL_R         (2)
-/* peripheral clock setup */
-#define CLOCK_AHB_DIV       RCC_CFGR_HPRE_DIV1
-#define CLOCK_AHB           (CLOCK_CORECLOCK / 1)
-#define CLOCK_APB1_DIV      RCC_CFGR_PPRE1_DIV4
-#define CLOCK_APB1          (CLOCK_CORECLOCK / 4)
-#define CLOCK_APB2_DIV      RCC_CFGR_PPRE2_DIV2
-#define CLOCK_APB2          (CLOCK_CORECLOCK / 2)
-/** @} */
 
 /**
  * @name    Timer configuration
@@ -115,6 +78,99 @@ static const uart_conf_t uart_config[] = {
 #define UART_0_ISR          (isr_usart2)
 
 #define UART_NUMOF          ARRAY_SIZE(uart_config)
+/** @} */
+
+/**
+ * @brief    ADC configuration
+ *
+ * Note that we do not configure all ADC channels,
+ * and not in the STM32L476VG order. Instead, we
+ * just define 5 ADC channels, for the next adjacent
+ * 5 pins, from 10 to 14, in the header P1 and the
+ * internal VBAT channel.
+ *
+ * To find appropriate device and channel find in the
+ * board manual, table showing pin assignments and
+ * information about ADC - a text similar to ADC[X]_IN[Y],
+ * where:
+ * [X] - describes used device - indexed from 0,
+ * for example ADC12_IN10 is device 0 or device 1,
+ * [Y] - describes used channel - indexed from 1,
+ * for example ADC12_IN10 is channel 10
+ *
+ * For STM32L476VG this information is in MCU datasheet,
+ * Table 16, page 73.
+ *
+ * VBAT is connected ADC1_IN18 or ADC3_IN18 and a voltage divider
+ * is used, so that only 1/3 of the actual VBAT is measured. This
+ * allows for a supply voltage higher than the reference voltage.
+ *
+ * For STM32L476VG more information is provided in MCU datasheet,
+ * in section 3.15.3 - Vbat battery voltage monitoring, page 42.
+ * @{
+ */
+static const adc_conf_t adc_config[] = {
+    {GPIO_PIN(PORT_A, 0), 0, 5},  /*< ADC12_IN5  */
+    {GPIO_PIN(PORT_A, 5), 0, 10}, /*< ADC12_IN10 */
+    {GPIO_PIN(PORT_A, 1), 0, 6},  /*< ADC12_IN6  */
+    {GPIO_PIN(PORT_A, 2), 0, 7},  /*< ADC12_IN7  */
+    {GPIO_PIN(PORT_A, 3), 0, 8},  /*< ADC12_IN8  */
+    {GPIO_UNDEF, 0, 18}, /* VBAT */
+};
+
+/**
+ * @brief VBAT ADC line
+ */
+#define VBAT_ADC            ADC_LINE(5)
+
+/**
+ * @brief Number of ADC devices
+ */
+#define ADC_NUMOF           ARRAY_SIZE(adc_config)
+/** @} */
+
+/**
+ * @name    PWM configuration
+ * @{
+ *
+ * To find appriopate device and channel find in the MCU datasheet table
+ * concerning "Alternate function AF0 to AF7" a text similar to TIM[X]_CH[Y],
+ * where:
+ * TIM[X] - is device,
+ * [Y] - describes used channel (indexed from 0), for example TIM2_CH1 is
+ * channel 0 in configuration structure (cc_chan - field),
+ * Port column in the table describes connected port.
+ *
+ * For stm32l476g-disco this information is in the MCU datasheet,
+ * Table 17, page 88.
+ *
+ * Remark!
+ * PMW device 0 overlaps with ADC.
+ */
+static const pwm_conf_t pwm_config[] = {
+    {
+        .dev      = TIM2,
+        .rcc_mask = RCC_APB1ENR1_TIM2EN,
+        .chan     = { { .pin = GPIO_PIN(PORT_A, 5), .cc_chan = 0},
+                      { .pin = GPIO_PIN(PORT_A, 1), .cc_chan = 1},
+                      { .pin = GPIO_PIN(PORT_A, 2), .cc_chan = 2},
+                      { .pin = GPIO_PIN(PORT_A, 3), .cc_chan = 3} },
+        .af       = GPIO_AF1,
+        .bus      = APB1
+    },
+    {
+        .dev      = TIM1,
+        .rcc_mask = RCC_APB2ENR_TIM1EN,
+        .chan     = { { .pin = GPIO_PIN(PORT_E, 11), .cc_chan = 1},
+                      { .pin = GPIO_PIN(PORT_E, 13), .cc_chan = 2},
+                      { .pin = GPIO_PIN(PORT_E, 14), .cc_chan = 3},
+                      { .pin = GPIO_UNDEF,           .cc_chan = 0} },
+        .af       = GPIO_AF1,
+        .bus      = APB2
+    }
+};
+
+#define PWM_NUMOF           ARRAY_SIZE(pwm_config)
 /** @} */
 
 #ifdef __cplusplus

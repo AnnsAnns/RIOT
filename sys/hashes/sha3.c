@@ -56,8 +56,11 @@
    ================================================================
  */
 
-#include <hashes/sha3.h>
 #include <stdint.h>
+#include <string.h>
+
+#include "hashes/sha3.h"
+#include "macros/utils.h"
 
 /**
  * Function to compute the Keccak[r, c] sponge function over a given input.
@@ -115,7 +118,6 @@ void sha3_256_final(keccak_state_t *ctx, void *digest)
 {
     Keccak_final(ctx, digest, SHA3_256_DIGEST_LENGTH);
 }
-
 
 /**
  *  Function to compute SHA3-384 on the input message. The output length is fixed to 48 bytes.
@@ -330,9 +332,6 @@ static void KeccakF1600_StatePermute(void *state)
    that use the Keccak-f[1600] permutation.
    ================================================================
  */
-
-#include <string.h>
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 static void Keccak(unsigned int rate, unsigned int capacity, const unsigned char *input,
                    unsigned long long int inputByteLen, unsigned char delimitedSuffix,

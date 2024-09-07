@@ -21,7 +21,6 @@
 
 #include "cpu.h"
 #include "periph_conf.h"
-#include "mtd.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,7 +42,6 @@ extern "C" {
 #define XTIMER_CHAN                 (0)
 #define XTIMER_BACKOFF              (40)
 #define XTIMER_ISR_BACKOFF          (40)
-#define XTIMER_OVERHEAD             (30)
 /** @} */
 
 /**
@@ -59,11 +57,6 @@ extern "C" {
 #define LED0_OFF            (LED_PORT->PCOR = (1 << LED0_BIT))
 #define LED0_TOGGLE         (LED_PORT->PTOR = (1 << LED0_BIT))
 /** @} */
-
-/**
- * @brief Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
 
 #ifdef __cplusplus
 }

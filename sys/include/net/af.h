@@ -20,17 +20,18 @@
 #ifndef NET_AF_H
 #define NET_AF_H
 
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-enum {
+/**
+ * @brief   UNIX address family definitions
+ */
+typedef enum {
     AF_UNSPEC = 0,              /**< unspecified address family */
 #define AF_UNSPEC   AF_UNSPEC   /**< unspecified address family (as macro) */
     AF_UNIX,                    /**< local to host (pipes, portals) address family. */
-#define AF_UNIX     AF_UNIX     /**< unspecified address family (as macro) */
+#define AF_UNIX     AF_UNIX     /**< local to host (pipes, portals) address family. (as macro) */
     AF_PACKET,                  /**< packet family */
 #define AF_PACKET   AF_PACKET   /**< packet family (as macro) */
     AF_INET,                    /**< internetwork address family: UDP, TCP, etc. */
@@ -41,7 +42,7 @@ enum {
     AF_NUMOF,                   /**< maximum number of address families on this system */
 #define AF_NUMOF    AF_NUMOF    /**< maximum number of address families on this system (as macro) */
 #define AF_MAX      AF_NUMOF    /**< alias for @ref AF_NUMOF */
-};
+} unix_af_t;
 
 #ifdef __cplusplus
 }

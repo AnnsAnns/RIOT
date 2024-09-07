@@ -27,18 +27,20 @@
 extern "C" {
 #endif
 
-#ifdef BOARD_NATIVE
+#ifdef CPU_NATIVE
 #include <stdio.h>
 
+#if __GLIBC__
 /*
  * Required to use some C++11 headers with g++ on the native board.
  */
 #define __CPU_SETSIZE 1024
-#define __NCPUBITS (8* sizeof(__cpu_mask))
+#define __NCPUBITS (8 * sizeof(__cpu_mask))
 typedef unsigned long int __cpu_mask;
 typedef struct {
     __cpu_mask __bits[__CPU_SETSIZE / __NCPUBITS];
 } cpu_set_t;
+#endif
 
 /**
  * @brief In all test the function has never been called, hence it is empty for now.
@@ -56,7 +58,7 @@ inline int sched_yield(void)
  * thread_arch.c.
  */
 extern int sched_yield(void);
-#endif /* BOARD_NATIVE */
+#endif /* CPU_NATIVE */
 
 #ifdef __cplusplus
 }

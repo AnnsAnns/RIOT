@@ -38,10 +38,12 @@ extern "C" {
 static const uart_conf_t uart_config[] = {
     {
         .dev        = NRF_UARTE0,
-        .rx_pin     = GPIO_PIN(0,19),
-        .tx_pin     = GPIO_PIN(0,20),
-        .rts_pin    = (uint8_t)GPIO_UNDEF,
-        .cts_pin    = (uint8_t)GPIO_UNDEF,
+        .rx_pin     = GPIO_PIN(0, 19),
+        .tx_pin     = GPIO_PIN(0, 20),
+#ifdef MODULE_PERIPH_UART_HW_FC
+        .rts_pin    = GPIO_UNDEF,
+        .cts_pin    = GPIO_UNDEF,
+#endif
         .irqn       = UARTE0_UART0_IRQn,
     },
 };
@@ -56,3 +58,4 @@ static const uart_conf_t uart_config[] = {
 #endif
 
 #endif /* PERIPH_CONF_H */
+/** @} */

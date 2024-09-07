@@ -38,7 +38,7 @@
  * - functions require an additional parameter, the pointer to the PWM
  *   device of type #pca9685_t.
  *
- * Please refer the test application in `tests/driver_pca9685` for an example
+ * Please refer the test application in `tests/drivers/pca9685` for an example
  * on how to use the driver.
  *
  * ## SAUL Capabilities
@@ -130,7 +130,7 @@ extern "C"
 #define PCA9685_RESOLUTION      (1 << 12)
 
 /**
- * @brief   Internal PCA9685 oscilator frequency is 25 MHz
+ * @brief   Internal PCA9685 oscillator frequency is 25 MHz
  */
 #define PCA9685_OSC_FREQ        (25000000)
 

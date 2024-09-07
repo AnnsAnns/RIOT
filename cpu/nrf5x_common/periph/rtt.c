@@ -26,6 +26,19 @@
 #include "periph/rtt.h"
 
 /* get the IRQ configuration */
+#ifdef NRF_RTC0_S
+#if (RTT_DEV == 0)
+#define DEV             NRF_RTC0_S
+#define ISR             isr_rtc0
+#define IRQn            RTC0_IRQn
+#elif (RTT_DEV == 1)
+#define DEV             NRF_RTC1_S
+#define ISR             isr_rtc1
+#define IRQn            RTC1_IRQn
+#else
+#error "RTT configuration: invalid or no RTC device specified (RTT_DEV)"
+#endif
+#else
 #if (RTT_DEV == 1)
 #define DEV             NRF_RTC1
 #define ISR             isr_rtc1
@@ -37,8 +50,7 @@
 #else
 #error "RTT configuration: invalid or no RTC device specified (RTT_DEV)"
 #endif
-
-#define LFCLK_FREQ      (32768U)
+#endif /* def NRF_RTC0_S */
 
 /* allocate memory for callbacks and their args */
 static rtt_cb_t alarm_cb;
@@ -59,7 +71,7 @@ void rtt_init(void)
     /* configure interrupt */
     NVIC_EnableIRQ(IRQn);
     /* set prescaler */
-    DEV->PRESCALER = (LFCLK_FREQ / RTT_FREQUENCY) - 1;
+    DEV->PRESCALER = (RTT_CLOCK_FREQUENCY / RTT_FREQUENCY) - 1;
     /* start the actual RTT thing */
     DEV->TASKS_START = 1;
 }
@@ -79,12 +91,6 @@ void rtt_clear_overflow_cb(void)
 uint32_t rtt_get_counter(void)
 {
     return DEV->COUNTER;
-}
-
-void rtt_set_counter(uint32_t counter)
-{
-    (void) counter;
-    /* not supported by the nRF5x */
 }
 
 void rtt_set_alarm(uint32_t alarm, rtt_cb_t cb, void *arg)

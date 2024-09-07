@@ -10,6 +10,7 @@
 
 #include "embUnit.h"
 #include "xtimer.h"
+#include "ztimer.h"
 
 #include "test_utils/interactive_sync.h"
 
@@ -25,7 +26,17 @@ int main(void)
 {
     test_utils_interactive_sync();
 
-#ifdef MODULE_XTIMER
+#if MODULE_ZTIMER_USEC || MODULE_ZTIMER_MSEC || MODULE_ZTIMER_SEC
+    /* auto_init is disabled, but some modules depends on this module being initialized */
+    ztimer_init();
+#endif
+
+#if MODULE_ZTIMER64_USEC || MODULE_ZTIMER64_MSEC || MODULE_ZTIMER64_SEC
+    /* auto_init is disabled, but some modules depends on this module being initialized */
+    ztimer64_init();
+#endif
+
+#if IS_USED(MODULE_XTIMER) && !IS_USED(MODULE_ZTIMER_XTIMER_COMPAT)
     /* auto_init is disabled, but some modules depends on this module being initialized */
     xtimer_init();
 #endif
@@ -38,7 +49,5 @@ int main(void)
 #ifndef NO_TEST_SUITES
     UNCURRY(RUN_TEST_SUITES, TEST_SUITES)
 #endif
-    TESTS_END();
-
-    return 0;
+    return TESTS_END();
 }

@@ -24,6 +24,7 @@
 #include "cpu_conf_common.h"
 #include "vendor/nrf51.h"
 #include "vendor/nrf51_bitfields.h"
+#include "vendor/nrf51822_peripherals.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -52,9 +53,9 @@ extern "C" {
 /* The minimum block size which can be written is 4B. However, the erase
  * block is always FLASHPAGE_SIZE.
  */
-#define FLASHPAGE_RAW_BLOCKSIZE    (4U)
+#define FLASHPAGE_WRITE_BLOCK_SIZE      (4U)
 /* Writing should be always 4 bytes aligned */
-#define FLASHPAGE_RAW_ALIGNMENT    (4U)
+#define FLASHPAGE_WRITE_BLOCK_ALIGNMENT (4U)
 /** @} */
 
 /**
@@ -62,8 +63,8 @@ extern "C" {
  *          buffer size on these CPUs
  * @{
  */
-#ifndef GNRC_PKTBUF_SIZE
-#define GNRC_PKTBUF_SIZE                (2048)
+#ifndef CONFIG_GNRC_PKTBUF_SIZE
+#define CONFIG_GNRC_PKTBUF_SIZE                (2048)
 #endif
 /** @} */
 

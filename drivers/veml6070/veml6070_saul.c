@@ -22,7 +22,6 @@
 
 #include "saul.h"
 #include "veml6070.h"
-#include "xtimer.h"
 
 static int read_uv(const void *dev, phydat_t *res)
 {
@@ -34,6 +33,6 @@ static int read_uv(const void *dev, phydat_t *res)
 
 const saul_driver_t veml6070_uv_saul_driver = {
     .read = read_uv,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_UV
 };

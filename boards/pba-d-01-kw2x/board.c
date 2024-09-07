@@ -54,18 +54,7 @@ static inline void modem_clock_init(void)
     while (KW2XDRF_GPIO->PDIR & (1 << KW2XDRF_IRQ_PIN));
 }
 
-void board_init(void)
+void post_startup(void)
 {
-    /* initialize the on-board LEDs */
-    gpio_init(LED0_PIN, GPIO_OUT);
-    gpio_set(LED0_PIN);
-    gpio_init(LED1_PIN, GPIO_OUT);
-    gpio_set(LED1_PIN);
-    gpio_init(LED2_PIN, GPIO_OUT);
-    gpio_set(LED2_PIN);
-
     modem_clock_init();
-
-    /* initialize the CPU core */
-    cpu_init();
 }

@@ -1,15 +1,16 @@
 PKG_NAME    = libhydrogen
 PKG_URL     = https://github.com/jedisct1/libhydrogen
-PKG_VERSION = 39eb529905ce118b674a7723c0d2b48074b9986d
+PKG_VERSION = 0d4224321eb2b3224fc4bf9bc65e3331054fc6ae
 PKG_LICENSE = ISC
+
+include $(RIOTBASE)/pkg/pkg.mk
 
 # This warning is triggered on non-32bit platforms
 CFLAGS += -Wno-type-limits
+CFLAGS += -Wno-cast-align
 
-.PHONY: all
+# Silence warning popping up since `gcc version 11.2.0 (Ubuntu 11.2.0-19ubuntu1)`
+CFLAGS += -Wno-stringop-overflow
 
 all:
-	"$(MAKE)" -C $(PKG_BUILDDIR) \
-			  -f $(RIOTPKG)/libhydrogen/Makefile.$(PKG_NAME)
-
-include $(RIOTBASE)/pkg/pkg.mk
+	$(QQ)"$(MAKE)" -C $(PKG_SOURCE_DIR) -f $(RIOTBASE)/Makefile.base

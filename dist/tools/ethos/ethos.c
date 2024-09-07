@@ -324,7 +324,7 @@ static int _parse_baudrate(const char *arg, unsigned *baudrate)
         *baudrate = B115200;
         break;
     /* the following baudrates might not be available on all platforms */
-    #ifdef B234000
+    #ifdef B230400
         case_baudrate(230400);
     #endif
     #ifdef B460800
@@ -520,7 +520,6 @@ int main(int argc, char *argv[])
     if (tap_fd < 0) {
         return 1;
     }
-
 
     int serial_fd = _open_connection(argv[2], serial_option);
     if (serial_fd < 0) {

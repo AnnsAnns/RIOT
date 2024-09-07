@@ -15,19 +15,20 @@
  * @author Martine Lenders <m.lenders@fu-berlin.de>
  */
 
+#include <assert.h>
 #include <string.h>
 #include "net/gnrc/netif/internal.h"
 #include "net/gnrc/ipv6/ext/rh.h"
 #include "net/gnrc/rpl/srh.h"
 
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG                0
 #include "debug.h"
-
-static char addr_str[IPV6_ADDR_MAX_STR_LEN];
 
 #define GNRC_RPL_SRH_PADDING(X)     ((X & 0xF0) >> 4)
 #define GNRC_RPL_SRH_COMPRE(X)      (X & 0x0F)
 #define GNRC_RPL_SRH_COMPRI(X)      ((X & 0xF0) >> 4)
+
+static char addr_str[IPV6_ADDR_MAX_STR_LEN];
 
 /* checks if multiple addresses within the source routing header exist on my
  * interfaces */
@@ -72,6 +73,13 @@ int gnrc_rpl_srh_process(ipv6_hdr_t *ipv6, gnrc_rpl_srh_t *rh, void **err_ptr)
     uint8_t num_addr;
     uint8_t current_pos, pref_elided, addr_len, compri_addr_len;
     const uint8_t new_seg_left = rh->seg_left - 1;
+
+    if ((rh->len * 8) < (GNRC_RPL_SRH_PADDING(rh->pad_resv) +
+                         (16 - GNRC_RPL_SRH_COMPRE(rh->compr)))) {
+        DEBUG("RPL SRH: inconsistent header received\n");
+        *err_ptr = &rh->len;
+        return GNRC_IPV6_EXT_RH_ERROR;
+    }
 
     assert(rh->seg_left > 0);
     num_addr = (((rh->len * 8) - GNRC_RPL_SRH_PADDING(rh->pad_resv) -

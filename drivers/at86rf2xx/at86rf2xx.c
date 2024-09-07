@@ -24,43 +24,22 @@
  * @}
  */
 
-
-#include "luid.h"
+#include "kernel_defines.h"
 #include "byteorder.h"
 #include "net/ieee802154.h"
 #include "net/gnrc.h"
 #include "at86rf2xx_registers.h"
 #include "at86rf2xx_internal.h"
-#include "at86rf2xx_netdev.h"
-
-#define ENABLE_DEBUG (0)
-#include "debug.h"
-
-
-void at86rf2xx_setup(at86rf2xx_t *dev, const at86rf2xx_params_t *params)
-{
-    netdev_t *netdev = (netdev_t *)dev;
-
-    netdev->driver = &at86rf2xx_driver;
-    /* State to return after receiving or transmitting */
-    dev->idle_state = AT86RF2XX_STATE_TRX_OFF;
-    /* radio state is P_ON when first powered-on */
-    dev->state = AT86RF2XX_STATE_P_ON;
-    dev->pending_tx = 0;
-
-#if defined(MODULE_AT86RFA1) || defined(MODULE_AT86RFR2)
-    (void) params;
-    /* set all interrupts off */
-    at86rf2xx_reg_write(dev, AT86RF2XX_REG__IRQ_MASK, 0x00);
-#else
-    /* initialize device descriptor */
-    dev->params = *params;
+#if IS_USED(MODULE_AT86RF2XX_AES_SPI)
+#include "at86rf2xx_aes.h"
 #endif
-}
+
+#define ENABLE_DEBUG 0
+#include "debug.h"
 
 static void at86rf2xx_disable_clock_output(at86rf2xx_t *dev)
 {
-#if defined(MODULE_AT86RFA1) || defined(MODULE_AT86RFR2)
+#if AT86RF2XX_IS_PERIPH
     (void) dev;
 #else
     uint8_t tmp = at86rf2xx_reg_read(dev, AT86RF2XX_REG__TRX_CTRL_0);
@@ -71,15 +50,11 @@ static void at86rf2xx_disable_clock_output(at86rf2xx_t *dev)
 #endif
 }
 
-static void at86rf2xx_enable_smart_idle(at86rf2xx_t *dev)
+void at86rf2xx_enable_smart_idle(at86rf2xx_t *dev)
 {
 #if AT86RF2XX_SMART_IDLE_LISTENING
     uint8_t tmp = at86rf2xx_reg_read(dev, AT86RF2XX_REG__TRX_RPC);
-    tmp |= (AT86RF2XX_TRX_RPC_MASK__RX_RPC_EN |
-            AT86RF2XX_TRX_RPC_MASK__PDT_RPC_EN |
-            AT86RF2XX_TRX_RPC_MASK__PLL_RPC_EN |
-            AT86RF2XX_TRX_RPC_MASK__XAH_TX_RPC_EN |
-            AT86RF2XX_TRX_RPC_MASK__IPAN_RPC_EN);
+    tmp |= AT86RF2XX_TRX_RPC_MASK__RX_RPC__SMART_IDLE;
     at86rf2xx_reg_write(dev, AT86RF2XX_REG__TRX_RPC, tmp);
     at86rf2xx_set_rxsensitivity(dev, RSSI_BASE_VAL);
 #else
@@ -87,50 +62,48 @@ static void at86rf2xx_enable_smart_idle(at86rf2xx_t *dev)
 #endif
 }
 
+void at86rf2xx_disable_smart_idle(at86rf2xx_t *dev)
+{
+#if AT86RF2XX_SMART_IDLE_LISTENING
+    uint8_t tmp = at86rf2xx_reg_read(dev, AT86RF2XX_REG__TRX_RPC);
+    tmp &= ~AT86RF2XX_TRX_RPC_MASK__RX_RPC__SMART_IDLE;
+    at86rf2xx_reg_write(dev, AT86RF2XX_REG__TRX_RPC, tmp);
+#else
+    (void) dev;
+#endif
+}
+
 void at86rf2xx_reset(at86rf2xx_t *dev)
 {
-    eui64_t addr_long;
-
-    at86rf2xx_hardware_reset(dev);
-
-    netdev_ieee802154_reset(&dev->netdev);
+    uint8_t tmp;
 
     /* Reset state machine to ensure a known state */
     if (dev->state == AT86RF2XX_STATE_P_ON) {
         at86rf2xx_set_state(dev, AT86RF2XX_STATE_FORCE_TRX_OFF);
     }
 
-    /* get an 8-byte unique ID to use as hardware address */
-    luid_get(addr_long.uint8, IEEE802154_LONG_ADDRESS_LEN);
-    /* make sure we mark the address as non-multicast and not globally unique */
-    addr_long.uint8[0] &= ~(0x01);
-    addr_long.uint8[0] |=  (0x02);
-    /* set short and long address */
-    at86rf2xx_set_addr_long(dev, &addr_long);
-    at86rf2xx_set_addr_short(dev, &addr_long.uint16[ARRAY_SIZE(addr_long.uint16) - 1]);
+    /* set default channel, page and TX power */
+    at86rf2xx_configure_phy(dev, AT86RF2XX_DEFAULT_CHANNEL, AT86RF2XX_DEFAULT_PAGE, AT86RF2XX_DEFAULT_TXPOWER);
 
-    /* set default channel */
-    at86rf2xx_set_chan(dev, AT86RF2XX_DEFAULT_CHANNEL);
-    /* set default TX power */
-    at86rf2xx_set_txpower(dev, AT86RF2XX_DEFAULT_TXPOWER);
+    /* Record the default channel page in the device descriptor */
+#if AT86RF2XX_HAVE_SUBGHZ
+    dev->page = AT86RF2XX_DEFAULT_PAGE;
+#endif
+
     /* set default options */
-    at86rf2xx_set_option(dev, AT86RF2XX_OPT_AUTOACK, true);
-    at86rf2xx_set_option(dev, AT86RF2XX_OPT_CSMA, true);
 
-    static const netopt_enable_t enable = NETOPT_ENABLE;
-    netdev_ieee802154_set(&dev->netdev, NETOPT_ACK_REQ,
-                          &enable, sizeof(enable));
+    if (!IS_ACTIVE(AT86RF2XX_BASIC_MODE)) {
+        at86rf2xx_set_option(dev, AT86RF2XX_OPT_AUTOACK, true);
+        at86rf2xx_set_option(dev, AT86RF2XX_OPT_CSMA, true);
+    }
 
     /* enable safe mode (protect RX FIFO until reading data starts) */
     at86rf2xx_reg_write(dev, AT86RF2XX_REG__TRX_CTRL_2,
                         AT86RF2XX_TRX_CTRL_2_MASK__RX_SAFE_MODE);
-#ifdef MODULE_AT86RF212B
-    at86rf2xx_set_page(dev, AT86RF2XX_DEFAULT_PAGE);
-#endif
 
-#if !defined(MODULE_AT86RFA1) && !defined(MODULE_AT86RFR2)
+#if !AT86RF2XX_IS_PERIPH
     /* don't populate masked interrupt flags to IRQ_STATUS register */
-    uint8_t tmp = at86rf2xx_reg_read(dev, AT86RF2XX_REG__TRX_CTRL_1);
+    tmp = at86rf2xx_reg_read(dev, AT86RF2XX_REG__TRX_CTRL_1);
     tmp &= ~(AT86RF2XX_TRX_CTRL_1_MASK__IRQ_MASK_MODE);
     at86rf2xx_reg_write(dev, AT86RF2XX_REG__TRX_CTRL_1, tmp);
 #endif
@@ -144,28 +117,27 @@ void at86rf2xx_reset(at86rf2xx_t *dev)
     /* enable interrupts */
     at86rf2xx_reg_write(dev, AT86RF2XX_REG__IRQ_MASK,
                         AT86RF2XX_IRQ_STATUS_MASK__TRX_END);
+
+    /* enable TX start interrupt for retry counter */
+#if AT86RF2XX_HAVE_TX_START_IRQ
+    at86rf2xx_reg_write(dev, AT86RF2XX_REG__IRQ_MASK1,
+                             AT86RF2XX_IRQ_STATUS_MASK1__TX_START);
+#endif
+
     /* clear interrupt flags */
     at86rf2xx_reg_read(dev, AT86RF2XX_REG__IRQ_STATUS);
 
     /* State to return after receiving or transmitting */
-    dev->idle_state = AT86RF2XX_STATE_RX_AACK_ON;
+    dev->idle_state = AT86RF2XX_PHY_STATE_RX;
     /* go into RX state */
-    at86rf2xx_set_state(dev, AT86RF2XX_STATE_RX_AACK_ON);
+    at86rf2xx_set_state(dev, AT86RF2XX_PHY_STATE_RX);
+
+    /* Enable RX start IRQ */
+    tmp = at86rf2xx_reg_read(dev, AT86RF2XX_REG__IRQ_MASK);
+    tmp |= AT86RF2XX_IRQ_STATUS_MASK__RX_START;
+    at86rf2xx_reg_write(dev, AT86RF2XX_REG__IRQ_MASK, tmp);
 
     DEBUG("at86rf2xx_reset(): reset complete.\n");
-}
-
-size_t at86rf2xx_send(at86rf2xx_t *dev, const uint8_t *data, size_t len)
-{
-    /* check data length */
-    if (len > AT86RF2XX_MAX_PKT_LENGTH) {
-        DEBUG("[at86rf2xx] Error: data to send exceeds max packet size\n");
-        return 0;
-    }
-    at86rf2xx_tx_prepare(dev);
-    at86rf2xx_tx_load(dev, data, len, 0);
-    at86rf2xx_tx_exec(dev);
-    return len;
 }
 
 void at86rf2xx_tx_prepare(at86rf2xx_t *dev)
@@ -173,8 +145,8 @@ void at86rf2xx_tx_prepare(at86rf2xx_t *dev)
     uint8_t state;
 
     dev->pending_tx++;
-    state = at86rf2xx_set_state(dev, AT86RF2XX_STATE_TX_ARET_ON);
-    if (state != AT86RF2XX_STATE_TX_ARET_ON) {
+    state = at86rf2xx_set_state(dev, AT86RF2XX_PHY_STATE_TX);
+    if (state != AT86RF2XX_PHY_STATE_TX) {
         dev->idle_state = state;
     }
     dev->tx_frame_len = IEEE802154_FCS_LEN;
@@ -188,19 +160,17 @@ size_t at86rf2xx_tx_load(at86rf2xx_t *dev, const uint8_t *data,
     return offset + len;
 }
 
-void at86rf2xx_tx_exec(const at86rf2xx_t *dev)
+void at86rf2xx_tx_exec(at86rf2xx_t *dev)
 {
-    netdev_t *netdev = (netdev_t *)dev;
+#if AT86RF2XX_HAVE_RETRIES
+    dev->tx_retries = -1;
+#endif
 
     /* write frame length field in FIFO */
     at86rf2xx_sram_write(dev, 0, &(dev->tx_frame_len), 1);
     /* trigger sending of pre-loaded frame */
     at86rf2xx_reg_write(dev, AT86RF2XX_REG__TRX_STATE,
                         AT86RF2XX_TRX_STATE__TX_START);
-    if (netdev->event_callback &&
-        (dev->flags & AT86RF2XX_OPT_TELL_TX_START)) {
-        netdev->event_callback(netdev, NETDEV_EVENT_TX_STARTED);
-    }
 }
 
 bool at86rf2xx_cca(at86rf2xx_t *dev)

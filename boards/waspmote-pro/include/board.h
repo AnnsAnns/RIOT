@@ -152,24 +152,51 @@ extern "C" {
 
 /**
  * @name CPU clock scale for waspmote-pro
- *
+ * @{
  */
 #define CPU_ATMEGA_CLK_SCALE_INIT    CPU_ATMEGA_CLK_SCALE_DIV1
 /** @} */
 
 /**
  * @name    xtimer configuration values
+ * @warning This configuration is not actually compatible with xtimer. Sadly,
+ *          no compatible clock frequency can be generated with the given core
+ *          frequency
  * @{
  */
 #define XTIMER_WIDTH                (16)
-#define XTIMER_HZ                   (62500UL)
-#define XTIMER_BACKOFF              (40)
+#define XTIMER_HZ                   (230400LU)
+#define XTIMER_BACKOFF              (80)
+#define XTIMER_ISR_BACKOFF          (120)
 /** @} */
 
 /**
- * @brief   Initialize board specific hardware, including clock, LEDs and std-IO
+ * @name    ztimer configuration values
+ * @{
  */
-void board_init(void);
+#define CONFIG_ZTIMER_USEC_TYPE         ZTIMER_TYPE_PERIPH_TIMER    /**< Use periph_timer for ZTIMER_USEC */
+#define CONFIG_ZTIMER_USEC_DEV          (TIMER_DEV(0))              /**< Use TIMER_DEV(0) for ZTIMER_USEC */
+#define CONFIG_ZTIMER_USEC_BASE_FREQ    (230400LU)                  /**< Run timer for ZTIMER_USEC at 230,400 Hz */
+#define CONFIG_ZTIMER_USEC_WIDTH        (16)                        /**< TIMER_DEV(0) is 16 bit wide */
+/** @} */
+
+/**
+ * @name Onboard micro-sd slot pin definitions
+ * @{
+ */
+#define SDCARD_SPI_PARAM_SPI        SPI_DEV(0)  /**< SPI device */
+#define SDCARD_SPI_PARAM_CS         SD_SS       /**< Chip Select */
+#define SDCARD_SPI_PARAM_CLK        SD_SCK      /**< Serial Clock */
+#define SDCARD_SPI_PARAM_MOSI       SD_MOSI     /**< Master Output, Slave Input */
+#define SDCARD_SPI_PARAM_MISO       SD_MISO     /**< Master Input, Slave Output */
+#define SDCARD_SPI_PARAM_POWER      MEM_PW      /**< Powen on/off */
+#define SDCARD_SPI_PARAM_POWER_AH   (true)      /**< Power on with power pin high */
+#define CARD_DETECT_PIN             SD_PRESENT  /**< Pin for card detect */
+
+/** @} */
+
+/** Default MTD device */
+#define MTD_0 mtd_dev_get(0)
 
 #ifdef __cplusplus
 }

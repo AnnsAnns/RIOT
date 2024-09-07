@@ -26,8 +26,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "board_nucleo.h"
 #include "arduino_pinmap.h"
+#include "board_nucleo.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,34 +37,33 @@ extern "C" {
  * @name    LED pin definitions and handlers
  * @{
  */
-#if defined(CPU_MODEL_STM32L496ZG) || defined(CPU_MODEL_STM32L4R5ZI)
-#define LED0_PORT           GPIOC
-#define LED0_PIN            GPIO_PIN(PORT_C, 7)
-#define LED0_MASK           (1 << 7)
+#if defined(CPU_MODEL_STM32L496ZG) || defined(CPU_MODEL_STM32L4R5ZI) || \
+    defined(CPU_MODEL_STM32L552ZE) || defined(CPU_MODEL_STM32U575ZI)
+#define LED0_PIN_NUM        7
+#define LED0_PORT           GPIO_PORT_C /**< GPIO port of LED 0 */
+#define LED0_PORT_NUM       PORT_C
 #else
-#define LED0_PORT           GPIOB
-#define LED0_PIN            GPIO_PIN(PORT_B, 0)
-#define LED0_MASK           (1 << 0)
+#define LED0_PIN_NUM        0
+#define LED0_PORT           GPIO_PORT_B /**< GPIO port of LED 0 */
+#define LED0_PORT_NUM       PORT_B
 #endif
-#define LED0_ON             (LED0_PORT->BSRR = LED0_MASK)
-#define LED0_OFF            (LED0_PORT->BSRR = (LED0_MASK << 16))
-#define LED0_TOGGLE         (LED0_PORT->ODR  ^= LED0_MASK)
 
-#define LED1_PIN            GPIO_PIN(PORT_B, 7)
-#define LED1_MASK           (1 << 7)
-#define LED1_ON             (GPIOB->BSRR = LED1_MASK)
-#define LED1_OFF            (GPIOB->BSRR = (LED1_MASK << 16))
-#define LED1_TOGGLE         (GPIOB->ODR  ^= LED1_MASK)
+#define LED1_PIN_NUM        7
+#define LED1_PORT           GPIO_PORT_B /**< GPIO port of LED 1 */
+#define LED1_PORT_NUM       PORT_B
 
-#define LED2_PIN            GPIO_PIN(PORT_B, 14)
-#define LED2_MASK           (1 << 14)
-#define LED2_ON             (GPIOB->BSRR = LED2_MASK)
-#define LED2_OFF            (GPIOB->BSRR = (LED2_MASK << 16))
-#define LED2_TOGGLE         (GPIOB->ODR  ^= LED2_MASK)
-
-/* the Nucleo144 boards always use LED0, as there is no dual use of its pin */
-#ifndef AUTO_INIT_LED0
-#define AUTO_INIT_LED0
+#if defined(CPU_MODEL_STM32L552ZE)
+#define LED2_PIN_NUM        9
+#define LED2_PORT           GPIO_PORT_A /**< GPIO port of LED 2 */
+#define LED2_PORT_NUM       PORT_A
+#elif defined(CPU_MODEL_STM32U575ZI)
+#define LED2_PIN_NUM        2
+#define LED2_PORT           GPIO_PORT_G /**< GPIO port of LED 2 */
+#define LED2_PORT_NUM       PORT_G
+#else
+#define LED2_PIN_NUM        14
+#define LED2_PORT           GPIO_PORT_B /**< GPIO port of LED 2 */
+#define LED2_PORT_NUM       PORT_B
 #endif
 /** @} */
 
@@ -79,6 +78,8 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
+#include "stm32_leds.h"
 
 #endif /* BOARD_H */
 /** @} */

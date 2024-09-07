@@ -21,6 +21,7 @@
  * @author      DangNhat Pham-Huu <51002279@hcmut.edu.vn>
  */
 
+#include "architecture.h"
 #include "thread.h"
 
 #include "c_functions.h"
@@ -48,7 +49,8 @@ int main()
                                         THREAD_CREATE_WOUT_YIELD,
                                         threadA_func, NULL, "thread A");
 
-    printf("******** Hello, you're in thread #%" PRIkernel_pid " ********\n", sched_active_pid);
+    printf("******** Hello, you're in thread #%" PRIkernel_pid " ********\n",
+           thread_getpid());
     printf("We'll test C++ class and methods here!\n");
 
     cpp_class cpp_obj;
@@ -63,7 +65,7 @@ int main()
     vInts.push_back(1);
     vInts.push_back(3);
     vInts.push_back(2);
-    printf("The vector vInts has been filled with %d numbers.\n", (int)vInts.size());
+    printf("The vector vInts has been filled with %" PRIuSIZE " numbers.\n", vInts.size());
 
     printf("\n-= Test iterator =-\n");
     printf("The content of vInts = { ");
@@ -83,7 +85,8 @@ void *threadA_func(void *)
     int day = 13, month = 6, year = 2014;
     int ret_day;
 
-    printf("******** Hello, you're in thread #%" PRIkernel_pid " ********\n", sched_active_pid);
+    printf("******** Hello, you're in thread #%" PRIkernel_pid " ********\n",
+           thread_getpid());
     printf("We'll test some C functions here!\n");
 
     printf("\n-= hello function =-\n");

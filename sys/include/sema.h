@@ -28,6 +28,11 @@
 #include <stdint.h>
 
 #include "mutex.h"
+#include "ztimer.h"
+
+#if IS_USED(MODULE_SEMA_DEPRECATED)
+#include "ztimer64.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -98,16 +103,28 @@ void sema_create(sema_t *sema, unsigned int value);
 void sema_destroy(sema_t *sema);
 
 /**
- * @brief Wait for a semaphore, blocking or non-blocking.
+ * @brief   Get a semaphore's current value
+ *
+ * @param[in]  sema       A semaphore.
+ *
+ * @return  the current value of the semaphore
+ */
+static inline unsigned sema_get_value(const sema_t *sema)
+{
+    return sema->value;
+}
+/**
+ * @brief   Wait for a semaphore, blocking or non-blocking.
  *
  * @details For commit purposes you should probably use sema_wait(),
- *          sema_wait_timed() and sema_try_wait() instead.
+ *          sema_wait_timed_ztimer() and sema_try_wait() instead.
  *
  * @pre `(sema != NULL)`
  *
  * @param[in]  sema       A semaphore.
  * @param[in]  block      if true, block until semaphore is available.
- * @param[in]  timeout    if blocking, time in microseconds until the semaphore
+ * @param[in]  clock      ztimer clock
+ * @param[in]  timeout    if blocking, ticks of @p clock until the semaphore
  *                        times out. 0 waits forever.
  *
  * @return  0 on success
@@ -115,26 +132,33 @@ void sema_destroy(sema_t *sema);
  * @return  -ECANCELED, if the semaphore was destroyed.
  * @return  -EAGAIN,    if the semaphore is not posted (only if block = 0)
  */
-int _sema_wait(sema_t *sema, int block, uint64_t timeout);
+int _sema_wait_ztimer(sema_t *sema, int block,
+                      ztimer_clock_t *clock, uint32_t timeout);
 
+#if IS_USED(MODULE_SEMA_DEPRECATED)
 /**
- * @brief   Wait for a semaphore being posted.
+ * @brief   Wait for a semaphore, blocking or non-blocking.
+ *
+ * @internal only
+ * @details For commit purposes you should probably use sema_wait(),
+ *          sema_wait_timed_ztimer64() and sema_try_wait() instead.
  *
  * @pre `(sema != NULL)`
  *
- * @param[in]  sema     A semaphore.
- * @param[in]  timeout  Time in microseconds until the semaphore times out.
- *                      0 does not wait.
+ * @param[in]  sema       A semaphore.
+ * @param[in]  block      if true, block until semaphore is available.
+ * @param[in]  clock      ztimer64 clock
+ * @param[in]  timeout    if blocking, ticks of @p clock until the semaphore
+ *                        times out. 0 waits forever.
  *
  * @return  0 on success
  * @return  -ETIMEDOUT, if the semaphore times out.
  * @return  -ECANCELED, if the semaphore was destroyed.
- * @return  -EAGAIN,    if the semaphore is not posted (only if timeout = 0)
+ * @return  -EAGAIN,    if the semaphore is not posted (only if block = 0)
  */
-static inline int sema_wait_timed(sema_t *sema, uint64_t timeout)
-{
-    return _sema_wait(sema, (timeout != 0), timeout);
-}
+int _sema_wait_ztimer64(sema_t *sema, int block,
+                        ztimer64_clock_t *clock, uint64_t timeout);
+#endif
 
 /**
  * @brief   Wait for a semaphore being posted (without timeout).
@@ -148,7 +172,7 @@ static inline int sema_wait_timed(sema_t *sema, uint64_t timeout)
  */
 static inline int sema_wait(sema_t *sema)
 {
-    return _sema_wait(sema, 1, 0);
+    return _sema_wait_ztimer(sema, 1, NULL, 0);
 }
 
 /**
@@ -164,7 +188,53 @@ static inline int sema_wait(sema_t *sema)
  */
 static inline int sema_try_wait(sema_t *sema)
 {
-    return _sema_wait(sema, 0, 0);
+    return _sema_wait_ztimer(sema, 0, NULL, 0);
+}
+
+#if IS_USED(MODULE_SEMA_DEPRECATED) || defined(DOXYGEN)
+/**
+ * @brief   Wait for a semaphore being posted with a 64bit timeout
+ *
+ * @deprecated  Will be removed after release 2021.07
+ *
+ * @pre `(sema != NULL)`
+ *
+ * @param[in]  sema     A semaphore.
+ * @param[in]  timeout  Time in microseconds until the semaphore times out.
+ *                      0 does not wait.
+ *
+ * @return  0 on success
+ * @return  -ETIMEDOUT, if the semaphore times out.
+ * @return  -ECANCELED, if the semaphore was destroyed.
+ * @return  -EAGAIN,    if the semaphore is not posted (only if timeout = 0)
+ */
+static inline int sema_wait_timed(sema_t *sema, uint64_t timeout)
+{
+    return  _sema_wait_ztimer64(sema, (timeout != 0), ZTIMER64_USEC, timeout);
+}
+#endif
+
+/**
+ * @brief   Wait for a semaphore being posted, using ztimer as backend
+ *
+ * @pre `(sema != NULL)`
+ * @pre `(clock != NULL)`
+ *
+ * @param[in]  sema     A semaphore.
+ * @param[in]  clock    ztimer clock to use
+ * @param[in]  timeout  Time in microseconds until the semaphore times out.
+ *                      0 does not wait.
+ *
+ * @return  0 on success
+ * @return  -ETIMEDOUT, if the semaphore times out.
+ * @return  -ECANCELED, if the semaphore was destroyed.
+ * @return  -EAGAIN,    if the semaphore is not posted (only if timeout = 0)
+ */
+static inline int sema_wait_timed_ztimer(sema_t *sema,
+                                         ztimer_clock_t *clock,
+                                         uint32_t timeout)
+{
+    return _sema_wait_ztimer(sema, (timeout != 0), clock, timeout);
 }
 
 /**

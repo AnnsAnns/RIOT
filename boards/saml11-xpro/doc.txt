@@ -12,7 +12,7 @@ memory. In addition, this SoC features the ARM TrustZone technology.
 
 ## Hardware
 
-![saml11-xpro image](https://www.microchip.com/_ImagedCopy/SAML11%20Xpro%20Front%20Title.jpg)
+![saml11-xpro image](https://www.microchip.com/_ImagedCopy/Converted-146683-1559149241-C16616-180424-MCU32-PHOTO-DM320205-Front-Transparent.png)
 
 
 ### MCU
@@ -68,10 +68,15 @@ Connect the device to your Micro-USB cable.
 
 The standard method for flashing RIOT to the saml11-xpro is using EDBG.
 
-## Supported Toolchains
+## Special case
 
-For using the saml11-xpro board we strongly recommend the usage of the
-[GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded)
-toolchain.
+SERCOM1 (available on EXT1 connector) needs an extra step to be usable.
+By default, this SERCOM is only available in the secure world. As RIOT
+doesn't support it for now, the only option, to use it, is to enable
+SERCOM non-secure mode. To do so, a fuse bit must be set in User ROW
+flash memory. Such action can be done with the following EDBG command:
+'edbg -t saml11 -F w0,194,1'
+or pass it as argument when calling make:
+EDBG_ARGS="-F w0,194,1" BOARD=saml11-xpro make flash term -C tests/periph/uart
 
 */

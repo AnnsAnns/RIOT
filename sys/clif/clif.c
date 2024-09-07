@@ -21,10 +21,11 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "architecture.h"
 #include "clif.h"
 #include "clif_internal.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 /* returns the correspondent attribute string */
@@ -83,7 +84,7 @@ ssize_t clif_decode_link(clif_t *link, clif_attr_t *attrs, unsigned attrs_len,
     link->attrs = attrs;
     pos += size + 1; /* escape the '>' */
 
-    DEBUG("Found target (%u): %.*s\n", (unsigned)size, (unsigned)size,
+    DEBUG("Found target (%" PRIiSIZE "): %.*s\n", size, (unsigned)size,
           link->target);
 
     /* if there is no attr array iterate over the buffer, if not until all
@@ -107,7 +108,7 @@ ssize_t clif_encode_link(const clif_t *link, char *buf, size_t maxlen)
     size_t pos = 0;
     ssize_t res = 0;
 
-    res = clif_add_target(link->target, buf, maxlen);
+    res = clif_add_target_from_buffer(link->target, link->target_len, buf, maxlen);
     if (res < 0) {
         return res;
     }
@@ -124,12 +125,12 @@ ssize_t clif_encode_link(const clif_t *link, char *buf, size_t maxlen)
     return pos;
 }
 
-ssize_t clif_add_target(const char *target, char *buf, size_t maxlen)
+ssize_t clif_add_target_from_buffer(const char *target, size_t target_len, char *buf, size_t maxlen)
 {
     assert(target);
 
     size_t pos = 0;
-    size_t target_len = strlen(target);
+    DEBUG("Adding target: %.*s, len: %" PRIuSIZE "\n", (int)target_len, target, target_len);
 
     if (!buf) {
         return target_len + 2; /* size after adding '<' and '>' */
@@ -147,6 +148,15 @@ ssize_t clif_add_target(const char *target, char *buf, size_t maxlen)
     buf[pos++] = LF_PATH_END_C;
 
     return pos;
+}
+
+ssize_t clif_add_target(const char *target, char *buf, size_t maxlen)
+{
+    assert(target);
+
+    size_t target_len = strlen(target);
+    assert(target_len > 0);
+    return clif_add_target_from_buffer(target, target_len, buf, maxlen);
 }
 
 ssize_t clif_add_link_separator(char *buf, size_t maxlen)
@@ -168,22 +178,17 @@ ssize_t clif_add_attr(clif_attr_t *attr, char *buf, size_t maxlen)
     assert(attr);
     assert(attr->key);
 
-    /* if no length given, calculate it */
-    if (!attr->key_len) {
-        attr->key_len = strlen(attr->key);
-    }
-
     /* count attr name size and separator ';' */
     size_t req_space = attr->key_len + 1;
     size_t pos = 0;
-    int quoted = strcmp(attr->key, LF_ATTR_SIZE) ? 1 : 0;
+    int quoted = 0;
+    if (attr->key_len >= LF_ATTR_SIZE_S) {
+        quoted = strcmp(attr->key, LF_ATTR_SIZE) ? 1 : 0;
+    }
 
     if (attr->value) {
-        if (!attr->value_len) {
-            attr->value_len = strlen(attr->value);
-        }
         /* count also '=' */
-        req_space += attr->value_len +  1;
+        req_space += attr->value_len + 1;
     }
 
     if (quoted) {
@@ -251,12 +256,18 @@ ssize_t clif_get_attr(const char *input, size_t input_len, clif_attr_t *attr)
     assert(attr);
     const char *pos = input;
     const char *end = input + input_len;
-    bool quoted = false;
+    unsigned quotes = 0;
     bool scan_value = false;
 
     /* initialize attr */
     attr->value = NULL;
     attr->key = NULL;
+    attr->key_len = 0;
+    attr->value_len = 0;
+
+    if (input_len == 0) {
+        return CLIF_NOT_FOUND;
+    }
 
     /* an attribute should start with the separator */
     if (*pos != LF_ATTR_SEPARATOR_C) {
@@ -278,8 +289,12 @@ ssize_t clif_get_attr(const char *input, size_t input_len, clif_attr_t *attr)
             attr->key_len = pos - attr->key;
             /* check if the value is quoted and prepare pointer for value scan */
             pos++;
-            if (*pos == '"') {
-                quoted = true;
+            if (pos == end) {
+                /* found attribute-value separator but no value */
+                return CLIF_NOT_FOUND;
+            }
+            else if (*pos == '"') {
+                quotes++;
                 pos++;
             }
             attr->value = (char *)pos;
@@ -292,15 +307,23 @@ ssize_t clif_get_attr(const char *input, size_t input_len, clif_attr_t *attr)
     if (scan_value) {
         /* iterate over value */
         while (pos < end) {
-            if (quoted) {
+            if (quotes == 1) {
+                /* we can safely access *(pos - 1) because at least one
+                 * character was detected to get to this point */
                 if (*pos == '"' && *(pos - 1) != '\\') {
                     /* found unescaped quote */
                     attr->value_len = pos - attr->value;
+                    quotes++;
                     pos++;
                     break;
                 }
             }
             else {
+                if (*pos == '"') {
+                    /* not valid */
+                    return CLIF_NOT_FOUND;
+                }
+
                 if (*pos == LF_ATTR_SEPARATOR_C || *pos == LF_LINK_SEPARATOR_C) {
                     /* value ends */
                     attr->value_len = pos - attr->value;
@@ -309,11 +332,22 @@ ssize_t clif_get_attr(const char *input, size_t input_len, clif_attr_t *attr)
             }
             pos++;
         }
+
+        if (!attr->value_len) {
+            DEBUG("Empty value found");
+            return CLIF_NOT_FOUND;
+        }
     }
     else {
         /* buffer exhausted and no special character found, calculate length of
         * attribute and exit */
         attr->key_len = pos - attr->key;
+    }
+
+    /* either the value is unquoted (0) or quoted (2) */
+    if (quotes % 2U) {
+        DEBUG("Incorrect number of unescaped quotes found: %d\n", quotes);
+        return CLIF_NOT_FOUND;
     }
 
     return pos - input;

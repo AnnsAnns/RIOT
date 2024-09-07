@@ -65,6 +65,11 @@ typedef enum {
     GPIO_BOTH = IOCFG_EDGEDET_BOTH
 } gpio_flank_t;
 
+/**
+ * @brief   CPU specific GPIO pin generator macro
+ */
+#define GPIO_PIN(x, y)  (((x) & 0) | (y))
+
 /*
  * @brief   Invalid UART mode mask
  *
@@ -119,9 +124,10 @@ typedef struct {
    uart_regs_t *regs;
    int tx_pin;
    int rx_pin;
+#ifdef MODULE_PERIPH_UART_HW_FC
    int rts_pin;
    int cts_pin;
-   int flow_control;
+#endif
    int intn;
 } uart_conf_t;
 /** @} */
@@ -136,6 +142,18 @@ typedef struct {
     uint8_t     cfg;    /**< timer config [16,32 Bit] */
     uint8_t     chn;    /**< number of channels [1,2] */
 } timer_conf_t;
+
+/**
+ * @brief   Maximum number of channels
+ *
+ * @note    32 bit timers only support one channel instead of two. But knowing
+ *          the worst case is useful e.g. for static allocation. Users are
+ *          expected to either do proper error handling with `timer_set()` and
+ *          `timer_set_absolute()`, or at least verify with
+ *          @ref timer_query_channel_numof what the actual number of channels
+ *          of a timer is.
+ */
+#define TIMER_CHANNEL_NUMOF 2
 
 #define PERIPH_I2C_NEED_READ_REG
 #define PERIPH_I2C_NEED_READ_REGS

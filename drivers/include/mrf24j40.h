@@ -14,6 +14,13 @@
  * This module contains drivers for radio devices in Microchip MRF24J40 series.
  * The driver is aimed to work with all devices of this series.
  *
+ * @warning     This driver doesn't handle the wake pin. As of now, it is
+ *              required that the wake pin is high prior to the initialization
+ *              (e.g. by connecting it to VCC in the board design).
+ * @note        A PR extending @ref mrf24j40_params_t to contain the wake pin
+ *              and adding appropriate handling of the wake pin to the driver
+ *              logic would be a welcome addition.
+ *
  * Default TX power is 0dBm.
  *
  * TX power mapping:
@@ -54,6 +61,7 @@
  *
  * @file
  * @brief       Interface definition for MRF24J40 based drivers
+ * @anchor      drivers_mrf24j40
  *
  * @author      Neo Nenaco <neo@nenaco.de>
  * @author      Koen Zandberg <koen@bergzand.net>
@@ -70,6 +78,7 @@
 #include "net/netdev.h"
 #include "net/netdev/ieee802154.h"
 #include "net/gnrc/nettype.h"
+#include "net/ieee802154/radio.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -96,18 +105,7 @@ extern "C" {
 #define MRF24J40_OPT_PROMISCUOUS        (0x0200)    /**< promiscuous mode
                                                      *   active */
 #define MRF24J40_OPT_PRELOADING         (0x0400)    /**< preloading enabled */
-#define MRF24J40_OPT_TELL_TX_START      (0x0800)    /**< notify MAC layer on TX
-                                                     *   start */
-#define MRF24J40_OPT_TELL_TX_END        (0x1000)    /**< notify MAC layer on TX
-                                                     *   finished */
-#define MRF24J40_OPT_TELL_RX_START      (0x2000)    /**< notify MAC layer on RX
-                                                     *   start */
-#define MRF24J40_OPT_TELL_RX_END        (0x4000)    /**< notify MAC layer on RX
-                                                     *   finished */
-#define MRF24J40_OPT_REQ_AUTO_ACK       (0x8000)    /**< notify MAC layer on RX
-                                                     *   finished */
 /** @} */
-
 
 #define MRF24J40_TASK_TX_DONE           (0x01)      /**< TX operation is done */
 #define MRF24J40_TASK_TX_READY          (0x02)      /**< TX operation results ready for processing */
@@ -115,21 +113,27 @@ extern "C" {
 
 #define MRF24J40_MAX_FRAME_RETRIES      (3U)        /**< Number of frame retries (fixed) */
 
+#define MRF24J40_MAX_MINBE              (3U)        /**< Maximum value of minimum
+                                                         exponential backoff */
+#define MRF24J40_MIN_TXPOWER            (-36)       /**< Minimum transmission power (dBm) */
+#define MRF24J40_MAX_TXPOWER            (0)         /**< Maximum transmission power (dBm) */
+
 /**
  * @defgroup drivers_mrf24j40_config     mrf24j40 driver compile configuration
  * @ingroup drivers_mrf24j40
- * @ingroup config
+ * @ingroup config_drivers_netdev
  * @{
  */
 
 /**
  * @brief Enable external PA/LNA control
  *
- * Increase RSSI for MRF24J40MC/MD/ME devices. No effect on MRF24J40MA.
- * For more information, please refer to section 4.2 of MRF24J40 datasheet.
+ * Set to 1 to increase RSSI for MRF24J40MC/MD/ME devices. No effect on
+ * MRF24J40MA. For more information, please refer to section 4.2 of MRF24J40
+ * datasheet.
  */
-#ifndef MRF24J40_USE_EXT_PA_LNA
-#define MRF24J40_USE_EXT_PA_LNA         (0U)
+#if defined(DOXYGEN)
+#define CONFIG_MRF24J40_USE_EXT_PA_LNA
 #endif
 
 /**
@@ -137,11 +141,11 @@ extern "C" {
  *
  * Perform a write / read to a known register on startup to detect
  * if the device is connected.
- * Enable this if you want the boot not to hang if the device is
+ * Set this to 1 if you want the boot not to hang if the device is
  * not connected / there are SPI errors.
  */
-#ifndef MRF24J40_TEST_SPI_CONNECTION
-#define MRF24J40_TEST_SPI_CONNECTION    (0U)
+#if defined(DOXYGEN)
+#define CONFIG_MRF24J40_TEST_SPI_CONNECTION
 #endif
 /** @} */
 
@@ -160,26 +164,12 @@ typedef struct mrf24j40_params {
  * @brief   Device descriptor for MRF24J40 radio devices
  */
 typedef struct {
-    netdev_ieee802154_t netdev;             /**< netdev parent struct */
     /*  device specific fields  */
-    mrf24j40_params_t params;               /**< parameters for initialization */
-    uint8_t state;                          /**< current state of the radio */
-    uint8_t idle_state;                     /**< state to return to after sending */
-    uint8_t tx_frame_len;                   /**< length of the current TX frame */
-    uint8_t header_len;                     /**< length of the header */
+    const mrf24j40_params_t *params;        /**< parameters for initialization */
     uint8_t fcf_low;                        /**< Low 8 FCF bits of the current TX frame. */
     uint8_t pending;                        /**< Flags for pending tasks */
-    uint8_t irq_flag;                       /**< Flags for IRQs */
-    uint8_t tx_retries;                     /**< Number of retries needed for last transmission */
+    bool tx_pending;                        /**< Whether a transmission is pending or not */
 } mrf24j40_t;
-
-/**
- * @brief   Setup an MRF24J40 based device state
- *
- * @param[out] dev          device descriptor
- * @param[in]  params       parameters for device initialization
- */
-void mrf24j40_setup(mrf24j40_t *dev, const mrf24j40_params_t *params);
 
 /**
  * @brief   Trigger a hardware reset and configure radio with default values
@@ -191,26 +181,6 @@ void mrf24j40_setup(mrf24j40_t *dev, const mrf24j40_params_t *params);
 int mrf24j40_reset(mrf24j40_t *dev);
 
 /**
- * @brief   Trigger a clear channel assessment & retrieve RSSI
- *
- * @param[in] dev           device to use
- * @param[in] rssi          RSSI value from register in dBm
- *
- * @return                  true if channel is clear
- * @return                  false if channel is busy
- */
-bool mrf24j40_cca(mrf24j40_t *dev, int8_t *rssi);
-
-/**
- * @brief   Get the short address of the given device
- *
- * @param[in] dev           device to read from
- *
- * @return                  the currently set (2-byte) short address
- */
-uint16_t mrf24j40_get_addr_short(mrf24j40_t *dev);
-
-/**
  * @brief   Set the short address of the given device
  *
  * @param[in] dev           device to write to
@@ -219,21 +189,12 @@ uint16_t mrf24j40_get_addr_short(mrf24j40_t *dev);
 void mrf24j40_set_addr_short(mrf24j40_t *dev, uint16_t addr);
 
 /**
- * @brief   Get the configured long address of the given device
- *
- * @param[in] dev           device to read from
- *
- * @return                  the currently set (8-byte) long address
- */
-uint64_t mrf24j40_get_addr_long(mrf24j40_t *dev);
-
-/**
  * @brief   Set the long address of the given device
  *
  * @param[in] dev           device to write to
  * @param[in] addr          (8-byte) long address to set
  */
-void mrf24j40_set_addr_long(mrf24j40_t *dev, uint64_t addr);
+void mrf24j40_set_addr_long(mrf24j40_t *dev, const uint8_t *addr);
 
 /**
  * @brief   Get the configured channel number of the given device
@@ -270,15 +231,6 @@ uint16_t mrf24j40_get_pan(mrf24j40_t *dev);
 void mrf24j40_set_pan(mrf24j40_t *dev, uint16_t pan);
 
 /**
- * @brief   Get the configured transmission power of the given device [in dBm]
- *
- * @param[in] dev           device to read from
- *
- * @return                  configured transmission power in dBm
- */
-int16_t mrf24j40_get_txpower(mrf24j40_t *dev);
-
-/**
  * @brief   Set the transmission power of the given device [in dBm]
  *
  * If the device does not support the exact dBm value given, it will set a value
@@ -290,15 +242,6 @@ int16_t mrf24j40_get_txpower(mrf24j40_t *dev);
  * @param[in] txpower       transmission power in dBm
  */
 void mrf24j40_set_txpower(mrf24j40_t *dev, int16_t txpower);
-
-/**
- * @brief   Get the maximum number of channel access attempts per frame (CSMA)
- *
- * @param[in] dev           device to read from
- *
- * @return                  configured number of retries
- */
-uint8_t mrf24j40_get_csma_max_retries(mrf24j40_t *dev);
 
 /**
  * @brief   Set the maximum number of channel access attempts per frame (CSMA)
@@ -326,15 +269,6 @@ void mrf24j40_set_csma_max_retries(mrf24j40_t *dev, int8_t retries);
 void mrf24j40_set_csma_backoff_exp(mrf24j40_t *dev, uint8_t min, uint8_t max);
 
 /**
- * @brief   Get the CCA threshold value
- *
- * @param[in] dev           device to read value from
- *
- * @return                  the current CCA threshold value
- */
-int8_t mrf24j40_get_cca_threshold(mrf24j40_t *dev);
-
-/**
  * @brief   Set the CCA threshold value
  *
  * @param[in] dev           device to write to
@@ -360,6 +294,19 @@ void mrf24j40_set_option(mrf24j40_t *dev, uint16_t option, bool state);
 void mrf24j40_set_state(mrf24j40_t *dev, uint8_t state);
 
 /**
+ * @brief   Enable or disable proprietary Turbo Mode.
+ *
+ * Turbo mode is only compatible with other mrf24j40 chips.
+ *
+ * turbo off:   250 kbit/s (IEEE mode)
+ * turbo  on:   625 kbit/s
+ *
+ * @param[in] dev           device to change state of
+ * @param[in] enable        turbo mode control
+ */
+void mrf24j40_set_turbo(mrf24j40_t *dev, bool enable);
+
+/**
  * @brief   Put in sleep mode
  *
  * @param[in] dev       device to put to sleep
@@ -367,18 +314,11 @@ void mrf24j40_set_state(mrf24j40_t *dev, uint8_t state);
 void mrf24j40_sleep(mrf24j40_t *dev);
 
 /**
- * @brief   Put in sleep mode if idle_state is sleep
- *
- * @param[in] dev       device to put to sleep
- */
-void mrf24j40_assert_sleep(mrf24j40_t *dev);
-
-/**
  * @brief   Wake up from sleep mode
  *
  * @param[in] dev       device to eventually wake up
  */
-void mrf24j40_assert_awake(mrf24j40_t *dev);
+void mrf24j40_wake_up(mrf24j40_t *dev);
 
 /**
  * @brief   Reset the internal state machine to TRX_OFF mode.
@@ -438,6 +378,27 @@ size_t mrf24j40_tx_load(mrf24j40_t *dev, uint8_t *data, size_t len,
  * @param[in] dev           device to trigger
  */
 void mrf24j40_tx_exec(mrf24j40_t *dev);
+
+/**
+ * @brief   IRQ Handler for the MRF24J40 device
+ *
+ * @param[in] dev          pointer to the IEEE 802.15.4 Radio HAL descriptor
+ */
+void mrf24j40_radio_irq_handler(void *dev);
+
+/**
+ * @brief   Initialize the given MRF24J40 device
+ * @param[out] dev         device descriptor
+ * @param[in]  params      parameters for device initialization
+ * @param[in]  hal         pointer to IEEE 802.15.4 Radio HAL descriptor
+ * @param[in]  cb          ISR callback
+ * @param[in]  ctx         context pointer handed to isr
+ *
+ * @return                 0 on success
+ * @return                 <0 on error
+ */
+int mrf24j40_init(mrf24j40_t *dev, const mrf24j40_params_t *params, ieee802154_dev_t *hal,
+                   gpio_cb_t cb, void *ctx);
 
 #ifdef __cplusplus
 }

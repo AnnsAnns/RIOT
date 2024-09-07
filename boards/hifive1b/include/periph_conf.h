@@ -21,29 +21,14 @@
 #ifndef PERIPH_CONF_H
 #define PERIPH_CONF_H
 
+#include "kernel_defines.h"
+#include "macros/units.h"
 #include "periph_cpu.h"
+#include "clk_conf.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @name    Core Clock configuration
- * @{
- */
-/* As defined in boards/hifive1/board.c CPU_DESIRED_FREQ **/
-#define CLOCK_CORECLOCK             (200000000ul)
-/** @} */
-
-/**
- * @name    Xtimer configuration
- * @{
- */
-#define XTIMER_DEV                  (0)
-#define XTIMER_CHAN                 (0)
-#define XTIMER_WIDTH                (32)
-#define XTIMER_HZ                   (32768ul)
-/** @} */
 
 /**
  * @name    Timer configuration
@@ -66,8 +51,8 @@ static const uart_conf_t uart_config[] = {
     },
     {
         .addr       = UART1_CTRL_ADDR,
-        .rx         = GPIO_PIN(0, 18),
-        .tx         = GPIO_PIN(0, 23),
+        .rx         = GPIO_PIN(0, 23),
+        .tx         = GPIO_PIN(0, 18),
         .isr_num    = INT_UART1_BASE,
     },
 };
@@ -76,22 +61,20 @@ static const uart_conf_t uart_config[] = {
 /** @} */
 
 /**
- * @name    RTT/RTC configuration
+ * @name    SPI device configuration
  *
  * @{
  */
-#define RTT_FREQUENCY               (1)             /* in Hz */
-#define RTT_MAX_VALUE               (0xFFFFFFFF)
-#define RTT_INTR_PRIORITY           (2)
+static const spi_conf_t spi_config[] = {
+    {
+        .addr       = SPI1_CTRL_ADDR,
+        .mosi       = GPIO_PIN(0, 3), /* D11 */
+        .miso       = GPIO_PIN(0, 4), /* D12 */
+        .sclk       = GPIO_PIN(0, 5), /* D13 */
+    },
+};
 
-/** @} */
-
-/**
- * @name    GPIO configuration
- *
- * @{
- */
-#define GPIO_INTR_PRIORITY          (3)
+#define SPI_NUMOF                  ARRAY_SIZE(spi_config)
 /** @} */
 
 /**
@@ -100,6 +83,22 @@ static const uart_conf_t uart_config[] = {
  * @{
  */
 #define PWM_NUMOF                   (3)
+/** @} */
+
+/**
+ * @name    I2C configuration
+ * @{
+ */
+static const i2c_conf_t i2c_config[] = {
+    {
+        .addr   = I2C0_CTRL_ADDR,
+        .scl    = GPIO_PIN(0, 13),
+        .sda    = GPIO_PIN(0, 12),
+        .speed  = I2C_SPEED_NORMAL,
+     },
+};
+
+#define I2C_NUMOF                   ARRAY_SIZE(i2c_config)
 /** @} */
 
 #ifdef __cplusplus

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # Copyright (C) 2019 Otto-von-Guericke-Universität Magdeburg
 #
@@ -72,11 +72,11 @@ def detect_probes():
     return gdb_ports, uart_ports
 
 
-# search device with specific serial number <snr> in list <l>
-def search_serial(snr, l):
-    for p in l:
-        if snr in p.serial_number:
-            return p.device
+# search device with specific serial number <snr> in a list of ports <ports>
+def search_serial(snr, ports):
+    for port in ports:
+        if snr in port.serial_number:
+            return port.device
 
 
 # parse GDB output for targets
@@ -85,7 +85,7 @@ def detect_targets(gdbmi, res):
     while True:
         for msg in res:
             if msg['type'] == 'target':
-                m = re.fullmatch(pattern=r"\s*(\d)+\s*(.*)\\n", string=msg['payload'])
+                m = re.fullmatch(pattern=r"\s*(\d+)\s*(.*)\s*", string=msg['payload'])
                 if m:
                     targets.append(m.group(2))
             elif msg['type'] == 'result':
@@ -219,7 +219,12 @@ def debug_mode(port):
 
 def connect_to_target(port):
     # open GDB in machine interface mode
-    gdbmi = GdbController(gdb_path=args.gdb_path, gdb_args=["--nx", "--quiet", "--interpreter=mi2", args.file])
+    try:
+        # try old API first
+        gdbmi = GdbController(gdb_path=args.gdb_path, gdb_args=["--nx", "--quiet", "--interpreter=mi2", args.file])
+    except TypeError:
+        # and then new API
+        gdbmi = GdbController(command=[args.gdb_path, "--nx", "--quiet", "--interpreter=mi2", args.file])
     assert gdb_write_and_wait_for_result(gdbmi, '-target-select extended-remote %s' % port, 'connecting',
                                          expected_result='connected')
     # set options

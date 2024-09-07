@@ -7,8 +7,7 @@
  */
 
 /**
- * @defgroup    boards_stm32l476g-disco STM32L476G-DISCO
- * @ingroup     boards
+ * @ingroup    boards_stm32l476g-disco
  * @brief       Support for the STM32L476G-DISCO board
  * @{
  *
@@ -33,19 +32,13 @@ extern "C" {
  * @name    LED pin definitions and handlers
  * @{
  */
-#define LED0_PIN            GPIO_PIN(PORT_B, 2)
-#define LED0_MASK           (1 << 2)
+#define LED0_PIN_NUM        2
+#define LED0_PORT           GPIO_PORT_B /**< GPIO port of LED 0 */
+#define LED0_PORT_NUM       PORT_B
 
-#define LED0_ON             (GPIOB->BSRR = LED0_MASK)
-#define LED0_OFF            (GPIOB->BSRR = (LED0_MASK << 16))
-#define LED0_TOGGLE         (GPIOB->ODR  ^= LED0_MASK)
-
-#define LED1_PIN            GPIO_PIN(PORT_E, 8)
-#define LED1_MASK           (1 << 8)
-
-#define LED1_ON             (GPIOE->BSRR = LED1_MASK)
-#define LED1_OFF            (GPIOE->BSRR = (LED1_MASK << 16))
-#define LED1_TOGGLE         (GPIOE->ODR  ^= LED1_MASK)
+#define LED1_PIN_NUM        8
+#define LED1_PORT           GPIO_PORT_E /**< GPIO port of LED 1 */
+#define LED1_PORT_NUM       PORT_E
 /** @} */
 
 /**
@@ -68,14 +61,11 @@ extern "C" {
 #define BTN4_MODE           GPIO_IN_PD          /**< Up button mode     */
 /** @} */
 
-/**
- * @brief   Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
-
 #ifdef __cplusplus
 }
 #endif
+
+#include "stm32_leds.h"
 
 #endif /* BOARD_H */
 /** @} */

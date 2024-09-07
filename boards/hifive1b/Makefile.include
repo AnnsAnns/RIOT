@@ -1,16 +1,33 @@
-# Uses UART0 for stdio input/output (comment out to disable)
-USEMODULE += stdio_uart
+PROGRAMMERS_SUPPORTED += jlink openocd
 
-# set default port depending on operating system
-PORT_LINUX ?= /dev/ttyACM0
-PORT_DARWIN ?= $(firstword $(sort $(wildcard /dev/tty.usbmodem*)))
-
-# setup serial terminal
-include $(RIOTMAKE)/tools/serial.inc.mk
+# OpenOCD parameters
+OPENOCD_DEBUG_ADAPTER := jlink
+OPENOCD_TRANSPORT := jtag
+OPENOCD_PRE_FLASH_CMDS += "-c flash protect 0 1 last off"
 
 # setup JLink for flashing
-# export JLINK := JLink
-export JLINK_DEVICE := FE310
-export JLINK_IF := JTAG
-export FLASH_ADDR := 0x20010000
-include $(RIOTMAKE)/tools/jlink.inc.mk
+JLINK_DEVICE := FE310
+JLINK_IF := JTAG
+FLASH_ADDR := 0x20010000
+
+# keep name of `JLINK` in sync with script jlink.sh in $(RIOTTOOLS)/jlink
+# Default to J-Link as programmer when installed, otherwise go for OpenOCD
+JLINK ?= JLinkExe
+ifneq (,$(shell command -v $(JLINK)))
+  PROGRAMMER ?= jlink
+else
+  PROGRAMMER ?= openocd
+endif
+
+# If port selection via ttys.py is enabled by `MOST_RECENT_PORT=1`, filter
+# USB serials to only select the first UART bridge of integrated J-Link
+# debugger (that identifies as "HiFive" as model). Use --iface-num 2 to select
+# the UART bridge to the ESP32-SOLO-1 MCU instead of the FE310 MCU on the board.
+TTY_BOARD_FILTER := --model HiFive --iface-num 0
+
+# The TTY serial also is the ID of the debug adapter, as the TTY is provided by
+# the debug adapter
+DEBUG_ADAPTER_ID_IS_TTY_SERIAL := 1
+
+TESTRUNNER_RESET_DELAY = 1
+$(call target-export-variables,test,TESTRUNNER_RESET_DELAY)

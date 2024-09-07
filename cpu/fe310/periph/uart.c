@@ -22,12 +22,13 @@
 #include <assert.h>
 #include <inttypes.h>
 
+#include "clk.h"
 #include "irq.h"
 #include "cpu.h"
 #include "periph/uart.h"
-#include "vendor/encoding.h"
+#include "plic.h"
+#include "vendor/riscv_csr.h"
 #include "vendor/platform.h"
-#include "vendor/plic_driver.h"
 #include "vendor/prci_driver.h"
 
 /**
@@ -41,7 +42,9 @@ static inline void _uart_isr(uart_t dev)
 
     /* Intr cleared automatically when data is read */
     while ((data & UART_RXFIFO_EMPTY) != (uint32_t)UART_RXFIFO_EMPTY) {
-        isr_ctx[dev].rx_cb(isr_ctx[dev].arg, (uint8_t)(data & 0xff));
+        if (isr_ctx[dev].rx_cb) {
+            isr_ctx[dev].rx_cb(isr_ctx[dev].arg, (uint8_t)(data & 0xff));
+        }
         data = _REG32(uart_config[dev].addr, UART_REG_RXFIFO);
     }
 }
@@ -49,14 +52,24 @@ static inline void _uart_isr(uart_t dev)
 void uart_isr(int num)
 {
     switch (num) {
-        case INT_UART0_BASE:
-            _uart_isr(0);
-            break;
-        case INT_UART1_BASE:
-            _uart_isr(1);
-            break;
-        default:
-            break;
+    case INT_UART0_BASE:
+        _uart_isr(0);
+        break;
+    case INT_UART1_BASE:
+        _uart_isr(1);
+        break;
+    default:
+        break;
+    }
+}
+
+static void _drain(uart_t dev)
+{
+    uint32_t data = _REG32(uart_config[dev].addr, UART_REG_RXFIFO);
+
+    /* Intr cleared automatically when data is read */
+    while ((data & UART_RXFIFO_EMPTY) != (uint32_t)UART_RXFIFO_EMPTY) {
+        data = _REG32(uart_config[dev].addr, UART_REG_RXFIFO);
     }
 }
 
@@ -74,13 +87,8 @@ int uart_init(uart_t dev, uint32_t baudrate, uart_rx_cb_t rx_cb, void *arg)
     /* Power on the device */
     uart_poweron(dev);
 
-    /* Calculate baudrate divisor given current CPU clk rate
-     * Ignore the first run (icache needs to be warm) */
-    uartDiv = PRCI_measure_mcycle_freq(1000, RTC_FREQ);
-    /* cppcheck-suppress redundantAssignment
-     * (reason: should ignore first cycle to get correct values) */
-    uartDiv = PRCI_measure_mcycle_freq(1000, RTC_FREQ);
-    uartDiv = uartDiv / baudrate;
+    /* Calculate baudrate divisor given current CPU clk rate */
+    uartDiv = coreclk() / baudrate;
 
     /* Enable UART 8-N-1 at given baudrate */
     _REG32(uart_config[dev].addr, UART_REG_DIV) = uartDiv;
@@ -104,9 +112,14 @@ int uart_init(uart_t dev, uint32_t baudrate, uart_rx_cb_t rx_cb, void *arg)
         clear_csr(mie, MIP_MEIP);
 
         /* Configure UART ISR with PLIC */
-        set_external_isr_cb(uart_config[dev].isr_num, uart_isr);
-        PLIC_enable_interrupt(uart_config[dev].isr_num);
-        PLIC_set_priority(uart_config[dev].isr_num, UART_ISR_PRIO);
+        plic_set_isr_cb(uart_config[dev].isr_num, uart_isr);
+        plic_enable_interrupt(uart_config[dev].isr_num);
+        plic_set_priority(uart_config[dev].isr_num, UART_ISR_PRIO);
+
+        /* avoid trap by emptying RX FIFO */
+        _drain(dev);
+
+        /* enable RX interrupt */
         _REG32(uart_config[dev].addr, UART_REG_IE) = UART_IP_RXWM;
 
         /* Enable RX */
@@ -123,8 +136,9 @@ void uart_write(uart_t dev, const uint8_t *data, size_t len)
 {
     for (size_t i = 0; i < len; i++) {
         /* Wait for FIFO to empty */
-        while ((_REG32(uart_config[dev].addr, UART_REG_TXFIFO) & UART_TXFIFO_FULL)
-               == (uint32_t)UART_TXFIFO_FULL) {};
+        while ((_REG32(uart_config[dev].addr,
+                       UART_REG_TXFIFO) & UART_TXFIFO_FULL)
+               == (uint32_t)UART_TXFIFO_FULL) {}
 
         /* Write a byte */
         _REG32(uart_config[dev].addr, UART_REG_TXFIFO) = data[i];
@@ -133,10 +147,10 @@ void uart_write(uart_t dev, const uint8_t *data, size_t len)
 
 void uart_poweron(uart_t dev)
 {
-    (void) dev;
+    (void)dev;
 }
 
 void uart_poweroff(uart_t dev)
 {
-    (void) dev;
+    (void)dev;
 }

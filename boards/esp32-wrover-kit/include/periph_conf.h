@@ -17,7 +17,7 @@
  *
  * - Micro-SD card interface
  * - OV7670 camera interface
- * - 3.2" SPI LCD panel
+ * - 3.2\" SPI LCD panel
  * - RGB LED
  *
  * Furthermore, many GPIOs are broken out for extension. The USB bridge
@@ -32,10 +32,10 @@
  * configuration.
  *
  * For detailed information about the configuration of ESP32 boards, see
- * section \ref esp32_comm_periph "Common Peripherals".
+ * section \ref esp32_peripherals "Common Peripherals".
  *
  * @note
- * Most definitions can be overridden by an \ref esp32_app_spec_conf
+ * Most definitions can be overridden by an \ref esp32_application_specific_configurations
  * "application-specific board configuration".
  *
  * @file
@@ -46,6 +46,7 @@
 #define PERIPH_CONF_H
 
 #include <stdint.h>
+#include "periph_cpu.h"
 
 #ifdef __cplusplus
  extern "C" {
@@ -63,7 +64,7 @@
  * as ADC channels.
  *
  * @note As long as the GPIOs listed in ADC_GPIOS are not initialized as ADC
- * channels with the ```adc_init``` function, they can be used for other
+ * channels with the `adc_init` function, they can be used for other
  * purposes.
  */
 #ifndef ADC_GPIOS
@@ -84,12 +85,11 @@
 #endif
 /** @} */
 
-
 /**
  * @name   I2C configuration
  *
  * @note The GPIOs listed in the configuration are only initialized as I2C
- * signals when module ```perpih_i2c``` is used. Otherwise they are not
+ * signals when module `periph_i2c` is used. Otherwise they are not
  * allocated and can be used for other purposes.
  *
  * @{
@@ -110,38 +110,64 @@
  *
  * LEDs are used as PWM channels for device PWM_DEV(0).
  *
- * @note As long as the according PWM device is not initialized with function
- * pwm_init, the GPIOs declared for this device can be used for other
- * purposes.
- *
  * @note As long as the according PWM device is not initialized with
- * the ```pwm_init```, the GPIOs declared for this device can be used
+ * the `pwm_init`, the GPIOs declared for this device can be used
  * for other purposes.
  *
  * @{
  */
 #ifndef PWM0_GPIOS
-#if !MODULE_ESP32_WROVER_KIT_CAMERA || DOXYGEN
+#if (!MODULE_ESP32_WROVER_KIT_CAMERA && !MODULE_PERIPH_SDMMC) || DOXYGEN
 #define PWM0_GPIOS  { GPIO0, GPIO4 } /**< only available when camera is not connected */
+#elif !MODULE_ESP32_WROVER_KIT_CAMERA
+#define PWM0_GPIOS  { GPIO0 }
 #else
 #define PWM0_GPIOS  { }
 #endif
 #endif
 
-/** PWM_DEV(1) is not used */
-#ifndef PWM1_GPIOS
-#define PWM1_GPIOS  { }
-#endif
 /** @} */
 
+/**
+ * @name   SD/MMC host controller configuration
+ *
+ * @warning If the camera is plugged in, the SD Card has to be used in
+ *          1-bit mode.
+ * @{
+ */
+
+/** SDMMC devices */
+static const sdmmc_conf_t sdmmc_config[] = {
+    {
+        .slot = SDMMC_SLOT_1,
+        .cd = GPIO21,
+        .wp = GPIO_UNDEF,
+#if MODULE_ESP32_WROVER_KIT_CAMERA
+        /* if camera used, only DAT0 is available */
+        .bus_width = 1,
+#else
+        .bus_width = 4,
+#endif
+    },
+};
+
+/** Number of configured SDMMC devices */
+#define SDMMC_CONFIG_NUMOF  1
+/** @} */
 
 /**
  * @name    SPI configuration
  *
  * SPI configuration depends on configured/connected components.
  *
- * HSPI is is always available and therefore used as SPI_DEV(0)
+ * HSPI is always available and therefore used as SPI_DEV(0)
  * VSPI is only available when the camera is not plugged.
+ *
+ * @warning In order not to change the index of the SPI devices depending on
+ *          the different hardware configuration options including the camera,
+ *          SPI_DEV(0) is also defined in case of using the SD/MMC host
+ *          controller, by default but cannot be used once an SD card is
+ *          inserted. Use SPI_DEV(1) instead in this case.
  *
  * @{
  */
@@ -169,7 +195,7 @@
  *
  * @note The GPIOs listed in the configuration are first initialized as SPI
  * signals when the corresponding SPI interface is used for the first time
- * by either calling the ```spi_init_cs``` function or the ```spi_acquire```
+ * by either calling the `spi_init_cs` function or the `spi_acquire`
  * function. That is, they are not allocated as SPI signals before and can
  * be used for other purposes as long as the SPI interface is not used.
  *
@@ -206,7 +232,6 @@
 #define UART0_TXD   GPIO1  /**< direct I/O pin for UART_DEV(0) TxD, can't be changed */
 #define UART0_RXD   GPIO3  /**< direct I/O pin for UART_DEV(0) RxD, can't be changed */
 /** @} */
-
 
 #ifdef __cplusplus
 } /* end extern "C" */

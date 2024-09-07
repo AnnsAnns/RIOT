@@ -1,6 +1,13 @@
 [![Nightly CI status master][master-ci-badge]][master-ci-link]
-[![IRC][irc-badge]][irc-link]
+[![GitHub release][release-badge]][release-link]
+[![License][license-badge]][license-link]
+[![API docs][api-badge]][api-link]
+[![Wiki][wiki-badge]][wiki-link]
+[![Stack Overflow questions][stackoverflow-badge]][stackoverflow-link]
+[![Mastodon][mastodon-badge]][mastodon-link]
+[![Matrix][matrix-badge]][matrix-link]
 
+<p align="center"><img src="doc/doxygen/src/riot-logo.svg" width="66%"><!--
                           ZZZZZZ
                         ZZZZZZZZZZZZ
                       ZZZZZZZZZZZZZZZZ
@@ -25,12 +32,13 @@
       ZZZZZZ     ZZZZZZ          ZZZZZ      777     7777777777       777
        ZZZZZZZZZZZZZZZ            ZZZZ      777      77777777        777
          ZZZZZZZZZZZ               Z
-            ZZZZZ
+            ZZZZZ                                                           --></p>
 
 The friendly Operating System for IoT!
 
-RIOT is a real-time multi-threading operating system that supports a range of
-devices that are typically found in the Internet of Things (IoT):
+RIOT is an open-source microcontroller operating system, designed to match
+the requirements of Internet of Things (IoT) devices and other embedded devices.
+It supports a range of devices that are typically found in the Internet of Things (IoT):
 8-bit, 16-bit and 32-bit microcontrollers.
 
 RIOT is based on the following design principles: energy-efficiency, real-time
@@ -45,30 +53,61 @@ indirect business models around the free open-source software platform
 provided by RIOT, e.g. it is possible to link closed-source code with the
 LGPL code.
 
-## FEATURES
+## Features
 
-RIOT is based on a microkernel architecture, and provides features including,
-but not limited to:
+RIOT provides features including, but not limited to:
 
 * a preemptive, tickless scheduler with priorities
 * flexible memory management
 * high resolution, long-term timers
-* support 100+ boards based on AVR, MSP430, ESP8266, ESP32, MIPS, RISC-V,
+* MTD abstraction layer
+* File System integration
+* support 200+ boards based on AVR, MSP430, ESP8266, ESP32, RISC-V,
   ARM7 and ARM Cortex-M
-* the native port allows to run RIOT as-is on Linux, BSD, and MacOS. Multiple
-  instances of RIOT running on a single machine can also be interconnected via
-  a simple virtual Ethernet bridge
+* the native port allows to run RIOT as-is on Linux and BSD.
+  Multiple instances of RIOT running on a single machine can also be
+  interconnected via a simple virtual Ethernet bridge or via a simulated
+  IEEE 802.15.4 network (ZEP)
 * IPv6
 * 6LoWPAN (RFC4944, RFC6282, and RFC6775)
 * UDP
 * RPL (storing mode, P2P mode)
 * CoAP
+* OTA updates via SUIT
+* MQTT
+* USB (device mode)
+* Display / Touchscreen support
 * CCN-Lite
-* Sigfox
 * LoRaWAN
+* UWB
+* Bluetooth (BLE) via [NimBLE](https://github.com/apache/mynewt-nimble)
 
+## Getting RIOT
 
-## GETTING STARTED
+The most convenient way to get RIOT is to clone it via Git
+
+```console
+$ git clone https://github.com/RIOT-OS/RIOT
+```
+
+this will ensure that you get all the newest features and bug fixes with the
+caveat of an ever changing work environment.
+
+If you prefer things more stable, you can download the source code of one of our
+quarter annual releases [via Github][releases] as ZIP file or tarball. You can
+also checkout a release in a cloned Git repository using
+
+```console
+$ git pull --tags
+$ git checkout <YYYY.MM>
+```
+
+For more details on our release cycle, check our [documentation][release cycle].
+
+[releases]: https://github.com/RIOT-OS/RIOT/releases
+[release cycle]: https://doc.riot-os.org/release-cycle.html
+
+## Getting Started
 * You want to start the RIOT? Just follow our
 [quickstart guide](https://doc.riot-os.org/index.html#the-quickest-start) or
 try this
@@ -77,39 +116,30 @@ For specific toolchain installation, follow instructions in the
 [getting started](https://doc.riot-os.org/getting-started.html) page.
 * The RIOT API itself can be built from the code using doxygen. The latest
   version of the documentation is uploaded daily to
-  [riot-os.org/api](https://riot-os.org/api).
+  [doc.riot-os.org](https://doc.riot-os.org).
 
-### USING THE NATIVE PORT WITH NETWORKING
-If you compile RIOT for the native cpu and include the `netdev_tap` module,
-you can specify a network interface like this: `PORT=tap0 make term`
+Using Windows? Use [this guide][dev-setup-windows] to
+[setup the development environment][dev-setup-windows].
 
-#### SETTING UP A TAP NETWORK
-There is a shell script in `RIOT/dist/tools/tapsetup` called `tapsetup` which
-you can use to create a network of tap interfaces.
+[dev-setup-windows]: doc/guides/setup-windows
 
-*USAGE*
+## Forum
+Do you have a question, want to discuss a new feature, or just want to present
+your latest project using RIOT? Come over to our [forum] and post to your hearts
+content.
 
-To create a bridge and two (or `count` at your option) tap interfaces:
+[forum]: https://forum.riot-os.org
 
-    sudo ./dist/tools/tapsetup/tapsetup [-c [<count>]]
-
-## CONTRIBUTE
+## Contribute
 
 To contribute something to RIOT, please refer to our
 [contributing document](CONTRIBUTING.md).
 
-## MAILING LISTS
-* RIOT OS kernel developers list
- * devel@riot-os.org (https://lists.riot-os.org/mailman/listinfo/devel)
-* RIOT OS users list
- * users@riot-os.org (https://lists.riot-os.org/mailman/listinfo/users)
-* RIOT commits
- * commits@riot-os.org (https://lists.riot-os.org/mailman/listinfo/commits)
-* Github notifications
- * notifications@riot-os.org
-   (https://lists.riot-os.org/mailman/listinfo/notifications)
+## Mailing Lists
+* RIOT commits: [commits@riot-os.org](https://lists.riot-os.org/mailman/listinfo/commits)
+* Github notifications: [notifications@riot-os.org](https://lists.riot-os.org/mailman/listinfo/notifications)
 
-## LICENSE
+## License
 * Most of the code developed by the RIOT community is licensed under the GNU
   Lesser General Public License (LGPL) version 2.1 as published by the Free
   Software Foundation.
@@ -123,7 +153,20 @@ For more information, see the RIOT website:
 https://www.riot-os.org
 
 
-[master-ci-badge]: https://ci.riot-os.org/RIOT-OS/RIOT/master/latest/badge.svg
-[master-ci-link]: https://ci.riot-os.org/nightlies.html#master
-[irc-badge]: https://img.shields.io/badge/IRC-join%20chat%20%E2%86%92-blue.svg
-[irc-link]: https://webchat.freenode.net?channels=%23riot-os
+[api-badge]: https://img.shields.io/badge/docs-API-informational.svg
+[api-link]: https://doc.riot-os.org/
+[license-badge]: https://img.shields.io/github/license/RIOT-OS/RIOT
+[license-link]: https://github.com/RIOT-OS/RIOT/blob/master/LICENSE
+[master-ci-badge]: https://ci.riot-os.org/job/branch/master/badge
+[master-ci-link]: https://ci.riot-os.org/details/branch/master
+[matrix-badge]: https://img.shields.io/badge/chat-Matrix-brightgreen.svg
+[matrix-link]: https://matrix.to/#/#riot-os:matrix.org
+[merge-chance-link]: https://merge-chance.info/target?repo=RIOT-OS/RIOT
+[release-badge]: https://img.shields.io/github/release/RIOT-OS/RIOT.svg
+[release-link]: https://github.com/RIOT-OS/RIOT/releases/latest
+[stackoverflow-badge]: https://img.shields.io/badge/stackoverflow-%5Briot--os%5D-yellow
+[stackoverflow-link]: https://stackoverflow.com/questions/tagged/riot-os
+[mastodon-badge]: https://img.shields.io/badge/social-Mastodon-informational.svg
+[mastodon-link]: https://fosstodon.org/@RIOT_OS
+[wiki-badge]: https://img.shields.io/badge/docs-Wiki-informational.svg
+[wiki-link]: https://github.com/RIOT-OS/RIOT/wiki

@@ -25,7 +25,7 @@
 #include <stdint.h>
 
 #include "cib.h"
-#include "kernel_types.h"
+#include "sched.h"
 #include "mbox.h"
 #include "mutex.h"
 #include "random.h"
@@ -40,7 +40,6 @@ extern "C" {
  */
 /* prefer mutexes rather than binary semaphores */
 #define LWIP_COMPAT_MUTEX   (0)
-/** @} */
 
 /**
  * @name    Critical sections protection definitions
@@ -55,6 +54,7 @@ extern "C" {
 /**
  * @name    Semaphores definitions
  * @see     https://www.nongnu.org/lwip/2_1_x/group__sys__sem.html
+ * @{
  */
 typedef sema_t sys_sem_t;               /**< Platform specific semaphore type */
 
@@ -71,6 +71,7 @@ static inline bool sys_sem_valid(sys_sem_t *sem)
 /**
  * @name    Mutexes definitions
  * @see     https://www.nongnu.org/lwip/2_1_x/group__sys__mutex.html
+ * @{
  */
 typedef mutex_t sys_mutex_t;            /**< Platform specific mutex type */
 
@@ -100,13 +101,13 @@ typedef struct {
 
 static inline bool sys_mbox_valid(sys_mbox_t *mbox)
 {
-    return (mbox != NULL) && (mbox->mbox.cib.mask != 0);
+    return (mbox != NULL) && (mbox_size(&mbox->mbox) != 0);
 }
 
 static inline void sys_mbox_set_invalid(sys_mbox_t *mbox)
 {
     if (mbox != NULL) {
-        mbox->mbox.cib.mask = 0;
+        mbox_unset(&mbox->mbox);
     }
 }
 
@@ -115,6 +116,18 @@ static inline void sys_mbox_set_invalid(sys_mbox_t *mbox)
 /** @} */
 
 typedef kernel_pid_t sys_thread_t;      /**< Platform specific thread type */
+
+extern kernel_pid_t lwip_tcpip_thread;  /**< PID of the lwIP TCP/IP thread */
+
+/**
+ * @name    Functions for locking/unlocking core to assure thread safety.
+ * @{
+ */
+void sys_lock_tcpip_core(void);
+#define LOCK_TCPIP_CORE()          sys_lock_tcpip_core()
+void sys_unlock_tcpip_core(void);
+#define UNLOCK_TCPIP_CORE()        sys_unlock_tcpip_core()
+/** @} */
 
 #ifdef MODULE_RANDOM
 /**

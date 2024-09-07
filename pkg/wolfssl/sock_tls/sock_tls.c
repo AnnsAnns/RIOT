@@ -65,7 +65,7 @@ static int tls_session_create(sock_tls_t *sk)
 
 static void tls_session_destroy(sock_tls_t *sk)
 {
-    if (!sk || sk->ssl)
+    if (!sk || !sk->ssl)
         return;
     wolfSSL_free(sk->ssl);
 }
@@ -80,16 +80,12 @@ void sock_dtls_session_destroy(sock_tls_t *sk)
     tls_session_destroy(sk);
 }
 
-
 #ifdef MODULE_SOCK_TCP
 /* TODO */
 #endif
 
-
-
-#ifndef __mips__
 #include <ctype.h>
-int strncasecmp(const char *s1, const char * s2, unsigned int sz)
+int strncasecmp(const char *s1, const char * s2, size_t sz)
 {
     unsigned int i;
     for( i = 0; i < sz; i++) {
@@ -102,4 +98,3 @@ int strncasecmp(const char *s1, const char * s2, unsigned int sz)
     }
     return 0;
 }
-#endif

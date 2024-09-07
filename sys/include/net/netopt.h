@@ -25,26 +25,12 @@
 #ifndef NET_NETOPT_H
 #define NET_NETOPT_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief       A deprecated alias for @ref NETOPT_MAX_PDU_SIZE
- *
- * @deprecated  Please use @ref NETOPT_MAX_PDU_SIZE instead of
- *              `NETOPT_MAX_PACKET_SIZE`
- */
-#define NETOPT_MAX_PACKET_SIZE NETOPT_MAX_PDU_SIZE
-
-/**
- * @brief       A deprecated alias for @ref NETOPT_LINK
- *
- * @deprecated  Please use @ref NETOPT_LINK instead of
- *              `NETOPT_LINK_CONNECTED`. It will be removed after the
- *              2020.07 release at the latest.
- */
-#define NETOPT_LINK_CONNECTED NETOPT_LINK
 
 /**
  * @brief   Global list of configuration options available throughout the
@@ -77,6 +63,7 @@ typedef enum {
      * Ethernet      | 6      | device MAC address
      * nrfmin        | 2      | device short address
      * CC110x        | 1      | device address
+     * NRF24L01+     | 5      | device address
      * LoRaWAN       | 4      | device address
      */
     NETOPT_ADDRESS,
@@ -120,10 +107,9 @@ typedef enum {
      *          RFC 4291, section 2.5.1
      *      </a>
      *
-     * @deprecated  Do not implement this in a network device. Other APIs
-     *              utilizing [netopt](@ref net_netopt) may still implement it.
-     *              Existing support of drivers will be dropped after the
-     *              2019.07 release.
+     * @note    Do not implement this in a network device driver. Other APIs
+     *          utilizing [netopt](@ref net_netopt) such as @ref net_gnrc_netif
+     *          or @ref net_netif may still implement it.
      *
      * The generation of the interface identifier is dependent on the link-layer.
      * Please refer to the appropriate IPv6 over `<link>` specification for
@@ -197,6 +183,22 @@ typedef enum {
      */
     NETOPT_MAX_PDU_SIZE,
     /**
+     * @brief   (uint16_t) protocol data unit size
+     *
+     * When set, fixes the number of bytes to be received. This is required for
+     * MAC layers with implicit header mode (no packet length information in
+     * PDDU) and predictable packet length (e.g LoRaWAN beacons). The device
+     * driver implementation should attempt to read exactly the expected number
+     * of bytes (possibly filling it up with garbage data if the payload is
+     * smaller).
+     *
+     * When get, returns the number of expected bytes for the next reception.
+     *
+     * In some MAC layers it will only be effective if used in conjunction with
+     * @ref NETOPT_FIXED_HEADER
+     */
+    NETOPT_PDU_SIZE,
+    /**
      * @brief   (@ref netopt_enable_t) frame preloading
      *
      * Preload frame data using gnrc_netdev_driver_t::send_data() or gnrc_netapi_send(),
@@ -242,37 +244,31 @@ typedef enum {
      */
     NETOPT_RAWMODE,
     /**
-     * @brief   (@ref netopt_enable_t) trigger interrupt at reception start
+     * @brief   (@ref netopt_enable_t) Used to check if the driver generates NETDEV_EVENT_RX_STARTED
+     *          events
      *
      * It is mostly triggered after the preamble is correctly received
      *
-     * @note not all transceivers may support this interrupt
+     * @warning This value is read-only and cannot be configured at run-time
      */
     NETOPT_RX_START_IRQ,
 
     /**
-     * @brief   (@ref netopt_enable_t) trigger interrupt after frame reception
-     *
-     * This interrupt is triggered after a complete frame is received.
-     *
-     * @note in case a transceiver does not support this interrupt, the event
-     *       may be triggered by the driver
-     */
-    NETOPT_RX_END_IRQ,
-
-    /**
-     * @brief   (@ref netopt_enable_t) trigger interrupt at transmission start
+     * @brief   (@ref netopt_enable_t) Used to check if the driver generates NETDEV_EVENT_TX_STARTED
+     *          events
      *
      * This interrupt is triggered when the transceiver starts to send out the
      * frame.
      *
-     * @note in case a transceiver does not support this interrupt, the event
-     *       may be triggered by the driver
+     * @note    In case a transceiver does not support this interrupt, the event
+     *          may be triggered by the driver
+     * @warning This value is read-only and cannot be configured at run-time
      */
     NETOPT_TX_START_IRQ,
 
     /**
-     * @brief   (@ref netopt_enable_t) trigger interrupt after frame transmission
+     * @brief   (@ref netopt_enable_t) Used to check if the driver generates
+     *          NETDEV_EVENT_TX_COMPLETE events
      *
      * This interrupt is triggered when the full frame has been transmitted.
      *
@@ -302,6 +298,16 @@ typedef enum {
      * @note On error this option should return a negative number.
      */
     NETOPT_LINK,
+
+    /**
+     * @brief (@ref netopt_enable_t) network interface status.
+     *
+     * This option is used check state or to enable/disable the interface,
+     * regardless of link status.
+     *
+     * @note On error this option should return a negative number.
+     */
+    NETOPT_ACTIVE,
 
     /**
      * @brief   (@ref netopt_enable_t) CSMA/CA support
@@ -398,10 +404,12 @@ typedef enum {
     NETOPT_CCA_MODE,
 
     /**
-     * @brief   (@ref netstats_t*) get statistics about sent and received packets and data of the device or protocol
+     * @brief   (@ref netstats_t) get statistics about sent and received packets
+     *          and data of the device or protocol
      *
-     * Expects a pointer to a @ref netstats_t struct that will be pointed to
-     * the corresponding @ref netstats_t of the module.
+     * A get operation expects a @ref netstats_t and will copy the current
+     * statistics into it, atomically. A set operation resets the statistics
+     * (zeros it out) regardless of the parameter given.
      */
     NETOPT_STATS,
 
@@ -418,7 +426,8 @@ typedef enum {
     NETOPT_ENCRYPTION_KEY,
 
     /**
-     * @brief   (@ref netopt_rf_testmode_t) Test mode for the radio, e.g. for CE or FCC certification
+     * @brief   (@ref netopt_rf_testmode_t) Test mode for the radio, e.g. for CE or FCC
+     *          certification
      *
      * Get/set the test mode as type @ref netopt_rf_testmode_t or as uint8_t if
      * the radio supports other vendor specific test modes.
@@ -435,6 +444,7 @@ typedef enum {
     NETOPT_RF_TESTMODE,
 
     /**
+     * @experimental
      * @brief   (@ref l2filter_t) add an address to a link layer filter list
      *
      * Getting this option from a device will return a pointer of type
@@ -445,6 +455,7 @@ typedef enum {
     NETOPT_L2FILTER,
 
     /**
+     * @experimental
      * @brief   (@ref l2filter_t) remove an address from a link layer filter list
      *
      * Getting this value always returns -ENOTSUP.
@@ -589,18 +600,50 @@ typedef enum {
     NETOPT_LORAWAN_APPEUI,
 
     /**
+     * @brief (uint8_t*) LoRaWAN join EUI (8 bytes length)
+     */
+    NETOPT_LORAWAN_JOINEUI,
+
+    /**
      * @brief   (uint8_t*) LoRaWAN application key (16 bytes length)
      */
     NETOPT_LORAWAN_APPKEY,
 
     /**
+     * @brief   (uint8_t*) LoRaWAN network key (16 bytes length)
+     */
+    NETOPT_LORAWAN_NWKKEY,
+
+    /**
      * @brief   (uint8_t*) LoRaWAN network session key (16 bytes length)
      */
     NETOPT_LORAWAN_NWKSKEY,
+
     /**
      * @brief   (uint8_t*) LoRaWAN application session key (16 bytes length)
      */
     NETOPT_LORAWAN_APPSKEY,
+
+    /**
+     * @brief   (uint8_t*) LoRaWAN forwarding network session integrity key (16 bytes length)
+     *
+     * This key is only valid when using LoRaWAN 1.1x.
+     */
+    NETOPT_LORAWAN_FNWKSINTKEY,
+
+    /**
+     * @brief (uint8_t*) LoRaWAN serving network session integrity key (16 bytes length)
+     *
+     * This key is only valid when using LoRaWAN 1.1x.
+     */
+    NETOPT_LORAWAN_SNWKSINTKEY,
+
+    /**
+     * @brief (uint8_t*) LoRaWAN network session encryption key buffer (16 bytes length)
+     *
+     * This key is only valid when using LoRaWAN 1.1x.
+     */
+    NETOPT_LORAWAN_NWKSENCKEY,
 
      /**
      * @brief   (uint8_t) LoRaWAN device class (A, B, C)
@@ -625,12 +668,6 @@ typedef enum {
     NETOPT_LORAWAN_PUBLIC_NETWORK,
 
     /**
-     * @brief   (uint8_t) LoRaWAN TX application port
-     * - LoRaWAN: between 1 and 223 (included)
-     */
-    NETOPT_LORAWAN_TX_PORT,
-
-    /**
      * @brief   (loramac_dr_idx_t) LoRaWAN datarate for second RX window
      * - LoRaWAN: @ref loramac_dr_idx_t
      */
@@ -652,6 +689,63 @@ typedef enum {
     NETOPT_LORAWAN_MIN_RX_SYMBOL,
 
     /**
+     * @brief   (uint8_t) 802.15.4 PHY mode
+     */
+    NETOPT_IEEE802154_PHY,
+
+    /**
+     * @brief   (uint8_t) legacy O-QPSK proprietary mode
+     *          Allows to select higher data rates than standard 250 kbit/s
+     *          Not compatible across vendors, only use with radios of the same type.
+     */
+    NETOPT_OQPSK_RATE,
+
+    /**
+     * @brief   (uint8_t) MR-O-QPSK Chip Rate (kchip/s)
+     */
+    NETOPT_MR_OQPSK_CHIPS,
+
+    /**
+     * @brief   (uint8_t) MR-O-QPSK Rate Mode
+     */
+    NETOPT_MR_OQPSK_RATE,
+
+    /**
+     * @brief   (uint8_t) MR-OFDM PHY Option (Values: 1-4)
+     */
+    NETOPT_MR_OFDM_OPTION,
+
+    /**
+     * @brief   (uint8_t) MR-OFDM PHY Modulation and Coding Scheme (Values: 0-6)
+     */
+    NETOPT_MR_OFDM_MCS,
+
+    /**
+     * @brief   (uint8_t) MR-FSK PHY Modulation Index (x 64)
+     */
+    NETOPT_MR_FSK_MODULATION_INDEX,
+
+    /**
+     * @brief   (uint8_t) MR-FSK Modulation Order
+     */
+    NETOPT_MR_FSK_MODULATION_ORDER,
+
+    /**
+     * @brief   (uint8_t) MR-FSK PHY Symbol Rate (kHz)
+     */
+    NETOPT_MR_FSK_SRATE,
+
+    /**
+     * @brief   (uint8_t) MR-FSK PHY Forward Error Correction
+     */
+    NETOPT_MR_FSK_FEC,
+
+    /**
+     * @brief   (uint8_t) PHY Channel Spacing (kHz)
+     */
+    NETOPT_CHANNEL_SPACING,
+
+    /**
      * @brief   (uint8_t*) phy layer syncword
      */
     NETOPT_SYNCWORD,
@@ -664,7 +758,7 @@ typedef enum {
     NETOPT_RANDOM,
 
     /**
-     * @brief (uint8_t) Get or set the number of PHY symbols before assuming there's no data
+     * @brief (uint16_t) Get or set the number of PHY symbols before assuming there's no data
      */
     NETOPT_RX_SYMBOL_TIMEOUT,
 
@@ -692,6 +786,90 @@ typedef enum {
      * be received on the next downlink
      */
     NETOPT_LINK_CHECK,
+
+    /**
+     * @brief (int16_t) Received Signal Strength Indicator (RSSI)
+     *
+     * The RSSI is an indicator for the received field strength in wireless
+     * channels. It is often represented as the ratio of received power to
+     * a given unit, for example milliwatts. With a device-dependent scaling
+     * factor, the RSSI value can be expressed as power level in the unit
+     * dBm or ASU (Arbitrary Strength Unit).
+     */
+    NETOPT_RSSI,
+
+    /**
+     * @brief   (@ref netopt_scan_request_t) Instruct the interface to do a network scan
+     *
+     * This netopt triggers an asynchronous network scan.
+     * The result is a list of reachable access points @ref l2scan_list_t.
+     * Notification happens by a callback @ref netopt_on_scan_result_t.
+     */
+    NETOPT_SCAN,
+
+    /**
+     * @brief   (@ref netopt_connect_request_t) Instructs the interface to connect to a network
+     *
+     * This netopt triggers an asynchronous connection attempt to a network.
+     * The result is a derivative of @ref netopt_connect_result_t or
+     * @ref netopt_disconnect_result_t. Notification happens through a callback
+     * @ref netopt_on_connect_result_t or @ref netopt_on_disconnect_result_t respectively.
+     */
+    NETOPT_CONNECT,
+
+    /**
+     * @brief   (@ref netopt_disconnect_request_t) Instructs the interface to disconnect
+     *          from a network
+     *
+     * This netopt triggers a disconnect procedure from a network.
+     * The result is a derivative of @ref netopt_disconnect_result_t.
+     * Notification happens through a callback @ref netopt_on_disconnect_result_t.
+     */
+    NETOPT_DISCONNECT,
+
+    /**
+     * @brief (uint16_t) Set the battery monitor voltage (in mV).
+     *
+     * When set, a @ref SYS_BUS_POWER_EVENT_LOW_VOLTAGE event is generated
+     * on the SYS_BUS_POWER bus if the supply voltage falls below the set value.
+     *
+     * Set to 0 to disable battery monitoring.
+     */
+    NETOPT_BATMON,
+
+    /**
+     * @brief   (array of byte array) get link layer multicast groups as array
+     *          of byte arrays (length of each byte array corresponds to the
+     *          length of @ref NETOPT_ADDRESS) or join a link layer multicast
+     *          group as byte array on an interface
+     *
+     * When getting the option you can pass an array of byte arrays of any
+     * length greater than 0 to the getter. The array will be filled up to to
+     * its maximum and the remaining addresses on the interface will be ignored
+     */
+    NETOPT_L2_GROUP,
+    /**
+     * @brief   (array of byte arrays) Leave an link layer multicast group
+     */
+    NETOPT_L2_GROUP_LEAVE,
+
+    /**
+     * @brief (netopt_enable_t) Set/Get PAN coordinator role
+     */
+    NETOPT_PAN_COORD,
+
+    /**
+     * @brief (ieee802154_dsme_alloc_t) Allocate DSME GTS slot
+     */
+    NETOPT_GTS_ALLOC,
+
+    /**
+     * @brief (netopt_enable_t) Transmit frames using GTS transmission
+     *
+     * When set, frames are sent using a Guaranteed Time Slot (GTS). Otherwise
+     * with CSMA/CA.
+     */
+    NETOPT_GTS_TX,
 
     /**
      * @brief   maximum number of options defined here.
@@ -742,6 +920,157 @@ typedef enum {
     NETOPT_RF_TESTMODE_CTX_CW,      /**< carrier wave continuous tx mode */
     NETOPT_RF_TESTMODE_CTX_PRBS9,   /**< PRBS9 continuous tx mode */
 } netopt_rf_testmode_t;
+
+/**
+ * @brief   Netopt RF channel type
+ */
+typedef uint16_t netopt_channel_t;
+
+/**
+ * @brief   Netopt RSSI type
+ */
+typedef int16_t netopt_rssi_t;
+
+/**
+ * @brief   Request to scan all channels
+ */
+#define NETOPT_SCAN_REQ_ALL_CH      ((netopt_channel_t)(-1))
+
+/**
+ * @brief   Basic network scan result
+ */
+typedef struct netopt_scan_result {
+    netopt_channel_t channel;       /**< Scanned channel */
+    netopt_rssi_t strength;         /**< Received signal strength */
+} netopt_scan_result_t;
+
+/**
+ * @brief   Static initializer for a @ref netopt_scan_result_t
+ *
+ * @param   ch      Scanned channel
+ * @param   str     Received signal strength
+ */
+#define NETOPT_SCAN_RESULT_INITIALIZER(ch, str)         \
+    (netopt_scan_result_t) {                            \
+        .channel = ch,                                  \
+        .strength = str,                                \
+    }
+
+/**
+ * @brief   Forward declaration of a list of network scan results
+ *
+ * This prevents a recursive include.
+ */
+struct l2scan_list;
+
+/**
+ * @brief   Basic callback type on network scan @ref NETOPT_CONNECT
+ */
+typedef void (*netopt_on_scan_result_t) (void *netif, const struct l2scan_list *res);
+
+/**
+ * @brief   Basic network scan request
+ */
+typedef struct netopt_scan_request {
+    netopt_on_scan_result_t scan_cb;    /**< Scan result callback */
+    netopt_channel_t channel;           /**< Channel to scan */
+} netopt_scan_request_t;
+
+/**
+ * @brief   Static initializer for a @ref netopt_scan_request_t
+ *
+ * @param   ch      Channel to be scanned
+ * @param   cb      Scan result callback
+ */
+#define NETOPT_SCAN_REQUEST_INITIALIZER(ch, cb)         \
+    (netopt_scan_request_t) {                           \
+        .channel = ch,                                  \
+        .scan_cb = (netopt_on_scan_result_t)cb,         \
+    }
+
+/**
+ * @brief   Basic network connect result
+ */
+typedef struct netopt_connect_result {
+    netopt_channel_t channel;           /**< Connected channel */
+} netopt_connect_result_t;
+
+/**
+ * @brief   Static initializer for a @ref netopt_connect_result_t
+ *
+ * @param   ch      Connected channel
+ */
+#define NETOPT_CONNECT_RESULT_INITIALIZER(ch)               \
+    (netopt_connect_result_t) {                             \
+        .channel = ch,                                      \
+    }
+
+/**
+ * @brief   Basic disconnect result
+ */
+typedef struct netopt_disconnect_result {
+    netopt_channel_t channel;           /**< Channel of the disconnected AP */
+} netopt_disconnect_result_t;
+
+/**
+ * @brief   Static initializer for a @ref netopt_disconnect_result_t
+ *
+ * @param   ch      Channel of the disconnected AP
+ */
+#define NETOPT_DISCONNECT_RESULT_INITIALIZER(ch)        \
+    (netopt_disconnect_result_t) {                      \
+        .channel = ch,                                  \
+    }
+
+/**
+ * @brief   Basic callback type on network connection @ref NETOPT_CONNECT
+ */
+typedef void (*netopt_on_connect_result_t) (void *netif, const struct netopt_connect_result *res);
+
+/**
+ * @brief   Basic callback type on network disconnection @ref NETOPT_CONNECT
+ */
+typedef void (*netopt_on_disconnect_result_t) (void *netif, const struct netopt_disconnect_result *res);
+
+/**
+ * @brief   Basic network connect request
+ */
+typedef struct netopt_connect_request {
+    netopt_on_disconnect_result_t disconn_cb;   /**< On disconnect callback */
+    netopt_on_connect_result_t conn_cb;         /**< On connect callback */
+    netopt_channel_t channel;                   /**< Channel of the network to connect to */
+} netopt_connect_request_t;
+
+/**
+ * @brief   Static initializer for a @ref netopt_connect_request_t
+ *
+ * @param   ch      Channel of the network to connect to
+ * @param   ccb     On connect callback
+ * @param   dcb     On disconnect callback
+ */
+#define NETOPT_CONNECT_REQUEST_INITIALIZER(ch, ccb, dcb)    \
+    (netopt_connect_request_t) {                            \
+        .disconn_cb = (netopt_on_disconnect_result_t)dcb,   \
+        .conn_cb = (netopt_on_connect_result_t)ccb,         \
+        .channel = ch,                                      \
+    }
+
+/**
+ * @brief   Basic network disconnect request
+ */
+typedef struct netopt_disconnect_request {
+    netopt_on_disconnect_result_t disconn_cb;   /**< On disconnect callback */
+} netopt_disconnect_request_t;
+
+/**
+ * @brief   Static initializer for a @ref netopt_disconnect_request_t
+ *
+ * @param   dcb     On disconnect callback
+ */
+#define NETOPT_DISCONNECT_REQUEST_INITIALIZER(dcb)          \
+    (netopt_disconnect_request_t) {                         \
+        .disconn_cb = (netopt_on_disconnect_result_t)dcb,   \
+    }
 
 /**
  * @brief   Get a string ptr corresponding to opt, for debugging

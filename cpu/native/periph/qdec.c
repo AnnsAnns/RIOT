@@ -19,15 +19,6 @@
  * @}
  */
 
-#ifdef __MACH__
-#include <mach/clock.h>
-#include <mach/mach_init.h>
-#include <mach/mach_port.h>
-#include <mach/mach_host.h>
-/* Both OS X and RIOT typedef thread_t. timer.c does not use either thread_t. */
-#define thread_t riot_thread_t
-#endif
-
 #include <time.h>
 #include <sys/time.h>
 #include <signal.h>
@@ -44,7 +35,7 @@
 #include "periph/qdec.h"
 #include "periph/gpio.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 #ifdef QDEC_NUMOF
@@ -80,9 +71,7 @@ int32_t qdec_init(qdec_t qdec, qdec_mode_t mode, qdec_cb_t cb, void *arg)
     }
 
     /* Initialize qdec channels */
-    for (uint8_t i = 0; i < QDEC_NUMOF; i++) {
-        qdecs[qdec] = 0;
-    }
+    qdecs[qdec] = 0;
 
     /* Reset counter and start qdec */
     qdec_start(qdec);

@@ -21,28 +21,19 @@ QUIET ?= 1
 
 # Modules to include:
 USEMODULE += shell
-USEMODULE += shell_commands
+USEMODULE += shell_cmds_default
 USEMODULE += ps
 
-# Use MTD (flash layer)
-USEMODULE += mtd
-
-# Use VFS
-USEMODULE += vfs
-
-# Use a file system
-USEMODULE += littlefs
-# USEMODULE += spiffs
-# USEMODULE += fatfs
+# Use the default file system
+USEMODULE += vfs_default
 USEMODULE += constfs
 # USEMODULE += devfs
 
-# Set file systems specific variables
-ifneq (,$(filter littlefs, $(USEMODULE)))
-    CFLAGS += -DVFS_FILE_BUFFER_SIZE=56 -DVFS_DIR_BUFFER_SIZE=44
-else ifneq (,$(filter spiffs, $(USEMODULE)))
-    SPIFFS_NB_FD ?= 8
-    CFLAGS += '-DSPIFFS_FS_FD_SPACE_SIZE=(32 * $(SPIFFS_NB_FD))'
-endif
+# Enable to automatically format if mount fails
+#USEMODULE += vfs_auto_format
+
+# For LittleFS on real devices, the main stack size has to be
+# increased:
+CFLAGS += -DTHREAD_STACKSIZE_MAIN=2048
 
 include $(RIOTBASE)/Makefile.include

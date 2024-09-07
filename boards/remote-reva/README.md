@@ -67,7 +67,7 @@ Else install from <https://launchpad.net/gcc-arm-embedded>
 Drivers
 -------
 The RE-Mote features a CP2104 serial-to-USB module, the driver is commonly found in most OS, but if required it can be downloaded
-from <https://www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx>
+from <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>
 
 
 ### For the CC2538EM (USB CDC-ACM)
@@ -76,7 +76,7 @@ The RE-Mote has built-in support for USB 2.0 USB, Vendor and Product IDs are the
   * VID 0x0451
   * PID 0x16C8
 
-On Linux and OS X this is straightforward, on windows you need to install the following driver:
+On Linux and macOS this is straightforward, on windows you need to install the following driver:
 
 <https://github.com/alignan/lufa/blob/remote-zongle/LUFA/CodeTemplates/WindowsINF/LUFA%20CDC-ACM.inf>
 
@@ -91,7 +91,7 @@ On windows, devices will appear as a virtual `COM` port.
 
 On Linux, devices will appear under `/dev/`.
 
-On OS X, `/dev/tty.SLAB_USBtoUARTx`.
+On macOS, `/dev/tty.SLAB_USBtoUARTx`.
 
 On Linux:
 
@@ -105,7 +105,7 @@ More Reading
 2. [CC2538 System-on-Chip Solution for 2.4-GHz IEEE 802.15.4 and ZigBee applications (SWRU319B)][cc2538]
 3. [CC1200 sub-1GHz RF transceiver][cc1200]
 
-[remote-site]: https://zolertia.io/product/re-mote-suite/ "Zolertia RE-Mote"
+[remote-site]: https://zolertia.io/product/re-mote/ "Zolertia RE-Mote"
 [zolertia-wiki]: https://github.com/Zolertia/Resources/wiki
 [cc1200]: http://www.ti.com/product/cc1200     "CC1200"
 [cc2538]: http://www.ti.com/product/cc2538     "CC2538"

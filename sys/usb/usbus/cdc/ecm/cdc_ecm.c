@@ -15,6 +15,8 @@
  * @}
  */
 
+#define USB_H_USER_IS_RIOT_INTERNAL
+
 #include "event.h"
 #include "fmt.h"
 #include "kernel_defines.h"
@@ -29,7 +31,7 @@
 
 #include <string.h>
 
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 static void _event_handler(usbus_t *usbus, usbus_handler_t *handler,
@@ -113,7 +115,7 @@ static void _notify_link_speed(usbus_cdcecm_device_t *cdcecm)
 {
     DEBUG("CDC ECM: sending link speed indication\n");
     usb_desc_cdcecm_speed_t *notification =
-        (usb_desc_cdcecm_speed_t *)cdcecm->ep_ctrl->ep->buf;
+        (usb_desc_cdcecm_speed_t *)cdcecm->control_in;
     notification->setup.type = USB_SETUP_REQUEST_DEVICE2HOST |
                                USB_SETUP_REQUEST_TYPE_CLASS |
                                USB_SETUP_REQUEST_RECIPIENT_INTERFACE;
@@ -122,9 +124,9 @@ static void _notify_link_speed(usbus_cdcecm_device_t *cdcecm)
     notification->setup.index = cdcecm->iface_ctrl.idx;
     notification->setup.length = 8;
 
-    notification->down = USBUS_CDC_ECM_CONFIG_SPEED_DOWNSTREAM;
-    notification->up = USBUS_CDC_ECM_CONFIG_SPEED_UPSTREAM;
-    usbdev_ep_ready(cdcecm->ep_ctrl->ep,
+    notification->down = CONFIG_USBUS_CDC_ECM_CONFIG_SPEED_DOWNSTREAM;
+    notification->up = CONFIG_USBUS_CDC_ECM_CONFIG_SPEED_UPSTREAM;
+    usbdev_ep_xmit(cdcecm->ep_ctrl->ep, cdcecm->control_in,
                     sizeof(usb_desc_cdcecm_speed_t));
     cdcecm->notif = USBUS_CDCECM_NOTIF_SPEED;
 }
@@ -132,7 +134,7 @@ static void _notify_link_speed(usbus_cdcecm_device_t *cdcecm)
 static void _notify_link_up(usbus_cdcecm_device_t *cdcecm)
 {
     DEBUG("CDC ECM: sending link up indication\n");
-    usb_setup_t *notification = (usb_setup_t *)cdcecm->ep_ctrl->ep->buf;
+    usb_setup_t *notification = (usb_setup_t *)cdcecm->control_in;
     notification->type = USB_SETUP_REQUEST_DEVICE2HOST |
                          USB_SETUP_REQUEST_TYPE_CLASS |
                          USB_SETUP_REQUEST_RECIPIENT_INTERFACE;
@@ -140,7 +142,7 @@ static void _notify_link_up(usbus_cdcecm_device_t *cdcecm)
     notification->value = 1;
     notification->index = cdcecm->iface_ctrl.idx;
     notification->length = 0;
-    usbdev_ep_ready(cdcecm->ep_ctrl->ep, sizeof(usb_setup_t));
+    usbdev_ep_xmit(cdcecm->ep_ctrl->ep, cdcecm->control_in, sizeof(usb_setup_t));
     cdcecm->notif = USBUS_CDCECM_NOTIF_LINK_UP;
 }
 
@@ -158,6 +160,14 @@ static void _fill_ethernet(usbus_cdcecm_device_t *cdcecm)
     luid_get_eui48((eui48_t*)ethernet);
     fmt_bytes_hex(cdcecm->mac_host, ethernet, sizeof(ethernet));
 
+}
+
+void _start_urb(usbus_cdcecm_device_t *cdcecm)
+{
+    usbus_urb_init(&cdcecm->out_urb,
+                   cdcecm->data_out,
+                   USBUS_ETHERNET_FRAME_BUF, 0);
+    usbus_urb_submit(cdcecm->usbus, cdcecm->ep_out, &cdcecm->out_urb);
 }
 
 void usbus_cdcecm_init(usbus_t *usbus, usbus_cdcecm_device_t *handler)
@@ -208,6 +218,7 @@ static void _init(usbus_t *usbus, usbus_handler_t *handler)
                                          USB_EP_TYPE_INTERRUPT,
                                          USB_EP_DIR_IN,
                                          USBUS_CDCECM_EP_CTRL_SIZE);
+    assert(cdcecm->ep_ctrl);
     cdcecm->ep_ctrl->interval = 0x10;
 
     cdcecm->ep_out = usbus_add_endpoint(usbus,
@@ -215,19 +226,21 @@ static void _init(usbus_t *usbus, usbus_handler_t *handler)
                                         USB_EP_TYPE_BULK,
                                         USB_EP_DIR_OUT,
                                         USBUS_CDCECM_EP_DATA_SIZE);
+    assert(cdcecm->ep_out);
     cdcecm->ep_out->interval = 0; /* Must be 0 for bulk endpoints */
     cdcecm->ep_in = usbus_add_endpoint(usbus,
                                        (usbus_interface_t *)&cdcecm->iface_data_alt,
                                        USB_EP_TYPE_BULK,
                                        USB_EP_DIR_IN,
                                        USBUS_CDCECM_EP_DATA_SIZE);
+    assert(cdcecm->ep_in);
     cdcecm->ep_in->interval = 0; /* Must be 0 for bulk endpoints */
 
     /* Add interfaces to the stack */
     usbus_add_interface(usbus, &cdcecm->iface_ctrl);
     usbus_add_interface(usbus, &cdcecm->iface_data);
 
-    cdcecm->iface_data.alts = &cdcecm->iface_data_alt;
+    usbus_add_interface_alt(&cdcecm->iface_data, &cdcecm->iface_data_alt);
 
     usbus_enable_endpoint(cdcecm->ep_out);
     usbus_enable_endpoint(cdcecm->ep_in);
@@ -249,8 +262,9 @@ static int _control_handler(usbus_t *usbus, usbus_handler_t *handler,
                   setup->value);
             cdcecm->active_iface = (uint8_t)setup->value;
             if (cdcecm->active_iface == 1) {
-                usbdev_ep_ready(cdcecm->ep_out->ep, 0);
                 _notify_link_up(cdcecm);
+                /* Start URB */
+                _start_urb(cdcecm);
             }
             break;
 
@@ -288,35 +302,15 @@ static void _handle_tx_xmit(event_t *ev)
         mutex_unlock(&cdcecm->out_lock);
     }
     /* Data prepared by netdev_send, signal ready to usbus */
-    usbdev_ep_ready(cdcecm->ep_in->ep, cdcecm->tx_len);
-}
-
-static void _handle_rx_flush(usbus_cdcecm_device_t *cdcecm)
-{
-    cdcecm->len = 0;
+    usbdev_ep_xmit(cdcecm->ep_in->ep, cdcecm->data_in, cdcecm->tx_len);
 }
 
 static void _handle_rx_flush_ev(event_t *ev)
 {
     usbus_cdcecm_device_t *cdcecm = container_of(ev, usbus_cdcecm_device_t,
                                                  rx_flush);
-
-    usbdev_ep_ready(cdcecm->ep_out->ep, 0);
-    _handle_rx_flush(cdcecm);
-}
-
-static void _store_frame_chunk(usbus_cdcecm_device_t *cdcecm)
-{
-    uint8_t *buf = cdcecm->ep_out->ep->buf;
-    size_t len = 0;
-
-    usbdev_ep_get(cdcecm->ep_out->ep, USBOPT_EP_AVAILABLE, &len,
-                  sizeof(size_t));
-    memcpy(cdcecm->in_buf + cdcecm->len, buf, len);
-    cdcecm->len += len;
-    if (len < USBUS_CDCECM_EP_DATA_SIZE && cdcecm->netdev.event_callback) {
-        cdcecm->netdev.event_callback(&cdcecm->netdev, NETDEV_EVENT_ISR);
-    }
+    /* Start URB */
+    _start_urb(cdcecm);
 }
 
 static void _transfer_handler(usbus_t *usbus, usbus_handler_t *handler,
@@ -327,15 +321,7 @@ static void _transfer_handler(usbus_t *usbus, usbus_handler_t *handler,
     usbus_cdcecm_device_t *cdcecm = (usbus_cdcecm_device_t *)handler;
     if (ep == cdcecm->ep_out->ep) {
         /* Retrieve incoming data */
-        if (cdcecm->notif == USBUS_CDCECM_NOTIF_NONE) {
-            _notify_link_up(cdcecm);
-        }
-        size_t len = 0;
-        usbdev_ep_get(ep, USBOPT_EP_AVAILABLE, &len, sizeof(size_t));
-        _store_frame_chunk(cdcecm);
-        if (len == USBUS_CDCECM_EP_DATA_SIZE) {
-            usbdev_ep_ready(ep, 0);
-        }
+        netdev_trigger_event_isr(&cdcecm->netdev);
     }
     else if (ep == cdcecm->ep_in->ep) {
         _handle_in_complete(usbus, handler);
@@ -350,8 +336,13 @@ static void _handle_reset(usbus_t *usbus, usbus_handler_t *handler)
 {
     usbus_cdcecm_device_t *cdcecm = (usbus_cdcecm_device_t *)handler;
 
+    /* Set the max packet size advertised to the host to something compatible with the enumerated
+     * size */
+    size_t maxpacketsize = usbus_max_bulk_endpoint_size(usbus);
+    cdcecm->ep_in->maxpacketsize = maxpacketsize;
+    cdcecm->ep_out->maxpacketsize = maxpacketsize;
+
     DEBUG("CDC ECM: Reset\n");
-    _handle_rx_flush(cdcecm);
     _handle_in_complete(usbus, handler);
     cdcecm->notif = USBUS_CDCECM_NOTIF_NONE;
     cdcecm->active_iface = 0;

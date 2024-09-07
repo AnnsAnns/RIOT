@@ -21,18 +21,17 @@
 #include <errno.h>
 #include <string.h>
 
-#include "luid.h"
 #include "mutex.h"
 #include "xtimer.h"
 #include "assert.h"
 #include "net/ethernet.h"
-#include "net/eui48.h"
+#include "net/eui_provider.h"
 #include "net/netdev/eth.h"
 
 #include "enc28j60.h"
 #include "enc28j60_regs.h"
 
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG    0
 #include "debug.h"
 
 #define SPI_BUS         (dev->p.spi)
@@ -83,7 +82,7 @@
  * @brief  Maximum transmission time
  *
  * The time in us that is required to send an Ethernet frame of maximum length
- * (Preamle + SFD + 1518 byte) at 10 Mbps in full duplex mode with a guard
+ * (Preamble + SFD + 1518 byte) at 10 Mbps in full duplex mode with a guard
  * period of 9,6 us. This time is used as time out for send operations.
  */
 #define MAX_TX_TIME                 (1230U)
@@ -250,11 +249,7 @@ static void mac_set(enc28j60_t *dev, uint8_t *mac)
 
 static void on_int(void *arg)
 {
-    /* disable global interrupt enable bit to avoid losing interrupts */
-    cmd_bfc((enc28j60_t *)arg, REG_EIE, -1, EIE_INTIE);
-
-    netdev_t *netdev = (netdev_t *)arg;
-    netdev->event_callback(arg, NETDEV_EVENT_ISR);
+    netdev_trigger_event_isr(arg);
 }
 
 static int nd_send(netdev_t *netdev, const iolist_t *iolist)
@@ -335,8 +330,8 @@ static int nd_recv(netdev_t *netdev, void *buf, size_t max_len, void *info)
     next = (uint16_t)((head[1] << 8) | head[0]);
     size = (uint16_t)((head[3] << 8) | head[2]) - 4;  /* discard CRC */
 
-    DEBUG("[enc28j60] recv: size=%i next=%i buf=%p len=%d\n",
-          (int)size, (int)next, buf, max_len);
+    DEBUG("[enc28j60] recv: size=%u next=%u buf=%p len=%" PRIuSIZE "\n",
+          size, next, buf, max_len);
 
     if (buf != NULL) {
         /* read packet content into the supplied buffer */
@@ -425,20 +420,17 @@ static int nd_init(netdev_t *netdev)
     cmd_wcr(dev, REG_B2_MABBIPG, 2, MABBIPG_FD);
     /* set non-back-to-back inter packet gap -> 0x12 is default */
     cmd_wcr(dev, REG_B2_MAIPGL, 2, MAIPGL_FD);
+
     /* set default MAC address */
-    uint8_t macbuf[ETHERNET_ADDR_LEN];
-    luid_get(macbuf, ETHERNET_ADDR_LEN);
-    eui48_set_local((eui48_t*)macbuf);      /* locally administered address */
-    eui48_clear_group((eui48_t*)macbuf);    /* unicast address */
-    mac_set(dev, macbuf);
+    eui48_t addr;
+    netdev_eui48_get(netdev, &addr);
+    mac_set(dev, addr.uint8);
 
     /* PHY configuration */
     cmd_w_phy(dev, REG_PHY_PHCON1, PHCON1_PDPXMD);
     cmd_w_phy(dev, REG_PHY_PHIE, PHIE_PLNKIE | PHIE_PGEIE);
 
     /* Finishing touches */
-    /* enable hardware flow control */
-    cmd_wcr(dev, REG_B3_EFLOCON, 3, EFLOCON_FULDPXS | EFLOCON_FCEN1);
     /* enable auto-inc of read and write pointers for the RBM/WBM commands */
     cmd_bfs(dev, REG_ECON2, -1, ECON2_AUTOINC);
     /* enable receive, link and tx interrupts */
@@ -453,13 +445,38 @@ static int nd_init(netdev_t *netdev)
     return 0;
 }
 
+/**
+ * PKTIF does not reliably report the status of pending packets.
+ * Checking EPKTCNT is the suggested workaround.
+ * Returns the number of pending packets.
+ */
+static int rx_interrupt(netdev_t *netdev)
+{
+    enc28j60_t *dev = (enc28j60_t *)netdev;
+    int pkg_cnt = cmd_rcr(dev, REG_B1_EPKTCNT, 1);
+    int ret = pkg_cnt;
+    while (pkg_cnt-- > 0) {
+        DEBUG("[enc28j60] isr: packet received\n");
+        netdev->event_callback(netdev, NETDEV_EVENT_RX_COMPLETE);
+    }
+    return ret;
+}
+
 static void nd_isr(netdev_t *netdev)
 {
     enc28j60_t *dev = (enc28j60_t *)netdev;
-    uint8_t eir = cmd_rcr(dev, REG_EIR, -1);
 
-    while (eir != 0) {
+    /* disable global interrupt enable bit to avoid losing interrupts */
+    cmd_bfc(dev, REG_EIE, -1, EIE_INTIE);
+
+    uint8_t eir;
+    int loop;
+    do {
+        loop = 0;
+        eir = cmd_rcr(dev, REG_EIR, -1);
+
         if (eir & EIR_LINKIF) {
+            loop++;
             /* clear link state interrupt flag */
             cmd_r_phy(dev, REG_PHY_PHIR);
             /* go and tell the new link layer state to upper layers */
@@ -472,27 +489,27 @@ static void nd_isr(netdev_t *netdev)
                 netdev->event_callback(netdev, NETDEV_EVENT_LINK_DOWN);
             }
         }
-        if (eir & EIR_PKTIF) {
-            do {
-                DEBUG("[enc28j60] isr: packet received\n");
-                netdev->event_callback(netdev, NETDEV_EVENT_RX_COMPLETE);
-            } while (cmd_rcr(dev, REG_B1_EPKTCNT, 1) > 0);
+        if (rx_interrupt(netdev)) {
+            loop++;
         }
         if (eir & EIR_RXERIF) {
+            loop++;
             DEBUG("[enc28j60] isr: incoming packet dropped - RX buffer full\n");
             cmd_bfc(dev, REG_EIR, -1, EIR_RXERIF);
         }
         if (eir & EIR_TXIF) {
+            loop++;
             DEBUG("[enc28j60] isr: packet transmitted\n");
             netdev->event_callback(netdev, NETDEV_EVENT_TX_COMPLETE);
             cmd_bfc(dev, REG_EIR, -1, EIR_TXIF);
         }
         if (eir & EIR_TXERIF) {
+            loop++;
             DEBUG("[enc28j60] isr: error during transmission - pkt dropped\n");
             cmd_bfc(dev, REG_EIR, -1, EIR_TXERIF);
         }
-        eir = cmd_rcr(dev, REG_EIR, -1);
-    }
+    } while (loop);
+
     /* enable global interrupt enable bit again */
     cmd_bfs(dev, REG_EIE, -1, EIE_INTIE);
 }
@@ -506,7 +523,7 @@ static int nd_get(netdev_t *netdev, netopt_t opt, void *value, size_t max_len)
             assert(max_len >= ETHERNET_ADDR_LEN);
             mac_get(dev, (uint8_t *)value);
             return ETHERNET_ADDR_LEN;
-        case NETOPT_LINK_CONNECTED:
+        case NETOPT_LINK:
             if (cmd_r_phy(dev, REG_PHY_PHSTAT2) & PHSTAT2_LSTAT) {
                 *((netopt_enable_t *)value) = NETOPT_ENABLE;
             }
@@ -542,10 +559,12 @@ static const netdev_driver_t netdev_driver_enc28j60 = {
     .set = nd_set,
 };
 
-void enc28j60_setup(enc28j60_t *dev, const enc28j60_params_t *params)
+void enc28j60_setup(enc28j60_t *dev, const enc28j60_params_t *params, uint8_t index)
 {
     dev->netdev.driver = &netdev_driver_enc28j60;
     dev->p = *params;
     mutex_init(&dev->lock);
     dev->tx_time = 0;
+
+    netdev_register(&dev->netdev, NETDEV_ENC28J60, index);
 }

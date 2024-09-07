@@ -41,27 +41,33 @@
 #define WDT_CONFIG_PER_16K_Val WDT_CONFIG_PER_CYC16384_Val
 #endif
 
-
-static inline void _set_enable(bool on)
+static inline void _wdt_enable(void)
 {
 /* work around strange watchdog behaviour if IDLE2 is used on samd21 */
-#ifdef CPU_FAM_SAMD21
-    if (on) {
+#ifdef CPU_COMMON_SAMD21
         pm_block(1);
-    }
 #endif
 
 #ifdef WDT_CTRLA_ENABLE
-    WDT->CTRLA.bit.ENABLE = on;
+    WDT->CTRLA.reg |= WDT_CTRLA_ENABLE;
 #else
-    WDT->CTRL.bit.ENABLE = on;
+    WDT->CTRL.reg |= WDT_CTRL_ENABLE;
+#endif
+}
+
+static inline void _wdt_disable(void)
+{
+#ifdef WDT_CTRLA_ENABLE
+    WDT->CTRLA.reg &= ~WDT_CTRLA_ENABLE;
+#else
+    WDT->CTRL.reg &= ~WDT_CTRL_ENABLE;
 #endif
 }
 
 static inline void _wait_syncbusy(void)
 {
 #ifdef WDT_STATUS_SYNCBUSY
-    while (WDT->STATUS.bit.SYNCBUSY) {}
+    while (WDT->STATUS.reg & WDT_STATUS_SYNCBUSY) {}
 #else
     while (WDT->SYNCBUSY.reg) {}
 #endif
@@ -80,12 +86,12 @@ static uint32_t ms_to_per(uint32_t ms)
     return 29 - __builtin_clz(cycles - 1);
 }
 
-#ifdef CPU_SAMD21
+#ifdef CPU_COMMON_SAMD21
 static void _wdt_clock_setup(void)
 {
-    /* Connect to GCLK4 (~1.024 kHz) */
+    /* Connect to GCLK3 (~1.024 kHz) */
     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID_WDT
-                      | GCLK_CLKCTRL_GEN_GCLK4
+                      | GCLK_CLKCTRL_GEN(SAM0_GCLK_1KHZ)
                       | GCLK_CLKCTRL_CLKEN;
 }
 #else
@@ -99,12 +105,12 @@ void wdt_init(void)
 {
     _wdt_clock_setup();
 #ifdef MCLK
-    MCLK->APBAMASK.bit.WDT_ = 1;
+    MCLK->APBAMASK.reg |= MCLK_APBAMASK_WDT;
 #else
-    PM->APBAMASK.bit.WDT_ = 1;
+    PM->APBAMASK.reg |= PM_APBAMASK_WDT;
 #endif
 
-    _set_enable(0);
+    _wdt_disable();
     NVIC_EnableIRQ(WDT_IRQn);
 }
 
@@ -137,16 +143,16 @@ void wdt_setup_reboot(uint32_t min_time, uint32_t max_time)
         }
 
 #ifdef WDT_CTRLA_WEN
-        WDT->CTRLA.bit.WEN = 1;
+        WDT->CTRLA.reg |= WDT_CTRLA_WEN;
 #else
-        WDT->CTRL.bit.WEN = 1;
+        WDT->CTRL.reg |= WDT_CTRL_WEN;
 #endif
     } else {
         win = 0;
 #ifdef WDT_CTRLA_WEN
-        WDT->CTRLA.bit.WEN = 0;
+        WDT->CTRLA.reg &= ~WDT_CTRLA_WEN;
 #else
-        WDT->CTRL.bit.WEN = 0;
+        WDT->CTRL.reg &= ~WDT_CTRL_WEN;
 #endif
     }
 
@@ -160,13 +166,13 @@ void wdt_setup_reboot(uint32_t min_time, uint32_t max_time)
 
 void wdt_stop(void)
 {
-    _set_enable(0);
+    _wdt_disable();
     _wait_syncbusy();
 }
 
 void wdt_start(void)
 {
-    _set_enable(1);
+    _wdt_enable();
     _wait_syncbusy();
 }
 
@@ -193,7 +199,7 @@ void wdt_setup_reboot_with_callback(uint32_t min_time, uint32_t max_time,
     cb_arg = arg;
 
     if (cb != NULL) {
-        uint32_t warning_offset = ms_to_per(WDT_WARNING_PERIOD);
+        uint32_t warning_offset = ms_to_per(CONFIG_WDT_WARNING_PERIOD);
 
         if (warning_offset == 0) {
             warning_offset = 1;
@@ -204,7 +210,9 @@ void wdt_setup_reboot_with_callback(uint32_t min_time, uint32_t max_time,
         }
 
         WDT->INTENSET.reg = WDT_INTENSET_EW;
-        WDT->EWCTRL.bit.EWOFFSET = per - warning_offset;
+        uint32_t reg = WDT->EWCTRL.reg;
+        WDT->EWCTRL.reg = (reg & ~WDT_EWCTRL_EWOFFSET_Msk)
+                        |  WDT_EWCTRL_EWOFFSET(per - warning_offset);
     } else {
         WDT->INTENCLR.reg = WDT_INTENCLR_EW;
     }

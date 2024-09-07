@@ -30,7 +30,7 @@
  * even before kernel initialization.
  * Memory properties are hardware specific and can depend on environmental conditions.
  * Thus, they should be evaluated for each individual deployment. A basic
- * testing tool is provided in /RIOT/tests/puf_sram.
+ * testing tool is provided in /RIOT/tests/sys/puf_sram.
  *
  * # Soft-reset detection
  *
@@ -58,8 +58,9 @@
 extern "C" {
 #endif
 
-#include "hashes.h"
-#include "thread.h"
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
 /**
  * @brief SRAM length considered for seeding
@@ -90,6 +91,13 @@ extern uint32_t puf_sram_seed;
 extern uint32_t puf_sram_state;
 
 /**
+ * @brief Counter variable allocated in puf_sram.c. It is incremented
+          during each soft reset when no new PUF measurement was taken
+          and it gets reset to zero after a power cycle was detected.
+ */
+extern uint32_t puf_sram_softreset_cnt;
+
+/**
  * @brief checks source of reboot by @p puf_sram_softreset and conditionally
           calls @p puf_sram_generate
  *
@@ -116,7 +124,6 @@ void puf_sram_generate(const uint8_t *ram, size_t len);
  * @return    1 when reset without power cycle was detected
  */
 bool puf_sram_softreset(void);
-
 
 #ifdef __cplusplus
 }

@@ -8,6 +8,8 @@
 #ifndef VIC_H
 #define VIC_H
 
+#include <stdbool.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -26,7 +28,6 @@ extern "C" {
 
 #define INTMode         (FIQ32Mode | IRQ32Mode)
 
-
 /**
  * @name    IRQ Priority Mapping
  */
@@ -40,7 +41,6 @@ extern "C" {
 #define IRQP_RTC            8
 #define LOWEST_PRIORITY     0x0F
 /** @} */
-
 
 #define WDT_INT         0
 #define SWI_INT         1
@@ -78,9 +78,6 @@ extern "C" {
 
 #define VECT_ADDR_INDEX 0x100
 #define VECT_CNTL_INDEX 0x200
-
-#include <stdbool.h>
-#include "cpu.h"
 
 bool cpu_install_irq(int IntNumber, void *HandlerAddr, int Priority);
 

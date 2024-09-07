@@ -18,7 +18,7 @@
  * runtime, or via a precomputed initializer.
  *
  * Precomputing the frac_t values can be done via the application found in
- * `tests/frac-config` in the RIOT tree.
+ * `tests/sys/frac-config` in the RIOT tree.
  *
  * ### Numeric precision
  *
@@ -54,6 +54,16 @@ typedef struct {
     uint32_t frac; /**< fraction */
     uint8_t shift; /**< exponent */
 } frac_t;
+
+/**
+ * @brief   Compute greatest common divisor of @p u and @p v
+ *
+ * @param[in]   u    first operand
+ * @param[in]   v    second operand
+ *
+ * @return  Greatest common divisor of @p u and @p v
+ */
+uint32_t gcd32(uint32_t u, uint32_t v);
 
 /**
  * @brief   Initialize frac_t struct

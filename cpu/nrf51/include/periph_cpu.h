@@ -34,7 +34,6 @@ extern "C" {
  * @brief   Redefine some peripheral names to unify them between nRF51 and 52
  * @{
  */
-#define UART_IRQN           (UART0_IRQn)
 #define SPI_SCKSEL          (dev(bus)->PSELSCK)
 #define SPI_MOSISEL         (dev(bus)->PSELMOSI)
 #define SPI_MISOSEL         (dev(bus)->PSELMISO)
@@ -84,15 +83,30 @@ typedef enum {
 #endif /* ndef DOXYGEN */
 
 /**
+ * @brief ADC configuration wrapper
+ */
+typedef gpio_t adc_conf_t;
+
+/**
  * @brief   I2C (TWI) configuration options
  */
 typedef struct {
     NRF_TWI_Type *dev;          /**< hardware device */
-    uint8_t pin_scl;            /**< SCL pin */
-    uint8_t pin_sda;            /**< SDA pin */
+    gpio_t pin_scl;             /**< SCL pin */
+    gpio_t pin_sda;             /**< SDA pin */
     uint8_t ppi;                /**< PPI channel to use */
     i2c_speed_t speed;          /**< bus speed */
 } i2c_conf_t;
+
+/**
+ * @brief  SPI configuration values
+ */
+typedef struct {
+    NRF_SPI_Type *dev;  /**< SPI device used */
+    gpio_t sclk;        /**< CLK pin */
+    gpio_t mosi;        /**< MOSI pin */
+    gpio_t miso;        /**< MISO pin */
+} spi_conf_t;
 
 #ifdef __cplusplus
 }

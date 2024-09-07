@@ -25,16 +25,22 @@ extern "C" {
 #endif
 
 /**
+ * @name    xtimer configuration
+ * @{
+ */
+#define XTIMER_WIDTH        (16)
+#define XTIMER_BACKOFF      (50)
+#define XTIMER_ISR_BACKOFF  (40)
+/** @} */
+
+/**
  * @name    LED pin definitions and handlers
  * @{
  */
-#define LED0_PORT           GPIOA
-#define LED0_PIN            GPIO_PIN(PORT_A, 1)
-#define LED0_MASK           (1 << 1)
-
-#define LED0_ON             (LED0_PORT->BSRR = (LED0_MASK << 16))
-#define LED0_OFF            (LED0_PORT->BSRR = LED0_MASK)
-#define LED0_TOGGLE         (LED0_PORT->ODR  ^= LED0_MASK)
+#define LED0_PIN_NUM        1
+#define LED0_PORT           GPIO_PORT_A /**< GPIO port of LED 0 */
+#define LED0_PORT_NUM       PORT_A
+#define LED0_IS_INVERTED    1
 
 #define EN3V3_PORT          GPIOA
 #define EN3V3_PIN           GPIO_PIN(PORT_A, 11)
@@ -59,14 +65,11 @@ extern "C" {
 #define SX127X_PARAM_DIO3               GPIO_PIN(PORT_B, 7)
 /** @} */
 
-/**
- * @brief Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
-
 #ifdef __cplusplus
 }
 #endif
+
+#include "stm32_leds.h"
 
 #endif /* BOARD_H */
 /** @} */

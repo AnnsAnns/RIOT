@@ -21,7 +21,6 @@
 
 #include "saul.h"
 #include "si114x.h"
-#include "xtimer.h"
 
 static int read_uv(const void *dev, phydat_t *res)
 {
@@ -65,24 +64,24 @@ static int read_distance(const void *dev, phydat_t *res)
 
 const saul_driver_t si114x_uv_saul_driver = {
     .read = read_uv,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_UV
 };
 
 const saul_driver_t si114x_ir_saul_driver = {
     .read = read_ir,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_LIGHT
 };
 
 const saul_driver_t si114x_visible_saul_driver = {
     .read = read_visible,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_LIGHT
 };
 
 const saul_driver_t si114x_distance_saul_driver = {
     .read = read_distance,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_DISTANCE
 };

@@ -1,12 +1,9 @@
 PKG_NAME    = nanocbor
 PKG_URL     = https://github.com/bergzand/nanocbor
-PKG_VERSION = 3a672f79b2458a96393447e50a41174f741eadc5
-PKG_LICENSE = LGPL-2.1
-
-.PHONY: all
-
-all: git-download
-	"$(MAKE)" -C $(PKG_BUILDDIR)/src \
-		-f $(RIOTPKG)/nanocbor/Makefile.$(PKG_NAME)
+PKG_VERSION = 3e3700488b0cdd43b72e686260541484e7862d43
+PKG_LICENSE = CC-0
 
 include $(RIOTBASE)/pkg/pkg.mk
+
+all:
+	$(QQ)"$(MAKE)" -C $(PKG_SOURCE_DIR)/src -f $(RIOTBASE)/Makefile.base MODULE=$(PKG_NAME)

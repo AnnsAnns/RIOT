@@ -18,15 +18,22 @@
  */
 
 #include "cpu.h"
+#include "irq.h"
+#include "assert.h"
+#include "nrf_clock.h"
 #include "periph_conf.h"
 
-/* make sure both clocks are configured */
+/* make HFCLK clock is configured */
 #ifndef CLOCK_HFCLK
 #error "Clock init: CLOCK_HFCLK is not defined by your board!"
 #endif
-#ifndef CLOCK_LFCLK
-#error "Clock init: CLOCK_LFCLK is not defined by your board!"
+
+/* Add compatibility wrapper defines for nRF families with Cortex-M33 core */
+#ifdef NRF_CLOCK_S
+#define NRF_CLOCK NRF_CLOCK_S
 #endif
+
+static unsigned _hfxo_requests = 0;
 
 void clock_init_hf(void)
 {
@@ -39,40 +46,69 @@ void clock_init_hf(void)
 #endif
 #endif
 
-#if CLOCK_HFCLK
-    /* start the HF clock */
-    NRF_CLOCK->EVENTS_HFCLKSTARTED = 0;
-    NRF_CLOCK->TASKS_HFCLKSTART = 1;
-    while (NRF_CLOCK->EVENTS_HFCLKSTARTED == 0) {}
+    /* allow to always enable the HFXO as non-default option */
+#if CLOCK_HFXO_ONBOOT
+    clock_hfxo_request();
 #endif
 }
+
+void clock_hfxo_request(void)
+{
+    unsigned state = irq_disable();
+    ++_hfxo_requests;
+    if (_hfxo_requests == 1) {
+        NRF_CLOCK->EVENTS_HFCLKSTARTED = 0;
+        NRF_CLOCK->TASKS_HFCLKSTART = 1;
+        while (NRF_CLOCK->EVENTS_HFCLKSTARTED == 0) {}
+    }
+    irq_restore(state);
+}
+
+void clock_hfxo_release(void)
+{
+    /* if this function is called while the counter is zero the state in a
+     * driver requesting the HFXO is broken! */
+    assert(_hfxo_requests);
+
+    unsigned state = irq_disable();
+    --_hfxo_requests;
+    if (_hfxo_requests == 0) {
+        NRF_CLOCK->TASKS_HFCLKSTOP = 1;
+    }
+    irq_restore(state);
+}
+
+/**
+ * True if the low frequency clock (LFCLK) has been started by RIOT.
+ * We don't rely on NRF_CLOCK->LFCLKSTAT since that register appears to be latched
+ * for a short amount of time after a soft reset on at least nRF52832 and nRF52840.
+ * @see https://devzone.nordicsemi.com/f/nordic-q-a/35792/nrf_clock--lfclkstat-register-contents-are-not-properly-evaluated-after-a-system-reset-if-rtc-compare-event-1-or-2-are-used/138995
+ */
+static bool clock_lf_running = false;
 
 void clock_start_lf(void)
 {
     /* abort if LF clock is already running */
-    if (NRF_CLOCK->LFCLKSTAT & CLOCK_LFCLKSTAT_STATE_Msk) {
+    if (clock_lf_running) {
         return;
     }
 
-#if (CLOCK_LFCLK == 0)
-    NRF_CLOCK->LFCLKSRC = (CLOCK_LFCLKSRC_SRC_RC);
-#elif (CLOCK_LFCLK == 1)
-    NRF_CLOCK->LFCLKSRC = (CLOCK_LFCLKSRC_SRC_Xtal);
-#elif (CLOCK_LFCLK == 2)
-    NRF_CLOCK->LFCLKSRC = (CLOCK_LFCLKSRC_SRC_Synth);
-#else
-#error "LFCLK init: CLOCK_LFCLK has invalid value"
-#endif
+    /* Select LFCLK source */
+    NRF_CLOCK->LFCLKSRC = CLOCK_LFCLK;
+
     /* enable LF clock */
     NRF_CLOCK->EVENTS_LFCLKSTARTED = 0;
     NRF_CLOCK->TASKS_LFCLKSTART = 1;
     while (NRF_CLOCK->EVENTS_LFCLKSTARTED == 0) {}
+    clock_lf_running = true;
 
     /* calibrate the RC LF clock if applicable */
-#if (CLOCK_HFCLK && (CLOCK_LFCLK == 0))
+#if (CLOCK_LFCLK == CLOCK_LFCLKSRC_SRC_RC)
+    clock_hfxo_request();
     NRF_CLOCK->EVENTS_DONE = 0;
     NRF_CLOCK->TASKS_CAL = 1;
     while (NRF_CLOCK->EVENTS_DONE == 0) {}
+    clock_hfxo_release();
 #endif
 }
 
@@ -80,4 +116,5 @@ void clock_stop_lf(void)
 {
     NRF_CLOCK->TASKS_LFCLKSTOP = 1;
     while (NRF_CLOCK->LFCLKSTAT & CLOCK_LFCLKSTAT_STATE_Msk) {}
+    clock_lf_running = false;
 }

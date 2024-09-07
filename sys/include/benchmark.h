@@ -24,7 +24,7 @@
 #include <stdint.h>
 
 #include "irq.h"
-#include "xtimer.h"
+#include "ztimer/stopwatch.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,17 +41,16 @@ extern "C" {
  * @param[in] runs      number of times to run @p func
  * @param[in] func      function call to benchmark
  */
-#define BENCHMARK_FUNC(name, runs, func)                    \
-    {                                                           \
-        unsigned _benchmark_irqstate = irq_disable();           \
-        uint32_t _benchmark_time = xtimer_now_usec();           \
+#define BENCHMARK_FUNC(name, runs, func)                        \
+    do {                                                        \
+        ztimer_stopwatch_t timer = { .clock = ZTIMER_USEC };    \
+        ztimer_stopwatch_start(&timer);                         \
         for (unsigned long i = 0; i < runs; i++) {              \
             func;                                               \
         }                                                       \
-        _benchmark_time = (xtimer_now_usec() - _benchmark_time);\
-        irq_restore(_benchmark_irqstate);                       \
-        benchmark_print_time(_benchmark_time, runs, name);      \
-    }
+        benchmark_print_time(ztimer_stopwatch_measure(&timer), runs, name); \
+        ztimer_stopwatch_stop(&timer);                          \
+    } while (0)
 
 /**
  * @brief   Output the given time as well as the time per run on STDIO

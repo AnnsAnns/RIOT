@@ -17,6 +17,8 @@
  * @author      Bas Stottelaar <basstottelaar@gmail.com>
  */
 
+#include <assert.h>
+
 #include "cpu.h"
 
 #include "periph_conf.h"
@@ -31,7 +33,7 @@ uint32_t pwm_init(pwm_t dev, pwm_mode_t mode, uint32_t freq, uint16_t res)
 {
     /* check if device is valid */
     if (dev >= PWM_NUMOF) {
-        return -1;
+        return 0;
     }
 
     /* enable clocks */
@@ -44,7 +46,7 @@ uint32_t pwm_init(pwm_t dev, pwm_mode_t mode, uint32_t freq, uint16_t res)
                                                            freq_timer);
 
     if (prescaler > timerPrescale1024) {
-        return -2;
+        return 0;
     }
 
     /* reset and initialize peripheral */
@@ -70,10 +72,10 @@ uint32_t pwm_init(pwm_t dev, pwm_mode_t mode, uint32_t freq, uint16_t res)
         gpio_init(channel.pin, GPIO_OUT);
 
         /* configure pin function */
-#ifdef _SILICON_LABS_32B_SERIES_0
+#if defined(_SILICON_LABS_32B_SERIES_0)
         pwm_config[dev].dev->ROUTE |= (channel.loc |
                                        TIMER_Channel2Route(channel.index));
-#else
+#elif defined(_SILICON_LABS_32B_SERIES_1)
         pwm_config[dev].dev->ROUTELOC0 |= channel.loc;
         pwm_config[dev].dev->ROUTEPEN |= TIMER_Channel2Route(channel.index);
 #endif

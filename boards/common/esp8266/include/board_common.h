@@ -57,7 +57,6 @@ extern "C" {
 #endif
 /** @} */
 
-
 /**
  * @name    STDIO configuration
  * @{
@@ -67,14 +66,11 @@ extern "C" {
 #endif
 /** @} */
 
-
 #ifndef DOXYGEN
 /**
  * @name    XTimer configuration
  * @{
  */
-#define XTIMER_OVERHEAD             (0U)
-
 #if defined(MODULE_ESP_SW_TIMER)
 #define XTIMER_BACKOFF              (100U)
 #define XTIMER_ISR_BACKOFF          (100U)
@@ -82,7 +78,6 @@ extern "C" {
 
 /** @} */
 #endif /* DOXYGEN */
-
 
 #if defined(MODULE_MTD) || defined(DOXYGEN)
 /**
@@ -92,17 +87,21 @@ extern "C" {
  * a system MTD device has to be defined.
  * @{
  */
-#include "mtd.h"
 
 /** Default MTD device definition */
-#define MTD_0 mtd0
+#define MTD_0 mtd_dev_get(0)
 
-/** Pointer to the default MTD device structure */
-extern mtd_dev_t *mtd0;
+/**
+ * @brief   MTD offset for SD Card interfaces
+ *
+ * MTD_1 is used for SD Card.
+ */
+#ifndef CONFIG_SDCARD_GENERIC_MTD_OFFSET
+#define CONFIG_SDCARD_GENERIC_MTD_OFFSET    1
+#endif
 
 /** @} */
 #endif /* defined(MODULE_MTD) || defined(DOXYGEN) */
-
 
 #if defined(MODULE_SPIFFS) || defined(DOXYGEN)
 /**
@@ -118,16 +117,6 @@ extern mtd_dev_t *mtd0;
 #define SPIFFS_CACHE 1
 /** @} */
 #endif /* defined(MODULE_SPIFFS) || defined(DOXYGEN) */
-
-
-/**
- * @brief Initialize board specific hardware
- *
- * Since all features of ESP8266 boards are provided by the MCU, almost all
- * initializations are done during the CPU initialization that is called from
- * boot loader.
- */
-void board_init (void);
 
 /**
   * @brief Print the board configuration in a human readable format

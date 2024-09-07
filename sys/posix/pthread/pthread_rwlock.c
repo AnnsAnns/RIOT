@@ -33,11 +33,12 @@
 
 #include "pthread.h"
 #include "sched.h"
-#include "xtimer.h"
+#include "ztimer64.h"
+#include "timex.h"
 
 #include "thread.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 int pthread_rwlock_init(pthread_rwlock_t *rwlock, const pthread_rwlockattr_t *attr)
@@ -83,7 +84,7 @@ bool __pthread_rwlock_blocked_readingly(const pthread_rwlock_t *rwlock)
     }
 
     priority_queue_node_t *qnode = rwlock->queue.first;
-    if (qnode->priority > sched_active_thread->priority) {
+    if (qnode->priority > thread_get_active()->priority) {
         /* the waiting thread has a lower priority */
         return false;
     }
@@ -124,11 +125,11 @@ static int pthread_rwlock_lock(pthread_rwlock_t *rwlock,
         /* queue for the lock */
         __pthread_rwlock_waiter_node_t waiting_node = {
             .is_writer = is_writer,
-            .thread = (thread_t *) sched_active_thread,
+            .thread = thread_get_active(),
             .qnode = {
                 .next = NULL,
                 .data = (uintptr_t) &waiting_node,
-                .priority = sched_active_thread->priority,
+                .priority = thread_get_active()->priority,
             },
             .continue_ = false,
         };
@@ -187,7 +188,7 @@ static int pthread_rwlock_timedlock(pthread_rwlock_t *rwlock,
                                     int incr_when_held,
                                     const struct timespec *abstime)
 {
-    uint64_t now = xtimer_now_usec64();
+    uint64_t now = ztimer64_now(ZTIMER64_USEC);
     uint64_t then = ((uint64_t)abstime->tv_sec * US_PER_SEC) +
                     (abstime->tv_nsec / NS_PER_US);
 
@@ -195,11 +196,11 @@ static int pthread_rwlock_timedlock(pthread_rwlock_t *rwlock,
         return ETIMEDOUT;
     }
     else {
-        xtimer_t timer;
-        xtimer_set_wakeup64(&timer, (then - now), sched_active_pid);
+        ztimer64_t timer;
+        ztimer64_set_wakeup(ZTIMER64_USEC, &timer, (then - now), thread_getpid());
         int result = pthread_rwlock_lock(rwlock, is_blocked, is_writer, incr_when_held, true);
         if (result != ETIMEDOUT) {
-            xtimer_remove(&timer);
+            ztimer64_remove(ZTIMER64_USEC, &timer);
         }
 
         return result;

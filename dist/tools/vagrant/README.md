@@ -3,7 +3,7 @@
 
 ## About
 This repository includes a [Vagrantfile](https://github.com/RIOT-OS/RIOT/blob/master/Vagrantfile)
-to download and control a pre-configured Linux virtual machine (VM) based on an Ubuntu 16.04 (64-bit) image that contains all necessary toolchains and dependencies to build and flash compatible devices with RIOT.
+to download and control a pre-configured Linux virtual machine (VM) based on an Ubuntu 18.04 (64-bit) image that contains all necessary toolchains and dependencies to build and flash compatible devices with RIOT.
 The advantage of using this VM is to have a reproducible, portable and even disposable environment
 that can be used to develop for RIOT with decreased setup times and without the requirement of
 making changes to the underlying host system.
@@ -51,7 +51,7 @@ This feature allows you to conveniently develop code for RIOT with your preferre
 your host system and use the VM for compiling, flashing devices and running the native port of RIOT.
 
 ## Additional Information
-1. VirtualBox: For new boards it is necessary to add a usb filter (open VirtualBox, click on USB and add the new filter for your board). 
+1. VirtualBox: For new boards it is necessary to add a usb filter (open VirtualBox, click on USB and add the new filter for your board).
   * For Linux Guest Systems: For new boards it is necessary to add new udev rules in the Vagrant config (in `dist/tools/vagrant/udev_rules`) so that Vagrant can capture the device.
     The needed `vendor id` and `product id` can be obtained by running `vboxmanage list usbhost`.
   * For Linux Host Systems: Additionally, in order to allow USB access from within the guest system, the host system user

@@ -23,7 +23,6 @@
 
 #include "saul.h"
 #include "sds011.h"
-#include "xtimer.h"
 
 static int _read(const void *dev, phydat_t *res)
 {
@@ -41,6 +40,6 @@ static int _read(const void *dev, phydat_t *res)
 
 const saul_driver_t sds011_saul_driver = {
     .read = _read,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_PM
 };

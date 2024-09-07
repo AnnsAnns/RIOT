@@ -64,6 +64,9 @@ static inline void _init_data(void)
 
     dst = &__stack_usr_start;
     end = &__stack_end;
+    /* cppcheck-suppress comparePointers
+     * (addresses exported as symbols via linker script and look unrelated
+     * to cppcheck) */
     while (dst < end) {
         *(dst++) = STACK_CANARY_WORD;
     }
@@ -74,6 +77,9 @@ static inline void _init_data(void)
     dst = &_srelocate;
     end = &_erelocate;
 
+    /* cppcheck-suppress comparePointers
+     * (addresses exported as symbols via linker script and look unrelated
+     * to cppcheck) */
     while (dst < end) {
         *dst++ = *src++;
     }
@@ -82,13 +88,16 @@ static inline void _init_data(void)
     dst = &_szero;
     end = &_ezero;
 
+    /* cppcheck-suppress comparePointers
+     * (addresses exported as symbols via linker script and look unrelated
+     * to cppcheck) */
     while (dst < end) {
         *dst++ = 0;
     }
 
 #ifdef CPU_HAS_BACKUP_RAM
     /* only initialize battery backup on cold boot */
-    if (cpu_woke_from_backup()) {
+    if (cpu_backup_ram_is_initialized()) {
         return;
     }
 
@@ -97,6 +106,9 @@ static inline void _init_data(void)
     dst = _sbackup_data;
     end = _ebackup_data;
 
+    /* cppcheck-suppress comparePointers
+     * (addresses exported as symbols via linker script and look unrelated
+     * to cppcheck) */
     while (dst < end) {
         *dst++ = *src++;
     }
@@ -105,6 +117,9 @@ static inline void _init_data(void)
     dst = _sbackup_bss;
     end = _ebackup_bss;
 
+    /* cppcheck-suppress comparePointers
+     * (addresses exported as symbols via linker script and look unrelated
+     * to cppcheck) */
     while (dst < end) {
         *dst++ = 0;
     }
@@ -127,7 +142,7 @@ void bootloader(void)
     /* cpu specific setup of clocks, peripherals */
     cpu_init();
 
-#ifdef MODULE_NEWLIB
+#if defined(MODULE_NEWLIB) || defined(MODULE_PICOLIBC)
     extern void __libc_init_array(void);
     __libc_init_array();
 #endif

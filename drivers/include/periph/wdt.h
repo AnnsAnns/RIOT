@@ -111,10 +111,11 @@
  * This function is highly platform dependent so check the platform documentation
  * for details on its constraints.
  *
- * The callback will be executed WDT_WARNING_PERIOD before the actual reboot.
- * The value of WDT_WARNING_PERIOD may be configurable or a fixed value. But is
- * in any case defined at compile time. Specific platform implementation should
- * assert improper values.
+ * The callback will be executed CONFIG_WDT_WARNING_PERIOD before the actual reboot.
+ * The value of CONFIG_WDT_WARNING_PERIOD may be configurable or a fixed value. If
+ * a platform allows this value to be configured, the feature
+ * `periph_wdt_warning_period` is provided. But is in any case defined at
+ * compile time. Specific platform implementation should assert improper values.
  *
  *
  * In the code snippet and diagram `time` is an arbitrary value such that
@@ -146,18 +147,51 @@
  *
  * @verbatim
  * |---------------------MAX_TIME-----------------------|
- *                             |---WDT_WARNING_PERIOD---|
- *                             ^                        ^
- *                             |                        |
- *                        wdt_cb()                   reboot
+ *                      |---CONFIG_WDT_WARNING_PERIOD---|
+ *                      ^                               ^
+ *                      |                               |
+ *                   wdt_cb()                        reboot
  * @endverbatim
  *
  * To include this feature, (If your platform supports it) in your application
  * Makefile add:
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~ {.mk}
- *    MODULE += periph_wdt_cb
+ *    USEMODULE += periph_wdt_cb
  * ~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * WDT Auto-Start
+ * ==============
+ *
+ * It is possible to enable the Watchdog in early boot, before application startup:
+ *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~ {.mk}
+ *    USEMODULE += periph_wdt_auto_start
+ * ~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * The watchdog will automatically be initialized with the parameters
+ * @ref CONFIG_PERIPH_WDT_WIN_MIN_MS and @ref CONFIG_PERIPH_WDT_WIN_MAX_MS
+ *
+ * It is also possible to automatically kick the watchdog.
+ * This is a very non-invasive way of using the watchdog, but it is also very
+ * weak as it can only detect situations where low-priority threads are
+ * starved from execution and may even trigger wrongly in situations where the
+ * system just experiences high load, but would otherwise have recovered on it's own.
+ *
+ * If you want to enable it anyway, select this module:
+ *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~ {.mk}
+ *    USEMODULE += auto_init_wdt_thread
+ * ~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * If you are using an event thread, you can also use the watchdog to ensure that events
+ * are processed in time.
+ * To do so, add
+ *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~ {.mk}
+ *    USEMODULE += auto_init_wdt_event
+ * ~~~~~~~~~~~~~~~~~~~~~~~~
+ *
  *
  * @{
  *
@@ -230,6 +264,23 @@ extern "C" {
 #endif
 
 /**
+ * @brief   If `periph_wdt_auto_start` is used, this will be the lower bound
+ *          of when the WDT can be kicked.
+ */
+#ifndef CONFIG_PERIPH_WDT_WIN_MIN_MS
+#define CONFIG_PERIPH_WDT_WIN_MIN_MS    (0)
+#endif
+
+/**
+ * @brief   If `periph_wdt_auto_start` is used, this will be the max period
+ *          after which the WDT must be kicked or else it will reboot the
+ *          system.
+ */
+#ifndef CONFIG_PERIPH_WDT_WIN_MAX_MS
+#define CONFIG_PERIPH_WDT_WIN_MAX_MS    (1024)
+#endif
+
+/**
  * @brief    Start watchdog timer
  */
 void wdt_start(void);
@@ -276,13 +327,13 @@ void wdt_init(void);
  * @{
  */
 /**
- * @def     WDT_WARNING_PERIOD
+ * @def     CONFIG_WDT_WARNING_PERIOD
  *
  * @brief   Period (ms) before reboot where wdt_cb() is executed.
  *          Defined per implementation.
  */
-#ifndef WDT_WARNING_PERIOD
-#define WDT_WARNING_PERIOD          (1)
+#ifndef CONFIG_WDT_WARNING_PERIOD
+#define CONFIG_WDT_WARNING_PERIOD          (1)
 #endif
 /** @} */
 

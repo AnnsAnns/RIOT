@@ -58,18 +58,18 @@ Test *tests_core_cib_tests(void);
 Test *tests_core_clist_tests(void);
 
 /**
- * @brief   Generates tests for lifo.h
- *
- * @return  embUnit tests if successful, NULL if not.
- */
-Test *tests_core_lifo_tests(void);
-
-/**
  * @brief   Generates tests for list.h
  *
  * @return  embUnit tests if successful, NULL if not.
  */
 Test *tests_core_list_tests(void);
+
+/**
+ * @brief   Generates tests for mbox.h
+ *
+ * @return  embUnit tests if successful, NULL if not.
+ */
+Test *tests_core_mbox_tests(void);
 
 /**
  * @brief   Generates tests for priority_queue.h
@@ -91,6 +91,20 @@ Test *tests_core_byteorder_tests(void);
  * @return  embUnit tests if successful, NULL if not.
  */
 Test *tests_core_ringbuffer_tests(void);
+
+/**
+ * @brief   Generates tests for xfa.h
+ *
+ * @return  embUnit tests if successful, NULL if not.
+ */
+Test *tests_core_xfa_tests(void);
+
+/**
+ * @brief   Generates tests for macros
+ *
+ * @return  embUnit tests if successful, NULL if not.
+ */
+Test *tests_core_macros_tests(void);
 
 #ifdef __cplusplus
 }

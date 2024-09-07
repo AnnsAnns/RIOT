@@ -18,6 +18,7 @@
  * @brief   DNS sock definitions
  *
  * @author  Kaspar Schleiser <kaspar@schleiser.de>
+ * @author  Hendrik van Essen <hendrik.ve@fu-berlin.de>
  */
 
 #ifndef NET_SOCK_DNS_H
@@ -27,38 +28,57 @@
 #include <stdint.h>
 #include <unistd.h>
 
+#include "net/dns/msg.h"
+
 #include "net/sock/udp.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#ifdef MODULE_AUTO_INIT_SOCK_DNS
 /**
- * @brief DNS internal structure
+ * @brief IP version of the address provided with CONFIG_AUTO_INIT_SOCK_DNS_SERVER_ADDR
  */
-typedef struct {
-    uint16_t id;        /**< read           */
-    uint16_t flags;     /**< DNS            */
-    uint16_t qdcount;   /**< RFC            */
-    uint16_t ancount;   /**< for            */
-    uint16_t nscount;   /**< detailed       */
-    uint16_t arcount;   /**< explanations   */
-    uint8_t payload[];  /**< !!             */
-} sock_dns_hdr_t;
+#ifndef CONFIG_AUTO_INIT_SOCK_DNS_IP_VERSION
+    /* IPv6 is preferred */
+    #if defined(SOCK_HAS_IPV6)
+        #define CONFIG_AUTO_INIT_SOCK_DNS_IP_VERSION 6
+    #elif defined(SOCK_HAS_IPV4)
+        #define CONFIG_AUTO_INIT_SOCK_DNS_IP_VERSION 4
+    #else
+        #error "Neither IPv4 nor IPv6 included in build"
+    #endif
+#endif
+
+/**
+ * @brief Address of the DNS server
+ */
+#ifndef CONFIG_AUTO_INIT_SOCK_DNS_SERVER_ADDR
+    /* Default to Google Public DNS */
+    #if CONFIG_AUTO_INIT_SOCK_DNS_IP_VERSION == 6
+        #define CONFIG_AUTO_INIT_SOCK_DNS_SERVER_ADDR "2001:4860:4860::8888"
+    #elif CONFIG_AUTO_INIT_SOCK_DNS_IP_VERSION == 4
+        #define CONFIG_AUTO_INIT_SOCK_DNS_SERVER_ADDR "8.8.8.8"
+    #endif
+#endif
+
+/**
+ * @brief Port of the DNS server
+ */
+#ifndef CONFIG_AUTO_INIT_SOCK_DNS_SERVER_PORT
+#define CONFIG_AUTO_INIT_SOCK_DNS_SERVER_PORT SOCK_DNS_PORT
+#endif
+#endif /* MODULE_AUTO_INIT_SOCK_DNS */
 
 /**
  * @name DNS defines
  * @{
  */
-#define DNS_TYPE_A              (1)
-#define DNS_TYPE_AAAA           (28)
-#define DNS_CLASS_IN            (1)
-
 #define SOCK_DNS_PORT           (53)
 #define SOCK_DNS_RETRIES        (2)
 
-#define SOCK_DNS_MAX_NAME_LEN   (64U)       /* we're in embedded context. */
-#define SOCK_DNS_QUERYBUF_LEN   (sizeof(sock_dns_hdr_t) + 4 + SOCK_DNS_MAX_NAME_LEN)
+#define SOCK_DNS_MAX_NAME_LEN   (CONFIG_DNS_MSG_LEN - sizeof(dns_hdr_t) - 4)
 /** @} */
 
 /**
@@ -80,8 +100,8 @@ typedef struct {
  * @param[out]  addr_out        buffer to write result into
  * @param[in]   family          Either AF_INET, AF_INET6 or AF_UNSPEC
  *
- * @return      0 on success
- * @return      !=0 otherwise
+ * @return      the size of the resolved address on success
+ * @return      < 0 otherwise
  */
 int sock_dns_query(const char *domain_name, void *addr_out, int family);
 

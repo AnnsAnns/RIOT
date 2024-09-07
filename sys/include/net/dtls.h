@@ -36,8 +36,21 @@
 #ifndef NET_DTLS_H
 #define NET_DTLS_H
 
+#include "modules.h"
+
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+/**
+ * @brief The maximum number DTLS peers (i.e. sessions)
+ */
+#ifndef CONFIG_DTLS_PEER_MAX
+#if IS_USED(MODULE_GCOAP_DTLS)
+#define CONFIG_DTLS_PEER_MAX       (2)
+#else
+#define CONFIG_DTLS_PEER_MAX       (1)
+#endif
 #endif
 
 #ifdef __cplusplus

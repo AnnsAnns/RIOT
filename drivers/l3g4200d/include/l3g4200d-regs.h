@@ -19,7 +19,6 @@
 #ifndef L3G4200D_REGS_H
 #define L3G4200D_REGS_H
 
-
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -75,6 +74,7 @@
 
 /**
  * @name    CTRL4 bitfields
+ * @{
  */
 #define L3G4200D_CTRL4_BDU              0x80
 #define L3G4200D_CTRL4_BLE              0x40

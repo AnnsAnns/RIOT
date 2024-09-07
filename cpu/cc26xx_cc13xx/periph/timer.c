@@ -20,8 +20,9 @@
  * @}
  */
 
-#include <stdlib.h>
+#include <inttypes.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "assert.h"
 #include "board.h"
@@ -29,7 +30,9 @@
 #include "periph_conf.h"
 #include "periph/timer.h"
 
-#define ENABLE_DEBUG (0)
+#include "cc26xx_cc13xx_power.h"
+
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 #define LOAD_VALUE              (0xffff)
@@ -96,18 +99,51 @@ static inline gpt_reg_t *dev(tim_t tim)
     return ((gpt_reg_t *)(GPT0_BASE | (((uint32_t)tim) << 12)));
 }
 
-int timer_init(tim_t tim, unsigned long freq, timer_cb_t cb, void *arg)
+uword_t timer_query_freqs_numof(tim_t dev)
 {
-    DEBUG("timer_init(%u, %lu)\n", tim, freq);
+    assert(dev < TIMER_NUMOF);
+    /* 32 bit timers only work at CPU clock */
+    if (timer_config[dev].cfg == GPT_CFG_32T) {
+        return 1;
+    }
+
+    return 256;
+}
+
+uword_t timer_query_channel_numof(tim_t dev)
+{
+    assert(dev < TIMER_NUMOF);
+    return timer_config[dev].chn;
+}
+
+uint32_t timer_query_freqs(tim_t dev, uword_t index)
+{
+    assert(dev < TIMER_NUMOF);
+
+    /* 32 bit timers only work at CPU clock */
+    if (timer_config[dev].cfg == GPT_CFG_32T) {
+        if (index) {
+            return 0;
+        }
+        return RCOSC48M_FREQ;
+    }
+
+    if (index > UINT8_MAX) {
+        return 0;
+    }
+    return RCOSC48M_FREQ / (index + 1);
+}
+
+int timer_init(tim_t tim, uint32_t freq, timer_cb_t cb, void *arg)
+{
+    DEBUG("timer_init(%u, %" PRIu32 ")\n", tim, freq);
     /* make sure given timer is valid */
     if (tim >= TIMER_NUMOF) {
         return -1;
     }
 
     /* enable the timer clock */
-    PRCM->GPTCLKGR |= (1 << tim);
-    PRCM->CLKLOADCTL = CLKLOADCTL_LOAD;
-    while (!(PRCM->CLKLOADCTL & CLKLOADCTL_LOADDONE)) {}
+    power_clock_enable_gpt(tim);
 
     /* disable (and reset) timer */
     dev(tim)->CTL = 0;
@@ -182,6 +218,8 @@ int timer_set_absolute(tim_t tim, int channel, unsigned int value)
         dev(tim)->TBMATCHR = (timer_config[tim].cfg == GPT_CFG_32T) ?
                              value : (LOAD_VALUE - value);
     }
+
+    /* unmask IRQ */
     dev(tim)->IMR |= chn_isr_cfg[channel].flag;
 
     return 0;

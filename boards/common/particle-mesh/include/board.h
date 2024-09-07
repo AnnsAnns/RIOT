@@ -27,6 +27,61 @@ extern "C" {
 #endif
 
 /**
+ *
+ * @name    Bootloader configuration options
+ * @{
+ */
+
+/** @brief Build a firmware suitable for the Particle bootloader
+ *
+ * If this is defined, additional metadata about the firmware is included in
+ * the firmware (called the module_info in Particle), and additional code is
+ * inserted in board setup.
+ *
+ * Do not define this manually; instead, set `PARTICLE_MONOFIRMWARE=1` as an
+ * variable in the build scripts like `BOARD` is defined, and the particle
+ * common make file defines it and configures suitable postprocessing of the
+ * binary.
+ *
+ * @see @ref boards_common_particle-mesh
+ *
+ */
+#ifdef DOXYGEN
+#define PARTICLE_MONOFIRMWARE
+#endif
+
+/** @brief Limit Particle bootloader checksumming to the binary start
+ *
+ * If this define is set in the Makefile, the binary size announced to the
+ * bootloader is limited to the reset vector and the firmware metadata, and
+ * only that part is checksummed.
+ *
+ * This is useful when @ref drivers_periph_flashpage is used, as otherwise the
+ * firmware's writes on itself would invalidate its checksum.
+ *
+ * @see @ref boards_common_particle-mesh
+ */
+#ifdef DOXYGEN
+#define PARTICLE_MONOFIRMWARE_CHECKSUMLIMIT
+#endif
+
+/** @brief Platform ID of the board for the Particle bootloader
+ *
+ * This is set by the individual board's build configuration, and gets used
+ * when building with @ref PARTICLE_MONOFIRMWARE; then, it is put into the
+ * module information for the board bootloader to verify that the firmware was
+ * built for the right device.
+ *
+ * The individual values are documented in the Particle DeviceOS source code in
+ * `build/platform-id.mk`.
+ */
+#ifdef DOXYGEN
+#define PARTICLE_PLATFORM_ID
+#endif
+
+/** @} */
+
+/**
  * @name    LED pin configuration
  * @{
  */
@@ -40,6 +95,18 @@ extern "C" {
 #define LED2_MASK           (1 << 15)
 #define LED_MASK            (LED0_MASK | LED1_MASK | LED2_MASK)
 
+/* The typical SAUL setup for this board uses PWM to make the LEDs (really a
+ * single RGB LED) into a PWM controlled RGB LED entry. As a consequence of the
+ * PWM configuration, toggling the GPIO has no effect any more, and thus we do
+ * not define the macros so that no LEDs get picked up for LEDn_IS_PROVIDED.
+ * (The LEDn_ON etc macros will still be present and no-op as usual, but those
+ * explicitly checking for IS_PROVIDED will get an accurate picture).
+ *
+ * Both conditions are typically true when saul_default is on, but strictly, it
+ * is those two that in combination make LEDs effectively unavailable to users.
+ * */
+#if !(IS_USED(MODULE_AUTO_INIT_SAUL) && IS_USED(MODULE_SAUL_PWM))
+
 #define LED0_ON             (LED_PORT->OUTCLR = LED0_MASK)
 #define LED0_OFF            (LED_PORT->OUTSET = LED0_MASK)
 #define LED0_TOGGLE         (LED_PORT->OUT   ^= LED0_MASK)
@@ -51,6 +118,9 @@ extern "C" {
 #define LED2_ON             (LED_PORT->OUTCLR = LED2_MASK)
 #define LED2_OFF            (LED_PORT->OUTSET = LED2_MASK)
 #define LED2_TOGGLE         (LED_PORT->OUT   ^= LED2_MASK)
+
+#endif /* !(IS_USED(MODULE_AUTO_INIT_SAUL) && IS_USED(MODULE_SAUL_PWM)) */
+
 /** @} */
 
 /**

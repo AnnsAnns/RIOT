@@ -21,14 +21,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include "board.h"
-#include "periph_conf.h"
+#include "clk.h"
+#include "led.h"
+#include "periph/gpio.h"
 
-#ifdef CLOCK_CORECLOCK
-#define DELAY_SHORT         (CLOCK_CORECLOCK / 50)
-#else
-#define DELAY_SHORT         (500000UL)
-#endif
+#define DELAY_SHORT         (coreclk() / 50)
 #define DELAY_LONG          (DELAY_SHORT * 4)
 
 void dumb_delay(uint32_t delay)
@@ -40,41 +37,11 @@ void dumb_delay(uint32_t delay)
 
 int main(void)
 {
-    int numof = 0;
-
     /* get the number of available LED's and turn them all off*/
-#ifdef LED0_ON
-    ++numof;
-    LED0_OFF;
-#endif
-#ifdef LED1_ON
-    ++numof;
-    LED1_OFF;
-#endif
-#ifdef LED2_ON
-    ++numof;
-    LED2_OFF;
-#endif
-#ifdef LED3_ON
-    ++numof;
-    LED3_OFF;
-#endif
-#ifdef LED4_ON
-    ++numof;
-    LED4_OFF;
-#endif
-#ifdef LED5_ON
-    ++numof;
-    LED5_OFF;
-#endif
-#ifdef LED6_ON
-    ++numof;
-    LED6_OFF;
-#endif
-#ifdef LED7_ON
-    ++numof;
-    LED7_OFF;
-#endif
+    unsigned numof = LED_NUMOF;
+    for (unsigned i = 0; i < numof; i++) {
+        led_off(i);
+    }
 
     puts("On-board LED test\n");
     /* cppcheck-suppress knownConditionTrueFalse
@@ -84,12 +51,11 @@ int main(void)
     }
     else {
         printf("Available LEDs: %i\n\n", numof);
-        puts("Will now light up each LED once short and twice long in a loop");
+        puts("Will now light up each LED once short and twice long");
     }
 
-
-    while (1) {
-#ifdef LED0_ON
+    for (unsigned i = 0; i < 4; ++i) {
+#ifdef LED0_IS_PRESENT
         LED0_ON;
         dumb_delay(DELAY_LONG);
         LED0_OFF;
@@ -103,7 +69,7 @@ int main(void)
         LED0_TOGGLE;
         dumb_delay(DELAY_LONG);
 #endif
-#ifdef LED1_ON
+#ifdef LED1_IS_PRESENT
         LED1_ON;
         dumb_delay(DELAY_LONG);
         LED1_OFF;
@@ -117,7 +83,7 @@ int main(void)
         LED1_TOGGLE;
         dumb_delay(DELAY_LONG);
 #endif
-#ifdef LED2_ON
+#ifdef LED2_IS_PRESENT
         LED2_ON;
         dumb_delay(DELAY_LONG);
         LED2_OFF;
@@ -131,7 +97,7 @@ int main(void)
         LED2_TOGGLE;
         dumb_delay(DELAY_LONG);
 #endif
-#ifdef LED3_ON
+#ifdef LED3_IS_PRESENT
         LED3_ON;
         dumb_delay(DELAY_LONG);
         LED3_OFF;
@@ -145,7 +111,7 @@ int main(void)
         LED3_TOGGLE;
         dumb_delay(DELAY_LONG);
 #endif
-#ifdef LED4_ON
+#ifdef LED4_IS_PRESENT
         LED4_ON;
         dumb_delay(DELAY_LONG);
         LED4_OFF;
@@ -159,7 +125,7 @@ int main(void)
         LED4_TOGGLE;
         dumb_delay(DELAY_LONG);
 #endif
-#ifdef LED5_ON
+#ifdef LED5_IS_PRESENT
         LED5_ON;
         dumb_delay(DELAY_LONG);
         LED5_OFF;
@@ -173,7 +139,7 @@ int main(void)
         LED5_TOGGLE;
         dumb_delay(DELAY_LONG);
 #endif
-#ifdef LED6_ON
+#ifdef LED6_IS_PRESENT
         LED6_ON;
         dumb_delay(DELAY_LONG);
         LED6_OFF;
@@ -187,7 +153,7 @@ int main(void)
         LED6_TOGGLE;
         dumb_delay(DELAY_LONG);
 #endif
-#ifdef LED7_ON
+#ifdef LED7_IS_PRESENT
         LED7_ON;
         dumb_delay(DELAY_LONG);
         LED7_OFF;
@@ -200,6 +166,35 @@ int main(void)
         dumb_delay(DELAY_SHORT);
         LED7_TOGGLE;
         dumb_delay(DELAY_LONG);
+#endif
+    }
+
+    puts("Mapping each LED to a button (if available)");
+
+    while (1) {
+#if defined(LED0_PIN) && defined(BTN0_PIN)
+        gpio_write(LED0_PIN, gpio_read(BTN0_PIN));
+#endif
+#if defined(LED1_PIN) && defined(BTN1_PIN)
+        gpio_write(LED1_PIN, gpio_read(BTN1_PIN));
+#endif
+#if defined(LED2_PIN) && defined(BTN2_PIN)
+        gpio_write(LED2_PIN, gpio_read(BTN2_PIN));
+#endif
+#if defined(LED3_PIN) && defined(BTN3_PIN)
+        gpio_write(LED3_PIN, gpio_read(BTN3_PIN));
+#endif
+#if defined(LED4_PIN) && defined(BTN4_PIN)
+        gpio_write(LED4_PIN, gpio_read(BTN4_PIN));
+#endif
+#if defined(LED5_PIN) && defined(BTN5_PIN)
+        gpio_write(LED5_PIN, gpio_read(BTN5_PIN));
+#endif
+#if defined(LED6_PIN) && defined(BTN6_PIN)
+        gpio_write(LED6_PIN, gpio_read(BTN6_PIN));
+#endif
+#if defined(LED7_PIN) && defined(BTN7_PIN)
+        gpio_write(LED7_PIN, gpio_read(BTN7_PIN));
 #endif
     }
 

@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2019 Koen Zandberg
+ *               2022 SSV Software Systems GmbH
  *
  * This file is subject to the terms and conditions of the GNU Lesser
  * General Public License v2.1. See the file LICENSE in the top level
@@ -13,11 +14,17 @@
  * @brief   Low level USB interface functions for the sam0 class devices
  *
  * @author  Koen Zandberg <koen@bergzand.net>
+ * @author  Juergen Fitschen <me@jue.yt>
  * @}
  */
+
+#define USB_H_USER_IS_RIOT_INTERNAL
+
+#include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <errno.h>
+#include "architecture.h"
 #include "cpu.h"
 #include "cpu_conf.h"
 #include "periph/gpio.h"
@@ -32,7 +39,7 @@
  * is able to interfere with USB functionality and you might see different
  * errors than debug disabled
  */
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 /* List of instantiated USB peripherals */
@@ -42,12 +49,11 @@ static sam0_common_usb_t _usbdevs[USB_INST_NUM];
 const usbdev_driver_t driver;
 
 static void _usbdev_ep_init(usbdev_ep_t *ep);
-static int _usbdev_ep_ready(usbdev_ep_t *ep, size_t len);
+static int _usbdev_ep_xmit(usbdev_ep_t *ep, uint8_t *buf, size_t len);
 static usbdev_ep_t *_usbdev_new_ep(usbdev_t *dev, usb_ep_type_t type,
-                                   usb_ep_dir_t dir, size_t buf_len);
+                                   usb_ep_dir_t dir, size_t len);
 
 static int _bank_set_size(usbdev_ep_t *ep);
-static int _ep_unready(usbdev_ep_t *ep);
 
 static inline unsigned _ep_num(unsigned num, usb_ep_dir_t dir)
 {
@@ -76,12 +82,13 @@ static inline UsbDeviceEndpoint *_ep_reg_from_ep(usbdev_ep_t *ep)
 
 static inline void _enable_irq(sam0_common_usb_t *dev)
 {
-    dev->config->device->INTENSET.reg = USB_DEVICE_INTENSET_EORST;
     if (dev->suspended) {
-        dev->config->device->INTENSET.reg = USB_DEVICE_INTENSET_WAKEUP;
+        dev->config->device->INTENSET.reg = USB_DEVICE_INTENSET_WAKEUP |
+                                            USB_DEVICE_INTENCLR_EORST;
     }
     else {
-        dev->config->device->INTENSET.reg = USB_DEVICE_INTENSET_SUSPEND;
+        dev->config->device->INTENSET.reg = USB_DEVICE_INTENSET_SUSPEND |
+                                            USB_DEVICE_INTENSET_EORST;
     }
 }
 
@@ -139,47 +146,42 @@ static void _disable_ep_irq_in(UsbDeviceEndpoint *ep_reg)
                              USB_DEVICE_EPINTENCLR_STALL1;
 }
 
-static void _bank_set_address(usbdev_ep_t *ep)
-{
-    UsbDeviceDescBank *bank = _bank_from_ep(ep);
-
-    bank->ADDR.reg = (uint32_t)ep->buf;
-}
-
 static int _bank_set_size(usbdev_ep_t *ep)
 {
     UsbDeviceDescBank *bank = _bank_from_ep(ep);
     unsigned val = 0x00;
 
     switch (ep->len) {
-        case 8:
-            val = 0x0;
-            break;
-        case 16:
-            val = 0x1;
-            break;
-        case 32:
-            val = 0x2;
-            break;
-        case 64:
-            val = 0x3;
-            break;
-        case 128:
-            val = 0x4;
-            break;
-        case 256:
-            val = 0x5;
-            break;
-        case 512:
-            val = 0x6;
-            break;
-        case 1023:
-            val = 0x7;
-            break;
-        default:
-            return -1;
+    case 8:
+        val = 0x0;
+        break;
+    case 16:
+        val = 0x1;
+        break;
+    case 32:
+        val = 0x2;
+        break;
+    case 64:
+        val = 0x3;
+        break;
+    case 128:
+        val = 0x4;
+        break;
+    case 256:
+        val = 0x5;
+        break;
+    case 512:
+        val = 0x6;
+        break;
+    case 1023:
+        val = 0x7;
+        break;
+    default:
+        return -1;
     }
-    bank->PCKSIZE.bit.SIZE = val;
+
+    uint32_t reg = bank->PCKSIZE.reg;
+    bank->PCKSIZE.reg = ((reg & ~USB_DEVICE_PCKSIZE_SIZE_Msk) | USB_DEVICE_PCKSIZE_SIZE(val));
     return val;
 }
 
@@ -191,8 +193,7 @@ static bool _ep_out_flags_set(UsbDeviceEndpoint *ep_reg)
 {
     return ep_reg->EPINTFLAG.reg  &
            ep_reg->EPINTENSET.reg &
-           (USB_DEVICE_EPINTENSET_TRFAIL0 |
-            USB_DEVICE_EPINTENSET_TRCPT0 |
+           (USB_DEVICE_EPINTENSET_TRCPT0 |
             USB_DEVICE_EPINTENSET_RXSTP |
             USB_DEVICE_EPINTENSET_STALL0);
 }
@@ -205,30 +206,39 @@ static bool _ep_in_flags_set(UsbDeviceEndpoint *ep_reg)
 {
     return ep_reg->EPINTFLAG.reg &
            ep_reg->EPINTENSET.reg &
-           (USB_DEVICE_EPINTENSET_TRFAIL1 |
-            USB_DEVICE_EPINTENSET_TRCPT1 |
+           (USB_DEVICE_EPINTENSET_TRCPT1 |
             USB_DEVICE_EPINTENSET_STALL1);
 }
 
 static void _set_address(sam0_common_usb_t *dev, uint8_t addr)
 {
-    dev->config->device->DADD.bit.DADD = addr;
+    uint32_t dadd = dev->config->device->DADD.reg;
     /* Only enable the address if it is nonzero */
-    dev->config->device->DADD.bit.ADDEN = addr ? 1 : 0;
+    if (addr) {
+        dadd |= USB_DEVICE_DADD_ADDEN;
+    }
+    else {
+        dadd &= ~USB_DEVICE_DADD_ADDEN;
+    }
+
+    dev->config->device->DADD.reg = (dadd & ~USB_DEVICE_DADD_DADD_Msk)
+                                  |  USB_DEVICE_DADD_DADD(addr);
 }
 
 static bool _syncbusy_enable(sam0_common_usb_t *dev)
 {
-    return dev->config->device->SYNCBUSY.bit.ENABLE;
+    return dev->config->device->SYNCBUSY.reg & USB_SYNCBUSY_ENABLE;
 }
 
 static bool _syncbusy_swrst(sam0_common_usb_t *dev)
 {
-    return dev->config->device->SYNCBUSY.bit.SWRST;
+    return dev->config->device->SYNCBUSY.reg & USB_SYNCBUSY_SWRST;
 }
 
-static inline void _poweron(void)
+static inline void _poweron(sam0_common_usb_t *dev)
 {
+    sam0_gclk_enable(dev->config->gclk_src);
+
 #if defined(MCLK)
     MCLK->AHBMASK.reg |= MCLK_AHBMASK_USB;
     MCLK->APBBMASK.reg |= MCLK_APBBMASK_USB;
@@ -237,23 +247,18 @@ static inline void _poweron(void)
     PM->APBBMASK.reg |= PM_APBBMASK_USB;
 #endif
 
-#if defined(CPU_FAM_SAMD21)
-    GCLK->CLKCTRL.reg = (uint32_t)(GCLK_CLKCTRL_CLKEN |
-                                   GCLK_CLKCTRL_GEN_GCLK0 |
-                                   (GCLK_CLKCTRL_ID(USB_GCLK_ID)));
-#elif defined(CPU_FAM_SAML21)
-    GCLK->PCHCTRL[USB_GCLK_ID].reg = GCLK_PCHCTRL_CHEN |
-                                     GCLK_PCHCTRL_GEN_GCLK0;
-#elif defined(CPU_FAM_SAMD5X)
-    GCLK->PCHCTRL[USB_GCLK_ID].reg = GCLK_PCHCTRL_CHEN |
-                                     GCLK_PCHCTRL_GEN_GCLK6;
+#if defined(CPU_COMMON_SAMD21)
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_CLKEN
+                        | GCLK_CLKCTRL_GEN(dev->config->gclk_src)
+                        | GCLK_CLKCTRL_ID(USB_GCLK_ID);
 #else
-#error "Unknown CPU family for sam0 common usbdev driver"
+    GCLK->PCHCTRL[USB_GCLK_ID].reg = GCLK_PCHCTRL_CHEN
+                                     | GCLK_PCHCTRL_GEN(dev->config->gclk_src);
 #endif
 }
 
 static usbdev_ep_t *_usbdev_new_ep(usbdev_t *dev, usb_ep_type_t type,
-                                   usb_ep_dir_t dir, size_t buf_len)
+                                   usb_ep_dir_t dir, size_t size)
 {
     sam0_common_usb_t *usbdev = (sam0_common_usb_t *)dev;
     /* The IP supports all types for all endpoints */
@@ -277,37 +282,15 @@ static usbdev_ep_t *_usbdev_new_ep(usbdev_t *dev, usb_ep_type_t type,
     if (res) {
         res->dev = dev;
         res->dir = dir;
-        if (usbdev->used + buf_len < SAM_USB_BUF_SPACE) {
-            res->buf = usbdev->buffer + usbdev->used;
-            res->len = buf_len;
-            if (_bank_set_size(res) < 0) {
-                return NULL;
-            }
-            usbdev->used += buf_len;
-            _bank_set_address(res);
-            res->type = type;
-            res->dev = dev;
-        }
+        res->type = type;
+        res->len = size;
+        _bank_set_size(res);
     }
     return res;
 }
 
-static void _block_pm(void)
-{
-#if defined(CPU_FAM_SAMD21)
-    pm_block(SAMD21_PM_IDLE_1);
-#endif
-}
-
-static void _unblock_pm(void)
-{
-#if defined(CPU_FAM_SAMD21)
-    pm_unblock(SAMD21_PM_IDLE_1);
-#endif
-}
-
 static void _setup(sam0_common_usb_t *usbdev,
-                      const sam0_common_usb_config_t *config)
+                   const sam0_common_usb_config_t *config)
 {
     usbdev->usbdev.driver = &driver;
     usbdev->config = config;
@@ -331,13 +314,25 @@ static void _usbdev_init(usbdev_t *dev)
     DEBUG("Initializing sam0 usb peripheral\n");
     /* Only one usb device on this board */
     sam0_common_usb_t *usbdev = (sam0_common_usb_t *)dev;
-    usbdev->used = 0;
+
+    /* clear previously set pm blockers */
+    if (usbdev->config->device->CTRLA.reg & USB_CTRLA_ENABLE) {
+#if IS_ACTIVE(MODULE_PM_LAYERED) && defined(SAM0_USB_IDLE_PM_BLOCK)
+        pm_unblock(SAM0_USB_IDLE_PM_BLOCK);
+#endif
+        if (!usbdev->suspended) {
+#if IS_ACTIVE(MODULE_PM_LAYERED) && defined(SAM0_USB_ACTIVE_PM_BLOCK)
+            pm_unblock(SAM0_USB_ACTIVE_PM_BLOCK);
+#endif
+        }
+    }
+
     /* Set GPIO */
     gpio_init(usbdev->config->dp, GPIO_IN);
     gpio_init(usbdev->config->dm, GPIO_IN);
     gpio_init_mux(usbdev->config->dm, usbdev->config->d_mux);
     gpio_init_mux(usbdev->config->dp, usbdev->config->d_mux);
-    _poweron();
+    _poweron(usbdev);
 
     /* Reset peripheral */
     usbdev->config->device->CTRLA.reg |= USB_CTRLA_SWRST;
@@ -357,13 +352,22 @@ static void _usbdev_init(usbdev_t *dev)
         USB_PADCAL_TRIM((*(uint32_t *)USB_FUSES_TRIM_ADDR >>
                          USB_FUSES_TRIM_Pos));
 
-    usbdev->config->device->CTRLB.bit.SPDCONF = USB_DEVICE_CTRLB_SPDCONF_FS;
+    uint32_t ctrlb = usbdev->config->device->CTRLB.reg;
+    usbdev->config->device->CTRLB.reg = (ctrlb & ~USB_DEVICE_CTRLB_SPDCONF_Msk)
+                                      |  USB_DEVICE_CTRLB_SPDCONF_FS;
+
     _enable_irq(usbdev);
 
-    _block_pm();
+#if IS_ACTIVE(MODULE_PM_LAYERED) && defined(SAM0_USB_IDLE_PM_BLOCK)
+    pm_block(SAM0_USB_IDLE_PM_BLOCK);
+#endif
+#if IS_ACTIVE(MODULE_PM_LAYERED) && defined(SAM0_USB_ACTIVE_PM_BLOCK)
+    pm_block(SAM0_USB_ACTIVE_PM_BLOCK);
+#endif
+
     usbdev->usbdev.cb(&usbdev->usbdev, USBDEV_EVENT_HOST_CONNECT);
     /* Interrupt configuration */
-#ifdef CPU_FAM_SAMD5X
+#ifdef CPU_COMMON_SAMD5X
     NVIC_EnableIRQ(USB_0_IRQn);
     NVIC_EnableIRQ(USB_1_IRQn);
     NVIC_EnableIRQ(USB_2_IRQn);
@@ -391,20 +395,21 @@ static int _usbdev_get(usbdev_t *usbdev, usbopt_t opt,
     (void)usbdev;
     (void)max_len;
     int res = -ENOTSUP;
+
     switch (opt) {
-        case USBOPT_MAX_VERSION:
-            assert(max_len == sizeof(usb_version_t));
-            *(usb_version_t *)value = USB_VERSION_20;
-            res = sizeof(usb_version_t);
-            break;
-        case USBOPT_MAX_SPEED:
-            assert(max_len == sizeof(usb_speed_t));
-            *(usb_speed_t *)value = USB_SPEED_FULL;
-            res = sizeof(usb_speed_t);
-            break;
-        default:
-            DEBUG("Unhandled get call: 0x%x\n", opt);
-            break;
+    case USBOPT_MAX_VERSION:
+        assert(max_len == sizeof(usb_version_t));
+        *(usb_version_t *)value = USB_VERSION_20;
+        res = sizeof(usb_version_t);
+        break;
+    case USBOPT_MAX_SPEED:
+        assert(max_len == sizeof(usb_speed_t));
+        *(usb_speed_t *)value = USB_SPEED_FULL;
+        res = sizeof(usb_speed_t);
+        break;
+    default:
+        DEBUG("Unhandled get call: 0x%x\n", opt);
+        break;
     }
     return res;
 }
@@ -416,25 +421,26 @@ static int _usbdev_set(usbdev_t *dev, usbopt_t opt,
 
     (void)value_len;
     int res = -ENOTSUP;
+
     switch (opt) {
-        case USBOPT_ADDRESS:
-            assert(value_len == sizeof(uint8_t));
-            uint8_t addr = (*((uint8_t *)value));
-            _set_address(usbdev, addr);
-            break;
-        case USBOPT_ATTACH:
-            assert(value_len == sizeof(usbopt_enable_t));
-            if (*((usbopt_enable_t *)value)) {
-                usb_attach(usbdev);
-            }
-            else {
-                usb_detach(usbdev);
-            }
-            res = sizeof(usbopt_enable_t);
-            break;
-        default:
-            DEBUG("Unhandled set call: 0x%x\n", opt);
-            break;
+    case USBOPT_ADDRESS:
+        assert(value_len == sizeof(uint8_t));
+        uint8_t addr = (*((uint8_t *)value));
+        _set_address(usbdev, addr);
+        break;
+    case USBOPT_ATTACH:
+        assert(value_len == sizeof(usbopt_enable_t));
+        if (*((usbopt_enable_t *)value)) {
+            usb_attach(usbdev);
+        }
+        else {
+            usb_detach(usbdev);
+        }
+        res = sizeof(usbopt_enable_t);
+        break;
+    default:
+        DEBUG("Unhandled set call: 0x%x\n", opt);
+        break;
     }
     return res;
 }
@@ -444,10 +450,10 @@ static void _ep_disable(usbdev_ep_t *ep)
     UsbDeviceEndpoint *ep_reg = _ep_reg_from_ep(ep);
 
     if (ep->dir == USB_EP_DIR_OUT) {
-        ep_reg->EPCFG.bit.EPTYPE0 = 0;
+        ep_reg->EPCFG.reg &= ~USB_DEVICE_EPCFG_EPTYPE0_Msk;
     }
     else {
-        ep_reg->EPCFG.bit.EPTYPE1 = 0;
+        ep_reg->EPCFG.reg &= ~USB_DEVICE_EPCFG_EPTYPE1_Msk;
     }
 }
 
@@ -457,29 +463,34 @@ static void _ep_enable(usbdev_ep_t *ep)
           ep->dir == USB_EP_DIR_OUT ? "OUT" : "IN");
     UsbDeviceEndpoint *ep_reg = _ep_reg_from_ep(ep);
     uint8_t type = 0;
+    uint32_t epcfg;
 
     switch (ep->type) {
-        case USB_EP_TYPE_CONTROL:
-            type = 0x01;
-            break;
-        case USB_EP_TYPE_ISOCHRONOUS:
-            type = 0x02;
-            break;
-        case USB_EP_TYPE_BULK:
-            type = 0x03;
-            break;
-        case USB_EP_TYPE_INTERRUPT:
-            type = 0x04;
-            break;
-        default:
-            /* Must never happen */
-            assert(false);
+    case USB_EP_TYPE_CONTROL:
+        type = 0x01;
+        break;
+    case USB_EP_TYPE_ISOCHRONOUS:
+        type = 0x02;
+        break;
+    case USB_EP_TYPE_BULK:
+        type = 0x03;
+        break;
+    case USB_EP_TYPE_INTERRUPT:
+        type = 0x04;
+        break;
+    default:
+        /* Must never happen */
+        assert(false);
     }
     if (ep->dir == USB_EP_DIR_OUT) {
-        ep_reg->EPCFG.bit.EPTYPE0 = type;
+        epcfg = ep_reg->EPCFG.reg;
+        ep_reg->EPCFG.reg = (epcfg & ~USB_DEVICE_EPCFG_EPTYPE0_Msk)
+                          |  USB_DEVICE_EPCFG_EPTYPE0(type);
     }
     else {
-        ep_reg->EPCFG.bit.EPTYPE1 = type;
+        epcfg = ep_reg->EPCFG.reg;
+        ep_reg->EPCFG.reg = (epcfg & ~USB_DEVICE_EPCFG_EPTYPE1_Msk)
+                          |  USB_DEVICE_EPCFG_EPTYPE1(type);
     }
 }
 
@@ -541,29 +552,33 @@ static void _usbdev_esr(usbdev_t *dev)
     sam0_common_usb_t *usbdev = (sam0_common_usb_t *)dev;
 
     if (usbdev->config->device->INTFLAG.reg) {
-        if (usbdev->config->device->INTFLAG.bit.EORST) {
+        if (usbdev->config->device->INTFLAG.reg & USB_DEVICE_INTFLAG_EORST) {
             /* Clear flag */
             usbdev->config->device->INTFLAG.reg = USB_DEVICE_INTFLAG_EORST;
             usbdev->usbdev.cb(&usbdev->usbdev, USBDEV_EVENT_RESET);
             usbdev->config->device->INTFLAG.reg = USB_DEVICE_INTFLAG_EORST;
         }
-        else if (usbdev->config->device->INTFLAG.bit.SUSPEND &&
+        else if ((usbdev->config->device->INTFLAG.reg & USB_DEVICE_INTFLAG_SUSPEND) &&
                  !usbdev->suspended) {
             usbdev->config->device->INTFLAG.reg = USB_DEVICE_INTFLAG_WAKEUP |
                                                   USB_DEVICE_INTFLAG_SUSPEND;
             usbdev->suspended = true;
             usbdev->usbdev.cb(&usbdev->usbdev, USBDEV_EVENT_SUSPEND);
+#if IS_ACTIVE(MODULE_PM_LAYERED) && defined(SAM0_USB_ACTIVE_PM_BLOCK)
             /* Low power modes are available while suspended */
-            _unblock_pm();
+            pm_unblock(SAM0_USB_ACTIVE_PM_BLOCK);
+#endif
         }
-        else if (usbdev->config->device->INTFLAG.bit.WAKEUP &&
+        else if ((usbdev->config->device->INTFLAG.reg & USB_DEVICE_INTFLAG_WAKEUP) &&
                  usbdev->suspended) {
             usbdev->config->device->INTFLAG.reg = USB_DEVICE_INTFLAG_WAKEUP |
                                                   USB_DEVICE_INTFLAG_SUSPEND;
             usbdev->suspended = false;
             usbdev->usbdev.cb(&usbdev->usbdev, USBDEV_EVENT_RESUME);
+#if IS_ACTIVE(MODULE_PM_LAYERED) && defined(SAM0_USB_ACTIVE_PM_BLOCK)
             /* Device wakeup detected, blocking low power modes */
-            _block_pm();
+            pm_block(SAM0_USB_ACTIVE_PM_BLOCK);
+#endif
         }
         else {
             DEBUG("sam_usb: Unhandled interrupt\n");
@@ -593,6 +608,15 @@ static inline void _disable_ep_stall_in(UsbDeviceEndpoint *ep_reg)
     ep_reg->EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_STALLRQ1;
 }
 
+static void _usbdev_ep0_stall(usbdev_t *usbdev)
+{
+    sam0_common_usb_t *sam_usbdev = (sam0_common_usb_t *)usbdev;
+    UsbDeviceEndpoint *ep0_reg = &sam_usbdev->config->device->DeviceEndpoint[0];
+
+    ep0_reg->EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_STALLRQ1 |
+                               USB_DEVICE_EPSTATUSSET_STALLRQ0;
+}
+
 static void _ep_set_stall(usbdev_ep_t *ep, usbopt_enable_t enable)
 {
     UsbDeviceEndpoint *ep_reg = _ep_reg_from_ep(ep);
@@ -613,17 +637,22 @@ usbopt_enable_t _ep_get_stall(usbdev_ep_t *ep)
     UsbDeviceEndpoint *ep_reg = _ep_reg_from_ep(ep);
 
     if (ep->dir == USB_EP_DIR_IN) {
-        res = ep_reg->EPSTATUSSET.bit.STALLRQ1
+        res = (ep_reg->EPSTATUSSET.reg & USB_DEVICE_EPSTATUSSET_STALLRQ1)
               ? USBOPT_ENABLE
               : USBOPT_DISABLE;
     }
     else {
-        res = ep_reg->EPSTATUSSET.bit.STALLRQ0
+        res = (ep_reg->EPSTATUSSET.reg & USB_DEVICE_EPSTATUSSET_STALLRQ0)
               ? USBOPT_ENABLE
               : USBOPT_DISABLE;
     }
     return res;
 
+}
+
+static void _usbdev_ep_stall(usbdev_ep_t *ep, bool enable)
+{
+    _ep_set_stall(ep, enable);
 }
 
 static void _usbdev_ep_init(usbdev_ep_t *ep)
@@ -633,7 +662,8 @@ static void _usbdev_ep_init(usbdev_ep_t *ep)
 
 static size_t _ep_get_available(usbdev_ep_t *ep)
 {
-    return _bank_from_ep(ep)->PCKSIZE.bit.BYTE_COUNT;
+    return ((_bank_from_ep(ep)->PCKSIZE.reg & USB_DEVICE_PCKSIZE_BYTE_COUNT_Msk)
+           >> USB_DEVICE_PCKSIZE_BYTE_COUNT_Pos);
 }
 
 static int _usbdev_ep_get(usbdev_ep_t *ep, usbopt_ep_t opt,
@@ -641,20 +671,21 @@ static int _usbdev_ep_get(usbdev_ep_t *ep, usbopt_ep_t opt,
 {
     (void)max_len;
     int res = -ENOTSUP;
+
     switch (opt) {
-        case USBOPT_EP_STALL:
-            assert(max_len == sizeof(usbopt_enable_t));
-            *(usbopt_enable_t *)value = _ep_get_stall(ep);
-            res = sizeof(usbopt_enable_t);
-            break;
-        case USBOPT_EP_AVAILABLE:
-            assert(max_len == sizeof(size_t));
-            *(size_t *)value = _ep_get_available(ep);
-            res = sizeof(size_t);
-            break;
-        default:
-            DEBUG("sam_usb: Unhandled get call: 0x%x\n", opt);
-            break;
+    case USBOPT_EP_STALL:
+        assert(max_len == sizeof(usbopt_enable_t));
+        *(usbopt_enable_t *)value = _ep_get_stall(ep);
+        res = sizeof(usbopt_enable_t);
+        break;
+    case USBOPT_EP_AVAILABLE:
+        assert(max_len == sizeof(size_t));
+        *(size_t *)value = _ep_get_available(ep);
+        res = sizeof(size_t);
+        break;
+    default:
+        DEBUG("sam_usb: Unhandled get call: 0x%x\n", opt);
+        break;
     }
     return res;
 }
@@ -664,60 +695,43 @@ static int _usbdev_ep_set(usbdev_ep_t *ep, usbopt_ep_t opt,
 {
     (void)value_len;
     int res = -ENOTSUP;
+
     switch (opt) {
-        case USBOPT_EP_ENABLE:
-            assert(value_len == sizeof(usbopt_enable_t));
-            if (*((usbopt_enable_t *)value)) {
-                _ep_enable(ep);
-                _usbdev_ep_init(ep);
-            }
-            else {
-                _ep_disable(ep);
-            }
-            res = sizeof(usbopt_enable_t);
-            break;
-        case USBOPT_EP_STALL:
-            assert(value_len == sizeof(usbopt_enable_t));
-            _ep_set_stall(ep, *(usbopt_enable_t *)value);
-            res = sizeof(usbopt_enable_t);
-            break;
-        case USBOPT_EP_READY:
-            assert(value_len == sizeof(usbopt_enable_t));
-            if (*((usbopt_enable_t *)value)) {
-                _ep_unready(ep);
-            }
-            else {
-                _usbdev_ep_ready(ep, 0);
-            }
-            res = sizeof(usbopt_enable_t);
-            break;
-        default:
-            DEBUG("sam_usb: Unhandled set call: 0x%x\n", opt);
-            break;
+    case USBOPT_EP_ENABLE:
+        assert(value_len == sizeof(usbopt_enable_t));
+        if (*((usbopt_enable_t *)value)) {
+            _ep_enable(ep);
+            _usbdev_ep_init(ep);
+        }
+        else {
+            _ep_disable(ep);
+        }
+        res = sizeof(usbopt_enable_t);
+        break;
+    case USBOPT_EP_STALL:
+        assert(value_len == sizeof(usbopt_enable_t));
+        _ep_set_stall(ep, *(usbopt_enable_t *)value);
+        res = sizeof(usbopt_enable_t);
+        break;
+    default:
+        DEBUG("sam_usb: Unhandled set call: 0x%x\n", opt);
+        break;
     }
     return res;
 }
 
-static int _ep_unready(usbdev_ep_t *ep)
+static int _usbdev_ep_xmit(usbdev_ep_t *ep, uint8_t *buf, size_t len)
 {
     UsbDeviceEndpoint *ep_reg = _ep_reg_from_ep(ep);
+    /* Assert the alignment required for the buffers */
+    assert(HAS_ALIGNMENT_OF(buf, USBDEV_CPU_DMA_ALIGNMENT));
 
-    if (ep->dir == USB_EP_DIR_IN) {
-        ep_reg->EPSTATUSCLR.reg = USB_DEVICE_EPSTATUSCLR_BK1RDY;
-    }
-    else {
-        ep_reg->EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_BK0RDY;
-    }
-    return 0;
-}
-
-static int _usbdev_ep_ready(usbdev_ep_t *ep, size_t len)
-{
-    UsbDeviceEndpoint *ep_reg = _ep_reg_from_ep(ep);
-
+    _bank_from_ep(ep)->ADDR.reg = (uint32_t)(intptr_t)buf;
     if (ep->dir == USB_EP_DIR_IN) {
         _disable_ep_stall_in(ep_reg);
-        _bank_from_ep(ep)->PCKSIZE.bit.BYTE_COUNT = len;
+        uint32_t reg = _bank_from_ep(ep)->PCKSIZE.reg;
+        _bank_from_ep(ep)->PCKSIZE.reg = (reg & ~USB_DEVICE_PCKSIZE_BYTE_COUNT_Msk)
+                                       |  USB_DEVICE_PCKSIZE_BYTE_COUNT(len);
         ep_reg->EPSTATUSSET.reg = USB_DEVICE_EPSTATUSSET_BK1RDY;
     }
     else {
@@ -738,19 +752,15 @@ static void _usbdev_ep_esr(usbdev_ep_t *ep)
     signed event = -1;
 
     if (ep->dir == USB_EP_DIR_OUT) {
-        if (ep_reg->EPINTFLAG.bit.TRCPT0) {
+        if (ep_reg->EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0) {
             ep_reg->EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
             event = USBDEV_EVENT_TR_COMPLETE;
         }
-        else if (ep_reg->EPINTFLAG.bit.RXSTP) {
+        else if (ep_reg->EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP) {
             ep_reg->EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
             event = USBDEV_EVENT_TR_COMPLETE;
         }
-        else if (ep_reg->EPINTFLAG.bit.TRFAIL0) {
-            ep_reg->EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
-            event = USBDEV_EVENT_TR_FAIL;
-        }
-        else if (ep_reg->EPINTFLAG.bit.STALL0) {
+        else if (ep_reg->EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0) {
             ep_reg->EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
             event = USBDEV_EVENT_TR_STALL;
         }
@@ -760,16 +770,12 @@ static void _usbdev_ep_esr(usbdev_ep_t *ep)
         }
     }
     else {
-        if (ep_reg->EPINTFLAG.bit.TRCPT1) {
+        if (ep_reg->EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1) {
             DEBUG("sam_usb: Transfer IN complete\n");
             ep_reg->EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
             event = USBDEV_EVENT_TR_COMPLETE;
         }
-        else if (ep_reg->EPINTFLAG.bit.TRFAIL1) {
-            ep_reg->EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
-            event = USBDEV_EVENT_TR_FAIL;
-        }
-        else if (ep_reg->EPINTFLAG.bit.STALL1) {
+        else if (ep_reg->EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1) {
             ep_reg->EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
             event = USBDEV_EVENT_TR_STALL;
         }
@@ -792,9 +798,11 @@ const usbdev_driver_t driver = {
     .get = _usbdev_get,
     .set = _usbdev_set,
     .esr = _usbdev_esr,
+    .ep0_stall = _usbdev_ep0_stall,
     .ep_init = _usbdev_ep_init,
+    .ep_stall = _usbdev_ep_stall,
     .ep_get = _usbdev_ep_get,
     .ep_set = _usbdev_ep_set,
     .ep_esr = _usbdev_ep_esr,
-    .ready = _usbdev_ep_ready,
+    .xmit = _usbdev_ep_xmit,
 };

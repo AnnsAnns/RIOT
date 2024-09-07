@@ -39,18 +39,27 @@
  */
 
 #include <stddef.h>
+#include <inttypes.h>
 #include "kernel_defines.h"
 #include "net/netif.h"
+#include "uri_parser.h"
 
 #include "liblwm2m.h"
+#include "net/sock/udp.h"
+
+#if IS_USED(MODULE_WAKAAMA_CLIENT_DTLS)
+#include "net/sock/dtls.h"
+#endif
+
 #include "lwm2m_client.h"
 #include "lwm2m_client_config.h"
 #include "lwm2m_client_connection.h"
+#include "objects/common.h"
 
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
-#define URI_LENGTH 256
+#define MAX_URI_LENGTH 256
 
 /**
  * @brief Creates a new connection object based on the security instance
@@ -61,22 +70,8 @@
  *
  * @return Pointer to the new connection
  */
-static lwm2m_client_connection_t *_connection_create(int instance_id,
-                                        lwm2m_client_data_t *client_data);
-
-/**
- * @brief Gets the URI from an @p instance_id of a @p obj security object
- *
- * @param[in] obj security object
- * @param[in] instance_id ID number of the instance of security object
- * @param[out] uri_buffer buffer to place the URI
- * @param[in] buffer_size size of @p uri_buffer
- *
- * @return Pointer to the URI in success
- * @return NULL otherwise
- */
-static char *_get_uri_from_security_obj(lwm2m_object_t *obj, int instance_id,
-                           char *uri_buffer, int buffer_size);
+static lwm2m_client_connection_t *_connection_create(uint16_t sec_obj_inst_id,
+                                                     lwm2m_client_data_t *client_data);
 
 /**
  * @brief Sends data with a specified connection @p conn
@@ -94,59 +89,24 @@ static int _connection_send(lwm2m_client_connection_t *conn, uint8_t *buffer,
                             lwm2m_client_data_t *client_data);
 
 /**
- * @brief Parses the schema of a given URI and sets the default port for the
- *        found valid schema
- * @param[in]  uri          URI string to parse
- * @param[out] port         will point to the default port string
- * @param[in]  instance_id  instance ID of the connection
- *
- * @return pointer to the character after the schema, if found
- * @return NULL if no valid schema found
- */
-static char *_parse_schema(char *uri, char **port, int instance_id);
-
-/**
- * @brief Parses the host and the port part after the schema
- *
- * @param[in, out] host             pointer to the beginning of the host
- * @param[out]     port             pointer to store the position of the port
- * @param[in]      default_port     default port
- */
-static void _parse_host_and_port(char **host, char **port, char *default_port);
-
-/**
- * @brief Tries to find an interface in the host string. If not, it will check
+ * @brief Tries to find an interface by interface string. If not, it will check
  *        if there only exists one interface, and will use it
- * @param[in]  host         host string
+ * @param[in]  iface         interface string
+ * @param[in]  iface_len     interface string length
  *
  * @return  pointer to the interface to use on success
- * @return  NULL on error
+ * @retval  NULL on error
  */
-static netif_t *_get_interface(char *host);
-
-/**
- * @brief Sets a given interface to a given UDP endpoint
- *
- * @param[out] ep           UDP endpoint
- * @param[in]  netif        Network interface to assign
- */
-static void _set_interface(sock_udp_ep_t *ep, const netif_t *netif);
+static netif_t *_get_interface(const char *iface, size_t len);
 
 void *lwm2m_connect_server(uint16_t sec_obj_inst_id, void *user_data)
 {
     lwm2m_client_data_t *client_data = (lwm2m_client_data_t *)user_data;
-    lwm2m_list_t *instance;
-    lwm2m_client_connection_t *new_conn = NULL;
+    lwm2m_client_connection_t *new_conn;
 
-    /* get the security object instance */
-    instance = LWM2M_LIST_FIND(client_data->obj_security->instanceList,
-                               sec_obj_inst_id);
-    if (instance == NULL) {
-        DEBUG("[lwm2m_connect_server] Could not find sec object instance\n");
-        return NULL;
-    }
+    DEBUG("[lwm2m_connect_server] Connecting to server in security instance %" PRIu16 "\n", sec_obj_inst_id);
 
-    new_conn = _connection_create(instance->id, client_data);
+    new_conn = _connection_create(sec_obj_inst_id, client_data);
     if (new_conn) {
         DEBUG("[lwm2m_connect_server] Connection created\n");
         /* if the connections list is empty this is the first node, if not
@@ -177,7 +137,7 @@ void lwm2m_close_connection(void *sessionH, void *user_data)
     else {
         lwm2m_client_connection_t *prev = client_data->conn_list;
 
-        while(prev != NULL && prev->next != conn) {
+        while (prev != NULL && prev->next != conn) {
             prev = prev->next;
         }
         if (prev != NULL) {
@@ -217,9 +177,9 @@ uint8_t lwm2m_buffer_send(void *sessionH, uint8_t *buffer, size_t length,
     return COAP_NO_ERROR;
 }
 
-lwm2m_client_connection_t *lwm2m_client_connection_find(
-                                lwm2m_client_connection_t *conn_list,
-                                const sock_udp_ep_t *remote)
+lwm2m_client_connection_t *lwm2m_client_connection_find(lwm2m_client_connection_t *conn_list,
+                                                        const sock_udp_ep_t *remote,
+                                                        lwm2m_client_connection_type_t type)
 {
     lwm2m_client_connection_t *conn = conn_list;
 
@@ -227,16 +187,16 @@ lwm2m_client_connection_t *lwm2m_client_connection_find(
     uint8_t ip_len = 128;
 
     ipv6_addr_to_str(ip, (ipv6_addr_t *)&remote->addr.ipv6, ip_len);
-    DEBUG("Looking for connection from [%s]:%d\n", ip, remote->port);
+    DEBUG("Looking for connection from [%s]:%" PRIu16 "\n", ip, remote->port);
 
     if (conn_list == NULL) {
         DEBUG("Conn list is null!");
     }
 
-    while(conn != NULL) {
+    while (conn != NULL) {
         ipv6_addr_to_str(ip, (ipv6_addr_t *)&conn->remote.addr.ipv6, ip_len);
-        DEBUG("Comparing to [%s]:%d\n", ip, conn->remote.port);
-        if ((conn->remote.port == remote->port) &&
+        DEBUG("Comparing to [%s]:%" PRIu16 "\n", ip, conn->remote.port);
+        if ((conn->remote.port == remote->port) && conn->type == type &&
             ipv6_addr_equal((ipv6_addr_t *)&(conn->remote.addr.ipv6),
                             (ipv6_addr_t *)&(remote->addr.ipv6))) {
             break;
@@ -246,9 +206,8 @@ lwm2m_client_connection_t *lwm2m_client_connection_find(
     return conn;
 }
 
-int lwm2m_connection_handle_packet(lwm2m_client_connection_t *conn,
-                                   uint8_t *buffer, size_t num_bytes,
-                                   lwm2m_client_data_t *client_data)
+int lwm2m_connection_handle_packet(lwm2m_client_connection_t *conn, uint8_t *buffer,
+                                   size_t num_bytes, lwm2m_client_data_t *client_data)
 {
     lwm2m_handle_packet(client_data->lwm2m_ctx, buffer, num_bytes, conn);
     return 0;
@@ -258,81 +217,36 @@ static int _connection_send(lwm2m_client_connection_t *conn, uint8_t *buffer,
                             size_t buffer_size,
                             lwm2m_client_data_t *client_data)
 {
-    ssize_t sent_bytes = sock_udp_send(&(client_data->sock), buffer,
-                                       buffer_size, &(conn->remote));
-    if (sent_bytes <= 0) {
-        DEBUG("[_connection_send] Could not send UDP packet: %i\n", (int)sent_bytes);
-        return -1;
+    DEBUG("[_connection_send] trying to send %" PRIiSIZE " bytes\n", buffer_size);
+    if (conn->type == LWM2M_CLIENT_CONN_UDP) {
+        ssize_t sent_bytes = sock_udp_send(&(client_data->sock), buffer,
+                                        buffer_size, &(conn->remote));
+        if (sent_bytes <= 0) {
+            DEBUG("[_connection_send] Could not send UDP packet: %i\n", (int)sent_bytes);
+            return -1;
+        }
     }
+#if IS_USED(MODULE_WAKAAMA_CLIENT_DTLS)
+    else {
+        ssize_t sent_bytes = sock_dtls_send(&client_data->dtls_sock, &conn->session, buffer,
+                                            buffer_size, SOCK_NO_TIMEOUT);
+        if (sent_bytes <= 0) {
+            DEBUG("[_connection_send] Could not send DTLS packet: %i\n", (int)sent_bytes);
+            return -1;
+        }
+    }
+#endif /* MODULE_WAKAAMA_CLIENT_DTLS */
+
     conn->last_send = lwm2m_gettime();
     return 0;
 }
 
-static char *_parse_schema(char *uri, char **port, int instance_id)
-{
-    char *host = NULL;
-    if (!uri) {
-        DEBUG("[_parse_schema] Could not get URI of instance\n");
-        goto out;
-    }
-
-    /* parse the URI in the form "coaps://[host]:port" */
-    if (!strncmp(uri, SCHEME_COAPS, sizeof(SCHEME_COAPS) - 1)) {
-        host = uri + sizeof(SCHEME_COAPS) - 1;
-    }
-    else if (!strncmp(uri, SCHEME_COAP, sizeof(SCHEME_COAP) - 1)) {
-        host = uri + sizeof(SCHEME_COAP) - 1;
-    }
-
-    *port = (IS_ACTIVE(LWM2M_BOOTSTRAP) && !instance_id) ?
-                LWM2M_BSSERVER_PORT : LWM2M_STANDARD_PORT;
-out:
-    return host;
-}
-
-static void _parse_host_and_port(char **host, char **port, char *default_port)
-{
-    char *_port = NULL;
-    char *pos = *host;
-
-    if (pos[0] == '[') {
-        (*host)++;
-        pos = strrchr(pos, ']');
-    }
-
-    _port = strrchr(pos, ':');
-    if (!_port) {
-        *pos = '\0';
-        DEBUG("[_parse_port] No port specified, using default\n");
-        _port = default_port;
-    }
-    else {
-        *(_port - 1) = '\0';
-        _port++;
-    }
-    *port = _port;
-}
-
-static void _set_interface(sock_udp_ep_t *ep, const netif_t *netif)
-{
-    if (netif == NULL || ep == NULL) {
-        return;
-    }
-
-    /* currently there is no way to assign a network interface to a sock
-     * endpoint by means of a generic API, so we need to check */
-    if (IS_USED(MODULE_GNRC_NETIF)) {
-        const gnrc_netif_t *gnrc_netif = (gnrc_netif_t *)netif;
-        ep->netif = (uint16_t)gnrc_netif->pid;
-    }
-}
-
-static netif_t *_get_interface(char *host)
+static netif_t *_get_interface(const char *iface, size_t iface_len)
 {
     netif_t *netif = NULL;
-    char *iface = ipv6_addr_split_iface(host);
 
-    if (iface == NULL) {
+    if (!iface || !iface_len) {
+        DEBUG("[lwm2m:client] no interface defined in host\n");
         /* get the number of net interfaces */
         unsigned netif_numof = 0;
         while ((netif = netif_iter(netif)) != NULL) {
@@ -347,37 +261,68 @@ static netif_t *_get_interface(char *host)
         }
     }
     else {
-        netif = netif_get_by_name(iface);
+        DEBUG("[lwm2m:client] getting interface by name %.*s\n", (unsigned)iface_len, iface);
+        netif = netif_get_by_name_buffer(iface, iface_len);
     }
 
     return netif;
 }
 
-static lwm2m_client_connection_t *_connection_create(int instance_id,
-                                        lwm2m_client_data_t *client_data)
+static lwm2m_client_connection_t *_connection_create(uint16_t sec_obj_inst_id,
+                                                     lwm2m_client_data_t *client_data)
 {
     lwm2m_client_connection_t *conn = NULL;
-    char *default_port;
-    char *host;
-    char *port;
-    char *uri;
-    char uri_buf[URI_LENGTH + 1];
+    char uri[MAX_URI_LENGTH] = { 0 };
+    size_t uri_len = ARRAY_SIZE(uri);
+    uint16_t port;
+    bool is_bootstrap;
 
-    memset(uri_buf, 0, sizeof(uri_buf));
     DEBUG("Creating connection\n");
-    /* get the server URI from the requested instance */
-    uri = _get_uri_from_security_obj(client_data->obj_security, instance_id,
-                                     uri_buf, sizeof(uri_buf) - 1);
 
-    host = _parse_schema(uri, &default_port, instance_id);
-    if (!host) {
-        DEBUG("[_connection_create] Could not parse URI schema\n");
-        goto free_out;
+    /* prepare Server URI query */
+    lwm2m_uri_t resource_uri = {
+        .objectId = LWM2M_SECURITY_URI_ID,
+        .instanceId = sec_obj_inst_id,
+        .resourceId = LWM2M_SECURITY_URI_ID,
+        .flag = LWM2M_URI_FLAG_OBJECT_ID | LWM2M_URI_FLAG_INSTANCE_ID | LWM2M_URI_FLAG_RESOURCE_ID
+    };
+
+    int res = lwm2m_get_string(client_data, &resource_uri, uri, &uri_len);
+    if (res < 0) {
+        DEBUG("[_connection_create] Could not get security instance URI\n");
+        goto out;
     }
 
-    _parse_host_and_port(&host, &port, default_port);
-    DEBUG("[_connection_create] Creating connection to Host: %s, Port: %s\n",
-          host, port);
+    uri_parser_result_t parsed_uri;
+    res = uri_parser_process_string(&parsed_uri, uri);
+
+    if (0 != res || !parsed_uri.host) {
+        DEBUG("[_connection_create] Could not parse URI schema\n");
+        goto out;
+    }
+
+    resource_uri.resourceId = LWM2M_SECURITY_BOOTSTRAP_ID;
+    res = lwm2m_get_bool(client_data, &resource_uri, &is_bootstrap);
+    if (res < 0) {
+        DEBUG("[_connection_create] Could verify if the server is bootstrap\n");
+        goto out;
+    }
+
+    /* if no port specified, use the default server or BS-server ports */
+    if (parsed_uri.port == 0) {
+        if (is_bootstrap) {
+            port = atoi(CONFIG_LWM2M_BSSERVER_PORT);
+        }
+        else {
+            port = atoi(CONFIG_LWM2M_STANDARD_PORT);
+        }
+    }
+    else {
+        port = parsed_uri.port;
+    }
+
+    DEBUG("[_connection_create] Creating connection to Host: %.*s, Port: %" PRIu16 "\n",
+          parsed_uri.ipv6addr_len, parsed_uri.ipv6addr, port);
 
     /* allocate new connection */
     conn = lwm2m_malloc(sizeof(lwm2m_client_connection_t));
@@ -390,9 +335,10 @@ static lwm2m_client_connection_t *_connection_create(int instance_id,
     /* configure to any IPv6 */
     conn->remote.family = AF_INET6;
     conn->remote.netif = SOCK_ADDR_ANY_NETIF;
-    conn->remote.port = atoi(port);
+    conn->remote.port = port;
 
-    if (!ipv6_addr_from_str((ipv6_addr_t *)&conn->remote.addr.ipv6, host)) {
+    if (!ipv6_addr_from_buf((ipv6_addr_t *)&conn->remote.addr.ipv6, parsed_uri.ipv6addr,
+                            parsed_uri.ipv6addr_len)) {
         DEBUG("[_connection_create] IPv6 address malformed\n");
         goto free_out;
     }
@@ -406,14 +352,54 @@ static lwm2m_client_connection_t *_connection_create(int instance_id,
      * if not, check the number of interfaces and default to the first if there
      * is only one defined. */
     if (ipv6_addr_is_link_local((ipv6_addr_t *)&conn->remote.addr.ipv6)) {
-        netif_t *netif = _get_interface(host);
+        netif_t *netif = _get_interface(parsed_uri.zoneid, parsed_uri.zoneid_len);
+
         if (netif == NULL) {
+            DEBUG("[lwm2m:client] could not determine an interface to use\n");
             goto free_out;
         }
         else {
-            _set_interface(&conn->remote, netif);
+            int16_t netif_id = netif_get_id(netif);
+            if (netif_id < 0) {
+                goto free_out;
+            }
+            conn->remote.netif = netif_id;
         }
     }
+
+#if IS_USED(MODULE_WAKAAMA_CLIENT_DTLS)
+    uint8_t buf[DTLS_HANDSHAKE_BUFSIZE];
+    int64_t val;
+    resource_uri.resourceId = LWM2M_SECURITY_SECURITY_ID;
+    res = lwm2m_get_int(client_data, &resource_uri, &val);
+    if (res < 0) {
+        DEBUG("[lwm2m:client] could not get security instance mode\n");
+        goto free_out;
+    }
+
+    if (val == LWM2M_SECURITY_MODE_PRE_SHARED_KEY || val == LWM2M_SECURITY_MODE_RAW_PUBLIC_KEY) {
+        conn->type = LWM2M_CLIENT_CONN_DTLS;
+        DEBUG("[lwm2m:client] DTLS session init\n");
+        res = sock_dtls_session_init(&client_data->dtls_sock, &conn->remote, &conn->session);
+        if (res <= 0) {
+            DEBUG("[lwm2m:client] could not initiate DTLS session\n");
+            goto free_out;
+        }
+
+        DEBUG("[lwm2m:client] receiving DTLS handshake\n");
+        res = sock_dtls_recv(&client_data->dtls_sock, &conn->session, buf, sizeof(buf), US_PER_SEC);
+        if (res != -SOCK_DTLS_HANDSHAKE) {
+            DEBUG("[lwm2m:client] error creating session: %i\n", res);
+            goto free_out;
+        }
+        DEBUG("[lwm2m:client] connection to server successful\n");
+    }
+    else {
+        conn->type = LWM2M_CLIENT_CONN_UDP;
+    }
+#else
+    conn->type = LWM2M_CLIENT_CONN_UDP;
+#endif /* MODULE_WAKAAMA_CLIENT_DTLS */
 
     conn->last_send = lwm2m_gettime();
     goto out;
@@ -423,30 +409,4 @@ free_out:
     conn = NULL;
 out:
     return conn;
-}
-
-static char *_get_uri_from_security_obj(lwm2m_object_t *obj, int instance_id,
-                           char *uri_buffer, int buffer_size)
-{
-    int size = 1;
-    char *res = NULL;
-
-    /* allocate a data instance */
-    lwm2m_data_t *data = lwm2m_data_new(size);
-
-    /* get the uri from the security object */
-    data->id = 0;
-    obj->readFunc(instance_id, &size, &data, obj);
-
-    if (data != NULL && data->type == LWM2M_TYPE_STRING &&
-        data->value.asBuffer.length > 0) {
-        if ((size_t)buffer_size > data->value.asBuffer.length) {
-            strncpy(uri_buffer, (char *)data->value.asBuffer.buffer,
-                    data->value.asBuffer.length);
-            res = uri_buffer;
-        }
-    }
-
-    lwm2m_data_free(size, data);
-    return res;
 }

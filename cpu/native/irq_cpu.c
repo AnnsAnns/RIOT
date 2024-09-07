@@ -13,10 +13,16 @@
  * @author  Ludwig Knüpfer <ludwig.knuepfer@fu-berlin.de>
  */
 
+/* __USE_GNU for gregs[REG_EIP] access under glibc
+ * _GNU_SOURCE for REG_EIP and strsignal() under musl */
+#define __USE_GNU
+#define _GNU_SOURCE
+
 #include <err.h>
+#include <signal.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdlib.h>
 
 #ifdef HAVE_VALGRIND_H
 #include <valgrind.h>
@@ -25,22 +31,18 @@
 #include <valgrind/valgrind.h>
 #define VALGRIND_DEBUG DEBUG
 #else
-#define VALGRIND_STACK_REGISTER(...)
+#define VALGRIND_STACK_REGISTER(...) (0)
 #define VALGRIND_DEBUG(...)
 #endif
-
-/* __USE_GNU for gregs[REG_EIP] access under Linux */
-#define __USE_GNU
-#include <signal.h>
-#undef __USE_GNU
 
 #include "irq.h"
 #include "cpu.h"
 #include "periph/pm.h"
 
 #include "native_internal.h"
+#include "test_utils/expect.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 volatile int native_interrupts_enabled = 0;
@@ -49,16 +51,16 @@ volatile int _native_in_syscall;
 
 static sigset_t _native_sig_set, _native_sig_set_dint;
 
-char __isr_stack[SIGSTKSZ];
+char __isr_stack[THREAD_STACKSIZE_DEFAULT];
+const size_t __isr_stack_size = sizeof(__isr_stack);
 ucontext_t native_isr_context;
 ucontext_t *_native_cur_ctx, *_native_isr_ctx;
 
-volatile unsigned int _native_saved_eip;
+volatile uintptr_t _native_saved_eip;
 volatile int _native_sigpend;
 int _sig_pipefd[2];
 
 static _native_callback_t native_irq_handlers[255];
-char sigalt_stk[SIGSTKSZ];
 
 void *thread_isr_stack_pointer(void)
 {
@@ -100,7 +102,9 @@ void print_sigmasks(void)
             ucontext_t *p;
             printf("%s:\n", sched_threads[i]->name);
             //print_thread_sigmask(sched_threads[i]->sp);
-            p = (ucontext_t *)(sched_threads[i]->stack_start);
+            /* Use intermediate cast to uintptr_t to silence -Wcast-align.
+             * stacks are manually word aligned in thread_static_init() */
+            p = (ucontext_t *)(uintptr_t)(sched_threads[i]->stack_start);
             print_thread_sigmask(p);
             puts("");
         }
@@ -201,6 +205,11 @@ unsigned irq_enable(void)
 
     _native_syscall_leave();
 
+    if (_native_in_isr == 0 && sched_context_switch_request) {
+        DEBUG("irq_enable() deferred thread_yield_higher()\n");
+        thread_yield_higher();
+    }
+
     DEBUG("irq_enable(): return\n");
 
     return prev_state;
@@ -220,7 +229,12 @@ void irq_restore(unsigned state)
     return;
 }
 
-int irq_is_in(void)
+bool irq_is_enabled(void)
+{
+    return native_interrupts_enabled;
+}
+
+bool irq_is_in(void)
 {
     DEBUG("irq_is_in: %i\n", _native_in_isr);
     return _native_in_isr;
@@ -298,9 +312,9 @@ void native_isr_entry(int sig, siginfo_t *info, void *context)
     if (context == NULL) {
         errx(EXIT_FAILURE, "native_isr_entry: context is null - unhandled");
     }
-    if (sched_active_thread == NULL) {
+    if (thread_get_active() == NULL) {
         _native_in_isr++;
-        warnx("native_isr_entry: sched_active_thread is null - unhandled");
+        warnx("native_isr_entry: thread_get_active() is null - unhandled");
         _native_in_isr--;
         return;
     }
@@ -325,21 +339,15 @@ void native_isr_entry(int sig, siginfo_t *info, void *context)
     native_isr_context.uc_stack.ss_size = sizeof(__isr_stack);
     native_isr_context.uc_stack.ss_flags = 0;
     makecontext(&native_isr_context, native_irq_handler, 0);
-    _native_cur_ctx = (ucontext_t *)sched_active_thread->sp;
+    /* Use intermediate cast to uintptr_t to silence -Wcast-align.
+     * stacks are manually word aligned in thread_stack_init() */
+    _native_cur_ctx = (ucontext_t *)(uintptr_t)thread_get_active()->sp;
 
     DEBUG("\n\n\t\tnative_isr_entry: return to _native_sig_leave_tramp\n\n");
     /* disable interrupts in context */
     isr_set_sigmask((ucontext_t *)context);
     _native_in_isr = 1;
-    /*
-     * For register access on new platforms see:
-     * http://google-glog.googlecode.com/svn/trunk/m4/pc_from_ucontext.m4
-     * (URL added on Fri Aug 29 17:17:45 CEST 2014)
-     */
-#ifdef __MACH__
-    _native_saved_eip = ((ucontext_t *)context)->uc_mcontext->__ss.__eip;
-    ((ucontext_t *)context)->uc_mcontext->__ss.__eip = (unsigned int)&_native_sig_leave_tramp;
-#elif defined(__FreeBSD__)
+#if defined(__FreeBSD__)
     _native_saved_eip = ((struct sigcontext *)context)->sc_eip;
     ((struct sigcontext *)context)->sc_eip = (unsigned int)&_native_sig_leave_tramp;
 #else /* Linux */
@@ -347,9 +355,14 @@ void native_isr_entry(int sig, siginfo_t *info, void *context)
     _native_saved_eip = ((ucontext_t *)context)->uc_mcontext.arm_pc;
     ((ucontext_t *)context)->uc_mcontext.arm_pc = (unsigned int)&_native_sig_leave_tramp;
 #else /* Linux/x86 */
+  #ifdef __x86_64__
+    _native_saved_eip = ((ucontext_t *)context)->uc_mcontext.gregs[REG_RIP];
+    ((ucontext_t *)context)->uc_mcontext.gregs[REG_RIP] = (uintptr_t)&_native_sig_leave_tramp;
+  #else
     //printf("\n\033[31mEIP:\t%p\ngo switching\n\n\033[0m", (void*)((ucontext_t *)context)->uc_mcontext.gregs[REG_EIP]);
     _native_saved_eip = ((ucontext_t *)context)->uc_mcontext.gregs[REG_EIP];
     ((ucontext_t *)context)->uc_mcontext.gregs[REG_EIP] = (unsigned int)&_native_sig_leave_tramp;
+  #endif
 #endif
 #endif
 }
@@ -460,9 +473,9 @@ void native_interrupt_init(void)
     struct sigaction sa;
     DEBUG("native_interrupt_init\n");
 
-    VALGRIND_STACK_REGISTER(__isr_stack, __isr_stack + sizeof(__isr_stack));
+    (void) VALGRIND_STACK_REGISTER(__isr_stack, __isr_stack + sizeof(__isr_stack));
     VALGRIND_DEBUG("VALGRIND_STACK_REGISTER(%p, %p)\n",
-                   (void *)__isr_stack, (void*)((int)__isr_stack + sizeof(__isr_stack)));
+                   (void *)__isr_stack, (void*)(__isr_stack + sizeof(__isr_stack)));
 
     _native_sigpend = 0;
 
@@ -512,8 +525,9 @@ void native_interrupt_init(void)
     _native_isr_ctx = &native_isr_context;
 
     static stack_t sigstk;
-    sigstk.ss_sp = sigalt_stk;
-    sigstk.ss_size = sizeof(__isr_stack);
+    sigstk.ss_sp = malloc(SIGSTKSZ);
+    expect(sigstk.ss_sp != NULL);
+    sigstk.ss_size = SIGSTKSZ;
     sigstk.ss_flags = 0;
 
     if (sigaltstack(&sigstk, NULL) < 0) {
@@ -540,7 +554,6 @@ void native_interrupt_init(void)
     if (sigaction(SIGINT, &sa, NULL)) {
         err(EXIT_FAILURE, "native_interrupt_init: sigaction");
     }
-
 
     puts("RIOT native interrupts/signals initialized.");
 }

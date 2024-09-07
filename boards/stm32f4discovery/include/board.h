@@ -31,46 +31,28 @@ extern "C" {
  * @name xtimer configuration
  * @{
  */
-#define XTIMER_OVERHEAD     (6)
 #define XTIMER_BACKOFF      (10)
-/** @} */
-
-/**
- * @name LED pin definitions
- * @{
- */
 /** @} */
 
 /**
  * @name Macros for controlling the on-board LEDs.
  * @{
  */
-#define LED0_PIN            GPIO_PIN(PORT_D, 13)
-#define LED1_PIN            GPIO_PIN(PORT_D, 12)
-#define LED2_PIN            GPIO_PIN(PORT_D, 14)
-#define LED3_PIN            GPIO_PIN(PORT_D, 15)
+#define LED0_PIN_NUM        13
+#define LED0_PORT           GPIO_PORT_D /**< GPIO port of LED 0 */
+#define LED0_PORT_NUM       PORT_D
 
-#define LED_PORT            GPIOD
-#define LED0_MASK           (1 << 13)
-#define LED1_MASK           (1 << 12)
-#define LED2_MASK           (1 << 14)
-#define LED3_MASK           (1 << 15)
+#define LED1_PIN_NUM        12
+#define LED1_PORT           GPIO_PORT_D /**< GPIO port of LED 1 */
+#define LED1_PORT_NUM       PORT_D
 
-#define LED0_ON             (LED_PORT->BSRR = LED0_MASK)
-#define LED0_OFF            (LED_PORT->BSRR = (LED0_MASK << 16))
-#define LED0_TOGGLE         (LED_PORT->ODR  ^= LED0_MASK)
+#define LED2_PIN_NUM        14
+#define LED2_PORT           GPIO_PORT_D /**< GPIO port of LED 2 */
+#define LED2_PORT_NUM       PORT_D
 
-#define LED1_ON             (LED_PORT->BSRR = LED1_MASK)
-#define LED1_OFF            (LED_PORT->BSRR = (LED1_MASK << 16))
-#define LED1_TOGGLE         (LED_PORT->ODR  ^= LED1_MASK)
-
-#define LED2_ON             (LED_PORT->BSRR = LED2_MASK)
-#define LED2_OFF            (LED_PORT->BSRR = (LED2_MASK << 16))
-#define LED2_TOGGLE         (LED_PORT->ODR  ^= LED2_MASK)
-
-#define LED3_ON             (LED_PORT->BSRR = LED3_MASK)
-#define LED3_OFF            (LED_PORT->BSRR = (LED3_MASK << 16))
-#define LED3_TOGGLE         (LED_PORT->ODR  ^= LED3_MASK)
+#define LED3_PIN_NUM        15
+#define LED3_PORT           GPIO_PORT_D /**< GPIO port of LED 3 */
+#define LED3_PORT_NUM       PORT_D
 /** @} */
 
 /**
@@ -81,15 +63,11 @@ extern "C" {
 #define BTN0_MODE           GPIO_IN
 /** @} */
 
-
-/**
- * @brief Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
-
 #ifdef __cplusplus
 }
 #endif
+
+#include "stm32_leds.h"
 
 #endif /* BOARD_H */
 /** @} */

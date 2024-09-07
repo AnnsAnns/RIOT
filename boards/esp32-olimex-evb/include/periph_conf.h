@@ -21,10 +21,10 @@
  * configuration.
  *
  * For detailed information about the configuration of ESP32 boards, see
- * section \ref esp32_comm_periph "Common Peripherals".
+ * section \ref esp32_peripherals "Common Peripherals".
  *
  * @note
- * Most definitions can be overridden by an \ref esp32_app_spec_conf
+ * Most definitions can be overridden by an \ref esp32_application_specific_configurations
  * "application-specific board configuration".
  *
  * @author      Gunar Schorcht <gunar@schorcht.net>
@@ -36,6 +36,8 @@
 
 #include <stdint.h>
 
+#include "periph_cpu.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,7 +46,7 @@ extern "C" {
  * @name    ADC and DAC channel configuration
  *
  * @note As long as the GPIOs listed in ADC_GPIOS are not initialized as ADC
- * channels with the ```adc_init``` function, they can be used for other
+ * channels with the `adc_init` function, they can be used for other
  *
  * purposes.
  * @{
@@ -53,7 +55,7 @@ extern "C" {
  * @brief   Declaration of GPIOs that can be used as ADC channels
  *
  * @note As long as the GPIOs listed in ADC_GPIOS are not initialized as ADC
- * channels with the ```adc_init``` function, they can be used for other
+ * channels with the `adc_init` function, they can be used for other
  * purposes.
  */
 #ifndef ADC_GPIOS
@@ -83,12 +85,12 @@ extern "C" {
 /**
  * @name    I2C configuration
  *
- * Olimex ESP32-EVB/GATEWAY have one I2C interface ```I2C_DEV(0)```. However,
+ * Olimex ESP32-EVB/GATEWAY have one I2C interface `I2C_DEV(0)`. However,
  * they use different GPIOs. Olimex ESP32-EVB, the interface is also available
  * at the [UEXT] connector.
  *
  * @note The GPIOs listed in the configuration are only initialized as I2C
- * signals when module ```perpih_i2c``` is used. Otherwise they are not
+ * signals when module `periph_i2c` is used. Otherwise they are not
  * allocated and can be used for other purposes.
  *
  * @{
@@ -119,29 +121,47 @@ extern "C" {
  * @name    PWM channel configuration
  *
  * @note As long as the according PWM device is not initialized with
- * the ```pwm_init```, the GPIOs declared for this device can be used
+ * the `pwm_init`, the GPIOs declared for this device can be used
  * for other purposes.
  *
  * @{
  */
 /**
  * In DOUT and DIO flash mode, GPIO9 and GIO10 are available and can be used
- * as PWM channels with ```PWM_DEV(0)```.
+ * as PWM channels with `PWM_DEV(0)`.
  */
 #ifndef PWM0_GPIOS
-#if FLASH_MODE_DOUT || FLASH_MODE_DIO || DOXYGEN
+#if CONFIG_FLASHMODE_DOUT || CONFIG_FLASHMODE_DIO || DOXYGEN
 #define PWM0_GPIOS { GPIO9, GPIO10 }
 #else
 #error Configuration problem: Flash mode qio or qout is used, \
        GPIO9 and GPIO10 cannot be used as PWM channels as configured
-#define PWM0_GPIOS { }
 #endif
 #endif
 
-/** PWM_DEV(1) is not used */
-#ifndef PWM1_GPIOS
-#define PWM1_GPIOS { }
+/** @} */
+
+/**
+ * @name   SD/MMC host controller configuration
+ * @{
+ */
+
+/** SDMMC devices */
+static const sdmmc_conf_t sdmmc_config[] = {
+    {
+        .slot = SDMMC_SLOT_1,
+        .cd = GPIO_UNDEF,
+        .wp = GPIO_UNDEF,
+#if MODULE_OLIMEX_ESP32_GATEWAY
+        .bus_width = 4,
+#else
+        .bus_width = 1,
 #endif
+    },
+};
+
+/** Number of configured SDMMC devices */
+#define SDMMC_CONFIG_NUMOF  1
 /** @} */
 
 /**
@@ -152,19 +172,16 @@ extern "C" {
  * @brief   HSPI is used as SPI_DEV(0)
  *
  * It is available at the [UEXT] connector on Olimex ESP32-EVB.
- *
- * Although the SD card interface of the Olimex ESP32-EVB is also available at
- * the ```SPI_DEV(0)``` interface, it does not have a CS signal. Therefore,
- * it cannot be used in SPI mode with the ```sdcard_spi``` module. Olimex
- * ESP32-GATEWAY uses the integrated SD card interface with another GPIO for
- * the CS signal.
+ * If the SD Card/MMC interface is used, the SPI interface is not available.
  *
  * @note The GPIOs listed in the configuration are first initialized as SPI
  * signals when the corresponding SPI interface is used for the first time
- * by either calling the ```spi_init_cs``` function or the ```spi_acquire```
+ * by either calling the `spi_init_cs` function or the `spi_acquire`
  * function. That is, they are not allocated as SPI signals before and can
  * be used for other purposes as long as the SPI interface is not used.
  */
+#if !MODULE_PERIPH_SDMMC && !MODULE_OLIMEX_ESP32_GATEWAY
+
 #ifndef SPI0_CTRL
 #define SPI0_CTRL   HSPI
 #endif
@@ -178,14 +195,11 @@ extern "C" {
 #ifndef SPI0_MOSI
 #define SPI0_MOSI   GPIO15  /**< MOSI [UEXT] / SD Card interface] */
 #endif
-
 #ifndef SPI0_CS0
-#ifndef MODULE_OLIMEX_ESP32_GATEWAY
 #define SPI0_CS0    GPIO17  /**< CS0 [UEXT] */
-#else /* MODULE_OLIMEX_ESP32_GATEWAY */
-#define SPI0_CS0    GPIO13  /**< CS0 SD Card interface */
-#endif /* MODULE_OLIMEX_ESP32_GATEWAY */
-#endif /* SPI0_CS0 */
+#endif
+
+#endif /* !MODULE_PERIPH_SDMMC && !MODULE_OLIMEX_ESP32_GATEWAY */
 
 /** @} */
 
@@ -206,12 +220,16 @@ extern "C" {
 #define UART0_TXD   GPIO1   /**< direct I/O pin for UART_DEV(0), can't be changed */
 #define UART0_RXD   GPIO3   /**< direct I/O pin for UART_DEV(0), can't be changed */
 
+#if !MODULE_OLIMEX_ESP32_GATEWAY
+
 #ifndef UART1_TXD
 #define UART1_TXD   GPIO4   /**< UART_DEV(1) TxD */
 #endif
 #ifndef UART1_RXD
 #define UART1_RXD   GPIO36  /**< UART_DEV(1) RxD */
 #endif
+
+#endif /* !MODULE_OLIMEX_ESP32_GATEWAY */
 /** @} */
 
 #ifdef __cplusplus

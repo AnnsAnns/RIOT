@@ -23,6 +23,7 @@
 #include <setjmp.h>
 
 #include "kernel_defines.h"
+#include "macros/utils.h"
 #include "tlsf.h"
 
 #include "lua.h"
@@ -257,7 +258,6 @@ lua_riot_do_error:
     return status;
 }
 
-
 LUALIB_API int lua_riot_do_module(const char *modname, void *memory, size_t mem_size,
                                   uint16_t modmask, int *retval)
 {
@@ -273,7 +273,6 @@ LUALIB_API int lua_riot_do_buffer(const uint8_t *buf, size_t buflen, void *memor
 }
 
 #define MAX_ERR_STRING (ARRAY_SIZE(lua_riot_str_errors) - 1)
-#define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 LUALIB_API const char *lua_riot_strerror(int errn)
 {

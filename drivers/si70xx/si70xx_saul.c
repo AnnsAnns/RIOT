@@ -31,6 +31,7 @@ static int read_temperature(const void *dev, phydat_t *res)
     return 1;
 }
 
+#if SI70XX_HAS_HUMIDITY_SENSOR
 static int read_relative_humidity(const void *dev, phydat_t *res)
 {
     res->val[0] = (int32_t) si70xx_get_relative_humidity((const si70xx_t *)dev);
@@ -39,15 +40,18 @@ static int read_relative_humidity(const void *dev, phydat_t *res)
 
     return 1;
 }
+#endif /* SI70XX_HAS_HUMIDITY_SENSOR */
 
 const saul_driver_t si70xx_temperature_saul_driver = {
     .read = read_temperature,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_TEMP
 };
 
+#if SI70XX_HAS_HUMIDITY_SENSOR
 const saul_driver_t si70xx_relative_humidity_saul_driver = {
     .read = read_relative_humidity,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_HUM
 };
+#endif /* SI70XX_HAS_HUMIDITY_SENSOR */

@@ -25,7 +25,6 @@
 #include "phydat.h"
 #include "periph/adc.h"
 
-
 static int read_adc(const void *dev, phydat_t *res)
 {
     const saul_adc_params_t *params = *((const saul_adc_params_t **)dev);
@@ -38,6 +37,6 @@ static int read_adc(const void *dev, phydat_t *res)
 
 const saul_driver_t adc_saul_driver = {
     .read = read_adc,
-    .write = saul_notsup,
+    .write = saul_write_notsup,
     .type = SAUL_SENSE_ANALOG,
 };

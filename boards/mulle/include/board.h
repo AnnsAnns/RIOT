@@ -22,7 +22,6 @@
 #include "cpu.h"
 #include "periph_conf.h"
 #include "mulle-nvram.h"
-#include "mtd.h"
 
 /* Use the on board RTC 32kHz clock for LPTMR clocking. */
 #undef LPTIMER_CLKSRC
@@ -49,7 +48,6 @@
 #define XTIMER_WIDTH                (16)
 #define XTIMER_BACKOFF              (4)
 #define XTIMER_ISR_BACKOFF          (4)
-#define XTIMER_OVERHEAD             (3)
 #define XTIMER_HZ                   (32768ul)
 #else
 /* PIT xtimer configuration */
@@ -57,7 +55,6 @@
 #define XTIMER_CHAN                 (0)
 #define XTIMER_BACKOFF              (40)
 #define XTIMER_ISR_BACKOFF          (40)
-#define XTIMER_OVERHEAD             (30)
 #endif
 /** @} */
 
@@ -91,11 +88,6 @@
 extern "C" {
 #endif
 
-/**
- * @brief Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
-
 #ifdef __cplusplus
 }
 #endif
@@ -108,7 +100,6 @@ void board_init(void);
  /** @todo Work around missing RESET pin on Mulle v0.6x
  *
  * {spi bus, spi speed, cs pin, int pin, reset pin, sleep pin}
- * @{
  */
 #define AT86RF2XX_PARAM_CS             SPI_HWCS(1)
 #define AT86RF2XX_PARAM_INT            GPIO_PIN(PORT_B, 9)
@@ -158,8 +149,7 @@ void board_init(void);
  * @name MTD configuration
  */
 /** @{ */
-extern mtd_dev_t *mtd0;
-#define MTD_0 mtd0
+#define MTD_0 mtd_dev_get(0)
 /** @} */
 
 /**

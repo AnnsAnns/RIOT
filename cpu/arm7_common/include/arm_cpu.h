@@ -26,6 +26,17 @@ void cpu_clock_scale(uint32_t source, uint32_t target, uint32_t *prescale);
 void arm_reset(void);
 
 /**
+ * @brief   Returns the current content of the link register (lr)
+ */
+static inline uintptr_t cpu_get_caller_pc(void)
+{
+    register uintptr_t lr_ptr;
+
+    __asm__ __volatile__ ("mov %0, lr" : "=r" (lr_ptr));
+    return lr_ptr;
+}
+
+/**
  * @brief Interrupt stack canary value
  *
  * @note 0xeafffffe is the ARM machine code equivalent of asm("b #0") or
@@ -34,6 +45,17 @@ void arm_reset(void);
  */
 #define STACK_CANARY_WORD   (0xEAFFFFFEu)
 
+/**
+ * @brief   Select fastest bitarithm_lsb implementation
+ * @{
+ */
+#ifdef __ARM_FEATURE_CLZ
+#define BITARITHM_LSB_BUILTIN
+#define BITARITHM_HAS_CLZ
+#else
+#define BITARITHM_LSB_LOOKUP
+#endif
+/** @} */
 
 #ifdef __cplusplus
 }

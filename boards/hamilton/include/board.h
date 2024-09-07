@@ -7,8 +7,7 @@
  */
 
 /**
- * @defgroup    boards_hamilton HamiltonIoT Hamilton
- * @ingroup     boards
+ * @ingroup     boards_hamilton
  * @brief       Support for the HamiltonIoT Hamilton board.
  * @{
  *
@@ -25,6 +24,7 @@
 #include "cpu.h"
 #include "periph_conf.h"
 #include "periph_cpu.h"
+#include "periph/gpio.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -36,7 +36,6 @@ extern "C" {
  */
 #define XTIMER_DEV          TIMER_DEV(1)
 #define XTIMER_CHAN         (0)
-#define XTIMER_OVERHEAD     (0)
 /** @} */
 
 /**
@@ -69,14 +68,13 @@ extern "C" {
  * @name    Button pin definitions
  * @{
  */
-#define BTN0_PORT                PORT->Group[0]
 #define BTN0_PIN                 GPIO_PIN(0, 18)
 #define BTN0_MODE                GPIO_IN_PU
 /** @} */
 
 /**
  * @name FXOS8700 configuration
- * Note that another fxos8700 operation option, FXOS8700_USE_ACC_RAW_VALUES,
+ * Note that another fxos8700 operation option, CONFIG_FXOS8700_USE_ACC_RAW_VALUES,
  * need to be set according to the application purposes
  * @{
  */
@@ -112,14 +110,14 @@ extern "C" {
 /** @} */
 
 /**
- * @name TMP006 configuration
- * Note that two other tmp006 operation options, TMP006_USE_LOW_POWER and
- * TMP006_USE_RAW_VALUES, need to be set according to the application purpose
+ * @name TMP00X configuration
+ * Note that two other tmp006 operation options, TMP00X_USE_LOW_POWER and
+ * TMP00X_USE_RAW_VALUES, need to be set according to the application purpose
  * @{
  */
-#define TMP006_PARAM_I2C            I2C_DEV(0)
-#define TMP006_PARAM_ADDR           (0x44)
-#define TMP006_PARAM_RATE           TMP006_CONFIG_CR_AS2
+#define TMP00X_PARAM_I2C            I2C_DEV(0)
+#define TMP00X_PARAM_ADDR           (0x44)
+#define TMP00X_PARAM_RATE           TMP00X_CONFIG_CR_AS2
 /** @} */
 
 /**
@@ -127,11 +125,6 @@ extern "C" {
  * @{
  */
 /** @} */
-
-/**
- * @brief Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
 
 #ifdef __cplusplus
 }

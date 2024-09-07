@@ -19,54 +19,20 @@
 #ifndef PERIPH_CONF_H
 #define PERIPH_CONF_H
 
+/* Add specific clock configuration (HSE, LSE) for this board here */
+#ifndef CONFIG_BOARD_HAS_LSE
+#define CONFIG_BOARD_HAS_LSE            1
+#endif
+
 #include "periph_cpu.h"
+#include "clk_conf.h"
 #include "cfg_i2c1_pb8_pb9.h"
 #include "cfg_rtt_default.h"
+#include "cfg_usb_otg_fs.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @name    Clock system configuration
- * @{
- */
-/* 0: no external high speed crystal available
- * else: actual crystal frequency [in Hz] */
-#define CLOCK_HSE           (0)
-
-#ifndef CLOCK_LSE
-/* 0: no external low speed crystal available,
- * 1: external crystal available (always 32.768kHz) */
-#define CLOCK_LSE           (1)
-#endif
-
-/* 0: enable MSI only if HSE isn't available
- * 1: always enable MSI (e.g. if USB or RNG is used)*/
-#define CLOCK_MSI_ENABLE    (1)
-
-#ifndef CLOCK_MSI_LSE_PLL
-/* 0: disable Hardware auto calibration with LSE
- * 1: enable Hardware auto calibration with LSE (PLL-mode)
- * Same as with CLOCK_LSE above this defaults to 0 because LSE is
- * mandatory for MSI/LSE-trimming to work */
-#define CLOCK_MSI_LSE_PLL   (0)
-#endif
-
-/* give the target core clock (HCLK) frequency [in Hz], maximum: 120MHz */
-#define CLOCK_CORECLOCK     (120000000U)
-/* PLL configuration: make sure your values are legit! */
-#define CLOCK_PLL_M         (6)
-#define CLOCK_PLL_N         (30)
-#define CLOCK_PLL_R         (2)
-/* peripheral clock setup */
-#define CLOCK_AHB_DIV       RCC_CFGR_HPRE_DIV1
-#define CLOCK_AHB           (CLOCK_CORECLOCK / 1)
-#define CLOCK_APB1_DIV      RCC_CFGR_PPRE1_DIV4
-#define CLOCK_APB1          (CLOCK_CORECLOCK / 4)
-#define CLOCK_APB2_DIV      RCC_CFGR_PPRE2_DIV2
-#define CLOCK_APB2          (CLOCK_CORECLOCK / 2)
-/** @} */
 
 /**
  * @name    Timer configuration
@@ -130,35 +96,15 @@ static const uart_conf_t uart_config[] = {
 
 /**
  * @name    SPI configuration
- *
- * @note    The spi_divtable is auto-generated from
- *          `cpu/stm32_common/dist/spi_divtable/spi_divtable.c`
  * @{
  */
-static const uint8_t spi_divtable[2][5] = {
-    {       /* for APB1 @ 30000000Hz */
-        7,  /* -> 117187Hz */
-        5,  /* -> 468750Hz */
-        4,  /* -> 937500Hz */
-        2,  /* -> 3750000Hz */
-        1   /* -> 7500000Hz */
-    },
-    {       /* for APB2 @ 60000000Hz */
-        7,  /* -> 234375Hz */
-        6,  /* -> 468750Hz */
-        5,  /* -> 937500Hz */
-        3,  /* -> 3750000Hz */
-        2   /* -> 7500000Hz */
-    }
-};
-
 static const spi_conf_t spi_config[] = {
     {
         .dev      = SPI1,
         .mosi_pin = GPIO_PIN(PORT_A, 7),
         .miso_pin = GPIO_PIN(PORT_A, 6),
         .sclk_pin = GPIO_PIN(PORT_A, 5),
-        .cs_pin   = GPIO_UNDEF,
+        .cs_pin   = SPI_CS_UNDEF,
         .mosi_af  = GPIO_AF5,
         .miso_af  = GPIO_AF5,
         .sclk_af  = GPIO_AF5,
@@ -169,6 +115,100 @@ static const spi_conf_t spi_config[] = {
 };
 
 #define SPI_NUMOF           ARRAY_SIZE(spi_config)
+/** @} */
+
+/**
+ * @brief   ADC configuration
+ *
+ * Note that we do not configure all ADC channels,
+ * and not in the STM32L4R5 order.  Instead, we
+ * just define 6 ADC channels, for the Nucleo
+ * Arduino header pins A0-A5 and the internal VBAT channel.
+ *
+ * To find appropriate device and channel find in the
+ * board manual, table showing pin assignments and
+ * information about ADC - a text similar to ADC[X]_IN[Y],
+ * where:
+ * [X] - describes used device - indexed from 0,
+ * for example ADC1_IN10 is device 0,
+ * [Y] - describes used channel - indexed from 1,
+ * for example ADC1_IN10 is channel 10
+ *
+ * For Nucleo-L4R5ZI this information is in board manual,
+ * Table 11, page 38.
+ *
+ * VBAT is connected ADC1_IN18 and a voltage divider is used,
+ * so that only 1/3 of the actual VBAT is measured. This
+ * allows for a supply voltage higher than the reference voltage.
+ *
+ * For Nucleo-L4R5ZI more information is provided in MCU datasheet,
+ * in section 3.19.3 - Vbat battery voltage monitoring, page 46.
+ * @{
+ */
+static const adc_conf_t adc_config[] = {
+    { .pin = GPIO_PIN(PORT_A, 3), .dev = 0, .chan =  8 }, /* ADC12_IN8   */
+    { .pin = GPIO_PIN(PORT_C, 0), .dev = 0, .chan =  1 }, /* ADC123_IN1  */
+    { .pin = GPIO_PIN(PORT_C, 3), .dev = 0, .chan =  4 }, /* ADC123_IN4  */
+    { .pin = GPIO_PIN(PORT_C, 1), .dev = 0, .chan =  2 }, /* ADC123_IN2  */
+    { .pin = GPIO_PIN(PORT_C, 4), .dev = 0, .chan = 13 }, /* ADC12_IN13  */
+    { .pin = GPIO_PIN(PORT_C, 5), .dev = 0, .chan = 14 }, /* ADC12_IN14  */
+    { .pin = GPIO_UNDEF, .dev = 0, .chan = 18 }, /* VBAT */
+};
+
+/**
+ * @brief Number of ADC devices
+ */
+#define ADC_NUMOF           ARRAY_SIZE(adc_config)
+
+/**
+ * @brief VBAT ADC line
+ */
+#define VBAT_ADC            ADC_LINE(6)
+
+/** @} */
+
+/**
+ * @name    PWM configuration
+ *
+ * To find appriopate device and channel find in the MCU datasheet table
+ * concerning "Alternate function AF0 to AF7" a text similar to TIM[X]_CH[Y
+],
+ * where:
+ * TIM[X] - is device,
+ * [Y] - describes used channel (indexed from 0), for example TIM2_CH1 is
+ * channel 0 in configuration structure (cc_chan - field),
+ * Port column in the table describes connected port.
+ *
+ * For Nucleo-L4R5ZI this information is in the datasheet, Table 16, page
+ * 117.
+ *
+ * @{
+ */
+static const pwm_conf_t pwm_config[] = {
+    {
+        .dev      = TIM2,
+        .rcc_mask = RCC_APB1ENR1_TIM2EN,
+        .chan     = { { .pin = GPIO_PIN(PORT_A, 0) /* CN10 D32 */, .cc_chan  = 0},
+                      { .pin = GPIO_PIN(PORT_A, 1) /* CN10  A8 */, .cc_chan  = 1},
+                      { .pin = GPIO_PIN(PORT_A, 2) /* CN10 D26 */, .cc_chan  = 2},
+                      { .pin = GPIO_PIN(PORT_A, 3) /*  CN9  A0 */, .cc_chan  = 3} },
+        .af       = GPIO_AF1,
+        .bus      = APB1
+    },
+    {
+        .dev      = TIM3,
+        .rcc_mask = RCC_APB1ENR1_TIM3EN,
+        .chan     = { { .pin = GPIO_PIN(PORT_B, 4) /*  CN7 D25 */, .cc_chan = 0},
+                      { .pin = GPIO_PIN(PORT_E, 4) /*  CN9 D57 */, .cc_chan = 1},
+                      { .pin = GPIO_PIN(PORT_B, 0) /* CN10 D33 */, .cc_chan = 2},
+                      { .pin = GPIO_PIN(PORT_B, 1) /* CN10  A6 */, .cc_chan = 3} },
+        .af       = GPIO_AF2,
+        .bus      = APB1
+    },
+};
+
+#define PWM_NUMOF              ARRAY_SIZE(pwm_config)
+
 /** @} */
 
 #ifdef __cplusplus

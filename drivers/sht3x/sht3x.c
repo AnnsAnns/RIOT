@@ -13,16 +13,17 @@
  * @file
  */
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 #include "log.h"
 
+#include <assert.h>
 #include <errno.h>
 #include <string.h>
 
 #include "checksum/crc8.h"
 #include "sht3x.h"
-#include "xtimer.h"
+#include "ztimer.h"
 
 #define ASSERT_PARAM(cond) \
     do { \
@@ -59,12 +60,12 @@
 
 /* SHT3x measurement period times in us */
 static const uint32_t SHT3X_MEASURE_PERIOD[] = {
-          0,   /* [SINGLE_SHOT ] */
-    2000000,   /* [PERIODIC_0_5] */
-    1000000,   /* [PERIODIC_1  ] */
-     500000,   /* [PERIODIC_2  ] */
-     250000,   /* [PERIODIC_4  ] */
-     100000    /* [PERIODIC_10 ] */
+       0,   /* [SINGLE_SHOT ] */
+    2000,   /* [PERIODIC_0_5] */
+    1000,   /* [PERIODIC_1  ] */
+     500,   /* [PERIODIC_2  ] */
+     250,   /* [PERIODIC_4  ] */
+     100    /* [PERIODIC_10 ] */
 };
 
 /* SHT3x measurement command sequences */
@@ -83,9 +84,9 @@ static const uint16_t SHT3X_CMD_MEASURE[6][3] = {
 #define SHT3X_MEAS_DURATION_REP_LOW    5
 
 /* measurement durations in us */
-const uint16_t SHT3X_MEAS_DURATION_US[3] = { SHT3X_MEAS_DURATION_REP_HIGH   * 1000,
-                                             SHT3X_MEAS_DURATION_REP_MEDIUM * 1000,
-                                             SHT3X_MEAS_DURATION_REP_LOW    * 1000 };
+const uint16_t SHT3X_MEAS_DURATION_MS[3] = { SHT3X_MEAS_DURATION_REP_HIGH,
+                                             SHT3X_MEAS_DURATION_REP_MEDIUM,
+                                             SHT3X_MEAS_DURATION_REP_LOW };
 
 /* functions for internal use */
 static int _get_raw_data(sht3x_dev_t* dev, uint8_t* raw_data);
@@ -114,7 +115,7 @@ int sht3x_init (sht3x_dev_t *dev, const sht3x_params_t *params)
 
     int res = SHT3X_OK;
 
-    /* inititalize sensor data structure */
+    /* initialize sensor data structure */
     dev->i2c_dev  = params->i2c_dev;
     dev->i2c_addr = params->i2c_addr;
     dev->mode     = params->mode;
@@ -179,7 +180,7 @@ static int _start_measurement (sht3x_dev_t* dev)
      */
     if (dev->mode != SHT3X_SINGLE_SHOT) {
         /* sensor needs up to 250 us to process the measurement command */
-        xtimer_usleep (1000);
+        ztimer_sleep(ZTIMER_MSEC, 1);
 
         uint16_t status;
         int res;
@@ -196,13 +197,12 @@ static int _start_measurement (sht3x_dev_t* dev)
         }
     }
 
-    dev->meas_start_time = xtimer_now_usec();
-    dev->meas_duration = SHT3X_MEAS_DURATION_US[dev->repeat];
+    dev->meas_start_time = ztimer_now(ZTIMER_MSEC);
+    dev->meas_duration = SHT3X_MEAS_DURATION_MS[dev->repeat];
     dev->meas_started = true;
 
     return SHT3X_OK;
 }
-
 
 static int _get_raw_data(sht3x_dev_t* dev, uint8_t* raw_data)
 {
@@ -215,10 +215,10 @@ static int _get_raw_data(sht3x_dev_t* dev, uint8_t* raw_data)
     }
 
     /* determine the time elapsed since the start of current measurement cycle */
-    uint32_t elapsed = xtimer_now_usec() - dev->meas_start_time;
+    uint32_t elapsed = ztimer_now(ZTIMER_MSEC) - dev->meas_start_time;
     if (elapsed < dev->meas_duration) {
         /* if necessary, wait until the measurement results become available */
-        xtimer_usleep(dev->meas_duration - elapsed);
+        ztimer_sleep(ZTIMER_MSEC, dev->meas_duration - elapsed);
     }
 
     /* send fetch command in any periodic mode (mode > 0) before read raw data */
@@ -240,7 +240,7 @@ static int _get_raw_data(sht3x_dev_t* dev, uint8_t* raw_data)
     }
     /* start next measurement cycle in periodic modes */
     else {
-        dev->meas_start_time = xtimer_now_usec();
+        dev->meas_start_time = ztimer_now(ZTIMER_MSEC);
         dev->meas_duration = SHT3X_MEASURE_PERIOD[dev->mode];
     }
 
@@ -258,7 +258,6 @@ static int _get_raw_data(sht3x_dev_t* dev, uint8_t* raw_data)
 
     return SHT3X_OK;
 }
-
 
 static int _compute_values (uint8_t* raw_data, int16_t* temp, int16_t* hum)
 {
@@ -280,21 +279,16 @@ static int _compute_values (uint8_t* raw_data, int16_t* temp, int16_t* hum)
     return SHT3X_OK;
 }
 
-
 static int _send_command(sht3x_dev_t* dev, uint16_t cmd)
 {
     ASSERT_PARAM (dev != NULL);
 
-    int res = SHT3X_OK;
+    int res;
 
     uint8_t data[2] = { cmd >> 8, cmd & 0xff };
     DEBUG_DEV("send command 0x%02x%02x", dev, data[0], data[1]);
 
-    if (i2c_acquire(dev->i2c_dev) != 0) {
-        DEBUG_DEV ("could not acquire I2C bus", dev);
-        return -SHT3X_ERROR_I2C;
-    }
-
+    i2c_acquire(dev->i2c_dev);
     res = i2c_write_bytes(dev->i2c_dev, dev->i2c_addr, (const void*)data, 2, 0);
     i2c_release(dev->i2c_dev);
 
@@ -307,27 +301,23 @@ static int _send_command(sht3x_dev_t* dev, uint16_t cmd)
     return SHT3X_OK;
 }
 
-
 static int _read_data(sht3x_dev_t* dev, uint8_t *data, uint8_t len)
 {
-    int res = SHT3X_OK;
+    int res;
 
-    if (i2c_acquire(dev->i2c_dev) != 0) {
-        DEBUG_DEV ("could not acquire I2C bus", dev);
-        return -SHT3X_ERROR_I2C;
-    }
-
+    i2c_acquire(dev->i2c_dev);
     res = i2c_read_bytes(dev->i2c_dev, dev->i2c_addr, (void*)data, len, 0);
     i2c_release(dev->i2c_dev);
 
     if (res == 0) {
-#if ENABLE_DEBUG
-        printf("[sht3x] %s bus=%d addr=%02x: read following bytes: ",
-               __func__, dev->i2c_dev, dev->i2c_addr);
-        for (int i=0; i < len; i++)
-            printf("%02x ", data[i]);
-        printf("\n");
-#endif /* ENABLE_DEBUG */
+        if (IS_ACTIVE(ENABLE_DEBUG)) {
+            printf("[sht3x] %s bus=%d addr=%02x: read following bytes: ",
+                   __func__, dev->i2c_dev, dev->i2c_addr);
+            for (int i=0; i < len; i++) {
+                printf("%02x ", data[i]);
+            }
+            printf("\n");
+        }
     }
     else {
         DEBUG_DEV("could not read %d bytes from sensor, reason %d",
@@ -350,7 +340,7 @@ static int _reset (sht3x_dev_t* dev)
      * in idle mode. We don't check I2C errors at this moment.
      */
     _send_command(dev, SHT3X_CMD_BREAK);
-    xtimer_usleep (1000);
+    ztimer_sleep(ZTIMER_MSEC, 1);
 
     /* send the soft-reset command */
     if (_send_command(dev, SHT3X_CMD_RESET) != SHT3X_OK) {
@@ -359,7 +349,7 @@ static int _reset (sht3x_dev_t* dev)
     }
 
     /* wait for 2 ms, the time needed to restart (according to datasheet 0.5 ms) */
-    xtimer_usleep (2000);
+    ztimer_sleep(ZTIMER_MSEC, 2);
 
     /* send reset command */
     if (_send_command(dev, SHT3X_CMD_CLEAR_STATUS) != SHT3X_OK) {
@@ -368,7 +358,7 @@ static int _reset (sht3x_dev_t* dev)
     }
 
     /* sensor needs some time to process the command */
-    xtimer_usleep (500);
+    ztimer_sleep(ZTIMER_MSEC, 1);
 
     uint16_t status;
     int res = SHT3X_OK;
@@ -388,7 +378,6 @@ static int _reset (sht3x_dev_t* dev)
 
     return res;
 }
-
 
 static int _status (sht3x_dev_t* dev, uint16_t* status)
 {

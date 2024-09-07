@@ -21,6 +21,7 @@
 #define BOARD_H
 
 #include "cpu.h"
+#include "periph/gpio.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,16 +45,9 @@ extern "C" {
  * @name SW0 (Button) pin definitions
  * @{
  */
-#define BTN0_PORT           PORT->Group[PA]
 #define BTN0_PIN            GPIO_PIN(PA, 2)
 #define BTN0_MODE           GPIO_IN_PU
 /** @} */
-
-
-/**
- * @brief   Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
 
 #ifdef __cplusplus
 }

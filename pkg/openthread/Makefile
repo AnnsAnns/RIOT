@@ -1,52 +1,82 @@
 PKG_NAME=openthread
 PKG_URL=https://github.com/openthread/openthread.git
-PKG_VERSION=thread-reference-20180926
+# thread-reference-20200818
+PKG_VERSION=54b31928cf65803a9cd83c9f97061b64e465aaf7
 PKG_LICENSE=BSD-3-Clause
-PKG_BUILDDIR ?= $(PKGDIRBASE)/$(PKG_NAME)
+
+include $(RIOTBASE)/pkg/pkg.mk
 
 ifneq (,$(filter openthread-ftd,$(USEMODULE)))
   TD = ftd
-  $(info Compile OpenThread for FTD device)
+  OT_JOINER := OFF
 else ifneq (,$(filter openthread-mtd,$(USEMODULE)))
-  $(info Compile OpenThread for MTD device)
   TD = mtd
-  JOINER_ARG = --enable-joiner
+  OT_JOINER := ON
 else
   $(error "Please use either USEMODULE=openthread-ftd or USEMODULE=openthread-mtd")
 endif
 
-ifneq (,$(filter openthread-cli,$(USEMODULE)))
-  CLI_ARG = --enable-cli --enable-$(TD)
+OT_MODULES = mbedcrypto mbedtls openthread-$(TD)
+ifneq (,$(filter openthread-cli-$(TD),$(USEMODULE)))
+  OT_MODULES += openthread-cli-$(TD)
+  OT_APP_CLI ?= ON
 endif
 
-OPENTHREAD_ARGS += $(CLI_ARG) $(JOINER_ARG) --enable-application-coap
-CONFIG_FILE      = OPENTHREAD_PROJECT_CORE_CONFIG_FILE='\"platform_config.h\"'
-$(info $$OPENTHREAD_ARGS is [${OPENTHREAD_ARGS}])
+# Enable CoAP
+OT_COAP ?= ON
 
-.PHONY: all
+OT_C_FLAGS = $(CFLAGS_CPU)
+OT_C_FLAGS += -fdata-sections
+OT_C_FLAGS += -ffunction-sections -Os
+OT_C_FLAGS += -ffunction-sections
+OT_C_FLAGS += -fshort-enums
+OT_C_FLAGS += -Wno-implicit-fallthrough
+OT_C_FLAGS += -Wno-unused-parameter
+OT_CXXFLAGS += -Wno-class-memaccess
+OT_CXXFLAGS += -DOPENTHREAD_TARGET_RIOT
 
-OPENTHREAD_COMMON_FLAGS = -fdata-sections -ffunction-sections -Os
-OPENTHREAD_COMMON_FLAGS += -Wno-implicit-fallthrough -Wno-unused-parameter
+OT_MODULES_ARCHIVES = $(addsuffix .a,$(addprefix $(BINDIR)/,$(OT_MODULES)))
+OT_CORE_LIB_DIR = $(PKG_BUILD_DIR)/src/core
+OT_CLI_LIB_DIR = $(PKG_BUILD_DIR)/src/cli
+OT_MBEDCRYPTO_LIB_DIR = $(PKG_BUILD_DIR)/third_party/mbedtls/repo/library
 
-all:
-	cd $(PKG_BUILDDIR) && PREFIX="/" ./bootstrap
-	cd $(PKG_BUILDDIR) && CPP="$(CPP)" CC="$(CC)" CXX="$(CXX)"\
-		OBJC="" OBJCXX="" AR="$(AR)" RANLIB="$(RANLIB)" NM="$(NM)" \
-		STRIP="$(STRIP)" \
-		CPPFLAGS="$(OPENTHREAD_COMMON_FLAGS) $(CFLAGS_CPU) -D$(CONFIG_FILE)" \
-		CFLAGS="$(OPENTHREAD_COMMON_FLAGS) $(CFLAGS_CPU) " \
-		CXXFLAGS="$(OPENTHREAD_COMMON_FLAGS) $(CFLAGS_CPU) -fno-exceptions -fno-rtti " \
-		LDFLAGS="$(OPENTHREAD_COMMON_FLAGS) $(CFLAGS_CPU) -nostartfiles -specs=nano.specs \
-		-specs=nosys.specs -Wl,--gc-sections -Wl,-Map=map.map " \
-		./configure --disable-docs --host=$(TARGET_ARCH) --target=$(TARGET_ARCH) \
-		--prefix=/ --enable-default-logging $(OPENTHREAD_ARGS)
-	cd $(PKG_BUILDDIR) &&  DESTDIR=$(PKG_BUILDDIR)/output PREFIX=/ make -j4 --no-print-directory install
-
-	cp $(PKG_BUILDDIR)/output/lib/libmbedcrypto.a ${BINDIR}/mbedcrypto.a
-
-	cp $(PKG_BUILDDIR)/output/lib/libopenthread-$(TD).a ${BINDIR}/openthread-$(TD).a
-ifneq (,$(filter openthread-cli,$(USEMODULE)))
-	cp $(PKG_BUILDDIR)/output/lib/libopenthread-cli-$(TD).a ${BINDIR}/openthread-cli.a
+ifeq (llvm,$(TOOLCHAIN))
+  OT_C_FLAGS += -target $(TARGET_ARCH_LLVM)
+  OT_C_FLAGS += $(GCC_C_INCLUDES)
+  OT_CXXFLAGS += $(GCC_CXX_INCLUDES)
 endif
 
-include $(RIOTBASE)/pkg/pkg.mk
+all: $(OT_MODULES_ARCHIVES)
+	@:
+
+$(BINDIR)/mbedtls.a: $(BINDIR)/openthread-$(TD).a
+	@cp $(OT_MBEDCRYPTO_LIB_DIR)/libmbedtls.a $@
+
+$(BINDIR)/mbedcrypto.a: $(BINDIR)/openthread-$(TD).a
+	@cp $(OT_MBEDCRYPTO_LIB_DIR)/libmbedcrypto.a $@
+
+$(BINDIR)/openthread-cli-$(TD).a: $(BINDIR)/openthread-$(TD).a
+	@cp $(OT_CLI_LIB_DIR)/libopenthread-cli-$(TD).a $@
+
+$(BINDIR)/openthread-$(TD).a: $(OT_CORE_LIB_DIR)/libopenthread-$(TD).a
+	@cp $< $@
+
+$(OT_CORE_LIB_DIR)/libopenthread-$(TD).a: $(PKG_BUILD_DIR)/Makefile
+	$(QQ)"$(MAKE)" -C $(PKG_BUILD_DIR) $(OT_MODULES)
+
+$(PKG_BUILD_DIR)/Makefile:
+	cmake -Wno-dev -B$(PKG_BUILD_DIR) -H$(PKG_SOURCE_DIR) \
+	 -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY \
+	 -DCMAKE_C_COMPILER="$(CC)" \
+	 -DCMAKE_C_COMPILER_AR="$(AR)" \
+	 -DCMAKE_C_COMPILER_RANLIB="$(RANLIB)" \
+	 -DCMAKE_C_FLAGS="$(OT_C_FLAGS)" \
+	 -DCMAKE_CXX_COMPILER="$(CXX)" \
+	 -DCMAKE_CXX_FLAGS="$(OT_C_FLAGS) $(OT_CXXFLAGS) -fno-exceptions -fno-rtti" \
+	 -DCMAKE_NM="$(NM)" \
+	 -DCMAKE_STRIP="$(STRIP)" \
+	 -DOT_PLATFORM=NO \
+	 -DOT_CONFIG="$(RIOTBASE)/pkg/openthread/include/platform_config.h" \
+	 -DOT_APP_CLI=$(OT_APP_CLI) \
+	 -DOT_JOINER=$(OT_JOINER) \
+	 -DOT_COAP=$(OT_COAP)

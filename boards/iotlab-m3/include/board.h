@@ -65,6 +65,13 @@ extern "C" {
 #define LSM303DLHC_PARAM_MAG_PIN   GPIO_PIN(PORT_B, 2)
 /** @} */
 
+/**
+ * @name MTD configuration
+ * @{
+ */
+#define MTD_0     mtd_dev_get(0)      /**< SPI NOR Flash device */
+/** @} */
+
 #ifdef __cplusplus
 }
 #endif

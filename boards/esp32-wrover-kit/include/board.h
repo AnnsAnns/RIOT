@@ -17,7 +17,7 @@
  *
  * - Micro-SD card interface
  * - OV7670 camera interface
- * - 3.2" SPI LCD panel
+ * - 3.2\" SPI LCD panel
  * - RGB LED
  *
  * Furthermore, many GPIOs are broken out for extension. The USB bridge
@@ -32,10 +32,10 @@
  * configuration.
  *
  * For detailed information about the configuration of ESP32 boards, see
- * section \ref esp32_comm_periph "Common Peripherals".
+ * section \ref esp32_peripherals "Common Peripherals".
  *
  * @note
- * Most definitions can be overridden by an \ref esp32_app_spec_conf
+ * Most definitions can be overridden by an \ref esp32_application_specific_configurations
  * "application-specific board configuration".
  *
  * @file
@@ -46,10 +46,6 @@
 #define BOARD_H
 
 #include <stdint.h>
-
-#ifdef __cplusplus
- extern "C" {
-#endif
 
 /**
  * @name    LED (on-board) configuration
@@ -81,6 +77,8 @@
 #define LED_BLUE_PIN    LED2_PIN /**< LED2 is a blue LED */
 #endif
 
+/** @} */
+
 /**
  * @name   SD-Card interface configuration
  *
@@ -101,12 +99,42 @@
 #endif
 /** @} */
 
-#ifdef __cplusplus
-} /* end extern "C" */
+/**
+ * @name    LCD configuration
+ *
+ * This configuration cannot be changed.
+ * @{
+ */
+#if MODULE_ILI9341 || DOXYGEN
+#define LCD_CS                  GPIO22
+#define LCD_RST                 GPIO18
+#define LCD_DC                  GPIO21
+#define LCD_BACKLIGHT           GPIO5
+
+#define BACKLIGHT_ON            gpio_clear(LCD_BACKLIGHT)
+#define BACKLIGHT_OFF           gpio_set(LCD_BACKLIGHT)
+
+#define ILI9341_PARAM_SPI       SPI_DEV(1)
+#define ILI9341_PARAM_SPI_CLK   SPI_CLK_10MHZ
+#define ILI9341_PARAM_CS        LCD_CS
+#define ILI9341_PARAM_DCX       LCD_DC
+#define ILI9341_PARAM_RST       LCD_RST
+#define ILi9341_PARAM_RGB       0
+#define ILI9341_PARAM_INVERTED  0
+#define ILI9341_PARAM_ROTATION  ILI9341_ROTATION_HORZ_FLIP
 #endif
+/** @} */
 
 /* include common board definitions as last step */
 #include "board_common.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+} /* end extern "C" */
+#endif
 
 #endif /* BOARD_H */
 /** @} */

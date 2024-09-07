@@ -30,7 +30,7 @@ static int read_ph(const void *dev, phydat_t *res)
     const ph_oem_t *mydev = dev;
     uint16_t ph_reading;
 
-    if (mydev->params.interrupt_pin != GPIO_UNDEF) {
+    if (gpio_is_valid(mydev->params.interrupt_pin)) {
         puts("interrupt pin not supported with SAUL yet");
         return -ENOTSUP;
     }
@@ -52,7 +52,7 @@ static int read_ph(const void *dev, phydat_t *res)
 
 /* Sets the temperature compensation for taking accurate pH readings.
  * Valid temperature range is 1 - 20000 (0.01 °C  to  200.0 °C) */
-static int set_temp_compensation(const void *dev, phydat_t *res)
+static int set_temp_compensation(const void *dev, const phydat_t *res)
 {
     const ph_oem_t *mydev = dev;
 

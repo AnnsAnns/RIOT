@@ -31,7 +31,9 @@
 extern "C" {
 #endif
 
-#define THREAD_EXTRA_STACKSIZE_PRINTF    (128)
+#ifndef THREAD_EXTRA_STACKSIZE_PRINTF
+#define THREAD_EXTRA_STACKSIZE_PRINTF    (132)
+#endif
 
 /**
  * @name           Kernel configuration
@@ -48,7 +50,18 @@ extern "C" {
 /* keep THREAD_STACKSIZE_IDLE > THREAD_EXTRA_STACKSIZE_PRINTF
  * to avoid not printing of debug in interrupts
  */
+#ifndef THREAD_STACKSIZE_IDLE
+#if MODULE_XTIMER || MODULE_ZTIMER || MODULE_ZTIMER64
+/* For AVR no ISR stack is used, hence an IRQ will victimize the stack of
+ * whatever thread happens to be running with the IRQ kicks in. If more than
+ * trivial stuff is needed to be done in ISRs (e.g. when soft timers are used),
+ * the idle stack will overflow.
+ */
+#define THREAD_STACKSIZE_IDLE      (192)
+#else
 #define THREAD_STACKSIZE_IDLE      (128)
+#endif
+#endif
 /** @} */
 
 /**
@@ -61,10 +74,18 @@ extern "C" {
  */
 #define HAVE_HEAP_STATS
 
+/**
+ * @brief   This arch uses the inlined IRQ API.
+ */
+#define IRQ_API_INLINED     (1)
+
+#ifndef DOXYGEN
+#define HAS_FLASH_UTILS_ARCH    1
+#endif
+
 #ifdef __cplusplus
 }
 #endif
-
 
 #endif /* CPU_CONF_H */
 /** @} */

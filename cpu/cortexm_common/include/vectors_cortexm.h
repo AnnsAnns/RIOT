@@ -80,7 +80,7 @@ void reset_handler_default(void);
  * and can not be masked (surprise surprise...). They can be triggered by
  * software and some peripherals. So far, they are not used in RIOT.
  */
-void nmi_default(void);
+void nmi_handler(void);
 
 /**
  * @brief   Hard fault exception handler
@@ -92,8 +92,8 @@ void nmi_default(void);
 void hard_fault_default(void);
 
 /* The following four exceptions are only present for Cortex-M3 and -M4 CPUs */
-#if defined(CPU_ARCH_CORTEX_M3) || defined(CPU_ARCH_CORTEX_M4) || \
-    defined(CPU_ARCH_CORTEX_M4F) || defined(CPU_ARCH_CORTEX_M7)
+#if defined(CPU_CORE_CORTEX_M3) || defined(CPU_CORE_CORTEX_M4) || \
+    defined(CPU_CORE_CORTEX_M4F) || defined(CPU_CORE_CORTEX_M7)
 /**
  * @brief   Memory management exception handler
  *

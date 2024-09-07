@@ -21,9 +21,21 @@
 #ifndef PERIPH_CONF_H
 #define PERIPH_CONF_H
 
+/* This board provides an LSE */
+#ifndef CONFIG_BOARD_HAS_LSE
+#define CONFIG_BOARD_HAS_LSE    1
+#endif
+
+/* This board provides an HSE */
+#ifndef CONFIG_BOARD_HAS_HSE
+#define CONFIG_BOARD_HAS_HSE    1
+#endif
+
 #include "periph_cpu.h"
-#include "f2/cfg_clock_120_8_1.h"
+#include "clk_conf.h"
 #include "cfg_i2c1_pb8_pb9.h"
+#include "cfg_usb_otg_fs.h"
+#include "mii.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,7 +45,6 @@ extern "C" {
  * @name    DMA streams configuration
  * @{
  */
-#ifdef MODULE_PERIPH_DMA
 static const dma_conf_t dma_config[] = {
     { .stream = 10 },   /* DMA2 Stream 2 - SPI1_RX */
     { .stream = 11 },   /* DMA2 Stream 3 - SPI1_TX */
@@ -53,7 +64,6 @@ static const dma_conf_t dma_config[] = {
 #define DMA_6_ISR  isr_dma2_stream0
 
 #define DMA_NUMOF           ARRAY_SIZE(dma_config)
-#endif
 /** @} */
 
 /**
@@ -171,28 +181,8 @@ static const uart_conf_t uart_config[] = {
 
 /**
  * @name    SPI configuration
- *
- * @note    The spi_divtable is auto-generated from
- *          `cpu/stm32_common/dist/spi_divtable/spi_divtable.c`
  * @{
  */
-static const uint8_t spi_divtable[2][5] = {
-    {       /* for APB1 @ 30000000Hz */
-        7,  /* -> 117187Hz */
-        5,  /* -> 468750Hz */
-        4,  /* -> 937500Hz */
-        2,  /* -> 3750000Hz */
-        1   /* -> 7500000Hz */
-    },
-    {       /* for APB2 @ 60000000Hz */
-        7,  /* -> 234375Hz */
-        6,  /* -> 468750Hz */
-        5,  /* -> 937500Hz */
-        3,  /* -> 3750000Hz */
-        2   /* -> 7500000Hz */
-    }
-};
-
 static const spi_conf_t spi_config[] = {
     {
         .dev      = SPI1,
@@ -238,17 +228,46 @@ static const spi_conf_t spi_config[] = {
 /** @} */
 
 /**
- * @name    ADC configuration
+ * @brief   ADC configuration
  *
- * We need to define the following fields:
- * PIN, device (ADCx), channel
+ * Note that we do not configure all ADC channels,
+ * and not in the STM32F207ZG order.  Instead, we
+ * just define 6 ADC channels, for the Nucleo
+ * Arduino header pins A0-A5 and the internal VBAT channel.
+ *
+ * To find appropriate device and channel find in the
+ * board manual, table showing pin assignments and
+ * information about ADC - a text similar to ADC[X]_IN[Y],
+ * where:
+ * [X] - describes used device - indexed from 0,
+ * for example ADC1_IN10 is device 0,
+ * [Y] - describes used channel - indexed from 1,
+ * for example ADC1_IN10 is channel 10
+ *
+ * For Nucleo-F207ZG this information is in board manual,
+ * Table 13, page 37.
  * @{
  */
-#define ADC_CONFIG {              \
-    {GPIO_PIN(PORT_A, 3), 0, 3},  \
-    {GPIO_PIN(PORT_C, 0), 1, 0}  \
-}
-#define ADC_NUMOF          (2)
+static const adc_conf_t adc_config[] = {
+    { .pin = GPIO_PIN(PORT_A, 3), .dev = 0, .chan =  3 }, /* ADC123_IN3  */
+    { .pin = GPIO_PIN(PORT_C, 0), .dev = 0, .chan = 10 }, /* ADC123_IN10 */
+    { .pin = GPIO_PIN(PORT_C, 3), .dev = 0, .chan = 13 }, /* ADC123_IN13 */
+    { .pin = GPIO_PIN(PORT_F, 3), .dev = 2, .chan =  9 }, /* ADC3_IN9  */
+    { .pin = GPIO_PIN(PORT_F, 5), .dev = 2, .chan = 15 }, /* ADC3_IN15   */
+    { .pin = GPIO_PIN(PORT_F, 10), .dev = 2, .chan = 8 }, /* ADC3_IN8    */
+    { .pin = GPIO_UNDEF, .dev = 0, .chan = 18 }, /* VBAT */
+};
+
+/**
+ * @brief VBAT ADC line
+ */
+#define VBAT_ADC            ADC_LINE(6)
+
+/**
+ * @brief Number of ADC devices
+ */
+#define ADC_NUMOF           ARRAY_SIZE(adc_config)
+
 /** @} */
 
 /**
@@ -257,11 +276,10 @@ static const spi_conf_t spi_config[] = {
  */
 static const eth_conf_t eth_config = {
     .mode = RMII,
-    .mac = { 0 },
-    .speed = ETH_SPEED_100TX_FD,
+    .speed = MII_BMCR_SPEED_100 | MII_BMCR_FULL_DPLX,
     .dma = 6,
     .dma_chan = 8,
-    .phy_addr = 0x01,
+    .phy_addr = 0x00,
     .pins = {
         GPIO_PIN(PORT_G, 13),
         GPIO_PIN(PORT_B, 13),
@@ -274,12 +292,6 @@ static const eth_conf_t eth_config = {
         GPIO_PIN(PORT_A, 1),
     }
 };
-
-#define ETH_RX_BUFFER_COUNT (4)
-#define ETH_TX_BUFFER_COUNT (4)
-
-#define ETH_RX_BUFFER_SIZE (1524)
-#define ETH_TX_BUFFER_SIZE (1524)
 
 #define ETH_DMA_ISR        isr_dma2_stream0
 

@@ -26,6 +26,7 @@
  * @author      Martine Lenders <mlenders@inf.fu-berlin.de>
  */
 
+#include <errno.h>
 #include <inttypes.h>
 #include <stdlib.h>
 #include <string.h>
@@ -38,18 +39,20 @@
 #define HEX_U   "0123456789ABCDEF"
 
 /* based on inet_pton6() by Paul Vixie */
-ipv6_addr_t *ipv6_addr_from_str(ipv6_addr_t *result, const char *addr)
+ipv6_addr_t *ipv6_addr_from_buf(ipv6_addr_t *result, const char *addr,
+                                size_t addr_len)
 {
     uint8_t *colonp = 0;
+    const char *start = addr;
 #ifdef MODULE_IPV4_ADDR
     const char *curtok = addr;
 #endif
     uint32_t val = 0;
-    char ch;
     uint8_t saw_xdigit = 0;
     uint8_t i = 0;
 
-    if ((result == NULL) || (addr == NULL)) {
+    if ((result == NULL) || (addr == NULL) || (addr_len == 0) ||
+        (addr_len > IPV6_ADDR_MAX_STR_LEN)) {
         return NULL;
     }
 
@@ -62,7 +65,8 @@ ipv6_addr_t *ipv6_addr_from_str(ipv6_addr_t *result, const char *addr)
         }
     }
 
-    while ((ch = *addr++) != '\0') {
+    while ((size_t)(addr - start) < addr_len) {
+        char ch = *addr++;
         const char *pch;
         const char *xdigits;
 
@@ -109,8 +113,8 @@ ipv6_addr_t *ipv6_addr_from_str(ipv6_addr_t *result, const char *addr)
 
 #ifdef MODULE_IPV4_ADDR
         if (ch == '.' && ((i + sizeof(ipv4_addr_t)) <= sizeof(ipv6_addr_t)) &&
-            ipv4_addr_from_str((ipv4_addr_t *)(&(result->u8[i])),
-                               curtok) != NULL) {
+            ipv4_addr_from_buf((ipv4_addr_t *)(&(result->u8[i])),
+                               curtok, addr_len - (curtok - start)) != NULL) {
             i += sizeof(ipv4_addr_t);
             saw_xdigit = 0;
             break;  /* '\0' was seen by ipv4_addr_from_str(). */
@@ -149,6 +153,43 @@ ipv6_addr_t *ipv6_addr_from_str(ipv6_addr_t *result, const char *addr)
     }
 
     return result;
+}
+
+ipv6_addr_t *ipv6_addr_from_str(ipv6_addr_t *result, const char *addr)
+{
+    if ((result == NULL) || (addr == NULL)) {
+        return NULL;
+    }
+
+    return ipv6_addr_from_buf(result, addr, strlen(addr));
+}
+
+int ipv6_prefix_from_str(ipv6_addr_t *result, const char *addr)
+{
+    size_t str_len;
+    int pfx_len;
+    const char *separator;
+
+    if ((result == NULL) || (addr == NULL)) {
+        return -EINVAL;
+    }
+
+    if ((separator = strrchr(addr, '/')) == NULL) {
+        return -EINVAL;
+    }
+
+    str_len = separator - addr;
+    pfx_len = strtol(separator + 1, NULL, 10);
+
+    if (pfx_len <= 0) {
+        return pfx_len;
+    }
+
+    if (ipv6_addr_from_buf(result, addr, str_len) == NULL) {
+        return -EINVAL;
+    }
+
+    return pfx_len;
 }
 
 /**

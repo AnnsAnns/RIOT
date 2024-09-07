@@ -13,8 +13,10 @@
  * @author  Martine Lenders <m.lenders@fu-berlin.de>
  */
 
+#include <assert.h>
 #include <errno.h>
 #include <stdbool.h>
+#include <kernel_defines.h>
 
 #include "log.h"
 #include "net/ipv6/addr.h"
@@ -23,12 +25,16 @@
 #include "net/gnrc/netif/internal.h"
 #include "net/gnrc/ipv6/nib.h"
 #include "net/gnrc/ndp.h"
+#include "net/gnrc/netreg.h"
 #include "net/gnrc/pktqueue.h"
 #include "net/gnrc/sixlowpan/nd.h"
 #include "net/ndp.h"
 #include "net/sixlowpan/nd.h"
-#if GNRC_IPV6_NIB_CONF_DNS
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
 #include "net/sock/dns.h"
+#endif
+#if IS_ACTIVE(MODULE_DHCPV6_CLIENT)
+#include "net/dhcpv6/client.h"
 #endif
 
 #include "_nib-internal.h"
@@ -38,19 +44,20 @@
 #include "_nib-6lr.h"
 #include "_nib-slaac.h"
 
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
-#if ENABLE_DEBUG
-#include "xtimer.h"
+
+#if IS_ACTIVE(ENABLE_DEBUG)
+#include "evtimer.h"
 #endif
 
 static char addr_str[IPV6_ADDR_MAX_STR_LEN];
 
-#if GNRC_IPV6_NIB_CONF_QUEUE_PKT
-static gnrc_pktqueue_t _queue_pool[GNRC_IPV6_NIB_NUMOF];
-#endif  /* GNRC_IPV6_NIB_CONF_QUEUE_PKT */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_QUEUE_PKT)
+static gnrc_pktqueue_t _queue_pool[CONFIG_GNRC_IPV6_NIB_NUMOF];
+#endif  /* CONFIG_GNRC_IPV6_NIB_QUEUE_PKT */
 
-#if GNRC_IPV6_NIB_CONF_DNS
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
 static evtimer_msg_event_t _rdnss_timeout;
 #endif
 
@@ -58,10 +65,10 @@ static evtimer_msg_event_t _rdnss_timeout;
  * @internal
  * @{
  */
-#if GNRC_IPV6_NIB_CONF_ROUTER
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
 static void _handle_rtr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                             const ndp_rtr_sol_t *rtr_sol, size_t icmpv6_len);
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ROUTER */
 static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                             const ndp_rtr_adv_t *rtr_adv, size_t icmpv6_len);
 static void _handle_nbr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
@@ -78,10 +85,19 @@ static void _handle_rtr_timeout(_nib_dr_entry_t *router);
 static void _handle_snd_na(gnrc_pktsnip_t *pkt);
 /* needs to be exported for 6LN's ARO handling */
 void _handle_search_rtr(gnrc_netif_t *netif);
-#if GNRC_IPV6_NIB_CONF_DNS
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
 static void _handle_rdnss_timeout(sock_udp_ep_t *dns_server);
 #endif
 /** @} */
+
+static inline bool _should_search_rtr(const gnrc_netif_t *netif)
+{
+    /* 6LBR interface does not send RS.
+       A non-advertising router sends RS or a 6LN that is advertising or not
+       has to refetch router information */
+    return !gnrc_netif_is_6lbr(netif) &&
+           (!gnrc_netif_is_rtr_adv(netif) || gnrc_netif_is_6ln(netif));
+}
 
 void gnrc_ipv6_nib_init(void)
 {
@@ -97,67 +113,168 @@ void gnrc_ipv6_nib_init(void)
     _nib_release();
 }
 
+static void _add_static_lladdr(gnrc_netif_t *netif)
+{
+#ifdef CONFIG_GNRC_IPV6_STATIC_LLADDR
+#if (CONFIG_GNRC_IPV6_STATIC_LLADDR_NETDEV_MASK) > 0
+#ifndef MODULE_NETDEV_REGISTER
+#error "Use of CONFIG_GNRC_IPV6_STATIC_LLADDR_NETDEV_MASK requires MODULE_NETDEV_REGISTER"
+#endif
+    if (! (((CONFIG_GNRC_IPV6_STATIC_LLADDR_NETDEV_MASK) & (1ULL << netif->dev->type)) ||
+           ((CONFIG_GNRC_IPV6_STATIC_LLADDR_NETDEV_MASK) & (1ULL << NETDEV_ANY)))) {
+        DEBUG("nib: interface #%u: not setting static link-local address "
+                "(netdev type %u not included)\n",
+                netif->pid, netif->dev->type);
+        return;
+    }
+#endif
+    DEBUG("nib: interface #%u: adding static link-local address \"%s\"%s\n",
+            netif->pid,
+            CONFIG_GNRC_IPV6_STATIC_LLADDR,
+            IS_ACTIVE(CONFIG_GNRC_IPV6_STATIC_LLADDR_IS_FIXED) ?
+                " (fixed)" : " (+ interface number)");
+    /* parse addr from string and explicitly set a link local prefix
+     * if ifnum > 1 each interface will get its own link local address
+     * with CONFIG_GNRC_IPV6_STATIC_LLADDR + i
+     */
+    const char lladdr_str[] = CONFIG_GNRC_IPV6_STATIC_LLADDR;
+    ipv6_addr_t lladdr;
+
+    if (ipv6_addr_from_str(&lladdr, lladdr_str) != NULL) {
+        if (!IS_ACTIVE(CONFIG_GNRC_IPV6_STATIC_LLADDR_IS_FIXED)) {
+            lladdr.u8[15] += netif->pid;
+        }
+        assert(ipv6_addr_is_link_local(&lladdr));
+        gnrc_netif_ipv6_addr_add_internal(
+                netif, &lladdr, 64U, GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_VALID
+            );
+    }
+#else
+    (void)netif;
+#endif
+}
+
+void gnrc_ipv6_nib_iface_up(gnrc_netif_t *netif)
+{
+    assert(netif != NULL);
+    gnrc_netif_acquire(netif);
+
+    _init_iface_arsm(netif);
+    netif->ipv6.rs_sent = 0;
+    netif->ipv6.na_sent = 0;
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
+    if (gnrc_netif_ipv6_group_join_internal(netif, &ipv6_addr_all_routers_link_local)) {
+        DEBUG("nib: Can't join link-local all-routers on interface %u\n", netif->pid);
+    }
+#endif
+    if (gnrc_netif_ipv6_group_join_internal(netif, &ipv6_addr_all_nodes_link_local) < 0) {
+        DEBUG("nib: Can't join link-local all-nodes on interface %u\n", netif->pid);
+    }
+    _add_static_lladdr(netif);
+    _auto_configure_addr(netif, &ipv6_addr_link_local_prefix, 64U);
+    if (_should_search_rtr(netif)) {
+        uint32_t next_rs_time = random_uint32_range(0, NDP_MAX_RS_MS_DELAY);
+
+        _evtimer_add(netif, GNRC_IPV6_NIB_SEARCH_RTR, &netif->ipv6.search_rtr,
+                     next_rs_time);
+    }
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
+    else {
+        _handle_snd_mc_ra(netif);
+    }
+#endif  /* CONFIG_GNRC_IPV6_NIB_ROUTER */
+
+    gnrc_netif_release(netif);
+}
+
+void gnrc_ipv6_nib_iface_down(gnrc_netif_t *netif, bool send_final_ra)
+{
+    assert(netif != NULL);
+    DEBUG("nib: Deinitialize interface %u\n", netif->pid);
+    gnrc_netif_acquire(netif);
+
+    _deinit_iface_arsm(netif);
+    if (_should_search_rtr(netif)) {
+        _evtimer_del(&netif->ipv6.search_rtr);
+    }
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
+    else {
+        _evtimer_del(&netif->ipv6.snd_mc_ra);
+        if (send_final_ra) {
+            /* trigger final RA with lifetime set to zero */
+            netif->ipv6.ra_sent = (UINT8_MAX - NDP_MAX_FIN_RA_NUMOF) + 1;
+            _handle_snd_mc_ra(netif);
+        }
+    }
+#else
+    (void)send_final_ra;
+#endif
+    for (unsigned i = 0; i < CONFIG_GNRC_NETIF_IPV6_ADDRS_NUMOF; i++) {
+        if (ipv6_addr_is_link_local(&netif->ipv6.addrs[i])) {
+            /* link-local address might change on reconnect */
+            gnrc_netif_ipv6_addr_remove_internal(netif, &netif->ipv6.addrs[i]);
+        }
+    }
+    gnrc_netif_ipv6_group_leave_internal(netif, &ipv6_addr_all_nodes_link_local);
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
+    gnrc_netif_ipv6_group_leave_internal(netif, &ipv6_addr_all_routers_link_local);
+#endif
+
+    gnrc_netif_release(netif);
+}
+
 void gnrc_ipv6_nib_init_iface(gnrc_netif_t *netif)
 {
     assert(netif != NULL);
     DEBUG("nib: Initialize interface %u\n", netif->pid);
     gnrc_netif_acquire(netif);
 
-    _init_iface_arsm(netif);
     netif->ipv6.retrans_time = NDP_RETRANS_TIMER_MS;
-#if GNRC_IPV6_NIB_CONF_SLAAC || GNRC_IPV6_NIB_CONF_6LN
-    /* TODO: set differently dependent on GNRC_IPV6_NIB_CONF_SLAAC if
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_SLAAC) || IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
+    /* TODO: set differently dependent on CONFIG_GNRC_IPV6_NIB_SLAAC if
      * alternatives exist */
-    netif->ipv6.aac_mode = GNRC_NETIF_AAC_AUTO;
-#endif  /* GNRC_IPV6_NIB_CONF_SLAAC || GNRC_IPV6_NIB_CONF_6LN */
+    netif->ipv6.aac_mode |= GNRC_NETIF_AAC_AUTO;
+#endif  /* CONFIG_GNRC_IPV6_NIB_SLAAC || CONFIG_GNRC_IPV6_NIB_6LN */
     _init_iface_router(netif);
     gnrc_netif_init_6ln(netif);
-#if GNRC_IPV6_NIB_CONF_6LN
-    netif->ipv6.rs_sent = 0;
-#endif  /* GNRC_IPV6_NIB_CONF_6LN */
-    netif->ipv6.na_sent = 0;
-    if (gnrc_netif_ipv6_group_join_internal(netif,
-                                            &ipv6_addr_all_nodes_link_local) < 0) {
-        DEBUG("nib: Can't join link-local all-nodes on interface %u\n",
-              netif->pid);
-        gnrc_netif_release(netif);
-        return;
-    }
-    _auto_configure_addr(netif, &ipv6_addr_link_local_prefix, 64U);
-    if (!(gnrc_netif_is_rtr_adv(netif)) ||
-        (gnrc_netif_is_6ln(netif) && !gnrc_netif_is_6lbr(netif))) {
-        uint32_t next_rs_time = random_uint32_range(0, NDP_MAX_RS_MS_DELAY);
 
-        _evtimer_add(netif, GNRC_IPV6_NIB_SEARCH_RTR, &netif->ipv6.search_rtr,
-                     next_rs_time);
-    }
-#if GNRC_IPV6_NIB_CONF_ROUTER
-    else {
-        _handle_snd_mc_ra(netif);
-    }
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
     gnrc_netif_release(netif);
 }
 
 static bool _on_link(const ipv6_addr_t *dst, unsigned *iface)
 {
     _nib_offl_entry_t *entry = NULL;
+    _nib_offl_entry_t *match = NULL;
 
-#if GNRC_IPV6_NIB_CONF_6LN
-    if (*iface != 0) {
-        if (gnrc_netif_is_6ln(gnrc_netif_get_by_pid(*iface))) {
-            return ipv6_addr_is_link_local(dst);
-        }
+    if (ipv6_addr_is_link_local(dst)) {
+        return true;
     }
-#endif  /* GNRC_IPV6_NIB_CONF_6LN */
+
     while ((entry = _nib_offl_iter(entry))) {
-        if ((entry->mode & _PL) && (entry->flags & _PFX_ON_LINK) &&
-            (ipv6_addr_match_prefix(dst, &entry->pfx) >= entry->pfx_len)) {
-            *iface = _nib_onl_get_if(entry->next_hop);
-            return true;
+        if ((ipv6_addr_match_prefix(dst, &entry->pfx) >= entry->pfx_len) &&
+            ((match == NULL) || (entry->pfx_len > match->pfx_len))) {
+            match = entry;
         }
     }
-    return ipv6_addr_is_link_local(dst);
+
+    if (match) {
+        *iface = _nib_onl_get_if(match->next_hop);
+        /* check if prefix is on-link */
+        return (match->mode & _PL) && (match->flags & _PFX_ON_LINK);
+    }
+    return false;
+}
+
+static gnrc_netif_t *_acquire_new_iface(unsigned iface)
+{
+    gnrc_netif_t *netif = gnrc_netif_get_by_pid(iface);
+    /* release NIB, in case other thread calls a NIB function while we wait for
+     * the netif */
+    _nib_release();
+    gnrc_netif_acquire(netif);
+    /* re-acquire NIB */
+    _nib_acquire();
+    return netif;
 }
 
 int gnrc_ipv6_nib_get_next_hop_l2addr(const ipv6_addr_t *dst,
@@ -172,20 +289,24 @@ int gnrc_ipv6_nib_get_next_hop_l2addr(const ipv6_addr_t *dst,
     gnrc_netif_acquire(netif);
     _nib_acquire();
     do {    /* XXX: hidden goto ;-) */
-        _nib_onl_entry_t *node = _nib_onl_get(dst,
-                                              (netif == NULL) ? 0 : netif->pid);
+        _nib_onl_entry_t *node = _nib_onl_nc_get(dst,
+                                                 (netif == NULL) ? 0 : netif->pid);
         /* consider neighbor cache entries first */
         unsigned iface = (node == NULL) ? 0 : _nib_onl_get_if(node);
 
         if ((node != NULL) || _on_link(dst, &iface)) {
-            DEBUG("nib: %s is on-link or in NC, start address resolution\n",
-                  ipv6_addr_to_str(addr_str, dst, sizeof(addr_str)));
+            DEBUG("nib: %s is %s, start address resolution\n",
+                  ipv6_addr_to_str(addr_str, dst, sizeof(addr_str)),
+                  node ? "in NC" : "on-link");
             /* on-link prefixes return their interface */
             if (!ipv6_addr_is_link_local(dst) && (iface != 0)) {
-                /* release preassumed interface */
+                /* release pre-assumed netif */
                 gnrc_netif_release(netif);
-                netif = gnrc_netif_get_by_pid(iface);
-                gnrc_netif_acquire(netif);
+                netif = _acquire_new_iface(iface);
+                /* get node from proper interface */
+                if (netif != NULL) {
+                    node = _nib_onl_nc_get(dst, netif->pid);
+                }
             }
             if ((netif == NULL) ||
                 !_resolve_addr(dst, netif, pkt, nce, node)) {
@@ -213,7 +334,10 @@ int gnrc_ipv6_nib_get_next_hop_l2addr(const ipv6_addr_t *dst,
                       "search neighbor cache\n",
                       ipv6_addr_to_str(addr_str, dst, sizeof(addr_str)));
 
-                if (res == 0) {
+                if ((res == 0) &&
+                    /* If ARSM is not active only use link-local as next hop */
+                    (IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM) ||
+                     ipv6_addr_is_link_local(dst))) {
                     DEBUG("nib: prefix list entry => taking dst as next hop\n");
                     memcpy(&route.next_hop, dst, sizeof(route.next_hop));
                 }
@@ -230,24 +354,23 @@ int gnrc_ipv6_nib_get_next_hop_l2addr(const ipv6_addr_t *dst,
                 }
             }
             if ((netif != NULL) && (netif->pid != (int)route.iface)) {
-                /* drop pre-assumed netif */
+                /* release pre-assumed netif */
                 gnrc_netif_release(netif);
             }
             if ((netif == NULL) || (netif->pid != (int)route.iface)) {
                 /* get actual netif */
-                netif = gnrc_netif_get_by_pid(route.iface);
-                gnrc_netif_acquire(netif);
+                netif = _acquire_new_iface(route.iface);
             }
-            node = _nib_onl_get(&route.next_hop,
-                                (netif != NULL) ? netif->pid : 0);
+            node = _nib_onl_nc_get(&route.next_hop,
+                                   (netif != NULL) ? netif->pid : 0);
             if (_resolve_addr(&route.next_hop, netif, pkt, nce, node)) {
                 _call_route_info_cb(netif,
                                     GNRC_IPV6_NIB_ROUTE_INFO_TYPE_RN,
                                     &route.dst,
                                     (void *)((intptr_t)route.dst_len));
-#if GNRC_IPV6_NIB_CONF_DC
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DC)
                 _nib_dc_add(&route.next_hop, netif->pid, dst);
-#endif  /* GNRC_IPV6_NIB_CONF_DC */
+#endif  /* CONFIG_GNRC_IPV6_NIB_DC */
             }
             else {
                 /* _resolve_addr releases pkt if not queued (in which case
@@ -269,11 +392,11 @@ void gnrc_ipv6_nib_handle_pkt(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
     gnrc_netif_acquire(netif);
     _nib_acquire();
     switch (icmpv6->type) {
-#if GNRC_IPV6_NIB_CONF_ROUTER
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
         case ICMPV6_RTR_SOL:
             _handle_rtr_sol(netif, ipv6, (ndp_rtr_sol_t *)icmpv6, icmpv6_len);
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ROUTER */
         case ICMPV6_RTR_ADV:
             _handle_rtr_adv(netif, ipv6, (ndp_rtr_adv_t *)icmpv6, icmpv6_len);
             break;
@@ -283,19 +406,19 @@ void gnrc_ipv6_nib_handle_pkt(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         case ICMPV6_NBR_ADV:
             _handle_nbr_adv(netif, ipv6, (ndp_nbr_adv_t *)icmpv6, icmpv6_len);
             break;
-#if GNRC_IPV6_NIB_CONF_REDIRECT
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_REDIRECT)
         case ICMPV6_REDIRECT:
             /* TODO */
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_REDIRECT */
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_DAD
+#endif  /* CONFIG_GNRC_IPV6_NIB_REDIRECT */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_DAD)
         case ICMPV6_DAR:
             /* TODO */
             break;
         case ICMPV6_DAC:
             /* TODO */
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_DAD */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_DAD */
     }
     _nib_release();
     gnrc_netif_release(netif);
@@ -304,10 +427,10 @@ void gnrc_ipv6_nib_handle_pkt(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
 void gnrc_ipv6_nib_handle_timer_event(void *ctx, uint16_t type)
 {
     DEBUG("nib: Handle timer event (ctx = %p, type = 0x%04x, now = %ums)\n",
-          ctx, type, (unsigned)xtimer_now_usec() / 1000);
+          ctx, type, (unsigned)evtimer_now_msec());
     _nib_acquire();
     switch (type) {
-#if GNRC_IPV6_NIB_CONF_ARSM
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM)
         case GNRC_IPV6_NIB_SND_UC_NS:
         case GNRC_IPV6_NIB_SND_MC_NS:
             _handle_snd_ns(ctx);
@@ -319,14 +442,14 @@ void gnrc_ipv6_nib_handle_timer_event(void *ctx, uint16_t type)
         case GNRC_IPV6_NIB_RECALC_REACH_TIME:
             _recalc_reach_time(ctx);
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ARSM */
         case GNRC_IPV6_NIB_SND_NA:
             _handle_snd_na(ctx);
             break;
         case GNRC_IPV6_NIB_SEARCH_RTR:
             _handle_search_rtr(ctx);
             break;
-#if GNRC_IPV6_NIB_CONF_ROUTER
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
         case GNRC_IPV6_NIB_REPLY_RS:
             _handle_reply_rs(ctx);
             break;
@@ -336,35 +459,35 @@ void gnrc_ipv6_nib_handle_timer_event(void *ctx, uint16_t type)
         case GNRC_IPV6_NIB_ROUTE_TIMEOUT:
             _nib_ft_remove(ctx);
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
-#if GNRC_IPV6_NIB_CONF_6LR
+#endif  /* CONFIG_GNRC_IPV6_NIB_ROUTER */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LR)
         case GNRC_IPV6_NIB_ADDR_REG_TIMEOUT:
             _nib_nc_remove(ctx);
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_6LR */
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LR */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
         case GNRC_IPV6_NIB_ABR_TIMEOUT:
             _nib_abr_remove(&((_nib_abr_entry_t *)ctx)->addr);
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
         case GNRC_IPV6_NIB_PFX_TIMEOUT:
             _handle_pfx_timeout(ctx);
             break;
         case GNRC_IPV6_NIB_RTR_TIMEOUT:
             _handle_rtr_timeout(ctx);
             break;
-#if GNRC_IPV6_NIB_CONF_6LN
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
         case GNRC_IPV6_NIB_REREG_ADDRESS:
             _handle_rereg_address(ctx);
             break;
-#endif  /* GNRC_IPV6_NIB_CONF_6LN */
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LN */
         case GNRC_IPV6_NIB_DAD:
             _handle_dad(ctx);
             break;
         case GNRC_IPV6_NIB_VALID_ADDR:
             _handle_valid_addr(ctx);
             break;
-#if GNRC_IPV6_NIB_CONF_DNS
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
         case GNRC_IPV6_NIB_RDNSS_TIMEOUT:
             _handle_rdnss_timeout(ctx);
 #endif
@@ -374,7 +497,7 @@ void gnrc_ipv6_nib_handle_timer_event(void *ctx, uint16_t type)
     _nib_release();
 }
 
-#if GNRC_IPV6_NIB_CONF_ROUTER
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
 void gnrc_ipv6_nib_change_rtr_adv_iface(gnrc_netif_t *netif, bool enable)
 {
     gnrc_netif_acquire(netif);
@@ -388,12 +511,14 @@ void gnrc_ipv6_nib_change_rtr_adv_iface(gnrc_netif_t *netif, bool enable)
         netif->flags &= ~GNRC_NETIF_FLAGS_IPV6_RTR_ADV;
         /* send final router advertisements */
         _handle_snd_mc_ra(netif);
-        _evtimer_add(netif, GNRC_IPV6_NIB_SEARCH_RTR, &netif->ipv6.search_rtr,
-                     next_rs_time);
+        if (!gnrc_netif_is_6lbr(netif)) {
+            _evtimer_add(netif, GNRC_IPV6_NIB_SEARCH_RTR,
+                         &netif->ipv6.search_rtr, next_rs_time);
+        }
     }
     gnrc_netif_release(netif);
 }
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ROUTER */
 
 /*
  * @internal
@@ -401,18 +526,20 @@ void gnrc_ipv6_nib_change_rtr_adv_iface(gnrc_netif_t *netif, bool enable)
  */
 static void _handle_mtuo(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
                          const ndp_opt_mtu_t *mtuo);
-#if GNRC_IPV6_NIB_CONF_DNS
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
 static uint32_t _handle_rdnsso(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
                                const ndp_opt_rdnss_impl_t *rdnsso);
 #endif
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
 static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
                             const ndp_opt_pi_t *pio,
                             _nib_abr_entry_t *abr);
-#else   /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#else   /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
 static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
                             const ndp_opt_pi_t *pio);
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
+static uint32_t _handle_rio(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
+                            const ndp_opt_ri_t *pio);
 /** @} */
 
 /* Iterator for NDP options in a packet */
@@ -422,7 +549,7 @@ static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
          icmpv6_len -= (opt->len << 3), \
          opt = (ndp_opt_t *)(((uint8_t *)opt) + (opt->len << 3)))
 
-#if GNRC_IPV6_NIB_CONF_ROUTER
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
 static void _handle_rtr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                             const ndp_rtr_sol_t *rtr_sol, size_t icmpv6_len)
 {
@@ -441,15 +568,15 @@ static void _handle_rtr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         DEBUG("     - IP Hop Limit: %u (should be %u)\n", ipv6->hl,
               NDP_HOP_LIMIT);
         DEBUG("     - ICMP code: %u (should be 0)\n", rtr_sol->code);
-        DEBUG("     - ICMP length: %u (should > %u)\n", (unsigned)icmpv6_len,
-              (unsigned)sizeof(ndp_rtr_sol_t));
+        DEBUG("     - ICMP length: %" PRIuSIZE " (should > %" PRIuSIZE ")\n",
+              icmpv6_len, sizeof(ndp_rtr_sol_t));
         return;
     }
     /* pre-check option length */
     FOREACH_OPT(rtr_sol, opt, tmp_len) {
         if (tmp_len > icmpv6_len) {
-            DEBUG("nib: Payload length (%u) of RS doesn't align with options\n",
-                  (unsigned)icmpv6_len);
+            DEBUG("nib: Payload length (%" PRIuSIZE ") of RS doesn't align with options\n",
+                  icmpv6_len);
             return;
         }
         if (opt->len == 0U) {
@@ -484,7 +611,7 @@ static void _handle_rtr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                     break;
             }
         }
-        nce = _nib_onl_get(&ipv6->src, netif->pid);
+        nce = _nib_onl_nc_get(&ipv6->src, netif->pid);
     }
     if (!gnrc_netif_is_6ln(netif)) {
         uint32_t next_ra_delay = random_uint32_range(0, NDP_MAX_RA_DELAY);
@@ -502,7 +629,7 @@ static void _handle_rtr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                          next_ra_delay);
         }
         else {
-            uint32_t now = (xtimer_now_usec64() / MS_PER_SEC) & UINT32_MAX;
+            uint32_t now = evtimer_now_msec();
 
             /* check for integer overflows and initial value of last_ra */
             if (((netif->ipv6.last_ra > (UINT32_MAX - NDP_MIN_MS_DELAY_BETWEEN_RAS) &&
@@ -514,16 +641,16 @@ static void _handle_rtr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                          next_ra_delay);
         }
     }
-#if GNRC_IPV6_NIB_CONF_6LR
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LR)
     else if (gnrc_netif_is_rtr(netif) && gnrc_netif_is_rtr_adv(netif)) {
         _snd_rtr_advs(netif, &ipv6->src, false);
     }
-#endif  /* GNRC_IPV6_NIB_CONF_6LR */
-#if GNRC_IPV6_NIB_CONF_6LN
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LR */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
     (void)nce;  /* NCE is not used */
 #endif
 }
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ROUTER */
 
 static inline uint32_t _min(uint32_t a, uint32_t b)
 {
@@ -537,10 +664,10 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
     _nib_dr_entry_t *dr = NULL;
     ndp_opt_t *opt;
 
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
     sixlowpan_nd_opt_abr_t *abro = NULL;
     _nib_abr_entry_t *abr = NULL;
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
     uint32_t next_timeout = UINT32_MAX;
 
     assert(netif != NULL);
@@ -556,8 +683,8 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         DEBUG("     - IP Hop Limit: %u (should be %u)\n", ipv6->hl,
               NDP_HOP_LIMIT);
         DEBUG("     - ICMP code: %u (should be 0)\n", rtr_adv->code);
-        DEBUG("     - ICMP length: %u (should > %u)\n", (unsigned)icmpv6_len,
-              (unsigned)sizeof(ndp_rtr_adv_t));
+        DEBUG("     - ICMP length: %" PRIuSIZE " (should > %" PRIuSIZE ")\n",
+              icmpv6_len, sizeof(ndp_rtr_adv_t));
         DEBUG("     - Source address: %s (should be link-local)\n",
               ipv6_addr_to_str(addr_str, &ipv6->src, sizeof(addr_str)));
         DEBUG("     - Router lifetime: %u (should be <= 9000 on non-6LN)\n",
@@ -567,8 +694,8 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
     /* pre-check option length */
     FOREACH_OPT(rtr_adv, opt, tmp_len) {
         if (tmp_len > icmpv6_len) {
-            DEBUG("nib: Payload length (%u) of RA doesn't align with options\n",
-                  (unsigned)icmpv6_len);
+            DEBUG("nib: Payload length (%" PRIuSIZE ") of RA doesn't align with options\n",
+                  icmpv6_len);
             return;
         }
         if (opt->len == 0U) {
@@ -576,7 +703,7 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                   "Discarding router advertisement silently\n");
             return;
         }
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
         if (opt->type == NDP_OPT_ABR) {
             if (abro != NULL) {
                 DEBUG("nib: More than one ABRO. "
@@ -585,7 +712,7 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
             }
             abro = (sixlowpan_nd_opt_abr_t *)opt;
         }
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
     }
     DEBUG("nib: Received valid router advertisement:\n");
     DEBUG("     - Source address: %s\n",
@@ -601,7 +728,7 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
           byteorder_ntohl(rtr_adv->reach_time));
     DEBUG("     - Retrans Timer: %" PRIu32 "ms\n",
           byteorder_ntohl(rtr_adv->retrans_timer));
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
     if (abro != NULL) {
         if ((abr = _handle_abro(abro)) == NULL) {
             DEBUG("nib: could not allocate space for new border router or "
@@ -611,18 +738,18 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         }
         /* UINT16_MAX * 60 * 1000 < UINT32_MAX so there are no overflows */
         next_timeout = _min(next_timeout,
-                            byteorder_ntohs(abro->ltime) * SEC_PER_MIN *
-                            MS_PER_SEC);
+                            MS_PER_SEC * SEC_PER_MIN *
+                            gnrc_sixlowpan_nd_opt_get_ltime(abro));
     }
-#if !GNRC_IPV6_NIB_CONF_6LBR
+#if !IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LBR)
     else if (gnrc_netif_is_6lr(netif)) {
         DEBUG("nib: multihop prefix and context dissemination on router activated,\n"
               "     but no ABRO found. Discarding router advertisement silently\n");
         return;
     }
-#endif  /* !GNRC_IPV6_NIB_CONF_6LBR */
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
-    if (rtr_adv->ltime.u16 != 0) {
+#endif  /* !CONFIG_GNRC_IPV6_NIB_6LBR */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
+    if (!gnrc_netif_is_6lbr(netif) && rtr_adv->ltime.u16 != 0) {
         uint16_t rtr_ltime = byteorder_ntohs(rtr_adv->ltime);
 
         dr = _nib_drl_add(&ipv6->src, netif->pid);
@@ -650,34 +777,34 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
     if (rtr_adv->cur_hl != 0) {
         netif->cur_hl = rtr_adv->cur_hl;
     }
-#if GNRC_IPV6_NIB_CONF_ARSM
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM)
     if (rtr_adv->reach_time.u32 != 0) {
         uint32_t reach_time = byteorder_ntohl(rtr_adv->reach_time);
 
         if (reach_time != netif->ipv6.reach_time_base) {
             _evtimer_add(netif, GNRC_IPV6_NIB_RECALC_REACH_TIME,
                          &netif->ipv6.recalc_reach_time,
-                         GNRC_IPV6_NIB_CONF_REACH_TIME_RESET);
+                         CONFIG_GNRC_IPV6_NIB_REACH_TIME_RESET);
             netif->ipv6.reach_time_base = reach_time;
             _recalc_reach_time(&netif->ipv6);
         }
     }
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ARSM */
     if (rtr_adv->retrans_timer.u32 != 0) {
         netif->ipv6.retrans_time = byteorder_ntohl(rtr_adv->retrans_timer);
     }
-#if GNRC_IPV6_NIB_CONF_6LN
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
     if ((dr != NULL) && gnrc_netif_is_6ln(netif) &&
         !gnrc_netif_is_6lbr(netif)) {
         /* (register addresses already assigned but not valid yet)*/
-        for (int i = 0; i < GNRC_NETIF_IPV6_ADDRS_NUMOF; i++) {
+        for (int i = 0; i < CONFIG_GNRC_NETIF_IPV6_ADDRS_NUMOF; i++) {
             if ((netif->ipv6.addrs_flags[i] != 0) &&
                 (netif->ipv6.addrs_flags[i] != GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_VALID)) {
                 _handle_rereg_address(&netif->ipv6.addrs[i]);
             }
         }
     }
-#endif  /* GNRC_IPV6_NIB_CONF_6LN */
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LN */
     tmp_len = icmpv6_len - sizeof(ndp_rtr_adv_t);
     FOREACH_OPT(rtr_adv, opt, tmp_len) {
         switch (opt->type) {
@@ -690,35 +817,45 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                 _handle_mtuo(netif, (const icmpv6_hdr_t *)rtr_adv,
                              (ndp_opt_mtu_t *)opt);
                 break;
+            case NDP_OPT_RI:
+                _handle_rio(netif, ipv6, (ndp_opt_ri_t *)opt);
+                break;
             case NDP_OPT_PI: {
                 uint32_t min_pfx_timeout;
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
                 min_pfx_timeout = _handle_pio(netif,
                                               (const icmpv6_hdr_t *)rtr_adv,
                                               (ndp_opt_pi_t *)opt, abr);
-#else   /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#else   /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
                 min_pfx_timeout = _handle_pio(netif,
                                               (const icmpv6_hdr_t *)rtr_adv,
                                               (ndp_opt_pi_t *)opt);
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
                 next_timeout = _min(next_timeout, min_pfx_timeout);
+
+                /* notify optional PIO consumer */
+                if (IS_USED(MODULE_GNRC_IPV6_NIB_RTR_ADV_PIO_CB)) {
+                    extern void gnrc_ipv6_nib_rtr_adv_pio_cb(gnrc_netif_t *netif,
+                                                             const ndp_opt_pi_t *pio);
+                    gnrc_ipv6_nib_rtr_adv_pio_cb(netif, (ndp_opt_pi_t *)opt);
+                }
                 break;
             }
             /* ABRO was already secured in the option check above */
-#if GNRC_IPV6_NIB_CONF_6LN
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
             case NDP_OPT_6CTX:
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
                 next_timeout = _min(_handle_6co((icmpv6_hdr_t *)rtr_adv,
                                                 (sixlowpan_nd_opt_6ctx_t *)opt,
                                                 abr), next_timeout);
-#else   /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#else   /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
                 next_timeout = _min(_handle_6co((icmpv6_hdr_t *)rtr_adv,
                                                 (sixlowpan_nd_opt_6ctx_t *)opt),
                                     next_timeout);
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
                 break;
-#endif  /* GNRC_IPV6_NIB_CONF_6LN */
-#if GNRC_IPV6_NIB_CONF_DNS
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LN */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
             case NDP_OPT_RDNSS:
                 next_timeout = _min(_handle_rdnsso(netif,
                                                    (icmpv6_hdr_t *)rtr_adv,
@@ -730,18 +867,42 @@ static void _handle_rtr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
                 break;
         }
     }
+
+    /* we still don't have a default router */
+    if (dr == NULL) {
+        return;
+    }
+#if IS_ACTIVE(MODULE_DHCPV6_CLIENT)
+    uint8_t current_conf_mode = dhcpv6_client_get_conf_mode();
+    if (rtr_adv->flags & NDP_RTR_ADV_FLAGS_M) {
+        if (IS_USED(MODULE_DHCPV6_CLIENT_IA_NA)) {
+            netif->ipv6.aac_mode |= GNRC_NETIF_AAC_DHCP;
+            dhcpv6_client_req_ia_na(netif->pid);
+        } else {
+            dhcpv6_client_set_conf_mode(DHCPV6_CLIENT_CONF_MODE_STATEFUL);
+        }
+    } else if ((rtr_adv->flags & NDP_RTR_ADV_FLAGS_O) &&
+               (current_conf_mode != DHCPV6_CLIENT_CONF_MODE_STATEFUL)) {
+        dhcpv6_client_set_conf_mode(DHCPV6_CLIENT_CONF_MODE_STATELESS);
+    }
+#endif /* MODULE_DHCPV6_CLIENT */
+
     /* stop sending router solicitations
      * see https://tools.ietf.org/html/rfc4861#section-6.3.7 */
-    evtimer_del(&_nib_evtimer, &netif->ipv6.search_rtr.event);
-#if GNRC_IPV6_NIB_CONF_6LN
+    if (!gnrc_netif_is_6lbr(netif)) {
+        evtimer_del(&_nib_evtimer, &netif->ipv6.search_rtr.event);
+    }
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
     if (gnrc_netif_is_6ln(netif) && !gnrc_netif_is_6lbr(netif)) {
-        _set_rtr_adv(netif);
+        if (IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)) {
+            _set_rtr_adv(netif);
+        }
         /* but re-fetch information from router in time */
         _evtimer_add(netif, GNRC_IPV6_NIB_SEARCH_RTR,
                      &netif->ipv6.search_rtr, (next_timeout >> 2) * 3);
         /* i.e. 3/4 of the time before the earliest expires */
     }
-#endif  /* GNRC_IPV6_NIB_CONF_6LN */
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LN */
 }
 
 static inline size_t _get_l2src(const gnrc_netif_t *netif, uint8_t *l2src)
@@ -775,19 +936,19 @@ static void _send_delayed_nbr_adv(const gnrc_netif_t *netif,
     _nib_onl_entry_t *nce;
     uint8_t reply_flags = NDP_NBR_ADV_FLAGS_S;
 
-    nce = _nib_onl_get(tgt, netif->pid);
-    if ((nce == NULL) || !(nce->mode & _NC)) {
+    nce = _nib_onl_nc_get(tgt, netif->pid);
+    if (nce == NULL) {
         /* usually this should be the case, but when NCE is full, just
          * ignore the sending. Other nodes in this anycast group are
          * then preferred */
         gnrc_pktbuf_release(payload);
         return;
     }
-#if GNRC_IPV6_NIB_CONF_ROUTER
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER)
     if (gnrc_netif_is_rtr(netif)) {
         reply_flags |= NDP_NBR_ADV_FLAGS_R;
     }
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ROUTER */
 #if GNRC_NETIF_L2ADDR_MAXLEN > 0
     if (ipv6_addr_is_multicast(&ipv6_hdr->dst)) {
         uint8_t l2addr[GNRC_NETIF_L2ADDR_MAXLEN];
@@ -824,7 +985,7 @@ static void _send_delayed_nbr_adv(const gnrc_netif_t *netif,
         return;
     }
     gnrc_netif_hdr_set_netif(pkt->data, netif);
-    LL_PREPEND(payload, pkt);
+    pkt = gnrc_pkt_prepend(payload, pkt);
     _evtimer_add(pkt, GNRC_IPV6_NIB_SND_NA, &nce->snd_na,
                  random_uint32_range(0, NDP_MAX_ANYCAST_MS_DELAY));
 }
@@ -847,8 +1008,8 @@ static void _handle_nbr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         DEBUG("     - IP Hop Limit: %u (should be %u)\n", ipv6->hl,
               NDP_HOP_LIMIT);
         DEBUG("     - ICMP code: %u (should be 0)\n", nbr_sol->code);
-        DEBUG("     - ICMP length: %u (should > %u)\n", (unsigned)icmpv6_len,
-              (unsigned)sizeof(ndp_nbr_sol_t));
+        DEBUG("     - ICMP length: %" PRIuSIZE " (should > %" PRIuSIZE ")\n",
+              icmpv6_len, sizeof(ndp_nbr_sol_t));
         DEBUG("     - Target address: %s (should not be multicast)\n",
               ipv6_addr_to_str(addr_str, &nbr_sol->tgt, sizeof(addr_str)));
         DEBUG("     - Source address: %s\n",
@@ -868,8 +1029,8 @@ static void _handle_nbr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
     /* pre-check option length */
     FOREACH_OPT(nbr_sol, opt, tmp_len) {
         if (tmp_len > icmpv6_len) {
-            DEBUG("nib: Payload length (%u) of NS doesn't align with options\n",
-                  (unsigned)icmpv6_len);
+            DEBUG("nib: Payload length (%" PRIuSIZE ") of NS doesn't align with options\n",
+                  icmpv6_len);
             return;
         }
         if (opt->len == 0U) {
@@ -885,39 +1046,50 @@ static void _handle_nbr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
           ipv6_addr_to_str(addr_str, &ipv6->src, sizeof(addr_str)));
     DEBUG("     - Destination address: %s\n",
           ipv6_addr_to_str(addr_str, &ipv6->dst, sizeof(addr_str)));
-#if GNRC_IPV6_NIB_CONF_SLAAC
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_SLAAC)
     gnrc_netif_t *tgt_netif = gnrc_netif_get_by_ipv6_addr(&nbr_sol->tgt);
 
     if (tgt_netif != NULL) {
-        int idx = gnrc_netif_ipv6_addr_idx(tgt_netif, &nbr_sol->tgt);
+        int idx;
 
-        if (gnrc_netif_ipv6_addr_dad_trans(tgt_netif, idx)) {
+        gnrc_netif_acquire(tgt_netif);
+        idx = gnrc_netif_ipv6_addr_idx(tgt_netif, &nbr_sol->tgt);
+        /* if idx < 0:
+         * nbr_sol->tgt was removed between getting tgt_netif by nbr_sol->tgt
+         * and gnrc_netif_acquire(tgt_netif). This is like `tgt_netif` would
+         * have been NULL in the first place so just continue as if it would
+         * have. */
+        if ((idx >= 0) && gnrc_netif_ipv6_addr_dad_trans(tgt_netif, idx)) {
             if (!ipv6_addr_is_unspecified(&ipv6->src)) {
                 /* (see https://tools.ietf.org/html/rfc4862#section-5.4.3) */
                 DEBUG("nib: Neighbor is performing AR, but target address is "
                       "still TENTATIVE for us => Ignoring NS\n");
+                gnrc_netif_release(tgt_netif);
                 return;
             }
             /* cancel validation timer */
             evtimer_del(&_nib_evtimer,
                         &tgt_netif->ipv6.addrs_timers[idx].event);
+            /* _remove_tentative_addr() context switches to `tgt_netif->pid` so
+             * release `tgt_netif`. We are done here anyway. */
+            gnrc_netif_release(tgt_netif);
             _remove_tentative_addr(tgt_netif, &nbr_sol->tgt);
             return;
         }
+        gnrc_netif_release(tgt_netif);
     }
-#endif  /* GNRC_IPV6_NIB_CONF_SLAAC */
+#endif  /* CONFIG_GNRC_IPV6_NIB_SLAAC */
     if (ipv6_addr_is_unspecified(&ipv6->src)) {
         gnrc_ndp_nbr_adv_send(&nbr_sol->tgt, netif, &ipv6->src, false, NULL);
     }
     else {
-        gnrc_pktsnip_t *reply_aro = NULL;
-#if GNRC_IPV6_NIB_CONF_6LR
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LR)
         ndp_opt_t *sl2ao = NULL;
         sixlowpan_nd_opt_ar_t *aro = NULL;
-#else   /* GNRC_IPV6_NIB_CONF_6LR */
+#else   /* CONFIG_GNRC_IPV6_NIB_6LR */
 #define sl2ao   (NULL)
 #define aro     (NULL)
-#endif  /* GNRC_IPV6_NIB_CONF_6LR */
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LR */
         tmp_len = icmpv6_len - sizeof(ndp_nbr_sol_t);
 
         if (!(netif->flags & GNRC_NETIF_FLAGS_HAS_L2ADDR)) {
@@ -928,29 +1100,40 @@ static void _handle_nbr_sol(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         FOREACH_OPT(nbr_sol, opt, tmp_len) {
             switch (opt->type) {
                 case NDP_OPT_SL2A:
-#if GNRC_IPV6_NIB_CONF_6LR
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LR)
                     if (gnrc_netif_is_6lr(netif)) {
                         DEBUG("nib: Storing SL2AO for later handling\n");
                         sl2ao = opt;
-                        break;
+                        break; /* SL2AO is handled below together with an ARO */
                     }
-#endif  /* GNRC_IPV6_NIB_CONF_6LR */
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LR */
                     _handle_sl2ao(netif, ipv6, (const icmpv6_hdr_t *)nbr_sol,
                                   opt);
                     break;
-#if GNRC_IPV6_NIB_CONF_6LR
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LR)
                 case NDP_OPT_AR:
                     DEBUG("nib: Storing ARO for later handling\n");
                     aro = (sixlowpan_nd_opt_ar_t *)opt;
                     break;
-#endif  /* GNRC_IPV6_NIB_CONF_6LR */
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LR */
                 default:
                     DEBUG("nib: Ignoring unrecognized option type %u for NS\n",
                           opt->type);
                     break;
             }
         }
-        reply_aro = _copy_and_handle_aro(netif, ipv6, nbr_sol, aro, sl2ao);
+        gnrc_pktsnip_t *reply_aro = NULL;
+        if (aro && sl2ao) {
+        /* If no SLLAO is included, then any included ARO is ignored. */
+            if (!(reply_aro = _copy_and_handle_aro(netif, ipv6, nbr_sol, aro, sl2ao))) {
+            /* If the Length field is not two, or if the Status field is not zero,
+               then the NS is silently ignored.*/
+                return;
+            }
+        }
+        else if (sl2ao) {
+            _handle_sl2ao(netif, ipv6, (const icmpv6_hdr_t *)nbr_sol, sl2ao);
+        }
         /* check if target address is anycast */
         if (netif->ipv6.addrs_flags[tgt_idx] & GNRC_NETIF_IPV6_ADDRS_FLAGS_ANYCAST) {
             _send_delayed_nbr_adv(netif, &nbr_sol->tgt, ipv6, reply_aro);
@@ -981,8 +1164,8 @@ static void _handle_nbr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         DEBUG("     - IP Hop Limit: %u (should be %u)\n", ipv6->hl,
               NDP_HOP_LIMIT);
         DEBUG("     - ICMP code: %u (should be 0)\n", nbr_adv->code);
-        DEBUG("     - ICMP length: %u (should > %u)\n", (unsigned)icmpv6_len,
-              (unsigned)sizeof(ndp_nbr_adv_t));
+        DEBUG("     - ICMP length: %" PRIuSIZE " (should > %" PRIuSIZE ")\n",
+              icmpv6_len, sizeof(ndp_nbr_adv_t));
         DEBUG("     - Target address: %s (should not be multicast)\n",
               ipv6_addr_to_str(addr_str, &nbr_adv->tgt, sizeof(addr_str)));
         DEBUG("     - Destination address: %s\n",
@@ -996,8 +1179,8 @@ static void _handle_nbr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
     /* pre-check option length */
     FOREACH_OPT(nbr_adv, opt, tmp_len) {
         if (tmp_len > icmpv6_len) {
-            DEBUG("nib: Payload length (%u) of NA doesn't align with options\n",
-                  (unsigned)icmpv6_len);
+            DEBUG("nib: Payload length (%" PRIuSIZE ") of NA doesn't align with options\n",
+                  icmpv6_len);
             return;
         }
         if (opt->len == 0U) {
@@ -1017,57 +1200,67 @@ static void _handle_nbr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
           (nbr_adv->flags & NDP_NBR_ADV_FLAGS_R) ? 'R' : '-',
           (nbr_adv->flags & NDP_NBR_ADV_FLAGS_S) ? 'S' : '-',
           (nbr_adv->flags & NDP_NBR_ADV_FLAGS_O) ? 'O' : '-');
-#if GNRC_IPV6_NIB_CONF_SLAAC
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_SLAAC)
     gnrc_netif_t *tgt_netif = gnrc_netif_get_by_ipv6_addr(&nbr_adv->tgt);
 
     if (tgt_netif != NULL) {
-        int idx = gnrc_netif_ipv6_addr_idx(tgt_netif, &nbr_adv->tgt);
+        int idx;
 
-        if (gnrc_netif_ipv6_addr_dad_trans(tgt_netif, idx)) {
+        gnrc_netif_acquire(tgt_netif);
+        idx = gnrc_netif_ipv6_addr_idx(tgt_netif, &nbr_adv->tgt);
+        /* if idx < 0:
+         * nbr_sol->tgt was removed between getting tgt_netif by nbr_sol->tgt
+         * and gnrc_netif_acquire(tgt_netif). This is like `tgt_netif` would
+         * have been NULL in the first place so just continue as if it would
+         * have. */
+        if ((idx >= 0) && gnrc_netif_ipv6_addr_dad_trans(tgt_netif, idx)) {
             DEBUG("nib: duplicate address detected, removing target address "
                   "from this interface\n");
             /* cancel validation timer */
             evtimer_del(&_nib_evtimer,
                         &tgt_netif->ipv6.addrs_timers[idx].event);
+            /* _remove_tentative_addr() context switches to `tgt_netif->pid` so
+             * release `tgt_netif`. We are done here anyway. */
+            gnrc_netif_release(tgt_netif);
             _remove_tentative_addr(tgt_netif, &nbr_adv->tgt);
             return;
         }
         /* else case beyond scope of RFC4862:
          * https://tools.ietf.org/html/rfc4862#section-5.4.4 */
+        gnrc_netif_release(tgt_netif);
     }
-#endif  /* GNRC_IPV6_NIB_CONF_SLAAC */
-    if (((nce = _nib_onl_get(&nbr_adv->tgt, netif->pid)) != NULL) &&
-        (nce->mode & _NC)) {
-#if GNRC_IPV6_NIB_CONF_ARSM
+#endif  /* CONFIG_GNRC_IPV6_NIB_SLAAC */
+    if ((nce = _nib_onl_nc_get(&nbr_adv->tgt, netif->pid)) != NULL) {
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM)
         bool tl2ao_avail = false;
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
-#if GNRC_IPV6_NIB_CONF_6LN
+#endif  /* CONFIG_GNRC_IPV6_NIB_ARSM */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
         uint8_t aro_status = _ADDR_REG_STATUS_UNAVAIL;
 #endif
 
         tmp_len = icmpv6_len - sizeof(ndp_nbr_adv_t);
         FOREACH_OPT(nbr_adv, opt, tmp_len) {
             switch (opt->type) {
-#if GNRC_IPV6_NIB_CONF_ARSM
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM)
                 case NDP_OPT_TL2A:
                     _handle_adv_l2(netif, nce, (icmpv6_hdr_t *)nbr_adv, opt);
                     tl2ao_avail = true;
                     break;
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
-#if GNRC_IPV6_NIB_CONF_6LN
+#endif  /* CONFIG_GNRC_IPV6_NIB_ARSM */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
                 case NDP_OPT_AR:
                     aro_status = _handle_aro(netif, ipv6,
                                              (const icmpv6_hdr_t *)nbr_adv,
                                              (const sixlowpan_nd_opt_ar_t *)opt,
                                              opt, nce);
                     break;
-#endif  /* GNRC_IPV6_NIB_CONF_6LN */
+#endif  /* CONFIG_GNRC_IPV6_NIB_6LN */
                 default:
                     DEBUG("nib: Ignoring unrecognized option type %u for NA\n",
                           opt->type);
             }
         }
-#if GNRC_IPV6_NIB_CONF_ARSM
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM)
         if (!tl2ao_avail && (nbr_adv->flags & NDP_NBR_ADV_FLAGS_S) &&
             (_get_nud_state(nce) != GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE)) {
             /* reachability confirmed without TL2AO */
@@ -1076,8 +1269,8 @@ static void _handle_nbr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
         if (!(netif->flags & GNRC_NETIF_FLAGS_HAS_L2ADDR)) {
             _handle_adv_l2(netif, nce, (icmpv6_hdr_t *)nbr_adv, NULL);
         }
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
-#if GNRC_IPV6_NIB_CONF_SLAAC && GNRC_IPV6_NIB_CONF_6LN
+#endif  /* CONFIG_GNRC_IPV6_NIB_ARSM */
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_SLAAC) && IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
         /* 6Lo-ND duplicate address detection (DAD) was ignored by neighbor, try
          * traditional DAD */
         if ((aro_status == _ADDR_REG_STATUS_UNAVAIL) &&
@@ -1085,31 +1278,94 @@ static void _handle_nbr_adv(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
             DEBUG("nib: No ARO in NA, falling back to classic DAD\n");
             _handle_dad(&ipv6->dst);
         }
-#elif GNRC_IPV6_NIB_CONF_6LN
+#elif IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_6LN)
         (void)aro_status;
 #endif
     }
 }
 
-#if GNRC_IPV6_NIB_CONF_QUEUE_PKT
 static gnrc_pktqueue_t *_alloc_queue_entry(gnrc_pktsnip_t *pkt)
 {
-    for (int i = 0; i < GNRC_IPV6_NIB_NUMOF; i++) {
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_QUEUE_PKT)
+    for (int i = 0; i < CONFIG_GNRC_IPV6_NIB_NUMOF; i++) {
         if (_queue_pool[i].pkt == NULL) {
             _queue_pool[i].pkt = pkt;
             return &_queue_pool[i];
         }
     }
+#else
+    (void)pkt;
+#endif  /* CONFIG_GNRC_IPV6_NIB_QUEUE_PKT */
     return NULL;
 }
-#endif  /* GNRC_IPV6_NIB_CONF_QUEUE_PKT */
+
+static bool _resolve_addr_from_nc(_nib_onl_entry_t *entry, gnrc_netif_t *netif,
+                                  gnrc_ipv6_nib_nc_t *nce)
+{
+    if (entry == NULL) {
+        return false;
+    }
+
+    if (IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM)) {
+        if (!_is_reachable(entry)) {
+            return false;
+        }
+
+        if (_get_nud_state(entry) == GNRC_IPV6_NIB_NC_INFO_NUD_STATE_STALE) {
+            _set_nud_state(netif, entry, GNRC_IPV6_NIB_NC_INFO_NUD_STATE_DELAY);
+            _evtimer_add(entry, GNRC_IPV6_NIB_DELAY_TIMEOUT,
+                         &entry->nud_timeout, NDP_DELAY_FIRST_PROBE_MS);
+        }
+    }
+
+    _nib_nc_get(entry, nce);
+    return true;
+}
+
+static bool _enqueue_for_resolve(gnrc_netif_t *netif, gnrc_pktsnip_t *pkt,
+                                 _nib_onl_entry_t *entry)
+{
+    if (!IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_QUEUE_PKT) ||
+        _get_nud_state(entry) != GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE) {
+        gnrc_icmpv6_error_dst_unr_send(ICMPV6_ERROR_DST_UNR_ADDR, pkt);
+        gnrc_pktbuf_release_error(pkt, EHOSTUNREACH);
+        return true;
+    }
+
+    gnrc_pktqueue_t *queue_entry = _alloc_queue_entry(pkt);
+
+    if (queue_entry == NULL) {
+        DEBUG("nib: can't allocate entry for packet queue "
+              "dropping packet\n");
+        gnrc_pktbuf_release(pkt);
+        return false;
+    }
+
+    if (netif != NULL) {
+        gnrc_pktsnip_t *netif_hdr = gnrc_netif_hdr_build(NULL, 0, NULL, 0);
+
+        if (netif_hdr == NULL) {
+            DEBUG("nib: can't allocate netif header for queue\n");
+            gnrc_pktbuf_release(pkt);
+            queue_entry->pkt = NULL;
+            return false;
+        }
+        gnrc_netif_hdr_set_netif(netif_hdr->data, netif);
+        queue_entry->pkt = gnrc_pkt_prepend(queue_entry->pkt, netif_hdr);
+    }
+
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_QUEUE_PKT)
+    gnrc_pktqueue_add(&entry->pktqueue, queue_entry);
+#else
+    (void)entry;
+#endif
+    return true;
+}
 
 static bool _resolve_addr(const ipv6_addr_t *dst, gnrc_netif_t *netif,
                           gnrc_pktsnip_t *pkt, gnrc_ipv6_nib_nc_t *nce,
                           _nib_onl_entry_t *entry)
 {
-    bool res = false;
-
     if ((netif != NULL) && (netif->device_type == NETDEV_TYPE_SLIP)) {
         /* XXX: Linux doesn't do neighbor discovery for SLIP so no use sending
          * NS and since SLIP doesn't have link-layer addresses anyway, we can
@@ -1119,105 +1375,58 @@ static bool _resolve_addr(const ipv6_addr_t *dst, gnrc_netif_t *netif,
         nce->l2addr_len = 0;
         return true;
     }
-#if GNRC_IPV6_NIB_CONF_ARSM
-    if ((entry != NULL) && (entry->mode & _NC) && _is_reachable(entry)) {
-        if (_get_nud_state(entry) == GNRC_IPV6_NIB_NC_INFO_NUD_STATE_STALE) {
-            _set_nud_state(netif, entry, GNRC_IPV6_NIB_NC_INFO_NUD_STATE_DELAY);
-            _evtimer_add(entry, GNRC_IPV6_NIB_DELAY_TIMEOUT,
-                         &entry->nud_timeout, NDP_DELAY_FIRST_PROBE_MS);
-        }
+
+    /* first check if address is cached */
+    if (_resolve_addr_from_nc(entry, netif, nce)) {
         DEBUG("nib: resolve address %s%%%u from neighbor cache\n",
               ipv6_addr_to_str(addr_str, &entry->ipv6, sizeof(addr_str)),
               _nib_onl_get_if(entry));
-        _nib_nc_get(entry, nce);
-        res = true;
+        return true;
     }
-#else   /* GNRC_IPV6_NIB_CONF_ARSM */
-    if (entry != NULL) {
-        DEBUG("nib: resolve address %s%%%u from neighbor cache\n",
-              ipv6_addr_to_str(addr_str, &entry->ipv6, sizeof(addr_str)),
-              _nib_onl_get_if(entry));
-        _nib_nc_get(entry, nce);
-        res = true;
+
+    /* directly resolve address if it uses 6lo addressing mode */
+    if (_resolve_addr_from_ipv6(dst, netif, nce)) {
+        DEBUG("nib: resolve l2 address from IPv6 address\n");
+        return true;
     }
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
-    else if (!(res = _resolve_addr_from_ipv6(dst, netif, nce))) {
-#if GNRC_IPV6_NIB_CONF_ARSM
-        bool reset = false;
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
 
-        DEBUG("nib: resolve address %s by probing neighbors\n",
-              ipv6_addr_to_str(addr_str, dst, sizeof(addr_str)));
-        if ((entry == NULL) || !(entry->mode & _NC)) {
-            entry = _nib_nc_add(dst, (netif != NULL) ? netif->pid : 0,
-                                GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE);
-            if (entry == NULL) {
-                gnrc_pktbuf_release(pkt);
-                return false;
-            }
-#if GNRC_IPV6_NIB_CONF_ROUTER
-            if (netif != NULL) {
-                _call_route_info_cb(netif,
-                                    GNRC_IPV6_NIB_ROUTE_INFO_TYPE_NSC,
-                                    dst,
-                                    (void *)GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE);
-            }
-#endif  /* GNRC_IPV6_NIB_CONF_ROUTER */
-#if GNRC_IPV6_NIB_CONF_ARSM
-            reset = true;
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
+    bool reset = false;
+    DEBUG("nib: resolve address %s by probing neighbors\n",
+          ipv6_addr_to_str(addr_str, dst, sizeof(addr_str)));
+    if (entry == NULL) {
+        entry = _nib_nc_add(dst, netif ? netif->pid : 0,
+                            GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE);
+        if (entry == NULL) {
+            DEBUG("nib: can't resolve address, neighbor cache full\n");
+            gnrc_pktbuf_release(pkt);
+            return false;
         }
-#if GNRC_IPV6_NIB_CONF_ARSM
-        else if (_get_nud_state(entry) == GNRC_IPV6_NIB_NC_INFO_NUD_STATE_UNREACHABLE) {
-            /* reduce back-off to possibly resolve neighbor sooner again */
-            entry->ns_sent = 3;
+        if (IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ROUTER) && netif != NULL) {
+            _call_route_info_cb(netif,
+                                GNRC_IPV6_NIB_ROUTE_INFO_TYPE_NSC,
+                                dst,
+                                (void *)GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE);
         }
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
-        if (pkt != NULL) {
-#if GNRC_IPV6_NIB_CONF_QUEUE_PKT
-            if (_get_nud_state(entry) == GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE) {
-                gnrc_pktqueue_t *queue_entry = _alloc_queue_entry(pkt);
+        reset = true;
+    }
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM)
+    else if (_get_nud_state(entry) == GNRC_IPV6_NIB_NC_INFO_NUD_STATE_UNREACHABLE) {
+        /* reduce back-off to possibly resolve neighbor sooner again */
+        entry->ns_sent = 3;
+    }
+#endif
 
-                if (queue_entry != NULL) {
-                    if (netif != NULL) {
-                        gnrc_pktsnip_t *netif_hdr = gnrc_netif_hdr_build(
-                                NULL, 0, NULL, 0
-                            );
-                        if (netif_hdr == NULL) {
-                            DEBUG("nib: can't allocate netif header for queue\n");
-                            gnrc_pktbuf_release(pkt);
-                            queue_entry->pkt = NULL;
-                            return false;
-                        }
-                        gnrc_netif_hdr_set_netif(netif_hdr->data, netif);
-                        LL_PREPEND(queue_entry->pkt, netif_hdr);
-                    }
-                    gnrc_pktqueue_add(&entry->pktqueue, queue_entry);
-                }
-                else {
-                    DEBUG("nib: can't allocate entry for packet queue "
-                          "dropping packet\n");
-                    gnrc_pktbuf_release(pkt);
-                    return false;
-                }
-            }
-            /* pkt != NULL already checked above */
-            else {
-                gnrc_icmpv6_error_dst_unr_send(ICMPV6_ERROR_DST_UNR_ADDR,
-                                               pkt);
-                gnrc_pktbuf_release_error(pkt, EHOSTUNREACH);
-            }
-#else   /* GNRC_IPV6_NIB_CONF_QUEUE_PKT */
-            gnrc_icmpv6_error_dst_unr_send(ICMPV6_ERROR_DST_UNR_ADDR,
-                                           pkt);
-            gnrc_pktbuf_release_error(pkt, EHOSTUNREACH);
-#endif  /* GNRC_IPV6_NIB_CONF_QUEUE_PKT */
-        }
-#if GNRC_IPV6_NIB_CONF_ARSM
+    /* queue packet as we have to do address resolution first */
+    if (pkt != NULL && !_enqueue_for_resolve(netif, pkt, entry)) {
+        return false;
+    }
+
+    /* don't do multicast address resolution on 6lo */
+    if (!gnrc_netif_is_6ln(netif)) {
         _probe_nbr(entry, reset);
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM */
     }
-    return res;
+
+    return false;
 }
 
 static void _handle_snd_na(gnrc_pktsnip_t *pkt)
@@ -1238,23 +1447,18 @@ static void _handle_snd_na(gnrc_pktsnip_t *pkt)
 static void _handle_pfx_timeout(_nib_offl_entry_t *pfx)
 {
     gnrc_netif_t *netif = gnrc_netif_get_by_pid(_nib_onl_get_if(pfx->next_hop));
-    uint32_t now = (xtimer_now_usec64() / US_PER_MS) & UINT32_MAX;
+    if (netif == NULL) {
+        return;
+    }
+
+    uint32_t now = evtimer_now_msec();
 
     gnrc_netif_acquire(netif);
     if (now >= pfx->valid_until) {
-        evtimer_del(&_nib_evtimer, &pfx->pfx_timeout.event);
-        for (int i = 0; i < GNRC_NETIF_IPV6_ADDRS_NUMOF; i++) {
-            if (ipv6_addr_match_prefix(&netif->ipv6.addrs[i],
-                                       &pfx->pfx) >= pfx->pfx_len) {
-                gnrc_netif_ipv6_addr_remove_internal(netif,
-                                                     &netif->ipv6.addrs[i]);
-            }
-        }
-        pfx->mode &= ~_PL;
-        _nib_offl_clear(pfx);
+        _nib_offl_remove_prefix(pfx);
     }
     else if (now >= pfx->pref_until) {
-        for (int i = 0; i < GNRC_NETIF_IPV6_ADDRS_NUMOF; i++) {
+        for (int i = 0; i < CONFIG_GNRC_NETIF_IPV6_ADDRS_NUMOF; i++) {
             if (ipv6_addr_match_prefix(&netif->ipv6.addrs[i],
                                        &pfx->pfx) >= pfx->pfx_len) {
                 netif->ipv6.addrs_flags[i] &= ~GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_MASK;
@@ -1271,18 +1475,18 @@ static void _handle_rtr_timeout(_nib_dr_entry_t *router)
 {
     if ((router->next_hop != NULL) && (router->next_hop->mode & _DRL)) {
         _nib_offl_entry_t *route = NULL;
-        unsigned iface = _nib_onl_get_if(router->next_hop);
-        ipv6_addr_t addr;
+        _nib_onl_entry_t *next_hop = router->next_hop;
 
-        memcpy(&addr, &router->next_hop, sizeof(addr));
         _nib_drl_remove(router);
-        /* also remove all routes to that router */
+        /* The Router Lifetime applies only to
+           the router's usefulness as a default router; it
+           does not apply to information contained in other
+           message fields or options. Options that need time
+           limits for their information include their own
+           lifetime fields.
+           (https://datatracker.ietf.org/doc/html/rfc4861#section-4.2) */
         while ((route = _nib_offl_iter(route))) {
-            if ((route->next_hop != NULL) &&
-                (_nib_onl_get_if(route->next_hop) == iface) &&
-                (ipv6_addr_equal(&route->next_hop->ipv6, &addr))) {
-                route->mode = _EMPTY;
-                route->next_hop->mode &= ~_DST;
+            if (route->next_hop == next_hop) {
                 _nib_offl_clear(route);
                 /* XXX routing protocol gets informed in case NUD
                  * determines ipv6->src (still in neighbor cache) to be
@@ -1294,9 +1498,9 @@ static void _handle_rtr_timeout(_nib_dr_entry_t *router)
 
 void _handle_search_rtr(gnrc_netif_t *netif)
 {
-#if !GNRC_IPV6_NIB_CONF_NO_RTR_SOL
+#if !IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_NO_RTR_SOL)
     gnrc_netif_acquire(netif);
-    if (!(gnrc_netif_is_rtr_adv(netif)) || gnrc_netif_is_6ln(netif)) {
+    if (_should_search_rtr(netif)) {
         uint32_t next_rs = _evtimer_lookup(netif, GNRC_IPV6_NIB_SEARCH_RTR);
         uint32_t interval = _get_next_rs_interval(netif);
 
@@ -1319,10 +1523,10 @@ void _handle_search_rtr(gnrc_netif_t *netif)
     gnrc_netif_release(netif);
 #else
     (void)netif;
-#endif /* !GNRC_IPV6_NIB_CONF_NO_RTR_SOL */
+#endif /* !CONFIG_GNRC_IPV6_NIB_NO_RTR_SOL */
 }
 
-#if GNRC_IPV6_NIB_CONF_DNS
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
 static void _handle_rdnss_timeout(sock_udp_ep_t *dns_server)
 {
     memset(dns_server, 0, sizeof(sock_udp_ep_t));
@@ -1340,7 +1544,7 @@ static void _handle_mtuo(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
     }
 }
 
-#if GNRC_IPV6_NIB_CONF_DNS
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_DNS)
 static uint32_t _handle_rdnsso(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
                                const ndp_opt_rdnss_impl_t *rdnsso)
 {
@@ -1406,29 +1610,28 @@ static void _remove_prefix(const ipv6_addr_t *pfx, unsigned pfx_len)
         if ((offl->mode & _PL) &&
             (offl->pfx_len == pfx_len) &&
             (ipv6_addr_match_prefix(&offl->pfx, pfx) >= pfx_len)) {
-            _nib_pl_remove(offl);
+            _nib_offl_remove_prefix(offl);
         }
     }
-    return;
 }
 
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
 static inline bool _multihop_p6c(gnrc_netif_t *netif, _nib_abr_entry_t *abr)
 {
     (void)netif;    /* gnrc_netif_is_6lr() might resolve to a NOP */
     return (gnrc_netif_is_6lr(netif) && (abr != NULL));
 }
-#else   /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#else   /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
 #define _multihop_p6c(netif, abr)   (false)
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
 
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
 static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
                             const ndp_opt_pi_t *pio, _nib_abr_entry_t *abr)
-#else   /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#else   /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
 static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
                             const ndp_opt_pi_t *pio)
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
 {
     uint32_t valid_ltime;
     uint32_t pref_ltime;
@@ -1436,7 +1639,9 @@ static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
     valid_ltime = byteorder_ntohl(pio->valid_ltime);
     pref_ltime = byteorder_ntohl(pio->pref_ltime);
     if ((pio->len != NDP_OPT_PI_LEN) || (icmpv6->type != ICMPV6_RTR_ADV) ||
-        ipv6_addr_is_link_local(&pio->prefix) || (valid_ltime < pref_ltime)) {
+        ipv6_addr_is_link_local(&pio->prefix) || (valid_ltime < pref_ltime) ||
+        /* https://datatracker.ietf.org/doc/html/rfc6775#section-5.4 */
+        (gnrc_netif_is_6ln(netif) && (pio->flags & NDP_OPT_PI_FLAGS_L))) {
         DEBUG("nib: ignoring PIO with invalid data\n");
         return UINT32_MAX;
     }
@@ -1455,7 +1660,8 @@ static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
     if (pio->flags & NDP_OPT_PI_FLAGS_A) {
         _auto_configure_addr(netif, &pio->prefix, pio->prefix_len);
     }
-    if ((pio->flags & NDP_OPT_PI_FLAGS_L) || _multihop_p6c(netif, abr)) {
+    if ((pio->flags & (NDP_OPT_PI_FLAGS_A | NDP_OPT_PI_FLAGS_L))
+        || _multihop_p6c(netif, abr)) {
         _nib_offl_entry_t *pfx;
 
         if (pio->valid_ltime.u32 == 0) {
@@ -1468,7 +1674,7 @@ static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
 
         if (valid_ltime < UINT32_MAX) { /* UINT32_MAX means infinite lifetime */
             /* the valid lifetime is given in seconds, but our timers work in
-             * microseconds, so we have to scale down to the smallest possible
+             * milliseconds, so we have to scale down to the smallest possible
              * value (UINT32_MAX - 1). This is however alright since we ask for
              * a new router advertisement before this timeout expires */
             valid_ltime = (valid_ltime > (UINT32_MAX / MS_PER_SEC)) ?
@@ -1481,11 +1687,11 @@ static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
         }
         if ((pfx = _nib_pl_add(netif->pid, &pio->prefix, pio->prefix_len,
                                valid_ltime, pref_ltime))) {
-#if GNRC_IPV6_NIB_CONF_MULTIHOP_P6C
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C)
             if (abr != NULL) {
                 _nib_abr_add_pfx(abr, pfx);
             }
-#endif  /* GNRC_IPV6_NIB_CONF_MULTIHOP_P6C */
+#endif  /* CONFIG_GNRC_IPV6_NIB_MULTIHOP_P6C */
             if (pio->flags & NDP_OPT_PI_FLAGS_L) {
                 pfx->flags |= _PFX_ON_LINK;
             }
@@ -1498,4 +1704,50 @@ static uint32_t _handle_pio(gnrc_netif_t *netif, const icmpv6_hdr_t *icmpv6,
     return UINT32_MAX;
 }
 
+static const char *_prio_string(uint8_t prio)
+{
+    switch (prio & NDP_OPT_RI_FLAGS_MASK) {
+    case NDP_OPT_RI_FLAGS_PRF_NONE:
+        return "none";
+    case NDP_OPT_RI_FLAGS_PRF_NEG:
+        return "-1";
+    case NDP_OPT_RI_FLAGS_PRF_ZERO:
+        return "0";
+    case NDP_OPT_RI_FLAGS_PRF_POS:
+        return "1";
+    }
+
+    return "invalid";
+}
+
+static uint32_t _handle_rio(gnrc_netif_t *netif, const ipv6_hdr_t *ipv6,
+                            const ndp_opt_ri_t *rio)
+{
+    if (!IS_USED(MODULE_GNRC_IPV6_NIB_RIO)) {
+        return 0;
+    }
+
+    uint32_t route_ltime = byteorder_ntohl(rio->route_ltime);
+
+    if (ipv6_addr_is_link_local(&rio->prefix)) {
+        DEBUG("nib: ignoring RIO with invalid data\n");
+        return UINT32_MAX;
+    }
+    DEBUG("nib: received valid Route Information option:\n");
+    DEBUG("     - Prefix: %s/%u\n",
+          ipv6_addr_to_str(addr_str, &rio->prefix, sizeof(addr_str)),
+          rio->prefix_len);
+    DEBUG("     - Priority: %s\n", _prio_string(rio->flags));
+    DEBUG("     - Route lifetime: %" PRIu32 "\n",
+          byteorder_ntohl(rio->route_ltime));
+
+    if (route_ltime == 0) {
+        gnrc_ipv6_nib_ft_del(&rio->prefix, rio->prefix_len);
+    } else {
+        gnrc_ipv6_nib_ft_add(&rio->prefix, rio->prefix_len, &ipv6->src,
+                             netif->pid, route_ltime == UINT32_MAX ? 0 : route_ltime);
+    }
+
+    return route_ltime;
+}
 /** @} */

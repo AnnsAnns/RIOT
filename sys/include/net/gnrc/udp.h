@@ -33,10 +33,19 @@ extern "C" {
 #endif
 
 /**
- * @brief   Default message queue size for the UDP thread
+ * @defgroup net_gnrc_udp_conf  GNRC UDP compile configurations
+ * @ingroup  net_gnrc_conf
+ * @{
  */
-#ifndef GNRC_UDP_MSG_QUEUE_SIZE
-#define GNRC_UDP_MSG_QUEUE_SIZE (8U)
+/**
+ * @brief   Default message queue size for the UDP thread (as exponent of 2^n).
+ *
+ *          As the queue size ALWAYS needs to be power of two, this option
+ *          represents the exponent of 2^n, which will be used as the size of
+ *          the queue.
+ */
+#ifndef CONFIG_GNRC_UDP_MSG_QUEUE_SIZE_EXP
+#define CONFIG_GNRC_UDP_MSG_QUEUE_SIZE_EXP (3U)
 #endif
 
 /**
@@ -48,9 +57,21 @@ extern "C" {
 
 /**
  * @brief   Default stack size to use for the UDP thread
+ *
+ * @note    The message queue was previously allocated on the stack.
+ *          The default number of messages is 2³.
+ *          Given sizeof(msg_t) == 8, the stack size is reduced by 64 bytes.
  */
 #ifndef GNRC_UDP_STACK_SIZE
-#define GNRC_UDP_STACK_SIZE     (THREAD_STACKSIZE_DEFAULT)
+#define GNRC_UDP_STACK_SIZE     ((THREAD_STACKSIZE_SMALL) - 64)
+#endif
+/** @} */
+
+/**
+ * @brief   Message queue size to use for the UDP thread.
+ */
+#ifndef GNRC_UDP_MSG_QUEUE_SIZE
+#define GNRC_UDP_MSG_QUEUE_SIZE    (1 << CONFIG_GNRC_UDP_MSG_QUEUE_SIZE_EXP)
 #endif
 
 /**

@@ -26,55 +26,43 @@
 #include <fcntl.h>
 #include <errno.h>
 
+#include "architecture.h"
 #include "fs/constfs.h"
 #include "vfs.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 /* File system operations */
-static int constfs_mount(vfs_mount_t *mountp);
-static int constfs_umount(vfs_mount_t *mountp);
-static int constfs_unlink(vfs_mount_t *mountp, const char *name);
 static int constfs_stat(vfs_mount_t *mountp, const char *restrict name, struct stat *restrict buf);
 static int constfs_statvfs(vfs_mount_t *mountp, const char *restrict path, struct statvfs *restrict buf);
 
 /* File operations */
-static int constfs_close(vfs_file_t *filp);
 static int constfs_fstat(vfs_file_t *filp, struct stat *buf);
 static off_t constfs_lseek(vfs_file_t *filp, off_t off, int whence);
-static int constfs_open(vfs_file_t *filp, const char *name, int flags, mode_t mode, const char *abs_path);
+static int constfs_open(vfs_file_t *filp, const char *name, int flags, mode_t mode);
 static ssize_t constfs_read(vfs_file_t *filp, void *dest, size_t nbytes);
-static ssize_t constfs_write(vfs_file_t *filp, const void *src, size_t nbytes);
 
 /* Directory operations */
-static int constfs_opendir(vfs_DIR *dirp, const char *dirname, const char *abs_path);
+static int constfs_opendir(vfs_DIR *dirp, const char *dirname);
 static int constfs_readdir(vfs_DIR *dirp, vfs_dirent_t *entry);
-static int constfs_closedir(vfs_DIR *dirp);
 
 static const vfs_file_system_ops_t constfs_fs_ops = {
-    .mount = constfs_mount,
-    .umount = constfs_umount,
-    .unlink = constfs_unlink,
     .statvfs = constfs_statvfs,
     .stat = constfs_stat,
 };
 
 static const vfs_file_ops_t constfs_file_ops = {
-    .close = constfs_close,
     .fstat = constfs_fstat,
     .lseek = constfs_lseek,
     .open  = constfs_open,
     .read  = constfs_read,
-    .write = constfs_write,
 };
 
 static const vfs_dir_ops_t constfs_dir_ops = {
     .opendir = constfs_opendir,
     .readdir = constfs_readdir,
-    .closedir = constfs_closedir,
 };
-
 
 const vfs_file_system_t constfs_file_system = {
     .f_op = &constfs_file_ops,
@@ -91,28 +79,6 @@ const vfs_file_system_t constfs_file_system = {
  * @param[out] buf    output buffer
  */
 static void _constfs_write_stat(const constfs_file_t *fp, struct stat *restrict buf);
-
-static int constfs_mount(vfs_mount_t *mountp)
-{
-    /* perform any extra initialization here */
-    (void) mountp; /* prevent warning: unused parameter */
-    return 0;
-}
-
-static int constfs_umount(vfs_mount_t *mountp)
-{
-    /* free resources and perform any clean up here */
-    (void) mountp; /* prevent warning: unused parameter */
-    return 0;
-}
-
-static int constfs_unlink(vfs_mount_t *mountp, const char *name)
-{
-    /* Removing files is prohibited */
-    (void) mountp; /* prevent warning: unused parameter */
-    (void) name; /* prevent warning: unused parameter */
-    return -EROFS;
-}
 
 static int constfs_stat(vfs_mount_t *mountp, const char *restrict name, struct stat *restrict buf)
 {
@@ -145,7 +111,6 @@ static int constfs_statvfs(vfs_mount_t *mountp, const char *restrict path, struc
     }
     constfs_t *fs = mountp->private_data;
     /* clear out the stat buffer first */
-    memset(buf, 0, sizeof(*buf));
     buf->f_bsize = sizeof(uint8_t); /* block size */
     buf->f_frsize = sizeof(uint8_t); /* fundamental block size */
     fsblkcnt_t f_blocks = 0;
@@ -161,13 +126,6 @@ static int constfs_statvfs(vfs_mount_t *mountp, const char *restrict path, struc
     buf->f_fsid = 0;           /* File system id */
     buf->f_flag = (ST_RDONLY | ST_NOSUID); /* File system flags */
     buf->f_namemax = UINT8_MAX; /* Maximum file name length */
-    return 0;
-}
-
-static int constfs_close(vfs_file_t *filp)
-{
-    /* perform any necessary clean ups */
-    (void) filp; /* prevent warning: unused parameter */
     return 0;
 }
 
@@ -205,12 +163,11 @@ static off_t constfs_lseek(vfs_file_t *filp, off_t off, int whence)
     return off;
 }
 
-static int constfs_open(vfs_file_t *filp, const char *name, int flags, mode_t mode, const char *abs_path)
+static int constfs_open(vfs_file_t *filp, const char *name, int flags, mode_t mode)
 {
     (void) mode;
-    (void) abs_path;
     constfs_t *fs = filp->mp->private_data;
-    DEBUG("constfs_open: %p, \"%s\", 0x%x, 0%03lo, \"%s\"\n", (void *)filp, name, flags, (unsigned long)mode, abs_path);
+    DEBUG("constfs_open: %p, \"%s\", 0x%x, 0%03lo\"\n", (void *)filp, name, flags, (unsigned long)mode);
     /* We only support read access */
     if ((flags & O_ACCMODE) != O_RDONLY) {
         return -EROFS;
@@ -231,7 +188,7 @@ static int constfs_open(vfs_file_t *filp, const char *name, int flags, mode_t mo
 static ssize_t constfs_read(vfs_file_t *filp, void *dest, size_t nbytes)
 {
     constfs_file_t *fp = filp->private_data.ptr;
-    DEBUG("constfs_read: %p, %p, %lu\n", (void *)filp, dest, (unsigned long)nbytes);
+    DEBUG("constfs_read: %p, %p, %" PRIuSIZE "\n", (void *)filp, dest, nbytes);
     if ((size_t)filp->pos >= fp->size) {
         /* Current offset is at or beyond end of file */
         return 0;
@@ -240,28 +197,15 @@ static ssize_t constfs_read(vfs_file_t *filp, void *dest, size_t nbytes)
     if (nbytes > (fp->size - filp->pos)) {
         nbytes = fp->size - filp->pos;
     }
-    memcpy(dest, fp->data + filp->pos, nbytes);
-    DEBUG("constfs_read: read %lu bytes\n", (long unsigned)nbytes);
+    memcpy(dest, (const uint8_t *)fp->data + filp->pos, nbytes);
+    DEBUG("constfs_read: read %" PRIuSIZE " bytes\n", nbytes);
     filp->pos += nbytes;
     return nbytes;
 }
 
-static ssize_t constfs_write(vfs_file_t *filp, const void *src, size_t nbytes)
+static int constfs_opendir(vfs_DIR *dirp, const char *dirname)
 {
-    DEBUG("constfs_write: %p, %p, %lu\n", (void *)filp, src, (unsigned long)nbytes);
-    /* Read only file system */
-    DEBUG("constfs_write: read only FS\n");
-    /* prevent warning: unused parameter */
-    (void) filp;
-    (void) src;
-    (void) nbytes;
-    return -EBADF;
-}
-
-static int constfs_opendir(vfs_DIR *dirp, const char *dirname, const char *abs_path)
-{
-    (void) abs_path;
-    DEBUG("constfs_opendir: %p, \"%s\", \"%s\"\n", (void *)dirp, dirname, abs_path);
+    DEBUG("constfs_opendir: %p, \"%s\"\n", (void *)dirp, dirname);
     if (strncmp(dirname, "/", 2) != 0) {
         /* We keep it simple and only support a flat file system, only a root directory */
         return -ENOENT;
@@ -283,7 +227,8 @@ static int constfs_readdir(vfs_DIR *dirp, vfs_dirent_t *entry)
     if (fp->path == NULL) {
         return -EIO;
     }
-    size_t len = strnlen(fp->path, VFS_NAME_MAX + 1);
+    const char *filename = fp->path[0] == '/' ? fp->path + 1 : fp->path;
+    size_t len = strnlen(filename, VFS_NAME_MAX + 1);
     if (len > VFS_NAME_MAX) {
         /* name does not fit in vfs_dirent_t buffer */
         /* skipping past the broken entry */
@@ -292,25 +237,16 @@ static int constfs_readdir(vfs_DIR *dirp, vfs_dirent_t *entry)
         return -EAGAIN;
     }
     /* copy the string, including terminating null */
-    memcpy(&entry->d_name[0], fp->path, len + 1);
+    memcpy(&entry->d_name[0], filename, len + 1);
     entry->d_ino = filenum;
     ++filenum;
     dirp->private_data.value = filenum;
     return 1;
 }
 
-static int constfs_closedir(vfs_DIR *dirp)
-{
-    /* Just an example, it's not necessary to define closedir if there is
-     * nothing to clean up */
-    (void) dirp;
-    return 0;
-}
-
 static void _constfs_write_stat(const constfs_file_t *fp, struct stat *restrict buf)
 {
-    /* clear out the stat buffer first */
-    memset(buf, 0, sizeof(*buf));
+    /* buffer is cleared by vfs already */
     buf->st_nlink = 1;
     buf->st_mode = S_IFREG | S_IRUSR | S_IRGRP | S_IROTH;
     buf->st_size = fp->size;

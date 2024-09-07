@@ -14,19 +14,21 @@
  * @file
  * @brief   Definitions related to the address resolution state machine (ARSM)
  *          of the NIB
- * @see     @ref GNRC_IPV6_NIB_CONF_ARSM
+ * @see     @ref CONFIG_GNRC_IPV6_NIB_ARSM
  *
  * @author  Martine Lenders <m.lenders@fu-berlin.de>
  */
 #ifndef PRIV_NIB_ARSM_H
 #define PRIV_NIB_ARSM_H
 
+#include <kernel_defines.h>
 #include <stdint.h>
 
 #include "net/gnrc/ipv6/nib/conf.h"
 #include "net/gnrc/netif.h"
 #include "net/ndp.h"
 #include "net/icmpv6.h"
+#include "net/ipv6/hdr.h"
 
 #include "_nib-internal.h"
 
@@ -58,7 +60,7 @@ void _snd_ns(const ipv6_addr_t *tgt, gnrc_netif_t *netif,
  * @note    Neighbor solicitations are used *by* the ARSM, but also by other
  *          mechanisms (e.g. duplicate address detection 6Lo address
  *          resolution). This is why it is defined here, but not exclusively
- *          available when @ref GNRC_IPV6_NIB_CONF_ARSM is set.
+ *          available when @ref CONFIG_GNRC_IPV6_NIB_ARSM is set.
  *
  * @param[in] nbr       Neighbor to send neighbor solicitation to.
  * @param[in] reset     Reset probe counter.
@@ -69,7 +71,7 @@ void _snd_uc_ns(_nib_onl_entry_t *nbr, bool reset);
  * @brief   Handles SL2AO
  *
  * @note    This is here (but not only available with
- *          @ref GNRC_IPV6_NIB_CONF_ARSM set) since it is closely related
+ *          @ref CONFIG_GNRC_IPV6_NIB_ARSM set) since it is closely related
  *          to the ARSM, but ARSM isn't the only mechanism using it (e.g. the
  *          6Lo address registration uses it).
  *
@@ -118,7 +120,7 @@ static inline uint32_t _exp_backoff_retrans_timer_factor(uint8_t ns_sent,
     return res;
 }
 
-#if GNRC_IPV6_NIB_CONF_ARSM || defined(DOXYGEN)
+#if IS_ACTIVE(CONFIG_GNRC_IPV6_NIB_ARSM) || defined(DOXYGEN)
 /**
  * @brief   Handler for @ref GNRC_IPV6_NIB_SND_UC_NS and
  *          @ref GNRC_IPV6_NIB_SND_UC_NS event handler
@@ -161,7 +163,6 @@ void _probe_nbr(_nib_onl_entry_t *nbr, bool reset);
 void _handle_adv_l2(gnrc_netif_t *netif, _nib_onl_entry_t *nce,
                     const icmpv6_hdr_t *icmpv6, const ndp_opt_t *tl2ao);
 
-
 /**
  * @brief   Recalculates the (randomized) reachable time of on a network
  *          interface.
@@ -190,6 +191,16 @@ static inline void _init_iface_arsm(gnrc_netif_t *netif)
 {
     netif->ipv6.reach_time_base = NDP_REACH_MS;
     _recalc_reach_time(&netif->ipv6);
+}
+
+/**
+ * @brief   Deinitializes interface from address registration state machine
+ *
+ * @param[in] netif An interface
+ */
+static inline void _deinit_iface_arsm(gnrc_netif_t *netif)
+{
+    _evtimer_del(&netif->ipv6.recalc_reach_time);
 }
 
 /**
@@ -226,25 +237,26 @@ void _set_nud_state(gnrc_netif_t *netif, _nib_onl_entry_t *nbr,
  * @return  false, if @p entry is not in a reachable state.
  */
 bool _is_reachable(_nib_onl_entry_t *entry);
-#else   /* GNRC_IPV6_NIB_CONF_ARSM || defined(DOXYGEN) */
+#else   /* CONFIG_GNRC_IPV6_NIB_ARSM || defined(DOXYGEN) */
 #define _handle_snd_ns(ctx)                         (void)ctx
 #define _handle_state_timeout(ctx)                  (void)ctx
 #define _probe_nbr(nbr, reset)                      (void)nbr; (void)reset
 #define _init_iface_arsm(netif)                     (void)netif
+#define _deinit_iface_arsm(netif)                   (void)netif
 #define _handle_adv_l2(netif, nce, icmpv6, tl2ao)   (void)netif; (void)nce; \
                                                     (void)icmpv6; (void)tl2ao
 #define _recalc_reach_time(netif)                   (void)netif
 #define _set_reachable(netif, nce)                  (void)netif; (void)nce
-#define _init_iface_arsm(netif)                     (void)netif
 
 #define _get_nud_state(nbr)                 (GNRC_IPV6_NIB_NC_INFO_NUD_STATE_UNMANAGED)
-#define _set_nud_state(netif, nce, state)   (void)netif; (void)nbr; (void)state
+#define _set_nud_state(netif, nce, state)   (void)netif; (void)nce; (void)state
 #define _is_reachable(entry)                (true)
-#endif  /* GNRC_IPV6_NIB_CONF_ARSM || defined(DOXYGEN) */
+#endif  /* CONFIG_GNRC_IPV6_NIB_ARSM || defined(DOXYGEN) */
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* PRIV_NIB_ARSM_H */
-/** @} */
+/** @internal
+ * @} */

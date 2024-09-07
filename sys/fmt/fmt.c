@@ -21,17 +21,14 @@
 #include <assert.h>
 #include <stdarg.h>
 #include <stdint.h>
-#include <unistd.h>
+#include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
-#if defined(__WITH_AVRLIBC__) || defined(__mips__)
-#include <stdio.h>  /* for fwrite() */
-#else
-/* work around broken sys/posix/unistd.h */
-ssize_t write(int fildes, const void *buf, size_t nbyte);
-#endif
-
+#include "kernel_defines.h"
 #include "fmt.h"
+
+extern ssize_t stdio_write(const void* buffer, size_t len);
 
 static const char _hex_chars[16] = "0123456789ABCDEF";
 
@@ -79,6 +76,7 @@ size_t fmt_byte_hex(char *out, uint8_t byte)
 size_t fmt_bytes_hex(char *out, const uint8_t *ptr, size_t n)
 {
     size_t len = n * 2;
+
     if (out) {
         while (n--) {
             out += fmt_byte_hex(out, *ptr++);
@@ -88,10 +86,24 @@ size_t fmt_bytes_hex(char *out, const uint8_t *ptr, size_t n)
     return len;
 }
 
+size_t fmt_bytes_hex_reverse(char *out, const uint8_t *ptr, size_t n)
+{
+    size_t len = n * 2;
+
+    if (out) {
+        while (n--) {
+            out += fmt_byte_hex(out, ptr[n]);
+        }
+    }
+
+    return len;
+}
+
 size_t fmt_strlen(const char *str)
 {
     const char *tmp = str;
-    while(*tmp) {
+
+    while (*tmp) {
         tmp++;
     }
     return (tmp - str);
@@ -100,7 +112,8 @@ size_t fmt_strlen(const char *str)
 size_t fmt_strnlen(const char *str, size_t maxlen)
 {
     const char *tmp = str;
-    while(*tmp && maxlen--) {
+
+    while (*tmp && maxlen--) {
         tmp++;
     }
     return (tmp - str);
@@ -109,9 +122,11 @@ size_t fmt_strnlen(const char *str, size_t maxlen)
 size_t fmt_str(char *out, const char *str)
 {
     int len = 0;
+
     if (!out) {
         len = fmt_strlen(str);
-    } else {
+    }
+    else {
         char c;
         while ((c = *str++)) {
             *out++ = c;
@@ -119,15 +134,6 @@ size_t fmt_str(char *out, const char *str)
         }
     }
     return len;
-}
-
-size_t fmt_bytes_hex_reverse(char *out, const uint8_t *ptr, size_t n)
-{
-    size_t i = n;
-    while (i--) {
-        out += fmt_byte_hex(out, ptr[i]);
-    }
-    return (n<<1);
 }
 
 static uint8_t _byte_mod25(uint8_t x)
@@ -160,6 +166,11 @@ size_t fmt_hex_bytes(uint8_t *out, const char *hex)
     }
 
     size_t final_len = len >> 1;
+
+    if (out == NULL) {
+        return final_len;
+    }
+
     for (size_t i = 0, j = 0; j < final_len; i += 2, j++) {
         out[j] = fmt_hex_byte(hex + i);
     }
@@ -169,17 +180,17 @@ size_t fmt_hex_bytes(uint8_t *out, const char *hex)
 
 size_t fmt_u16_hex(char *out, uint16_t val)
 {
-    return fmt_bytes_hex_reverse(out, (uint8_t*) &val, 2);
+    return fmt_bytes_hex_reverse(out, (uint8_t *)&val, 2);
 }
 
 size_t fmt_u32_hex(char *out, uint32_t val)
 {
-    return fmt_bytes_hex_reverse(out, (uint8_t*) &val, 4);
+    return fmt_bytes_hex_reverse(out, (uint8_t *)&val, 4);
 }
 
 size_t fmt_u64_hex(char *out, uint64_t val)
 {
-    return fmt_bytes_hex_reverse(out, (uint8_t*) &val, 8);
+    return fmt_bytes_hex_reverse(out, (uint8_t *)&val, 8);
 }
 
 size_t fmt_u64_dec(char *out, uint64_t val)
@@ -188,10 +199,10 @@ size_t fmt_u64_dec(char *out, uint64_t val)
     uint32_t q;
     size_t len = 0;
 
-    d[0] = val       & 0xFFFF;
-    d[1] = (val>>16) & 0xFFFF;
-    d[2] = (val>>32) & 0xFFFF;
-    d[3] = (val>>48) & 0xFFFF;
+    d[0] = val         & 0xFFFF;
+    d[1] = (val >> 16) & 0xFFFF;
+    d[2] = (val >> 32) & 0xFFFF;
+    d[3] = (val >> 48) & 0xFFFF;
 
     d[0] = 656 * d[3] + 7296 * d[2] + 5536 * d[1] + d[0];
     q = d[0] / 10000;
@@ -223,11 +234,11 @@ size_t fmt_u64_dec(char *out, uint64_t val)
     if (out) {
         out += len;
         memset(out, '0', total_len - len);
-        while(first) {
+        while (first) {
             first--;
             if (d[first]) {
                 size_t tmp = fmt_u32_dec(NULL, d[first]);
-                fmt_u32_dec(out+(4-tmp), d[first]);
+                fmt_u32_dec(out + (4 - tmp), d[first]);
             }
             out += 4;
         }
@@ -270,6 +281,7 @@ size_t fmt_s64_dec(char *out, int64_t val)
 {
     unsigned negative = (val < 0);
     uint64_t sval;
+
     if (negative) {
         if (out) {
             *out++ = '-';
@@ -286,6 +298,7 @@ size_t fmt_s32_dec(char *out, int32_t val)
 {
     unsigned negative = (val < 0);
     uint32_t sval;
+
     if (negative) {
         if (out) {
             *out++ = '-';
@@ -303,61 +316,62 @@ size_t fmt_s16_dec(char *out, int16_t val)
     return fmt_s32_dec(out, val);
 }
 
-size_t fmt_s16_dfp(char *out, int16_t val, int fp_digits)
+size_t fmt_s16_dfp(char *out, int16_t val, int scale)
 {
-    return fmt_s32_dfp(out, val, fp_digits);
+    return fmt_s32_dfp(out, val, scale);
 }
 
-size_t fmt_s32_dfp(char *out, int32_t val, int fp_digits)
+size_t fmt_s32_dfp(char *out, int32_t val, int scale)
 {
-    assert(fp_digits > -(int)TENMAP_SIZE);
+    unsigned pos = 0;
 
-    unsigned  pos = 0;
-
-    if (fp_digits == 0) {
+    if (scale == 0) {
         pos = fmt_s32_dec(out, val);
     }
-    else if (fp_digits > 0) {
+    else if (scale > 0) {
         pos = fmt_s32_dec(out, val);
         if (out) {
-            memset(&out[pos], '0', fp_digits);
+            memset(&out[pos], '0', scale);
         }
-        pos += fp_digits;
+        pos += scale;
     }
     else {
-        fp_digits *= -1;
-        uint32_t e = _tenmap[fp_digits];
-        int32_t abs = (val / (int32_t)e);
-        int32_t div = val - (abs * e);
-
-        /* the divisor should never be negative */
-        if (div < 0) {
-            div *= -1;
-        }
-        /* handle special case for negative number with zero as absolute value */
-        if ((abs == 0) && (val < 0)) {
+        scale = -scale;
+        char buf[10]; /* "2147483648" */
+        int negative = val < 0;
+        uint32_t uval = negative ? -val : val;
+        int len = fmt_u32_dec(buf, uval);
+        if (negative) {
             if (out) {
                 out[pos] = '-';
             }
             pos++;
         }
+        if (len <= scale) {
+            int zeroes = scale - len + 1;
+            if (out) {
+                memset(&out[pos], '0', zeroes);
+            }
+            pos += zeroes;
+        }
+        if (out) {
+            memcpy(&out[pos], buf, len);
+        }
 
-        if (!out) {
-            /* compensate for the decimal point character... */
-            pos += fmt_s32_dec(NULL, abs) + 1;
+        pos += len;
+
+        if (out) {
+            unsigned dot_pos = pos - scale;
+            for (unsigned i = pos; i >= dot_pos; i--) {
+                out[i] = out[i - 1];
+            }
+            out[dot_pos] = '.';
         }
-        else {
-            pos += fmt_s32_dec(&out[pos], abs);
-            out[pos++] = '.';
-            unsigned div_len = fmt_s32_dec(&out[pos], div);
-            fmt_lpad(&out[pos], div_len, (size_t)fp_digits, '0');
-        }
-        pos += fp_digits;
+        pos += 1;
     }
 
     return pos;
 }
-
 /* this is very probably not the most efficient implementation, as it at least
  * pulls in floating point math.  But it works, and it's always nice to have
  * low hanging fruits when optimizing. (Kaspar)
@@ -373,7 +387,7 @@ size_t fmt_float(char *out, float f, unsigned precision)
         f = -f;
     }
 
-    integer = (uint32_t) f;
+    integer = (uint32_t)f;
     f -= integer;
 
     uint32_t fraction = f * _tenmap[precision];
@@ -412,9 +426,9 @@ size_t fmt_lpad(char *out, size_t in_len, size_t pad_len, char pad_char)
         }
         else {
             char *pos = out + pad_len - 1;
-            out += in_len -1;
+            out += in_len - 1;
 
-            while(in_len--) {
+            while (in_len--) {
                 *pos-- = *out--;
             }
 
@@ -459,15 +473,15 @@ size_t fmt_to_lower(char *out, const char *str)
 uint32_t scn_u32_dec(const char *str, size_t n)
 {
     uint32_t res = 0;
-    while(n--) {
-        char c = *str++;
-        if (!fmt_is_digit(c)) {
+
+    while (n--) {
+        unsigned c = *str++;
+        unsigned d = c - (unsigned)'0';
+        if ( !( '0'<= c && c <= '9') ) {
             break;
         }
-        else {
-            res *= 10;
-            res += (c - '0');
-        }
+        res *= 10U;
+        res += d;
     }
     return res;
 }
@@ -477,46 +491,51 @@ uint32_t scn_u32_hex(const char *str, size_t n)
     uint32_t res = 0;
 
     while (n--) {
-        char c = *str++;
-        if (!fmt_is_digit(c)) {
-            if (fmt_is_upper(c)) {
-                c = _to_lower(c);
-            }
-            if (c == '\0' || c > 'f') {
-                break;
-            }
-            res <<= 4;
-            res |= c - 'a' + 0xa;
+        unsigned c = *str++;
+        unsigned d;
+        if (('0'<= c) && (c <= '9')){
+            d = c - (unsigned)'0';
+        }
+        else if (('A' <= c) && (c <= 'F')) {
+            d = c - (unsigned)'A' + 0xaU;
+        }
+        else if (('a' <= c) && (c <= 'f')) {
+            d = c - (unsigned)'a' + 0xaU;
         }
         else {
-            res <<= 4;
-            res |= c - '0';
+            break;
         }
+        res <<= 4U;
+        res |= d;
+
     }
     return res;
 }
 
+/* native gets special treatment as native's stdio code is ... special.
+ * And when not building for RIOT, there's no `stdio_write()`.
+ * In those cases, just defer to `printf()`.
+ */
+#if IS_USED(MODULE_STDIO_NATIVE) || !defined(RIOT_VERSION)
 void print(const char *s, size_t n)
 {
-#ifdef __WITH_AVRLIBC__
-    /* AVR's libc doesn't offer write(), so use fwrite() instead */
-    fwrite(s, n, 1, stdout);
-#else
-    while (n > 0) {
-        ssize_t written = write(STDOUT_FILENO, s, n);
-        if (written < 0) {
-            break;
-        }
-        n -= written;
-        s += written;
-    }
-#endif /* __WITH_AVRLIBC__ */
+    printf("%.*s", (int)n, s);
 }
+#else
+void print(const char *s, size_t n)
+{
+    /* flush the libc's output buffer so output is not intermingled. */
+    fflush(stdout);
+
+    stdio_write(s, n);
+}
+#endif
 
 void print_u32_dec(uint32_t val)
 {
     char buf[10]; /* "4294967295" */
     size_t len = fmt_u32_dec(buf, val);
+
     print(buf, len);
 }
 
@@ -524,26 +543,38 @@ void print_s32_dec(int32_t val)
 {
     char buf[11]; /* "-2147483648" */
     size_t len = fmt_s32_dec(buf, val);
+
     print(buf, len);
 }
 
 void print_byte_hex(uint8_t byte)
 {
     char buf[2];
+
     fmt_byte_hex(buf, byte);
     print(buf, sizeof(buf));
+}
+
+void print_bytes_hex(const void *bytes, size_t num)
+{
+    const uint8_t *b = bytes;
+
+    while (num--) {
+        print_byte_hex(*b++);
+    }
 }
 
 void print_u32_hex(uint32_t val)
 {
     char buf[8];
+
     fmt_u32_hex(buf, val);
     print(buf, sizeof(buf));
 }
 
 void print_u64_hex(uint64_t val)
 {
-    print_u32_hex(val>>32);
+    print_u32_hex(val >> 32);
     print_u32_hex(val);
 }
 
@@ -551,6 +582,7 @@ void print_u64_dec(uint64_t val)
 {
     char buf[20]; /* "18446744073709551615" */
     size_t len = fmt_u64_dec(buf, val);
+
     print(buf, len);
 }
 
@@ -558,6 +590,7 @@ void print_s64_dec(uint64_t val)
 {
     char buf[20]; /* "-9223372036854775808" */
     size_t len = fmt_s64_dec(buf, val);
+
     print(buf, len);
 }
 
@@ -565,10 +598,11 @@ void print_float(float f, unsigned precision)
 {
     char buf[19];
     size_t len = fmt_float(buf, f, precision);
+
     print(buf, len);
 }
 
-void print_str(const char* str)
+void print_str(const char *str)
 {
     print(str, fmt_strlen(str));
 }

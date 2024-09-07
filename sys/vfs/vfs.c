@@ -23,15 +23,21 @@
 #include <fcntl.h> /* for O_ACCMODE, ..., fcntl */
 #include <unistd.h> /* for STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO */
 
-#include "vfs.h"
-#include "mutex.h"
-#include "thread.h"
-#include "kernel_types.h"
+#include "atomic_utils.h"
 #include "clist.h"
+#include "compiler_hints.h"
+#include "container.h"
+#include "modules.h"
+#include "mutex.h"
+#include "sched.h"
+#include "test_utils/expect.h"
+#include "thread.h"
+#include "vfs.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
-#if ENABLE_DEBUG
+
+#if IS_ACTIVE(ENABLE_DEBUG)
 /* Since some of these functions are called by printf, we can't really call
  * printf from our functions or we end up in an infinite recursion. */
 #include <unistd.h> /* for STDOUT_FILENO */
@@ -39,6 +45,16 @@
 #else
 #define DEBUG_NOT_STDOUT(...)
 #endif
+
+/**
+ * @brief Automatic mountpoints
+ */
+XFA_INIT(vfs_mount_t, vfs_mountpoints_xfa);
+
+/**
+ * @brief Number of automatic mountpoints
+ */
+#define MOUNTPOINTS_NUMOF XFA_LEN(vfs_mount_t, vfs_mountpoints_xfa)
 
 /**
  * @internal
@@ -189,6 +205,7 @@ int vfs_fstat(int fd, struct stat *buf)
         /* driver does not implement fstat() */
         return -EINVAL;
     }
+    memset(buf, 0, sizeof(*buf));
     return filp->f_op->fstat(filp, buf);
 }
 
@@ -203,15 +220,26 @@ int vfs_fstatvfs(int fd, struct statvfs *buf)
         return res;
     }
     vfs_file_t *filp = &_vfs_open_files[fd];
-    if (filp->mp->fs->fs_op->fstatvfs == NULL) {
-        /* file system driver does not implement fstatvfs() */
-        if (filp->mp->fs->fs_op->statvfs != NULL) {
-            /* Fall back to statvfs */
-            return filp->mp->fs->fs_op->statvfs(filp->mp, "/", buf);
-        }
+    memset(buf, 0, sizeof(*buf));
+    if (filp->mp->fs->fs_op->statvfs == NULL) {
+        /* file system driver does not implement statvfs() */
         return -EINVAL;
     }
-    return filp->mp->fs->fs_op->fstatvfs(filp->mp, filp, buf);
+    return filp->mp->fs->fs_op->statvfs(filp->mp, "/", buf);
+}
+
+int vfs_dstatvfs(vfs_DIR *dirp, struct statvfs *buf)
+{
+    DEBUG("vfs_dstatvfs: %p, %p\n", (void*)dirp, (void *)buf);
+    if (buf == NULL) {
+        return -EFAULT;
+    }
+    memset(buf, 0, sizeof(*buf));
+    if (dirp->mp->fs->fs_op->statvfs == NULL) {
+        /* file system driver does not implement statvfs() */
+        return -EINVAL;
+    }
+    return dirp->mp->fs->fs_op->statvfs(dirp->mp, "/", buf);
 }
 
 off_t vfs_lseek(int fd, off_t off, int whence)
@@ -270,12 +298,13 @@ int vfs_open(const char *name, int flags, mode_t mode)
     if (fd < 0) {
         DEBUG("vfs_open: _init_fd: ERR %d!\n", fd);
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
         return fd;
     }
     vfs_file_t *filp = &_vfs_open_files[fd];
     if (filp->f_op->open != NULL) {
-        res = filp->f_op->open(filp, rel_path, flags, mode, name);
+        res = filp->f_op->open(filp, rel_path, flags, mode);
         if (res < 0) {
             /* something went wrong during open */
             DEBUG("vfs_open: open: ERR %d!\n", res);
@@ -288,32 +317,83 @@ int vfs_open(const char *name, int flags, mode_t mode)
     return fd;
 }
 
-ssize_t vfs_read(int fd, void *dest, size_t count)
+static inline int _prep_read(int fd, const void *dest, vfs_file_t **filp)
 {
-    DEBUG("vfs_read: %d, %p, %lu\n", fd, dest, (unsigned long)count);
     if (dest == NULL) {
         return -EFAULT;
     }
+
     int res = _fd_is_valid(fd);
     if (res < 0) {
         return res;
     }
-    vfs_file_t *filp = &_vfs_open_files[fd];
-    if (((filp->flags & O_ACCMODE) != O_RDONLY) & ((filp->flags & O_ACCMODE) != O_RDWR)) {
+    *filp = &_vfs_open_files[fd];
+
+    if ((((*filp)->flags & O_ACCMODE) != O_RDONLY) &&
+        (((*filp)->flags & O_ACCMODE) != O_RDWR)) {
         /* File not open for reading */
         return -EBADF;
     }
-    if (filp->f_op->read == NULL) {
+    if ((*filp)->f_op->read == NULL) {
         /* driver does not implement read() */
         return -EINVAL;
     }
+
+    return 0;
+}
+
+ssize_t vfs_read(int fd, void *dest, size_t count)
+{
+    DEBUG("vfs_read: %d, %p, %" PRIuSIZE "\n", fd, dest, count);
+    vfs_file_t *filp = NULL;
+
+    int res = _prep_read(fd, dest, &filp);
+    if (res) {
+        DEBUG("vfs_read: can't open file - %d\n", res);
+        return res;
+    }
+
     return filp->f_op->read(filp, dest, count);
 }
 
+ssize_t vfs_readline(int fd, char *dst, size_t len_max)
+{
+    DEBUG("vfs_readline: %d, %p, %" PRIuSIZE "\n", fd, (void *)dst, len_max);
+    vfs_file_t *filp = NULL;
+
+    int res = _prep_read(fd, dst, &filp);
+    if (res) {
+        DEBUG("vfs_readline: can't open file - %d\n", res);
+        return res;
+    }
+
+    const char *start = dst;
+    while (len_max) {
+        int res = filp->f_op->read(filp, dst, 1);
+        if (res < 0) {
+            break;
+        }
+
+        if (*dst == '\r' || *dst == '\n' || res == 0) {
+            *dst = 0;
+            ++dst;
+            break;
+        } else {
+            --len_max;
+            ++dst;
+        }
+    }
+
+    if (len_max == 0) {
+        return -E2BIG;
+    }
+
+    return dst - start;
+}
 
 ssize_t vfs_write(int fd, const void *src, size_t count)
 {
-    DEBUG_NOT_STDOUT(fd, "vfs_write: %d, %p, %lu\n", fd, src, (unsigned long)count);
+    DEBUG_NOT_STDOUT(fd, "vfs_write: %d, %p, %" PRIuSIZE "\n", fd, src, count);
     if (src == NULL) {
         return -EFAULT;
     }
@@ -331,6 +411,41 @@ ssize_t vfs_write(int fd, const void *src, size_t count)
         return -EINVAL;
     }
     return filp->f_op->write(filp, src, count);
+}
+
+ssize_t vfs_write_iol(int fd, const iolist_t *snips)
+{
+    int res, sum = 0;
+
+    while (snips) {
+        res = vfs_write(fd, snips->iol_base, snips->iol_len);
+        if (res < 0) {
+            return res;
+        }
+        sum += res;
+        snips = snips->iol_next;
+    }
+
+    return sum;
+}
+
+int vfs_fsync(int fd)
+{
+    DEBUG_NOT_STDOUT(fd, "vfs_fsync: %d\n", fd);
+    int res = _fd_is_valid(fd);
+    if (res < 0) {
+        return res;
+    }
+    vfs_file_t *filp = &_vfs_open_files[fd];
+    if (((filp->flags & O_ACCMODE) != O_WRONLY) & ((filp->flags & O_ACCMODE) != O_RDWR)) {
+        /* File not open for writing */
+        return -EBADF;
+    }
+    if (filp->f_op->fsync == NULL) {
+        /* driver does not implement fsync() */
+        return -EINVAL;
+    }
+    return filp->f_op->fsync(filp);
 }
 
 int vfs_opendir(vfs_DIR *dirp, const char *dirname)
@@ -363,10 +478,11 @@ int vfs_opendir(vfs_DIR *dirp, const char *dirname)
     dirp->mp = mountp;
     dirp->d_op = mountp->fs->d_op;
     if (dirp->d_op->opendir != NULL) {
-        int res = dirp->d_op->opendir(dirp, rel_path, dirname);
+        int res = dirp->d_op->opendir(dirp, rel_path);
         if (res < 0) {
             /* remember to decrement the open_files count */
-            atomic_fetch_sub(&mountp->open_files, 1);
+            uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+            assume(before > 0);
             return res;
         }
     }
@@ -404,7 +520,8 @@ int vfs_closedir(vfs_DIR *dirp)
         }
     }
     memset(dirp, 0, sizeof(*dirp));
-    atomic_fetch_sub(&mountp->open_files, 1);
+    uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+    assume(before > 0);
     return res;
 }
 
@@ -481,15 +598,14 @@ int vfs_mount(vfs_mount_t *mountp)
             }
         }
     }
-    /* insert last in list */
+    /* Insert last in list. This property is relied on by vfs_iterate_mount_dirs. */
     clist_rpush(&_vfs_mounts_list, &mountp->list_entry);
     mutex_unlock(&_mount_mutex);
     DEBUG("vfs_mount: mount done\n");
     return 0;
 }
 
-
-int vfs_umount(vfs_mount_t *mountp)
+int vfs_umount(vfs_mount_t *mountp, bool force)
 {
     DEBUG("vfs_umount: %p\n", (void *)mountp);
     int ret = check_mount(mountp);
@@ -505,8 +621,9 @@ int vfs_umount(vfs_mount_t *mountp)
         DEBUG("vfs_umount: invalid fs\n");
         return -EINVAL;
     }
-    DEBUG("vfs_umount: -> \"%s\" open=%d\n", mountp->mount_point, atomic_load(&mountp->open_files));
-    if (atomic_load(&mountp->open_files) > 0) {
+    DEBUG("vfs_umount: -> \"%s\" open=%u\n", mountp->mount_point,
+          (unsigned)atomic_load_u16(&mountp->open_files));
+    if (atomic_load_u16(&mountp->open_files) > 0 && !force) {
         mutex_unlock(&_mount_mutex);
         return -EBUSY;
     }
@@ -552,8 +669,9 @@ int vfs_rename(const char *from_path, const char *to_path)
         /* rename not supported */
         DEBUG("vfs_rename: rename not supported by fs!\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
-        return -EPERM;
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
+        return -EROFS;
     }
     const char *rel_to;
     vfs_mount_t *mountp_to;
@@ -563,15 +681,18 @@ int vfs_rename(const char *from_path, const char *to_path)
         /* No mount point maps to the requested file name */
         DEBUG("vfs_rename: to: no matching mount\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
         return res;
     }
     if (mountp_to != mountp) {
         /* The paths are on different file systems */
         DEBUG("vfs_rename: from_path and to_path are on different mounts\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
-        atomic_fetch_sub(&mountp_to->open_files, 1);
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
+        before = atomic_fetch_sub_u16(&mountp_to->open_files, 1);
+        assume(before > 0);
         return -EXDEV;
     }
     res = mountp->fs->fs_op->rename(mountp, rel_from, rel_to);
@@ -584,8 +705,10 @@ int vfs_rename(const char *from_path, const char *to_path)
         DEBUG("\n");
     }
     /* remember to decrement the open_files count */
-    atomic_fetch_sub(&mountp->open_files, 1);
-    atomic_fetch_sub(&mountp_to->open_files, 1);
+    uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+    assume(before > 0);
+    before = atomic_fetch_sub_u16(&mountp_to->open_files, 1);
+    assume(before > 0);
     return res;
 }
 
@@ -611,8 +734,9 @@ int vfs_unlink(const char *name)
         /* unlink not supported */
         DEBUG("vfs_unlink: unlink not supported by fs!\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
-        return -EPERM;
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
+        return -EROFS;
     }
     res = mountp->fs->fs_op->unlink(mountp, rel_path);
     DEBUG("vfs_unlink: unlink %p, \"%s\"", (void *)mountp, rel_path);
@@ -624,7 +748,8 @@ int vfs_unlink(const char *name)
         DEBUG("\n");
     }
     /* remember to decrement the open_files count */
-    atomic_fetch_sub(&mountp->open_files, 1);
+    uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+    assume(before > 0);
     return res;
 }
 
@@ -648,8 +773,9 @@ int vfs_mkdir(const char *name, mode_t mode)
         /* mkdir not supported */
         DEBUG("vfs_mkdir: mkdir not supported by fs!\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
-        return -EPERM;
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
+        return -EROFS;
     }
     res = mountp->fs->fs_op->mkdir(mountp, rel_path, mode);
     DEBUG("vfs_mkdir: mkdir %p, \"%s\"", (void *)mountp, rel_path);
@@ -661,7 +787,8 @@ int vfs_mkdir(const char *name, mode_t mode)
         DEBUG("\n");
     }
     /* remember to decrement the open_files count */
-    atomic_fetch_sub(&mountp->open_files, 1);
+    uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+    assume(before > 0);
     return res;
 }
 
@@ -685,8 +812,9 @@ int vfs_rmdir(const char *name)
         /* rmdir not supported */
         DEBUG("vfs_rmdir: rmdir not supported by fs!\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
-        return -EPERM;
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
+        return -EROFS;
     }
     res = mountp->fs->fs_op->rmdir(mountp, rel_path);
     DEBUG("vfs_rmdir: rmdir %p, \"%s\"", (void *)mountp, rel_path);
@@ -698,7 +826,8 @@ int vfs_rmdir(const char *name)
         DEBUG("\n");
     }
     /* remember to decrement the open_files count */
-    atomic_fetch_sub(&mountp->open_files, 1);
+    uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+    assume(before > 0);
     return res;
 }
 
@@ -722,12 +851,15 @@ int vfs_stat(const char *restrict path, struct stat *restrict buf)
         /* stat not supported */
         DEBUG("vfs_stat: stat not supported by fs!\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
         return -EPERM;
     }
+    memset(buf, 0, sizeof(*buf));
     res = mountp->fs->fs_op->stat(mountp, rel_path, buf);
     /* remember to decrement the open_files count */
-    atomic_fetch_sub(&mountp->open_files, 1);
+    uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+    assume(before > 0);
     return res;
 }
 
@@ -751,12 +883,15 @@ int vfs_statvfs(const char *restrict path, struct statvfs *restrict buf)
         /* statvfs not supported */
         DEBUG("vfs_statvfs: statvfs not supported by fs!\n");
         /* remember to decrement the open_files count */
-        atomic_fetch_sub(&mountp->open_files, 1);
+        uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+        assume(before > 0);
         return -EPERM;
     }
+    memset(buf, 0, sizeof(*buf));
     res = mountp->fs->fs_op->statvfs(mountp, rel_path, buf);
     /* remember to decrement the open_files count */
-    atomic_fetch_sub(&mountp->open_files, 1);
+    uint16_t before = atomic_fetch_sub_u16(&mountp->open_files, 1);
+    assume(before > 0);
     return res;
 }
 
@@ -779,8 +914,8 @@ int vfs_bind(int fd, int flags, const vfs_file_ops_t *f_op, void *private_data)
 
 int vfs_normalize_path(char *buf, const char *path, size_t buflen)
 {
-    DEBUG("vfs_normalize_path: %p, \"%s\" (%p), %lu\n",
-          (void *)buf, path, (void *)path, (unsigned long)buflen);
+    DEBUG("vfs_normalize_path: %p, \"%s\" (%p), %" PRIuSIZE "\n",
+          (void *)buf, path, (void *)path, buflen);
     size_t len = 0;
     int npathcomp = 0;
     const char *path_end = path + strlen(path); /* Find the terminating null byte */
@@ -854,14 +989,76 @@ const vfs_mount_t *vfs_iterate_mounts(const vfs_mount_t *cur)
             /* empty list */
             return NULL;
         }
+        node = node->next;
     }
     else {
         node = cur->list_entry.next;
-        if (node == _vfs_mounts_list.next) {
+        if (node == _vfs_mounts_list.next->next) {
             return NULL;
         }
     }
     return container_of(node, vfs_mount_t, list_entry);
+}
+
+/* General implementation note: This heavily relies on the produced opened dir
+ * to lock keep the underlying mount point from closing. */
+bool vfs_iterate_mount_dirs(vfs_DIR *dir)
+{
+    /* This is NULL after the prescribed initialization, or a valid (and
+     * locked) mount point otherwise */
+    vfs_mount_t *last_mp = dir->mp;
+
+    /* This is technically violating vfs_iterate_mounts' API, as that says no
+     * mounts or unmounts on the chain while iterating. However, as we know
+     * that the current dir's mount point is still on, the equivalent procedure
+     * of starting a new round of `vfs_iterate_mounts` from NULL and calling it
+     * until it produces `last_mp` (all while holding _mount_mutex) would leave
+     * us with the very same situation as if we started iteration with last_mp.
+     *
+     * On the cast discarding const: vfs_iterate_mounts's type is more for
+     * public use */
+    vfs_mount_t *next = (vfs_mount_t *)vfs_iterate_mounts(last_mp);
+    if (next == NULL) {
+        /* Ignoring errors, can't help with them */
+        vfs_closedir(dir);
+        return false;
+    }
+
+    /* Even if we held the mutex up to here (see above comment on the fiction
+     * of acquiring it, iterating to where we are, and releasing it again),
+     * we'd need to let go of it now to actually open the directory. This
+     * temporary count ensures that the file system will stick around for the
+     * directory open step that follows immediately */
+    uint16_t before = atomic_fetch_add_u16(&next->open_files, 1);
+    /* We cannot use assume() here, an overflow could occur in absence of
+     * any bugs and should also be checked for in production code. We use
+     * expect() here, which was actually written for unit tests but works
+     * here as well */
+    expect(before < UINT16_MAX);
+
+    /* Ignoring errors, can't help with them */
+    vfs_closedir(dir);
+
+    int err = vfs_opendir(dir, next->mount_point);
+    /* No matter the success, the open_files lock has done its duty */
+    before = atomic_fetch_sub_u16(&next->open_files, 1);
+    assume(before > 0);
+
+    if (err != 0) {
+        DEBUG("vfs_iterate_mount opendir erred: vfs_opendir(\"%s\") = %d\n", next->mount_point, err);
+        return false;
+    }
+    return true;
+}
+
+const vfs_file_t *vfs_file_get(int fd)
+{
+    if (_fd_is_valid(fd) == 0) {
+        return &_vfs_open_files[fd];
+    }
+    else {
+        return NULL;
+    }
 }
 
 static inline int _allocate_fd(int fd)
@@ -902,7 +1099,8 @@ static inline void _free_fd(int fd)
 {
     DEBUG("_free_fd: %d, pid=%d\n", fd, _vfs_open_files[fd].pid);
     if (_vfs_open_files[fd].mp != NULL) {
-        atomic_fetch_sub(&_vfs_open_files[fd].mp->open_files, 1);
+        uint16_t before = atomic_fetch_sub_u16(&_vfs_open_files[fd].mp->open_files, 1);
+        assume(before > 0);
     }
     _vfs_open_files[fd].pid = KERNEL_PID_UNDEF;
 }
@@ -966,11 +1164,21 @@ static inline int _find_mount(vfs_mount_t **mountpp, const char *name, const cha
         return -ENOENT;
     }
     /* Increment open files counter for this mount */
-    atomic_fetch_add(&mountp->open_files, 1);
+    uint16_t before = atomic_fetch_add_u16(&mountp->open_files, 1);
+    /* We cannot use assume() here, an overflow could occur in absence of
+     * any bugs and should also be checked for in production code. We use
+     * expect() here, which was actually written for unit tests but works
+     * here as well */
+    expect(before < UINT16_MAX);
     mutex_unlock(&_mount_mutex);
     *mountpp = mountp;
+
     if (rel_path != NULL) {
-        *rel_path = name + longest_match;
+        if (mountp->fs->flags & VFS_FS_FLAG_WANT_ABS_PATH) {
+            *rel_path = name;
+        } else {
+            *rel_path = name + longest_match;
+        }
     }
     return 0;
 }
@@ -988,6 +1196,128 @@ static inline int _fd_is_valid(int fd)
         return -EBADF;
     }
     return 0;
+}
+
+static bool _is_dir(vfs_mount_t *mountp, vfs_DIR *dir, const char *restrict path)
+{
+    const vfs_dir_ops_t *ops = mountp->fs->d_op;
+    if (!ops->opendir) {
+        return false;
+    }
+
+    dir->d_op = ops;
+    dir->mp = mountp;
+
+    int res = ops->opendir(dir, path);
+    if (res < 0) {
+        return false;
+    }
+
+    ops->closedir(dir);
+    return true;
+}
+
+int vfs_sysop_stat_from_fstat(vfs_mount_t *mountp, const char *restrict path, struct stat *restrict buf)
+{
+    const vfs_file_ops_t * f_op = mountp->fs->f_op;
+
+    union {
+        vfs_file_t file;
+        vfs_DIR dir;
+    } filedir = {
+        .file = {
+            .mp = mountp,
+            /* As per definition of the `vfsfile_ops::open` field */
+            .f_op = f_op,
+            .private_data = { .ptr = NULL },
+            .pos = 0,
+        },
+    };
+
+    int err = f_op->open(&filedir.file, path, 0, 0);
+    if (err < 0) {
+        if (_is_dir(mountp, &filedir.dir, path)) {
+            buf->st_mode = S_IFDIR;
+            return 0;
+        }
+        return err;
+    }
+    err = f_op->fstat(&filedir.file, buf);
+    f_op->close(&filedir.file);
+    return err;
+}
+
+static int _auto_mount(vfs_mount_t *mountp, unsigned i)
+{
+    (void) i;
+    DEBUG("vfs%u: mounting as '%s'\n", i, mountp->mount_point);
+    int res = vfs_mount(mountp);
+    if (res == 0) {
+        return 0;
+    }
+
+    if (IS_ACTIVE(MODULE_VFS_AUTO_FORMAT)) {
+        DEBUG("vfs%u: formatting…\n", i);
+        res = vfs_format(mountp);
+        if (res) {
+            DEBUG("vfs%u: format: error %d\n", i, res);
+            return res;
+        }
+        res = vfs_mount(mountp);
+    }
+
+    if (res) {
+        DEBUG("vfs%u mount: error %d\n", i, res);
+    }
+
+    return res;
+}
+
+void auto_init_vfs(void)
+{
+    for (unsigned i = 0; i < MOUNTPOINTS_NUMOF; ++i) {
+        _auto_mount(&vfs_mountpoints_xfa[i], i);
+    }
+}
+
+void auto_unmount_vfs(void)
+{
+    for (unsigned i = 0; i < MOUNTPOINTS_NUMOF; ++i) {
+        vfs_umount(&vfs_mountpoints_xfa[i], true);
+    }
+}
+
+int vfs_mount_by_path(const char *path)
+{
+    for (unsigned i = 0; i < MOUNTPOINTS_NUMOF; ++i) {
+        if (strcmp(path, vfs_mountpoints_xfa[i].mount_point) == 0) {
+            return _auto_mount(&vfs_mountpoints_xfa[i], i);
+        }
+    }
+
+    return -ENOENT;
+}
+
+int vfs_unmount_by_path(const char *path, bool force)
+{
+    for (unsigned i = 0; i < MOUNTPOINTS_NUMOF; ++i) {
+        if (strcmp(path, vfs_mountpoints_xfa[i].mount_point) == 0) {
+            return vfs_umount(&vfs_mountpoints_xfa[i], force);
+        }
+    }
+
+    return -ENOENT;
+}
+
+int vfs_format_by_path(const char *path)
+{
+    for (unsigned i = 0; i < MOUNTPOINTS_NUMOF; ++i) {
+        if (strcmp(path, vfs_mountpoints_xfa[i].mount_point) == 0) {
+            return vfs_format(&vfs_mountpoints_xfa[i]);
+        }
+    }
+
+    return -ENOENT;
 }
 
 /** @} */

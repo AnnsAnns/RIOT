@@ -17,6 +17,7 @@
  * @}
  */
 
+#include <assert.h>
 #include <stdint.h>
 #include <errno.h>
 
@@ -30,8 +31,7 @@
 #include "net/gnrc/icmpv6/error.h"
 #include "net/inet_csum.h"
 
-
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 /**
@@ -42,11 +42,8 @@ static kernel_pid_t _pid = KERNEL_PID_UNDEF;
 /**
  * @brief   Allocate memory for the UDP thread's stack
  */
-#if ENABLE_DEBUG
-static char _stack[GNRC_UDP_STACK_SIZE + THREAD_EXTRA_STACKSIZE_PRINTF];
-#else
-static char _stack[GNRC_UDP_STACK_SIZE];
-#endif
+static char _stack[GNRC_UDP_STACK_SIZE + DEBUG_EXTRA_STACKSIZE];
+static msg_t _msg_queue[GNRC_UDP_MSG_QUEUE_SIZE];
 
 /**
  * @brief   Calculate the UDP checksum dependent on the network protocol
@@ -224,14 +221,13 @@ static void *_event_loop(void *arg)
 {
     (void)arg;
     msg_t msg, reply;
-    msg_t msg_queue[GNRC_UDP_MSG_QUEUE_SIZE];
     gnrc_netreg_entry_t netreg = GNRC_NETREG_ENTRY_INIT_PID(GNRC_NETREG_DEMUX_CTX_ALL,
-                                                            sched_active_pid);
+                                                            thread_getpid());
     /* preset reply message */
     reply.type = GNRC_NETAPI_MSG_TYPE_ACK;
     reply.content.value = (uint32_t)-ENOTSUP;
     /* initialize message queue */
-    msg_init_queue(msg_queue, GNRC_UDP_MSG_QUEUE_SIZE);
+    msg_init_queue(_msg_queue, GNRC_UDP_MSG_QUEUE_SIZE);
     /* register UPD at netreg */
     gnrc_netreg_register(GNRC_NETTYPE_UDP, &netreg);
 
@@ -307,7 +303,7 @@ int gnrc_udp_init(void)
     if (_pid == KERNEL_PID_UNDEF) {
         /* start UDP thread */
         _pid = thread_create(_stack, sizeof(_stack), GNRC_UDP_PRIO,
-                             THREAD_CREATE_STACKTEST, _event_loop, NULL, "udp");
+                             0, _event_loop, NULL, "udp");
     }
     return _pid;
 }

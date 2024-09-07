@@ -1,11 +1,7 @@
 PSEUDOMODULES += olimex_esp32_gateway
 
-USEMODULE += boards_common_esp32
-
-# enables esp_eth as default network device
-# cannot be done in Makefile.dep since Makefile.dep is included too late
-ifneq (,$(filter netdev_default gnrc_netdev_default,$(USEMODULE)))
-  USEMODULE += esp_eth
-endif
-
 include $(RIOTBOARD)/common/esp32/Makefile.include
+
+# Only consider TTYs matching the following filter when auto-selecting the TTY
+# with `MOST_RECENT_PORT=1`.
+TTY_BOARD_FILTER := --driver 'ch341' --vendor '1a86' --model 'USB2.0-Serial'

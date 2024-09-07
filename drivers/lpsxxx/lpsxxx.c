@@ -30,8 +30,9 @@
 #include "periph/i2c.h"
 #include "lpsxxx.h"
 #include "lpsxxx_internal.h"
+#include "macros/math.h"
 
-#define ENABLE_DEBUG        (0)
+#define ENABLE_DEBUG        0
 #include "debug.h"
 
 /**
@@ -41,12 +42,14 @@
 
 /**
  * @brief temperature base value and divider for norming temperature output
+ *
+ * @details temperature base is given in centi-degree-celsius
  */
 #if MODULE_LPS331AP || MODULE_LPS25HB
-#define TEMP_BASE           (42.5f)
+#define TEMP_BASE           (4250U) /* = 42.5 C */
 #define TEMP_DIVIDER        (480U)
 #else
-#define TEMP_BASE           (0.0f)
+#define TEMP_BASE           (0U)
 #define TEMP_DIVIDER        (100U)
 #endif
 
@@ -106,6 +109,9 @@ int lpsxxx_init(lpsxxx_t *dev, const lpsxxx_params_t * params)
 #elif MODULE_LPS22HB
     tmp = LPSXXX_CTRL_REG1_EN_LPFP | /* Low-pass filter configuration: ODR/9 */
             LPSXXX_CTRL_REG1_BDU | (DEV_RATE << LPSXXX_CTRL_REG1_ODR_POS);
+#elif MODULE_LPS22HH || MODULE_LPS22CH
+    tmp = LPSXXX_CTRL_REG1_EN_LPFP | /* Low-pass filter configuration: ODR/9 */
+            LPSXXX_CTRL_REG1_BDU | (DEV_RATE << LPSXXX_CTRL_REG1_ODR_POS);
 #endif
 
     DEBUG("[lpsxxx] init: update reg1, value: %02X\n", tmp);
@@ -125,8 +131,8 @@ int lpsxxx_init(lpsxxx_t *dev, const lpsxxx_params_t * params)
 int lpsxxx_read_temp(const lpsxxx_t *dev, int16_t *temp)
 {
     uint8_t tmp;
-    int16_t val = 0;
-    float res = TEMP_BASE;      /* reference value -> see datasheet */
+    int16_t val;
+    uint16_t res = TEMP_BASE;      /* reference value -> see datasheet */
 
     i2c_acquire(DEV_I2C);
     if (i2c_read_reg(DEV_I2C, DEV_ADDR, LPSXXX_REG_TEMP_OUT_L, &tmp, 0) < 0) {
@@ -134,7 +140,7 @@ int lpsxxx_read_temp(const lpsxxx_t *dev, int16_t *temp)
         DEBUG("[lpsxxx] read_temp: cannot read TEMP_OUT_L register\n");
         return -LPSXXX_ERR_I2C;
     }
-    val |= tmp;
+    val = tmp;
 
     if (i2c_read_reg(DEV_I2C, DEV_ADDR, LPSXXX_REG_TEMP_OUT_H, &tmp, 0) < 0) {
         i2c_release(DEV_I2C);
@@ -144,13 +150,12 @@ int lpsxxx_read_temp(const lpsxxx_t *dev, int16_t *temp)
     i2c_release(DEV_I2C);
     val |= ((uint16_t)tmp << 8);
 
-    DEBUG("[lpsxxx] read_temp: raw data %08" PRIx32 "\n", (uint32_t)val);
+    DEBUG("[lpsxxx] read_temp: raw data %08" PRIx16 "\n", val);
 
-    /* compute actual temperature value in °C */
-    res += ((float)val) / TEMP_DIVIDER;
+    /* compute actual temperature value in c°C */
+    res += DIV_ROUND((int32_t)val * 100, TEMP_DIVIDER);
 
-    /* return temperature in c°C */
-    *temp = (int16_t)(res * 100);
+    *temp = res;
     return LPSXXX_OK;
 }
 
@@ -213,7 +218,6 @@ int lpsxxx_enable(const lpsxxx_t *dev)
     tmp |= LPSXXX_CTRL_REG1_EN_LPFP | /* Low-pass filter configuration: ODR/9 */
             LPSXXX_CTRL_REG1_BDU | (DEV_RATE << LPSXXX_CTRL_REG1_ODR_POS);
 #endif
-
 
     DEBUG("[lpsxxx] enable: update reg1 with %02X\n", tmp);
 

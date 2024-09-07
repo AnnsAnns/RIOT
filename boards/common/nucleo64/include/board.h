@@ -35,18 +35,14 @@ extern "C" {
  * @{
  */
 #if defined(CPU_MODEL_STM32F302R8) || defined(CPU_MODEL_STM32L433RC)
-#define LED0_PORT           GPIOB
-#define LED0_PIN            GPIO_PIN(PORT_B, 13)
-#define LED0_MASK           (1 << 13)
+#define LED0_PIN_NUM        13
+#define LED0_PORT           GPIO_PORT_B /**< GPIO port of LED 0 */
+#define LED0_PORT_NUM       PORT_B
 #else
-#define LED0_PORT           GPIOA
-#define LED0_PIN            GPIO_PIN(PORT_A, 5)
-#define LED0_MASK           (1 << 5)
+#define LED0_PIN_NUM        5
+#define LED0_PORT           GPIO_PORT_A /**< GPIO port of LED 0 */
+#define LED0_PORT_NUM       PORT_A
 #endif
-
-#define LED0_ON             (LED0_PORT->BSRR = LED0_MASK)
-#define LED0_OFF            (LED0_PORT->BSRR = (LED0_MASK << 16))
-#define LED0_TOGGLE         (LED0_PORT->ODR  ^= LED0_MASK)
 /** @} */
 
 /**
@@ -54,7 +50,8 @@ extern "C" {
  * @{
  */
 #define BTN0_PIN            GPIO_PIN(PORT_C, 13)
-#ifdef CPU_MODEL_STM32L433RC
+#if defined(CPU_MODEL_STM32L433RC) || defined(CPU_MODEL_STM32G474RE) || \
+    defined(CPU_MODEL_STM32G431RB)
 #define BTN0_MODE           GPIO_IN_PD
 #else
 #define BTN0_MODE           GPIO_IN_PU
@@ -92,9 +89,37 @@ static const motor_driver_config_t motor_driver_config[] = {
 #define MOTOR_DRIVER_NUMOF           ARRAY_SIZE(motor_driver_config)
 /** @} */
 
+/**
+ * @name Describe MRF24J40 radio
+ * @{
+ */
+#ifndef MRF24J40_PARAM_SPI
+#define MRF24J40_PARAM_SPI      SPI_DEV(0)
+#endif
+
+#ifndef MRF24J40_PARAM_SPI_CLK
+#define MRF24J40_PARAM_SPI_CLK  SPI_CLK_5MHZ
+#endif
+
+#ifndef MRF24J40_PARAM_CS
+#define MRF24J40_PARAM_CS       ARDUINO_PIN_10
+#endif
+
+#ifndef MRF24J40_PARAM_INT
+#define MRF24J40_PARAM_INT      ARDUINO_PIN_7
+#endif
+
+#ifndef MRF24J40_PARAM_RESET
+#define MRF24J40_PARAM_RESET    ARDUINO_PIN_5
+#endif
+
+/** @} */
+
 #ifdef __cplusplus
 }
 #endif
+
+#include "stm32_leds.h"
 
 #endif /* BOARD_H */
 /** @} */

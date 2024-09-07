@@ -11,6 +11,8 @@
  * @ingroup     net
  * @brief       FIB implementation
  *
+ * This module is unused by RIOT's networking stacks, see @ref net_gnrc_ipv6_nib_ft
+ * instead.
  * @{
  *
  * @file
@@ -28,7 +30,7 @@
 #include <stdint.h>
 
 #include "net/fib/table.h"
-#include "kernel_types.h"
+#include "sched.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -422,7 +424,6 @@ int fib_sr_entry_overwrite(fib_table_t *table, fib_sr_t *fib_sr,
 */
 int fib_sr_entry_get_address(fib_table_t *table, fib_sr_t *fib_sr, fib_sr_entry_t *sr_path_entry,
                              uint8_t *addr, size_t *addr_size);
-
 
 /**
 * @brief copies a source route to the given destination

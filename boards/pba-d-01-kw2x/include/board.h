@@ -58,7 +58,6 @@ extern "C"
  * @name Macro for button S1/S2.
  * @{
  */
-#define BTN0_PORT           PORTD
 #define BTN0_PIN            GPIO_PIN(PORT_D, 1)
 #define BTN0_MODE           GPIO_IN_PU
 /** @} */
@@ -82,13 +81,17 @@ extern "C"
 #define KW2XRF_PARAM_SPI_CLK       (SPI_CLK_10MHZ)
 #define KW2XRF_PARAM_CS            GPIO_PIN(KW2XDRF_PORT, KW2XDRF_PCS0_PIN)
 #define KW2XRF_PARAM_INT           GPIO_PIN(KW2XDRF_PORT, KW2XDRF_IRQ_PIN)
+#define KW2XRF_PARAM_RESET         GPIO_PIN(KW2XDRF_IRQ_PIN, KW2XDRF_RST_PIN)
 #define KW2XRF_SHARED_SPI          (0)
 /** @}*/
 
 /**
- * @brief Initialize board specific hardware, including clock, LEDs and std-IO
+ * @name TMP006 configuration
+ *
+ * @{
  */
-void board_init(void);
+#define TMP00X_PARAM_ADDR          (0x41)
+/** @}*/
 
 #ifdef __cplusplus
 }

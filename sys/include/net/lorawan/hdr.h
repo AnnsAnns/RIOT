@@ -44,6 +44,9 @@
 #define LORAWAN_HDR_FOPTS_LEN_MASK      (0x0F)  /**< Frame options mask */
 #define LORAWAN_HDR_FOPTS_LEN_POS       (0U)    /**< Frame options position */
 
+#define LORAWAN_JA_HDR_OPTNEG_MASK   (0x80)  /**< OptNeg bit mask */
+#define LORAWAN_JA_HDR_OPTNEG_POS    (7U)    /**< OptNeg bit position */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -64,7 +67,7 @@ extern "C" {
  * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
- * @see <a href="https://www.lora-alliance.org/portals/0/specs/LoRaWAN%20Specification%201R0.pdf">
+ * @see <a href="https://lora-alliance.org/sites/default/files/2018-07/lorawan1.0.3.pdf">
  *          LoRaWAN spcefication, section 4
  *      </a>
  */
@@ -92,7 +95,7 @@ typedef struct __attribute__((packed)) {
  */
 typedef struct __attribute__((packed)) {
     uint8_t mt_maj;                             /**< mtype and major version holder */
-    le_uint64_t app_eui;                        /**< application EUI */
+    le_uint64_t join_eui;                       /**< join EUI. Mapped to app EUI if LoRaWAN 1.0x */
     le_uint64_t dev_eui;                        /**< device EUI */
     le_uint16_t dev_nonce;                      /**< device nonce */
     le_uint32_t mic;                            /**< message integrity code */
@@ -103,7 +106,7 @@ typedef struct __attribute__((packed)) {
  */
 typedef struct __attribute__((packed)) {
     uint8_t mt_maj;                             /**< mtype and major version holder */
-    uint8_t app_nonce[LORAMAC_APP_NONCE_LEN];   /**< application nonce */
+    uint8_t join_nonce[LORAMAC_JOIN_NONCE_LEN]; /**< join nonce. Mapped to application nonce if LoRaWAN 1.0x */
     uint8_t net_id[LORAMAC_NETWORK_ID_LEN];     /**< network id */
     uint8_t dev_addr[LORAMAC_DEVADDR_LEN];      /**< device address */
     uint8_t dl_settings;                        /**< downlink settings */
@@ -277,6 +280,22 @@ static inline uint8_t lorawan_hdr_get_frame_opts_len(lorawan_hdr_t *hdr)
 {
     return (hdr->fctrl & LORAWAN_HDR_FOPTS_LEN_MASK) >> LORAWAN_HDR_FOPTS_LEN_POS;
 }
+
+/**
+ * @brief Get LoRaWAN join accept message OptNeg bit
+ *
+ * @param[in] ja_hdr Join accept message header
+ *
+ * @return value of the OptNeg bit
+ */
+static inline bool lorawan_ja_hdr_get_optneg(lorawan_join_accept_t *ja_hdr)
+{
+    return (ja_hdr->dl_settings & LORAWAN_JA_HDR_OPTNEG_MASK) >> LORAWAN_JA_HDR_OPTNEG_POS;
+}
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* NET_LORAWAN_HDR_H */
 /** @} */

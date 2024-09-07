@@ -28,7 +28,7 @@
 #include "bmx055.h"
 #include "bmx055_internal.h"
 
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG    0
 #include "debug.h"
 
 #define BUS             (dev->p.i2c)
@@ -234,7 +234,7 @@ int bmx055_gyro_read(const bmx055_t *dev, int16_t *data)
     uint16_t scale;
 
     /* converting scale info into real scaling values */
-    scale = (GYRO_2000_DPS / pow(2, dev->p.gyro_scale));
+    scale = GYRO_2000_DPS >> dev->p.gyro_scale;
 
     /* reading gyroscope data */
     i2c_acquire(BUS);

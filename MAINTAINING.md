@@ -1,11 +1,11 @@
 # RIOT Maintainer Guidelines
 
-This list presents a series of guidelines for maintainers, including technical
-and non-technical. The list is not exhaustive, and represents a baseline on
+This list presents a series of technical and non-technical guidelines for maintainers.
+The list is not exhaustive, it represents a baseline on
 things that should be ensured for contributions.
 
 Notes:
--   Any of the items in this list might be skipped, if clearly and logically
+-   Any of the items in this list can be skipped, if clearly and logically
     articulated reasons are presented.
 -   The order of the steps is meant to maximize efficiency and minimize
     overhead, with the philosophy that failing in step n makes steps n+x
@@ -14,9 +14,9 @@ Notes:
     state (for example, due to poor code cleanliness or overall design), it
     might be more efficient to give the contributor some broader comments for
     improvement before further review.
--   This is a working document and any changes, additions, or other discussions
+-   This is a working document: any changes, additions, or other discussions
     are encouraged, via PRs raised against the document. Changes to this
-    document should however have at least two ACKs, to ensure these guidelines
+    document should have at least two ACKs, to ensure these guidelines
     are well thought out, and that they reflect community consensus.
 
 The [list of maintainers] gives information on the current maintainers and the
@@ -54,7 +54,7 @@ the overall validity of the PR.
 
 ### 2. - Review the design of the code
 
-The following list is not exhaustive and addresses the coding issues we have
+The following list is not exhaustive, it addresses the coding issues we have
 regularly seen in the past. In particular, check that the [Best Practices]
 are followed. These checks can be aided (but not replaced) by a tool such as
 Coccinelle, using the script found in dist/tools/coccinelle.
@@ -99,7 +99,6 @@ complete that no input from the original developer or maintainer is required.
 3.  Are critical/hard to understand parts in the code documented?
 4.  Check grammar and spelling of documentation
 
-
 ## Non-technical guidelines
 
 ### Interaction with contributors
@@ -116,7 +115,12 @@ complete that no input from the original developer or maintainer is required.
     means we are investing in our community.
 -   Be friendly. Respect the original author, bearing in mind that their coding
     style or their design may be just as valid as the way you would have done
-    it. And of course, always follow the [Code of Conduct].
+    it and of course, always follow the [Code of Conduct].
+-   If a contributor has opened a PR, the reviewer should attempt to
+    help the author of the contribution to get it to its best shape and
+    according to the RIOT Standard™. If there is disagreement, it’s important
+    to understand the reasons behind and always give technical arguments,
+    pros and cons or snippets.
 
 
 ### Organisation of reviewing between maintainers
@@ -130,14 +134,14 @@ Rather, give your verbal ACK and describe what you reviewed. In addition, if you
 processed or reasonably stepped over a whole section, mark the PR with the
 according label from the "Reviewed:" category. If you set a label by stepping
 over a section, please articulate your reasoning for this clearly, as noted in
-the [introduction](#introduction). This will help other maintainers help to
+the [introduction](#introduction). This will help other maintainers to
 better understand your line of thought. If you disagree with the assessment of
 a previous review, you may remove a certain "Reviewed:" label. Please state your
 reasoning in this case as well.
 
 When all "Reviewed:" labels are set you may give your approval for the PR.
 
-As everything in this document this is a "CAN", not a "MUST": It might help
+As for everything in this document this is a "CAN", not a "MUST": It might help
 other maintainers to track your work, but if the overhead isn't justified, a
 simple approving ACK might suffice.
 
@@ -154,6 +158,28 @@ GitHub's review sidebar.
 
 If there are multiple maintainers reviewing a PR, always give the other
 maintainers reasonable time to ACK before dismissing their review.
+
+### Release, Feature Freeze, and Backports
+
+Before the official release of a new RIOT version, two feature freeze periods
+are announced on the
+[RIOT development email list](https://lists.riot-os.org/mailman/listinfo/devel):
+The soft feature freeze and the hard feature freeze. During the soft feature
+freeze only PRs with minor impact should be merged into master. The hard feature
+freeze begins when the release manager creates a new release branch. Therefore,
+the restriction on merging PRs into the master branch are lifted at that point.
+
+Once the release branch is created, no backports of new features will be
+accepted. Instead, backports should consist only of bug fixes or of reverting
+features that were added during the last development period (and not part of any
+release), but didn't reach the required maturity or API stability yet. For
+bigger changes (which explicitly includes any revert), the PR has to be
+announced to the maintainer mailing list and should be merged no sooner than
+48h after the announcement and needs at least two ACKs.
+
+In case of security relevant backports (both bug fixes and reverts), the
+announcement can be skipped and the fix merged once at least two ACKs are
+there.
 
 [list of maintainers]: https://github.com/RIOT-OS/RIOT/wiki/Maintainers
 [Best Practices]: https://github.com/RIOT-OS/RIOT/wiki/Best-Practice-for-RIOT-Programming

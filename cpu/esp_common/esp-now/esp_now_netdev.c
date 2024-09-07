@@ -21,27 +21,30 @@
 #include "tools.h"
 
 #include <string.h>
-#include <assert.h>
 #include <errno.h>
 
 #include "net/gnrc.h"
-#include "xtimer.h"
+#include "ztimer.h"
 
 #include "esp_common.h"
 #include "esp_attr.h"
+#ifdef CPU_ESP8266
 #include "esp_event_loop.h"
+#else
+#include "esp_event.h"
+#endif
 #include "esp_now.h"
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "irq_arch.h"
 #include "od.h"
 
-#include "nvs_flash/include/nvs_flash.h"
+#include "nvs_flash.h"
 
 #include "esp_now_params.h"
 #include "esp_now_netdev.h"
 
-#define ENABLE_DEBUG             (0)
+#define ENABLE_DEBUG             0
 #include "debug.h"
 
 #define ESP_NOW_UNICAST          (1)
@@ -66,7 +69,7 @@
 static esp_now_netdev_t _esp_now_dev = { 0 };
 static const netdev_driver_t _esp_now_driver;
 
-static bool _esp_now_add_peer(const uint8_t* bssid, uint8_t channel, uint8_t* key)
+static bool _esp_now_add_peer(const uint8_t* bssid, uint8_t channel, const uint8_t* key)
 {
     if (esp_now_is_peer_exist(bssid)) {
         return false;
@@ -76,7 +79,7 @@ static bool _esp_now_add_peer(const uint8_t* bssid, uint8_t channel, uint8_t* ke
 
     memcpy(peer.peer_addr, bssid, ESP_NOW_ETH_ALEN);
     peer.channel = channel;
-    peer.ifidx = ESP_IF_WIFI_AP;
+    peer.ifidx = WIFI_IF_AP;
 
     if (esp_now_params.key) {
         peer.encrypt = true;
@@ -92,7 +95,7 @@ static bool _esp_now_add_peer(const uint8_t* bssid, uint8_t channel, uint8_t* ke
 
 #if ESP_NOW_UNICAST
 
-static xtimer_t _esp_now_scan_peers_timer;
+static ztimer_t _esp_now_scan_peers_timer;
 static bool _esp_now_scan_peers_done = false;
 
 #define ESP_NOW_APS_BLOCK_SIZE 8 /* has to be power of two */
@@ -100,7 +103,7 @@ static bool _esp_now_scan_peers_done = false;
 static wifi_ap_record_t* aps = NULL;
 static uint32_t aps_size = 0;
 
-static const wifi_scan_config_t scan_cfg = {
+static wifi_scan_config_t scan_cfg = {
         .ssid = NULL,
         .bssid = NULL,
         .channel = ESP_NOW_CHANNEL,
@@ -118,7 +121,7 @@ static void IRAM_ATTR esp_now_scan_peers_done(void)
     uint16_t ap_num;
 
     ret = esp_wifi_scan_get_ap_num(&ap_num);
-    DEBUG("wifi_scan_get_ap_num ret=%d num=%d\n", ret ,ap_num);
+    DEBUG("wifi_scan_get_ap_num ret=%d num=%d\n", ret, ap_num);
 
     if (ret == ESP_OK && ap_num) {
         uint32_t state;
@@ -155,12 +158,12 @@ static void IRAM_ATTR esp_now_scan_peers_done(void)
         critical_exit_var(state);
     }
 
-#if ENABLE_DEBUG
-    esp_now_peer_num_t peer_num;
-    esp_now_get_peer_num(&peer_num);
-    DEBUG("associated peers total=%d, encrypted=%d\n",
-          peer_num.total_num, peer_num.encrypt_num);
-#endif /* ENABLE_DEBUG */
+    if (IS_ACTIVE(ENABLE_DEBUG)) {
+        esp_now_peer_num_t peer_num;
+        esp_now_get_peer_num(&peer_num);
+        DEBUG("associated peers total=%d, encrypted=%d\n",
+               peer_num.total_num, peer_num.encrypt_num);
+    }
 
     _esp_now_scan_peers_done = true;
 
@@ -174,18 +177,19 @@ static void esp_now_scan_peers_start(void)
     /* start the scan */
     esp_wifi_scan_start(&scan_cfg, false);
     /* set the time for next scan */
-    xtimer_set(&_esp_now_scan_peers_timer, esp_now_params.scan_period);
+    ztimer_set(ZTIMER_MSEC, &_esp_now_scan_peers_timer, esp_now_params.scan_period);
 }
 
 static void IRAM_ATTR esp_now_scan_peers_timer_cb(void* arg)
 {
     DEBUG("%s\n", __func__);
 
-    esp_now_netdev_t* dev = (esp_now_netdev_t*)arg;
+    netdev_t *netdev = arg;
+    esp_now_netdev_t *dev = container_of(netdev, esp_now_netdev_t, netdev);
 
     if (dev->netdev.event_callback) {
         dev->scan_event++;
-        dev->netdev.event_callback((netdev_t*)dev, NETDEV_EVENT_ISR);
+        netdev_trigger_event_isr(&dev->netdev);
     }
 }
 
@@ -246,7 +250,7 @@ static IRAM_ATTR void esp_now_recv_cb(const uint8_t *mac, const uint8_t *data, i
      * `NETDEV_EVENT_ISR` first. We can call the receive function directly.
      */
     if (_esp_now_dev.netdev.event_callback) {
-        _esp_now_dev.netdev.event_callback((netdev_t*)&_esp_now_dev,
+        _esp_now_dev.netdev.event_callback(&_esp_now_dev.netdev,
                                            NETDEV_EVENT_RX_COMPLETE);
     }
 
@@ -290,6 +294,9 @@ static esp_err_t IRAM_ATTR _esp_system_event_handler(void *ctx, system_event_t *
 extern esp_err_t esp_system_event_add_handler(system_event_cb_t handler,
                                               void *arg);
 
+/* ESP-NOW SoftAP configuration */
+static wifi_config_t wifi_config_ap = {};
+
 esp_now_netdev_t *netdev_esp_now_setup(void)
 {
     esp_now_netdev_t* dev = &_esp_now_dev;
@@ -307,11 +314,11 @@ esp_now_netdev_t *netdev_esp_now_setup(void)
     /* set the event handler */
     esp_system_event_add_handler(_esp_system_event_handler, NULL);
 
-#ifdef MCU_ESP32
+#ifdef CPU_ESP32
     /* init the WiFi driver */
     extern portMUX_TYPE g_intr_lock_mux;
     mutex_init(&g_intr_lock_mux);
-#endif /* MCU_ESP32 */
+#endif /* CPU_ESP32 */
 
     esp_err_t result;
 
@@ -360,9 +367,7 @@ esp_now_netdev_t *netdev_esp_now_setup(void)
     /* get SoftAP interface mac address and store it as device address */
     esp_read_mac(dev->addr, ESP_MAC_WIFI_SOFTAP);
 
-    /* prepare the ESP_NOW configuration for SoftAP */
-    wifi_config_t wifi_config_ap = {};
-
+    /* prepare initial ESP_NOW configuration for SoftAP */
     strcpy ((char*)wifi_config_ap.ap.password, esp_now_params.softap_pass);
     sprintf((char*)wifi_config_ap.ap.ssid, "%s%02x%02x%02x%02x%02x%02x",
             ESP_NOW_AP_PREFIX,
@@ -386,13 +391,13 @@ esp_now_netdev_t *netdev_esp_now_setup(void)
     }
 
     /* set the Station and SoftAP configuration */
-    result = esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config_sta);
+    result = esp_wifi_set_config(WIFI_IF_STA, &wifi_config_sta);
     if (result != ESP_OK) {
         LOG_TAG_ERROR("esp_now", "esp_wifi_set_config station failed with "
                       "return value %d\n", result);
         return NULL;
     }
-    result = esp_wifi_set_config(ESP_IF_WIFI_AP, &wifi_config_ap);
+    result = esp_wifi_set_config(WIFI_IF_AP, &wifi_config_ap);
     if (result != ESP_OK) {
         LOG_TAG_ERROR("esp_now",
                       "esp_wifi_set_config softap failed with return value %d\n",
@@ -411,7 +416,7 @@ esp_now_netdev_t *netdev_esp_now_setup(void)
 
 #if !ESP_NOW_UNICAST
     /* all ESP-NOW nodes get the shared mac address on their station interface */
-    esp_wifi_set_mac(ESP_IF_WIFI_STA, (uint8_t*)_esp_now_mac);
+    esp_wifi_set_mac(WIFI_IF_STA, (uint8_t*)_esp_now_mac);
 #endif
 
 #endif /* MODULE_ESP_WIFI */
@@ -449,12 +454,41 @@ esp_now_netdev_t *netdev_esp_now_setup(void)
     DEBUG("%s: multicast node add %s\n", __func__, res ? "success" : "error");
 #endif /* ESP_NOW_UNICAST */
 
+    netdev_register(&dev->netdev, NETDEV_ESP_NOW, 0);
     return dev;
+}
+
+int esp_now_set_channel(uint8_t channel)
+{
+#ifdef ESP_NOW_UNICAST
+    scan_cfg.channel = channel;
+#endif
+#ifdef MODULE_ESP_WIFI
+    /* channel is controlled by `esp_wifi`, only update SoftAP info */
+    wifi_config_ap.ap.channel = channel;
+    return ESP_ERR_NOT_SUPPORTED;
+#else
+    /* channel is controlled by `esp_now`, try to reconfigure SoftAP */
+    uint8_t old_channel = wifi_config_ap.ap.channel;
+    wifi_config_ap.ap.channel = channel;
+    esp_err_t result = esp_wifi_set_config(WIFI_IF_AP, &wifi_config_ap);
+    if (result != ESP_OK) {
+        LOG_TAG_ERROR("esp_now",
+                      "esp_wifi_set_config softap failed with return value %d\n",
+                      result);
+        wifi_config_ap.ap.channel = old_channel;
+        return result;
+    }
+    return ESP_OK;
+#endif
 }
 
 static int _init(netdev_t *netdev)
 {
     DEBUG("%s: %p\n", __func__, netdev);
+
+    /* signal link UP */
+    netdev->event_callback(netdev, NETDEV_EVENT_LINK_UP);
 
     return 0;
 }
@@ -473,7 +507,7 @@ static int _send(netdev_t *netdev, const iolist_t *iolist)
     CHECK_PARAM_RET(iolist != NULL && iolist->iol_len == ESP_NOW_ADDR_LEN, -EINVAL);
     CHECK_PARAM_RET(iolist->iol_next != NULL, -EINVAL);
 
-    esp_now_netdev_t *dev = (esp_now_netdev_t*)netdev;
+    esp_now_netdev_t *dev = container_of(netdev, esp_now_netdev_t, netdev);
 
     mutex_lock(&dev->dev_lock);
 
@@ -548,7 +582,7 @@ static int _recv(netdev_t *netdev, void *buf, size_t len, void *info)
 
     CHECK_PARAM_RET(netdev != NULL, -ENODEV);
 
-    esp_now_netdev_t* dev = (esp_now_netdev_t*)netdev;
+    esp_now_netdev_t *dev = container_of(netdev, esp_now_netdev_t, netdev);
 
     /* we store source mac address and received data in `buf` */
     uint16_t size = dev->rx_len ? ESP_NOW_ADDR_LEN + dev->rx_len : 0;
@@ -598,7 +632,7 @@ static int _get(netdev_t *netdev, netopt_t opt, void *val, size_t max_len)
     CHECK_PARAM_RET(netdev != NULL, -ENODEV);
     CHECK_PARAM_RET(val != NULL, -EINVAL);
 
-    esp_now_netdev_t *dev = (esp_now_netdev_t*)netdev;
+    esp_now_netdev_t *dev = container_of(netdev, esp_now_netdev_t, netdev);
     int res = -ENOTSUP;
 
     switch (opt) {
@@ -636,6 +670,12 @@ static int _get(netdev_t *netdev, netopt_t opt, void *val, size_t max_len)
             res = sizeof(dev->addr);
             break;
 
+        case NETOPT_CHANNEL:
+            CHECK_PARAM_RET(max_len >= sizeof(uint16_t), -EOVERFLOW);
+            *((uint16_t *)val) = wifi_config_ap.ap.channel;
+            res = sizeof(uint16_t);
+            break;
+
         default:
             DEBUG("%s: %s not supported\n", __func__, netopt2str(opt));
             break;
@@ -650,7 +690,7 @@ static int _set(netdev_t *netdev, netopt_t opt, const void *val, size_t max_len)
     CHECK_PARAM_RET(netdev != NULL, -ENODEV);
     CHECK_PARAM_RET(val != NULL, -EINVAL);
 
-    esp_now_netdev_t *dev = (esp_now_netdev_t *) netdev;
+    esp_now_netdev_t *dev = container_of(netdev, esp_now_netdev_t, netdev);
     int res = -ENOTSUP;
 
     switch (opt) {
@@ -669,6 +709,15 @@ static int _set(netdev_t *netdev, netopt_t opt, const void *val, size_t max_len)
             res = sizeof(dev->addr);
             break;
 
+        case NETOPT_CHANNEL:
+            CHECK_PARAM_RET(max_len >= sizeof(uint16_t), -EOVERFLOW);
+            uint16_t channel = *((uint16_t *)val);
+            if (esp_now_set_channel(channel) != ESP_OK) {
+                return -ENOTSUP;
+            }
+            res = sizeof(uint16_t);
+            break;
+
         default:
             DEBUG("%s: %s not supported\n", __func__, netopt2str(opt));
             break;
@@ -682,7 +731,7 @@ static void _isr(netdev_t *netdev)
 
     CHECK_PARAM(netdev != NULL);
 
-    esp_now_netdev_t *dev = (esp_now_netdev_t*)netdev;
+    esp_now_netdev_t *dev = container_of(netdev, esp_now_netdev_t, netdev);
 
     critical_enter();
 

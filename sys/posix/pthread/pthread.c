@@ -35,13 +35,13 @@
 #include <malloc.h>
 #endif
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 
 #ifndef CONFIG_PTHREAD_REAPER_BASE_STACKSIZE
 #define CONFIG_PTHREAD_REAPER_BASE_STACKSIZE (THREAD_STACKSIZE_IDLE)
 #endif
 
-#if ENABLE_DEBUG
+#if IS_ACTIVE(ENABLE_DEBUG)
 #   define PTHREAD_REAPER_STACKSIZE ((CONFIG_PTHREAD_REAPER_BASE_STACKSIZE) + THREAD_EXTRA_STACKSIZE_PRINTF)
 #   define PTHREAD_STACKSIZE THREAD_STACKSIZE_MAIN
 #else
@@ -156,7 +156,7 @@ int pthread_create(pthread_t *newthread, const pthread_attr_t *attr, void *(*sta
             volatile kernel_pid_t pid = thread_create(pthread_reaper_stack,
                                              PTHREAD_REAPER_STACKSIZE,
                                              0,
-                                             THREAD_CREATE_STACKTEST,
+                                             0,
                                              pthread_reaper,
                                              NULL,
                                              "pthread-reaper");
@@ -176,7 +176,7 @@ int pthread_create(pthread_t *newthread, const pthread_attr_t *attr, void *(*sta
                                    stack_size,
                                    THREAD_PRIORITY_MAIN,
                                    THREAD_CREATE_SLEEPING |
-                                   THREAD_CREATE_STACKTEST,
+                                   0,
                                    pthread_start_routine,
                                    pt,
                                    "pthread");
@@ -252,7 +252,7 @@ int pthread_join(pthread_t th, void **thread_return)
 
     switch (other->status) {
         case (PTS_RUNNING):
-            other->joining_thread = sched_active_pid;
+            other->joining_thread = thread_getpid();
             /* go blocked, I'm waking up if other thread exits */
             thread_sleep();
             /* falls through */
@@ -300,7 +300,7 @@ pthread_t pthread_self(void)
 {
     pthread_t result = 0;
     mutex_lock(&pthread_mutex);
-    kernel_pid_t pid = sched_active_pid; /* sched_active_pid is volatile */
+    kernel_pid_t pid = thread_getpid(); /* thread_getpid() is volatile */
     for (int i = 0; i < MAXTHREADS; i++) {
         if (pthread_sched_threads[i] && pthread_sched_threads[i]->thread_pid == pid) {
             result = i+1;

@@ -30,8 +30,6 @@ extern "C" {
 #include "net/netdev.h"
 #include "net/loramac.h"
 
-#include "sx127x.h"
-
 /**
  * @name    Definitions for messages exchanged between the MAC and call threads
  * @{
@@ -113,6 +111,7 @@ typedef struct {
  * @brief   Semtech LoRaMAC descriptor
  */
 typedef struct {
+    netdev_t *netdev;                            /**< pointer to internal radio device */
     mutex_t lock;                                /**< loramac access lock */
     uint8_t tx_pid;                              /**< pid of sender thread */
 #if defined(MODULE_SEMTECH_LORAMAC_RX) || DOXYGEN
@@ -512,6 +511,22 @@ void semtech_loramac_set_uplink_counter(semtech_loramac_t *mac, uint32_t counter
  * @return                 Uplink frame counter
  */
 uint32_t semtech_loramac_get_uplink_counter(semtech_loramac_t *mac);
+
+/**
+ * @brief   Sets the Channels Mask
+ *
+ * @param[in] mac          Pointer to the mac
+ * @param[in] mask         Mask array, e.g., {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0x0000, 0x0000}
+ */
+void semtech_loramac_set_channels_mask(semtech_loramac_t *mac, uint16_t *mask);
+
+/**
+ * @brief   Gets the Channels Mask
+ *
+ * @param[in] mac          Pointer to the mac
+ * @param[in] mask         Mask array pointer
+ */
+void semtech_loramac_get_channels_mask(semtech_loramac_t *mac, uint16_t *mask);
 
 #ifdef MODULE_PERIPH_EEPROM
 /**

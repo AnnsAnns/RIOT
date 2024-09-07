@@ -18,6 +18,7 @@
  */
 
 #include "cpu.h"
+#include "kernel_init.h"
 #include "periph_conf.h"
 #include "periph/init.h"
 #include "stdio_base.h"
@@ -29,6 +30,11 @@
 #define WPKEY               (0x504D43)
 #define MORKEY              (0x37)
 /** @} */
+
+/**
+ * @brief   Key for writing the SUPC control register
+ */
+#define SUPCKEY             (0xa5)
 
 /**
  * @brief   Start-up time for external crystal (will be multiplied by 8)
@@ -91,8 +97,15 @@ void cpu_init(void)
     /* wait for master clock to be ready */
     while (!(PMC->PMC_SR & PMC_SR_MCKRDY));
 
+    /* setup the SCLK: switch to external oscillator if applicable */
+#if CLOCK_SCLK_XTAL
+    /* enable external oscillator */
+    SUPC->SUPC_CR = (SUPC_CR_KEY(SUPCKEY) | SUPC_CR_XTALSEL);
+    while (!(SUPC->SUPC_SR & SUPC_SR_OSCSEL_CRYST)) {}
+#endif
+
     /* initialize stdio prior to periph_init() to allow use of DEBUG() there */
-    stdio_init();
+    early_init();
 
     /* trigger static peripheral initialization */
     periph_init();

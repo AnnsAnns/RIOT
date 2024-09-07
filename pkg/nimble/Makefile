@@ -1,14 +1,18 @@
 PKG_NAME    = nimble
 PKG_URL     = https://github.com/apache/mynewt-nimble.git
-PKG_VERSION = 946cfb7ff27fcf3adacebcd50c159b89d854fbf2
+PKG_VERSION = 719bd3c435b728f07ce7aaffaf6cebbd9c659a46
 PKG_LICENSE = Apache-2.0
 
+include $(RIOTBASE)/pkg/pkg.mk
+
 TDIR = $(RIOTPKG)/$(PKG_NAME)
-PDIR = $(PKG_BUILDDIR)
+PDIR = $(PKG_SOURCE_DIR)
+
+CFLAGS += -Wno-unused-but-set-variable
 
 # NimBLE is not optimized for building with all (extra) warnings enabled. So for
 # now, we disable a number of selected compiler warnings when building NimBLE.
-CFLAGS += -Wno-extra
+CFLAGS += -Wno-extra -Wno-cast-align
 ifeq (llvm,$(TOOLCHAIN))
 # the static function `ble_ll_adv_active_chanset_is_sec()` in
 # `nimble/controller/src/ble_ll_adv.c` isn't used in our compilation path, so
@@ -17,74 +21,81 @@ ifeq (llvm,$(TOOLCHAIN))
 # Workaround, until https://github.com/apache/mynewt-nimble/pull/566 is merged
 # upstream and the NimBLE version in RIOT is updated.
   CFLAGS += -Wno-sometimes-uninitialized
-else
-  CFLAGS += -Wno-unused-but-set-variable
+  CFLAGS += -Wno-parentheses-equality
+# Backward compatibility with older versions of LLVM (when it doesn't know
+# about the -Wno-foo, it won't throw any -Wfoo related warnings anyway)
+  CFLAGS += -Wno-unknown-warning-option
 endif
 
-IGNORE := nimble_autoconn_%
+IGNORE := nimble_autoconn_% nimble_phy_% nimble_%_ext nimble_autoadv%
 SUBMODS := $(filter-out $(IGNORE),$(filter nimble_%,$(USEMODULE)))
 
 .PHONY: all
 
 all: $(SUBMODS)
 
-# blue code and RIOT port modules
+# glue code and RIOT port modules
 nimble_riot_contrib:
-	"$(MAKE)" -C $(TDIR)/contrib/
+	$(QQ)"$(MAKE)" -C $(TDIR)/contrib/
 
 nimble_porting_nimble:
-	"$(MAKE)" -C $(PDIR)/porting/nimble/src/ -f $(TDIR)/porting.nimble.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/porting/nimble/src/ -f $(RIOTPKG)/$(PKG_NAME)/nimble.porting.mk MODULE=$@
 
 nimble_npl_riot:
-	"$(MAKE)" -C $(PDIR)/porting/npl/riot/src/ -f $(TDIR)/porting.npl.riot.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/porting/npl/riot/src/ -f $(RIOTPKG)/$(PKG_NAME)/nimble.npl.mk MODULE=$@
+
+# generic modules
+nimble_transport:
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/transport/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
+
+nimble_transport_hci_h4:
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/transport/common/hci_h4/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 # host modules
 nimble_host:
-	"$(MAKE)" -C $(PDIR)/nimble/host/src/ -f $(TDIR)/nimble.host.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/host/src/ -f $(TDIR)/nimble.host.mk
 
 nimble_host_util:
-	"$(MAKE)" -C $(PDIR)/nimble/host/util/src/ -f $(TDIR)/nimble.host.util.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/host/util/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 nimble_host_store_ram:
-	"$(MAKE)" -C $(PDIR)/nimble/host/store/ram/src/ -f $(TDIR)/nimble.host.store.ram.mk
-
-nimble_tinycrypt:
-	"$(MAKE)" -C $(PDIR)/ext/tinycrypt/src/ -f $(TDIR)/ext.tinycrypt.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/host/store/ram/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 # service implementations
 nimble_svc_gap:
-	"$(MAKE)" -C $(PDIR)/nimble/host/services/gap/src/ -f $(TDIR)/svc.gap.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/host/services/gap/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 nimble_svc_gatt:
-	"$(MAKE)" -C $(PDIR)/nimble/host/services/gatt/src/ -f $(TDIR)/svc.gatt.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/host/services/gatt/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 nimble_svc_ipss:
-	"$(MAKE)" -C $(PDIR)/nimble/host/services/ipss/src/ -f $(TDIR)/svc.ipss.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/host/services/ipss/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 # controller specific modules
-nimble_transport_ram:
-	"$(MAKE)" -C $(PDIR)/nimble/transport/ram/src/ -f $(TDIR)/transport.ram.mk
-
 nimble_controller:
-	"$(MAKE)" -C $(PDIR)/nimble/controller/src/ -f $(TDIR)/controller.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/controller/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 nimble_drivers_nrf5x:
-	"$(MAKE)" -C $(PDIR)/nimble/drivers/$(CPU_FAM)/src/ -f $(TDIR)/drivers.nrf5x.mk
+	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/drivers/$(CPU_FAM)/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
 # additional, RIOT specific nimble modules
 nimble_addr:
-	"$(MAKE)" -C $(TDIR)/addr/
+	$(QQ)"$(MAKE)" -C $(TDIR)/addr/
 
 nimble_autoconn:
-	"$(MAKE)" -C $(TDIR)/autoconn
+	$(QQ)"$(MAKE)" -C $(TDIR)/autoconn
 
 nimble_netif:
-	"$(MAKE)" -C $(TDIR)/netif/
+	$(QQ)"$(MAKE)" -C $(TDIR)/netif/
+
+nimble_rpble:
+	$(QQ)"$(MAKE)" -C $(TDIR)/rpble/
 
 nimble_scanlist:
-	"$(MAKE)" -C $(TDIR)/scanlist
+	$(QQ)"$(MAKE)" -C $(TDIR)/scanlist
 
 nimble_scanner:
-	"$(MAKE)" -C $(TDIR)/scanner
+	$(QQ)"$(MAKE)" -C $(TDIR)/scanner
 
-include $(RIOTBASE)/pkg/pkg.mk
+nimble_statconn:
+	$(QQ)"$(MAKE)" -C $(TDIR)/statconn

@@ -19,7 +19,6 @@
 #ifndef OPT3001_REGS_H
 #define OPT3001_REGS_H
 
-
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -82,6 +81,7 @@
  #define OPT3001_CONVERSION_TIME_COMBINED     OPT3001_REGS_INT_TIME_SHORT \
                                               + OPT3001_REGS_INT_TIME_LONG \
                                               + OPT3001_CONVERSION_TIME_OFFSET /**< Combination of the conversion times */
+/** @} */
 
 #ifdef __cplusplus
 }

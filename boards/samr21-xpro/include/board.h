@@ -24,6 +24,7 @@
 #include "cpu.h"
 #include "periph_conf.h"
 #include "periph_cpu.h"
+#include "periph/gpio.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,6 +36,16 @@ extern "C" {
  */
 #define XTIMER_DEV          TIMER_DEV(1)
 #define XTIMER_CHAN         (0)
+/** @} */
+
+/**
+ * @name    ztimer configuration
+ * @{
+ */
+#define CONFIG_ZTIMER_USEC_TYPE    ZTIMER_TYPE_PERIPH_TIMER
+#define CONFIG_ZTIMER_USEC_DEV     TIMER_DEV(1)
+/* timer_set() may underflow for values smaller than 9, set 10 as margin */
+#define CONFIG_ZTIMER_USEC_MIN     (10)
 /** @} */
 
 /**
@@ -65,7 +76,6 @@ extern "C" {
  * @name    SW0 (Button) pin definitions
  * @{
  */
-#define BTN0_PORT           PORT->Group[0]
 #define BTN0_PIN            GPIO_PIN(0, 28)
 #define BTN0_MODE           GPIO_IN_PU
 /** @} */
@@ -94,11 +104,6 @@ enum {
 #define RFCTL_ANTENNA_DEFAULT      RFCTL_ANTENNA_BOARD
 #endif
 /** @} */
-
-/**
- * @brief   Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
 
 /**
  * @brief   Set antenna switch

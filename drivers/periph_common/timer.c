@@ -19,10 +19,23 @@
  */
 
 #include "periph/timer.h"
+#include "irq.h"
 
 #ifndef PERIPH_TIMER_PROVIDES_SET
 int timer_set(tim_t dev, int channel, unsigned int timeout)
 {
-    return timer_set_absolute(dev, channel, timer_read(dev) + timeout);
+    unsigned int state = irq_disable();
+    int res = timer_set_absolute(dev, channel, timer_read(dev) + timeout);
+    irq_restore(state);
+    return res;
+}
+#endif
+
+#ifdef MODULE_PERIPH_TIMER_QUERY_FREQS
+__attribute__((weak))
+uword_t timer_query_channel_numof(tim_t dev)
+{
+    (void)dev;
+    return TIMER_CHANNEL_NUMOF;
 }
 #endif

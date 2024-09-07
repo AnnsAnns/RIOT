@@ -22,8 +22,6 @@
 #define CPU_CONF_H
 
 #include "cpu_conf_common.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -58,6 +56,7 @@ extern "C" {
 #define CPU_DEFAULT_IRQ_PRIO            (1U)
 #define CPU_IRQ_NUMOF                   (139U)
 #define CPU_FLASH_BASE                  FLASH_BASE
+#define CPU_HAS_BITBAND                 (1)
 /** @} */
 
 /**

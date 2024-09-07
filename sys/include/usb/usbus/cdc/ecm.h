@@ -29,6 +29,7 @@
 #include "usb/descriptor.h"
 #include "usb/usbus.h"
 #include "usb/usbus/control.h"
+#include "macros/math.h"
 #include "net/netdev.h"
 #include "mutex.h"
 
@@ -43,22 +44,22 @@ extern "C" {
  * peripheral will report this to the host. This doesn't affect the actual
  * throughput, only what the peripheral reports to the host.
  */
-#ifndef USBUS_CDC_ECM_CONFIG_SPEED
-#define USBUS_CDC_ECM_CONFIG_SPEED  1000000
+#ifndef CONFIG_USBUS_CDC_ECM_CONFIG_SPEED
+#define CONFIG_USBUS_CDC_ECM_CONFIG_SPEED  1000000
 #endif
 
 /**
  * @brief Link download speed as reported by the peripheral
  */
-#ifndef USBUS_CDC_ECM_CONFIG_SPEED_DOWNSTREAM
-#define USBUS_CDC_ECM_CONFIG_SPEED_DOWNSTREAM USBUS_CDC_ECM_CONFIG_SPEED
+#ifndef CONFIG_USBUS_CDC_ECM_CONFIG_SPEED_DOWNSTREAM
+#define CONFIG_USBUS_CDC_ECM_CONFIG_SPEED_DOWNSTREAM CONFIG_USBUS_CDC_ECM_CONFIG_SPEED
 #endif
 
 /**
  * @brief Link upload speed as reported by the peripheral
  */
-#ifndef USBUS_CDC_ECM_CONFIG_SPEED_UPSTREAM
-#define USBUS_CDC_ECM_CONFIG_SPEED_UPSTREAM   USBUS_CDC_ECM_CONFIG_SPEED
+#ifndef CONFIG_USBUS_CDC_ECM_CONFIG_SPEED_UPSTREAM
+#define CONFIG_USBUS_CDC_ECM_CONFIG_SPEED_UPSTREAM   CONFIG_USBUS_CDC_ECM_CONFIG_SPEED
 #endif
 
 /**
@@ -75,7 +76,26 @@ extern "C" {
  *
  * Used for the transfer of network frames.
  */
+#ifndef MODULE_PERIPH_USBDEV_HS
 #define USBUS_CDCECM_EP_DATA_SIZE  64
+#else
+#define USBUS_CDCECM_EP_DATA_SIZE  512
+#endif
+
+/**
+ * @brief Full ethernet frame rounded up to a whole number of transfers
+ */
+#define USBUS_ETHERNET_FRAME_BUF   MATH_ALIGN(ETHERNET_FRAME_LEN, USBUS_CDCECM_EP_DATA_SIZE)
+
+/**
+ * @brief Number of IN EPs required for the CDC ECM interface
+ */
+#define USBUS_CDC_ECM_EP_IN_REQUIRED_NUMOF   2
+
+/**
+ * @brief Number of Out EPs required for the CDC ECM interface
+ */
+#define USBUS_CDC_ECM_EP_OUT_REQUIRED_NUMOF  1
 
 /**
  * @brief notification state, used to track which information must be send to
@@ -106,12 +126,29 @@ typedef struct usbus_cdcecm_device {
     char mac_host[13];                      /**< host side's MAC address as string */
     usbus_string_t mac_str;                 /**< String context for the host side mac address */
     usbus_t *usbus;                         /**< Ptr to the USBUS context */
-    mutex_t out_lock;           /**< mutex used for locking netif/USBUS send */
-    size_t tx_len;              /**< Length of the current tx frame */
-    uint8_t in_buf[ETHERNET_FRAME_LEN]; /**< Buffer for the received frames */
-    size_t len;                             /**< Length of the current rx frame */
-    usbus_cdcecm_notif_t notif;    /**< Startup message notification tracker */
-    unsigned active_iface;          /**< Current active data interface */
+    mutex_t out_lock;                       /**< mutex used for locking netif/USBUS send */
+    size_t tx_len;                          /**< Length of the current tx frame */
+    usbus_cdcecm_notif_t notif;             /**< Startup message notification tracker */
+    unsigned active_iface;                  /**< Current active data interface */
+
+    /**
+     * @brief Buffer for received frames from the host
+     */
+    usbdev_ep_buf_t data_out[USBUS_ETHERNET_FRAME_BUF];
+
+    /**
+     * @brief Host in device out data buffer
+     */
+    usbdev_ep_buf_t data_in[USBUS_CDCECM_EP_DATA_SIZE];
+
+    /**
+     * @brief Host out device in control buffer
+     */
+    usbdev_ep_buf_t control_in[USBUS_CDCECM_EP_CTRL_SIZE];
+    /**
+     * @brief Host out device in reception URB
+     */
+    usbus_urb_t out_urb;
 } usbus_cdcecm_device_t;
 
 /**

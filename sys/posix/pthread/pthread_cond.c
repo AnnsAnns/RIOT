@@ -22,7 +22,8 @@
 
 #include "pthread_cond.h"
 #include "thread.h"
-#include "xtimer.h"
+#include "ztimer64.h"
+#include "timex.h"
 #include "sched.h"
 #include "irq.h"
 #include "debug.h"
@@ -95,8 +96,8 @@ int pthread_cond_destroy(pthread_cond_t *cond)
 
 void _init_cond_wait(pthread_cond_t *cond, priority_queue_node_t *n)
 {
-    n->priority = sched_active_thread->priority;
-    n->data = sched_active_pid;
+    n->priority = thread_get_active()->priority;
+    n->data = thread_getpid();
     n->next = NULL;
 
     /* the signaling thread may not hold the mutex, the queue is not thread safe */
@@ -126,29 +127,29 @@ int pthread_cond_timedwait(pthread_cond_t *cond, mutex_t *mutex, const struct ti
         return EINVAL;
     }
 
-    uint64_t now = xtimer_now_usec64();
+    uint64_t now = ztimer64_now(ZTIMER64_USEC);
     uint64_t then = ((uint64_t)abstime->tv_sec * US_PER_SEC) +
                     (abstime->tv_nsec / NS_PER_US);
 
     int ret = 0;
     if (then > now) {
-        xtimer_t timer;
+        ztimer64_t timer;
         priority_queue_node_t n;
 
         _init_cond_wait(cond, &n);
-        xtimer_set_wakeup64(&timer, (then - now), sched_active_pid);
+        ztimer64_set_wakeup(ZTIMER64_USEC, &timer, (then - now), thread_getpid());
 
         mutex_unlock_and_sleep(mutex);
 
-        if (n.data != -1u) {
-            /* on signaling n.data is set to -1u */
+        if (n.data != PRIORITY_QUEUE_DATA_SIGNALING) {
+            /* on signaling n.data is set to PRIORITY_QUEUE_DATA_SIGNALING */
             /* if it isn't set, then the wakeup is either spurious or a timer wakeup */
             unsigned old_state = irq_disable();
             priority_queue_remove(&(cond->queue), &n);
             irq_restore(old_state);
             ret = ETIMEDOUT;
         }
-        xtimer_remove(&timer);
+        ztimer64_remove(ZTIMER64_USEC, &timer);
     }
     else {
         mutex_unlock(mutex);
@@ -165,12 +166,12 @@ int pthread_cond_signal(pthread_cond_t *cond)
     priority_queue_node_t *head = priority_queue_remove_head(&(cond->queue));
     int other_prio = -1;
     if (head != NULL) {
-        thread_t *other_thread = (thread_t *) sched_threads[head->data];
+        thread_t *other_thread = thread_get(head->data);
         if (other_thread) {
             other_prio = other_thread->priority;
             sched_set_status(other_thread, STATUS_PENDING);
         }
-        head->data = -1u;
+        head->data = PRIORITY_QUEUE_DATA_SIGNALING;
     }
 
     irq_restore(old_state);
@@ -199,12 +200,12 @@ int pthread_cond_broadcast(pthread_cond_t *cond)
             break;
         }
 
-        thread_t *other_thread = (thread_t *) sched_threads[head->data];
+        thread_t *other_thread = thread_get(head->data);
         if (other_thread) {
             other_prio = max_prio(other_prio, other_thread->priority);
             sched_set_status(other_thread, STATUS_PENDING);
         }
-        head->data = -1u;
+        head->data = PRIORITY_QUEUE_DATA_SIGNALING;
     }
 
     irq_restore(old_state);

@@ -43,7 +43,7 @@ static const uart_conf_t uart_config[] = {
         .dev      = &SERCOM5->USART,
         .rx_pin   = GPIO_PIN(PB,3),  /* D0, RX Pin */
         .tx_pin   = GPIO_PIN(PB,2),  /* D1, TX Pin */
-#ifdef MODULE_SAM0_PERIPH_UART_HW_FC
+#ifdef MODULE_PERIPH_UART_HW_FC
         .rts_pin  = GPIO_UNDEF,
         .cts_pin  = GPIO_UNDEF,
 #endif
@@ -51,13 +51,13 @@ static const uart_conf_t uart_config[] = {
         .rx_pad   = UART_PAD_RX_1,
         .tx_pad   = UART_PAD_TX_0,
         .flags    = UART_FLAG_NONE,
-        .gclk_src = GCLK_CLKCTRL_GEN_GCLK0
+        .gclk_src = SAM0_GCLK_MAIN,
     },
     {
         .dev      = &SERCOM2->USART,
         .rx_pin   = GPIO_PIN(PA,13),
         .tx_pin   = GPIO_PIN(PA,12),
-#ifdef MODULE_SAM0_PERIPH_UART_HW_FC
+#ifdef MODULE_PERIPH_UART_HW_FC
         .rts_pin  = GPIO_UNDEF,
         .cts_pin  = GPIO_UNDEF,
 #endif
@@ -65,7 +65,7 @@ static const uart_conf_t uart_config[] = {
         .rx_pad   = UART_PAD_RX_1,
         .tx_pad   = UART_PAD_TX_0,
         .flags    = UART_FLAG_NONE,
-        .gclk_src = GCLK_CLKCTRL_GEN_GCLK0
+        .gclk_src = SAM0_GCLK_MAIN,
     },
 };
 
@@ -90,23 +90,23 @@ static const uart_conf_t uart_config[] = {
 
 static const adc_conf_chan_t adc_channels[] = {
     /* port, pin, muxpos */
-    {GPIO_PIN(PA, 2), ADC_INPUTCTRL_MUXPOS_PIN0},     /* A0 */
-    {GPIO_PIN(PA, 3), ADC_INPUTCTRL_MUXPOS_PIN1},     /* A1 */
-    {GPIO_PIN(PB, 8), ADC_INPUTCTRL_MUXPOS_PIN2},     /* A2 */
-    {GPIO_PIN(PB, 9), ADC_INPUTCTRL_MUXPOS_PIN3},     /* A3 */
-    {GPIO_PIN(PA, 6), ADC_INPUTCTRL_MUXPOS_PIN6},     /* A4 */
-    {GPIO_PIN(PA, 7), ADC_INPUTCTRL_MUXPOS_PIN7},     /* A5 */
-    {GPIO_PIN(PA, 8), ADC_INPUTCTRL_MUXPOS_PIN16},    /* A6 */
-    {GPIO_PIN(PA, 9), ADC_INPUTCTRL_MUXPOS_PIN17},    /* A7 */
-    {GPIO_PIN(PA,10), ADC_INPUTCTRL_MUXPOS_PIN18},    /* A8 */
-    {GPIO_PIN(PA,11), ADC_INPUTCTRL_MUXPOS_PIN19},    /* A9 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA02 },     /* A0 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA03 },     /* A1 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PB08 },     /* A2 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PB09 },     /* A3 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA06 },     /* A4 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA07 },     /* A5 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA08 },    /* A6 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA09 },    /* A7 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA10 },    /* A8 */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA11 },    /* A9 */
 #if 0
     /* These pins are also used for RX/TX uart0 */
-    {GPIO_PIN(PB, 2), ADC_INPUTCTRL_MUXPOS_PIN10},    /* A10, TX */
-    {GPIO_PIN(PB, 3), ADC_INPUTCTRL_MUXPOS_PIN11},    /* A11, RX */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PB02 },    /* A10, TX */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PB03 },    /* A11, RX */
 #endif
 
-    {GPIO_PIN(PA, 5), ADC_INPUTCTRL_MUXPOS_PIN5},     /* BAT_VOLT */
+    { .inputctrl = ADC_INPUTCTRL_MUXPOS_PA05 },     /* BAT_VOLT */
 };
 
 #define ADC_NUMOF                           ARRAY_SIZE(adc_channels)
@@ -126,7 +126,12 @@ static const spi_conf_t spi_config[] = {
         .mosi_mux = GPIO_MUX_C,
         .clk_mux  = GPIO_MUX_C,
         .miso_pad = SPI_PAD_MISO_0,
-        .mosi_pad = SPI_PAD_MOSI_2_SCK_3
+        .mosi_pad = SPI_PAD_MOSI_2_SCK_3,
+        .gclk_src = SAM0_GCLK_MAIN,
+#ifdef MODULE_PERIPH_DMA
+        .tx_trigger = SERCOM0_DMAC_ID_TX,
+        .rx_trigger = SERCOM0_DMAC_ID_RX,
+#endif
     }
 };
 
@@ -144,7 +149,7 @@ static const i2c_conf_t i2c_config[] = {
         .scl_pin  = GPIO_PIN(PA, 23),
         .sda_pin  = GPIO_PIN(PA, 22),
         .mux      = GPIO_MUX_C,
-        .gclk_src = GCLK_CLKCTRL_GEN_GCLK0,
+        .gclk_src = SAM0_GCLK_MAIN,
         .flags    = I2C_FLAG_NONE
     }
 };

@@ -82,14 +82,14 @@ extern "C" {
  * @brief  Default PWM undefined value
  */
 #ifndef PWM_UNDEF
-#define PWM_UNDEF           (UINT_MAX)
+#define PWM_UNDEF           (UINT_FAST8_MAX)
 #endif
 
 /**
  * @brief   Default PWM type definition
  */
 #ifndef HAVE_PWM_T
-typedef unsigned int pwm_t;
+typedef uint_fast8_t pwm_t;
 #endif
 
 /**
@@ -105,12 +105,13 @@ typedef enum {
 
 #ifdef MODULE_ARDUINO
 /**
- * @brief   RIOT GPIO mapping between Arduino pin, PWM device and channel
+ * @brief   Mapping of an Arduino digital pin to the corresponding PWM dev and
+ *          channel pair
  */
 typedef struct {
-    int pin;        /**< Arduino pin number */
-    int dev;        /**< PWM device index of pin */
-    int chan;       /**< PWM channel index */
+    pwm_t dev;          /**< PWM device connected to the pin */
+    uint8_t chan;       /**< PWM channel index */
+    uint8_t pin;        /**< Arduino pin number */
 } arduino_pwm_t;
 #endif
 

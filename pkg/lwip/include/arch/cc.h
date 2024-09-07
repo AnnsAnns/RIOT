@@ -20,7 +20,6 @@
 #ifndef ARCH_CC_H
 #define ARCH_CC_H
 
-#include <assert.h>
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,6 +29,7 @@
 #include "mutex.h"
 
 #ifdef MODULE_LOG
+#define LOG_LEVEL LOG_INFO
 #include "log.h"
 #endif
 
@@ -59,7 +59,7 @@ extern "C" {
 #define S32_F   PRId32
 #define X32_F   PRIx32
 
-#define SZT_F   "lu"
+#define SZT_F   PRIuPTR
 /** @} */
 
 /**

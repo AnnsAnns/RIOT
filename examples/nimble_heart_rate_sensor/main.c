@@ -14,6 +14,7 @@
  * @brief       (Mock-up) BLE heart rate sensor example
  *
  * @author      Hauke Petersen <hauke.petersen@fu-berlin.de>
+ * @author      Hendrik van Essen <hendrik.ve@fu-berlin.de>
  *
  * @}
  */
@@ -24,7 +25,9 @@
 #include "assert.h"
 #include "event/timeout.h"
 #include "nimble_riot.h"
+#include "nimble_autoadv.h"
 #include "net/bluetil/ad.h"
+#include "timex.h"
 
 #include "host/ble_hs.h"
 #include "host/ble_gatt.h"
@@ -33,13 +36,12 @@
 
 #define HRS_FLAGS_DEFAULT       (0x01)      /* 16-bit BPM value */
 #define SENSOR_LOCATION         (0x02)      /* wrist sensor */
-#define UPDATE_INTERVAL         (250U * US_PER_MS)
+#define UPDATE_INTERVAL         (250U)
 #define BPM_MIN                 (80U)
 #define BPM_MAX                 (210U)
 #define BPM_STEP                (2)
 #define BAT_LEVEL               (42U)
 
-static const char *_device_name = "RIOT Heart Rate Sensor";
 static const char *_manufacturer_name = "Unfit Byte Inc.";
 static const char *_model_number = "2A";
 static const char *_serial_number = "a8b302c7f3-29183-x8";
@@ -69,7 +71,6 @@ static int _devinfo_handler(uint16_t conn_handle, uint16_t attr_handle,
 static int _bas_handler(uint16_t conn_handle, uint16_t attr_handle,
                         struct ble_gatt_access_ctxt *ctxt, void *arg);
 
-static void _start_advertising(void);
 static void _start_updating(void);
 static void _stop_updating(void);
 
@@ -214,7 +215,7 @@ static int gap_event_cb(struct ble_gap_event *event, void *arg)
         case BLE_GAP_EVENT_CONNECT:
             if (event->connect.status) {
                 _stop_updating();
-                _start_advertising();
+                nimble_autoadv_start(NULL);
                 return 0;
             }
             _conn_handle = event->connect.conn_handle;
@@ -222,7 +223,7 @@ static int gap_event_cb(struct ble_gap_event *event, void *arg)
 
         case BLE_GAP_EVENT_DISCONNECT:
             _stop_updating();
-            _start_advertising();
+            nimble_autoadv_start(NULL);
             break;
 
         case BLE_GAP_EVENT_SUBSCRIBE:
@@ -238,22 +239,6 @@ static int gap_event_cb(struct ble_gap_event *event, void *arg)
     }
 
     return 0;
-}
-
-static void _start_advertising(void)
-{
-    struct ble_gap_adv_params advp;
-    int res;
-
-    memset(&advp, 0, sizeof advp);
-    advp.conn_mode = BLE_GAP_CONN_MODE_UND;
-    advp.disc_mode = BLE_GAP_DISC_MODE_GEN;
-    advp.itvl_min  = BLE_GAP_ADV_FAST_INTERVAL1_MIN;
-    advp.itvl_max  = BLE_GAP_ADV_FAST_INTERVAL1_MAX;
-    res = ble_gap_adv_start(nimble_riot_own_addr_type, NULL, BLE_HS_FOREVER,
-                            &advp, gap_event_cb, NULL);
-    assert(res == 0);
-    (void)res;
 }
 
 static void _start_updating(void)
@@ -302,7 +287,7 @@ int main(void)
     /* setup local event queue (for handling heart rate updates) */
     event_queue_init(&_eq);
     _update_evt.handler = _hr_update;
-    event_timeout_init(&_update_timeout_evt, &_eq, &_update_evt);
+    event_timeout_ztimer_init(&_update_timeout_evt, ZTIMER_MSEC, &_eq, &_update_evt);
 
     /* verify and add our custom services */
     res = ble_gatts_count_cfg(gatt_svr_svcs);
@@ -311,21 +296,32 @@ int main(void)
     assert(res == 0);
 
     /* set the device name */
-    ble_svc_gap_device_name_set(_device_name);
+    ble_svc_gap_device_name_set(CONFIG_NIMBLE_AUTOADV_DEVICE_NAME);
     /* reload the GATT server to link our added services */
     ble_gatts_start();
 
+    nimble_autoadv_cfg_t cfg = {
+        .adv_duration_ms = BLE_HS_FOREVER,
+        .adv_itvl_ms = BLE_GAP_ADV_ITVL_MS(100),
+        .flags = NIMBLE_AUTOADV_FLAG_CONNECTABLE | NIMBLE_AUTOADV_FLAG_LEGACY | \
+                 NIMBLE_AUTOADV_FLAG_SCANNABLE,
+        .channel_map = 0,
+        .filter_policy = 0,
+        .own_addr_type = nimble_riot_own_addr_type,
+        .phy = NIMBLE_PHY_1M,
+        .tx_power = 0,
+    };
+    /* set advertise params */
+    nimble_autoadv_cfg_update(&cfg);
+
     /* configure and set the advertising data */
-    uint8_t buf[BLE_HS_ADV_MAX_SZ];
-    bluetil_ad_t ad;
-    bluetil_ad_init_with_flags(&ad, buf, sizeof(buf), BLUETIL_AD_FLAGS_DEFAULT);
     uint16_t hrs_uuid = BLE_GATT_SVC_HRS;
-    bluetil_ad_add(&ad, BLE_GAP_AD_UUID16_INCOMP, &hrs_uuid, sizeof(hrs_uuid));
-    bluetil_ad_add_name(&ad, _device_name);
-    ble_gap_adv_set_data(ad.buf, ad.pos);
+    nimble_autoadv_add_field(BLE_GAP_AD_UUID16_INCOMP, &hrs_uuid, sizeof(hrs_uuid));
+
+    nimble_autoadv_set_gap_cb(&gap_event_cb, NULL);
 
     /* start to advertise this node */
-    _start_advertising();
+    nimble_autoadv_start(NULL);
 
     /* run an event loop for handling the heart rate update events */
     event_loop(&_eq);

@@ -1,47 +1,49 @@
-export LLVMPREFIX ?= llvm-
+LLVMPREFIX ?= llvm-
 # Apple XCode doesn't prefix its tools with llvm-, but manually installed LLVM
 # on OSX might have the llvm- prefix, we can't simply test against uname -s.
 # Test if llvm-ar exists
 ifeq (,$(shell command -v $(LLVMPREFIX)ar 2>/dev/null))
-# fall back to system tools
-export LLVMPREFIX :=
+  # fall back to system tools
+  LLVMPREFIX :=
 endif
-export CC          = clang
-export CXX         = clang++
-export CCAS       ?= $(CC)
-export AS          = $(LLVMPREFIX)as
-export AR          = $(LLVMPREFIX)ar
-export NM          = $(LLVMPREFIX)nm
+CC          = clang
+CXX         = clang++
+CCAS       ?= $(CC)
+AS          = $(LLVMPREFIX)as
+AR          = $(LLVMPREFIX)ar
+NM          = $(LLVMPREFIX)nm
 # LLVM does have a linker, however, it is not entirely
 # compatible with GCC. For instance spec files as used in
 # `makefiles/libc/newlib.mk` are not supported. Therefore
 # we just use GCC for now.
-export LINK        = $(PREFIX)gcc
-export LINKXX      = $(PREFIX)g++
+LINK        = $(PREFIX)gcc
+LINKXX      = $(PREFIX)g++
 # objcopy does not have a clear substitute in LLVM, use GNU binutils
-#export OBJCOPY     = $(LLVMPREFIX)objcopy
-export OBJCOPY    ?= $(shell command -v $(PREFIX)objcopy || command -v gobjcopy || command -v objcopy)
+# OBJCOPY   = $(LLVMPREFIX)objcopy
+_OBJCOPY    := $(shell command -v $(PREFIX)objcopy || command -v gobjcopy || command -v objcopy)
+OBJCOPY    ?= $(_OBJCOPY)
 ifeq ($(OBJCOPY),)
-$(warning objcopy not found. Hex file will not be created.)
-export OBJCOPY     = true
+  $(warning objcopy not found. Hex file will not be created.)
+  OBJCOPY     = true
 endif
 # Default to the native (g)objdump, helps when using toolchain from docker
-export OBJDUMP    ?= $(or $(shell command -v $(LLVMPREFIX)objdump || command -v gobjdump),objdump)
-export SIZE        = $(LLVMPREFIX)size
+_OBJDUMP    := $(or $(shell command -v $(LLVMPREFIX)objdump || command -v gobjdump),objdump)
+OBJDUMP     ?= $(_OBJDUMP)
+SIZE        = $(LLVMPREFIX)size
 # LLVM lacks a binutils strip tool as well...
 #export STRIP      = $(LLVMPREFIX)strip
 # We use GDB for debugging for now, maybe LLDB will be supported in the future.
 include $(RIOTMAKE)/tools/gdb.inc.mk
 
 # Include directories from gcc
-#   $1: language <c|cpp>
+#   $1: language <c|c++>
 #
 #   `realpath` is used instead of `abspath` to support Mingw32 which has issues
 #   with windows formatted gcc directories
 #
 # CFLAGS_CPU is used to get the correct multilib include header.
 gcc_include_dirs = $(realpath \
-    $(shell $(PREFIX)gcc $(CFLAGS_CPU) -v -x $1 -E /dev/null 2>&1 | \
+    $(shell $(PREFIX)g++ $(CFLAGS_CPU) -v -x $1 -E /dev/null 2>&1 | \
         sed \
         -e '1,/\#include <...> search starts here:/d' \
         -e '/End of search list./,$$d' \
@@ -49,15 +51,16 @@ gcc_include_dirs = $(realpath \
 )
 
 ifneq (,$(TARGET_ARCH))
+  TARGET_ARCH_LLVM ?= $(TARGET_ARCH)
   ifeq (,$(CFLAGS_CPU))
     $(error CFLAGS_CPU must have been defined to use `llvm`.)
   endif
 
   # Tell clang to cross compile
-  CFLAGS     += -target $(TARGET_ARCH)
-  CXXFLAGS   += -target $(TARGET_ARCH)
+  CFLAGS     += -target $(TARGET_ARCH_LLVM)
+  CXXFLAGS   += -target $(TARGET_ARCH_LLVM)
   # We currently don't use LLVM for linking (see comment above).
-  # LINKFLAGS  += -target $(TARGET_ARCH)
+  # LINKFLAGS  += -target $(TARGET_ARCH_LLVM)
 
   # Clang on Linux uses GCC's C and C++ headers and libstdc++ (installed with GCC)
 
@@ -84,6 +87,15 @@ CFLAGS += -Wno-atomic-alignment
 # unsupported warning flags:
 CFLAGS += -Wno-unknown-warning-option
 
+# Designated initializers make the code much more readable and are part
+# of the C standard since C99. C++ with C++20 finally caught up.
+# Until we switch to that C++ version, let's disable the annoying
+# warning rather than reducing the code quality for the sake of
+# strict C++ compatibility of our headers.
+CXXEXFLAGS += -Wno-c99-designator
+
 OPTIONAL_CFLAGS_BLACKLIST += -fno-delete-null-pointer-checks
 OPTIONAL_CFLAGS_BLACKLIST += -Wformat-overflow
 OPTIONAL_CFLAGS_BLACKLIST += -Wformat-truncation
+
+LLVM_VERSION := $(shell command -v $(CC) > /dev/null && $(CC) -dumpversion | cut -d . -f 1)

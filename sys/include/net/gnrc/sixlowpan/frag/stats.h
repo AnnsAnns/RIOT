@@ -24,7 +24,6 @@
 extern "C" {
 #endif
 
-
 /**
  * @brief   Statistics on fragmentation and reassembly
  *
@@ -35,6 +34,8 @@ typedef struct {
                              *   reassembly buffer is full */
     unsigned frag_full;     /**< counts the number of events that there where
                              *   no @ref gnrc_sixlowpan_frag_fb_t available */
+    unsigned datagrams;     /**< reassembled datagrams */
+    unsigned fragments;     /**< total fragments of reassembled fragments */
 #if defined(MODULE_GNRC_SIXLOWPAN_FRAG_VRB) || DOXYGEN
     unsigned vrb_full;      /**< counts the number of events where the virtual
                              *   reassembly buffer is full */
@@ -47,7 +48,6 @@ typedef struct {
  * @return  The current statistics on fragmentation and reassembly
  */
 gnrc_sixlowpan_frag_stats_t *gnrc_sixlowpan_frag_stats_get(void);
-
 
 #ifdef __cplusplus
 }

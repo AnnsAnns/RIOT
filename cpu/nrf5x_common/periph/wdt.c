@@ -19,13 +19,15 @@
  * @}
  */
 
+#include <assert.h>
+
 #include "cpu.h"
 #include "timex.h"
 #include "periph/wdt.h"
 
 #include "nrf_clock.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 /* By default, allow watchdog during sleep.
@@ -38,6 +40,18 @@
 /* By default, allow watchdog during debug session. */
 #ifndef NRF_WDT_HALT_MODE
 #define NRF_WDT_HALT_MODE (WDT_CONFIG_HALT_Run)
+#endif
+
+/* Compatibility wrapper for nRF53/nRF9160 */
+#ifdef NRF_WDT0_S
+#define NRF_WDT NRF_WDT0_S
+#elif defined(NRF_WDT_S)
+#define NRF_WDT NRF_WDT_S
+#endif
+
+/* Wrapper around vendor files inconsistency */
+#ifdef WDT_RUNSTATUS_RUNSTATUSWDT_Running
+#define WDT_RUNSTATUS_RUNSTATUS_Running WDT_RUNSTATUS_RUNSTATUSWDT_Running
 #endif
 
 #ifdef MODULE_PERIPH_WDT_CB

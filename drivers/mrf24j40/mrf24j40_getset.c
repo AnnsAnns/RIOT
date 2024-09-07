@@ -24,9 +24,9 @@
 #include "mrf24j40.h"
 #include "mrf24j40_internal.h"
 #include "mrf24j40_registers.h"
-#include "xtimer.h"
+#include "ztimer.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 /* Values of RFCON3 - Address: 0x203
@@ -63,11 +63,6 @@
  * 0b11110000 -> -34.9dB-> -35
  * 0b11111000 -> -36.3dB-> -36
  */
-
-static const int16_t tx_pow_to_dbm[] = { 0, 0, -1, -2, -3, -4, -5, -6,
-                                         -10, -10, -11, -12, -13, -14, -15, -16,
-                                         -20, -20, -21, -22, -23, -24, -25, -26,
-                                         -30, -30, -31, -32, -33, -34, -35, -36 };
 
 static const uint8_t dbm_to_tx_pow[] = { 0x00, 0x10, 0x18, 0x20, 0x28, 0x30, 0x38, 0x38, 0x38, 0x40,
                                          0x40, 0x50, 0x58, 0x60, 0x68, 0x70, 0x78, 0x78, 0x78, 0x80,
@@ -120,14 +115,14 @@ static const uint8_t RSSI_value[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
                                       0x25, 0x20, 0x1b, 0x17, 0x12, 0x0d, 0x09, 0x05, 0x02, 0x01, \
                                       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-
-uint16_t mrf24j40_get_addr_short(mrf24j40_t *dev)
+static void mrf24j40_baseband_reset(mrf24j40_t *dev)
 {
-    network_uint16_t naddr;
-    naddr.u8[1] = mrf24j40_reg_read_short(dev, MRF24J40_REG_SADRL);
-    naddr.u8[0] = mrf24j40_reg_read_short(dev, MRF24J40_REG_SADRH);
+    uint8_t softrst;
 
-    return naddr.u16;
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_SOFTRST, MRF24J40_SOFTRST_RSTBB);
+    do {
+        softrst = mrf24j40_reg_read_short(dev, MRF24J40_REG_SOFTRST);
+    } while (softrst != 0);        /* wait until soft-reset has finished */
 }
 
 void mrf24j40_set_addr_short(mrf24j40_t *dev, uint16_t addr)
@@ -147,32 +142,12 @@ void mrf24j40_set_addr_short(mrf24j40_t *dev, uint16_t addr)
                              naddr.u8[0]);
 }
 
-uint64_t mrf24j40_get_addr_long(mrf24j40_t *dev)
+void mrf24j40_set_addr_long(mrf24j40_t *dev, const uint8_t *addr)
 {
-    network_uint64_t naddr;
-
     for (int i = 0; i < 8; i++) {
-        naddr.u8[7 - i] = mrf24j40_reg_read_short(dev, (MRF24J40_REG_EADR0 + i));
-    }
-    return naddr.u64;
-}
-
-void mrf24j40_set_addr_long(mrf24j40_t *dev, uint64_t addr)
-{
-    network_uint64_t naddr;
-    naddr.u64 = addr;
-
-    for (int i = 0; i < 8; i++) {
-        mrf24j40_reg_write_short(dev, (MRF24J40_REG_EADR0 + i),
-                                 (naddr.u8[7 - i]));
+        mrf24j40_reg_write_short(dev, MRF24J40_REG_EADR0 + i, addr[7 - i]);
     }
 }
-
-uint8_t mrf24j40_get_chan(mrf24j40_t *dev)
-{
-    return dev->netdev.chan;
-}
-
 
 void mrf24j40_set_chan(mrf24j40_t *dev, uint8_t channel)
 {
@@ -182,8 +157,6 @@ void mrf24j40_set_chan(mrf24j40_t *dev, uint8_t channel)
         (channel > IEEE802154_CHANNEL_MAX)) {
         return;
     }
-
-    dev->netdev.chan = channel;
 
     /* Channel settings
      * 11 -> Value = 0x03
@@ -250,27 +223,13 @@ void mrf24j40_set_chan(mrf24j40_t *dev, uint8_t channel)
     mrf24j40_reset_state_machine(dev);
 }
 
-uint16_t mrf24j40_get_pan(mrf24j40_t *dev)
-{
-    return dev->netdev.pan;
-}
-
 void mrf24j40_set_pan(mrf24j40_t *dev, uint16_t pan)
 {
-    le_uint16_t le_pan = byteorder_btols(byteorder_htons(pan));
+    le_uint16_t le_pan = byteorder_htols(pan);
 
     DEBUG("pan0: %u, pan1: %u\n", le_pan.u8[0], le_pan.u8[1]);
     mrf24j40_reg_write_short(dev, MRF24J40_REG_PANIDL, le_pan.u8[0]);
     mrf24j40_reg_write_short(dev, MRF24J40_REG_PANIDH, le_pan.u8[1]);
-}
-
-
-int16_t mrf24j40_get_txpower(mrf24j40_t *dev)
-{
-    uint8_t txpower;
-
-    txpower = (mrf24j40_reg_read_long(dev, MRF24J40_REG_RFCON3) >> 3) & 0x1F;
-    return tx_pow_to_dbm[txpower];
 }
 
 void mrf24j40_set_txpower(mrf24j40_t *dev, int16_t txpower)
@@ -286,15 +245,6 @@ void mrf24j40_set_txpower(mrf24j40_t *dev, int16_t txpower)
 
 }
 
-uint8_t mrf24j40_get_csma_max_retries(mrf24j40_t *dev)
-{
-    uint8_t tmp;
-
-    tmp  = mrf24j40_reg_read_short(dev, MRF24J40_REG_TXMCR);
-    tmp  &= MRF24J40_TXMCR_CSMA_BACKOFF_MASK;
-    return tmp;
-}
-
 void mrf24j40_set_csma_max_retries(mrf24j40_t *dev, int8_t retries)
 {
     uint8_t tmp;
@@ -306,15 +256,6 @@ void mrf24j40_set_csma_max_retries(mrf24j40_t *dev, int8_t retries)
     /* apply new settings */
     tmp  |= (retries & MRF24J40_TXMCR_CSMA_BACKOFF_MASK);
     mrf24j40_reg_write_short(dev, MRF24J40_REG_TXMCR, tmp);
-}
-
-int8_t mrf24j40_get_cca_threshold(mrf24j40_t *dev)
-{
-    int8_t tmp;
-
-    tmp = mrf24j40_reg_read_short(dev, MRF24J40_REG_CCAEDTH);   /* Energy detection threshold */
-
-    return(dBm_value[tmp]);                                     /* in dBm */
 }
 
 void mrf24j40_set_cca_threshold(mrf24j40_t *dev, int8_t value)
@@ -329,6 +270,27 @@ void mrf24j40_set_cca_threshold(mrf24j40_t *dev, int8_t value)
     mrf24j40_reg_write_short(dev, MRF24J40_REG_CCAEDTH, RSSI_value[value]);
 }
 
+void mrf24j40_set_turbo(mrf24j40_t *dev, bool on)
+{
+    uint8_t tmp;
+    static const uint8_t cfg[2][2] = {
+        {0xD0, 0x80},   /* IEEE mode */
+        {0x30, 0x40}    /* Turbo mode */
+    };
+
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_BBREG0, on);
+
+    /* Set Preamble Search Energy Valid Threshold */
+    tmp = mrf24j40_reg_read_short(dev, MRF24J40_REG_BBREG3) & 0xF;
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_BBREG3, tmp | cfg[on][0]);
+
+    /* Set Carrier Sense Threshold */
+    tmp = mrf24j40_reg_read_short(dev, MRF24J40_REG_BBREG4) & 0x1F;
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_BBREG4, tmp | cfg[on][1]);
+
+    mrf24j40_baseband_reset(dev);
+}
+
 void mrf24j40_set_option(mrf24j40_t *dev, uint16_t option, bool state)
 {
     uint8_t tmp;
@@ -337,7 +299,6 @@ void mrf24j40_set_option(mrf24j40_t *dev, uint16_t option, bool state)
 
     /* set option field */
     if (state) {
-        dev->netdev.flags |= option;
         /* trigger option specific actions */
         switch (option) {
             case MRF24J40_OPT_CSMA:
@@ -370,7 +331,6 @@ void mrf24j40_set_option(mrf24j40_t *dev, uint16_t option, bool state)
     }
     /* clear option field */
     else {
-        dev->netdev.flags &= ~(option);
         /* trigger option specific actions */
         switch (option) {
             case MRF24J40_OPT_CSMA:
@@ -389,10 +349,8 @@ void mrf24j40_set_option(mrf24j40_t *dev, uint16_t option, bool state)
                 tmp &= ~MRF24J40_RXMCR_PROMI;
                 tmp &= ~MRF24J40_RXMCR_ERRPKT;
                 /* re-enable AUTOACK only if the option is set */
-                if (dev->netdev.flags & NETDEV_IEEE802154_ACK_REQ) {
-                    tmp &= ~(MRF24J40_RXMCR_NOACKRSP);
-                    mrf24j40_reg_write_short(dev, MRF24J40_REG_RXMCR, tmp);
-                }
+                tmp &= ~(MRF24J40_RXMCR_NOACKRSP);
+                mrf24j40_reg_write_short(dev, MRF24J40_REG_RXMCR, tmp);
                 break;
             case NETDEV_IEEE802154_ACK_REQ:
                 DEBUG("[mrf24j40] opt: disabling auto ACKs\n");
@@ -407,29 +365,6 @@ void mrf24j40_set_option(mrf24j40_t *dev, uint16_t option, bool state)
     }
 }
 
-void mrf24j40_set_state(mrf24j40_t *dev, uint8_t state)
-{
-    uint8_t old_state;
-
-    old_state = dev->state;
-
-
-    if (state == old_state) {
-        return;
-    }
-    /* check if asked to wake up from sleep mode */
-    if (old_state == MRF24J40_PSEUDO_STATE_SLEEP) {
-        mrf24j40_assert_awake(dev);
-    }
-    if (state == MRF24J40_PSEUDO_STATE_SLEEP) {
-        mrf24j40_sleep(dev);
-    }
-    if (state == MRF24J40_PSEUDO_STATE_IDLE) {
-        dev->state = state;
-    }
-    dev->idle_state = state;
-}
-
 void mrf24j40_sleep(mrf24j40_t *dev)
 {
     DEBUG("[mrf24j40] Putting into sleep mode\n");
@@ -441,44 +376,33 @@ void mrf24j40_sleep(mrf24j40_t *dev)
     mrf24j40_reg_write_short(dev, MRF24J40_REG_SOFTRST, MRF24J40_SOFTRST_RSTPWR);
     /* Go to SLEEP mode */
     mrf24j40_reg_write_short(dev, MRF24J40_REG_SLPACK, MRF24J40_SLPACK_SLPACK);
-    dev->state = MRF24J40_PSEUDO_STATE_SLEEP;
 }
 
-void mrf24j40_assert_sleep(mrf24j40_t *dev)
+void mrf24j40_wake_up(mrf24j40_t *dev)
 {
-    if (dev->idle_state == MRF24J40_PSEUDO_STATE_SLEEP) {
-        mrf24j40_sleep(dev);
-    }
-}
-
-void mrf24j40_assert_awake(mrf24j40_t *dev)
-{
-    if (dev->state == MRF24J40_PSEUDO_STATE_SLEEP) {
-        DEBUG("[mrf24j40] Waking up from sleep mode\n");
-        /* Wake mrf up */
-        mrf24j40_reg_write_short(dev, MRF24J40_REG_WAKECON, MRF24J40_WAKECON_IMMWAKE | MRF24J40_WAKECON_REGWAKE);
-        /* undocumented delay, needed for stable wakeup */
-        xtimer_usleep(MRF24J40_DELAY_SLEEP_TOGGLE);
-        mrf24j40_reg_write_short(dev, MRF24J40_REG_WAKECON, MRF24J40_WAKECON_IMMWAKE);
-        /* reset state machine */
-        mrf24j40_reg_write_short(dev, MRF24J40_REG_RFCTL, MRF24J40_RFCTL_RFRST);
-        mrf24j40_reg_write_short(dev, MRF24J40_REG_RFCTL, 0x00);
-        /* After wake-up, delay at least 2 ms to allow 20 MHz main
-         * oscillator time to stabilize before transmitting or receiving.
-         */
-        xtimer_usleep(MRF24J40_WAKEUP_DELAY);
-        /* reset interrupts */
-        mrf24j40_reg_read_short(dev, MRF24J40_REG_INTSTAT);
-        mrf24j40_enable_auto_pa_lna(dev);
-        dev->state = MRF24J40_PSEUDO_STATE_IDLE;
-    }
+    DEBUG("[mrf24j40] Waking up from sleep mode\n");
+    /* Wake mrf up */
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_WAKECON, MRF24J40_WAKECON_IMMWAKE | MRF24J40_WAKECON_REGWAKE);
+    /* undocumented delay, needed for stable wakeup */
+    ztimer_sleep(ZTIMER_USEC, MRF24J40_DELAY_SLEEP_TOGGLE);
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_WAKECON, MRF24J40_WAKECON_IMMWAKE);
+    /* reset state machine */
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_RFCTL, MRF24J40_RFCTL_RFRST);
+    mrf24j40_reg_write_short(dev, MRF24J40_REG_RFCTL, 0x00);
+    /* After wake-up, delay at least 2 ms to allow 20 MHz main
+     * oscillator time to stabilize before transmitting or receiving.
+     */
+    ztimer_sleep(ZTIMER_USEC, MRF24J40_WAKEUP_DELAY);
+    /* reset interrupts */
+    mrf24j40_reg_read_short(dev, MRF24J40_REG_INTSTAT);
+    mrf24j40_enable_auto_pa_lna(dev);
 }
 
 void mrf24j40_reset_state_machine(mrf24j40_t *dev)
 {
     mrf24j40_reg_write_short(dev, MRF24J40_REG_RFCTL, MRF24J40_RFCTL_RFRST);
     mrf24j40_reg_write_short(dev, MRF24J40_REG_RFCTL, 0x00);
-    xtimer_usleep(MRF24J40_STATE_RESET_DELAY);             /* Delay at least 192us */
+    ztimer_sleep(ZTIMER_USEC, MRF24J40_STATE_RESET_DELAY);             /* Delay at least 192us */
 }
 
 void mrf24j40_software_reset(mrf24j40_t *dev)

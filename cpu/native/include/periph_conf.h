@@ -16,8 +16,19 @@
 #ifndef PERIPH_CONF_H
 #define PERIPH_CONF_H
 
+#include "macros/units.h"
+
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+/**
+ * @brief   System core clock in Hz
+ *
+ *  1GHz is an arbitrary value used for compatibility with other platforms.
+ */
+#ifndef CLOCK_CORECLOCK
+#define CLOCK_CORECLOCK     GHZ(1)
 #endif
 
 /**
@@ -38,14 +49,12 @@ extern "C" {
  * @name Timer peripheral configuration
  * @{
  */
-#define TIMER_NUMOF        (1U)
-#define TIMER_0_EN         1
+#define TIMER_NUMOF            (1U)
+#define TIMER_CHANNEL_NUMOF    (1U)    /**< Number of timer channels */
 
 /**
  * @brief xtimer configuration
  */
-#define XTIMER_OVERHEAD 14
-
 /* timer_set_absolute() has a high margin for possible underflow if set with
  * value not far in the future. To prevent this, we set high backoff values
  * here.
@@ -113,7 +122,7 @@ extern "C" {
  * `--spi` startup parameter with the corresponding SPI device and HWCS-line
  * parameter has been given.
  */
-#define SPI_HWCS(x)     (x)
+#define SPI_HWCS(x)     (UINT_MAX - SPI_MAXCS + x)
 /** @} */
 
 #ifdef __cplusplus

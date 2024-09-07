@@ -21,39 +21,42 @@
 
 #include "periph/pm.h"
 
-#define ENABLE_DEBUG (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 void pm_set(unsigned mode)
 {
-    if (mode < PM_NUM_MODES) {
-        uint32_t _mode;
+    int deep = 0;
+    uint32_t _mode;
 
-        switch (mode) {
-            case 0:
-                DEBUG_PUTS("pm_set(): setting BACKUP mode.");
-                _mode = PM_SLEEPCFG_SLEEPMODE_BACKUP;
-                break;
-            case 1:
-                DEBUG_PUTS("pm_set(): setting STANDBY mode.");
-                _mode = PM_SLEEPCFG_SLEEPMODE_STANDBY;
-                break;
-            default: /* Falls through */
-            case 2:
-                DEBUG_PUTS("pm_set(): setting IDLE mode.");
-#if defined(CPU_MODEL_SAMR30G18A) || defined(CPU_MODEL_SAMR34J18B)
-                _mode = PM_SLEEPCFG_SLEEPMODE_IDLE;
+    switch (mode) {
+        case SAML21_PM_MODE_BACKUP:
+            DEBUG_PUTS("pm_set(): setting BACKUP mode.");
+            _mode = PM_SLEEPCFG_SLEEPMODE_BACKUP;
+            deep  = 1;
+            break;
+        case SAML21_PM_MODE_STANDBY:
+            DEBUG_PUTS("pm_set(): setting STANDBY mode.");
+            _mode = PM_SLEEPCFG_SLEEPMODE_STANDBY;
+            deep  = 1;
+            break;
+        case SAML21_PM_MODE_IDLE:
+            DEBUG_PUTS("pm_set(): setting IDLE mode.");
+#if !defined(PM_SLEEPCFG_SLEEPMODE_IDLE2)
+            _mode = PM_SLEEPCFG_SLEEPMODE_IDLE;
 #else
-                _mode = PM_SLEEPCFG_SLEEPMODE_IDLE2;
+            _mode = PM_SLEEPCFG_SLEEPMODE_IDLE2;
 #endif
-                break;
-        }
-
-        /* write sleep configuration */
-        PM->SLEEPCFG.bit.SLEEPMODE = _mode;
-        /* make sure value has been set */
-        while (PM->SLEEPCFG.bit.SLEEPMODE != _mode) {}
+            break;
+        default:
+            /* don't sleep at all */
+            return;
     }
 
-    cortexm_sleep(0);
+    /* write sleep configuration */
+    PM->SLEEPCFG.reg = _mode;
+    /* make sure value has been set */
+    while ((PM->SLEEPCFG.reg & PM_SLEEPCFG_SLEEPMODE_Msk) != _mode) {}
+
+    sam0_cortexm_sleep(deep);
 }

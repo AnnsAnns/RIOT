@@ -27,6 +27,13 @@
 extern "C" {
 #endif
 
+/**
+ * @name    AT24MAC602 configuration
+ * @{
+ */
+#define AT24MAC_PARAM_I2C_DEV   I2C_DEV(0)
+#define AT24MAC_PARAM_TYPE      AT24MAC6XX
+/** @} */
 
 /**
  * @name   LED pin definitions and handlers
@@ -50,7 +57,7 @@ extern "C" {
 #define LED1_OFF            (LED_PORT |=  LED1_MASK)
 #define LED1_ON             (LED_PORT &= ~LED1_MASK)
 #define LED1_TOGGLE         (LED_PORT ^=  LED1_MASK)
-
+/** @} */
 
 /**
  * @name    Usage of LED to turn on when a kernel panic occurs.
@@ -59,13 +66,13 @@ extern "C" {
 #define LED_PANIC           LED0_ON
 /** @} */
 
-
 /**
  * @name DS18 pins  OW_BUS_0
  * @{
  */
 #define DS18_PARAM_PIN      GPIO_PIN(PORT_D, 7)
 #define DS18_PARAM_PULL     (GPIO_IN_PU)
+/** @} */
 
 /**
  * @name xtimer configuration values
@@ -75,6 +82,7 @@ extern "C" {
 #define XTIMER_CHAN         (0)
 #define XTIMER_WIDTH        (16)
 #define XTIMER_HZ           (62500UL)
+/** @} */
 
 /**
  * @name Indicate Watchdog cleared in bootloader an
@@ -89,7 +97,7 @@ extern "C" {
 
 /**
  * @name CPU clock scale for avr-rss2
- *
+ * @{
  */
 #define CPU_ATMEGA_CLK_SCALE_INIT    CPU_ATMEGA_CLK_SCALE_DIV1
 /** @} */
@@ -98,15 +106,9 @@ extern "C" {
  * @name    User button configuration
  * @{
  */
-#define MODULE_ATMEGA_PCINT0
 #define BTN0_PIN            GPIO_PIN(PORT_B, 0)
 #define BTN0_MODE           GPIO_IN
 /** @} */
-
-/**
- * @brief Initialize board specific hardware, including clock, LEDs and std-IO
- */
-void board_init(void);
 
 #ifdef __cplusplus
 }

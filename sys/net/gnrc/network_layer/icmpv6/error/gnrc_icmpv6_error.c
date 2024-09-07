@@ -12,22 +12,23 @@
  * @file
  */
 
-#include "net/ipv6.h"
+#include <assert.h>
+
+#include "macros/utils.h"
 #include "net/gnrc/icmpv6.h"
-#include "net/gnrc/netif.h"
-#include "net/gnrc/pktbuf.h"
-
 #include "net/gnrc/icmpv6/error.h"
+#include "net/gnrc/netif.h"
+#include "net/gnrc/netreg.h"
+#include "net/gnrc/pktbuf.h"
+#include "net/ipv6.h"
 
-#define ENABLE_DEBUG    (0)
+#define ENABLE_DEBUG 0
 #include "debug.h"
 
 /* all error messages are basically the same size and format */
 #define ICMPV6_ERROR_SZ (sizeof(icmpv6_error_dst_unr_t))
 #define ICMPV6_ERROR_SET_VALUE(data, value) \
     ((icmpv6_error_pkt_too_big_t *)(data))->mtu = byteorder_htonl(value)
-
-#define MIN(a, b)   ((a) < (b)) ? (a) : (b)
 
 /**
  * @brief   Get packet fit.
@@ -50,6 +51,7 @@ static size_t _fit(const gnrc_pktsnip_t *orig_pkt)
 
     if (netif_hdr) {
         gnrc_netif_t *netif = gnrc_netif_hdr_get_netif(netif_hdr->data);
+        assert(netif != NULL);
 
         pkt_len -= netif_hdr->size;
         DEBUG("gnrc_icmpv6_error: fitting to MTU of iface %u (%u)\n",
@@ -220,7 +222,7 @@ static void _send(gnrc_pktsnip_t *pkt, const gnrc_pktsnip_t *orig_pkt,
                 return;
             }
             gnrc_netif_hdr_set_netif(netif->data, iface);
-            LL_PREPEND(pkt, netif);
+            pkt = gnrc_pkt_prepend(pkt, netif);
         }
         if (!gnrc_netapi_dispatch_send(GNRC_NETTYPE_IPV6,
                                        GNRC_NETREG_DEMUX_CTX_ALL,

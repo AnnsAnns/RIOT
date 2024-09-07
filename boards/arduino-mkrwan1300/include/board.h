@@ -25,15 +25,11 @@
 #include "periph_conf.h"
 #include "board_common.h"
 #include "arduino_pinmap.h"
+#include "periph/gpio.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief   The on-board LED is connected to pin 6 on this board
- */
-#define ARDUINO_LED         (6U)
 
 /**
  * @name    LED pin definitions and handlers

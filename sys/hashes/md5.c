@@ -50,7 +50,7 @@ static const uint8_t K[3][16] = {
 /**
  * @brief   In each round there is a left rotate operation performed as
  *          part of the 16 permutations.  The number of bits varies in
- *          a repeating patter.  This array keeps track of the patterns
+ *          a repeating pattern. This array keeps track of the patterns
  *          used in each round.
  */
 static const uint8_t S[4][4] = {
@@ -89,7 +89,6 @@ static const uint32_t T[4][16] = {
       0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
       0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391 },
 };
-
 
 /**
  * @brief   md5F(), md5G(), md5H(), and md5I() are described in RFC 1321
@@ -143,7 +142,7 @@ static void permute(uint32_t abcd[4], const uint8_t block[64] )
     uint32_t keep_abcd[4];
     uint32_t x[16];
 
-    /* Store the current ABCD values for later re-use */
+    /* Store the current ABCD values for later reuse */
     for (int i = 0; i < 4; i++) {
         keep_abcd[i] = abcd[i];
     }
@@ -250,7 +249,6 @@ void md5_update(md5_ctx_t *ctx, const void *data, size_t len)
         }
     }
 }
-
 
 void md5_final(md5_ctx_t *ctx, void *digest)
 {

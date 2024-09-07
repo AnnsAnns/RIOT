@@ -30,19 +30,33 @@ extern "C" {
  * @{
  */
 #ifndef DOSE_PARAM_UART
-#define DOSE_PARAM_UART         (UART_DEV(0))
+#define DOSE_PARAM_UART         (UART_DEV(1))
 #endif
 #ifndef DOSE_PARAM_BAUDRATE
 #define DOSE_PARAM_BAUDRATE     (115200)
 #endif
 #ifndef DOSE_PARAM_SENSE_PIN
-#define DOSE_PARAM_SENSE_PIN    (GPIO_PIN(0, 0))
+#define DOSE_PARAM_SENSE_PIN    (GPIO_UNDEF)
+#endif
+#ifndef DOSE_PARAM_STANDBY_PIN
+#define DOSE_PARAM_STANDBY_PIN  (GPIO_UNDEF)    /**< Standby/Silent mode */
 #endif
 
 #ifndef DOSE_PARAMS
-#define DOSE_PARAMS             { .uart = DOSE_PARAM_UART,         \
-                                  .baudrate = DOSE_PARAM_BAUDRATE, \
-                                  .sense_pin = DOSE_PARAM_SENSE_PIN }
+#ifdef MODULE_PERIPH_UART_RXSTART_IRQ
+#define DOSE_PARAMS             {                                        \
+                                  .uart = DOSE_PARAM_UART,               \
+                                  .baudrate = DOSE_PARAM_BAUDRATE,       \
+                                  .standby_pin = DOSE_PARAM_STANDBY_PIN, \
+                                }
+#else /* MODULE_PERIPH_UART_RXSTART_IRQ */
+#define DOSE_PARAMS             {                                        \
+                                  .uart = DOSE_PARAM_UART,               \
+                                  .baudrate = DOSE_PARAM_BAUDRATE,       \
+                                  .standby_pin = DOSE_PARAM_STANDBY_PIN, \
+                                  .sense_pin = DOSE_PARAM_SENSE_PIN,     \
+                                }
+#endif /* !MODULE_PERIPH_UART_RXSTART_IRQ */
 #endif
 /**@}*/
 
