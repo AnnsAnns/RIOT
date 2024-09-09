@@ -3,8 +3,6 @@ title: Build in Docker
 description: Building RIOT in a Docker container
 ---
 
-# Build In Docker                                       {#build-in-docker}
-
 Some parts of RIOT's build process can be performed inside a Docker container,
 which comes with the necessary compilers and toolchains and is fully managed by
 the build system. It can be enabled by passing `BUILD_IN_DOCKER=1` to make.

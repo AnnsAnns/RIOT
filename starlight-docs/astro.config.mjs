@@ -1,9 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { rehypeGithubAlerts } from 'rehype-github-alerts';
+import starlightImageZoom from 'starlight-image-zoom';
 
 // https://astro.build/config
 export default defineConfig({
+    markdown: {
+        rehypePlugins: [rehypeGithubAlerts],
+    },
 	integrations: [
 		starlight({
 			title: 'Riot Guides',
@@ -12,9 +17,21 @@ export default defineConfig({
 			},
 			sidebar: [
                 {
-                    label: 'Home',
+                    label: 'General',
                     items: [
-                        { label: 'Welcome to RIOT', slug: 'index' },
+                        { label: 'Introduction', slug: 'index'},
+                        { label: 'Structure', slug: 'general/structure'},
+                        { label: 'Quick Start', slug: 'general/quick-start'},
+                    ],
+                },
+                {
+                    label: 'Getting Started',
+                    items: [
+                        // We need to specify the order of the items here
+                        // to make it easier to follow the guide
+                        { slug: "getting-started/install-wsl" },
+                        { slug: "getting-started/installing"},
+                        { slug: "getting-started/flashing"},
                     ]
                 },
 				{
@@ -22,6 +39,10 @@ export default defineConfig({
 					autogenerate: { directory: 'guides' },  
 				},
 			],
+            customCss: [
+                './src/styles/github_alerts.css',
+            ],
+            plugins: [starlightImageZoom()]
 		}),
 	],
 });
