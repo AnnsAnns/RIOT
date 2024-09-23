@@ -1,8 +1,9 @@
-# Build System Basics                                       {#build-system-basics}
+---
+title: Build System Basics
+description: This page describes the basic concepts of the RIOT build system.
+---                
 
-# BOARD, CPU & FEATURES                                      {#board-cpu-features}
-
-## FEATURES                                                            {#features}
+## FEATURES                                           
 
 ### What is a FEATURE?
 
@@ -76,7 +77,7 @@ For a `FEATURE` to be provided by a `board` it must meet 2 criteria, and for
    and `FEATURES_BLACKLIST` are defined by the application `Makefile`
    (`examples/%/Makefile`, `tests/%/Makefile`, etc.) or in `Makefile.dep`
 
-## CPU/CPU_MODEL                                                            {#cpu}
+## CPU/CPU_MODEL                                                    
 
 
 `CPU` and `CPU_MODEL` refer to the _soc_ or _mcu_ (microcontroller)
@@ -94,7 +95,7 @@ A `CPU/CPU_MODEL` might support `FEATURES` that will depend on the `BOARD` wirin
 e.g.: bus (`uart`, `spi`) mappings. In this cases the `FEATURE` should be provided
 by the `BOARD.`
 
-## BOARD                                                                  {#board}
+## BOARD                                                              
 
 In RIOTs build-system, a `BOARD` is a grouping of:
 
@@ -130,7 +131,7 @@ A `nucleo-*` with a `SX1272MB2xA` is a different board in RIOT sense.
 _note_: if `devicetree` is implemented this concept will change.
 
 
-# Variables declaration guidelines              {#variable-declaration-guidelines}
+# Variables declaration guidelines        
 
 This page contains basic guidelines about `make` variable declaration, it
 summarizes some of the pros and cons as well as specifies good and bad patterns
@@ -161,9 +162,9 @@ This is why global variables need clear documentation.
 
 ### recursively expanded variable:
 
-~~~~~~~~~~~~~~~~
+```
 OUTPUT = $(shell some-command $(ANOTHER_VARIABLE))
-~~~~~~~~~~~~~~~~
+```
 
 - When using `=` the value of the variable is only declared, but not set,
   therefore the variable will only be evaluated when expanded (used) somewhere
@@ -180,9 +181,9 @@ OUTPUT = $(shell some-command $(ANOTHER_VARIABLE))
 
 ### simply expanded variable:
 
-~~~~~~~~~~~~~~~~
+```
 OUTPUT := $(shell some-command $(ANOTHER_VARIABLE))
-~~~~~~~~~~~~~~~~
+```
 
 - When using `:=` the value is only expanded once, expanding any reference to
   other variables or functions. If `OUTPUT` is always used at least once and
@@ -198,9 +199,9 @@ OUTPUT := $(shell some-command $(ANOTHER_VARIABLE))
 
 ### memoized:
 
-~~~~~~~~~~~~~~~~
+```
 OUTPUT = $(call memoized,OUTPUT,$(shell some-command))
-~~~~~~~~~~~~~~~~
+```
 
 - `memoized` is a RIOT defined function that combines characteristics from
   both `=` and `:=`.

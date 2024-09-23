@@ -1,5 +1,7 @@
-Emulators                                                 {#emulators}
-=========
+---
+title: Emulators
+description: This page describes the emulators supported by RIOT.
+---
 
 RIOT supports the [Qemu](https://www.qemu.org/) and [Renode](https://renode.io/)
 emulation tools. The emulation offers a hardware-free development environment

@@ -1,4 +1,7 @@
-# Community Processes     {#community-processes}
+---
+title: Community Processes
+description: This page describes the community processes around RIOT.
+---
 
 The community around RIOT gathers many IoT developers and users from around
 the world, from the industry, from academia, and hobbyists. The RIOT
@@ -19,7 +22,7 @@ e.g. by actively participating in technical and non-technical discussions within
 the community. Regular and interim virtual meetings are announced on the
 [forum][riot-events].
 
-## Maintainers          {#community-process-maintainers}
+## Maintainers       
 
 Among contributors, some have maintainer status, which consists in rights (merge rights)
 and duties (code review duties).
@@ -37,7 +40,7 @@ please start (or continue) contributing code and reviews!
 To contact maintainers, the best is to interact over actual RIOT code on
 [GitHub][riot-pull-requests].
 
-## Coordinators         {#community-process-coordinators}
+## Coordinators     
 
 Among contributors, some are also interested in discussing RIOT matters and
 perspectives, beyond coding RIOT. In short, maintainers focus on technical
@@ -59,7 +62,7 @@ then accept (or turn down).
 To contact coordinators, the best is to email the generic mailing list
 riot@riot-os.org
 
-## Task Forces          {#community-process-task-forces}
+## Task Forces       
 
 Parts of the community are gathered in *Task Forces*, which provide a specific
 venue focusing on a particular technical topic.
@@ -72,21 +75,21 @@ Each Task Force consists of a small number of RIOT developers and has its own Wi
 page. One or two shepherds are identified per task force as the main contact(s)
 for this activity.
 
-### Creating a new Task Force           {#community-process-task-force-creation}
+### Creating a new Task Force       
 
 If you wish to launch a new task force, go ahead,
 create your wikipage, name your shepherd(s), and signal it on the forum. RIOT
 maintainers will contact you in the rare case where duplicate or very closely-related
 work has been detected elsewhere, and if joining forces might make sense.
 
-### Life of a Task Force                {#community-process-task-force-life}
+### Life of a Task Force        
 
 Shepherds and/or participants in a Task Force are invited
 to now and then update their wikipage, report progress or summarize the latest stand
 of your discussions on the forum. A shepherd-hood may be transferred from one person
 to another person if everyone is happy about that.
 
-## Dissolving an existing Task Force    {#community-process-task-force-dissolving}
+## Dissolving an existing Task Force  
 
 Dissolving an existing Task Force happens either
 (i) as the shepherd(s) declare the TF has concluded, or declare the TF is abandoned, or
