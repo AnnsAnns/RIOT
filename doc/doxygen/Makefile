@@ -18,6 +18,11 @@ doc: $(DOCUMENTATION_FORMAT)
 .PHONY: html
 html: src/changelog.md
 	( cat riot.doxyfile ; echo "GENERATE_HTML = yes" ) | doxygen -
+	@npx tailwindcss -i ./html/global.css -o ./html/global.css
+
+.PHONY: htmlprod
+htmlprod: html
+	@npx -y pagefind --site html
 
 .PHONY: check
 check: src/changelog.md
