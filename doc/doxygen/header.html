@@ -38,6 +38,10 @@
     <script type="text/javascript">
       DoxygenAwesomeParagraphLink.init();
     </script>
+      <script type="text/javascript" src="$relpath^doxygen-awesome-interactive-toc.js"></script>
+      <script type="text/javascript">
+          DoxygenAwesomeInteractiveToc.init()
+      </script>
     <!-- <link href="$relpath^pagefind/pagefind-ui.css" rel="stylesheet"> -->
     <script src="$relpath^pagefind/pagefind-ui.js"></script>
     <script>
@@ -130,12 +134,31 @@
             </table>
             <div
               id="searchbox"
-              class="flex justify-items-center mb-6 gap-2 flex-col transition ease-in-out absolute z-[1055] bg-slate-800 right-6 top-16 rounded-xl min-h-32 m-4 p-4 max-h-screen min-w-64 max-w-96 overflow-y-auto overflow-x-hidden outline-double outline-4 outline-slate-700"
+              class="searchboxui"
             >
-              <div class="self-center text-xl">Searchbox 🐸🔎</div>
-              <div id="pagefindsearch"></div>
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <p>🐸🔎</p>
+                <p>Search</p>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
             </div>
           </div>
         </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
         <!--END TITLEAREA-->
         <!-- end header part -->
