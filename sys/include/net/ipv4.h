@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_ipv4    IPv4
- * @ingroup     net
+ * @ingroup     network_layer
  * @brief       IPv4 types and helper functions
  * @{
  *
