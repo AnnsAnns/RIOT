@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_udp UDP
- * @ingroup     net
+ * @ingroup     transportlayer
  * @brief       Provides UDP header and helper functions
  * @see         <a href="https://tools.ietf.org/html/rfc768">
  *                  RFC 768

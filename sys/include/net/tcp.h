@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_tcp TCP
- * @ingroup     net
+ * @ingroup     transportlayer
  * @brief       Provides TCP header and helper functions
  *
  * @{
