@@ -1,3 +1,9 @@
+---
+title: Supported Boards
+description: A list of supported boards
+---
+
+<!-- 
 /*
  * Copyright (C) 2013 Freie Universität Berlin
  *
@@ -15,10 +21,9 @@
  * configuration of a controller and some external devices such as sensors or
  * radios. All aspects concerning configuration of GPIO pins, MCU clock and
  * device drivers should go into this module.
- *
+ * -->
 
-Board Selection Guide {#board-selection-guide}
-=====================
+## Board Selection Guide
 
 There is no single best board to buy for use with RIOT, as hardware design
 involves many trade-offs. The challenge is to clearly assess the use case and
@@ -40,8 +45,7 @@ With this in mind, it is still possible to give some hints and recommendations:
       space, ...)
     - ...
 
-Popular Boards
---------------
+## Popular Boards
 
 | Board                                 | Use Case              | Performance   | Integrated Debugger   | Integrated Networking             | Native USB    | Arduino Headers       | Other Connectors          | Integrated Sensors/...                                | Breadboard Friendly   | Costs     | Remarks                       |
 |:------------------------------------- |:--------------------- |:------------- |:--------------------- |:--------------------------------- |:------------- |:--------------------- |:------------------------- |:----------------------------------------------------- |:--------------------- |:--------- |:----------------------------- |
@@ -63,8 +67,11 @@ Popular Boards
 | @ref boards_samr34-xpro               | Development           | `++`          | ✔                     | ✔ (LoRa)                          | ✔             | ✗                     | XPRO Expansion Header     | `o` (1 button, 2 LEDs)                                | `+`                   | `---`     | Got a spare kidney to sell?   |
 | @ref boards_weact-f411ce              | Prototyping           | `++`          | ✗                     | ✗                                 | ✔             | ✗                     | Custom                    | `+` (1 button, 1 LED, SPI flash)                      | `+++`                 | `+++`     | Excellent bang for the buck   |
 
-@note       Only boards with mature RIOT support and decent documentation qualify for above list
-@details    This list was last updated in April 2024
+:::note
+Only boards with mature RIOT support and decent documentation qualify for above list
+
+This list was last updated in April 2024
+:::
 
 
 <!-- Add when doc is fixed
@@ -82,8 +89,7 @@ Popular Boards
 - Decent (`+`) if it is fully compatible with Arduino Nano Shields (including SPI via ISP connector)
 - OK (`o`) if it is partially compatible with Arduino Nano Shields
 
-Guide to board pinouts {#pinout_guide}
-=====================================
+## Guide to board pinouts
 
 The following are the steps to take to locate specific pinouts on boards.
 This is useful when connecting external hardware to RIOT supported boards.
