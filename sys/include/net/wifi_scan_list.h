@@ -7,7 +7,7 @@
  */
 /**
  * @defgroup    net_wifi_scan_list List of scanned WiFis access points
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Wrapper around l2scan list for WiFi scan results
  * @{
  *

@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_uhcp UHCP
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Provides UHCP (micro host configuration protocol)
  *
  * UHCP (micro host configuration protocol) is a RIOT-proprietary protocol that

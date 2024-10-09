@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    ble_defs Generic BLE defines
- * @ingroup     ble
+ * @ingroup     data_link_layer
  * @brief       General values defined by the BT standard
  * @{
  *

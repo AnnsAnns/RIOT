@@ -11,7 +11,7 @@
 
 /**
  * @defgroup    net_sock    Sock API
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Provides a network API for applications and library
  *
  * About

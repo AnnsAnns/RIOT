@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_l2util Stack-independent helpers for IPv6 over X
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       This implements some common helper functions for IPv6 over X
  *              implementations based on [network device types]
  *              (@ref net_netdev_type).

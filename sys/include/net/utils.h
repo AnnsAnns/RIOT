@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_utils   Network helper functions
- * @ingroup     net
+ * @ingroup     network_layer
  * @brief       Common network helper functions
  * @{
  *

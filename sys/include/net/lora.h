@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_lora LoRa modulation
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       LoRa modulation header definitions
  * @{
  *

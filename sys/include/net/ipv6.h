@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_ipv6    IPv6
- * @ingroup     net
+ * @ingroup     network_layer
  * @brief       Provides types and helper functions related to Internet Protocol
  *              version 6 (IPv6)
  * @see [RFC 8200](http://tools.ietf.org/html/rfc8200) et al.

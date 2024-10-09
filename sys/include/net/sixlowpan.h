@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_sixlowpan   6LoWPAN
- * @ingroup     net
+ * @ingroup     network_layer
  * @brief       Provides 6LoWPAN dispatch types and helper functions
  * @{
  *

@@ -9,7 +9,7 @@
 
 /**
  * @defgroup    net_csma_sender  CSMA/CA helper
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       This interface allows code from layer 2 (MAC) or higher
  *              to send packets with CSMA/CA, whatever the abilities and/or
  *              configuration of a given radio transceiver device are.

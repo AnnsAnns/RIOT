@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_protnum  Protocol Numbers
- * @ingroup     net
+ * @ingroup     network_layer
  * @brief       Defines for the Protocol Numbers as they are used in the
  *              IPv4 protocol field and the IPv6 next header field
  *              (ipv6_hdr_t::nh).

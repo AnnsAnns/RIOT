@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_iana_portrange  IANA Port Ranges
- * @ingroup     net
+ * @ingroup     transportlayer
  * @brief       Service Name and Transport Protocol Port Number Registry
  * @{
  *

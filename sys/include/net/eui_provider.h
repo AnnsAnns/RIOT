@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_eui_provider    IEEE EUI-48/64 provider
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       MAC address management
  *
  * About

@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_dtls DTLS
- * @ingroup     net
+ * @ingroup     transportlayer
  * @brief       DTLS support in RIOT
  * @see         <a href="https://tools.ietf.org/html/rfc6347">
  *                  RFC 6347

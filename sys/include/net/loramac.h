@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_loramac LoRaMAC
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       LoRaMAC definitions
  *
  * @{

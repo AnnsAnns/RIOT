@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_dsm DTLS Session Management (DSM)
- * @ingroup     net net_dtls
+ * @ingroup     transportlayer net_dtls
  * @brief       This module provides functionality to store and retrieve session
  *              information of DTLS connections.
  *

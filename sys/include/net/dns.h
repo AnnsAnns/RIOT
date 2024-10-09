@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_dns DNS defines
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Generic DNS values
  * @{
  *

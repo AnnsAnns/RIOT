@@ -10,7 +10,7 @@
 
 /**
  * @defgroup    net_nanosock nanoCoAP Sock
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Synchronous sock based messaging with nanocoap
  *
  * nanocoap sock uses the nanocoap CoAP library to provide a synchronous

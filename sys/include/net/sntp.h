@@ -9,7 +9,7 @@
 
 /**
  * @defgroup    net_sntp Simple Network Time Protocol
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Simple Network Time Protocol (SNTP) implementation
  * @{
  *

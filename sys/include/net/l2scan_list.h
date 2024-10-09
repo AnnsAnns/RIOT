@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_l2scanlist   Scan List - List of wireless access points
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Internal list data structure of scanned access points
  *              @ref NETOPT_SCAN
  * @{

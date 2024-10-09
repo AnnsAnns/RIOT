@@ -8,7 +8,7 @@
 
 /**
  * @{
- * @ingroup     net
+ * @ingroup     pkg_openthread
  * @file
  * @brief       Implementation of OpenThread alarm platform abstraction
  *

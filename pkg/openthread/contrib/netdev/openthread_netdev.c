@@ -8,7 +8,7 @@
 
 /**
  * @{
- * @ingroup     net
+ * @ingroup     network_layer data_link_layer
  * @file
  * @brief       Netdev adoption for OpenThread
  *

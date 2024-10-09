@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_mqttsn MQTT-SN Defines
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Shared definitions for MQTT-SN
  *
  * @see         http://mqtt.org/new/wp-content/uploads/2009/06/MQTT-SN_spec_v1.2.pdf

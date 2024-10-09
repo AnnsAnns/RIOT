@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_ppp Point-to-Point Protocol (PPP) Data Link Layer
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       PPP types
 
  * @note        Last Updated: 2016-02-04

@@ -9,7 +9,7 @@
 
 /**
  * @defgroup    net_netif   Network interfaces
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Common network interface API
  *
  * This allows access to network interfaces regardless of the network stack

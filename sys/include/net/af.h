@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_af  UNIX address families
- * @ingroup     net
+ * @ingroup     transportlayer
  * @brief       Global UNIX address family definitions
  * @{
  *

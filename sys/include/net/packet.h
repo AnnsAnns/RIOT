@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_packet Packet interface on device level
- * @ingroup     net
+ * @ingroup     link_layer
  * @brief       Packet address family definitions
  * @{
  *

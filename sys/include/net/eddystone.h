@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_eddystone Eddystone
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       General values defined by the BLE Eddystone beacon format
  *
  * @see https://github.com/google/eddystone/blob/master/protocol-specification.md

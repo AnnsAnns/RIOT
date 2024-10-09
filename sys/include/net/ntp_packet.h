@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_ntp_packet NTP Packet
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       The NTP packet module provides functionality to manipulate the NTP header
  * @{
  *

@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_asymcute MQTT-SN Client (Asymcute)
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Asymcute is an asynchronous MQTT-SN implementation
  *
  * # About

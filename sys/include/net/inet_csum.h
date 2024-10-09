@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_inet_csum    Internet Checksum
- * @ingroup     net
+ * @ingroup     network_layer transportlayer
  * @brief   Provides a function to calculate the Internet Checksum
  * @{
  *

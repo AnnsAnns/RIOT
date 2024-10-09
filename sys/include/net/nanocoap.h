@@ -11,7 +11,7 @@
 
 /**
  * @defgroup    net_nanocoap nanoCoAP small CoAP library
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       CoAP library optimized for minimal resource usage
  *
  * nanocoap is a toolbox for reading and writing CoAP messages. It provides

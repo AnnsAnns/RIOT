@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_fib Forwarding Information Base (FIB)
- * @ingroup     net
+ * @ingroup     network_layer
  * @brief       FIB implementation
  *
  * This module is unused by RIOT's networking stacks, see @ref net_gnrc_ipv6_nib_ft

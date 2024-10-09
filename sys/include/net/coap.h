@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_coap CoAP defines
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       Generic CoAP values as defined by RFC7252
  * @{
  *

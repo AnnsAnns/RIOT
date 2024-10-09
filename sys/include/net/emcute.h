@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_emcute MQTT-SN Client (emCute)
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       emCute, the MQTT-SN implementation for RIOT
  *
  * # About

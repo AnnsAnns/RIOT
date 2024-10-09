@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_ethernet Ethernet
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Provides Ethernet header and helper functions
  * @{
  *

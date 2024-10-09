@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_someip SOME/IP
- * @ingroup     net
+ * @ingroup     network_layer
  * @brief       Provides SOME/IP header and field defines
  *
  * @{

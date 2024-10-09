@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_dns_mock DNS defines
- * @ingroup     net
+ * @ingroup     application_layer net_dns
  * @brief       Generic DNS mock values
  * @{
  *

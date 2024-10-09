@@ -8,7 +8,7 @@
 
 /**
  * @{
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @file
  * @brief       Neighbor level stats for netdev
  *

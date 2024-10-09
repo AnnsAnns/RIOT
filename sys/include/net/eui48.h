@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_eui48 IEEE EUI-48 identifier
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Definition and IPv6 IID conversion for IEEE EUI-48 identifiers
  * @{
  *

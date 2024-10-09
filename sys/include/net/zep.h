@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_zep  ZigBee Encapsulation Protocol
- * @ingroup     net
+ * @ingroup     network_layer application_layer
  * @brief       Provides definitions for the ZigBee Encapsulation Protocol (ZEP)
  *
  * @{

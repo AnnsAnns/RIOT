@@ -9,7 +9,7 @@
 
 /**
  * @defgroup    net_gcoap  GCoAP
- * @ingroup     net
+ * @ingroup     application_layer
  * @brief       High-level interface to CoAP messaging
  *
  * gcoap provides a high-level interface for writing CoAP messages via RIOT's

@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_wifi Wi-Fi
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Provides Wi-Fi definitions
  * @{
  *

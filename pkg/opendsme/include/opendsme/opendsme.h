@@ -9,7 +9,7 @@
 /**
  * @defgroup    pkg_opendsme openDSME - IEEE 802.15.4 DSME
  * @ingroup     pkg
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Support for IEEE 802.15.4 Deterministic and Synchronous Multi-channel Extension.
  *
  * @author      José I. Álamos <jose.alamos@haw-hamburg.de>

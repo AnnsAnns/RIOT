@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_eui64   IEEE EUI-64 identifier
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Type definition of the IEEE EUI-64 identifier
  * @see         <a href="https://web.archive.org/web/20170730083229/http://standards.ieee.org:80/develop/regauth/tut/eui64.pdf">
  *                  IEEE, "Guidelines for 64-bit Global Identifier (EUI-64)"

@@ -8,7 +8,7 @@
 
 /**
  * @defgroup    net_ethertype Ether types
- * @ingroup     net
+ * @ingroup     data_link_layer
  * @brief       Ether types
  * @see         <a href="http://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml#ieee-802-numbers-1">
  *                  IANA, ETHER TYPES
