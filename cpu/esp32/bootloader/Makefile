@@ -106,7 +106,7 @@ ifneq (,$(filter esp32 esp32s3,$(CPU_FAM)))
   ESP_SDK_BOOTLOADER_SRCS += components/soc/$(CPU_FAM)/sdmmc_periph.c
 endif
 
-ifneq (,$(filter esp32c3 esp32h2 esp32s3,$(CPU_FAM)))
+ifneq (,$(filter esp32c3 esp32c6 esp32h2 esp32s3,$(CPU_FAM)))
   ESP_SDK_BOOTLOADER_SRCS += components/efuse/$(CPU_FAM)/esp_efuse_rtc_calib.c
 endif
 
@@ -327,7 +327,7 @@ $(ESP_SDK_BOOTLOADER_ELF): \
 	$(Q)$(CC) -o $@ $(LINKFLAGS) -Wl,-Map=$(@:%.elf=%.map)
 
 FLASH_CHIP = $(CPU_FAM)
-ESPTOOL ?= $(RIOTTOOLS)/esptools/esptool_v3.2.py
+ESPTOOL ?= $(RIOTTOOLS)/esptools/esptool
 # TODO: These should be exported/configurable from the app side. That would
 # require to export these values.
 FLASH_MODE ?= dio   # ESP-IDF uses dio as default flash mode for the bootloader
