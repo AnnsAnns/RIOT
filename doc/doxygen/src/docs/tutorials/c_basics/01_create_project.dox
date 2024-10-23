@@ -1,0 +1,159 @@
+/**
+* @defgroup 01_create_project Create Project
+* @ingroup tutorials_c_basics
+* @brief This tutorial will guide you through creating a new project with a simple hello world program.
+
+@section step1 Step 1: Create a new project
+
+ * @note This tutorial assumes that you have already set up your development environment
+ * as described in the [Getting Started](/getting-started/installing/) guide.
+ * 
+ * Now that we have played around with the examples and have a basic understanding of how to use RIOT, let's create a new project from scratch. We will create a simple hello world program that will print "Hello World!" to the console.
+ * 
+ * @subsection step1_step1 Create a new git repository
+ * 
+ * We start by creating a new git repository for our project. If you have never worked with git before, you can find a good introduction [here](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) or [here](https://docs.github.com/en/get-started/getting-started-with-git/set-up-git).
+ * 
+ * Let's create a new directory for our project in which we will store our code. We will call this directory `hello_world`.
+ * 
+ * @code{.sh}
+ * mkdir hello_world && cd hello_world
+ * @endcode
+ * 
+ * Next, we initialize a new git repository in this directory. This will allow us to track changes to our code and collaborate with others and also allows us to easily get RIOT as a submodule.
+ * 
+ * @code{.sh}
+ * git init
+ * @endcode
+ * 
+ * @image html img/gitsetup/01_empty_git.png "The output of the git init command"
+ * 
+ * Congratulations! You have now created a new empty git repository. In the next step, we will add RIOT as a submodule to our project.
+ * 
+ * @subsection step1_step2 Add RIOT as a submodule
+ * 
+ * We want to import RIOT as a submodule to our project. This will allow us to easily update to newer versions of RIOT and also allows us to easily share our project with others on GitHub, Gitlab, or any other git hosting service.
+ * 
+ * To add RIOT as a submodule, we use the following command:
+ * 
+ * @code{.sh}
+ * git submodule add https://github.com/RIOT-OS/RIOT.git
+ * @endcode
+ * 
+ * @image html img/gitsetup/02_riot_submodule.png "Adding the submodule"
+ * 
+ * When looking into our directory via `ls`, we can see that a new directory called `RIOT` has been created. This directory contains the RIOT source code. If you were to push your project to a git hosting service, the `RIOT` directory would not be included in the repository. Instead, the repository would contain a reference to the commit of the RIOT repository that you have added as a submodule. This way, the repository stays small and only contains the code that you have written and not the entire RIOT source code.
+
+@section step2 Step 2: Creating our hello world program
+
+Now that we have added RIOT as a submodule to our project, we can start writing our hello world program. To do this, we create a new file called `main.c` in the `hello_world` directory. You can use any text editor to create this file. We will use Visual Studio Code in this example. To open Visual Studio Code in the directory, you can use the following command:
+
+@code{.sh}
+code .
+@endcode
+
+Now that Visual Studio Code is open, we create a new file called `main.c` and add the following code:
+
+@code{.c}
+#include <stdio.h>
+#include "ztimer.h"
+
+int main(void)
+{
+  ztimer_sleep(ZTIMER_SEC, 3);
+
+  puts("Hello World!");
+
+  return 0;
+}
+@endcode
+
+@image html img/create_project/03_main_c.png "The hello world program in Visual Studio Code"
+
+This program will print "Hello World!" to the console after sleeping for 3 seconds. We use the `ztimer_sleep` function to sleep for 3 seconds otherwise we will most likely miss the output before connecting to our device. This function is part of the `ztimer` module, which is part of RIOT. The `puts` function is part of the standard C library and is used to print a string to the console.
+
+@section step3 Step 3: Creating the Makefile
+
+Now that we have created our hello world program, we need to create a Makefile to build our program. The Makefile is a build automation tool that allows us to define how our program should be built. We create a new file called `Makefile` in the `hello_world` directory and add the following code:
+
+@code{.make}
+# name of your application
+APPLICATION = hello-world
+
+# Change this to your board if you want to build for a different board
+BOARD ?= native
+
+# This has to be the absolute path to the RIOT base directory:
+RIOTBASE ?= $(CURDIR)/RIOT
+
+# Comment this out to disable code in RIOT that does safety checking
+# which is not needed in a production environment but helps in the
+# development process:
+DEVELHELP ?= 1
+
+# This board requires a start sleep to actually catch the printed output
+USEMODULE += ztimer_sec
+
+# Change this to 0 show compiler invocation lines by default:
+QUIET ?= 1
+
+include $(RIOTBASE)/Makefile.include
+@endcode
+
+@image html img/create_project/04_makefile.png "The Makefile in Visual Studio Code"
+
+Congratulations! You have now created a new project with a simple hello world program. In the next step, we will build and run our program just like we did in the "Getting Started" guide.
+
+@section step4 Step 4: Building and running the program
+
+@contactus
+
+To build our program, we use the following command:
+
+@code{.sh}
+BUILD_IN_DOCKER=1 make flash
+@endcode
+
+@note The `BUILD_IN_DOCKER=1` flag tells the build system to use the docker image provided by RIOT to build our program. This ensures that we have all the necessary dependencies to build our program. If you have already built RIOT on your system, you can omit this flag and the build system will use the toolchain installed on your system.
+
+@image html img/create_project/05_make.png "Building the program"
+
+After building the program, we can run it using the following command to start the RIOT shell:
+
+@code{.sh}
+make term
+@endcode
+
+If everything went well, you should see our hello world program printing "Hello World!" to the console after 3 seconds.
+
+@image html img/create_project/06_output.png "The hello world program running in the RIOT shell"
+
+Hooraay! You have successfully created a new project with a simple hello world program.
+
+@note TiP: Before you push your project to a git hosting service such as Github, make sure to add a `.gitignore` file to your project to exclude unnecessary files from being tracked by git.
+
+For this project, a `.gitignore` file could look like this:
+
+@code{.sh}
+# Ignore build artifacts
+bin/
+*.bin
+*.elf
+*.hex
+*.map
+*.lst
+*.o
+*.d
+*.a
+*.out
+@endcode
+
+@section conclusion Conclusion
+
+In this tutorial, we have created a new project with a simple hello world program. We have added RIOT as a submodule to our project, created a hello world program, and built and run the program using the RIOT build system. You can now start building your own applications using RIOT and explore the vast possibilities that RIOT has to offer.
+
+@note The source code for this tutorial can be found [HERE](https://github.com/AnnsAnns/RIOT-Tutorial-Repository/tree/01_hello_world).
+
+If your project is not working as expected, you can compare your code with the code in this repository to see if you missed anything.
+
+*/
