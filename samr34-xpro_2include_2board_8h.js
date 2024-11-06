@@ -1,0 +1,27 @@
+var samr34_xpro_2include_2board_8h =
+[
+    [ "BTN0_MODE", "samr34-xpro_2include_2board_8h.html#a904884feea8e03c30c9a85ca6d7a8e5c", null ],
+    [ "BTN0_PIN", "samr34-xpro_2include_2board_8h.html#aab5c3eca54046333af52593b9e360270", null ],
+    [ "LED0_MASK", "samr34-xpro_2include_2board_8h.html#abfabde35a3e8b7ab50146a5e223bfead", null ],
+    [ "LED0_OFF", "samr34-xpro_2include_2board_8h.html#aef2e39b9fd343d0e437fac0463f3e02d", null ],
+    [ "LED0_ON", "samr34-xpro_2include_2board_8h.html#a1e48dc02333bfc2e6ad3e5bd466eecd4", null ],
+    [ "LED0_PIN", "samr34-xpro_2include_2board_8h.html#a3fc522fda449d6edde717d6a857429cf", null ],
+    [ "LED0_TOGGLE", "samr34-xpro_2include_2board_8h.html#aebc6389533d9fc8dcbe4d2129a4d5a45", null ],
+    [ "LED1_MASK", "samr34-xpro_2include_2board_8h.html#a669ed6e073140d069b30442bf4c08842", null ],
+    [ "LED1_OFF", "samr34-xpro_2include_2board_8h.html#a343fd2d3ce61b84f88ddfaea32c67c58", null ],
+    [ "LED1_ON", "samr34-xpro_2include_2board_8h.html#aadd4c7ae0cd4e9bbb17f7055dd51fe08", null ],
+    [ "LED1_PIN", "samr34-xpro_2include_2board_8h.html#a318aa17e5d40e2132d2c7f6269ce7f51", null ],
+    [ "LED1_TOGGLE", "samr34-xpro_2include_2board_8h.html#a267fdbba1d750146b73da35c1731fd17", null ],
+    [ "LED_PORT", "samr34-xpro_2include_2board_8h.html#a663daa01e565aee93c6f20c5845b90b4", null ],
+    [ "MTD_0", "samr34-xpro_2include_2board_8h.html#a0f992c379bd87e59320727deb561bbbd", null ],
+    [ "SX127X_PARAM_DIO0", "samr34-xpro_2include_2board_8h.html#ae0de0cec38e4d8f96ae68e4340028bce", null ],
+    [ "SX127X_PARAM_DIO1", "samr34-xpro_2include_2board_8h.html#abbd59e89ccaa2f06a3c2d399ec9b1084", null ],
+    [ "SX127X_PARAM_DIO2", "samr34-xpro_2include_2board_8h.html#a9b87315a4259c499509b06d6f469bba8", null ],
+    [ "SX127X_PARAM_DIO3", "samr34-xpro_2include_2board_8h.html#ac917eea6062e10a46800eed21dd3c59b", null ],
+    [ "SX127X_PARAM_PASELECT", "samr34-xpro_2include_2board_8h.html#a23245c840fc63b266a868b24b6747a51", null ],
+    [ "SX127X_PARAM_RESET", "samr34-xpro_2include_2board_8h.html#ae05bb210c4d80e12824dc022bf5c438d", null ],
+    [ "SX127X_PARAM_SPI", "samr34-xpro_2include_2board_8h.html#a046a1997a85c68028a155d867af3b596", null ],
+    [ "SX127X_PARAM_SPI_NSS", "samr34-xpro_2include_2board_8h.html#a0de61f26012008e2bbb3feeab7584395", null ],
+    [ "TCXO_PWR_PIN", "samr34-xpro_2include_2board_8h.html#abeea4c0af9ef3837fa787d067dedbd26", null ],
+    [ "TX_OUTPUT_SEL_PIN", "samr34-xpro_2include_2board_8h.html#a238472c4868387b4546bc2a3445c8ccf", null ]
+];

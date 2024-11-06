@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/ad7746/include/ad7746_internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ad7746__internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
+  <div class="headertitle">
+<div class="title">ad7746_internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__sensors.html">Sensor Device Drivers</a> &#124; <a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__saul.html">[S]ensor [A]ctuator [U]ber [L]ayer</a> &raquo; <a class="el" href="group__drivers__ad7746.html">AD7746 Capacitance-to-digital converter driver</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Internal definitions for AD7746 capacitance sensor.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internal definitions for AD7746 capacitance sensor. </p>
+<dl class="section author"><dt>Author</dt><dd>Leandro Lanzieri <a href="#" onclick="location.href='mai'+'lto:'+'lea'+'nd'+'ro.'+'la'+'nzi'+'er'+'i@h'+'aw'+'-ha'+'mb'+'urg'+'.d'+'e'; return false;">leand<span style="display: none;">.nosp@m.</span>ro.l<span style="display: none;">.nosp@m.</span>anzie<span style="display: none;">.nosp@m.</span>ri@h<span style="display: none;">.nosp@m.</span>aw-ha<span style="display: none;">.nosp@m.</span>mbur<span style="display: none;">.nosp@m.</span>g.de</a> </dd></dl>
+</div>
+<p><a href="ad7746__internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a7dceb16eae4ba7ab810d91d0f55a9244"><td class="memItemLeft" align="right" valign="top"><a id="a7dceb16eae4ba7ab810d91d0f55a9244"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a7dceb16eae4ba7ab810d91d0f55a9244">AD7746_RESET_CMD</a>&#160;&#160;&#160;(0xBF)</td></tr>
+<tr class="memdesc:a7dceb16eae4ba7ab810d91d0f55a9244"><td class="mdescLeft">&#160;</td><td class="mdescRight">AD7746 reset command. <br /></td></tr>
+<tr class="separator:a7dceb16eae4ba7ab810d91d0f55a9244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 registers</h2></td></tr>
+<tr class="memitem:a84a1e331f162c469851e429c6eb2f987"><td class="memItemLeft" align="right" valign="top"><a id="a84a1e331f162c469851e429c6eb2f987"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a84a1e331f162c469851e429c6eb2f987">AD7746_REG_STATUS</a>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="memdesc:a84a1e331f162c469851e429c6eb2f987"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status. <br /></td></tr>
+<tr class="separator:a84a1e331f162c469851e429c6eb2f987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe8bc31646e48bad33cbf150be4b489"><td class="memItemLeft" align="right" valign="top"><a id="aabe8bc31646e48bad33cbf150be4b489"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#aabe8bc31646e48bad33cbf150be4b489">AD7746_REG_CAP_DATA_H</a>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="memdesc:aabe8bc31646e48bad33cbf150be4b489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive channel data High. <br /></td></tr>
+<tr class="separator:aabe8bc31646e48bad33cbf150be4b489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a507c2fdeefb1f5feb89e4a9a588cc936"><td class="memItemLeft" align="right" valign="top"><a id="a507c2fdeefb1f5feb89e4a9a588cc936"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a507c2fdeefb1f5feb89e4a9a588cc936">AD7746_REG_CAP_DATA_M</a>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="memdesc:a507c2fdeefb1f5feb89e4a9a588cc936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive channel data Med. <br /></td></tr>
+<tr class="separator:a507c2fdeefb1f5feb89e4a9a588cc936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f59f3d99313eb4936e7ad60008b837a"><td class="memItemLeft" align="right" valign="top"><a id="a1f59f3d99313eb4936e7ad60008b837a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a1f59f3d99313eb4936e7ad60008b837a">AD7746_REG_CAP_DATA_L</a>&#160;&#160;&#160;(0x03)</td></tr>
+<tr class="memdesc:a1f59f3d99313eb4936e7ad60008b837a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive channel data Low. <br /></td></tr>
+<tr class="separator:a1f59f3d99313eb4936e7ad60008b837a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d0afbacaa857fa47d7fe8b426c598f4"><td class="memItemLeft" align="right" valign="top"><a id="a5d0afbacaa857fa47d7fe8b426c598f4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a5d0afbacaa857fa47d7fe8b426c598f4">AD7746_REG_VT_DATA_H</a>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="memdesc:a5d0afbacaa857fa47d7fe8b426c598f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage/Temp channel data High. <br /></td></tr>
+<tr class="separator:a5d0afbacaa857fa47d7fe8b426c598f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe3ffddaee8e84e1ba9a657fa9229557"><td class="memItemLeft" align="right" valign="top"><a id="abe3ffddaee8e84e1ba9a657fa9229557"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#abe3ffddaee8e84e1ba9a657fa9229557">AD7746_REG_VT_DATA_M</a>&#160;&#160;&#160;(0x05)</td></tr>
+<tr class="memdesc:abe3ffddaee8e84e1ba9a657fa9229557"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage/Temp channel data Med. <br /></td></tr>
+<tr class="separator:abe3ffddaee8e84e1ba9a657fa9229557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa7ccd46a62a96bc4eff0eff97dc4e49"><td class="memItemLeft" align="right" valign="top"><a id="afa7ccd46a62a96bc4eff0eff97dc4e49"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#afa7ccd46a62a96bc4eff0eff97dc4e49">AD7746_REG_VT_DATA_L</a>&#160;&#160;&#160;(0x06)</td></tr>
+<tr class="memdesc:afa7ccd46a62a96bc4eff0eff97dc4e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage/Temp channel data Low. <br /></td></tr>
+<tr class="separator:afa7ccd46a62a96bc4eff0eff97dc4e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f20732124959708defbe2cb8aae0ff0"><td class="memItemLeft" align="right" valign="top"><a id="a7f20732124959708defbe2cb8aae0ff0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a7f20732124959708defbe2cb8aae0ff0">AD7746_REG_CAP_SETUP</a>&#160;&#160;&#160;(0x07)</td></tr>
+<tr class="memdesc:a7f20732124959708defbe2cb8aae0ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive channel setup. <br /></td></tr>
+<tr class="separator:a7f20732124959708defbe2cb8aae0ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a074cf178e14431a05b17e62f75b1d3dc"><td class="memItemLeft" align="right" valign="top"><a id="a074cf178e14431a05b17e62f75b1d3dc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a074cf178e14431a05b17e62f75b1d3dc">AD7746_REG_VT_SETUP</a>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="memdesc:a074cf178e14431a05b17e62f75b1d3dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage/Temp channel setup. <br /></td></tr>
+<tr class="separator:a074cf178e14431a05b17e62f75b1d3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a226400b483b408e488b1002faa3d93ef"><td class="memItemLeft" align="right" valign="top"><a id="a226400b483b408e488b1002faa3d93ef"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a226400b483b408e488b1002faa3d93ef">AD7746_REG_EXC_SETUP</a>&#160;&#160;&#160;(0x09)</td></tr>
+<tr class="memdesc:a226400b483b408e488b1002faa3d93ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive channel excitation setup. <br /></td></tr>
+<tr class="separator:a226400b483b408e488b1002faa3d93ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab677cc3166df70e198c917b9b5e54dfa"><td class="memItemLeft" align="right" valign="top"><a id="ab677cc3166df70e198c917b9b5e54dfa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#ab677cc3166df70e198c917b9b5e54dfa">AD7746_REG_CONFIGURATION</a>&#160;&#160;&#160;(0x0A)</td></tr>
+<tr class="memdesc:ab677cc3166df70e198c917b9b5e54dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration. <br /></td></tr>
+<tr class="separator:ab677cc3166df70e198c917b9b5e54dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b953bc26c53f90099af51449de49542"><td class="memItemLeft" align="right" valign="top"><a id="a8b953bc26c53f90099af51449de49542"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a8b953bc26c53f90099af51449de49542">AD7746_REG_CAP_DAC_A</a>&#160;&#160;&#160;(0x0B)</td></tr>
+<tr class="memdesc:a8b953bc26c53f90099af51449de49542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive DAC A setup. <br /></td></tr>
+<tr class="separator:a8b953bc26c53f90099af51449de49542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82e9c60a4bf6234ddf2c5aa8147f4436"><td class="memItemLeft" align="right" valign="top"><a id="a82e9c60a4bf6234ddf2c5aa8147f4436"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a82e9c60a4bf6234ddf2c5aa8147f4436">AD7746_REG_CAP_DAC_B</a>&#160;&#160;&#160;(0x0C)</td></tr>
+<tr class="memdesc:a82e9c60a4bf6234ddf2c5aa8147f4436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive DAC B setup. <br /></td></tr>
+<tr class="separator:a82e9c60a4bf6234ddf2c5aa8147f4436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0936512482f882a0f1ae5cfb3c00f201"><td class="memItemLeft" align="right" valign="top"><a id="a0936512482f882a0f1ae5cfb3c00f201"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a0936512482f882a0f1ae5cfb3c00f201">AD7746_REG_CAP_OFF_H</a>&#160;&#160;&#160;(0x0D)</td></tr>
+<tr class="memdesc:a0936512482f882a0f1ae5cfb3c00f201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive offset High. <br /></td></tr>
+<tr class="separator:a0936512482f882a0f1ae5cfb3c00f201"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c992148d79176b5be115f7a0df5044"><td class="memItemLeft" align="right" valign="top"><a id="a27c992148d79176b5be115f7a0df5044"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a27c992148d79176b5be115f7a0df5044">AD7746_REG_CAP_OFF_L</a>&#160;&#160;&#160;(0x0E)</td></tr>
+<tr class="memdesc:a27c992148d79176b5be115f7a0df5044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive offset Low. <br /></td></tr>
+<tr class="separator:a27c992148d79176b5be115f7a0df5044"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa82ad1436963a3a8c5116c7c68c0812f"><td class="memItemLeft" align="right" valign="top"><a id="aa82ad1436963a3a8c5116c7c68c0812f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#aa82ad1436963a3a8c5116c7c68c0812f">AD7746_REG_CAP_GAIN_H</a>&#160;&#160;&#160;(0x0F)</td></tr>
+<tr class="memdesc:aa82ad1436963a3a8c5116c7c68c0812f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive gain High. <br /></td></tr>
+<tr class="separator:aa82ad1436963a3a8c5116c7c68c0812f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a261b824eff3d3e09f47e54b2adbe6008"><td class="memItemLeft" align="right" valign="top"><a id="a261b824eff3d3e09f47e54b2adbe6008"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a261b824eff3d3e09f47e54b2adbe6008">AD7746_REG_CAP_GAIN_L</a>&#160;&#160;&#160;(0x10)</td></tr>
+<tr class="memdesc:a261b824eff3d3e09f47e54b2adbe6008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capacitive gain Low. <br /></td></tr>
+<tr class="separator:a261b824eff3d3e09f47e54b2adbe6008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a359dd5e11b364b6eff979bb8dc2055"><td class="memItemLeft" align="right" valign="top"><a id="a9a359dd5e11b364b6eff979bb8dc2055"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a9a359dd5e11b364b6eff979bb8dc2055">AD7746_REG_VOLT_GAIN_H</a>&#160;&#160;&#160;(0x11)</td></tr>
+<tr class="memdesc:a9a359dd5e11b364b6eff979bb8dc2055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage gain High. <br /></td></tr>
+<tr class="separator:a9a359dd5e11b364b6eff979bb8dc2055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2fdeec96a5f618f946ee546077168a5"><td class="memItemLeft" align="right" valign="top"><a id="ad2fdeec96a5f618f946ee546077168a5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#ad2fdeec96a5f618f946ee546077168a5">AD7746_REG_VOLT_GAIN_L</a>&#160;&#160;&#160;(0x12)</td></tr>
+<tr class="memdesc:ad2fdeec96a5f618f946ee546077168a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage gain Low. <br /></td></tr>
+<tr class="separator:ad2fdeec96a5f618f946ee546077168a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 Status register bits</h2></td></tr>
+<tr class="memitem:a5180dc3b791cc8275730d4d59b62f385"><td class="memItemLeft" align="right" valign="top"><a id="a5180dc3b791cc8275730d4d59b62f385"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a5180dc3b791cc8275730d4d59b62f385">AD7746_STATUS_EXCERR_BIT</a>&#160;&#160;&#160;(3)</td></tr>
+<tr class="memdesc:a5180dc3b791cc8275730d4d59b62f385"><td class="mdescLeft">&#160;</td><td class="mdescRight">excitation output error <br /></td></tr>
+<tr class="separator:a5180dc3b791cc8275730d4d59b62f385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c7cfecb787d2155e1ea8e9064383c93"><td class="memItemLeft" align="right" valign="top"><a id="a4c7cfecb787d2155e1ea8e9064383c93"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a4c7cfecb787d2155e1ea8e9064383c93">AD7746_STATUS_RDY_BIT</a>&#160;&#160;&#160;(2)</td></tr>
+<tr class="memdesc:a4c7cfecb787d2155e1ea8e9064383c93"><td class="mdescLeft">&#160;</td><td class="mdescRight">conversion ready <br /></td></tr>
+<tr class="separator:a4c7cfecb787d2155e1ea8e9064383c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dd8e0517d7446bd80c1f3414e3d670"><td class="memItemLeft" align="right" valign="top"><a id="a34dd8e0517d7446bd80c1f3414e3d670"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a34dd8e0517d7446bd80c1f3414e3d670">AD7746_STATUS_RDYVT_BIT</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:a34dd8e0517d7446bd80c1f3414e3d670"><td class="mdescLeft">&#160;</td><td class="mdescRight">voltage/temperature ready <br /></td></tr>
+<tr class="separator:a34dd8e0517d7446bd80c1f3414e3d670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3805f7177e1feaccdeab89edc025495"><td class="memItemLeft" align="right" valign="top"><a id="ac3805f7177e1feaccdeab89edc025495"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#ac3805f7177e1feaccdeab89edc025495">AD7746_STATUS_RDYCAP_BIT</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:ac3805f7177e1feaccdeab89edc025495"><td class="mdescLeft">&#160;</td><td class="mdescRight">capacitance ready <br /></td></tr>
+<tr class="separator:ac3805f7177e1feaccdeab89edc025495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 Capacitive channel setup register bits</h2></td></tr>
+<tr class="memitem:ac98744701d681f2e11ab823a7a8efea5"><td class="memItemLeft" align="right" valign="top"><a id="ac98744701d681f2e11ab823a7a8efea5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#ac98744701d681f2e11ab823a7a8efea5">AD7746_CAP_SETUP_CAPEN_BIT</a>&#160;&#160;&#160;(7)</td></tr>
+<tr class="memdesc:ac98744701d681f2e11ab823a7a8efea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">capacitive channel enable <br /></td></tr>
+<tr class="separator:ac98744701d681f2e11ab823a7a8efea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1e80d7155466d19e175838a6d84b90"><td class="memItemLeft" align="right" valign="top"><a id="a1f1e80d7155466d19e175838a6d84b90"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a1f1e80d7155466d19e175838a6d84b90">AD7746_CAP_SETUP_CIN2_BIT</a>&#160;&#160;&#160;(6)</td></tr>
+<tr class="memdesc:a1f1e80d7155466d19e175838a6d84b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">second capacitive channel <br /></td></tr>
+<tr class="separator:a1f1e80d7155466d19e175838a6d84b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afacd20421b2fcbee4e08359aa301dae4"><td class="memItemLeft" align="right" valign="top"><a id="afacd20421b2fcbee4e08359aa301dae4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#afacd20421b2fcbee4e08359aa301dae4">AD7746_CAP_SETUP_CAPDIFF_BIT</a>&#160;&#160;&#160;(5)</td></tr>
+<tr class="memdesc:afacd20421b2fcbee4e08359aa301dae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">differential mode enable <br /></td></tr>
+<tr class="separator:afacd20421b2fcbee4e08359aa301dae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abff9af8e17109673be8434899158f304"><td class="memItemLeft" align="right" valign="top"><a id="abff9af8e17109673be8434899158f304"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#abff9af8e17109673be8434899158f304">AD7746_CAP_SETUP_CACHOP_BIT</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:abff9af8e17109673be8434899158f304"><td class="mdescLeft">&#160;</td><td class="mdescRight">capacitive channel chopping <br /></td></tr>
+<tr class="separator:abff9af8e17109673be8434899158f304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 Voltage/Temperature channel setup register bits</h2></td></tr>
+<tr class="memitem:acf5e8e2d203304b5309529951832fed2"><td class="memItemLeft" align="right" valign="top"><a id="acf5e8e2d203304b5309529951832fed2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_VT_SETUP_VTEN_BIT</b>&#160;&#160;&#160;(7)</td></tr>
+<tr class="separator:acf5e8e2d203304b5309529951832fed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f0b7f9a7488fee3ea212521b86fddc2"><td class="memItemLeft" align="right" valign="top"><a id="a1f0b7f9a7488fee3ea212521b86fddc2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_VT_SETUP_VTMD1_BIT</b>&#160;&#160;&#160;(6)</td></tr>
+<tr class="separator:a1f0b7f9a7488fee3ea212521b86fddc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a261bda7db6f323ac2f6856908bec0bb3"><td class="memItemLeft" align="right" valign="top"><a id="a261bda7db6f323ac2f6856908bec0bb3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_VT_SETUP_VTMD0_BIT</b>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:a261bda7db6f323ac2f6856908bec0bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5425a775f3e1f088e51e9b42e6833da"><td class="memItemLeft" align="right" valign="top"><a id="aa5425a775f3e1f088e51e9b42e6833da"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_VT_SETUP_EXTREF_BIT</b>&#160;&#160;&#160;(4)</td></tr>
+<tr class="separator:aa5425a775f3e1f088e51e9b42e6833da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c2db9ceb163e2185003a314c5eb47c"><td class="memItemLeft" align="right" valign="top"><a id="a63c2db9ceb163e2185003a314c5eb47c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_VT_SETUP_VTSHORT_BIT</b>&#160;&#160;&#160;(1)</td></tr>
+<tr class="separator:a63c2db9ceb163e2185003a314c5eb47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19f68d52f216ab208208cb80c288c634"><td class="memItemLeft" align="right" valign="top"><a id="a19f68d52f216ab208208cb80c288c634"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_VT_SETUP_VTCHOP_BIT</b>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:a19f68d52f216ab208208cb80c288c634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 Capacitive channel excitation setup register bits</h2></td></tr>
+<tr class="memitem:a60cc98f6ce04c83d9f5c6c65e021825f"><td class="memItemLeft" align="right" valign="top"><a id="a60cc98f6ce04c83d9f5c6c65e021825f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a60cc98f6ce04c83d9f5c6c65e021825f">AD7746_EXC_SETUP_CLKCTRL_BIT</a>&#160;&#160;&#160;(7)</td></tr>
+<tr class="memdesc:a60cc98f6ce04c83d9f5c6c65e021825f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clock control. <br /></td></tr>
+<tr class="separator:a60cc98f6ce04c83d9f5c6c65e021825f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5260afdf7dad721c55d1d4f698448264"><td class="memItemLeft" align="right" valign="top"><a id="a5260afdf7dad721c55d1d4f698448264"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a5260afdf7dad721c55d1d4f698448264">AD7746_EXC_SETUP_EXCON_BIT</a>&#160;&#160;&#160;(6)</td></tr>
+<tr class="memdesc:a5260afdf7dad721c55d1d4f698448264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Excitation signal control. <br /></td></tr>
+<tr class="separator:a5260afdf7dad721c55d1d4f698448264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b562140f5d207057b08191692b7e90"><td class="memItemLeft" align="right" valign="top"><a id="af3b562140f5d207057b08191692b7e90"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#af3b562140f5d207057b08191692b7e90">AD7746_EXC_SETUP_EXCB_BIT</a>&#160;&#160;&#160;(5)</td></tr>
+<tr class="memdesc:af3b562140f5d207057b08191692b7e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">EXCB pin enable. <br /></td></tr>
+<tr class="separator:af3b562140f5d207057b08191692b7e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adedda8655259376056fa539b7360aeb5"><td class="memItemLeft" align="right" valign="top"><a id="adedda8655259376056fa539b7360aeb5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#adedda8655259376056fa539b7360aeb5">AD7746_EXC_SETUP_INV_EXCB_BIT</a>&#160;&#160;&#160;(4)</td></tr>
+<tr class="memdesc:adedda8655259376056fa539b7360aeb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">EXCB pin disable. <br /></td></tr>
+<tr class="separator:adedda8655259376056fa539b7360aeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05841ef12e13e2d554b65f9efecdb3b0"><td class="memItemLeft" align="right" valign="top"><a id="a05841ef12e13e2d554b65f9efecdb3b0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a05841ef12e13e2d554b65f9efecdb3b0">AD7746_EXC_SETUP_EXCA_BIT</a>&#160;&#160;&#160;(3)</td></tr>
+<tr class="memdesc:a05841ef12e13e2d554b65f9efecdb3b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">EXCA pin enable. <br /></td></tr>
+<tr class="separator:a05841ef12e13e2d554b65f9efecdb3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfb9d97dd6aee2ac2fa7526d2c87e9e2"><td class="memItemLeft" align="right" valign="top"><a id="acfb9d97dd6aee2ac2fa7526d2c87e9e2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#acfb9d97dd6aee2ac2fa7526d2c87e9e2">AD7746_EXC_SETUP_INV_EXCA_BIT</a>&#160;&#160;&#160;(2)</td></tr>
+<tr class="memdesc:acfb9d97dd6aee2ac2fa7526d2c87e9e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">EXCA pin disable. <br /></td></tr>
+<tr class="separator:acfb9d97dd6aee2ac2fa7526d2c87e9e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8e69abb63d955841087b56307bb2707"><td class="memItemLeft" align="right" valign="top"><a id="af8e69abb63d955841087b56307bb2707"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#af8e69abb63d955841087b56307bb2707">AD7746_EXC_SETUP_EXCLVL1_BIT</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:af8e69abb63d955841087b56307bb2707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Excitation voltage level 1. <br /></td></tr>
+<tr class="separator:af8e69abb63d955841087b56307bb2707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90a67585eed36a3add79dea0d0ce3e07"><td class="memItemLeft" align="right" valign="top"><a id="a90a67585eed36a3add79dea0d0ce3e07"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ad7746__internal_8h.html#a90a67585eed36a3add79dea0d0ce3e07">AD7746_EXC_SETUP_EXCLVL0_BIT</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:a90a67585eed36a3add79dea0d0ce3e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Excitation voltage level 0. <br /></td></tr>
+<tr class="separator:a90a67585eed36a3add79dea0d0ce3e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 Configuration register bits</h2></td></tr>
+<tr class="memitem:a143b2e124aeb06d0e2e7b3f5129475a4"><td class="memItemLeft" align="right" valign="top"><a id="a143b2e124aeb06d0e2e7b3f5129475a4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_VTF1_BIT</b>&#160;&#160;&#160;(7)</td></tr>
+<tr class="separator:a143b2e124aeb06d0e2e7b3f5129475a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9849aa45368d349a9d4224ea46705866"><td class="memItemLeft" align="right" valign="top"><a id="a9849aa45368d349a9d4224ea46705866"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_VTF0_BIT</b>&#160;&#160;&#160;(6)</td></tr>
+<tr class="separator:a9849aa45368d349a9d4224ea46705866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12045c766700c66c7ee19390e6dfdb87"><td class="memItemLeft" align="right" valign="top"><a id="a12045c766700c66c7ee19390e6dfdb87"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_CAPF2_BIT</b>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:a12045c766700c66c7ee19390e6dfdb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a513d79ebb956e933c3b6135709b3f368"><td class="memItemLeft" align="right" valign="top"><a id="a513d79ebb956e933c3b6135709b3f368"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_CAPF1_BIT</b>&#160;&#160;&#160;(4)</td></tr>
+<tr class="separator:a513d79ebb956e933c3b6135709b3f368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d9af1629e62b398d0bbace856763a2"><td class="memItemLeft" align="right" valign="top"><a id="ac8d9af1629e62b398d0bbace856763a2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_CAPF0_BIT</b>&#160;&#160;&#160;(3)</td></tr>
+<tr class="separator:ac8d9af1629e62b398d0bbace856763a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f805d5f93f1e6b8304ba988d85939a"><td class="memItemLeft" align="right" valign="top"><a id="af7f805d5f93f1e6b8304ba988d85939a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_MD2_BIT</b>&#160;&#160;&#160;(2)</td></tr>
+<tr class="separator:af7f805d5f93f1e6b8304ba988d85939a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace72ee2a1e0e3ba22abc2f3a713733a6"><td class="memItemLeft" align="right" valign="top"><a id="ace72ee2a1e0e3ba22abc2f3a713733a6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_MD1_BIT</b>&#160;&#160;&#160;(1)</td></tr>
+<tr class="separator:ace72ee2a1e0e3ba22abc2f3a713733a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0f6f0e6998bd55efe6bcd49245a643"><td class="memItemLeft" align="right" valign="top"><a id="abf0f6f0e6998bd55efe6bcd49245a643"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_CONFIGURATION_MD0_BIT</b>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:abf0f6f0e6998bd55efe6bcd49245a643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 DAC A register bits</h2></td></tr>
+<tr class="memitem:a5c7558c2f5f165abf2a7fb0170a9068a"><td class="memItemLeft" align="right" valign="top"><a id="a5c7558c2f5f165abf2a7fb0170a9068a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_DACAEN_BIT</b>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a5c7558c2f5f165abf2a7fb0170a9068a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">AD7746 DAC B register bits</h2></td></tr>
+<tr class="memitem:ab4c76581794cb28fafc38c790b4140eb"><td class="memItemLeft" align="right" valign="top"><a id="ab4c76581794cb28fafc38c790b4140eb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AD7746_DACBEN_BIT</b>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:ab4c76581794cb28fafc38c790b4140eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_a78f8beed561dbcb1e6980546fe0f151.html">ad7746</a></li><li class="navelem"><a class="el" href="dir_87cf605a9a4ba30913d111dca9ce86af.html">include</a></li><li class="navelem"><a class="el" href="ad7746__internal_8h.html">ad7746_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/net/fib.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('fib_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">fib.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="fib_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2014  Martin Landsmann &lt;Martin.Landsmann@HAW-Hamburg.de&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#ifndef NET_FIB_H</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#define NET_FIB_H</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="table_8h.html">net/fib/table.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sched_8h.html">sched.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structrp__address__msg__t.html">   42</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structrp__address__msg__t.html#adb6e3774232d7f845c0aeac8d5e80f31">   43</a></span>&#160;    uint8_t *<a class="code" href="structrp__address__msg__t.html#adb6e3774232d7f845c0aeac8d5e80f31">address</a>;      </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structrp__address__msg__t.html#a323aa6816b5e4ad27c2880708f524036">   44</a></span>&#160;    uint8_t <a class="code" href="structrp__address__msg__t.html#a323aa6816b5e4ad27c2880708f524036">address_size</a>;  </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structrp__address__msg__t.html#ae02f9128d5b3e6142e936ca8d316e3f0">   45</a></span>&#160;    uint32_t <a class="code" href="structrp__address__msg__t.html#ae02f9128d5b3e6142e936ca8d316e3f0">address_flags</a>; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <a class="code" href="structrp__address__msg__t.html">rp_address_msg_t</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga3e5b41b796f4b6cace8167ce23656158">   52</a></span>&#160;<span class="preprocessor">#define FIB_MSG_RP_SIGNAL_UNREACHABLE_DESTINATION (0x99)</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__net__fib.html#gaafa04e3de0c61273f1760c90f20a9cb3">   57</a></span>&#160;<span class="preprocessor">#define FIB_MSG_RP_SIGNAL_DESTINATION_USED (0x98)</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga132387be1b9e788816ea2531e7876951">   62</a></span>&#160;<span class="preprocessor">#define FIB_MSG_RP_SIGNAL_SOURCE_ROUTE_CREATED (0x97)</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structfib__destination__set__entry__t.html">   67</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structfib__destination__set__entry__t.html#ab12bcd020862a7b9a4934efd9421dfa8">   68</a></span>&#160;    uint8_t dest[<a class="code" href="group__sys__universal__address.html#ga7d2fe98a8d0d4fd02b732eee18240381">UNIVERSAL_ADDRESS_SIZE</a>]; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structfib__destination__set__entry__t.html#ad4427c09e073b0e7cb0f5bb744c1522e">   69</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structfib__destination__set__entry__t.html#ad4427c09e073b0e7cb0f5bb744c1522e">dest_size</a>;    </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;} <a class="code" href="structfib__destination__set__entry__t.html">fib_destination_set_entry_t</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__net__fib.html#gaf139d9341f52cb6805a6f90a00b196a7">   75</a></span>&#160;<span class="preprocessor">#define FIB_LIFETIME_NO_EXPIRE (0xFFFFFFFFffffffff)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga7df5150547e4bcc617da744ce566de2c">   80</a></span>&#160;<span class="preprocessor">#define FIB_FLAG_RPL_ROUTE (1UL &lt;&lt; 0)</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="group__net__fib.html#gac84f4aaf5c9fd39db14202f90e1c24e3">   85</a></span>&#160;<span class="preprocessor">#define FIB_FLAG_NET_PREFIX_SHIFT (24)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="group__net__fib.html#gac1e07b8040a5c63c56d3cadf8ce61a59">   90</a></span>&#160;<span class="preprocessor">#define FIB_FLAG_NET_PREFIX_MASK (0xffUL &lt;&lt; FIB_FLAG_NET_PREFIX_SHIFT)</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga19a0ca4ab7759dd445dbee753fb14ddf">   97</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#ga19a0ca4ab7759dd445dbee753fb14ddf">fib_init</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga647bc4ce56522f846b1e1cff52ff52b9">  104</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#ga647bc4ce56522f846b1e1cff52ff52b9">fib_deinit</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="group__net__fib.html#gab0c9ff15456d62c80ad110c21987fc9b">  118</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gab0c9ff15456d62c80ad110c21987fc9b">fib_register_rp</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, uint8_t *prefix, <span class="keywordtype">size_t</span> prefix_addr_type_size);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="group__net__fib.html#gad16e13ec99caf2fde361449ad1160ea2">  137</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gad16e13ec99caf2fde361449ad1160ea2">fib_add_entry</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> iface_id, uint8_t *dst,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                  <span class="keywordtype">size_t</span> dst_size, uint32_t dst_flags, uint8_t *next_hop,</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                  <span class="keywordtype">size_t</span> next_hop_size, uint32_t next_hop_flags,</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                  uint32_t lifetime);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga8c416d5dfd72671d721327a510340b4d">  157</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga8c416d5dfd72671d721327a510340b4d">fib_update_entry</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, uint8_t *dst, <span class="keywordtype">size_t</span> dst_size,</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                     uint8_t *next_hop, <span class="keywordtype">size_t</span> next_hop_size,</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                     uint32_t next_hop_flags, uint32_t lifetime);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group__net__fib.html#gaf15695655783e449e2361376adf516e2">  168</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#gaf15695655783e449e2361376adf516e2">fib_remove_entry</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, uint8_t *dst, <span class="keywordtype">size_t</span> dst_size);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga8f0ce3373b5c21c39c412e1c7a6a64d0">  179</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#ga8f0ce3373b5c21c39c412e1c7a6a64d0">fib_flush</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> interface);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="group__net__fib.html#gad9b8641e5058bc2fd3619c658be25fcc">  201</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gad9b8641e5058bc2fd3619c658be25fcc">fib_get_next_hop</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> *iface_id,</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                     uint8_t *next_hop, <span class="keywordtype">size_t</span> *next_hop_size,</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                     uint32_t* next_hop_flags, uint8_t *dst, <span class="keywordtype">size_t</span> dst_size,</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                     uint32_t dst_flags);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga892c26c86d51cd7d23512116b5abd602">  225</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga892c26c86d51cd7d23512116b5abd602">fib_get_destination_set</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, uint8_t *prefix,</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                            <span class="keywordtype">size_t</span> prefix_size,</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                            <a class="code" href="structfib__destination__set__entry__t.html">fib_destination_set_entry_t</a> *dst_set,</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                            <span class="keywordtype">size_t</span> *dst_set_size);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="group__net__fib.html#gae78ca56e6923b98c3dc74765c2f5a426">  243</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gae78ca56e6923b98c3dc74765c2f5a426">fib_sr_create</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> **fib_sr, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> sr_iface_id,</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                  uint32_t sr_flags, uint32_t sr_lifetime);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="group__net__fib.html#gaca0c905319b8fb37e353a642759a299a">  259</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gaca0c905319b8fb37e353a642759a299a">fib_sr_read_head</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> *sr_iface_id,</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                     uint32_t *sr_flags, uint32_t *sr_lifetime);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00276"></a><span class="lineno"><a class="line" href="group__net__fib.html#gab7a770c54a9bc36109d7c2b24d616778">  276</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gab7a770c54a9bc36109d7c2b24d616778">fib_sr_read_destination</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr,</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                            uint8_t *dst, <span class="keywordtype">size_t</span> *dst_size);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga772cc48710e8689c15c335378c37fc86">  293</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga772cc48710e8689c15c335378c37fc86">fib_sr_set</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> *sr_iface_id,</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;               uint32_t *sr_flags, uint32_t *sr_lifetime);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="group__net__fib.html#gaced4773885bc744a1ab3d086a4b21778">  305</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gaced4773885bc744a1ab3d086a4b21778">fib_sr_delete</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
+<div class="line"><a name="l00319"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga29d9a9cebc31dcdc14ab5044a3fa5d33">  319</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga29d9a9cebc31dcdc14ab5044a3fa5d33">fib_sr_next</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr, <a class="code" href="structfib__sr__entry.html">fib_sr_entry_t</a> **sr_path_entry);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga3bf2de2ebe3c93fa2cf4351648a50635">  335</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga3bf2de2ebe3c93fa2cf4351648a50635">fib_sr_search</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr, uint8_t *addr, <span class="keywordtype">size_t</span> addr_size,</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                  <a class="code" href="structfib__sr__entry.html">fib_sr_entry_t</a> **sr_path_entry);</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga2b54993ed77d919aa7048d54c58fdda7">  351</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga2b54993ed77d919aa7048d54c58fdda7">fib_sr_entry_append</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr,</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        uint8_t *dst, <span class="keywordtype">size_t</span> dst_size);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00370"></a><span class="lineno"><a class="line" href="group__net__fib.html#gab706bd2a14e2d93c5a010c8136975917">  370</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gab706bd2a14e2d93c5a010c8136975917">fib_sr_entry_add</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr,</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                     <a class="code" href="structfib__sr__entry.html">fib_sr_entry_t</a> *sr_path_entry, uint8_t *addr, <span class="keywordtype">size_t</span> addr_size,</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                     <span class="keywordtype">bool</span> keep_remaining_route);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno"><a class="line" href="group__net__fib.html#gae3a33699097ac80d0aa2b94097e3e718">  388</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#gae3a33699097ac80d0aa2b94097e3e718">fib_sr_entry_delete</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr, uint8_t *addr, <span class="keywordtype">size_t</span> addr_size,</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                        <span class="keywordtype">bool</span> keep_remaining_route);</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160; </div>
+<div class="line"><a name="l00407"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga20b547769a7971b1da3548e115bc3d87">  407</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga20b547769a7971b1da3548e115bc3d87">fib_sr_entry_overwrite</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr,</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                           uint8_t *addr_old, <span class="keywordtype">size_t</span> addr_old_size,</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                           uint8_t *addr_new, <span class="keywordtype">size_t</span> addr_new_size);</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
+<div class="line"><a name="l00425"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga4c3039d1463bbf44ea04422f2f231fd3">  425</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga4c3039d1463bbf44ea04422f2f231fd3">fib_sr_entry_get_address</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *fib_sr, <a class="code" href="structfib__sr__entry.html">fib_sr_entry_t</a> *sr_path_entry,</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                             uint8_t *addr, <span class="keywordtype">size_t</span> *addr_size);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160; </div>
+<div class="line"><a name="l00457"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga37a2acef985e4768788e5840e1f6a040">  457</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga37a2acef985e4768788e5840e1f6a040">fib_sr_get_route</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, uint8_t *dst, <span class="keywordtype">size_t</span> dst_size, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> *sr_iface_id,</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;                     uint32_t *sr_flags,</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                     uint8_t *addr_list, <span class="keywordtype">size_t</span> *addr_list_size, <span class="keywordtype">size_t</span> *element_size,</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                     <span class="keywordtype">bool</span> reverse, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> **fib_sr);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
+<div class="line"><a name="l00467"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga9c845e2c21ab5a126c53c82226ac76f8">  467</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__fib.html#ga9c845e2c21ab5a126c53c82226ac76f8">fib_get_num_used_entries</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table);</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160; </div>
+<div class="line"><a name="l00472"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga82bb45f6253525490451c2102754f490">  472</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#ga82bb45f6253525490451c2102754f490">fib_print_notify_rrp</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160; </div>
+<div class="line"><a name="l00479"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga2f0e3dd11d7ff74c26f66b1b29e8666e">  479</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#ga2f0e3dd11d7ff74c26f66b1b29e8666e">fib_print_fib_table</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table);</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; </div>
+<div class="line"><a name="l00486"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga9311bfdbf3cff9ac37e593a638883f6b">  486</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#ga9311bfdbf3cff9ac37e593a638883f6b">fib_print_routes</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table);</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160; </div>
+<div class="line"><a name="l00494"></a><span class="lineno"><a class="line" href="group__net__fib.html#ga4832ca9ba009ee11909342caac134f7a">  494</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__fib.html#ga4832ca9ba009ee11909342caac134f7a">fib_print_sr</a>(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, <a class="code" href="structfib__sr__t.html">fib_sr_t</a> *sr);</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="preprocessor">#if FIB_DEVEL_HELPER</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="keywordtype">int</span> fib_devel_get_lifetime(<a class="code" href="structfib__table__t.html">fib_table_t</a> *table, uint64_t *lifetime, uint8_t *dst,</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;                           <span class="keywordtype">size_t</span> dst_size);</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160; </div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160; </div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;}</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160; </div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NET_FIB_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__core__sched_html_ga8375139300d7cbf23bd8bd89ddddbe84"><div class="ttname"><a href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a></div><div class="ttdeci">int16_t kernel_pid_t</div><div class="ttdoc">Unique process identifier.</div><div class="ttdef"><b>Definition:</b> sched.h:139</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga19a0ca4ab7759dd445dbee753fb14ddf"><div class="ttname"><a href="group__net__fib.html#ga19a0ca4ab7759dd445dbee753fb14ddf">fib_init</a></div><div class="ttdeci">void fib_init(fib_table_t *table)</div><div class="ttdoc">initializes all FIB entries with 0</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga20b547769a7971b1da3548e115bc3d87"><div class="ttname"><a href="group__net__fib.html#ga20b547769a7971b1da3548e115bc3d87">fib_sr_entry_overwrite</a></div><div class="ttdeci">int fib_sr_entry_overwrite(fib_table_t *table, fib_sr_t *fib_sr, uint8_t *addr_old, size_t addr_old_size, uint8_t *addr_new, size_t addr_new_size)</div><div class="ttdoc">overwrites the address of an entry with a new address</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga29d9a9cebc31dcdc14ab5044a3fa5d33"><div class="ttname"><a href="group__net__fib.html#ga29d9a9cebc31dcdc14ab5044a3fa5d33">fib_sr_next</a></div><div class="ttdeci">int fib_sr_next(fib_table_t *table, fib_sr_t *fib_sr, fib_sr_entry_t **sr_path_entry)</div><div class="ttdoc">iterates to the next entry in the sr_path</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga2b54993ed77d919aa7048d54c58fdda7"><div class="ttname"><a href="group__net__fib.html#ga2b54993ed77d919aa7048d54c58fdda7">fib_sr_entry_append</a></div><div class="ttdeci">int fib_sr_entry_append(fib_table_t *table, fib_sr_t *fib_sr, uint8_t *dst, size_t dst_size)</div><div class="ttdoc">append a new entry at the end of the source route, i.e.</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga2f0e3dd11d7ff74c26f66b1b29e8666e"><div class="ttname"><a href="group__net__fib.html#ga2f0e3dd11d7ff74c26f66b1b29e8666e">fib_print_fib_table</a></div><div class="ttdeci">void fib_print_fib_table(fib_table_t *table)</div><div class="ttdoc">Prints the FIB content (does not print the entries)</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga37a2acef985e4768788e5840e1f6a040"><div class="ttname"><a href="group__net__fib.html#ga37a2acef985e4768788e5840e1f6a040">fib_sr_get_route</a></div><div class="ttdeci">int fib_sr_get_route(fib_table_t *table, uint8_t *dst, size_t dst_size, kernel_pid_t *sr_iface_id, uint32_t *sr_flags, uint8_t *addr_list, size_t *addr_list_size, size_t *element_size, bool reverse, fib_sr_t **fib_sr)</div><div class="ttdoc">copies a source route to the given destination</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga3bf2de2ebe3c93fa2cf4351648a50635"><div class="ttname"><a href="group__net__fib.html#ga3bf2de2ebe3c93fa2cf4351648a50635">fib_sr_search</a></div><div class="ttdeci">int fib_sr_search(fib_table_t *table, fib_sr_t *fib_sr, uint8_t *addr, size_t addr_size, fib_sr_entry_t **sr_path_entry)</div><div class="ttdoc">searches the entry containing the given address</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga4832ca9ba009ee11909342caac134f7a"><div class="ttname"><a href="group__net__fib.html#ga4832ca9ba009ee11909342caac134f7a">fib_print_sr</a></div><div class="ttdeci">void fib_print_sr(fib_table_t *table, fib_sr_t *sr)</div><div class="ttdoc">Prints the given FIB sourceroute.</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga4c3039d1463bbf44ea04422f2f231fd3"><div class="ttname"><a href="group__net__fib.html#ga4c3039d1463bbf44ea04422f2f231fd3">fib_sr_entry_get_address</a></div><div class="ttdeci">int fib_sr_entry_get_address(fib_table_t *table, fib_sr_t *fib_sr, fib_sr_entry_t *sr_path_entry, uint8_t *addr, size_t *addr_size)</div><div class="ttdoc">writes the address of an entry to the given out pointers</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga647bc4ce56522f846b1e1cff52ff52b9"><div class="ttname"><a href="group__net__fib.html#ga647bc4ce56522f846b1e1cff52ff52b9">fib_deinit</a></div><div class="ttdeci">void fib_deinit(fib_table_t *table)</div><div class="ttdoc">de-initializes the FIB entries and source route entries</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga772cc48710e8689c15c335378c37fc86"><div class="ttname"><a href="group__net__fib.html#ga772cc48710e8689c15c335378c37fc86">fib_sr_set</a></div><div class="ttdeci">int fib_sr_set(fib_table_t *table, fib_sr_t *fib_sr, kernel_pid_t *sr_iface_id, uint32_t *sr_flags, uint32_t *sr_lifetime)</div><div class="ttdoc">sets the provided parameters in the given sr header if a given parameter is NULL its considered not t...</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga82bb45f6253525490451c2102754f490"><div class="ttname"><a href="group__net__fib.html#ga82bb45f6253525490451c2102754f490">fib_print_notify_rrp</a></div><div class="ttdeci">void fib_print_notify_rrp(void)</div><div class="ttdoc">Prints the kernel_pid_t for all registered RRPs.</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga892c26c86d51cd7d23512116b5abd602"><div class="ttname"><a href="group__net__fib.html#ga892c26c86d51cd7d23512116b5abd602">fib_get_destination_set</a></div><div class="ttdeci">int fib_get_destination_set(fib_table_t *table, uint8_t *prefix, size_t prefix_size, fib_destination_set_entry_t *dst_set, size_t *dst_set_size)</div><div class="ttdoc">provides a set of destination addresses matching the given prefix If the out buffer is insufficient l...</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga8c416d5dfd72671d721327a510340b4d"><div class="ttname"><a href="group__net__fib.html#ga8c416d5dfd72671d721327a510340b4d">fib_update_entry</a></div><div class="ttdeci">int fib_update_entry(fib_table_t *table, uint8_t *dst, size_t dst_size, uint8_t *next_hop, size_t next_hop_size, uint32_t next_hop_flags, uint32_t lifetime)</div><div class="ttdoc">Updates an entry in the FIB table with next hop and lifetime.</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga8f0ce3373b5c21c39c412e1c7a6a64d0"><div class="ttname"><a href="group__net__fib.html#ga8f0ce3373b5c21c39c412e1c7a6a64d0">fib_flush</a></div><div class="ttdeci">void fib_flush(fib_table_t *table, kernel_pid_t interface)</div><div class="ttdoc">removes all entries from the corresponding FIB table and interface combination</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga9311bfdbf3cff9ac37e593a638883f6b"><div class="ttname"><a href="group__net__fib.html#ga9311bfdbf3cff9ac37e593a638883f6b">fib_print_routes</a></div><div class="ttdeci">void fib_print_routes(fib_table_t *table)</div><div class="ttdoc">Prints the FIB content.</div></div>
+<div class="ttc" id="agroup__net__fib_html_ga9c845e2c21ab5a126c53c82226ac76f8"><div class="ttname"><a href="group__net__fib.html#ga9c845e2c21ab5a126c53c82226ac76f8">fib_get_num_used_entries</a></div><div class="ttdeci">int fib_get_num_used_entries(fib_table_t *table)</div><div class="ttdoc">returns the actual number of used FIB entries</div></div>
+<div class="ttc" id="agroup__net__fib_html_gab0c9ff15456d62c80ad110c21987fc9b"><div class="ttname"><a href="group__net__fib.html#gab0c9ff15456d62c80ad110c21987fc9b">fib_register_rp</a></div><div class="ttdeci">int fib_register_rp(fib_table_t *table, uint8_t *prefix, size_t prefix_addr_type_size)</div><div class="ttdoc">Registration of a routing protocol handler function.</div></div>
+<div class="ttc" id="agroup__net__fib_html_gab706bd2a14e2d93c5a010c8136975917"><div class="ttname"><a href="group__net__fib.html#gab706bd2a14e2d93c5a010c8136975917">fib_sr_entry_add</a></div><div class="ttdeci">int fib_sr_entry_add(fib_table_t *table, fib_sr_t *fib_sr, fib_sr_entry_t *sr_path_entry, uint8_t *addr, size_t addr_size, bool keep_remaining_route)</div><div class="ttdoc">adds a new entry behind a given sr entry</div></div>
+<div class="ttc" id="agroup__net__fib_html_gab7a770c54a9bc36109d7c2b24d616778"><div class="ttname"><a href="group__net__fib.html#gab7a770c54a9bc36109d7c2b24d616778">fib_sr_read_destination</a></div><div class="ttdeci">int fib_sr_read_destination(fib_table_t *table, fib_sr_t *fib_sr, uint8_t *dst, size_t *dst_size)</div><div class="ttdoc">reads the destination address from the sr head to the given location</div></div>
+<div class="ttc" id="agroup__net__fib_html_gaca0c905319b8fb37e353a642759a299a"><div class="ttname"><a href="group__net__fib.html#gaca0c905319b8fb37e353a642759a299a">fib_sr_read_head</a></div><div class="ttdeci">int fib_sr_read_head(fib_table_t *table, fib_sr_t *fib_sr, kernel_pid_t *sr_iface_id, uint32_t *sr_flags, uint32_t *sr_lifetime)</div><div class="ttdoc">reads the information from the sr head to the given locations</div></div>
+<div class="ttc" id="agroup__net__fib_html_gaced4773885bc744a1ab3d086a4b21778"><div class="ttname"><a href="group__net__fib.html#gaced4773885bc744a1ab3d086a4b21778">fib_sr_delete</a></div><div class="ttdeci">int fib_sr_delete(fib_table_t *table, fib_sr_t *fib_sr)</div><div class="ttdoc">deletes the sr</div></div>
+<div class="ttc" id="agroup__net__fib_html_gad16e13ec99caf2fde361449ad1160ea2"><div class="ttname"><a href="group__net__fib.html#gad16e13ec99caf2fde361449ad1160ea2">fib_add_entry</a></div><div class="ttdeci">int fib_add_entry(fib_table_t *table, kernel_pid_t iface_id, uint8_t *dst, size_t dst_size, uint32_t dst_flags, uint8_t *next_hop, size_t next_hop_size, uint32_t next_hop_flags, uint32_t lifetime)</div><div class="ttdoc">Adds a new entry in the corresponding FIB table for global destination and next hop.</div></div>
+<div class="ttc" id="agroup__net__fib_html_gad9b8641e5058bc2fd3619c658be25fcc"><div class="ttname"><a href="group__net__fib.html#gad9b8641e5058bc2fd3619c658be25fcc">fib_get_next_hop</a></div><div class="ttdeci">int fib_get_next_hop(fib_table_t *table, kernel_pid_t *iface_id, uint8_t *next_hop, size_t *next_hop_size, uint32_t *next_hop_flags, uint8_t *dst, size_t dst_size, uint32_t dst_flags)</div><div class="ttdoc">provides a next hop for a given destination</div></div>
+<div class="ttc" id="agroup__net__fib_html_gae3a33699097ac80d0aa2b94097e3e718"><div class="ttname"><a href="group__net__fib.html#gae3a33699097ac80d0aa2b94097e3e718">fib_sr_entry_delete</a></div><div class="ttdeci">int fib_sr_entry_delete(fib_table_t *table, fib_sr_t *fib_sr, uint8_t *addr, size_t addr_size, bool keep_remaining_route)</div><div class="ttdoc">removes an entry from a source route</div></div>
+<div class="ttc" id="agroup__net__fib_html_gae78ca56e6923b98c3dc74765c2f5a426"><div class="ttname"><a href="group__net__fib.html#gae78ca56e6923b98c3dc74765c2f5a426">fib_sr_create</a></div><div class="ttdeci">int fib_sr_create(fib_table_t *table, fib_sr_t **fib_sr, kernel_pid_t sr_iface_id, uint32_t sr_flags, uint32_t sr_lifetime)</div><div class="ttdoc">creates a new source route</div></div>
+<div class="ttc" id="agroup__net__fib_html_gaf15695655783e449e2361376adf516e2"><div class="ttname"><a href="group__net__fib.html#gaf15695655783e449e2361376adf516e2">fib_remove_entry</a></div><div class="ttdeci">void fib_remove_entry(fib_table_t *table, uint8_t *dst, size_t dst_size)</div><div class="ttdoc">removes an entry from the corresponding FIB table</div></div>
+<div class="ttc" id="agroup__sys__universal__address_html_ga7d2fe98a8d0d4fd02b732eee18240381"><div class="ttname"><a href="group__sys__universal__address.html#ga7d2fe98a8d0d4fd02b732eee18240381">UNIVERSAL_ADDRESS_SIZE</a></div><div class="ttdeci">#define UNIVERSAL_ADDRESS_SIZE</div><div class="ttdoc">size of the used addresses in bytes</div><div class="ttdef"><b>Definition:</b> universal_address.h:35</div></div>
+<div class="ttc" id="asched_8h_html"><div class="ttname"><a href="sched_8h.html">sched.h</a></div><div class="ttdoc">Scheduler API definition.</div></div>
+<div class="ttc" id="astructfib__destination__set__entry__t_html"><div class="ttname"><a href="structfib__destination__set__entry__t.html">fib_destination_set_entry_t</a></div><div class="ttdoc">entry used to collect available destinations</div><div class="ttdef"><b>Definition:</b> fib.h:67</div></div>
+<div class="ttc" id="astructfib__destination__set__entry__t_html_ad4427c09e073b0e7cb0f5bb744c1522e"><div class="ttname"><a href="structfib__destination__set__entry__t.html#ad4427c09e073b0e7cb0f5bb744c1522e">fib_destination_set_entry_t::dest_size</a></div><div class="ttdeci">size_t dest_size</div><div class="ttdoc">The destination address size.</div><div class="ttdef"><b>Definition:</b> fib.h:69</div></div>
+<div class="ttc" id="astructfib__sr__entry_html"><div class="ttname"><a href="structfib__sr__entry.html">fib_sr_entry</a></div><div class="ttdoc">Container descriptor for a FIB source route entry.</div><div class="ttdef"><b>Definition:</b> table.h:59</div></div>
+<div class="ttc" id="astructfib__sr__t_html"><div class="ttname"><a href="structfib__sr__t.html">fib_sr_t</a></div><div class="ttdoc">Container descriptor for a FIB source route.</div><div class="ttdef"><b>Definition:</b> table.h:69</div></div>
+<div class="ttc" id="astructfib__table__t_html"><div class="ttname"><a href="structfib__table__t.html">fib_table_t</a></div><div class="ttdoc">Meta information of a FIB table.</div><div class="ttdef"><b>Definition:</b> table.h:108</div></div>
+<div class="ttc" id="astructrp__address__msg__t_html"><div class="ttname"><a href="structrp__address__msg__t.html">rp_address_msg_t</a></div><div class="ttdoc">Routing Protocol (RP) message content to request/reply notification.</div><div class="ttdef"><b>Definition:</b> fib.h:42</div></div>
+<div class="ttc" id="astructrp__address__msg__t_html_a323aa6816b5e4ad27c2880708f524036"><div class="ttname"><a href="structrp__address__msg__t.html#a323aa6816b5e4ad27c2880708f524036">rp_address_msg_t::address_size</a></div><div class="ttdeci">uint8_t address_size</div><div class="ttdoc">The address size.</div><div class="ttdef"><b>Definition:</b> fib.h:44</div></div>
+<div class="ttc" id="astructrp__address__msg__t_html_adb6e3774232d7f845c0aeac8d5e80f31"><div class="ttname"><a href="structrp__address__msg__t.html#adb6e3774232d7f845c0aeac8d5e80f31">rp_address_msg_t::address</a></div><div class="ttdeci">uint8_t * address</div><div class="ttdoc">The pointer to the address.</div><div class="ttdef"><b>Definition:</b> fib.h:43</div></div>
+<div class="ttc" id="astructrp__address__msg__t_html_ae02f9128d5b3e6142e936ca8d316e3f0"><div class="ttname"><a href="structrp__address__msg__t.html#ae02f9128d5b3e6142e936ca8d316e3f0">rp_address_msg_t::address_flags</a></div><div class="ttdeci">uint32_t address_flags</div><div class="ttdoc">The flags for the given address.</div><div class="ttdef"><b>Definition:</b> fib.h:45</div></div>
+<div class="ttc" id="atable_8h_html"><div class="ttname"><a href="table_8h.html">table.h</a></div><div class="ttdoc">Types and functions for operating fib tables.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_7afc5d30923bebdd1513d1cc48150ca7.html">net</a></li><li class="navelem"><a class="el" href="fib_8h.html">fib.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

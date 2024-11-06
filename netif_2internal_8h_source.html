@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/net/gnrc/netif/internal.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('netif_2internal_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">internal.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2017 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef NET_GNRC_NETIF_INTERNAL_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define NET_GNRC_NETIF_INTERNAL_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="modules_8h.html">modules.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gnrc_2netif_8h.html">net/gnrc/netif.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="l2util_8h.html">net/l2util.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="netopt_8h.html">net/netopt.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifdef MODULE_GNRC_IPV6_NIB</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ipv6_2nib_2conf_8h.html">net/gnrc/ipv6/nib/conf.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define GNRC_NETIF_PKTQ_DEQUEUE_MSG     (0x1233)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> gnrc_netif_acquire(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> gnrc_netif_release(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_GNRC_NETIF_IPV6) || DOXYGEN</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">int</span> gnrc_netif_ipv6_addr_add_internal(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                                      <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                                      <span class="keywordtype">unsigned</span> pfx_len, uint8_t flags);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keywordtype">void</span> gnrc_netif_ipv6_addr_remove_internal(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                                          <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keywordtype">int</span> gnrc_netif_ipv6_addr_idx(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                             <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t gnrc_netif_ipv6_addr_get_state(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                                                     <span class="keywordtype">int</span> idx)</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">return</span> netif-&gt;<a class="code" href="structgnrc__netif__t.html#aaa394a6f526275ae4d3cabfe0ab3e32a">ipv6</a>.<a class="code" href="structgnrc__netif__ipv6__t.html#ae54dfb256caa3b85d9853250713bcfbf">addrs_flags</a>[idx] &amp; <a class="code" href="gnrc_2netif_2ipv6_8h.html#af56fd1cb43fe76d83a4776ffa3229490">GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_MASK</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t gnrc_netif_ipv6_addr_dad_trans(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                                                     <span class="keywordtype">int</span> idx)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;{</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keywordflow">return</span> netif-&gt;<a class="code" href="structgnrc__netif__t.html#aaa394a6f526275ae4d3cabfe0ab3e32a">ipv6</a>.<a class="code" href="structgnrc__netif__ipv6__t.html#ae54dfb256caa3b85d9853250713bcfbf">addrs_flags</a>[idx] &amp; <a class="code" href="gnrc_2netif_2ipv6_8h.html#ac1880c9bf8e7b6ad5acac8eee094a43b">GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_TENTATIVE</a>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="keywordtype">int</span> gnrc_netif_ipv6_addr_match(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                               <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *gnrc_netif_ipv6_addr_best_src(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                                           <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dst,</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                                           <span class="keywordtype">bool</span> ll_only);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *gnrc_netif_get_by_ipv6_addr(<span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *gnrc_netif_get_by_prefix(<span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *prefix);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="keywordtype">int</span> gnrc_netif_ipv6_group_join_internal(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                                        <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keywordtype">void</span> gnrc_netif_ipv6_group_leave_internal(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                                          <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="keywordtype">int</span> gnrc_netif_ipv6_group_idx(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                              <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *addr);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> gnrc_netif_ipv6_bus_post(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif, <span class="keywordtype">int</span> type,</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                                            <span class="keyword">const</span> <span class="keywordtype">void</span> *ctx)</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;{</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor">#ifdef MODULE_GNRC_NETIF_BUS</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <a class="code" href="msg__bus_8h.html#a67c5433470d13ad01053567da8fad3ec">msg_bus_post</a>(&amp;netif-&gt;<a class="code" href="structgnrc__netif__t.html#a19716960a6addfa027a3d973e139c0bc">bus</a>[<a class="code" href="group__net__gnrc__netif.html#gga9b571101e3ae1341d7b12eb1e6747083af1aa2995b0c4af1c3abea190368d581d">GNRC_NETIF_BUS_IPV6</a>], type, ctx);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    (void) netif;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    (void) type;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    (void) ctx;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;}</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* IS_USED(MODULE_GNRC_NETIF_IPV6) || defined(DOXYGEN) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> gnrc_netif_is_rtr(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif)</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;{</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_GNRC_IPV6_ROUTER)) {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <span class="keywordflow">return</span> (netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#ab0bcdfd1f672b9669fbf8ba57f0e69a8">GNRC_NETIF_FLAGS_IPV6_FORWARDING</a>);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    }</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;}</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> gnrc_netif_is_rtr_adv(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif)</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;{</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_GNRC_IPV6_ROUTER)) {</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="keywordflow">return</span> (netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#a11e58d893e88956c8cc464af318e3394">GNRC_NETIF_FLAGS_IPV6_RTR_ADV</a>);</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    }</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    }</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;}</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="keywordtype">bool</span> gnrc_netif_dev_is_6lo(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> gnrc_netif_is_6lo(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif)</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;{</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="keywordflow">if</span> ((!<a class="code" href="group__net__gnrc__netif.html#gaf7f4305f1d02f1ea9c14e0d4b3e0b2d4">gnrc_netif_highlander</a>() &amp;&amp;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;       <a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_GNRC_SIXLOWPAN)) || \</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;       <a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_GNRC_SIXLOENC)) {</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="keywordflow">return</span> gnrc_netif_dev_is_6lo(netif);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    }</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group__net__gnrc__netif.html#gaf7f4305f1d02f1ea9c14e0d4b3e0b2d4">gnrc_netif_highlander</a>() &amp;&amp; <a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_GNRC_SIXLOWPAN)) {</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    }</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    }</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;}</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160; </div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> gnrc_netif_is_6ln(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif)</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;{</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="modules_8h.html#a25e432312ddc824e161578831972028c">IS_ACTIVE</a>(<a class="code" href="group__net__gnrc__ipv6__nib__conf.html#gaff67513e6d48b405a4f8636df3a01857">CONFIG_GNRC_IPV6_NIB_6LN</a>)) {</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        <span class="keywordflow">return</span> (netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#ae3f2d00578b4d88d5de921dca4d48576">GNRC_NETIF_FLAGS_6LN</a>);</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    }</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    }</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;}</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> gnrc_netif_is_6lr(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif)</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;{</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;     <span class="comment">/* if flag checkers even evaluate, otherwise just assume their result */</span></div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="modules_8h.html#a25e432312ddc824e161578831972028c">IS_ACTIVE</a>(<a class="code" href="group__net__gnrc__ipv6__nib__conf.html#gaff424896197494575755b6c6987ee416">CONFIG_GNRC_IPV6_NIB_6LR</a>) &amp;&amp;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            (<a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_GNRC_IPV6_ROUTER) ||</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;            (!<a class="code" href="group__net__gnrc__netif.html#gaf7f4305f1d02f1ea9c14e0d4b3e0b2d4">gnrc_netif_highlander</a>()) ||</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            !<a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_GNRC_SIXLOWPAN))) {</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        <span class="keywordflow">return</span> gnrc_netif_is_rtr(netif) &amp;&amp; gnrc_netif_is_6ln(netif);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    }</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    }</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;}</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> gnrc_netif_is_6lbr(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif)</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;{</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="modules_8h.html#a25e432312ddc824e161578831972028c">IS_ACTIVE</a>(<a class="code" href="group__net__gnrc__ipv6__nib__conf.html#gaa7ea6a8b5bb9929f06c3c22fd75e17cd">CONFIG_GNRC_IPV6_NIB_6LBR</a>)) {</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        <span class="keywordflow">return</span> (netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#a919811ff735f92b02d08efdae07af24a">GNRC_NETIF_FLAGS_6LO_ABR</a>) &amp;&amp;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;               gnrc_netif_is_6lr(netif);</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    }</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    }</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;}</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160; </div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<a class="code" href="group__net__netopt.html#ga19e30424c1ab107c9c84dc0cb29d9906">netopt_t</a> gnrc_netif_get_l2addr_opt(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif);</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="keywordtype">int</span> gnrc_netif_eui64_from_addr(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;                               <span class="keyword">const</span> uint8_t *addr, <span class="keywordtype">size_t</span> addr_len,</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;                               <a class="code" href="unioneui64__t.html">eui64_t</a> *eui64);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160; </div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gnrc_netif_get_eui64(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif, <a class="code" href="unioneui64__t.html">eui64_t</a> *eui64)</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;{</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;<span class="preprocessor">#if GNRC_NETIF_L2ADDR_MAXLEN &gt; 0</span></div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    <span class="keywordflow">if</span> (netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#a59820cf57c195017fb256f83260cdee2">GNRC_NETIF_FLAGS_HAS_L2ADDR</a>) {</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        <span class="keywordflow">return</span> gnrc_netif_eui64_from_addr(netif,</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;                                          netif-&gt;<a class="code" href="structgnrc__netif__t.html#a52ce74511647e0c93cfb827a6f614dac">l2addr</a>, netif-&gt;<a class="code" href="structgnrc__netif__t.html#a4557569c7ffff1b3bb940e7823b155f5">l2addr_len</a>,</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;                                          eui64);</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    }</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* GNRC_NETIF_L2ADDR_MAXLEN &gt; 0 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    (void)netif;</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    (void)eui64;</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    <span class="keywordflow">return</span> -<a class="code" href="group__cpu__atmega__common.html#ga91457bbf35f0f1085619a99423bb1f33">ENOTSUP</a>;</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;}</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160; </div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;<span class="keywordtype">void</span> gnrc_netif_init_6ln(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif);</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160; </div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_GNRC_NETIF_IPV6) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="keywordtype">void</span> gnrc_netif_ipv6_init_mtu(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif);</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160; </div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;<span class="keywordtype">int</span> gnrc_netif_ipv6_iid_from_addr(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                                  <span class="keyword">const</span> uint8_t *addr, <span class="keywordtype">size_t</span> addr_len,</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;                                  <a class="code" href="unioneui64__t.html">eui64_t</a> *iid);</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160; </div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gnrc_netif_ipv6_iid_to_addr(<span class="keyword">const</span> <a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;                                              <span class="keyword">const</span> <a class="code" href="unioneui64__t.html">eui64_t</a> *iid, uint8_t *addr)</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;{</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;    <a class="code" href="assert_8h.html#a3153a272f18d0f805028fce7e4337b53">assert</a>(netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#a59820cf57c195017fb256f83260cdee2">GNRC_NETIF_FLAGS_HAS_L2ADDR</a>);</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__l2util.html#gac685fa77c277cbe1cf8ace342867f97c">l2util_ipv6_iid_to_addr</a>(netif-&gt;<a class="code" href="structgnrc__netif__t.html#a269e7bb2472a008176c8e173cd152600">device_type</a>, iid, addr);</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;}</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160; </div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gnrc_netif_ipv6_get_iid(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif, <a class="code" href="unioneui64__t.html">eui64_t</a> *iid)</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;{</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;<span class="preprocessor">#if GNRC_NETIF_L2ADDR_MAXLEN &gt; 0</span></div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;    <span class="keywordflow">if</span> (netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#a59820cf57c195017fb256f83260cdee2">GNRC_NETIF_FLAGS_HAS_L2ADDR</a>) {</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;        <span class="keywordflow">return</span> gnrc_netif_ipv6_iid_from_addr(netif,</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                                             netif-&gt;<a class="code" href="structgnrc__netif__t.html#a52ce74511647e0c93cfb827a6f614dac">l2addr</a>, netif-&gt;<a class="code" href="structgnrc__netif__t.html#a4557569c7ffff1b3bb940e7823b155f5">l2addr_len</a>,</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                                             iid);</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;    }</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* GNRC_NETIF_L2ADDR_MAXLEN &gt; 0 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    (void)netif;</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;    (void)iid;</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;    <span class="keywordflow">return</span> -<a class="code" href="group__cpu__atmega__common.html#ga91457bbf35f0f1085619a99423bb1f33">ENOTSUP</a>;</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;}</div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160; </div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gnrc_netif_ndp_addr_len_from_l2ao(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;                                                    <span class="keyword">const</span> <a class="code" href="structndp__opt__t.html">ndp_opt_t</a> *opt)</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;{</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;    <a class="code" href="assert_8h.html#a3153a272f18d0f805028fce7e4337b53">assert</a>(netif-&gt;<a class="code" href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">flags</a> &amp; <a class="code" href="flags_8h.html#a59820cf57c195017fb256f83260cdee2">GNRC_NETIF_FLAGS_HAS_L2ADDR</a>);</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__l2util.html#ga4786395f69ace734b00f4351fa360b0f">l2util_ndp_addr_len_from_l2ao</a>(netif-&gt;<a class="code" href="structgnrc__netif__t.html#a269e7bb2472a008176c8e173cd152600">device_type</a>, opt);</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;}</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160; </div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gnrc_netif_ipv6_group_to_l2_group(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;                                                    <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *ipv6_group,</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;                                                    uint8_t *l2_group)</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;{</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__l2util.html#gae9bd8721c1275326fbbb7a5f9cd05a8d">l2util_ipv6_group_to_l2_group</a>(netif-&gt;<a class="code" href="structgnrc__netif__t.html#a269e7bb2472a008176c8e173cd152600">device_type</a>, ipv6_group,</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;                                         l2_group);</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;}</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; </div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;<span class="keywordtype">int</span> gnrc_netif_ipv6_add_prefix(<a class="code" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif,</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;                               <span class="keyword">const</span> <a class="code" href="unionipv6__addr__t.html">ipv6_addr_t</a> *pfx, uint8_t pfx_len,</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;                               uint32_t valid, uint32_t pref);</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;<span class="preprocessor">#else   </span><span class="comment">/* IS_USED(MODULE_GNRC_NETIF_IPV6) || defined(DOXYGEN) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;<span class="preprocessor">#define gnrc_netif_ipv6_init_mtu(netif)                             (void)netif</span></div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;<span class="preprocessor">#define gnrc_netif_ipv6_iid_from_addr(netif, addr, addr_len, iid)   (-ENOTSUP)</span></div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;<span class="preprocessor">#define gnrc_netif_ipv6_iid_to_addr(netif, iid, addr)               (-ENOTSUP)</span></div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;<span class="preprocessor">#define gnrc_netif_ndp_addr_len_from_l2ao(netif, opt)               (-ENOTSUP)</span></div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;<span class="preprocessor">#define gnrc_netif_ipv6_get_iid(netif, iid)                         (-ENOTSUP)</span></div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;<span class="preprocessor">#define gnrc_netif_ipv6_group_to_l2_group(netif, ipv6_group, l2_group)  (-ENOTSUP)</span></div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* IS_USED(MODULE_GNRC_NETIF_IPV6) || defined(DOXYGEN) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;}</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160; </div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NET_GNRC_NETIF_INTERNAL_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aassert_8h_html_a3153a272f18d0f805028fce7e4337b53"><div class="ttname"><a href="assert_8h.html#a3153a272f18d0f805028fce7e4337b53">assert</a></div><div class="ttdeci">#define assert(cond)</div><div class="ttdoc">abort the program if assertion is false</div><div class="ttdef"><b>Definition:</b> assert.h:136</div></div>
+<div class="ttc" id="aflags_8h_html_a11e58d893e88956c8cc464af318e3394"><div class="ttname"><a href="flags_8h.html#a11e58d893e88956c8cc464af318e3394">GNRC_NETIF_FLAGS_IPV6_RTR_ADV</a></div><div class="ttdeci">#define GNRC_NETIF_FLAGS_IPV6_RTR_ADV</div><div class="ttdoc">Network interface advertises itself as an IPv6 router (implies GNRC_NETIF_FLAGS_IPV6_FORWARDING to be...</div><div class="ttdef"><b>Definition:</b> flags.h:58</div></div>
+<div class="ttc" id="aflags_8h_html_a59820cf57c195017fb256f83260cdee2"><div class="ttname"><a href="flags_8h.html#a59820cf57c195017fb256f83260cdee2">GNRC_NETIF_FLAGS_HAS_L2ADDR</a></div><div class="ttdeci">#define GNRC_NETIF_FLAGS_HAS_L2ADDR</div><div class="ttdoc">Network interface has link-layer address.</div><div class="ttdef"><b>Definition:</b> flags.h:47</div></div>
+<div class="ttc" id="aflags_8h_html_a919811ff735f92b02d08efdae07af24a"><div class="ttname"><a href="flags_8h.html#a919811ff735f92b02d08efdae07af24a">GNRC_NETIF_FLAGS_6LO_ABR</a></div><div class="ttdeci">#define GNRC_NETIF_FLAGS_6LO_ABR</div><div class="ttdoc">This interface acts as a 6Lo border router to the LLN.</div><div class="ttdef"><b>Definition:</b> flags.h:109</div></div>
+<div class="ttc" id="aflags_8h_html_ab0bcdfd1f672b9669fbf8ba57f0e69a8"><div class="ttname"><a href="flags_8h.html#ab0bcdfd1f672b9669fbf8ba57f0e69a8">GNRC_NETIF_FLAGS_IPV6_FORWARDING</a></div><div class="ttdeci">#define GNRC_NETIF_FLAGS_IPV6_FORWARDING</div><div class="ttdoc">Network interface is enabled for IPv6 forwarding.</div><div class="ttdef"><b>Definition:</b> flags.h:52</div></div>
+<div class="ttc" id="aflags_8h_html_ae3f2d00578b4d88d5de921dca4d48576"><div class="ttname"><a href="flags_8h.html#ae3f2d00578b4d88d5de921dca4d48576">GNRC_NETIF_FLAGS_6LN</a></div><div class="ttdeci">#define GNRC_NETIF_FLAGS_6LN</div><div class="ttdoc">This interface represents a 6Lo node (6LN) according to RFC 6775.</div><div class="ttdef"><b>Definition:</b> flags.h:132</div></div>
+<div class="ttc" id="agnrc_2netif_2ipv6_8h_html_ac1880c9bf8e7b6ad5acac8eee094a43b"><div class="ttname"><a href="gnrc_2netif_2ipv6_8h.html#ac1880c9bf8e7b6ad5acac8eee094a43b">GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_TENTATIVE</a></div><div class="ttdeci">#define GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_TENTATIVE</div><div class="ttdoc">Tentative states (with encoded DAD retransmissions)</div><div class="ttdef"><b>Definition:</b> ipv6.h:55</div></div>
+<div class="ttc" id="agnrc_2netif_2ipv6_8h_html_af56fd1cb43fe76d83a4776ffa3229490"><div class="ttname"><a href="gnrc_2netif_2ipv6_8h.html#af56fd1cb43fe76d83a4776ffa3229490">GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_MASK</a></div><div class="ttdeci">#define GNRC_NETIF_IPV6_ADDRS_FLAGS_STATE_MASK</div><div class="ttdoc">Mask for the address' state.</div><div class="ttdef"><b>Definition:</b> ipv6.h:46</div></div>
+<div class="ttc" id="agnrc_2netif_8h_html"><div class="ttname"><a href="gnrc_2netif_8h.html">netif.h</a></div><div class="ttdoc">Definition for GNRC's network interfaces.</div></div>
+<div class="ttc" id="agroup__cpu__atmega__common_html_ga91457bbf35f0f1085619a99423bb1f33"><div class="ttname"><a href="group__cpu__atmega__common.html#ga91457bbf35f0f1085619a99423bb1f33">ENOTSUP</a></div><div class="ttdeci">#define ENOTSUP</div><div class="ttdoc">Not supported (may be the same value as [EOPNOTSUPP]).</div><div class="ttdef"><b>Definition:</b> errno.h:130</div></div>
+<div class="ttc" id="agroup__net__gnrc__ipv6__nib__conf_html_gaa7ea6a8b5bb9929f06c3c22fd75e17cd"><div class="ttname"><a href="group__net__gnrc__ipv6__nib__conf.html#gaa7ea6a8b5bb9929f06c3c22fd75e17cd">CONFIG_GNRC_IPV6_NIB_6LBR</a></div><div class="ttdeci">#define CONFIG_GNRC_IPV6_NIB_6LBR</div><div class="ttdoc">enable features for 6Lo border router</div><div class="ttdef"><b>Definition:</b> conf.h:91</div></div>
+<div class="ttc" id="agroup__net__gnrc__ipv6__nib__conf_html_gaff424896197494575755b6c6987ee416"><div class="ttname"><a href="group__net__gnrc__ipv6__nib__conf.html#gaff424896197494575755b6c6987ee416">CONFIG_GNRC_IPV6_NIB_6LR</a></div><div class="ttdeci">#define CONFIG_GNRC_IPV6_NIB_6LR</div><div class="ttdoc">enable features for 6Lo router</div><div class="ttdef"><b>Definition:</b> conf.h:101</div></div>
+<div class="ttc" id="agroup__net__gnrc__ipv6__nib__conf_html_gaff67513e6d48b405a4f8636df3a01857"><div class="ttname"><a href="group__net__gnrc__ipv6__nib__conf.html#gaff67513e6d48b405a4f8636df3a01857">CONFIG_GNRC_IPV6_NIB_6LN</a></div><div class="ttdeci">#define CONFIG_GNRC_IPV6_NIB_6LN</div><div class="ttdoc">enable features for 6Lo node</div><div class="ttdef"><b>Definition:</b> conf.h:112</div></div>
+<div class="ttc" id="agroup__net__gnrc__netif_html_gaf7f4305f1d02f1ea9c14e0d4b3e0b2d4"><div class="ttname"><a href="group__net__gnrc__netif.html#gaf7f4305f1d02f1ea9c14e0d4b3e0b2d4">gnrc_netif_highlander</a></div><div class="ttdeci">static bool gnrc_netif_highlander(void)</div><div class="ttdoc">Check if there can only be one gnrc_netif_t interface.</div><div class="ttdef"><b>Definition:</b> netif.h:440</div></div>
+<div class="ttc" id="agroup__net__gnrc__netif_html_gga9b571101e3ae1341d7b12eb1e6747083af1aa2995b0c4af1c3abea190368d581d"><div class="ttname"><a href="group__net__gnrc__netif.html#gga9b571101e3ae1341d7b12eb1e6747083af1aa2995b0c4af1c3abea190368d581d">GNRC_NETIF_BUS_IPV6</a></div><div class="ttdeci">@ GNRC_NETIF_BUS_IPV6</div><div class="ttdoc">provides gnrc_ipv6_event_t messages to subscribers</div><div class="ttdef"><b>Definition:</b> netif.h:103</div></div>
+<div class="ttc" id="agroup__net__l2util_html_ga4786395f69ace734b00f4351fa360b0f"><div class="ttname"><a href="group__net__l2util.html#ga4786395f69ace734b00f4351fa360b0f">l2util_ndp_addr_len_from_l2ao</a></div><div class="ttdeci">int l2util_ndp_addr_len_from_l2ao(int dev_type, const ndp_opt_t *opt)</div><div class="ttdoc">Derives the length of the link-layer address in an NDP link-layer address option from that option's l...</div></div>
+<div class="ttc" id="agroup__net__l2util_html_gac685fa77c277cbe1cf8ace342867f97c"><div class="ttname"><a href="group__net__l2util.html#gac685fa77c277cbe1cf8ace342867f97c">l2util_ipv6_iid_to_addr</a></div><div class="ttdeci">int l2util_ipv6_iid_to_addr(int dev_type, const eui64_t *iid, uint8_t *addr)</div><div class="ttdoc">Converts an IPv6 IID to a hardware address.</div></div>
+<div class="ttc" id="agroup__net__l2util_html_gae9bd8721c1275326fbbb7a5f9cd05a8d"><div class="ttname"><a href="group__net__l2util.html#gae9bd8721c1275326fbbb7a5f9cd05a8d">l2util_ipv6_group_to_l2_group</a></div><div class="ttdeci">int l2util_ipv6_group_to_l2_group(int dev_type, const ipv6_addr_t *ipv6_group, uint8_t *l2_group)</div><div class="ttdoc">Converts an IPv6 multicast address to a multicast address of the respective link layer.</div></div>
+<div class="ttc" id="agroup__net__netopt_html_ga19e30424c1ab107c9c84dc0cb29d9906"><div class="ttname"><a href="group__net__netopt.html#ga19e30424c1ab107c9c84dc0cb29d9906">netopt_t</a></div><div class="ttdeci">netopt_t</div><div class="ttdoc">Global list of configuration options available throughout the network stack, e.g.</div><div class="ttdef"><b>Definition:</b> netopt.h:45</div></div>
+<div class="ttc" id="aipv6_2nib_2conf_8h_html"><div class="ttname"><a href="ipv6_2nib_2conf_8h.html">conf.h</a></div><div class="ttdoc">Configuration macro definitions for neighbor information base.</div></div>
+<div class="ttc" id="al2util_8h_html"><div class="ttname"><a href="l2util_8h.html">l2util.h</a></div><div class="ttdoc">Link-layer helper function definitions.</div></div>
+<div class="ttc" id="amodules_8h_html"><div class="ttname"><a href="modules_8h.html">modules.h</a></div><div class="ttdoc">Common macros and compiler attributes/pragmas configuration.</div></div>
+<div class="ttc" id="amodules_8h_html_a185d252af6cac906c5bdf5a7171b85f4"><div class="ttname"><a href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a></div><div class="ttdeci">#define IS_USED(module)</div><div class="ttdoc">Checks whether a module is being used or not.</div><div class="ttdef"><b>Definition:</b> modules.h:71</div></div>
+<div class="ttc" id="amodules_8h_html_a25e432312ddc824e161578831972028c"><div class="ttname"><a href="modules_8h.html#a25e432312ddc824e161578831972028c">IS_ACTIVE</a></div><div class="ttdeci">#define IS_ACTIVE(macro)</div><div class="ttdoc">Allows to verify a macro definition outside the preprocessor.</div><div class="ttdef"><b>Definition:</b> modules.h:60</div></div>
+<div class="ttc" id="amsg__bus_8h_html_a67c5433470d13ad01053567da8fad3ec"><div class="ttname"><a href="msg__bus_8h.html#a67c5433470d13ad01053567da8fad3ec">msg_bus_post</a></div><div class="ttdeci">static int msg_bus_post(msg_bus_t *bus, uint8_t type, const void *arg)</div><div class="ttdoc">Post a message to a bus.</div><div class="ttdef"><b>Definition:</b> msg_bus.h:251</div></div>
+<div class="ttc" id="anetopt_8h_html"><div class="ttname"><a href="netopt_8h.html">netopt.h</a></div><div class="ttdoc">Definition of global configuration options.</div></div>
+<div class="ttc" id="astructgnrc__netif__ipv6__t_html_ae54dfb256caa3b85d9853250713bcfbf"><div class="ttname"><a href="structgnrc__netif__ipv6__t.html#ae54dfb256caa3b85d9853250713bcfbf">gnrc_netif_ipv6_t::addrs_flags</a></div><div class="ttdeci">uint8_t addrs_flags[CONFIG_GNRC_NETIF_IPV6_ADDRS_NUMOF]</div><div class="ttdoc">Flags for gnrc_netif_t::ipv6_addrs.</div><div class="ttdef"><b>Definition:</b> ipv6.h:86</div></div>
+<div class="ttc" id="astructgnrc__netif__t_html"><div class="ttname"><a href="structgnrc__netif__t.html">gnrc_netif_t</a></div><div class="ttdoc">Representation of a network interface.</div><div class="ttdef"><b>Definition:</b> netif.h:135</div></div>
+<div class="ttc" id="astructgnrc__netif__t_html_a19716960a6addfa027a3d973e139c0bc"><div class="ttname"><a href="structgnrc__netif__t.html#a19716960a6addfa027a3d973e139c0bc">gnrc_netif_t::bus</a></div><div class="ttdeci">msg_bus_t bus[GNRC_NETIF_BUS_NUMOF]</div><div class="ttdoc">Event Message Bus.</div><div class="ttdef"><b>Definition:</b> netif.h:153</div></div>
+<div class="ttc" id="astructgnrc__netif__t_html_a1e33d5441ba953f822ec5f4218b6347a"><div class="ttname"><a href="structgnrc__netif__t.html#a1e33d5441ba953f822ec5f4218b6347a">gnrc_netif_t::flags</a></div><div class="ttdeci">uint32_t flags</div><div class="ttdoc">Flags for the interface.</div><div class="ttdef"><b>Definition:</b> netif.h:160</div></div>
+<div class="ttc" id="astructgnrc__netif__t_html_a269e7bb2472a008176c8e173cd152600"><div class="ttname"><a href="structgnrc__netif__t.html#a269e7bb2472a008176c8e173cd152600">gnrc_netif_t::device_type</a></div><div class="ttdeci">uint8_t device_type</div><div class="ttdoc">Device type.</div><div class="ttdef"><b>Definition:</b> netif.h:225</div></div>
+<div class="ttc" id="astructgnrc__netif__t_html_a4557569c7ffff1b3bb940e7823b155f5"><div class="ttname"><a href="structgnrc__netif__t.html#a4557569c7ffff1b3bb940e7823b155f5">gnrc_netif_t::l2addr_len</a></div><div class="ttdeci">uint8_t l2addr_len</div><div class="ttdoc">Length in bytes of gnrc_netif_t::l2addr.</div><div class="ttdef"><b>Definition:</b> netif.h:199</div></div>
+<div class="ttc" id="astructgnrc__netif__t_html_a52ce74511647e0c93cfb827a6f614dac"><div class="ttname"><a href="structgnrc__netif__t.html#a52ce74511647e0c93cfb827a6f614dac">gnrc_netif_t::l2addr</a></div><div class="ttdeci">uint8_t l2addr[GNRC_NETIF_L2ADDR_MAXLEN]</div><div class="ttdoc">The link-layer address currently used as the source address on this interface.</div><div class="ttdef"><b>Definition:</b> netif.h:192</div></div>
+<div class="ttc" id="astructgnrc__netif__t_html_aaa394a6f526275ae4d3cabfe0ab3e32a"><div class="ttname"><a href="structgnrc__netif__t.html#aaa394a6f526275ae4d3cabfe0ab3e32a">gnrc_netif_t::ipv6</a></div><div class="ttdeci">gnrc_netif_ipv6_t ipv6</div><div class="ttdoc">IPv6 component.</div><div class="ttdef"><b>Definition:</b> netif.h:147</div></div>
+<div class="ttc" id="astructndp__opt__t_html"><div class="ttname"><a href="structndp__opt__t.html">ndp_opt_t</a></div><div class="ttdoc">General NDP option format.</div><div class="ttdef"><b>Definition:</b> ndp.h:298</div></div>
+<div class="ttc" id="aunioneui64__t_html"><div class="ttname"><a href="unioneui64__t.html">eui64_t</a></div><div class="ttdoc">Data type to represent an EUI-64.</div><div class="ttdef"><b>Definition:</b> eui64.h:55</div></div>
+<div class="ttc" id="aunionipv6__addr__t_html"><div class="ttname"><a href="unionipv6__addr__t.html">ipv6_addr_t</a></div><div class="ttdoc">Data type to represent an IPv6 address.</div><div class="ttdef"><b>Definition:</b> addr.h:72</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_7afc5d30923bebdd1513d1cc48150ca7.html">net</a></li><li class="navelem"><a class="el" href="dir_cf159672c4bc64dfd629cfa389a5bd8d.html">gnrc</a></li><li class="navelem"><a class="el" href="dir_8fb0004f9dfb7e93f97c56d4411ab928.html">netif</a></li><li class="navelem"><b>internal.h</b></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

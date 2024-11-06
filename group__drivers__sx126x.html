@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: SX1261/2/8 and LLCC68 LoRa radio driver</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__drivers__sx126x.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">SX1261/2/8 and LLCC68 LoRa radio driver<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Driver for the SX1261/2/8 and LLCC68 LoRa radio device. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__drivers__sx126x__internal"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x__internal.html">SX1261/2/8 and LLCC68 internal functions</a></td></tr>
+<tr class="memdesc:group__drivers__sx126x__internal"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal functions for the SX1261/2/8 and LLCC68. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:sx126x_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sx126x_8h.html">sx126x.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:sx126x__netdev_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sx126x__netdev_8h.html">sx126x_netdev.h</a></td></tr>
+<tr class="memdesc:sx126x__netdev_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Netdev driver definitions for SX1261/2/8 and LLCC68 driver. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:sx126x__params_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sx126x__params_8h.html">sx126x_params.h</a></td></tr>
+<tr class="memdesc:sx126x__params_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default configuration. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsx126x__params__t.html">sx126x_params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device initialization parameters.  <a href="structsx126x__params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsx126x.html">sx126x</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device descriptor for the driver.  <a href="structsx126x.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gaaacf3e7d858bcd6a3fcf7fb7f705c907"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gaaacf3e7d858bcd6a3fcf7fb7f705c907">SX126X_SINGLE</a></td></tr>
+<tr class="memdesc:gaaacf3e7d858bcd6a3fcf7fb7f705c907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether there's only one variant of this driver at compile time or not.  <a href="group__drivers__sx126x.html#gaaacf3e7d858bcd6a3fcf7fb7f705c907">More...</a><br /></td></tr>
+<tr class="separator:gaaacf3e7d858bcd6a3fcf7fb7f705c907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gae3bb9098ad5443272bf137dfeac9aa39"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structsx126x.html">sx126x</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a></td></tr>
+<tr class="separator:gae3bb9098ad5443272bf137dfeac9aa39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gacaadc1f1b5900369a978064592169b14"><td class="memItemLeft" align="right" valign="top"><a id="gacaadc1f1b5900369a978064592169b14"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gacaadc1f1b5900369a978064592169b14">sx126x_rf_mode_t</a> { <b>SX126X_RF_MODE_RX</b>
+, <b>SX126X_RF_MODE_TX_LPA</b>
+, <b>SX126X_RF_MODE_TX_HPA</b>
+ }</td></tr>
+<tr class="memdesc:gacaadc1f1b5900369a978064592169b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">RF switch states. <br /></td></tr>
+<tr class="separator:gacaadc1f1b5900369a978064592169b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ae7dc7e3f165bfb6ced346719b10f31"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga6ae7dc7e3f165bfb6ced346719b10f31">sx126x_type_t</a> { <br />
+&#160;&#160;<b>SX126X_TYPE_SX1261</b>
+, <b>SX126X_TYPE_SX1262</b>
+, <b>SX126X_TYPE_SX1268</b>
+, <b>SX126X_TYPE_LLCC68</b>
+, <br />
+&#160;&#160;<b>SX126X_TYPE_STM32WL</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga6ae7dc7e3f165bfb6ced346719b10f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to identify if its a generic SPI module.  <a href="group__drivers__sx126x.html#ga6ae7dc7e3f165bfb6ced346719b10f31">More...</a><br /></td></tr>
+<tr class="separator:ga6ae7dc7e3f165bfb6ced346719b10f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga71e972ac094658e744f1c4c8188e38ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga71e972ac094658e744f1c4c8188e38ef">sx126x_setup</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, const <a class="el" href="structsx126x__params__t.html">sx126x_params_t</a> *params, uint8_t index)</td></tr>
+<tr class="memdesc:ga71e972ac094658e744f1c4c8188e38ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the radio device.  <a href="group__drivers__sx126x.html#ga71e972ac094658e744f1c4c8188e38ef">More...</a><br /></td></tr>
+<tr class="separator:ga71e972ac094658e744f1c4c8188e38ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga036d88ad1a53f92efa1a1907911c5418"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga036d88ad1a53f92efa1a1907911c5418">sx126x_init</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga036d88ad1a53f92efa1a1907911c5418"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the given device.  <a href="group__drivers__sx126x.html#ga036d88ad1a53f92efa1a1907911c5418">More...</a><br /></td></tr>
+<tr class="separator:ga036d88ad1a53f92efa1a1907911c5418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa56b597a646bc23e8181c22f35aebc22"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gaa56b597a646bc23e8181c22f35aebc22">sx126x_symbol_to_msec</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, uint16_t symbols)</td></tr>
+<tr class="memdesc:gaa56b597a646bc23e8181c22f35aebc22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts symbol value to time in milliseconds.  <a href="group__drivers__sx126x.html#gaa56b597a646bc23e8181c22f35aebc22">More...</a><br /></td></tr>
+<tr class="separator:gaa56b597a646bc23e8181c22f35aebc22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad00ba8ffe6e57402c09c827bbc355412"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gad00ba8ffe6e57402c09c827bbc355412">sx126x_get_channel</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gad00ba8ffe6e57402c09c827bbc355412"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the channel RF frequency.  <a href="group__drivers__sx126x.html#gad00ba8ffe6e57402c09c827bbc355412">More...</a><br /></td></tr>
+<tr class="separator:gad00ba8ffe6e57402c09c827bbc355412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5253a0ddffb9a931c3180f588687407"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gac5253a0ddffb9a931c3180f588687407">sx126x_set_channel</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, uint32_t freq)</td></tr>
+<tr class="memdesc:gac5253a0ddffb9a931c3180f588687407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the channel RF frequency.  <a href="group__drivers__sx126x.html#gac5253a0ddffb9a931c3180f588687407">More...</a><br /></td></tr>
+<tr class="separator:gac5253a0ddffb9a931c3180f588687407"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacbb32cad3c0ef88dbc46d9d13736a4a7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gacbb32cad3c0ef88dbc46d9d13736a4a7">sx126x_get_bandwidth</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gacbb32cad3c0ef88dbc46d9d13736a4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LoRa bandwidth.  <a href="group__drivers__sx126x.html#gacbb32cad3c0ef88dbc46d9d13736a4a7">More...</a><br /></td></tr>
+<tr class="separator:gacbb32cad3c0ef88dbc46d9d13736a4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13d6d07ba4a70b19fe71df655ed2bf39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga13d6d07ba4a70b19fe71df655ed2bf39">sx126x_set_bandwidth</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, uint8_t bandwidth)</td></tr>
+<tr class="memdesc:ga13d6d07ba4a70b19fe71df655ed2bf39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the LoRa bandwidth.  <a href="group__drivers__sx126x.html#ga13d6d07ba4a70b19fe71df655ed2bf39">More...</a><br /></td></tr>
+<tr class="separator:ga13d6d07ba4a70b19fe71df655ed2bf39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa27ce422fe7cd706fc5bb26f2c5fb248"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gaa27ce422fe7cd706fc5bb26f2c5fb248">sx126x_get_spreading_factor</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa27ce422fe7cd706fc5bb26f2c5fb248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LoRa spreading factor.  <a href="group__drivers__sx126x.html#gaa27ce422fe7cd706fc5bb26f2c5fb248">More...</a><br /></td></tr>
+<tr class="separator:gaa27ce422fe7cd706fc5bb26f2c5fb248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a1a611c164abda1fb0768d6b0f04405"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga0a1a611c164abda1fb0768d6b0f04405">sx126x_set_spreading_factor</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, uint8_t sf)</td></tr>
+<tr class="memdesc:ga0a1a611c164abda1fb0768d6b0f04405"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the LoRa spreading factor.  <a href="group__drivers__sx126x.html#ga0a1a611c164abda1fb0768d6b0f04405">More...</a><br /></td></tr>
+<tr class="separator:ga0a1a611c164abda1fb0768d6b0f04405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3bcafffa472481910f290afc275c6a1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gab3bcafffa472481910f290afc275c6a1">sx126x_get_coding_rate</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gab3bcafffa472481910f290afc275c6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LoRa coding rate.  <a href="group__drivers__sx126x.html#gab3bcafffa472481910f290afc275c6a1">More...</a><br /></td></tr>
+<tr class="separator:gab3bcafffa472481910f290afc275c6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2e6c9b9b0a1fa5a624f5f68674163226"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga2e6c9b9b0a1fa5a624f5f68674163226">sx126x_set_coding_rate</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, uint8_t cr)</td></tr>
+<tr class="memdesc:ga2e6c9b9b0a1fa5a624f5f68674163226"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the LoRa coding rate.  <a href="group__drivers__sx126x.html#ga2e6c9b9b0a1fa5a624f5f68674163226">More...</a><br /></td></tr>
+<tr class="separator:ga2e6c9b9b0a1fa5a624f5f68674163226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9f5650cd310d0a2a94f410dd7b992dc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gae9f5650cd310d0a2a94f410dd7b992dc">sx126x_get_lora_payload_length</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gae9f5650cd310d0a2a94f410dd7b992dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the payload length.  <a href="group__drivers__sx126x.html#gae9f5650cd310d0a2a94f410dd7b992dc">More...</a><br /></td></tr>
+<tr class="separator:gae9f5650cd310d0a2a94f410dd7b992dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga887888c826f798f5e9ff98e23cc832fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga887888c826f798f5e9ff98e23cc832fd">sx126x_set_lora_payload_length</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, uint8_t len)</td></tr>
+<tr class="memdesc:ga887888c826f798f5e9ff98e23cc832fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the payload length.  <a href="group__drivers__sx126x.html#ga887888c826f798f5e9ff98e23cc832fd">More...</a><br /></td></tr>
+<tr class="separator:ga887888c826f798f5e9ff98e23cc832fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4340803a0ad98c20b1e3f609347d98c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gae4340803a0ad98c20b1e3f609347d98c">sx126x_get_lora_crc</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gae4340803a0ad98c20b1e3f609347d98c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if CRC verification mode is enabled.  <a href="group__drivers__sx126x.html#gae4340803a0ad98c20b1e3f609347d98c">More...</a><br /></td></tr>
+<tr class="separator:gae4340803a0ad98c20b1e3f609347d98c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a0d831a0e6d031c5088369187de8c53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga5a0d831a0e6d031c5088369187de8c53">sx126x_set_lora_crc</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, bool crc)</td></tr>
+<tr class="memdesc:ga5a0d831a0e6d031c5088369187de8c53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable/Disable CRC verification mode.  <a href="group__drivers__sx126x.html#ga5a0d831a0e6d031c5088369187de8c53">More...</a><br /></td></tr>
+<tr class="separator:ga5a0d831a0e6d031c5088369187de8c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadcee482dd2f75dbc3ab980b9af3702ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gadcee482dd2f75dbc3ab980b9af3702ad">sx126x_get_lora_implicit_header</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gadcee482dd2f75dbc3ab980b9af3702ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LoRa implicit header mode.  <a href="group__drivers__sx126x.html#gadcee482dd2f75dbc3ab980b9af3702ad">More...</a><br /></td></tr>
+<tr class="separator:gadcee482dd2f75dbc3ab980b9af3702ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1719d8abf9501fe836488ab411738ba5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga1719d8abf9501fe836488ab411738ba5">sx126x_set_lora_implicit_header</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, bool mode)</td></tr>
+<tr class="memdesc:ga1719d8abf9501fe836488ab411738ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets LoRa implicit header mode.  <a href="group__drivers__sx126x.html#ga1719d8abf9501fe836488ab411738ba5">More...</a><br /></td></tr>
+<tr class="separator:ga1719d8abf9501fe836488ab411738ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d565f4920e2652cedaa906e76ecf9f2"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga2d565f4920e2652cedaa906e76ecf9f2">sx126x_get_lora_preamble_length</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga2d565f4920e2652cedaa906e76ecf9f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LoRa preamble length.  <a href="group__drivers__sx126x.html#ga2d565f4920e2652cedaa906e76ecf9f2">More...</a><br /></td></tr>
+<tr class="separator:ga2d565f4920e2652cedaa906e76ecf9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78943089a3608efc1260a1c9b5cfb802"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga78943089a3608efc1260a1c9b5cfb802">sx126x_set_lora_preamble_length</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, uint16_t preamble)</td></tr>
+<tr class="memdesc:ga78943089a3608efc1260a1c9b5cfb802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the LoRa preamble length.  <a href="group__drivers__sx126x.html#ga78943089a3608efc1260a1c9b5cfb802">More...</a><br /></td></tr>
+<tr class="separator:ga78943089a3608efc1260a1c9b5cfb802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafb5d32e266b4a37cdcd6d91c3d504acd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#gafb5d32e266b4a37cdcd6d91c3d504acd">sx126x_get_lora_iq_invert</a> (const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev)</td></tr>
+<tr class="memdesc:gafb5d32e266b4a37cdcd6d91c3d504acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the LoRa inverted IQ mode is enabled/disabled.  <a href="group__drivers__sx126x.html#gafb5d32e266b4a37cdcd6d91c3d504acd">More...</a><br /></td></tr>
+<tr class="separator:gafb5d32e266b4a37cdcd6d91c3d504acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27aa4e2779c1592dfe7e4248f6a0b561"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__sx126x.html#ga27aa4e2779c1592dfe7e4248f6a0b561">sx126x_set_lora_iq_invert</a> (<a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *dev, bool iq_invert)</td></tr>
+<tr class="memdesc:ga27aa4e2779c1592dfe7e4248f6a0b561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable/disable the LoRa IQ inverted mode.  <a href="group__drivers__sx126x.html#ga27aa4e2779c1592dfe7e4248f6a0b561">More...</a><br /></td></tr>
+<tr class="separator:ga27aa4e2779c1592dfe7e4248f6a0b561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="gaaacf3e7d858bcd6a3fcf7fb7f705c907"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaacf3e7d858bcd6a3fcf7fb7f705c907">&#9670;&nbsp;</a></span>SX126X_SINGLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SX126X_SINGLE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                          ((            \</div>
+<div class="line">                          IS_USED(MODULE_SX1261) \</div>
+<div class="line">                        + <a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_SX1262) \</div>
+<div class="line">                        + <a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_SX1268) \</div>
+<div class="line">                        + <a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_LLCC68) \</div>
+<div class="line">                        + <a class="code" href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a>(MODULE_SX126X_STM32WL) \</div>
+<div class="line">                        ) == 1)</div>
+<div class="ttc" id="amodules_8h_html_a185d252af6cac906c5bdf5a7171b85f4"><div class="ttname"><a href="modules_8h.html#a185d252af6cac906c5bdf5a7171b85f4">IS_USED</a></div><div class="ttdeci">#define IS_USED(module)</div><div class="ttdoc">Checks whether a module is being used or not.</div><div class="ttdef"><b>Definition:</b> modules.h:71</div></div>
+</div><!-- fragment -->
+<p>Whether there's only one variant of this driver at compile time or not. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="gae3bb9098ad5443272bf137dfeac9aa39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae3bb9098ad5443272bf137dfeac9aa39">&#9670;&nbsp;</a></span>sx126x_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structsx126x.html">sx126x</a> <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<ul>
+<li><dl class="section note"><dt>Note</dt><dd>Forward declaration of the SX126x device descriptor </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga6ae7dc7e3f165bfb6ced346719b10f31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6ae7dc7e3f165bfb6ced346719b10f31">&#9670;&nbsp;</a></span>sx126x_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__sx126x.html#ga6ae7dc7e3f165bfb6ced346719b10f31">sx126x_type_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to identify if its a generic SPI module. </p>
+<p>Variant of the SX126x driver. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gacbb32cad3c0ef88dbc46d9d13736a4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacbb32cad3c0ef88dbc46d9d13736a4a7">&#9670;&nbsp;</a></span>sx126x_get_bandwidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sx126x_get_bandwidth </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the LoRa bandwidth. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the bandwidth </dd></dl>
+
+</div>
+</div>
+<a id="gad00ba8ffe6e57402c09c827bbc355412"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad00ba8ffe6e57402c09c827bbc355412">&#9670;&nbsp;</a></span>sx126x_get_channel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sx126x_get_channel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the channel RF frequency. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The channel frequency </dd></dl>
+
+</div>
+</div>
+<a id="gab3bcafffa472481910f290afc275c6a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab3bcafffa472481910f290afc275c6a1">&#9670;&nbsp;</a></span>sx126x_get_coding_rate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sx126x_get_coding_rate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the LoRa coding rate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the current LoRa coding rate </dd></dl>
+
+</div>
+</div>
+<a id="gae4340803a0ad98c20b1e3f609347d98c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4340803a0ad98c20b1e3f609347d98c">&#9670;&nbsp;</a></span>sx126x_get_lora_crc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sx126x_get_lora_crc </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if CRC verification mode is enabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the LoRa single mode </dd></dl>
+
+</div>
+</div>
+<a id="gadcee482dd2f75dbc3ab980b9af3702ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadcee482dd2f75dbc3ab980b9af3702ad">&#9670;&nbsp;</a></span>sx126x_get_lora_implicit_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sx126x_get_lora_implicit_header </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the LoRa implicit header mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the LoRa implicit mode </dd></dl>
+
+</div>
+</div>
+<a id="gafb5d32e266b4a37cdcd6d91c3d504acd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafb5d32e266b4a37cdcd6d91c3d504acd">&#9670;&nbsp;</a></span>sx126x_get_lora_iq_invert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sx126x_get_lora_iq_invert </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the LoRa inverted IQ mode is enabled/disabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the LoRa IQ inverted mode </dd></dl>
+
+</div>
+</div>
+<a id="gae9f5650cd310d0a2a94f410dd7b992dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae9f5650cd310d0a2a94f410dd7b992dc">&#9670;&nbsp;</a></span>sx126x_get_lora_payload_length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sx126x_get_lora_payload_length </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the payload length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the payload length </dd></dl>
+
+</div>
+</div>
+<a id="ga2d565f4920e2652cedaa906e76ecf9f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2d565f4920e2652cedaa906e76ecf9f2">&#9670;&nbsp;</a></span>sx126x_get_lora_preamble_length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t sx126x_get_lora_preamble_length </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the LoRa preamble length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the preamble length </dd></dl>
+
+</div>
+</div>
+<a id="gaa27ce422fe7cd706fc5bb26f2c5fb248"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa27ce422fe7cd706fc5bb26f2c5fb248">&#9670;&nbsp;</a></span>sx126x_get_spreading_factor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sx126x_get_spreading_factor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the LoRa spreading factor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the spreading factor </dd></dl>
+
+</div>
+</div>
+<a id="ga036d88ad1a53f92efa1a1907911c5418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga036d88ad1a53f92efa1a1907911c5418">&#9670;&nbsp;</a></span>sx126x_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sx126x_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>Device descriptor of the driver</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd></dl>
+
+</div>
+</div>
+<a id="ga13d6d07ba4a70b19fe71df655ed2bf39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga13d6d07ba4a70b19fe71df655ed2bf39">&#9670;&nbsp;</a></span>sx126x_set_bandwidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_bandwidth </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bandwidth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the LoRa bandwidth. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bandwidth</td><td>The new bandwidth </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac5253a0ddffb9a931c3180f588687407"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5253a0ddffb9a931c3180f588687407">&#9670;&nbsp;</a></span>sx126x_set_channel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_channel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>freq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the channel RF frequency. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">freq</td><td>Channel RF frequency </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2e6c9b9b0a1fa5a624f5f68674163226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2e6c9b9b0a1fa5a624f5f68674163226">&#9670;&nbsp;</a></span>sx126x_set_coding_rate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_coding_rate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>cr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the LoRa coding rate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cr</td><td>The LoRa coding rate </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5a0d831a0e6d031c5088369187de8c53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a0d831a0e6d031c5088369187de8c53">&#9670;&nbsp;</a></span>sx126x_set_lora_crc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_lora_crc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>crc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable/Disable CRC verification mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">crc</td><td>The CRC check mode </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1719d8abf9501fe836488ab411738ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1719d8abf9501fe836488ab411738ba5">&#9670;&nbsp;</a></span>sx126x_set_lora_implicit_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_lora_implicit_header </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets LoRa implicit header mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>The header mode </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga27aa4e2779c1592dfe7e4248f6a0b561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga27aa4e2779c1592dfe7e4248f6a0b561">&#9670;&nbsp;</a></span>sx126x_set_lora_iq_invert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_lora_iq_invert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>iq_invert</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable/disable the LoRa IQ inverted mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iq_invert</td><td>The LoRa IQ inverted mode </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga887888c826f798f5e9ff98e23cc832fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga887888c826f798f5e9ff98e23cc832fd">&#9670;&nbsp;</a></span>sx126x_set_lora_payload_length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_lora_payload_length </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the payload length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>The payload len </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga78943089a3608efc1260a1c9b5cfb802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga78943089a3608efc1260a1c9b5cfb802">&#9670;&nbsp;</a></span>sx126x_set_lora_preamble_length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_lora_preamble_length </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>preamble</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the LoRa preamble length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">preamble</td><td>The LoRa preamble length </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0a1a611c164abda1fb0768d6b0f04405"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0a1a611c164abda1fb0768d6b0f04405">&#9670;&nbsp;</a></span>sx126x_set_spreading_factor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_set_spreading_factor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the LoRa spreading factor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sf</td><td>The spreading factor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga71e972ac094658e744f1c4c8188e38ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga71e972ac094658e744f1c4c8188e38ef">&#9670;&nbsp;</a></span>sx126x_setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sx126x_setup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsx126x__params__t.html">sx126x_params_t</a> *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setup the radio device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Parameters for device initialization </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of <code>params</code> in a global parameter struct array. If initialized manually, pass a unique identifier instead. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa56b597a646bc23e8181c22f35aebc22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa56b597a646bc23e8181c22f35aebc22">&#9670;&nbsp;</a></span>sx126x_symbol_to_msec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int sx126x_symbol_to_msec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">sx126x_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>symbols</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts symbol value to time in milliseconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the driver </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">symbols</td><td>Symbols</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Time for symbol(s) in milliseconds </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

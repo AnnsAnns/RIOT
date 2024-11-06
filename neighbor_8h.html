@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/net/netstats/neighbor.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('neighbor_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">neighbor.h File Reference<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__network__layer.html">Network Layer</a> &raquo; <a class="el" href="group__net__netstats.html">Packet statistics per module</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Records statistics about link layer neighbors.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Records statistics about link layer neighbors. </p>
+<p>Neighbor stats definitions</p>
+<dl class="section author"><dt>Author</dt><dd>Koen Zandberg <a href="#" onclick="location.href='mai'+'lto:'+'koe'+'n@'+'ber'+'gz'+'and'+'.n'+'et'; return false;">koen@<span style="display: none;">.nosp@m.</span>berg<span style="display: none;">.nosp@m.</span>zand.<span style="display: none;">.nosp@m.</span>net</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="netif_8h_source.html">net/netif.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timex_8h_source.html">timex.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for neighbor.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="neighbor_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5d11248e7e2a43ea875e1da66be68b49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a5d11248e7e2a43ea875e1da66be68b49">netstats_nb_init</a> (<a class="el" href="structnetif__t.html">netif_t</a> *netif)</td></tr>
+<tr class="memdesc:a5d11248e7e2a43ea875e1da66be68b49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the neighbor stats.  <a href="neighbor_8h.html#a5d11248e7e2a43ea875e1da66be68b49">More...</a><br /></td></tr>
+<tr class="separator:a5d11248e7e2a43ea875e1da66be68b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c818052d710574c80b5a8914b8f9de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a84c818052d710574c80b5a8914b8f9de">netstats_nb_get</a> (<a class="el" href="structnetif__t.html">netif_t</a> *netif, const uint8_t *l2_addr, uint8_t len, <a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a> *out)</td></tr>
+<tr class="memdesc:a84c818052d710574c80b5a8914b8f9de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a neighbor stat by the mac address.  <a href="neighbor_8h.html#a84c818052d710574c80b5a8914b8f9de">More...</a><br /></td></tr>
+<tr class="separator:a84c818052d710574c80b5a8914b8f9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c74048309e3086f03aa9b44ec66f58b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a6c74048309e3086f03aa9b44ec66f58b">netstats_nb_record</a> (<a class="el" href="structnetif__t.html">netif_t</a> *netif, const uint8_t *l2_addr, uint8_t len)</td></tr>
+<tr class="memdesc:a6c74048309e3086f03aa9b44ec66f58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store this neighbor as next in the transmission queue.  <a href="neighbor_8h.html#a6c74048309e3086f03aa9b44ec66f58b">More...</a><br /></td></tr>
+<tr class="separator:a6c74048309e3086f03aa9b44ec66f58b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0123a134553269a336d8dcc2a1ff60f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#ad0123a134553269a336d8dcc2a1ff60f">netstats_nb_update_tx</a> (<a class="el" href="structnetif__t.html">netif_t</a> *netif, <a class="el" href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34">netstats_nb_result_t</a> result, uint8_t transmissions)</td></tr>
+<tr class="memdesc:ad0123a134553269a336d8dcc2a1ff60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the next recorded neighbor with the provided numbers.  <a href="neighbor_8h.html#ad0123a134553269a336d8dcc2a1ff60f">More...</a><br /></td></tr>
+<tr class="separator:ad0123a134553269a336d8dcc2a1ff60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff00adbaeb65712df18dfd06eaad7d5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#aff00adbaeb65712df18dfd06eaad7d5b">netstats_nb_update_rx</a> (<a class="el" href="structnetif__t.html">netif_t</a> *netif, const uint8_t *l2_addr, uint8_t l2_addr_len, uint8_t rssi, uint8_t lqi)</td></tr>
+<tr class="memdesc:aff00adbaeb65712df18dfd06eaad7d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Record rx stats for the l2_addr.  <a href="neighbor_8h.html#aff00adbaeb65712df18dfd06eaad7d5b">More...</a><br /></td></tr>
+<tr class="separator:aff00adbaeb65712df18dfd06eaad7d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27294a959198225136a3f8a109574695"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a27294a959198225136a3f8a109574695">netstats_nb_isfresh</a> (<a class="el" href="structnetif__t.html">netif_t</a> *netif, <a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a> *stats)</td></tr>
+<tr class="memdesc:a27294a959198225136a3f8a109574695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a record is fresh.  <a href="neighbor_8h.html#a27294a959198225136a3f8a109574695">More...</a><br /></td></tr>
+<tr class="separator:a27294a959198225136a3f8a109574695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">@ref EWMA parameters</h2></td></tr>
+<tr class="memitem:afcf6b61b6e5d0b300eb0c1464c7b41fd"><td class="memItemLeft" align="right" valign="top"><a id="afcf6b61b6e5d0b300eb0c1464c7b41fd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#afcf6b61b6e5d0b300eb0c1464c7b41fd">NETSTATS_NB_EWMA_SCALE</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:afcf6b61b6e5d0b300eb0c1464c7b41fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplication factor of the EWMA. <br /></td></tr>
+<tr class="separator:afcf6b61b6e5d0b300eb0c1464c7b41fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbb480ed018ffd12c2f7115ac7aae0c5"><td class="memItemLeft" align="right" valign="top"><a id="adbb480ed018ffd12c2f7115ac7aae0c5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#adbb480ed018ffd12c2f7115ac7aae0c5">NETSTATS_NB_EWMA_ALPHA</a>&#160;&#160;&#160;15</td></tr>
+<tr class="memdesc:adbb480ed018ffd12c2f7115ac7aae0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alpha factor of the EWMA. <br /></td></tr>
+<tr class="separator:adbb480ed018ffd12c2f7115ac7aae0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36e1c2e8d4d7bf21814e94d9dd2cf6b6"><td class="memItemLeft" align="right" valign="top"><a id="a36e1c2e8d4d7bf21814e94d9dd2cf6b6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a36e1c2e8d4d7bf21814e94d9dd2cf6b6">NETSTATS_NB_EWMA_ALPHA_RAMP</a>&#160;&#160;&#160;30</td></tr>
+<tr class="memdesc:a36e1c2e8d4d7bf21814e94d9dd2cf6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alpha factor of the EWMA when stats are not fresh. <br /></td></tr>
+<tr class="separator:a36e1c2e8d4d7bf21814e94d9dd2cf6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">@ref ETX parameters</h2></td></tr>
+<tr class="memitem:a695fe101838939ae11e9094b4f653ae7"><td class="memItemLeft" align="right" valign="top"><a id="a695fe101838939ae11e9094b4f653ae7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a695fe101838939ae11e9094b4f653ae7">NETSTATS_NB_ETX_NOACK_PENALTY</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memdesc:a695fe101838939ae11e9094b4f653ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ETX penalty for not receiving any ACK. <br /></td></tr>
+<tr class="separator:a695fe101838939ae11e9094b4f653ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc46e8ae8dbd9bd8396ef952fee658ed"><td class="memItemLeft" align="right" valign="top"><a id="abc46e8ae8dbd9bd8396ef952fee658ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#abc46e8ae8dbd9bd8396ef952fee658ed">NETSTATS_NB_ETX_DIVISOR</a>&#160;&#160;&#160;128</td></tr>
+<tr class="memdesc:abc46e8ae8dbd9bd8396ef952fee658ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">ETX fixed point divisor (rfc 6551) <br /></td></tr>
+<tr class="separator:abc46e8ae8dbd9bd8396ef952fee658ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14acea31506d90e943028403c6f1b572"><td class="memItemLeft" align="right" valign="top"><a id="a14acea31506d90e943028403c6f1b572"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a14acea31506d90e943028403c6f1b572">NETSTATS_NB_ETX_INIT</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a14acea31506d90e943028403c6f1b572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial ETX, assume a mediocre link. <br /></td></tr>
+<tr class="separator:a14acea31506d90e943028403c6f1b572"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">@ref Freshness parameters</h2></td></tr>
+<tr class="memitem:ab1d220d0f0abe5b0e69438971f0bf61b"><td class="memItemLeft" align="right" valign="top"><a id="ab1d220d0f0abe5b0e69438971f0bf61b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#ab1d220d0f0abe5b0e69438971f0bf61b">NETSTATS_NB_FRESHNESS_HALF</a>&#160;&#160;&#160;600</td></tr>
+<tr class="memdesc:ab1d220d0f0abe5b0e69438971f0bf61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">seconds after the freshness counter is halved <br /></td></tr>
+<tr class="separator:ab1d220d0f0abe5b0e69438971f0bf61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3ffbf1d07e141785fa61ca2084ac2c"><td class="memItemLeft" align="right" valign="top"><a id="aca3ffbf1d07e141785fa61ca2084ac2c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#aca3ffbf1d07e141785fa61ca2084ac2c">NETSTATS_NB_FRESHNESS_TARGET</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:aca3ffbf1d07e141785fa61ca2084ac2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">freshness count needed before considering the statistics fresh <br /></td></tr>
+<tr class="separator:aca3ffbf1d07e141785fa61ca2084ac2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f4682ddf8f7ccf62cf01874e2f43fba"><td class="memItemLeft" align="right" valign="top"><a id="a7f4682ddf8f7ccf62cf01874e2f43fba"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a7f4682ddf8f7ccf62cf01874e2f43fba">NETSTATS_NB_FRESHNESS_MAX</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:a7f4682ddf8f7ccf62cf01874e2f43fba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum freshness. <br /></td></tr>
+<tr class="separator:a7f4682ddf8f7ccf62cf01874e2f43fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03452a933b281361917e9d7cad410640"><td class="memItemLeft" align="right" valign="top"><a id="a03452a933b281361917e9d7cad410640"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a03452a933b281361917e9d7cad410640">NETSTATS_NB_FRESHNESS_EXPIRATION</a>&#160;&#160;&#160;1200</td></tr>
+<tr class="memdesc:a03452a933b281361917e9d7cad410640"><td class="mdescLeft">&#160;</td><td class="mdescRight">seconds after statistics have expired <br /></td></tr>
+<tr class="separator:a03452a933b281361917e9d7cad410640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">@ref Timeout Parameters</h2></td></tr>
+<tr class="memitem:ae6720c3626253c10607bd1c89ec79c92"><td class="memItemLeft" align="right" valign="top"><a id="ae6720c3626253c10607bd1c89ec79c92"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#ae6720c3626253c10607bd1c89ec79c92">NETSTATS_NB_TX_TIMEOUT_MS</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:ae6720c3626253c10607bd1c89ec79c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">milliseconds without TX done notification after which a TX event is discarded <br /></td></tr>
+<tr class="separator:ae6720c3626253c10607bd1c89ec79c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a776befa21a12c0dc0e40c9b0264d1f34"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34">netstats_nb_result_t</a> { <a class="el" href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34a554034dc15ccb6b9745c1fda046f5066">NETSTATS_NB_BUSY</a>
+, <a class="el" href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34a4f5b82c254c5919f7d581882ae94c51b">NETSTATS_NB_NOACK</a>
+, <a class="el" href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34aec0175984c5e5243b2e373ce141ec485">NETSTATS_NB_SUCCESS</a>
+ }</td></tr>
+<tr class="memdesc:a776befa21a12c0dc0e40c9b0264d1f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of the transmission.  <a href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34">More...</a><br /></td></tr>
+<tr class="separator:a776befa21a12c0dc0e40c9b0264d1f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a776befa21a12c0dc0e40c9b0264d1f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a776befa21a12c0dc0e40c9b0264d1f34">&#9670;&nbsp;</a></span>netstats_nb_result_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34">netstats_nb_result_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Result of the transmission. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a776befa21a12c0dc0e40c9b0264d1f34a554034dc15ccb6b9745c1fda046f5066"></a>NETSTATS_NB_BUSY&#160;</td><td class="fielddoc"><p>Failed due to medium busy. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a776befa21a12c0dc0e40c9b0264d1f34a4f5b82c254c5919f7d581882ae94c51b"></a>NETSTATS_NB_NOACK&#160;</td><td class="fielddoc"><p>Failed due to no ack received. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a776befa21a12c0dc0e40c9b0264d1f34aec0175984c5e5243b2e373ce141ec485"></a>NETSTATS_NB_SUCCESS&#160;</td><td class="fielddoc"><p>Successful transmission. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a84c818052d710574c80b5a8914b8f9de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c818052d710574c80b5a8914b8f9de">&#9670;&nbsp;</a></span>netstats_nb_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool netstats_nb_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnetif__t.html">netif_t</a> *&#160;</td>
+          <td class="paramname"><em>netif</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>l2_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a> *&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find a neighbor stat by the mac address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">netif</td><td>network interface descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">l2_addr</td><td>pointer to the L2 address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>length of the L2 address </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>destination for the matching neighbor entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if a matching peer was found, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a5d11248e7e2a43ea875e1da66be68b49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d11248e7e2a43ea875e1da66be68b49">&#9670;&nbsp;</a></span>netstats_nb_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void netstats_nb_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnetif__t.html">netif_t</a> *&#160;</td>
+          <td class="paramname"><em>netif</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the neighbor stats. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">netif</td><td>network interface descriptor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a27294a959198225136a3f8a109574695"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27294a959198225136a3f8a109574695">&#9670;&nbsp;</a></span>netstats_nb_isfresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool netstats_nb_isfresh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnetif__t.html">netif_t</a> *&#160;</td>
+          <td class="paramname"><em>netif</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a> *&#160;</td>
+          <td class="paramname"><em>stats</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a record is fresh. </p>
+<p>Freshness half time is checked and updated before verifying freshness.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">netif</td><td>network interface the statistic belongs to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stats</td><td>pointer to the statistic </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6c74048309e3086f03aa9b44ec66f58b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c74048309e3086f03aa9b44ec66f58b">&#9670;&nbsp;</a></span>netstats_nb_record()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void netstats_nb_record </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnetif__t.html">netif_t</a> *&#160;</td>
+          <td class="paramname"><em>netif</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>l2_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Store this neighbor as next in the transmission queue. </p>
+<p>Set <code>len</code> to zero if a nop record is needed, for example if the transmission has a multicast address as a destination.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">netif</td><td>network interface descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">l2_addr</td><td>pointer to the L2 address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>length of the L2 address </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aff00adbaeb65712df18dfd06eaad7d5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff00adbaeb65712df18dfd06eaad7d5b">&#9670;&nbsp;</a></span>netstats_nb_update_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a>* netstats_nb_update_rx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnetif__t.html">netif_t</a> *&#160;</td>
+          <td class="paramname"><em>netif</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>l2_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>l2_addr_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>rssi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>lqi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Record rx stats for the l2_addr. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">netif</td><td>network interface descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">l2_addr</td><td>pointer to the L2 address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">l2_addr_len</td><td>length of the L2 address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rssi</td><td>RSSI of the received transmission in abs([dBm]) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lqi</td><td>Link Quality Indication provided by the radio</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the updated record </dd></dl>
+
+</div>
+</div>
+<a id="ad0123a134553269a336d8dcc2a1ff60f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0123a134553269a336d8dcc2a1ff60f">&#9670;&nbsp;</a></span>netstats_nb_update_tx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structnetstats__nb__t.html">netstats_nb_t</a>* netstats_nb_update_tx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnetif__t.html">netif_t</a> *&#160;</td>
+          <td class="paramname"><em>netif</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="neighbor_8h.html#a776befa21a12c0dc0e40c9b0264d1f34">netstats_nb_result_t</a>&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>transmissions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the next recorded neighbor with the provided numbers. </p>
+<p>This only increments the statistics if the length of the l2-address of the retrieved record is non-zero. See also <a class="el" href="neighbor_8h.html#a6c74048309e3086f03aa9b44ec66f58b">netstats_nb_record</a>. The numbers indicate the number of transmissions the radio had to perform before a successful transmission was performed. For example: in the case of a single send operation needing 3 tries before an ACK was received, there are 2 failed transmissions and 1 successful transmission.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">netif</td><td>network interface descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">result</td><td>Result of the transmission </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transmissions</td><td>Number of times the packet was sent over the air</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the record </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_7afc5d30923bebdd1513d1cc48150ca7.html">net</a></li><li class="navelem"><a class="el" href="dir_f90583c39f65cb1b5038be4d2d2eb1e4.html">netstats</a></li><li class="navelem"><a class="el" href="neighbor_8h.html">neighbor.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

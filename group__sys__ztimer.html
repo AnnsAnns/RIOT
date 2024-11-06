@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: ztimer high level timer abstraction layer</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__sys__ztimer.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">ztimer high level timer abstraction layer<div class="ingroups"><a class="el" href="group__sys.html">System</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>High level timer abstraction layer. </p>
+<h1><a class="anchor" id="autotoc_md2119"></a>
+Introduction</h1>
+<p>ztimer provides a high level abstraction of hardware timers for application timing needs.</p>
+<p>The basic functions of the ztimer module are <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a>, <a class="el" href="group__sys__ztimer.html#gade98636e198f2d571c8acd861d29d360" title="Put the calling thread to sleep for the specified number of ticks.">ztimer_sleep()</a>, <a class="el" href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c" title="Set a timer on a clock.">ztimer_set()</a> and <a class="el" href="group__sys__ztimer.html#gadf7bdfdd20c4eaa767abd39efe6d5e50" title="Remove a timer from a clock.">ztimer_remove()</a>.</p>
+<p>They all take a pointer to a clock device (or virtual timer device) as first parameter.</p>
+<p>RIOT provides ZTIMER_USEC, ZTIMER_MSEC, ZTIMER_SEC by default, which can be used in an application by depending on the modules ztimer_usec, ztimer_msec or ztimer_sec. They will then automatically get configured.</p>
+<p>Every ztimer clock allows multiple timeouts to be scheduled. They all provide unsigned 32bit range. In this documentation, a timeout or its corresponding struct will be called <code>timer</code>, and when the time out has passed, it has <code>triggered</code>.</p>
+<p>As ztimer can use arbitrarily configurable backends, a ztimer clock instance can run at configurable frequencies. Throughout this documentation, one clock step is called <code>tick</code>. For the pre-defined clocks ZTIMER_USEC, ZTIMER_MSEC and ZTIMER_SEC, one clock tick corresponds to one microsecond, one millisecond or one second, respectively.</p>
+<p><a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> returns the current clock tick count as uint32_t.</p>
+<p><a class="el" href="group__sys__ztimer.html#gade98636e198f2d571c8acd861d29d360" title="Put the calling thread to sleep for the specified number of ticks.">ztimer_sleep()</a> pauses the current thread for the passed amount of clock ticks. E.g., <code>ztimer_sleep(ZTIMER_SEC, 5);</code> will suspend the currently running thread for five seconds.</p>
+<p><a class="el" href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c" title="Set a timer on a clock.">ztimer_set()</a> takes a <a class="el" href="structztimer__t.html" title="ztimer structure">ztimer_t</a> object (containing a function pointer and void * argument) and an interval as arguments. After at least the interval (in number of ticks for the corresponding clock) has passed, the callback will be called in interrupt context. A timer can be cancelled using <a class="el" href="group__sys__ztimer.html#gadf7bdfdd20c4eaa767abd39efe6d5e50" title="Remove a timer from a clock.">ztimer_remove()</a>.</p>
+<p>Example:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="ztimer_8h.html">ztimer.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> callback(<span class="keywordtype">void</span> *arg)</div>
+<div class="line">{</div>
+<div class="line">   puts(arg);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main()</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="structztimer__t.html">ztimer_t</a> timeout = { .callback=callback, .arg=<span class="stringliteral">&quot;Hello ztimer!&quot;</span> };</div>
+<div class="line">    <a class="code" href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c">ztimer_set</a>(<a class="code" href="group__sys__ztimer.html#ga538242d3a91b31e6282863b9663f8a03">ZTIMER_SEC</a>, &amp;timeout, 2);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="group__sys__ztimer.html#gade98636e198f2d571c8acd861d29d360">ztimer_sleep</a>(<a class="code" href="group__sys__ztimer.html#ga538242d3a91b31e6282863b9663f8a03">ZTIMER_SEC</a>, 5);</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__sys__ztimer_html_ga538242d3a91b31e6282863b9663f8a03"><div class="ttname"><a href="group__sys__ztimer.html#ga538242d3a91b31e6282863b9663f8a03">ZTIMER_SEC</a></div><div class="ttdeci">ztimer_clock_t *const ZTIMER_SEC</div><div class="ttdoc">Default ztimer second clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer_html_ga8934a79a89e35d58673418a1e4a2e69c"><div class="ttname"><a href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c">ztimer_set</a></div><div class="ttdeci">uint32_t ztimer_set(ztimer_clock_t *clock, ztimer_t *timer, uint32_t val)</div><div class="ttdoc">Set a timer on a clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer_html_gade98636e198f2d571c8acd861d29d360"><div class="ttname"><a href="group__sys__ztimer.html#gade98636e198f2d571c8acd861d29d360">ztimer_sleep</a></div><div class="ttdeci">void ztimer_sleep(ztimer_clock_t *clock, uint32_t duration)</div><div class="ttdoc">Put the calling thread to sleep for the specified number of ticks.</div></div>
+<div class="ttc" id="astructztimer__t_html"><div class="ttname"><a href="structztimer__t.html">ztimer_t</a></div><div class="ttdoc">ztimer structure</div><div class="ttdef"><b>Definition:</b> ztimer.h:318</div></div>
+<div class="ttc" id="aztimer_8h_html"><div class="ttname"><a href="ztimer_8h.html">ztimer.h</a></div><div class="ttdoc">ztimer API</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2120"></a>
+ztimer best practices</h1>
+<ol type="1">
+<li>Don't use ZTIMER_USEC unless the increased resolution is really needed. ZTIMER_USEC will, on most platforms, prevent low-power sleep modes.</li>
+<li>Clear <a class="el" href="structztimer__t.html" title="ztimer structure">ztimer_t</a> structs before use. Example: <pre class="fragment">ztimer_t foo = { 0 };
+</pre> This ensures ztimer knows the timer is not already set, possibly preventing an unnecessary full ztimer list traversal. (ztimer will ensure that a removed timer is sufficiently cleared.)</li>
+<li>Don't compare <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> values from different clocks. The clocks are almost certainly not synchronized.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md2121"></a>
+Design</h1>
+<h2><a class="anchor" id="autotoc_md2122"></a>
+clocks, virtual timers, chaining</h2>
+<p>The system is composed of clocks (virtual ztimer devices) which can be chained to create an abstract view of a hardware timer/counter device. Each ztimer clock acts as a operation on the next clock in the chain. At the end of each ztimer chain there is always some kind of counter device object.</p>
+<p>Each clock device handles multiplexing (allowing multiple timers to be set) and extension to full 32bit.</p>
+<p>Hardware interface submodules:</p>
+<ul>
+<li><a class="el" href="group__sys__ztimer__periph__rtt.html#ga8a621eeefd4bb3ca67c914c1dd12a997">ztimer_periph_rtt</a> interface for periph_rtt</li>
+<li><a class="el" href="group__sys__ztimer__periph__rtc.html#ga2614a7e5cd1c5e9f792d6c4b675fa01e">ztimer_periph_rtc</a> interface for periph_rtc</li>
+<li><a class="el" href="group__sys__ztimer__periph__timer.html#gabe9575e40a44642a4ce743ed4b563fef">ztimer_periph_timer</a> interface for periph_timer</li>
+</ul>
+<p>Filter submodules:</p>
+<ul>
+<li><a class="el" href="group__sys__ztimer__convert__frac.html#gae5236d7f947ab29a467a91c60600acd6">ztimer_convert_frac</a> for fast frequency conversion using the frac library</li>
+<li><a class="el" href="group__sys__ztimer__convert__muldiv64.html#ga436d01676d7383cccb86df744068db1c">ztimer_convert_muldiv64</a> for accurate but slow frequency conversion using 64bit division</li>
+</ul>
+<p>A common chain could be:</p>
+<ol type="1">
+<li>ztimer_periph_timer (e.g., on top of an 1024Hz 16bit hardware timer)</li>
+<li>ztimer_convert_frac (to convert 1024 to 1000Hz)</li>
+</ol>
+<p>This is how e.g., the clock ZTIMER_MSEC might be configured on a specific system.</p>
+<p>Every clock in the chain can always be used on its own. E.g. in the example above, the ztimer_periph object can be used as ztimer clock with 1024Hz ticks in addition to the ztimer_convert_frac with 1000Hz.</p>
+<h2><a class="anchor" id="autotoc_md2123"></a>
+Timer handling</h2>
+<p>Timers in ztimer are stored in a clock using a linked list for which each entry stores the difference to the previous entry in the timer (T[n]). The clock also stores the absolute time on which the relative offsets are based (B), effectively storing the absolute target time for each entry (as B + sum(T[0-n])). Storing the entries in this way allows all entries to use the full width of the used uint32_t, compared to storing the absolute time.</p>
+<p>In order to prevent timer processing offset to add up, whenever a timer triggers, the list's absolute base time is set to the <em>expected</em> trigger time (B + T[0]). The underlying clock is then set to alarm at (<a class="el" href="namespaceriot.html#a9b88c54f8020b254c8791325c525634e" title="Returns the current time saved in a time point.">now()</a> + (<a class="el" href="namespaceriot.html#a9b88c54f8020b254c8791325c525634e" title="Returns the current time saved in a time point.">now()</a> - B) + T[1]). Thus even though the list is keeping relative offsets, the time keeping is done by keeping track of the absolute times.</p>
+<p>Currently, a sorted singly linked list is used for storing the timers. This choice has some implications:</p>
+<ul>
+<li>only one pointer needed per timer object (for "next" element)</li>
+<li>simple implementation</li>
+<li>acceptable runtime for expected number of active timers (&lt;50)</li>
+<li>constant get_min() (important for timer triggering)</li>
+<li>O(n) insertion / removal of timer objects</li>
+</ul>
+<p>By making the list doubly-linked, removal of timer objects could be easily made a constant operation, at the price of another pointer per timer object (for "previous" element).</p>
+<p>If deemed necessary, the linked list can be exchanged our augmented with another data structure providing better algorithmic guarantees. It remains to be shown whether the increased complexity would lead to better performance for any reasonable amount of active timers.</p>
+<h2><a class="anchor" id="autotoc_md2124"></a>
+Clock extension</h2>
+<p>The API always allows setting full 32bit relative offsets for every clock.</p>
+<p>In some cases (e.g., a hardware timer only allowing getting/setting smaller values or a conversion which would overflow uint32_t for large intervals), ztimer takes care of extending timers. This is enabled automatically for every ztimer clock that has a "max_value" setting smaller than 2**32-1. If a <a class="el" href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c" title="Set a timer on a clock.">ztimer_set()</a> would overflow that value, intermediate intervals of length (max_value / 2) are set until the remaining interval fits into max_value. If extension is enabled for a clock, <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> uses interval checkpointing, storing the current time and corresponding clock tick value on each call and using that information to calculate the current time. This ensures correct <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> values if <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> is called at least once every "max_value" ticks. This is ensured by scheduling intermediate callbacks every (max_value / 2) ticks (even if no timeout is configured).</p>
+<h2><a class="anchor" id="autotoc_md2125"></a>
+Reliability</h2>
+<p>Care has been taken to avoid any unexpected behaviour of ztimer. In particular, ztimer tries hard to avoid underflows (setting a backend timer to a value at or behind the current time, causing the timer interrupt to trigger one whole timer period too late). This is done by always setting relative timeouts to backend timers, with interrupts disabled and ensuring that very small values don't cause underflows.</p>
+<h2><a class="anchor" id="autotoc_md2126"></a>
+Configuration and convention</h2>
+<p>As timer hardware and capabilities is diverse and ztimer allows configuring and using arbitrary clock backends and conversions, it is envisioned to provide default configurations that application developers can assume to be available.</p>
+<p>These are implemented by using pointers to ztimer clocks using default names.</p>
+<p>For now, there are:</p>
+<p>ZTIMER_USEC: clock providing microsecond ticks, always uses a basic timer (ztimer_periph_timer)</p>
+<p>ZTIMER_MSEC: clock providing millisecond ticks, using a low power timer (ztimer_periph_rtt) if it is available on the platform and it running at 1kHz or above else it uses the same basic timer as ZTIMER_USEC does.</p>
+<p>ZTIMER_SEC: clock providing second time, possibly using epoch semantics, it will use a low power timer (ztimer_periph_rtt) if it is available on the platform alternately it uses ztimer_periph_rtc if it is available and configured if if these are missing it will use same basic timer as ZTIMER_USEC does.</p>
+<p>If <code>periph_rtt</code> is required with direct access by another MODULE or application, <code>ztimer_no_periph_rtt</code> can be included to avoid automatic selection of <code>ztimer_periph_rtt</code> as a backend for ZTIMER_SEC and ZTIMER_MSEC. i.e.: <code>USEMODULE += ztimer_no_periph_rtt</code>.</p>
+<p>These pointers are defined in <code><a class="el" href="ztimer_8h.html" title="ztimer API">ztimer.h</a></code> and can be used like this: </p><pre class="fragment">ztimer_now(ZTIMER_USEC);
+</pre><p> They also need to be added to USEMODULE using the names <code>ztimer_usec</code>, <code>ztimer_msec</code> and <code>ztimer_sec</code>.</p>
+<h2><a class="anchor" id="autotoc_md2127"></a>
+Some notes on ztimer's accuracy</h2>
+<ol type="1">
+<li>ztimer <em>should</em> wait "at least" the specified timeout</li>
+<li>due to its implementation details, expect +-1 clock tick systemic inaccuracy for all clocks.</li>
+<li>for the predefined clocks (ZTIMER_USEC, ZTIMER_MSEC, ZTIMER_SEC), tick conversion might be applied using ztimer_convert_*, causing errors due to integer conversion and rounding. In particular, most RTT's closest match for milliseconds are 1024Hz, which will be converted using convert_frac to provide the 1ms clock.</li>
+<li>Some platforms don't have any timer that can be configured to 1us. E.g., the fe310 (hifive1/b) only supports a 32kHz timer, and most atmegas only support 250kHz. In order to not completely break all applications using ZTIMER_USEC, that clock will only provide ~30.5ms respectively 4us maximum accuracy on those boards. With DEVELHELP=1, a warning will be printed at boot time.</li>
+<li>Due to +-1 systemic inaccuracies, it is advisable to use ZTIMER_MSEC for second timers up to 49 days (instead of ZTIMER_SEC). </li>
+</ol>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__sys__ztimer64"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer64.html">ztimer 64bit version</a></td></tr>
+<tr class="memdesc:group__sys__ztimer64"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer 64bit version <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__convert"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__convert.html">ztimer frequency conversion modules</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__convert"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer frequency conversion modules <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__mock"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__mock.html">ztimer mock clock backend</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__mock"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer mock clock backend <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__overhead"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__overhead.html">ztimer overhead utility</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__overhead"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer overhead measurement functionality <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__periph__ptp"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__periph__ptp.html">ztimer periph/ptp backend</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__periph__ptp"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer periph/ptp backend <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__periph__rtc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__periph__rtc.html">ztimer periph/rtc backend</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__periph__rtc"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer periph/rtc backend <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__periph__rtt"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__periph__rtt.html">ztimer periph/rtt backend</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__periph__rtt"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer periph/rtt backend <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__periph__timer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__periph__timer.html">ztimer periph/timer backend</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__periph__timer"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer periph/timer backend <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__stopwatch"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__stopwatch.html">ztimer stop watch</a></td></tr>
+<tr class="memdesc:group__sys__ztimer__stopwatch"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measure time with ztimer. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__ztimer__xtimer__compat"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer__xtimer__compat.html">ztimer_xtimer_compat: xtimer wrapper</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:sys_2include_2ztimer_2config_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sys_2include_2ztimer_2config_8h.html">config.h</a></td></tr>
+<tr class="memdesc:sys_2include_2ztimer_2config_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer default configuration <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ztimer_2periodic_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ztimer_2periodic_8h.html">periodic.h</a></td></tr>
+<tr class="memdesc:ztimer_2periodic_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic ztimer API. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ztimer_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ztimer_8h.html">ztimer.h</a></td></tr>
+<tr class="memdesc:ztimer_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer API <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structztimer__base.html">ztimer_base</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum information for each timer.  <a href="structztimer__base.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structztimer__t.html">ztimer_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer structure  <a href="structztimer__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structztimer__ops__t.html">ztimer_ops_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer backend method structure  <a href="structztimer__ops__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structztimer__clock.html">ztimer_clock</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer device structure  <a href="structztimer__clock.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga31826ee80148499098015ed01ce503d6"><td class="memItemLeft" align="right" valign="top"><a id="ga31826ee80148499098015ed01ce503d6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga31826ee80148499098015ed01ce503d6">ZTIMER_CLOCK_NO_REQUIRED_PM_MODE</a>&#160;&#160;&#160;(UINT8_MAX)</td></tr>
+<tr class="memdesc:ga31826ee80148499098015ed01ce503d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables interaction with pm_layered for a clock. <br /></td></tr>
+<tr class="separator:ga31826ee80148499098015ed01ce503d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga85289624f0c958bc0174f61bd728b582"><td class="memItemLeft" align="right" valign="top"><a id="ga85289624f0c958bc0174f61bd728b582"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga85289624f0c958bc0174f61bd728b582">MSG_ZTIMER</a>&#160;&#160;&#160;0xc83e</td></tr>
+<tr class="memdesc:ga85289624f0c958bc0174f61bd728b582"><td class="mdescLeft">&#160;</td><td class="mdescRight">msg type used by ztimer_msg_receive_timeout <br /></td></tr>
+<tr class="separator:ga85289624f0c958bc0174f61bd728b582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga0f3984c505b85ddf76049771c0bd6222"><td class="memItemLeft" align="right" valign="top"><a id="ga0f3984c505b85ddf76049771c0bd6222"></a>
+typedef struct <a class="el" href="structztimer__base.html">ztimer_base</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga0f3984c505b85ddf76049771c0bd6222">ztimer_base_t</a></td></tr>
+<tr class="memdesc:ga0f3984c505b85ddf76049771c0bd6222"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer_base_t forward declaration <br /></td></tr>
+<tr class="separator:ga0f3984c505b85ddf76049771c0bd6222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3639ce794c3bd80a6e9bbe88a7db4a88"><td class="memItemLeft" align="right" valign="top"><a id="ga3639ce794c3bd80a6e9bbe88a7db4a88"></a>
+typedef struct <a class="el" href="structztimer__clock.html">ztimer_clock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a></td></tr>
+<tr class="memdesc:ga3639ce794c3bd80a6e9bbe88a7db4a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">ztimer_clock_t forward declaration <br /></td></tr>
+<tr class="separator:ga3639ce794c3bd80a6e9bbe88a7db4a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c485e19ecdf4252512a8128b3b3eeac"><td class="memItemLeft" align="right" valign="top"><a id="ga2c485e19ecdf4252512a8128b3b3eeac"></a>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga2c485e19ecdf4252512a8128b3b3eeac">ztimer_callback_t</a>) (void *arg)</td></tr>
+<tr class="memdesc:ga2c485e19ecdf4252512a8128b3b3eeac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of callbacks in <a class="el" href="structztimer__t.html">timers</a>. <br /></td></tr>
+<tr class="separator:ga2c485e19ecdf4252512a8128b3b3eeac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5514d8cb5abf5fb540565fd3d070f0f"><td class="memItemLeft" align="right" valign="top">typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gab5514d8cb5abf5fb540565fd3d070f0f">ztimer_now_t</a></td></tr>
+<tr class="memdesc:gab5514d8cb5abf5fb540565fd3d070f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">type for <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> result  <a href="group__sys__ztimer.html#gab5514d8cb5abf5fb540565fd3d070f0f">More...</a><br /></td></tr>
+<tr class="separator:gab5514d8cb5abf5fb540565fd3d070f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gae2432e9f2e227fce4a4730afdbe59cb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gae2432e9f2e227fce4a4730afdbe59cb6">ztimer_handler</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock)</td></tr>
+<tr class="memdesc:gae2432e9f2e227fce4a4730afdbe59cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">main ztimer callback handler  <a href="group__sys__ztimer.html#gae2432e9f2e227fce4a4730afdbe59cb6">More...</a><br /></td></tr>
+<tr class="separator:gae2432e9f2e227fce4a4730afdbe59cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaff51039476f11e6969da09493e7ccb0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gaaff51039476f11e6969da09493e7ccb0">ztimer_acquire</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock)</td></tr>
+<tr class="memdesc:gaaff51039476f11e6969da09493e7ccb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquire a clock.  <a href="group__sys__ztimer.html#gaaff51039476f11e6969da09493e7ccb0">More...</a><br /></td></tr>
+<tr class="separator:gaaff51039476f11e6969da09493e7ccb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1d5dd6ad693ee8c1aac3460b3cf25b08"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga1d5dd6ad693ee8c1aac3460b3cf25b08">ztimer_release</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock)</td></tr>
+<tr class="memdesc:ga1d5dd6ad693ee8c1aac3460b3cf25b08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release a clock.  <a href="group__sys__ztimer.html#ga1d5dd6ad693ee8c1aac3460b3cf25b08">More...</a><br /></td></tr>
+<tr class="separator:ga1d5dd6ad693ee8c1aac3460b3cf25b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8934a79a89e35d58673418a1e4a2e69c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c">ztimer_set</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structztimer__t.html">ztimer_t</a> *timer, uint32_t val)</td></tr>
+<tr class="memdesc:ga8934a79a89e35d58673418a1e4a2e69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a timer on a clock.  <a href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c">More...</a><br /></td></tr>
+<tr class="separator:ga8934a79a89e35d58673418a1e4a2e69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad4fc759a7f9d5baf8c5390378efdf59a"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gad4fc759a7f9d5baf8c5390378efdf59a">ztimer_is_set</a> (const <a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, const <a class="el" href="structztimer__t.html">ztimer_t</a> *timer)</td></tr>
+<tr class="memdesc:gad4fc759a7f9d5baf8c5390378efdf59a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a timer is currently active.  <a href="group__sys__ztimer.html#gad4fc759a7f9d5baf8c5390378efdf59a">More...</a><br /></td></tr>
+<tr class="separator:gad4fc759a7f9d5baf8c5390378efdf59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf7bdfdd20c4eaa767abd39efe6d5e50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gadf7bdfdd20c4eaa767abd39efe6d5e50">ztimer_remove</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structztimer__t.html">ztimer_t</a> *timer)</td></tr>
+<tr class="memdesc:gadf7bdfdd20c4eaa767abd39efe6d5e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a timer from a clock.  <a href="group__sys__ztimer.html#gadf7bdfdd20c4eaa767abd39efe6d5e50">More...</a><br /></td></tr>
+<tr class="separator:gadf7bdfdd20c4eaa767abd39efe6d5e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga595ba6d03ea9052dd3e67d55b0b0dcf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga595ba6d03ea9052dd3e67d55b0b0dcf7">ztimer_set_msg</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structztimer__t.html">ztimer_t</a> *timer, uint32_t offset, <a class="el" href="structmsg__t.html">msg_t</a> *msg, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> target_pid)</td></tr>
+<tr class="memdesc:ga595ba6d03ea9052dd3e67d55b0b0dcf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Post a message after a delay.  <a href="group__sys__ztimer.html#ga595ba6d03ea9052dd3e67d55b0b0dcf7">More...</a><br /></td></tr>
+<tr class="separator:ga595ba6d03ea9052dd3e67d55b0b0dcf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe88b7f7076d2b48bb17912b78bdc336"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gabe88b7f7076d2b48bb17912b78bdc336">ztimer_msg_receive_timeout</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structmsg__t.html">msg_t</a> *msg, uint32_t timeout)</td></tr>
+<tr class="memdesc:gabe88b7f7076d2b48bb17912b78bdc336"><td class="mdescLeft">&#160;</td><td class="mdescRight">receive a message (blocking, with timeout)  <a href="group__sys__ztimer.html#gabe88b7f7076d2b48bb17912b78bdc336">More...</a><br /></td></tr>
+<tr class="separator:gabe88b7f7076d2b48bb17912b78bdc336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2f7c7499bb59b188ad910063ee881fe"><td class="memItemLeft" align="right" valign="top"><a id="gae2f7c7499bb59b188ad910063ee881fe"></a>
+<a class="el" href="group__sys__ztimer.html#gab5514d8cb5abf5fb540565fd3d070f0f">ztimer_now_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gae2f7c7499bb59b188ad910063ee881fe">_ztimer_now_extend</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock)</td></tr>
+<tr class="memdesc:gae2f7c7499bb59b188ad910063ee881fe"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> for extending timers <br /></td></tr>
+<tr class="separator:gae2f7c7499bb59b188ad910063ee881fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaedabe84f72efbbed84b39a62e62c1eb9"><td class="memItemLeft" align="right" valign="top"><a id="gaedabe84f72efbbed84b39a62e62c1eb9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gaedabe84f72efbbed84b39a62e62c1eb9">_ztimer_assert_clock_active</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock)</td></tr>
+<tr class="memdesc:gaedabe84f72efbbed84b39a62e62c1eb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">asserts the given clock to be active <br /></td></tr>
+<tr class="separator:gaedabe84f72efbbed84b39a62e62c1eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabcd8174ea28626e102b40143075ed9c8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__sys__ztimer.html#gab5514d8cb5abf5fb540565fd3d070f0f">ztimer_now_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8">ztimer_now</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock)</td></tr>
+<tr class="memdesc:gabcd8174ea28626e102b40143075ed9c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current time from a clock.  <a href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8">More...</a><br /></td></tr>
+<tr class="separator:gabcd8174ea28626e102b40143075ed9c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga40107ed3e27898606f8bfc69d01fb39e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga40107ed3e27898606f8bfc69d01fb39e">ztimer_periodic_wakeup</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, uint32_t *last_wakeup, uint32_t period)</td></tr>
+<tr class="memdesc:ga40107ed3e27898606f8bfc69d01fb39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suspend the calling thread until the time (<code>last_wakeup</code> + <code>period</code>)  <a href="group__sys__ztimer.html#ga40107ed3e27898606f8bfc69d01fb39e">More...</a><br /></td></tr>
+<tr class="separator:ga40107ed3e27898606f8bfc69d01fb39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gade98636e198f2d571c8acd861d29d360"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gade98636e198f2d571c8acd861d29d360">ztimer_sleep</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, uint32_t duration)</td></tr>
+<tr class="memdesc:gade98636e198f2d571c8acd861d29d360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put the calling thread to sleep for the specified number of ticks.  <a href="group__sys__ztimer.html#gade98636e198f2d571c8acd861d29d360">More...</a><br /></td></tr>
+<tr class="separator:gade98636e198f2d571c8acd861d29d360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9de3d9e3290746b856bb23eb2dccaa7c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga9de3d9e3290746b856bb23eb2dccaa7c">ztimer_spin</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, uint32_t duration)</td></tr>
+<tr class="memdesc:ga9de3d9e3290746b856bb23eb2dccaa7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busy-wait specified duration.  <a href="group__sys__ztimer.html#ga9de3d9e3290746b856bb23eb2dccaa7c">More...</a><br /></td></tr>
+<tr class="separator:ga9de3d9e3290746b856bb23eb2dccaa7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga50b1929e8ff4a920020e3111bbd8050e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga50b1929e8ff4a920020e3111bbd8050e">ztimer_set_wakeup</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structztimer__t.html">ztimer_t</a> *timer, uint32_t offset, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</td></tr>
+<tr class="memdesc:ga50b1929e8ff4a920020e3111bbd8050e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a timer that wakes up a thread.  <a href="group__sys__ztimer.html#ga50b1929e8ff4a920020e3111bbd8050e">More...</a><br /></td></tr>
+<tr class="separator:ga50b1929e8ff4a920020e3111bbd8050e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf3b87b65d13b41cdaacde7385afd4a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gaf3b87b65d13b41cdaacde7385afd4a60">ztimer_set_timeout_flag</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structztimer__t.html">ztimer_t</a> *timer, uint32_t timeout)</td></tr>
+<tr class="memdesc:gaf3b87b65d13b41cdaacde7385afd4a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set timeout thread flag after <code>timeout</code>.  <a href="group__sys__ztimer.html#gaf3b87b65d13b41cdaacde7385afd4a60">More...</a><br /></td></tr>
+<tr class="separator:gaf3b87b65d13b41cdaacde7385afd4a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae755859e6cab00acec7e5fdf03a5dffd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gae755859e6cab00acec7e5fdf03a5dffd">ztimer_mutex_unlock</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structztimer__t.html">ztimer_t</a> *timer, uint32_t timeout, <a class="el" href="structmutex__t.html">mutex_t</a> *mutex)</td></tr>
+<tr class="memdesc:gae755859e6cab00acec7e5fdf03a5dffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock mutex after <code>timeout</code>.  <a href="group__sys__ztimer.html#gae755859e6cab00acec7e5fdf03a5dffd">More...</a><br /></td></tr>
+<tr class="separator:gae755859e6cab00acec7e5fdf03a5dffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf418c7bedd6246adfdcb1399aa72a75b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gaf418c7bedd6246adfdcb1399aa72a75b">ztimer_mutex_lock_timeout</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structmutex__t.html">mutex_t</a> *mutex, uint32_t timeout)</td></tr>
+<tr class="memdesc:gaf418c7bedd6246adfdcb1399aa72a75b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to lock the given mutex, but give up after <code>timeout</code>.  <a href="group__sys__ztimer.html#gaf418c7bedd6246adfdcb1399aa72a75b">More...</a><br /></td></tr>
+<tr class="separator:gaf418c7bedd6246adfdcb1399aa72a75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad56130f45acd5b415674935910bb269d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gad56130f45acd5b415674935910bb269d">ztimer_rmutex_lock_timeout</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock, <a class="el" href="structrmutex__t.html">rmutex_t</a> *rmutex, uint32_t timeout)</td></tr>
+<tr class="memdesc:gad56130f45acd5b415674935910bb269d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to lock the given rmutex, but give up after <code>timeout</code>.  <a href="group__sys__ztimer.html#gad56130f45acd5b415674935910bb269d">More...</a><br /></td></tr>
+<tr class="separator:gad56130f45acd5b415674935910bb269d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0774ba6e5613bad33dc855c0f73565cc"><td class="memItemLeft" align="right" valign="top"><a id="ga0774ba6e5613bad33dc855c0f73565cc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga0774ba6e5613bad33dc855c0f73565cc">ztimer_init</a> (void)</td></tr>
+<tr class="memdesc:ga0774ba6e5613bad33dc855c0f73565cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the board-specific default ztimer configuration. <br /></td></tr>
+<tr class="separator:ga0774ba6e5613bad33dc855c0f73565cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacdd4826cb78f398402a587718254b141"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gacdd4826cb78f398402a587718254b141">ztimer_init_extend</a> (<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *clock)</td></tr>
+<tr class="memdesc:gacdd4826cb78f398402a587718254b141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize possible ztimer extension intermediate timer.  <a href="group__sys__ztimer.html#gacdd4826cb78f398402a587718254b141">More...</a><br /></td></tr>
+<tr class="separator:gacdd4826cb78f398402a587718254b141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga9da8117fed13070316af0e816403a986"><td class="memItemLeft" align="right" valign="top"><a id="ga9da8117fed13070316af0e816403a986"></a>
+<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga9da8117fed13070316af0e816403a986">ZTIMER_USEC</a></td></tr>
+<tr class="memdesc:ga9da8117fed13070316af0e816403a986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default ztimer microsecond clock. <br /></td></tr>
+<tr class="separator:ga9da8117fed13070316af0e816403a986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf89aa36047e5e6859e5b08c9bacd1c3e"><td class="memItemLeft" align="right" valign="top"><a id="gaf89aa36047e5e6859e5b08c9bacd1c3e"></a>
+<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gaf89aa36047e5e6859e5b08c9bacd1c3e">ZTIMER_MSEC</a></td></tr>
+<tr class="memdesc:gaf89aa36047e5e6859e5b08c9bacd1c3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default ztimer millisecond clock. <br /></td></tr>
+<tr class="separator:gaf89aa36047e5e6859e5b08c9bacd1c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga538242d3a91b31e6282863b9663f8a03"><td class="memItemLeft" align="right" valign="top"><a id="ga538242d3a91b31e6282863b9663f8a03"></a>
+<a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga538242d3a91b31e6282863b9663f8a03">ZTIMER_SEC</a></td></tr>
+<tr class="memdesc:ga538242d3a91b31e6282863b9663f8a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default ztimer second clock. <br /></td></tr>
+<tr class="separator:ga538242d3a91b31e6282863b9663f8a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae93f084aed0c7c9ebcaedf5ed0e9971d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#gae93f084aed0c7c9ebcaedf5ed0e9971d">ZTIMER_USEC_BASE</a></td></tr>
+<tr class="memdesc:gae93f084aed0c7c9ebcaedf5ed0e9971d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base ztimer for the microsecond clock (ZTIMER_USEC)  <a href="group__sys__ztimer.html#gae93f084aed0c7c9ebcaedf5ed0e9971d">More...</a><br /></td></tr>
+<tr class="separator:gae93f084aed0c7c9ebcaedf5ed0e9971d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5adbd6f8c80cee6a72e346e176e8ead7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__ztimer.html#ga5adbd6f8c80cee6a72e346e176e8ead7">ZTIMER_MSEC_BASE</a></td></tr>
+<tr class="memdesc:ga5adbd6f8c80cee6a72e346e176e8ead7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base ztimer for the millisecond clock (ZTIMER_MSEC)  <a href="group__sys__ztimer.html#ga5adbd6f8c80cee6a72e346e176e8ead7">More...</a><br /></td></tr>
+<tr class="separator:ga5adbd6f8c80cee6a72e346e176e8ead7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="gab5514d8cb5abf5fb540565fd3d070f0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab5514d8cb5abf5fb540565fd3d070f0f">&#9670;&nbsp;</a></span>ztimer_now_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__sys__ztimer.html#gab5514d8cb5abf5fb540565fd3d070f0f">ztimer_now_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>type for <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a> result </p>
+<p>This is always uint32_t. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaaff51039476f11e6969da09493e7ccb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaff51039476f11e6969da09493e7ccb0">&#9670;&nbsp;</a></span>ztimer_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ztimer_acquire </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Acquire a clock. </p>
+<p>This will indicate the the underlying clock is required to be running. If time differences are measured using <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8">ztimer_now</a> this will make sure ztimer won't turn of the clock source.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this was the first acquisition on this this clock </dd></dl>
+
+</div>
+</div>
+<a id="gae2432e9f2e227fce4a4730afdbe59cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2432e9f2e227fce4a4730afdbe59cb6">&#9670;&nbsp;</a></span>ztimer_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ztimer_handler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>main ztimer callback handler </p>
+<p>This gets called by clock implementations, and must only be called by them with interrupts disabled. </p>
+
+</div>
+</div>
+<a id="gacdd4826cb78f398402a587718254b141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacdd4826cb78f398402a587718254b141">&#9670;&nbsp;</a></span>ztimer_init_extend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ztimer_init_extend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize possible ztimer extension intermediate timer. </p>
+<p>This will basically just set a timer to (clock-&gt;max_value &gt;&gt; 1), <em>if</em> max_value is not UINT32_MAX.</p>
+<p>This is called automatically by all ztimer backends and extension modules. </p>
+
+</div>
+</div>
+<a id="gad4fc759a7f9d5baf8c5390378efdf59a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad4fc759a7f9d5baf8c5390378efdf59a">&#9670;&nbsp;</a></span>ztimer_is_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned ztimer_is_set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structztimer__t.html">ztimer_t</a> *&#160;</td>
+          <td class="paramname"><em>timer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a timer is currently active. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timer</td><td>timer to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>&gt; 0 if timer is active </dd>
+<dd>
+0 if timer is not active </dd></dl>
+
+</div>
+</div>
+<a id="gabe88b7f7076d2b48bb17912b78bdc336"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe88b7f7076d2b48bb17912b78bdc336">&#9670;&nbsp;</a></span>ztimer_msg_receive_timeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ztimer_msg_receive_timeout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>receive a message (blocking, with timeout) </p>
+<p>Similar to <a class="el" href="group__core__msg.html#gae3e05f08bd71d6f65dc727624c4d5f7a" title="Receive a message.">msg_receive()</a>, but with a timeout parameter. The function will return after waiting at most <code>timeout</code> ticks.</p>
+<dl class="section note"><dt>Note</dt><dd>: This might function might leave a message with type MSG_ZTIMER in the thread's message queue, which must be handled (ignored).</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">msg</td><td>pointer to buffer which will be filled if a message is received </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>relative timeout, in <code>clock</code> time units</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>&gt;=0 if a message was received </dd>
+<dd>
+-ETIME on timeout </dd></dl>
+
+</div>
+</div>
+<a id="gaf418c7bedd6246adfdcb1399aa72a75b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf418c7bedd6246adfdcb1399aa72a75b">&#9670;&nbsp;</a></span>ztimer_mutex_lock_timeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ztimer_mutex_lock_timeout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmutex__t.html">mutex_t</a> *&#160;</td>
+          <td class="paramname"><em>mutex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Try to lock the given mutex, but give up after <code>timeout</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mutex</td><td><a class="el" href="structMutex.html" title="Mutex struct within mqtt paho.">Mutex</a> object to lock </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>timeout after which to give up</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>Success, caller has the mutex </td></tr>
+    <tr><td class="paramname">-ECANCELED</td><td>Failed to obtain mutex within <code>timeout</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae755859e6cab00acec7e5fdf03a5dffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae755859e6cab00acec7e5fdf03a5dffd">&#9670;&nbsp;</a></span>ztimer_mutex_unlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ztimer_mutex_unlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structztimer__t.html">ztimer_t</a> *&#160;</td>
+          <td class="paramname"><em>timer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmutex__t.html">mutex_t</a> *&#160;</td>
+          <td class="paramname"><em>mutex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock mutex after <code>timeout</code>. </p>
+<p>This function will unlock the given mutex after the timeout has passed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timer</td><td>timer struct to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>timeout in <a class="el" href="structztimer__clock.html" title="ztimer device structure">ztimer_clock</a>'s ticks </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mutex</td><td>mutex to unlock after timeout </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gabcd8174ea28626e102b40143075ed9c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabcd8174ea28626e102b40143075ed9c8">&#9670;&nbsp;</a></span>ztimer_now()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__sys__ztimer.html#gab5514d8cb5abf5fb540565fd3d070f0f">ztimer_now_t</a> ztimer_now </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the current time from a clock. </p>
+<p>There are several caveats to consider when using values returned by <code><a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a></code> (or comparing those values to results of <a class="el" href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c">ztimer_set</a>, which are compatible):</p>
+<ul>
+<li><p class="startli">A single value has no meaning of its own. Meaningful results are only ever produced when subtracting values from each other (in the wrapping fashion implied by the use of unsigned integers in C).</p>
+<p class="startli">For example, even though it may be the case in some scenarios, the value does <b>not</b> indicate time since system startup.</p>
+</li>
+<li>Only values obtained from the same clock can be compared.</li>
+<li><p class="startli">Two values can only be compared when the clock has been continuously active between the first and the second reading.</p>
+<p class="startli">Calling <a class="el" href="group__sys__ztimer.html#gaaff51039476f11e6969da09493e7ccb0">ztimer_acquire</a> before using <code><a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a></code> is the preferred way to guarantee that a clock is continuously active. Make sure to call the corresponding <a class="el" href="group__sys__ztimer.html#ga1d5dd6ad693ee8c1aac3460b3cf25b08">ztimer_release</a> after the last <code><a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a></code> call.</p>
+<p class="startli">A clock is also guaranteed to be active from the time any timer is set (the first opportunity to get a "now" value from it is the return value of <a class="el" href="group__sys__ztimer.html#ga8934a79a89e35d58673418a1e4a2e69c">ztimer_set</a>) until the time the timer's callback returns. The clock also stays active when timers are set back-to-back (which is the case when the first timer's callback sets the second timer), or when they overlap (which can be known by starting the second timer and afterwards observing that <a class="el" href="group__sys__ztimer.html#gad4fc759a7f9d5baf8c5390378efdf59a">ztimer_is_set</a> or <a class="el" href="group__sys__ztimer.html#gadf7bdfdd20c4eaa767abd39efe6d5e50">ztimer_remove</a> returns true in a low-priority context).</p>
+<p class="startli">In contrast, the clock is not guaranteed to be active if a timer is removed and then a second one is started (even if the thread does not block between these events), or when an expiring timer wakes up a thread that then sets the second timer.</p>
+<p class="startli">If the clock was active, then the difference between the second value and the first is then the elapsed time in the clock's unit, <b>modulo 2³² ticks</b>.</p>
+</li>
+<li><p class="startli">A difference between two values (calculated in the usual wrapping way) is guaranteed to be exactly the elapsed time (not just modulo 2³²) if there exists a single timer that is continuously set while both readings are taken (which in particular means that the clock was continuously active), <b>and</b> the timer is observed to be still set when after the second reading an execution context with lower priority than the ZTimer interrupt has run. (In particular, this is the case in a thread context when interrupts are enabled).</p>
+<p class="startli">For example, this sequence of events will return usable values:</p><ul>
+<li>In a thread, a timer is set.</li>
+<li>Some interrupt fires, and <code>start = ztimer_now(ZTIMER_MSEC)</code> is set in the handler.</li>
+<li>The interrupt fires again, and <code>duration = start - ztimer_now(ZTIMER_MSEC)</code> is stored.</li>
+<li><p class="startli">Back in the thread context, <a class="el" href="group__sys__ztimer.html#gadf7bdfdd20c4eaa767abd39efe6d5e50">ztimer_remove</a> on the timer returns true.</p>
+<p class="startli">Only now, <code>duration</code> can be known to be a duration in milliseconds.</p>
+</li>
+</ul>
+<p class="startli">(By comparison, if the timer were removed right inside the second interrupt, then duration might either be correct, or it might be 5 milliseconds when really 2³² + 5 milliseconds have elapsed)</p>
+<p class="startli">The requirement of the execution contexts can be <b>dispensed with, if</b> the set timer is shorter than the wrap-around time of the clock by at least the maximum duration the full system is allowed to spend between interrupt servicing opportunities. That time varies by setup, but an upper bound of 1 minute is conservative enough for system modules to use.</p>
+<p class="startli">For example, this sequence of events will also return usable values:</p><ul>
+<li>A mutex is locked, and a timer is set to unlock it on the millisecond timer after 1 hour. (This is way less than the wrap-around time of around 50 days).</li>
+<li>The return value of setting the timer is noted as start time.</li>
+<li>Some interrupt fires, and <code><a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8" title="Get the current time from a clock.">ztimer_now()</a></code> is taken. Then (still inside the ISR), <a class="el" href="group__core__sync__mutex.html#gadece3a92e8921da1468368dd041c40fe">mutex_trylock</a> is used to test for whether the interrupt is still locked (indicating that the timer has not been processed). If locking failed, the difference is valid and can be used immediately. Otherwise, the mutex needs to be freed again, and the difference is discarded (it can be stored as "longer than 1 hour").</li>
+</ul>
+</li>
+<li><p class="startli">To compare two values T1 and T2 without additional knowledge (eg. of a maximum time difference between them), it has to be known which value was read earlier, so that the earlier can be subtracted from the later.</p>
+<p class="startli">If that is not known, an easy solution is to store a base value T0 inside the same single-timer window as T1 and T2, and then compare (T2 - T0) and (T1 - T0) to see which of the events occurred earlier.</p>
+</li>
+</ul>
+<p>The above criteria are conservative API guarantees of <code>ztimer_now</code>. There can be additional properties of a system that allow additional usage patterns; these need to be evaluated case-by-case. (For example, a ZTimer backed by a timer that never stops might be comparable even without a running timer.)</p>
+<dl class="section warning"><dt>Warning</dt><dd>All the above need to be considered before using the results of this function. Not considering them may give results that appear to be valid, but that can change without prior warning, e.g. when unrelated components are altered that change the systems's power management behavior.</dd>
+<dd>
+Make sure to call <a class="el" href="group__sys__ztimer.html#gaaff51039476f11e6969da09493e7ccb0">ztimer_acquire</a>(<code>clock</code>) before fetching the clock's current time.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Current count on <code>clock</code> </dd></dl>
+
+</div>
+</div>
+<a id="ga40107ed3e27898606f8bfc69d01fb39e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga40107ed3e27898606f8bfc69d01fb39e">&#9670;&nbsp;</a></span>ztimer_periodic_wakeup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ztimer_periodic_wakeup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>last_wakeup</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>period</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Suspend the calling thread until the time (<code>last_wakeup</code> + <code>period</code>) </p>
+<p>This function can be used to create periodic wakeups.</p>
+<p>When the function returns, <code>last_wakeup</code> is set to (<code>last_wakeup</code> + <code>period</code>).</p>
+<p><code>last_wakeup</code> should be set to ztimer_now(<code>clock</code>) before first call of the function.</p>
+<p>If the time (<code>last_wakeup</code> + <code>period</code>) has already passed, the function sets <code>last_wakeup</code> to <code>last_wakeup</code> + <code>period</code> and returns immediately.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Make sure to call <a class="el" href="group__sys__ztimer.html#gaaff51039476f11e6969da09493e7ccb0">ztimer_acquire</a>(<code>clock</code>) before making use of <a class="el" href="group__sys__ztimer.html#ga40107ed3e27898606f8bfc69d01fb39e">ztimer_periodic_wakeup</a>. After usage <a class="el" href="group__sys__ztimer.html#ga1d5dd6ad693ee8c1aac3460b3cf25b08">ztimer_release</a>(<code>clock</code>) should be called.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">last_wakeup</td><td>base time stamp for the wakeup </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">period</td><td>time in ticks that will be added to <code>last_wakeup</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1d5dd6ad693ee8c1aac3460b3cf25b08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1d5dd6ad693ee8c1aac3460b3cf25b08">&#9670;&nbsp;</a></span>ztimer_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ztimer_release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Release a clock. </p>
+<p>This will indicate the the underlying clock isn't required to be running anymore and may be turned off.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this was the last clock user </dd></dl>
+
+</div>
+</div>
+<a id="gadf7bdfdd20c4eaa767abd39efe6d5e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadf7bdfdd20c4eaa767abd39efe6d5e50">&#9670;&nbsp;</a></span>ztimer_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ztimer_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structztimer__t.html">ztimer_t</a> *&#160;</td>
+          <td class="paramname"><em>timer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a timer from a clock. </p>
+<p>This will remove <code>timer</code> from the timer targets queue for <code>clock</code>.</p>
+<p>This function does nothing if <code>timer</code> is not found in the timer queue of <code>clock</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timer</td><td>timer entry to remove</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>The timer was removed (and thus its callback neither was nor will be called by ztimer). </td></tr>
+    <tr><td class="paramname">false</td><td>The timer fired previously or is not set on the <code>clock</code> at all. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad56130f45acd5b415674935910bb269d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad56130f45acd5b415674935910bb269d">&#9670;&nbsp;</a></span>ztimer_rmutex_lock_timeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ztimer_rmutex_lock_timeout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrmutex__t.html">rmutex_t</a> *&#160;</td>
+          <td class="paramname"><em>rmutex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Try to lock the given rmutex, but give up after <code>timeout</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rmutex</td><td>rmutex object to lock </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>timeout after which to give up</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>Success, caller has the rmutex </td></tr>
+    <tr><td class="paramname">-ECANCELED</td><td>Failed to obtain rmutex within <code>timeout</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga8934a79a89e35d58673418a1e4a2e69c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8934a79a89e35d58673418a1e4a2e69c">&#9670;&nbsp;</a></span>ztimer_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t ztimer_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structztimer__t.html">ztimer_t</a> *&#160;</td>
+          <td class="paramname"><em>timer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a timer on a clock. </p>
+<p>This will place <code>timer</code> in the timer targets queue of <code>clock</code>.</p>
+<dl class="section note"><dt>Note</dt><dd>The memory pointed to by <code>timer</code> is not copied and must remain in scope until the callback is fired or the timer is removed via <a class="el" href="group__sys__ztimer.html#gadf7bdfdd20c4eaa767abd39efe6d5e50">ztimer_remove</a></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timer</td><td>timer entry to set </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>timer target (relative ticks from now)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of <a class="el" href="group__sys__ztimer.html#gabcd8174ea28626e102b40143075ed9c8">ztimer_now()</a> that <code>timer</code> was set against (<code><a class="el" href="namespaceriot.html#a9b88c54f8020b254c8791325c525634e" title="Returns the current time saved in a time point.">now()</a> + @p val = absolute trigger time</code>). </dd></dl>
+
+</div>
+</div>
+<a id="ga595ba6d03ea9052dd3e67d55b0b0dcf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga595ba6d03ea9052dd3e67d55b0b0dcf7">&#9670;&nbsp;</a></span>ztimer_set_msg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ztimer_set_msg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structztimer__t.html">ztimer_t</a> *&#160;</td>
+          <td class="paramname"><em>timer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>target_pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Post a message after a delay. </p>
+<p>This function sets a timer that will send a message <code>offset</code> ticks from now.</p>
+<dl class="section note"><dt>Note</dt><dd>The memory pointed to by <code>timer</code> and <code>msg</code> will not be copied, i.e. <code>*timer</code> and <code>*msg</code> needs to remain valid until the timer has triggered.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timer</td><td>ztimer timer struct to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>ticks from now </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>pointer to msg that will be sent </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_pid</td><td>pid the message will be sent to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaf3b87b65d13b41cdaacde7385afd4a60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf3b87b65d13b41cdaacde7385afd4a60">&#9670;&nbsp;</a></span>ztimer_set_timeout_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ztimer_set_timeout_flag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structztimer__t.html">ztimer_t</a> *&#160;</td>
+          <td class="paramname"><em>timer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set timeout thread flag after <code>timeout</code>. </p>
+<p>This function will set THREAD_FLAG_TIMEOUT on the current thread after <code>timeout</code> usec have passed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timer</td><td>timer struct to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>timeout in <a class="el" href="structztimer__clock.html" title="ztimer device structure">ztimer_clock</a>'s ticks </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga50b1929e8ff4a920020e3111bbd8050e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga50b1929e8ff4a920020e3111bbd8050e">&#9670;&nbsp;</a></span>ztimer_set_wakeup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ztimer_set_wakeup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structztimer__t.html">ztimer_t</a> *&#160;</td>
+          <td class="paramname"><em>timer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a timer that wakes up a thread. </p>
+<p>This function sets a timer that will wake up a thread when the timer has expired.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timer</td><td>timer struct to work with. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>clock ticks from now </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pid</td><td>pid of the thread that will be woken up </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gade98636e198f2d571c8acd861d29d360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gade98636e198f2d571c8acd861d29d360">&#9670;&nbsp;</a></span>ztimer_sleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ztimer_sleep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>duration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Put the calling thread to sleep for the specified number of ticks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">duration</td><td>duration of sleep, in <code>ztimer</code> time units </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9de3d9e3290746b856bb23eb2dccaa7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9de3d9e3290746b856bb23eb2dccaa7c">&#9670;&nbsp;</a></span>ztimer_spin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ztimer_spin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a> *&#160;</td>
+          <td class="paramname"><em>clock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>duration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Busy-wait specified duration. </p>
+<dl class="section note"><dt>Note</dt><dd>: This blocks lower priority threads. Use only for <em>very</em> short delays.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock</td><td>ztimer clock to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">duration</td><td>duration to spin, in <code>clock</code> time units </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ga5adbd6f8c80cee6a72e346e176e8ead7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5adbd6f8c80cee6a72e346e176e8ead7">&#9670;&nbsp;</a></span>ZTIMER_MSEC_BASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a>* const ZTIMER_MSEC_BASE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Base ztimer for the millisecond clock (ZTIMER_MSEC) </p>
+<p>This ztimer will reference the counter device object at the end of the chain of ztimer_clock_t for ZTIMER_MSEC.</p>
+<p>If ztimer_periph_rtt is not used then ZTIMER_MSEC_BASE will reference the same base as ZTIMER_USEC_BASE.</p>
+<p>If the base counter device object's frequency (CONFIG_ZTIMER_MSEC_BASE_FREQ) is not 1KHz then ZTIMER_MSEC will be converted on top of this one. Otherwise they will reference the same <a class="el" href="structztimer__clock.html" title="ztimer device structure">ztimer_clock</a>.</p>
+<p>To avoid chained conversions its better to base new <a class="el" href="structztimer__clock.html" title="ztimer device structure">ztimer_clock</a> on top of ZTIMER_MSEC_BASE running at CONFIG_ZTIMER_MSEC_BASE_FREQ. </p>
+
+</div>
+</div>
+<a id="gae93f084aed0c7c9ebcaedf5ed0e9971d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae93f084aed0c7c9ebcaedf5ed0e9971d">&#9670;&nbsp;</a></span>ZTIMER_USEC_BASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__sys__ztimer.html#ga3639ce794c3bd80a6e9bbe88a7db4a88">ztimer_clock_t</a>* const ZTIMER_USEC_BASE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Base ztimer for the microsecond clock (ZTIMER_USEC) </p>
+<p>This ztimer will reference the counter device object at the end of the chain of ztimer_clock_t for ZTIMER_USEC.</p>
+<p>If the base counter device object's frequency (CONFIG_ZTIMER_USEC_BASE_FREQ) is not 1MHz then ZTIMER_USEC will be converted on top of this one. Otherwise they will reference the same <a class="el" href="structztimer__clock.html" title="ztimer device structure">ztimer_clock</a>.</p>
+<p>To avoid chained conversions its better to base new <a class="el" href="structztimer__clock.html" title="ztimer device structure">ztimer_clock</a> on top of ZTIMER_USEC_BASE running at CONFIG_ZTIMER_USEC_BASE_FREQ. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

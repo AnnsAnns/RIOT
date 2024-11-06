@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: CoRE Link Format</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__sys__clif.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">CoRE Link Format<div class="ingroups"><a class="el" href="group__sys.html">System</a> &raquo; <a class="el" href="group__sys__serialization.html">Serialization</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Simple encoding and decoding of CoRE Link Format (RFC 6690) strings. </p>
+<dl class="section see"><dt>See also</dt><dd>RFC 6690: <a href="https://tools.ietf.org/html/rfc6690">https://tools.ietf.org/html/rfc6690</a></dd></dl>
+<p>clif provides a high-level API for CoRE Link Format encoding and decoding of links, through the <a class="el" href="group__sys__clif.html#gaee6e4e90a7fa04a2382b9cfda5eebff7">clif_encode_link</a> and <a class="el" href="group__sys__clif.html#ga34e06cd7b46af940a401f8960b40db27">clif_decode_link</a> respectively.</p>
+<p>The high-level API is built on top of low-level functions provided by clif, such as <a class="el" href="group__sys__clif.html#ga64bff762fe47c265b22d2aeb68bc9488">clif_add_target</a>, <a class="el" href="group__sys__clif.html#gaf8dc42338d1803aaa6ff52ac2867bc07">clif_add_attr</a>, and <a class="el" href="group__sys__clif.html#gace6bb544828672a1ed5ee37bfb7fb7f6">clif_get_attr</a>. Also, some convenience functions like <a class="el" href="group__sys__clif.html#gae2121fe08acabfbdd028a4df2544318c">clif_get_attr_type</a>, <a class="el" href="group__sys__clif.html#ga2de9d1863bc8f638a311d8e83e258dee">clif_attr_type_to_str</a> and <a class="el" href="group__sys__clif.html#ga8dddd9a82a434717cfc318b153bbbaf1">clif_init_attr</a> are provided, to facilitate the work with links.</p>
+<h3><a class="anchor" id="autotoc_md1988"></a>
+Decoding</h3>
+<p><a class="el" href="group__sys__clif.html#ga34e06cd7b46af940a401f8960b40db27">clif_decode_link</a> takes a buffer which contains an encoded link and returns the information of it in a <a class="el" href="structclif__t.html">clif_t</a> structure and each attribute in a <a class="el" href="structclif__attr__t.html">clif_attr_t</a> structure of a given array.</p>
+<div class="fragment"><div class="line"><span class="comment">// A buffer &#39;input_buf&#39; of length &#39;input_len&#39; contains the links to decode</span></div>
+<div class="line"><a class="code" href="structclif__attr__t.html">clif_attr_t</a> out_attrs[ATTRS_NUM];</div>
+<div class="line"><a class="code" href="structclif__t.html">clif_t</a> out_links[LINKS_NUM];</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span> *pos = input_buf;</div>
+<div class="line"><span class="keywordtype">unsigned</span> links_numof = 0;</div>
+<div class="line"><span class="keywordtype">unsigned</span> attrs_numof = 0;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">while</span> (pos &lt; &amp;input_buf[input_len]) {</div>
+<div class="line">     ssize_t res = <a class="code" href="group__sys__clif.html#ga34e06cd7b46af940a401f8960b40db27">clif_decode_link</a>(&amp;out_links[links_numof],</div>
+<div class="line">                                    &amp;out_attrs[attrs_numof],</div>
+<div class="line">                                    ATTRS_NUM - attrs_numof, pos,</div>
+<div class="line">                                    &amp;input_buf[input_len]- pos);</div>
+<div class="line">     <span class="keywordflow">if</span> (res &lt; 0) {</div>
+<div class="line">         <span class="keywordflow">break</span>;</div>
+<div class="line">     }</div>
+<div class="line">     pos += res;</div>
+<div class="line">     attrs_numof += out_links[links_numof].<a class="code" href="structclif__t.html#a457f91e6a8cae6fe1e3ba8a11ea6d8bd">attrs_len</a>;</div>
+<div class="line">     links_numof++;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__sys__clif_html_ga34e06cd7b46af940a401f8960b40db27"><div class="ttname"><a href="group__sys__clif.html#ga34e06cd7b46af940a401f8960b40db27">clif_decode_link</a></div><div class="ttdeci">ssize_t clif_decode_link(clif_t *link, clif_attr_t *attrs, unsigned attrs_len, const char *buf, size_t maxlen)</div><div class="ttdoc">Decodes a string of link format.</div></div>
+<div class="ttc" id="astructclif__attr__t_html"><div class="ttname"><a href="structclif__attr__t.html">clif_attr_t</a></div><div class="ttdoc">Link format attribute descriptor.</div><div class="ttdef"><b>Definition:</b> clif.h:137</div></div>
+<div class="ttc" id="astructclif__t_html"><div class="ttname"><a href="structclif__t.html">clif_t</a></div><div class="ttdoc">Link format descriptor.</div><div class="ttdef"><b>Definition:</b> clif.h:147</div></div>
+<div class="ttc" id="astructclif__t_html_a457f91e6a8cae6fe1e3ba8a11ea6d8bd"><div class="ttname"><a href="structclif__t.html#a457f91e6a8cae6fe1e3ba8a11ea6d8bd">clif_t::attrs_len</a></div><div class="ttdeci">unsigned attrs_len</div><div class="ttdoc">size of array of attributes</div><div class="ttdef"><b>Definition:</b> clif.h:151</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md1989"></a>
+Encoding</h3>
+<p><a class="el" href="group__sys__clif.html#gaee6e4e90a7fa04a2382b9cfda5eebff7">clif_encode_link</a> encodes a given link into a buffer, it can be called with a NULL pointer, in that case it will only calculate the amount of bytes needed to encode the link. After every call to this function a separator needs to be added to the buffer.</p>
+<div class="fragment"><div class="line"><span class="comment">// A &#39;links&#39; array of clif_t, of length &#39;links_len&#39; contains the links to encode</span></div>
+<div class="line"><span class="keywordtype">char</span> out[OUT_SIZE];</div>
+<div class="line">ssize_t res;</div>
+<div class="line"><span class="keywordtype">size_t</span> pos = 0;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; links_len; i++) {</div>
+<div class="line">     <span class="keywordflow">if</span> (i) {</div>
+<div class="line">         res = <a class="code" href="group__sys__clif.html#gaf702a47253923be822ea1dea10f62dca">clif_add_link_separator</a>(&amp;out[pos], OUT_SIZE - pos);</div>
+<div class="line">         <span class="keywordflow">if</span> (res &lt;= 0) {</div>
+<div class="line">             <span class="keywordflow">break</span>;</div>
+<div class="line">         }</div>
+<div class="line">         pos += res;</div>
+<div class="line">     }</div>
+<div class="line"> </div>
+<div class="line">     res = <a class="code" href="group__sys__clif.html#gaee6e4e90a7fa04a2382b9cfda5eebff7">clif_encode_link</a>(&amp;links[i], &amp;out[pos], OUT_SIZE - pos);</div>
+<div class="line">     <span class="keywordflow">if</span> (res &lt;= 0) {</div>
+<div class="line">         <span class="keywordflow">break</span>;</div>
+<div class="line">     }</div>
+<div class="line">     pos += res;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__sys__clif_html_gaee6e4e90a7fa04a2382b9cfda5eebff7"><div class="ttname"><a href="group__sys__clif.html#gaee6e4e90a7fa04a2382b9cfda5eebff7">clif_encode_link</a></div><div class="ttdeci">ssize_t clif_encode_link(const clif_t *link, char *buf, size_t maxlen)</div><div class="ttdoc">Encodes a given link in link format into a given buffer.</div></div>
+<div class="ttc" id="agroup__sys__clif_html_gaf702a47253923be822ea1dea10f62dca"><div class="ttname"><a href="group__sys__clif.html#gaf702a47253923be822ea1dea10f62dca">clif_add_link_separator</a></div><div class="ttdeci">ssize_t clif_add_link_separator(char *buf, size_t maxlen)</div><div class="ttdoc">Adds the link separator character to a given buf, using link format.</div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>'attribute', in this module, extends to the term 'link-param' on the ABNF in <a href="https://tools.ietf.org/html/rfc6690#section-2">section 2 of RFC 6690</a>. </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:clif__internal_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clif__internal_8h.html">clif_internal.h</a></td></tr>
+<tr class="memdesc:clif__internal_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal definitions for CoRE Link format module. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:clif_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clif_8h.html">clif.h</a></td></tr>
+<tr class="memdesc:clif_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">CoRE Link Format encoding and decoding library public definitions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structclif__attr__t.html">clif_attr_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Link format attribute descriptor.  <a href="structclif__attr__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structclif__t.html">clif_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Link format descriptor.  <a href="structclif__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gaf96be3e9de53e065a22cd7978e05dc5c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="group__sys__clif.html#ggaf96be3e9de53e065a22cd7978e05dc5ca95b7b92a9bda8bfb00caf17d56c5de2b">CLIF_OK</a> = 0
+, <a class="el" href="group__sys__clif.html#ggaf96be3e9de53e065a22cd7978e05dc5ca898ff41cc725df1d8a7a144ba3f0a03f">CLIF_NO_SPACE</a> = -1
+, <a class="el" href="group__sys__clif.html#ggaf96be3e9de53e065a22cd7978e05dc5ca1af3a03651807d14ae6dff97b99ca4dd">CLIF_NOT_FOUND</a> = -2
+ }</td></tr>
+<tr class="memdesc:gaf96be3e9de53e065a22cd7978e05dc5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return types for the <a class="el" href="group__sys__clif.html">CoRE Link Format</a> API.  <a href="group__sys__clif.html#gaf96be3e9de53e065a22cd7978e05dc5c">More...</a><br /></td></tr>
+<tr class="separator:gaf96be3e9de53e065a22cd7978e05dc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3ef132533546b0080d61fe16051b2219"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a> { <br />
+&#160;&#160;<a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a89ef197acc3b70593bbbd78c5e96784e">CLIF_ATTR_ANCHOR</a> = 0
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a88b7eef7afb1c1297ba07d4d91c91f2c">CLIF_ATTR_REL</a> = 1
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a4250c181cfc5b42676815c9ad2fed333">CLIF_ATTR_LANG</a> = 2
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219ae6995789b35e350f964ba3424dce3d4c">CLIF_ATTR_MEDIA</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a89f749b31d621f051516105acd993f73">CLIF_ATTR_TITLE</a> = 4
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219af7da7eb0f165b7dc6a01e3e36861455e">CLIF_ATTR_TITLE_EXT</a> = 5
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219adaf937e3581e4630662e7dce11660ee7">CLIF_ATTR_TYPE</a> = 6
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a6680db27f742fb66094c55fc2880b8ab">CLIF_ATTR_RT</a> = 7
+, <br />
+&#160;&#160;<a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219ab22ce7b67373b19ee4555e82493c8963">CLIF_ATTR_IF</a> = 8
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a2484083bdda79cb26e26a35961af3d6f">CLIF_ATTR_SZ</a> = 9
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a21b15e34458de9a414fb0f3bd90f9690">CLIF_ATTR_CT</a> = 10
+, <a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219a7dc0fe41999f460c5dfa5ab43290858a">CLIF_ATTR_OBS</a> = 11
+, <br />
+&#160;&#160;<a class="el" href="group__sys__clif.html#gga3ef132533546b0080d61fe16051b2219aeb4c5afe2c2fac86c625dc3d30a48f06">CLIF_ATTR_EXT</a> = 12
+<br />
+ }</td></tr>
+<tr class="memdesc:ga3ef132533546b0080d61fe16051b2219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types of link format attributes.  <a href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">More...</a><br /></td></tr>
+<tr class="separator:ga3ef132533546b0080d61fe16051b2219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaee6e4e90a7fa04a2382b9cfda5eebff7"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#gaee6e4e90a7fa04a2382b9cfda5eebff7">clif_encode_link</a> (const <a class="el" href="structclif__t.html">clif_t</a> *link, char *buf, size_t maxlen)</td></tr>
+<tr class="memdesc:gaee6e4e90a7fa04a2382b9cfda5eebff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a given link in link format into a given buffer.  <a href="group__sys__clif.html#gaee6e4e90a7fa04a2382b9cfda5eebff7">More...</a><br /></td></tr>
+<tr class="separator:gaee6e4e90a7fa04a2382b9cfda5eebff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34e06cd7b46af940a401f8960b40db27"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#ga34e06cd7b46af940a401f8960b40db27">clif_decode_link</a> (<a class="el" href="structclif__t.html">clif_t</a> *link, <a class="el" href="structclif__attr__t.html">clif_attr_t</a> *attrs, unsigned attrs_len, const char *buf, size_t maxlen)</td></tr>
+<tr class="memdesc:ga34e06cd7b46af940a401f8960b40db27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes a string of link format.  <a href="group__sys__clif.html#ga34e06cd7b46af940a401f8960b40db27">More...</a><br /></td></tr>
+<tr class="separator:ga34e06cd7b46af940a401f8960b40db27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga85db09f71cf7a4db16dccda40ceb347e"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#ga85db09f71cf7a4db16dccda40ceb347e">clif_add_target_from_buffer</a> (const char *target, size_t target_len, char *buf, size_t maxlen)</td></tr>
+<tr class="memdesc:ga85db09f71cf7a4db16dccda40ceb347e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a given <code>target</code> to a given buffer <code>buf</code> using link format.  <a href="group__sys__clif.html#ga85db09f71cf7a4db16dccda40ceb347e">More...</a><br /></td></tr>
+<tr class="separator:ga85db09f71cf7a4db16dccda40ceb347e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga64bff762fe47c265b22d2aeb68bc9488"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#ga64bff762fe47c265b22d2aeb68bc9488">clif_add_target</a> (const char *target, char *buf, size_t maxlen)</td></tr>
+<tr class="memdesc:ga64bff762fe47c265b22d2aeb68bc9488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a given <code>target</code> to a given buffer <code>buf</code> using link format.  <a href="group__sys__clif.html#ga64bff762fe47c265b22d2aeb68bc9488">More...</a><br /></td></tr>
+<tr class="separator:ga64bff762fe47c265b22d2aeb68bc9488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf8dc42338d1803aaa6ff52ac2867bc07"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#gaf8dc42338d1803aaa6ff52ac2867bc07">clif_add_attr</a> (<a class="el" href="structclif__attr__t.html">clif_attr_t</a> *attr, char *buf, size_t maxlen)</td></tr>
+<tr class="memdesc:gaf8dc42338d1803aaa6ff52ac2867bc07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a given <code>attr</code> to a given buffer <code>buf</code> using link format.  <a href="group__sys__clif.html#gaf8dc42338d1803aaa6ff52ac2867bc07">More...</a><br /></td></tr>
+<tr class="separator:gaf8dc42338d1803aaa6ff52ac2867bc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf702a47253923be822ea1dea10f62dca"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#gaf702a47253923be822ea1dea10f62dca">clif_add_link_separator</a> (char *buf, size_t maxlen)</td></tr>
+<tr class="memdesc:gaf702a47253923be822ea1dea10f62dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the link separator character to a given <code>buf</code>, using link format.  <a href="group__sys__clif.html#gaf702a47253923be822ea1dea10f62dca">More...</a><br /></td></tr>
+<tr class="separator:gaf702a47253923be822ea1dea10f62dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac37239f73ea9405321dcfe1b57246bee"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#gac37239f73ea9405321dcfe1b57246bee">clif_get_target</a> (const char *input, size_t input_len, char **output)</td></tr>
+<tr class="memdesc:gac37239f73ea9405321dcfe1b57246bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks for a the target URI of a given link.  <a href="group__sys__clif.html#gac37239f73ea9405321dcfe1b57246bee">More...</a><br /></td></tr>
+<tr class="separator:gac37239f73ea9405321dcfe1b57246bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gace6bb544828672a1ed5ee37bfb7fb7f6"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#gace6bb544828672a1ed5ee37bfb7fb7f6">clif_get_attr</a> (const char *input, size_t input_len, <a class="el" href="structclif__attr__t.html">clif_attr_t</a> *attr)</td></tr>
+<tr class="memdesc:gace6bb544828672a1ed5ee37bfb7fb7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks for the first attribute in a given link.  <a href="group__sys__clif.html#gace6bb544828672a1ed5ee37bfb7fb7f6">More...</a><br /></td></tr>
+<tr class="separator:gace6bb544828672a1ed5ee37bfb7fb7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2121fe08acabfbdd028a4df2544318c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#gae2121fe08acabfbdd028a4df2544318c">clif_get_attr_type</a> (const char *input, size_t input_len)</td></tr>
+<tr class="memdesc:gae2121fe08acabfbdd028a4df2544318c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the attribute type of a given string.  <a href="group__sys__clif.html#gae2121fe08acabfbdd028a4df2544318c">More...</a><br /></td></tr>
+<tr class="separator:gae2121fe08acabfbdd028a4df2544318c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2de9d1863bc8f638a311d8e83e258dee"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#ga2de9d1863bc8f638a311d8e83e258dee">clif_attr_type_to_str</a> (<a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a> type, const char **str)</td></tr>
+<tr class="memdesc:ga2de9d1863bc8f638a311d8e83e258dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a constant string of a given attribute type.  <a href="group__sys__clif.html#ga2de9d1863bc8f638a311d8e83e258dee">More...</a><br /></td></tr>
+<tr class="separator:ga2de9d1863bc8f638a311d8e83e258dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8dddd9a82a434717cfc318b153bbbaf1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__clif.html#ga8dddd9a82a434717cfc318b153bbbaf1">clif_init_attr</a> (<a class="el" href="structclif__attr__t.html">clif_attr_t</a> *attr, <a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a> type)</td></tr>
+<tr class="memdesc:ga8dddd9a82a434717cfc318b153bbbaf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the key of a given attribute according to a given type.  <a href="group__sys__clif.html#ga8dddd9a82a434717cfc318b153bbbaf1">More...</a><br /></td></tr>
+<tr class="separator:ga8dddd9a82a434717cfc318b153bbbaf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gaf96be3e9de53e065a22cd7978e05dc5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf96be3e9de53e065a22cd7978e05dc5c">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return types for the <a class="el" href="group__sys__clif.html">CoRE Link Format</a> API. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaf96be3e9de53e065a22cd7978e05dc5ca95b7b92a9bda8bfb00caf17d56c5de2b"></a>CLIF_OK&#160;</td><td class="fielddoc"><p>success </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf96be3e9de53e065a22cd7978e05dc5ca898ff41cc725df1d8a7a144ba3f0a03f"></a>CLIF_NO_SPACE&#160;</td><td class="fielddoc"><p>not enough space in the buffer </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf96be3e9de53e065a22cd7978e05dc5ca1af3a03651807d14ae6dff97b99ca4dd"></a>CLIF_NOT_FOUND&#160;</td><td class="fielddoc"><p>could not find a component in a buffer </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga3ef132533546b0080d61fe16051b2219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3ef132533546b0080d61fe16051b2219">&#9670;&nbsp;</a></span>clif_attr_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Types of link format attributes. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a89ef197acc3b70593bbbd78c5e96784e"></a>CLIF_ATTR_ANCHOR&#160;</td><td class="fielddoc"><p>anchor </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a88b7eef7afb1c1297ba07d4d91c91f2c"></a>CLIF_ATTR_REL&#160;</td><td class="fielddoc"><p>rel </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a4250c181cfc5b42676815c9ad2fed333"></a>CLIF_ATTR_LANG&#160;</td><td class="fielddoc"><p>hreflang </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219ae6995789b35e350f964ba3424dce3d4c"></a>CLIF_ATTR_MEDIA&#160;</td><td class="fielddoc"><p>media </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a89f749b31d621f051516105acd993f73"></a>CLIF_ATTR_TITLE&#160;</td><td class="fielddoc"><p>title </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219af7da7eb0f165b7dc6a01e3e36861455e"></a>CLIF_ATTR_TITLE_EXT&#160;</td><td class="fielddoc"><p>title* </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219adaf937e3581e4630662e7dce11660ee7"></a>CLIF_ATTR_TYPE&#160;</td><td class="fielddoc"><p>type </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a6680db27f742fb66094c55fc2880b8ab"></a>CLIF_ATTR_RT&#160;</td><td class="fielddoc"><p>rt </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219ab22ce7b67373b19ee4555e82493c8963"></a>CLIF_ATTR_IF&#160;</td><td class="fielddoc"><p>if </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a2484083bdda79cb26e26a35961af3d6f"></a>CLIF_ATTR_SZ&#160;</td><td class="fielddoc"><p>sz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a21b15e34458de9a414fb0f3bd90f9690"></a>CLIF_ATTR_CT&#160;</td><td class="fielddoc"><p>ct </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219a7dc0fe41999f460c5dfa5ab43290858a"></a>CLIF_ATTR_OBS&#160;</td><td class="fielddoc"><p>obs </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3ef132533546b0080d61fe16051b2219aeb4c5afe2c2fac86c625dc3d30a48f06"></a>CLIF_ATTR_EXT&#160;</td><td class="fielddoc"><p>extensions </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaf8dc42338d1803aaa6ff52ac2867bc07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf8dc42338d1803aaa6ff52ac2867bc07">&#9670;&nbsp;</a></span>clif_add_attr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_add_attr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structclif__attr__t.html">clif_attr_t</a> *&#160;</td>
+          <td class="paramname"><em>attr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a given <code>attr</code> to a given buffer <code>buf</code> using link format. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>(attr != NULL) &amp;&amp; (attr-&gt;key != NULL)</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">attr</td><td>pointer to the attribute to add. Must not be NULL, and must contain a key. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>buffer to add the attribute to. Can be NULL </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxlen</td><td>size of <code>buf</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>If <code>buf</code> is NULL this will return the amount of bytes that would be needed.</li>
+<li>The length of the key must be set in <code>attr-&gt;key_len</code>.</li>
+</ul>
+</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>amount of bytes used from the buffer if successful </dd>
+<dd>
+CLIF_NO_SPACE if there is not enough space in the buffer </dd></dl>
+
+</div>
+</div>
+<a id="gaf702a47253923be822ea1dea10f62dca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf702a47253923be822ea1dea10f62dca">&#9670;&nbsp;</a></span>clif_add_link_separator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_add_link_separator </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds the link separator character to a given <code>buf</code>, using link format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>buffer to add the separator to. Can be NULL </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxlen</td><td>size of <code>buf</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>If <code>buf</code> is NULL this will return the amount of bytes that would be needed</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>amount of bytes used from buffer if successful </dd>
+<dd>
+CLIF_NO_SPACE if there is not enough space in the buffer </dd></dl>
+
+</div>
+</div>
+<a id="ga64bff762fe47c265b22d2aeb68bc9488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga64bff762fe47c265b22d2aeb68bc9488">&#9670;&nbsp;</a></span>clif_add_target()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_add_target </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a given <code>target</code> to a given buffer <code>buf</code> using link format. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>target != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">target</td><td>zero terminated string containing the path to the resource. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>buffer to output the formatted path. Can be NULL </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxlen</td><td>size of <code>buf</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>If <code>buf</code> is NULL this will return the amount of bytes that would be needed</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>in success the amount of bytes used in the buffer </dd>
+<dd>
+CLIF_NO_SPACE if there is not enough space in the buffer </dd></dl>
+
+</div>
+</div>
+<a id="ga85db09f71cf7a4db16dccda40ceb347e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga85db09f71cf7a4db16dccda40ceb347e">&#9670;&nbsp;</a></span>clif_add_target_from_buffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_add_target_from_buffer </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>target_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a given <code>target</code> to a given buffer <code>buf</code> using link format. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>target != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">target</td><td>buffer containing the path to the resource. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_len</td><td>size of <code>target</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>buffer to output the formatted path. Can be NULL </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxlen</td><td>size of <code>buf</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>If <code>buf</code> is NULL this will return the amount of bytes that would be needed</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>in success the amount of bytes used in the buffer </dd>
+<dd>
+CLIF_NO_SPACE if there is not enough space in the buffer </dd></dl>
+
+</div>
+</div>
+<a id="ga2de9d1863bc8f638a311d8e83e258dee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2de9d1863bc8f638a311d8e83e258dee">&#9670;&nbsp;</a></span>clif_attr_type_to_str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_attr_type_to_str </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char **&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a constant string of a given attribute type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>type of the attribute </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">str</td><td>pointer to store the string pointer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of the string </dd>
+<dd>
+CLIF_NOT_FOUND if the type is an extension or unknown </dd></dl>
+
+</div>
+</div>
+<a id="ga34e06cd7b46af940a401f8960b40db27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga34e06cd7b46af940a401f8960b40db27">&#9670;&nbsp;</a></span>clif_decode_link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_decode_link </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structclif__t.html">clif_t</a> *&#160;</td>
+          <td class="paramname"><em>link</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structclif__attr__t.html">clif_attr_t</a> *&#160;</td>
+          <td class="paramname"><em>attrs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>attrs_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decodes a string of link format. </p>
+<p>It decodes the first occurrence of a link.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>(link != NULL) &amp;&amp; (buf != NULL)</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">link</td><td>link to populate. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">attrs</td><td>array of attrs to populate </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">attrs_len</td><td>length of <code>attrs</code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>string to decode. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxlen</td><td>size of <code>buf</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of bytes parsed from <code>buf</code> in success </dd>
+<dd>
+CLIF_NOT_FOUND if the string is malformed </dd></dl>
+
+</div>
+</div>
+<a id="gaee6e4e90a7fa04a2382b9cfda5eebff7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaee6e4e90a7fa04a2382b9cfda5eebff7">&#9670;&nbsp;</a></span>clif_encode_link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_encode_link </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structclif__t.html">clif_t</a> *&#160;</td>
+          <td class="paramname"><em>link</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>maxlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encodes a given link in link format into a given buffer. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>link != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">link</td><td>link to encode.Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>buffer to output the encoded link. Can be NULL </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxlen</td><td>size of <code>buf</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>If <code>buf</code> is NULL this will return the amount of bytes that would be needed</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>amount of bytes used from <code>buf</code> in success </dd>
+<dd>
+CLIF_NO_SPACE if there is not enough space in the buffer </dd></dl>
+
+</div>
+</div>
+<a id="gace6bb544828672a1ed5ee37bfb7fb7f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gace6bb544828672a1ed5ee37bfb7fb7f6">&#9670;&nbsp;</a></span>clif_get_attr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>input_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structclif__attr__t.html">clif_attr_t</a> *&#160;</td>
+          <td class="paramname"><em>attr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Looks for the first attribute in a given link. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>(input != NULL) &amp;&amp; (attr != NULL)</code></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>In order to consider that the string contains a valid attribute, <code>input</code> should start with the attribute separator character ';'.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>string where to look for the attribute. It should only be ONE link. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_len</td><td>length of <code>input</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">attr</td><td>pointer to store the found attribute information. Must not be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of the attribute in the buffer if found </dd>
+<dd>
+CLIF_NOT_FOUND if no valid attribute is found </dd></dl>
+
+</div>
+</div>
+<a id="gae2121fe08acabfbdd028a4df2544318c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2121fe08acabfbdd028a4df2544318c">&#9670;&nbsp;</a></span>clif_get_attr_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a> clif_get_attr_type </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>input_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the attribute type of a given string. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>(input != NULL) &amp;&amp; (input_len &gt; 0)</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>string containing the attribute name. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_len</td><td>length of <code>input</code>. Must be greater than 0.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>type of the attribute </dd></dl>
+
+</div>
+</div>
+<a id="gac37239f73ea9405321dcfe1b57246bee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac37239f73ea9405321dcfe1b57246bee">&#9670;&nbsp;</a></span>clif_get_target()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t clif_get_target </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>input_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Looks for a the target URI of a given link. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>input != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>string where to look for the target. It should only be ONE link. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_len</td><td>length of <code>input</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>if a target is found this will point to the beginning of it</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of the target if found </dd>
+<dd>
+CLIF_NOT_FOUND if no valid target is found </dd></dl>
+
+</div>
+</div>
+<a id="ga8dddd9a82a434717cfc318b153bbbaf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8dddd9a82a434717cfc318b153bbbaf1">&#9670;&nbsp;</a></span>clif_init_attr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int clif_init_attr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structclif__attr__t.html">clif_attr_t</a> *&#160;</td>
+          <td class="paramname"><em>attr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__sys__clif.html#ga3ef132533546b0080d61fe16051b2219">clif_attr_type_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the key of a given attribute according to a given type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">attr</td><td>attribute to initialize </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>type of the attribute</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful </dd>
+<dd>
+&lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

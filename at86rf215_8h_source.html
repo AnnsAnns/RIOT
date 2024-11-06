@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/at86rf215.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('at86rf215_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">at86rf215.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="at86rf215_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga4ea361534dc4fda00153c7b6ffffbb26">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019 2019 ML!PA Consulting GmbH</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for more</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef AT86RF215_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define AT86RF215_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;board.h&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_8h.html">net/netdev.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_2ieee802154_8h.html">net/netdev/ieee802154.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nettype_8h.html">net/gnrc/nettype.h</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="xtimer_8h.html">xtimer.h</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structat86rf215__RF__regs.html">at86rf215_RF_regs</a> <a class="code" href="structat86rf215__RF__regs.html">at86rf215_RF_regs_t</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structat86rf215__BBC__regs.html">at86rf215_BBC_regs</a> <a class="code" href="structat86rf215__BBC__regs.html">at86rf215_BBC_regs_t</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaae37ec4ba9eec29f5eb9916d99ae3e56">   57</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__drivers__at86rf215.html#gaae37ec4ba9eec29f5eb9916d99ae3e56">at86rf215_batmon_cb_t</a>)(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    AT86RF215_FCHIP_100,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    AT86RF215_FCHIP_200,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    AT86RF215_FCHIP_1000,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    AT86RF215_FCHIP_2000,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga62c297a8dae8cb2e69f4ff44fff26b45">   72</a></span>&#160;<span class="preprocessor">#define AT86RF215_MAX_PKT_LENGTH        (2047)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#ifdef DOXYGEN</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215__config.html#ga3fe67d134b271950f33d629abf32e6f2">   85</a></span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_USE_CLOCK_OUTPUT</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#if defined(DOXYGEN) &amp;&amp; !defined(CONFIG_AT86RF215_TRIM_VAL)</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215__config.html#ga1c880cea2b691ed5cf5fa1b7426356d6">  101</a></span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_TRIM_VAL              (0)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_CHANNEL</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_CHANNEL        (CONFIG_IEEE802154_DEFAULT_CHANNEL)</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_SUBGHZ_CHANNEL</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_SUBGHZ_CHANNEL (CONFIG_IEEE802154_DEFAULT_SUBGHZ_CHANNEL)</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_RPC_EN</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_RPC_EN                 (0)</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_BATMON_THRESHOLD</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_BATMON_THRESHOLD       (1800)</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#if IS_ACTIVE(CONFIG_AT86RF215_DEFAULT_LEGACY_OQPSK)</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_PHY_MODE   (IEEE802154_PHY_OQPSK)</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_AT86RF215_DEFAULT_MR_OQPSK)</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_PHY_MODE   (IEEE802154_PHY_MR_OQPSK)</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_AT86RF215_DEFAULT_MR_OFDM)</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_PHY_MODE   (IEEE802154_PHY_MR_OFDM)</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_PHY_MODE</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_PHY_MODE   (IEEE802154_PHY_OQPSK)</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_OQPSK_RATE</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_OQPSK_RATE     (0)</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#if IS_ACTIVE(CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS_100)</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS (AT86RF215_FCHIP_100)</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS_200)</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS (AT86RF215_FCHIP_200)</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS_1000)</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS (AT86RF215_FCHIP_1000)</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS_2000)</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS (AT86RF215_FCHIP_2000)</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OQPSK_CHIPS (AT86RF215_FCHIP_1000)</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_OQPSK_RATE</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OQPSK_RATE  (2)</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_OFDM_OPT</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OFDM_OPT    (2)</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_OFDM_MCS</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_OFDM_MCS    (2)</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_FSK_SRATE</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_FSK_SRATE   FSK_SRATE_200K</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_FSK_MOD_IDX</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_FSK_MOD_IDX (64)</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_FSK_MORD</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_FSK_MORD    FSK_MORD_4SFK</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_MR_FSK_FEC</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_MR_FSK_FEC     IEEE802154_FEC_NONE</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor">#ifndef CONFIG_AT86RF215_DEFAULT_TXPOWER</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215__config.html#ga4fcb32dc549b9c73ed78af102ff559c9">  249</a></span>&#160;<span class="preprocessor">#define CONFIG_AT86RF215_DEFAULT_TXPOWER       (CONFIG_IEEE802154_DEFAULT_TXPOWER)</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gae786a900a57eb1856a10c2f01b05fc4a">  258</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa56b4a2131911a6ad9c617f2d0d8f0822">  259</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa56b4a2131911a6ad9c617f2d0d8f0822">AT86RF215_STATE_OFF</a>,        </div>
+<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa8a51efa9134fa1f62edf4bed0995055d">  260</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa8a51efa9134fa1f62edf4bed0995055d">AT86RF215_STATE_IDLE</a>,       </div>
+<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aae314d2c8748eccb55e2a815917b90c71">  261</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aae314d2c8748eccb55e2a815917b90c71">AT86RF215_STATE_RX_SEND_ACK</a>,</div>
+<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa2fc86554f01416361ccc8a4b5b3ca955">  262</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa2fc86554f01416361ccc8a4b5b3ca955">AT86RF215_STATE_TX</a>,         </div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aaf7ffeb9f441302de7de3c86a86765664">  263</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aaf7ffeb9f441302de7de3c86a86765664">AT86RF215_STATE_TX_WAIT_ACK</a>,</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa37b0b2e4611c46e3a9b3cc16f990b008">AT86RF215_STATE_SLEEP</a>       </div>
+<div class="line"><a name="l00265"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa37b0b2e4611c46e3a9b3cc16f990b008">  265</a></span>&#160;} <a class="code" href="group__drivers__at86rf215.html#gae786a900a57eb1856a10c2f01b05fc4a">at86rf215_state_t</a>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    AT86RF215_MODE_LEGACY_OQPSK,</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    AT86RF215_MODE_MR_OQPSK,</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    AT86RF215_MODE_MR_OFDM,</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    AT86RF215_MODE_MR_FSK</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;};</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga8779ea70d4af12994a25086799d1d55f">  279</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fa176a74ac107c03abfdec08fe7dd54f73">  280</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fa176a74ac107c03abfdec08fe7dd54f73">AT86RF215_CLKO_2mA</a> = 0 &lt;&lt; 3,    </div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fa5f05f4410dc168b67fa1f9887e17aa1a">  281</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fa5f05f4410dc168b67fa1f9887e17aa1a">AT86RF215_CLKO_4mA</a> = 1 &lt;&lt; 3,    </div>
+<div class="line"><a name="l00282"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fae5179801e0ad2beb4721cb90b13054c9">  282</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fae5179801e0ad2beb4721cb90b13054c9">AT86RF215_CLKO_6mA</a> = 2 &lt;&lt; 3,    </div>
+<div class="line"><a name="l00283"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55faad75ddc6d4d59b03c332d1b48ccf9cbf">  283</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55faad75ddc6d4d59b03c332d1b48ccf9cbf">AT86RF215_CLKO_8mA</a> = 3 &lt;&lt; 3,    </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;} <a class="code" href="group__drivers__at86rf215.html#ga8779ea70d4af12994a25086799d1d55f">at86rf215_clko_cur_t</a>;</div>
+<div class="line"><a name="l00291"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga87dd47f8929892ecb990ffe72aff9e16">  291</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16af17699ae79a80e898a726b2afae003c2">  292</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16af17699ae79a80e898a726b2afae003c2">AT86RF215_CLKO_OFF</a> = 0,         </div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a168290b9bd74787c2adb59461514d418">  293</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a168290b9bd74787c2adb59461514d418">AT86RF215_CLKO_26_MHz</a>,          </div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a6d3ea80a56bad522199faa3c7e388031">  294</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a6d3ea80a56bad522199faa3c7e388031">AT86RF215_CLKO_32_MHz</a>,          </div>
+<div class="line"><a name="l00295"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a6e9805814e4e75f97f92d1c4cc6474da">  295</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a6e9805814e4e75f97f92d1c4cc6474da">AT86RF215_CLKO_16_MHz</a>,          </div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16ab0e3b261c261f8352a24652da0bd70b3">  296</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16ab0e3b261c261f8352a24652da0bd70b3">AT86RF215_CLKO_8_MHz</a>,           </div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a8b6736a6622127056f8565e40bce3041">  297</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a8b6736a6622127056f8565e40bce3041">AT86RF215_CLKO_4_MHz</a>,           </div>
+<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a1e2539236ba55625358058367da248c5">  298</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a1e2539236ba55625358058367da248c5">AT86RF215_CLKO_2_MHz</a>,           </div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a5fabb137efe6cc7ba48663644e0df7b6">  299</a></span>&#160;    <a class="code" href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a5fabb137efe6cc7ba48663644e0df7b6">AT86RF215_CLKO_1_MHz</a>,           </div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;} <a class="code" href="group__drivers__at86rf215.html#ga87dd47f8929892ecb990ffe72aff9e16">at86rf215_clko_freq_t</a>;</div>
+<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga1b3c1db15f66ed564fe1a7774b33fa8f">  307</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_CSMA           (0x0010)       </span></div>
+<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gac42f941f44c3c3360e5ac04463ed8d69">  308</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_PROMISCUOUS    (0x0020)       </span></div>
+<div class="line"><a name="l00309"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga0b423dcde8c783be5848176e88e99acb">  309</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_PRELOADING     (0x0040)       </span></div>
+<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gad490ffd266d26ae566ed8b377b7fe49f">  310</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_AUTOACK        (0x0080)       </span></div>
+<div class="line"><a name="l00311"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga4a41577204287fca74ae52af6966d03c">  311</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_ACK_REQUESTED  (0x0100)       </span></div>
+<div class="line"><a name="l00312"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gab3f585b4bce3fb21475a44fae5226e12">  312</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_AGCH           (0x0200)       </span></div>
+<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaa8d40914c403343add12594f02d29c6d">  313</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_TX_PENDING     (0x0400)       </span></div>
+<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga7413b40b6efba8a850493e8c56c555f6">  314</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_CCA_PENDING    (0x0800)       </span></div>
+<div class="line"><a name="l00315"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga2aeca9a574af0e6d9f5ba7062ccbc1f0">  315</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_RPC            (0x1000)       </span></div>
+<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga9cf1a703a7dd58088d259284b8132d1d">  316</a></span>&#160;<span class="preprocessor">#define AT86RF215_OPT_CCATX          (0x2000)       </span></div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gab2c1d9a72cddf1837ef80fcc20682173">  323</a></span>&#160;<span class="preprocessor">#define AT86RF215_TIMEOUT_ACK        (0x0001)       </span></div>
+<div class="line"><a name="l00324"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga9f1f42040c876f3b91327fc000c650b4">  324</a></span>&#160;<span class="preprocessor">#define AT86RF215_TIMEOUT_CSMA       (0x0002)       </span></div>
+<div class="line"><a name="l00330"></a><span class="lineno"><a class="line" href="structat86rf215__params.html">  330</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structat86rf215__params.html">at86rf215_params</a> {</div>
+<div class="line"><a name="l00331"></a><span class="lineno"><a class="line" href="structat86rf215__params.html#a4eb7ac99718833391076bf6217330cef">  331</a></span>&#160;    spi_t <a class="code" href="structat86rf215__params.html#a4eb7ac99718833391076bf6217330cef">spi</a>;              </div>
+<div class="line"><a name="l00332"></a><span class="lineno"><a class="line" href="structat86rf215__params.html#a7bc3ae6035ae2b9e6bb625e6fe2b6272">  332</a></span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> <a class="code" href="structat86rf215__params.html#a7bc3ae6035ae2b9e6bb625e6fe2b6272">spi_clk</a>;      </div>
+<div class="line"><a name="l00333"></a><span class="lineno"><a class="line" href="structat86rf215__params.html#afca222882b528e438bbafeb2ee50b740">  333</a></span>&#160;    <a class="code" href="group__drivers__periph__spi.html#gaf5fbaf43946646c588c9372e8906c99e">spi_cs_t</a> <a class="code" href="structat86rf215__params.html#afca222882b528e438bbafeb2ee50b740">cs_pin</a>;        </div>
+<div class="line"><a name="l00334"></a><span class="lineno"><a class="line" href="structat86rf215__params.html#aade4a9cca9a2e60efb6dfcf91ec2ad91">  334</a></span>&#160;    gpio_t <a class="code" href="structat86rf215__params.html#aade4a9cca9a2e60efb6dfcf91ec2ad91">int_pin</a>;         </div>
+<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="structat86rf215__params.html#a80e97af2e5a982abb14fa94dcc399c3b">  335</a></span>&#160;    gpio_t <a class="code" href="structat86rf215__params.html#a80e97af2e5a982abb14fa94dcc399c3b">reset_pin</a>;       </div>
+<div class="line"><a name="l00336"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gac1d1d5a301cdea84b8abec87b3f19934">  336</a></span>&#160;} <a class="code" href="group__drivers__at86rf215.html#gac1d1d5a301cdea84b8abec87b3f19934">at86rf215_params_t</a>;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
+<div class="line"><a name="l00343"></a><span class="lineno"><a class="line" href="structat86rf215.html">  343</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structat86rf215.html">at86rf215</a> {</div>
+<div class="line"><a name="l00344"></a><span class="lineno"><a class="line" href="structat86rf215.html#af978dd0c3764787e04a3cbe0dec5c2f5">  344</a></span>&#160;    <a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a> <a class="code" href="structat86rf215.html#af978dd0c3764787e04a3cbe0dec5c2f5">netdev</a>;             </div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="comment">/* device specific fields */</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno"><a class="line" href="structat86rf215.html#a10b9f6db84bb1b805fdb4bfb3620c131">  346</a></span>&#160;    <a class="code" href="structat86rf215__params.html">at86rf215_params_t</a> <a class="code" href="structat86rf215.html#a10b9f6db84bb1b805fdb4bfb3620c131">params</a>;              </div>
+<div class="line"><a name="l00347"></a><span class="lineno"><a class="line" href="structat86rf215.html#ae274d36cec0b5230be10ae50f9d35b76">  347</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structat86rf215.html">at86rf215</a> *<a class="code" href="structat86rf215.html#ae274d36cec0b5230be10ae50f9d35b76">sibling</a>;              </div>
+<div class="line"><a name="l00348"></a><span class="lineno"><a class="line" href="structat86rf215.html#a09ea1e74f3402879346a7e82329607b4">  348</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structat86rf215__RF__regs.html">at86rf215_RF_regs_t</a>  *<a class="code" href="structat86rf215.html#a09ea1e74f3402879346a7e82329607b4">RF</a>;         </div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="structat86rf215.html#abf64fd0e342e9ed1df99a3ce75631a1e">  349</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structat86rf215__BBC__regs.html">at86rf215_BBC_regs_t</a> *<a class="code" href="structat86rf215.html#abf64fd0e342e9ed1df99a3ce75631a1e">BBC</a>;        </div>
+<div class="line"><a name="l00350"></a><span class="lineno"><a class="line" href="structat86rf215.html#a9ccb4ecb6f3ebdb927d81ff151b761ae">  350</a></span>&#160;    <a class="code" href="structxtimer.html">xtimer_t</a> <a class="code" href="structat86rf215.html#a9ccb4ecb6f3ebdb927d81ff151b761ae">timer</a>;                         </div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="structat86rf215.html#a27f04f560161ee8e033adf68378e9e27">  351</a></span>&#160;    uint32_t <a class="code" href="structat86rf215.html#a27f04f560161ee8e033adf68378e9e27">ack_timeout_usec</a>;              </div>
+<div class="line"><a name="l00352"></a><span class="lineno"><a class="line" href="structat86rf215.html#a097bed4b2be26af094e1068f24b78ddb">  352</a></span>&#160;    uint32_t <a class="code" href="structat86rf215.html#a097bed4b2be26af094e1068f24b78ddb">csma_backoff_period</a>;           </div>
+<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="structat86rf215.html#a312a552477e85218b8f6f96a0082f61a">  353</a></span>&#160;    uint16_t <a class="code" href="structat86rf215.html#a312a552477e85218b8f6f96a0082f61a">flags</a>;                         </div>
+<div class="line"><a name="l00354"></a><span class="lineno"><a class="line" href="structat86rf215.html#aaea182922ed8f9b9c943ec4ee1cd0863">  354</a></span>&#160;    uint16_t <a class="code" href="structat86rf215.html#aaea182922ed8f9b9c943ec4ee1cd0863">num_chans</a>;                     </div>
+<div class="line"><a name="l00355"></a><span class="lineno"><a class="line" href="structat86rf215.html#ad7d565870322a34b2ddb35eb1f90c2c8">  355</a></span>&#160;    uint16_t <a class="code" href="structat86rf215.html#ad7d565870322a34b2ddb35eb1f90c2c8">tx_frame_len</a>;                  </div>
+<div class="line"><a name="l00356"></a><span class="lineno"><a class="line" href="structat86rf215.html#ae46ea9dd0f653dc08af230a14ef5cfb2">  356</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#ae46ea9dd0f653dc08af230a14ef5cfb2">timeout</a>;                        </div>
+<div class="line"><a name="l00357"></a><span class="lineno"><a class="line" href="structat86rf215.html#afaf5ba2ebd2bba60583fff36b56c6945">  357</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#afaf5ba2ebd2bba60583fff36b56c6945">state</a>;                          </div>
+<div class="line"><a name="l00358"></a><span class="lineno"><a class="line" href="structat86rf215.html#acf093c322f91d258237c3ea9d2a6a7dc">  358</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#acf093c322f91d258237c3ea9d2a6a7dc">retries_max</a>;                    </div>
+<div class="line"><a name="l00359"></a><span class="lineno"><a class="line" href="structat86rf215.html#a576a285ee0ae7fe899c0ba2789e6512c">  359</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#a576a285ee0ae7fe899c0ba2789e6512c">retries</a>;                        </div>
+<div class="line"><a name="l00360"></a><span class="lineno"><a class="line" href="structat86rf215.html#a4ac18d357632f5ab2cd4153143b23dad">  360</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#a4ac18d357632f5ab2cd4153143b23dad">csma_retries_max</a>;               </div>
+<div class="line"><a name="l00361"></a><span class="lineno"><a class="line" href="structat86rf215.html#a633f8fb62fb8ef47df203a1e163c7d3d">  361</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#a633f8fb62fb8ef47df203a1e163c7d3d">csma_retries</a>;                   </div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">#ifdef MODULE_NETDEV_IEEE802154_MR_FSK</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    uint8_t fsk_pl;                         </div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno"><a class="line" href="structat86rf215.html#aad93fef7e62a3d50f028a345a93f07f0">  365</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#aad93fef7e62a3d50f028a345a93f07f0">csma_minbe</a>;                     </div>
+<div class="line"><a name="l00366"></a><span class="lineno"><a class="line" href="structat86rf215.html#a1cdecd720b5fc9b755fa30fadbc922bc">  366</a></span>&#160;    uint8_t <a class="code" href="structat86rf215.html#a1cdecd720b5fc9b755fa30fadbc922bc">csma_maxbe</a>;                     </div>
+<div class="line"><a name="l00367"></a><span class="lineno"><a class="line" href="structat86rf215.html#a8e0410a485f6a4d8b138f643287fee6c">  367</a></span>&#160;    int8_t  <a class="code" href="structat86rf215.html#a8e0410a485f6a4d8b138f643287fee6c">csma_ed</a>;                        </div>
+<div class="line"><a name="l00368"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">  368</a></span>&#160;} <a class="code" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a>;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gae09354791d69df538dc03ac3c8e6e3ed">  379</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gae09354791d69df538dc03ac3c8e6e3ed">at86rf215_setup</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev_09, <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev_24, <span class="keyword">const</span> <a class="code" href="structat86rf215__params.html">at86rf215_params_t</a> *<a class="code" href="structat86rf215.html#a10b9f6db84bb1b805fdb4bfb3620c131">params</a>, uint8_t index);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga0e5da207a9e80823906fad4f006b5b13">  386</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga0e5da207a9e80823906fad4f006b5b13">at86rf215_reset_and_cfg</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaf57a777ba1e3d2c88d150d2bbe5cdb2d">  393</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gaf57a777ba1e3d2c88d150d2bbe5cdb2d">at86rf215_reset</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00403"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga156ed908e18bc4eb83507582610a4f55">  403</a></span>&#160;uint16_t <a class="code" href="group__drivers__at86rf215.html#ga156ed908e18bc4eb83507582610a4f55">at86rf215_get_addr_short</a>(<span class="keyword">const</span> <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t filter);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160; </div>
+<div class="line"><a name="l00412"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga0b632bc4be1395a881067957bf99107e">  412</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga0b632bc4be1395a881067957bf99107e">at86rf215_set_addr_short</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t filter, uint16_t addr);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160; </div>
+<div class="line"><a name="l00422"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaebcf1a6d36852cd9c2f75d606c33ab5f">  422</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__at86rf215.html#gaebcf1a6d36852cd9c2f75d606c33ab5f">at86rf215_get_framefilter_enabled</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t filter);</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160; </div>
+<div class="line"><a name="l00431"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga3a7f9a5127e21de2e1f5391bc820cd1c">  431</a></span>&#160; <span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga3a7f9a5127e21de2e1f5391bc820cd1c">at86rf215_disable_framefilter</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t filter);</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gae05a6fae7663c886d6599a79301cefd4">  440</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gae05a6fae7663c886d6599a79301cefd4">at86rf215_enable_framefilter</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t filter);</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160; </div>
+<div class="line"><a name="l00449"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga1168d749a770582861ce506b6e84082d">  449</a></span>&#160;uint64_t <a class="code" href="group__drivers__at86rf215.html#ga1168d749a770582861ce506b6e84082d">at86rf215_get_addr_long</a>(<span class="keyword">const</span> <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
+<div class="line"><a name="l00457"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga2b4ccbe76dc674140cf389cd94b14701">  457</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga2b4ccbe76dc674140cf389cd94b14701">at86rf215_set_addr_long</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint64_t addr);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160; </div>
+<div class="line"><a name="l00466"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga01e6b26481ecc3e1bddc7edc2d4aeb24">  466</a></span>&#160;uint8_t <a class="code" href="group__drivers__at86rf215.html#ga01e6b26481ecc3e1bddc7edc2d4aeb24">at86rf215_get_chan</a>(<span class="keyword">const</span> <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160; </div>
+<div class="line"><a name="l00474"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga59a5961f552c97cf03dad0e43ea4b057">  474</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga59a5961f552c97cf03dad0e43ea4b057">at86rf215_set_chan</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint16_t <a class="code" href="structnetdev__ieee802154__t.html#a8b7b2c7732c22a9f3740555f6b3333c2">chan</a>);</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
+<div class="line"><a name="l00484"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga7114bf17a36e9cceced6f0ae052d32ba">  484</a></span>&#160;uint16_t <a class="code" href="group__drivers__at86rf215.html#ga7114bf17a36e9cceced6f0ae052d32ba">at86rf215_get_pan</a>(<span class="keyword">const</span> <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t filter);</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160; </div>
+<div class="line"><a name="l00493"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaa04badb14e036bbe12c5ae22035e1d39">  493</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gaa04badb14e036bbe12c5ae22035e1d39">at86rf215_set_pan</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t filter, uint16_t <a class="code" href="structnetdev__ieee802154__t.html#a2d809f49131c9d2e6f7f67370ada6dfe">pan</a>);</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160; </div>
+<div class="line"><a name="l00502"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga96272d18647b6e92dc024bdd9dba3eb1">  502</a></span>&#160;int16_t <a class="code" href="group__drivers__at86rf215.html#ga96272d18647b6e92dc024bdd9dba3eb1">at86rf215_get_txpower</a>(<span class="keyword">const</span> <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160; </div>
+<div class="line"><a name="l00515"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaee53e06f956e7fa5d9a52304c8e4fcf9">  515</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gaee53e06f956e7fa5d9a52304c8e4fcf9">at86rf215_set_txpower</a>(<span class="keyword">const</span> <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, int16_t <a class="code" href="structnetdev__ieee802154__t.html#a82974310b4669e6530bea71cf598e9f4">txpower</a>);</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160; </div>
+<div class="line"><a name="l00524"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gad2e88c56400f039fa264b879c805d456">  524</a></span>&#160;int8_t <a class="code" href="group__drivers__at86rf215.html#gad2e88c56400f039fa264b879c805d456">at86rf215_get_cca_threshold</a>(<span class="keyword">const</span> <a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160; </div>
+<div class="line"><a name="l00532"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gab1a570e1bf86e11a32ba2fdd7887ce1f">  532</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gab1a570e1bf86e11a32ba2fdd7887ce1f">at86rf215_set_cca_threshold</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, int8_t value);</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160; </div>
+<div class="line"><a name="l00541"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga6e6a831cd15af7235d10ae70260b8a90">  541</a></span>&#160;int8_t <a class="code" href="group__drivers__at86rf215.html#ga6e6a831cd15af7235d10ae70260b8a90">at86rf215_get_ed_level</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160; </div>
+<div class="line"><a name="l00550"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga3ab35da2faa76e15cc364d50f92e0d4a">  550</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga3ab35da2faa76e15cc364d50f92e0d4a">at86rf215_set_option</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint16_t option, <span class="keywordtype">bool</span> <a class="code" href="structat86rf215.html#afaf5ba2ebd2bba60583fff36b56c6945">state</a>);</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160; </div>
+<div class="line"><a name="l00576"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gabbf7472b0e6cab6289fd2a1e3e7a68f7">  576</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gabbf7472b0e6cab6289fd2a1e3e7a68f7">at86rf215_set_trim</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, uint8_t trim);</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160; </div>
+<div class="line"><a name="l00585"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga9dae643c465be8cf608fef4c57d84fcc">  585</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga9dae643c465be8cf608fef4c57d84fcc">at86rf215_set_clock_output</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev,</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                                <a class="code" href="group__drivers__at86rf215.html#ga8779ea70d4af12994a25086799d1d55f">at86rf215_clko_cur_t</a> cur, <a class="code" href="group__drivers__at86rf215.html#ga87dd47f8929892ecb990ffe72aff9e16">at86rf215_clko_freq_t</a> freq);</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160; </div>
+<div class="line"><a name="l00600"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga0131845eed881ed5bc84fc04aef7653a">  600</a></span>&#160;ssize_t <a class="code" href="group__drivers__at86rf215.html#ga0131845eed881ed5bc84fc04aef7653a">at86rf215_send</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160; </div>
+<div class="line"><a name="l00612"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaa5a50f19f4a46b5111b0ce1565e7a097">  612</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__at86rf215.html#gaa5a50f19f4a46b5111b0ce1565e7a097">at86rf215_tx_prepare</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160; </div>
+<div class="line"><a name="l00624"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga3f2486046bdd72399f4a9ebdf695b226">  624</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="group__drivers__at86rf215.html#ga3f2486046bdd72399f4a9ebdf695b226">at86rf215_tx_load</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, <span class="keyword">const</span> uint8_t *data,</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                         <span class="keywordtype">size_t</span> len, <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160; </div>
+<div class="line"><a name="l00634"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga2d39e98bf01599721b24411825b0c821">  634</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__at86rf215.html#ga2d39e98bf01599721b24411825b0c821">at86rf215_tx_exec</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160; </div>
+<div class="line"><a name="l00641"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga671d1387432fefe936c7df1961f295a0">  641</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#ga671d1387432fefe936c7df1961f295a0">at86rf215_tx_abort</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160; </div>
+<div class="line"><a name="l00649"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaa14b6e8050760d0fc2cc340590cab2ac">  649</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gaa14b6e8050760d0fc2cc340590cab2ac">at86rf215_tx_done</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160; </div>
+<div class="line"><a name="l00661"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga2b7931128f448606be8a5c071e7d384c">  661</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__at86rf215.html#ga2b7931128f448606be8a5c071e7d384c">at86rf215_cca</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160; </div>
+<div class="line"><a name="l00672"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#ga00c8893568219506e8069975bcd8b4a4">  672</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__at86rf215.html#ga00c8893568219506e8069975bcd8b4a4">at86rf215_enable_batmon</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev, <span class="keywordtype">unsigned</span> voltage);</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160; </div>
+<div class="line"><a name="l00679"></a><span class="lineno"><a class="line" href="group__drivers__at86rf215.html#gaeb46e8a9184cdc3c6b28e87781d6b040">  679</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__at86rf215.html#gaeb46e8a9184cdc3c6b28e87781d6b040">at86rf215_disable_batmon</a>(<a class="code" href="structat86rf215.html">at86rf215_t</a> *dev);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160; </div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;}</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160; </div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* AT86RF215_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_2ieee802154_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_2ieee802154_8h.html">ieee802154.h</a></div><div class="ttdoc">Definitions for netdev common IEEE 802.15.4 code.</div></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_8h.html">netdev.h</a></div><div class="ttdoc">Definitions low-level network driver interface.</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga00c8893568219506e8069975bcd8b4a4"><div class="ttname"><a href="group__drivers__at86rf215.html#ga00c8893568219506e8069975bcd8b4a4">at86rf215_enable_batmon</a></div><div class="ttdeci">int at86rf215_enable_batmon(at86rf215_t *dev, unsigned voltage)</div><div class="ttdoc">Generate an interrupt if supply voltage drops below the configured threshold.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga0131845eed881ed5bc84fc04aef7653a"><div class="ttname"><a href="group__drivers__at86rf215.html#ga0131845eed881ed5bc84fc04aef7653a">at86rf215_send</a></div><div class="ttdeci">ssize_t at86rf215_send(at86rf215_t *dev, const void *data, size_t len)</div><div class="ttdoc">Convenience function for simply sending data.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga01e6b26481ecc3e1bddc7edc2d4aeb24"><div class="ttname"><a href="group__drivers__at86rf215.html#ga01e6b26481ecc3e1bddc7edc2d4aeb24">at86rf215_get_chan</a></div><div class="ttdeci">uint8_t at86rf215_get_chan(const at86rf215_t *dev)</div><div class="ttdoc">Get the configured channel number of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga0b632bc4be1395a881067957bf99107e"><div class="ttname"><a href="group__drivers__at86rf215.html#ga0b632bc4be1395a881067957bf99107e">at86rf215_set_addr_short</a></div><div class="ttdeci">void at86rf215_set_addr_short(at86rf215_t *dev, uint8_t filter, uint16_t addr)</div><div class="ttdoc">Set the short address of the given device to multi address filter.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga0e5da207a9e80823906fad4f006b5b13"><div class="ttname"><a href="group__drivers__at86rf215.html#ga0e5da207a9e80823906fad4f006b5b13">at86rf215_reset_and_cfg</a></div><div class="ttdeci">void at86rf215_reset_and_cfg(at86rf215_t *dev)</div><div class="ttdoc">Trigger a hardware reset and configure radio with default values.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga1168d749a770582861ce506b6e84082d"><div class="ttname"><a href="group__drivers__at86rf215.html#ga1168d749a770582861ce506b6e84082d">at86rf215_get_addr_long</a></div><div class="ttdeci">uint64_t at86rf215_get_addr_long(const at86rf215_t *dev)</div><div class="ttdoc">Get the configured long address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga156ed908e18bc4eb83507582610a4f55"><div class="ttname"><a href="group__drivers__at86rf215.html#ga156ed908e18bc4eb83507582610a4f55">at86rf215_get_addr_short</a></div><div class="ttdeci">uint16_t at86rf215_get_addr_short(const at86rf215_t *dev, uint8_t filter)</div><div class="ttdoc">Get the short address of the given device form multi address filter.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga2b4ccbe76dc674140cf389cd94b14701"><div class="ttname"><a href="group__drivers__at86rf215.html#ga2b4ccbe76dc674140cf389cd94b14701">at86rf215_set_addr_long</a></div><div class="ttdeci">void at86rf215_set_addr_long(at86rf215_t *dev, uint64_t addr)</div><div class="ttdoc">Set the long address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga2b7931128f448606be8a5c071e7d384c"><div class="ttname"><a href="group__drivers__at86rf215.html#ga2b7931128f448606be8a5c071e7d384c">at86rf215_cca</a></div><div class="ttdeci">bool at86rf215_cca(at86rf215_t *dev)</div><div class="ttdoc">Perform one manual channel clear assessment (CCA)</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga2d39e98bf01599721b24411825b0c821"><div class="ttname"><a href="group__drivers__at86rf215.html#ga2d39e98bf01599721b24411825b0c821">at86rf215_tx_exec</a></div><div class="ttdeci">int at86rf215_tx_exec(at86rf215_t *dev)</div><div class="ttdoc">Trigger sending of data previously loaded into transmit buffer.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga3a7f9a5127e21de2e1f5391bc820cd1c"><div class="ttname"><a href="group__drivers__at86rf215.html#ga3a7f9a5127e21de2e1f5391bc820cd1c">at86rf215_disable_framefilter</a></div><div class="ttdeci">void at86rf215_disable_framefilter(at86rf215_t *dev, uint8_t filter)</div><div class="ttdoc">Enables a frame filter.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga3ab35da2faa76e15cc364d50f92e0d4a"><div class="ttname"><a href="group__drivers__at86rf215.html#ga3ab35da2faa76e15cc364d50f92e0d4a">at86rf215_set_option</a></div><div class="ttdeci">void at86rf215_set_option(at86rf215_t *dev, uint16_t option, bool state)</div><div class="ttdoc">Enable or disable driver specific options.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga3f2486046bdd72399f4a9ebdf695b226"><div class="ttname"><a href="group__drivers__at86rf215.html#ga3f2486046bdd72399f4a9ebdf695b226">at86rf215_tx_load</a></div><div class="ttdeci">size_t at86rf215_tx_load(at86rf215_t *dev, const uint8_t *data, size_t len, size_t offset)</div><div class="ttdoc">Load chunks of data into the transmit buffer of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga59a5961f552c97cf03dad0e43ea4b057"><div class="ttname"><a href="group__drivers__at86rf215.html#ga59a5961f552c97cf03dad0e43ea4b057">at86rf215_set_chan</a></div><div class="ttdeci">void at86rf215_set_chan(at86rf215_t *dev, uint16_t chan)</div><div class="ttdoc">Set the channel number of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga671d1387432fefe936c7df1961f295a0"><div class="ttname"><a href="group__drivers__at86rf215.html#ga671d1387432fefe936c7df1961f295a0">at86rf215_tx_abort</a></div><div class="ttdeci">void at86rf215_tx_abort(at86rf215_t *dev)</div><div class="ttdoc">Abort sending of data previously loaded into transmit buffer.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga6e6a831cd15af7235d10ae70260b8a90"><div class="ttname"><a href="group__drivers__at86rf215.html#ga6e6a831cd15af7235d10ae70260b8a90">at86rf215_get_ed_level</a></div><div class="ttdeci">int8_t at86rf215_get_ed_level(at86rf215_t *dev)</div><div class="ttdoc">Get the latest ED level measurement.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga7114bf17a36e9cceced6f0ae052d32ba"><div class="ttname"><a href="group__drivers__at86rf215.html#ga7114bf17a36e9cceced6f0ae052d32ba">at86rf215_get_pan</a></div><div class="ttdeci">uint16_t at86rf215_get_pan(const at86rf215_t *dev, uint8_t filter)</div><div class="ttdoc">Get the configured PAN ID of the given device from multi address filter.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga8779ea70d4af12994a25086799d1d55f"><div class="ttname"><a href="group__drivers__at86rf215.html#ga8779ea70d4af12994a25086799d1d55f">at86rf215_clko_cur_t</a></div><div class="ttdeci">at86rf215_clko_cur_t</div><div class="ttdef"><b>Definition:</b> at86rf215.h:279</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga87dd47f8929892ecb990ffe72aff9e16"><div class="ttname"><a href="group__drivers__at86rf215.html#ga87dd47f8929892ecb990ffe72aff9e16">at86rf215_clko_freq_t</a></div><div class="ttdeci">at86rf215_clko_freq_t</div><div class="ttdef"><b>Definition:</b> at86rf215.h:291</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga96272d18647b6e92dc024bdd9dba3eb1"><div class="ttname"><a href="group__drivers__at86rf215.html#ga96272d18647b6e92dc024bdd9dba3eb1">at86rf215_get_txpower</a></div><div class="ttdeci">int16_t at86rf215_get_txpower(const at86rf215_t *dev)</div><div class="ttdoc">Get the configured transmission power of the given device [in dBm].</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ga9dae643c465be8cf608fef4c57d84fcc"><div class="ttname"><a href="group__drivers__at86rf215.html#ga9dae643c465be8cf608fef4c57d84fcc">at86rf215_set_clock_output</a></div><div class="ttdeci">void at86rf215_set_clock_output(at86rf215_t *dev, at86rf215_clko_cur_t cur, at86rf215_clko_freq_t freq)</div><div class="ttdoc">Configure the Clock Output pin.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaa04badb14e036bbe12c5ae22035e1d39"><div class="ttname"><a href="group__drivers__at86rf215.html#gaa04badb14e036bbe12c5ae22035e1d39">at86rf215_set_pan</a></div><div class="ttdeci">void at86rf215_set_pan(at86rf215_t *dev, uint8_t filter, uint16_t pan)</div><div class="ttdoc">Set the PAN ID of the given address filter.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaa14b6e8050760d0fc2cc340590cab2ac"><div class="ttname"><a href="group__drivers__at86rf215.html#gaa14b6e8050760d0fc2cc340590cab2ac">at86rf215_tx_done</a></div><div class="ttdeci">void at86rf215_tx_done(at86rf215_t *dev)</div><div class="ttdoc">Signal that the transfer of the frame (and optional ACK reception) has finished.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaa5a50f19f4a46b5111b0ce1565e7a097"><div class="ttname"><a href="group__drivers__at86rf215.html#gaa5a50f19f4a46b5111b0ce1565e7a097">at86rf215_tx_prepare</a></div><div class="ttdeci">int at86rf215_tx_prepare(at86rf215_t *dev)</div><div class="ttdoc">Prepare for sending of data.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaae37ec4ba9eec29f5eb9916d99ae3e56"><div class="ttname"><a href="group__drivers__at86rf215.html#gaae37ec4ba9eec29f5eb9916d99ae3e56">at86rf215_batmon_cb_t</a></div><div class="ttdeci">void(* at86rf215_batmon_cb_t)(void *arg)</div><div class="ttdoc">Signature for the Battery monitor callback.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:57</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gab1a570e1bf86e11a32ba2fdd7887ce1f"><div class="ttname"><a href="group__drivers__at86rf215.html#gab1a570e1bf86e11a32ba2fdd7887ce1f">at86rf215_set_cca_threshold</a></div><div class="ttdeci">void at86rf215_set_cca_threshold(at86rf215_t *dev, int8_t value)</div><div class="ttdoc">Set the CCA threshold value.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gabbf7472b0e6cab6289fd2a1e3e7a68f7"><div class="ttname"><a href="group__drivers__at86rf215.html#gabbf7472b0e6cab6289fd2a1e3e7a68f7">at86rf215_set_trim</a></div><div class="ttdeci">void at86rf215_set_trim(at86rf215_t *dev, uint8_t trim)</div><div class="ttdoc">Set crystal oscillator trim value.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gac1d1d5a301cdea84b8abec87b3f19934"><div class="ttname"><a href="group__drivers__at86rf215.html#gac1d1d5a301cdea84b8abec87b3f19934">at86rf215_params_t</a></div><div class="ttdeci">struct at86rf215_params at86rf215_params_t</div><div class="ttdoc">struct holding all params needed for device initialization</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gac7c10ffc349068578f09e599785f82f4"><div class="ttname"><a href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a></div><div class="ttdeci">struct at86rf215 at86rf215_t</div><div class="ttdoc">Device descriptor for AT86RF215 radio devices.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gad2e88c56400f039fa264b879c805d456"><div class="ttname"><a href="group__drivers__at86rf215.html#gad2e88c56400f039fa264b879c805d456">at86rf215_get_cca_threshold</a></div><div class="ttdeci">int8_t at86rf215_get_cca_threshold(const at86rf215_t *dev)</div><div class="ttdoc">Get the CCA threshold value.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gae05a6fae7663c886d6599a79301cefd4"><div class="ttname"><a href="group__drivers__at86rf215.html#gae05a6fae7663c886d6599a79301cefd4">at86rf215_enable_framefilter</a></div><div class="ttdeci">void at86rf215_enable_framefilter(at86rf215_t *dev, uint8_t filter)</div><div class="ttdoc">Disables a frame filter.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gae09354791d69df538dc03ac3c8e6e3ed"><div class="ttname"><a href="group__drivers__at86rf215.html#gae09354791d69df538dc03ac3c8e6e3ed">at86rf215_setup</a></div><div class="ttdeci">void at86rf215_setup(at86rf215_t *dev_09, at86rf215_t *dev_24, const at86rf215_params_t *params, uint8_t index)</div><div class="ttdoc">Setup an AT86RF215 based device state.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gae786a900a57eb1856a10c2f01b05fc4a"><div class="ttname"><a href="group__drivers__at86rf215.html#gae786a900a57eb1856a10c2f01b05fc4a">at86rf215_state_t</a></div><div class="ttdeci">at86rf215_state_t</div><div class="ttdef"><b>Definition:</b> at86rf215.h:258</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaeb46e8a9184cdc3c6b28e87781d6b040"><div class="ttname"><a href="group__drivers__at86rf215.html#gaeb46e8a9184cdc3c6b28e87781d6b040">at86rf215_disable_batmon</a></div><div class="ttdeci">void at86rf215_disable_batmon(at86rf215_t *dev)</div><div class="ttdoc">Disable the Battery Monitor interrupt.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaebcf1a6d36852cd9c2f75d606c33ab5f"><div class="ttname"><a href="group__drivers__at86rf215.html#gaebcf1a6d36852cd9c2f75d606c33ab5f">at86rf215_get_framefilter_enabled</a></div><div class="ttdeci">bool at86rf215_get_framefilter_enabled(at86rf215_t *dev, uint8_t filter)</div><div class="ttdoc">Get whether a frame filter is enabled or not.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaee53e06f956e7fa5d9a52304c8e4fcf9"><div class="ttname"><a href="group__drivers__at86rf215.html#gaee53e06f956e7fa5d9a52304c8e4fcf9">at86rf215_set_txpower</a></div><div class="ttdeci">void at86rf215_set_txpower(const at86rf215_t *dev, int16_t txpower)</div><div class="ttdoc">Set the transmission power of the given device [in dBm].</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gaf57a777ba1e3d2c88d150d2bbe5cdb2d"><div class="ttname"><a href="group__drivers__at86rf215.html#gaf57a777ba1e3d2c88d150d2bbe5cdb2d">at86rf215_reset</a></div><div class="ttdeci">void at86rf215_reset(at86rf215_t *dev)</div><div class="ttdoc">Trigger a hardware reset, configuration is retained.</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga8779ea70d4af12994a25086799d1d55fa176a74ac107c03abfdec08fe7dd54f73"><div class="ttname"><a href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fa176a74ac107c03abfdec08fe7dd54f73">AT86RF215_CLKO_2mA</a></div><div class="ttdeci">@ AT86RF215_CLKO_2mA</div><div class="ttdoc">2 mA</div><div class="ttdef"><b>Definition:</b> at86rf215.h:280</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga8779ea70d4af12994a25086799d1d55fa5f05f4410dc168b67fa1f9887e17aa1a"><div class="ttname"><a href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fa5f05f4410dc168b67fa1f9887e17aa1a">AT86RF215_CLKO_4mA</a></div><div class="ttdeci">@ AT86RF215_CLKO_4mA</div><div class="ttdoc">4 mA</div><div class="ttdef"><b>Definition:</b> at86rf215.h:281</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga8779ea70d4af12994a25086799d1d55faad75ddc6d4d59b03c332d1b48ccf9cbf"><div class="ttname"><a href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55faad75ddc6d4d59b03c332d1b48ccf9cbf">AT86RF215_CLKO_8mA</a></div><div class="ttdeci">@ AT86RF215_CLKO_8mA</div><div class="ttdoc">8 mA</div><div class="ttdef"><b>Definition:</b> at86rf215.h:283</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga8779ea70d4af12994a25086799d1d55fae5179801e0ad2beb4721cb90b13054c9"><div class="ttname"><a href="group__drivers__at86rf215.html#gga8779ea70d4af12994a25086799d1d55fae5179801e0ad2beb4721cb90b13054c9">AT86RF215_CLKO_6mA</a></div><div class="ttdeci">@ AT86RF215_CLKO_6mA</div><div class="ttdoc">6 mA</div><div class="ttdef"><b>Definition:</b> at86rf215.h:282</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16a168290b9bd74787c2adb59461514d418"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a168290b9bd74787c2adb59461514d418">AT86RF215_CLKO_26_MHz</a></div><div class="ttdeci">@ AT86RF215_CLKO_26_MHz</div><div class="ttdoc">26 MHz</div><div class="ttdef"><b>Definition:</b> at86rf215.h:293</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16a1e2539236ba55625358058367da248c5"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a1e2539236ba55625358058367da248c5">AT86RF215_CLKO_2_MHz</a></div><div class="ttdeci">@ AT86RF215_CLKO_2_MHz</div><div class="ttdoc">2 MHz</div><div class="ttdef"><b>Definition:</b> at86rf215.h:298</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16a5fabb137efe6cc7ba48663644e0df7b6"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a5fabb137efe6cc7ba48663644e0df7b6">AT86RF215_CLKO_1_MHz</a></div><div class="ttdeci">@ AT86RF215_CLKO_1_MHz</div><div class="ttdoc">1 MHz</div><div class="ttdef"><b>Definition:</b> at86rf215.h:299</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16a6d3ea80a56bad522199faa3c7e388031"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a6d3ea80a56bad522199faa3c7e388031">AT86RF215_CLKO_32_MHz</a></div><div class="ttdeci">@ AT86RF215_CLKO_32_MHz</div><div class="ttdoc">32 MHz</div><div class="ttdef"><b>Definition:</b> at86rf215.h:294</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16a6e9805814e4e75f97f92d1c4cc6474da"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a6e9805814e4e75f97f92d1c4cc6474da">AT86RF215_CLKO_16_MHz</a></div><div class="ttdeci">@ AT86RF215_CLKO_16_MHz</div><div class="ttdoc">16 MHz</div><div class="ttdef"><b>Definition:</b> at86rf215.h:295</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16a8b6736a6622127056f8565e40bce3041"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16a8b6736a6622127056f8565e40bce3041">AT86RF215_CLKO_4_MHz</a></div><div class="ttdeci">@ AT86RF215_CLKO_4_MHz</div><div class="ttdoc">4 MHz</div><div class="ttdef"><b>Definition:</b> at86rf215.h:297</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16ab0e3b261c261f8352a24652da0bd70b3"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16ab0e3b261c261f8352a24652da0bd70b3">AT86RF215_CLKO_8_MHz</a></div><div class="ttdeci">@ AT86RF215_CLKO_8_MHz</div><div class="ttdoc">8 MHz</div><div class="ttdef"><b>Definition:</b> at86rf215.h:296</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_gga87dd47f8929892ecb990ffe72aff9e16af17699ae79a80e898a726b2afae003c2"><div class="ttname"><a href="group__drivers__at86rf215.html#gga87dd47f8929892ecb990ffe72aff9e16af17699ae79a80e898a726b2afae003c2">AT86RF215_CLKO_OFF</a></div><div class="ttdeci">@ AT86RF215_CLKO_OFF</div><div class="ttdoc">Clock Output Disabled</div><div class="ttdef"><b>Definition:</b> at86rf215.h:292</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ggae786a900a57eb1856a10c2f01b05fc4aa2fc86554f01416361ccc8a4b5b3ca955"><div class="ttname"><a href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa2fc86554f01416361ccc8a4b5b3ca955">AT86RF215_STATE_TX</a></div><div class="ttdeci">@ AT86RF215_STATE_TX</div><div class="ttdoc">sending frame</div><div class="ttdef"><b>Definition:</b> at86rf215.h:262</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ggae786a900a57eb1856a10c2f01b05fc4aa37b0b2e4611c46e3a9b3cc16f990b008"><div class="ttname"><a href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa37b0b2e4611c46e3a9b3cc16f990b008">AT86RF215_STATE_SLEEP</a></div><div class="ttdeci">@ AT86RF215_STATE_SLEEP</div><div class="ttdoc">sleep mode, not listening</div><div class="ttdef"><b>Definition:</b> at86rf215.h:264</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ggae786a900a57eb1856a10c2f01b05fc4aa56b4a2131911a6ad9c617f2d0d8f0822"><div class="ttname"><a href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa56b4a2131911a6ad9c617f2d0d8f0822">AT86RF215_STATE_OFF</a></div><div class="ttdeci">@ AT86RF215_STATE_OFF</div><div class="ttdoc">radio not configured</div><div class="ttdef"><b>Definition:</b> at86rf215.h:259</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ggae786a900a57eb1856a10c2f01b05fc4aa8a51efa9134fa1f62edf4bed0995055d"><div class="ttname"><a href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aa8a51efa9134fa1f62edf4bed0995055d">AT86RF215_STATE_IDLE</a></div><div class="ttdeci">@ AT86RF215_STATE_IDLE</div><div class="ttdoc">idle state, listening</div><div class="ttdef"><b>Definition:</b> at86rf215.h:260</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ggae786a900a57eb1856a10c2f01b05fc4aae314d2c8748eccb55e2a815917b90c71"><div class="ttname"><a href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aae314d2c8748eccb55e2a815917b90c71">AT86RF215_STATE_RX_SEND_ACK</a></div><div class="ttdeci">@ AT86RF215_STATE_RX_SEND_ACK</div><div class="ttdoc">receiving frame, sending ACK</div><div class="ttdef"><b>Definition:</b> at86rf215.h:261</div></div>
+<div class="ttc" id="agroup__drivers__at86rf215_html_ggae786a900a57eb1856a10c2f01b05fc4aaf7ffeb9f441302de7de3c86a86765664"><div class="ttname"><a href="group__drivers__at86rf215.html#ggae786a900a57eb1856a10c2f01b05fc4aaf7ffeb9f441302de7de3c86a86765664">AT86RF215_STATE_TX_WAIT_ACK</a></div><div class="ttdeci">@ AT86RF215_STATE_TX_WAIT_ACK</div><div class="ttdoc">sending frame, wait for ACK</div><div class="ttdef"><b>Definition:</b> at86rf215.h:263</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_gaf5fbaf43946646c588c9372e8906c99e"><div class="ttname"><a href="group__drivers__periph__spi.html#gaf5fbaf43946646c588c9372e8906c99e">spi_cs_t</a></div><div class="ttdeci">gpio_t spi_cs_t</div><div class="ttdoc">Chip select pin type overlaps with gpio_t so it can be casted to this.</div><div class="ttdef"><b>Definition:</b> spi.h:135</div></div>
+<div class="ttc" id="anettype_8h_html"><div class="ttname"><a href="nettype_8h.html">nettype.h</a></div><div class="ttdoc">Protocol type definitions.</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructat86rf215__BBC__regs_html"><div class="ttname"><a href="structat86rf215__BBC__regs.html">at86rf215_BBC_regs</a></div><div class="ttdoc">Base Band Controller registers.</div><div class="ttdef"><b>Definition:</b> at86rf215_registers.h:70</div></div>
+<div class="ttc" id="astructat86rf215__RF__regs_html"><div class="ttname"><a href="structat86rf215__RF__regs.html">at86rf215_RF_regs</a></div><div class="ttdoc">Radio Frontend registers.</div><div class="ttdef"><b>Definition:</b> at86rf215_registers.h:33</div></div>
+<div class="ttc" id="astructat86rf215__params_html"><div class="ttname"><a href="structat86rf215__params.html">at86rf215_params</a></div><div class="ttdoc">struct holding all params needed for device initialization</div><div class="ttdef"><b>Definition:</b> at86rf215.h:330</div></div>
+<div class="ttc" id="astructat86rf215__params_html_a4eb7ac99718833391076bf6217330cef"><div class="ttname"><a href="structat86rf215__params.html#a4eb7ac99718833391076bf6217330cef">at86rf215_params::spi</a></div><div class="ttdeci">spi_t spi</div><div class="ttdoc">SPI bus the device is connected to.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:331</div></div>
+<div class="ttc" id="astructat86rf215__params_html_a7bc3ae6035ae2b9e6bb625e6fe2b6272"><div class="ttname"><a href="structat86rf215__params.html#a7bc3ae6035ae2b9e6bb625e6fe2b6272">at86rf215_params::spi_clk</a></div><div class="ttdeci">spi_clk_t spi_clk</div><div class="ttdoc">SPI clock speed to use.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:332</div></div>
+<div class="ttc" id="astructat86rf215__params_html_a80e97af2e5a982abb14fa94dcc399c3b"><div class="ttname"><a href="structat86rf215__params.html#a80e97af2e5a982abb14fa94dcc399c3b">at86rf215_params::reset_pin</a></div><div class="ttdeci">gpio_t reset_pin</div><div class="ttdoc">GPIO pin connected to the reset pin.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:335</div></div>
+<div class="ttc" id="astructat86rf215__params_html_aade4a9cca9a2e60efb6dfcf91ec2ad91"><div class="ttname"><a href="structat86rf215__params.html#aade4a9cca9a2e60efb6dfcf91ec2ad91">at86rf215_params::int_pin</a></div><div class="ttdeci">gpio_t int_pin</div><div class="ttdoc">GPIO pin connected to the interrupt pin.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:334</div></div>
+<div class="ttc" id="astructat86rf215__params_html_afca222882b528e438bbafeb2ee50b740"><div class="ttname"><a href="structat86rf215__params.html#afca222882b528e438bbafeb2ee50b740">at86rf215_params::cs_pin</a></div><div class="ttdeci">spi_cs_t cs_pin</div><div class="ttdoc">GPIO pin connected to chip select.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:333</div></div>
+<div class="ttc" id="astructat86rf215_html"><div class="ttname"><a href="structat86rf215.html">at86rf215</a></div><div class="ttdoc">Device descriptor for AT86RF215 radio devices.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:343</div></div>
+<div class="ttc" id="astructat86rf215_html_a097bed4b2be26af094e1068f24b78ddb"><div class="ttname"><a href="structat86rf215.html#a097bed4b2be26af094e1068f24b78ddb">at86rf215::csma_backoff_period</a></div><div class="ttdeci">uint32_t csma_backoff_period</div><div class="ttdoc">CSMA Backoff period.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:352</div></div>
+<div class="ttc" id="astructat86rf215_html_a09ea1e74f3402879346a7e82329607b4"><div class="ttname"><a href="structat86rf215.html#a09ea1e74f3402879346a7e82329607b4">at86rf215::RF</a></div><div class="ttdeci">const at86rf215_RF_regs_t * RF</div><div class="ttdoc">Radio Frontend Registers.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:348</div></div>
+<div class="ttc" id="astructat86rf215_html_a10b9f6db84bb1b805fdb4bfb3620c131"><div class="ttname"><a href="structat86rf215.html#a10b9f6db84bb1b805fdb4bfb3620c131">at86rf215::params</a></div><div class="ttdeci">at86rf215_params_t params</div><div class="ttdoc">parameters for initialization</div><div class="ttdef"><b>Definition:</b> at86rf215.h:346</div></div>
+<div class="ttc" id="astructat86rf215_html_a1cdecd720b5fc9b755fa30fadbc922bc"><div class="ttname"><a href="structat86rf215.html#a1cdecd720b5fc9b755fa30fadbc922bc">at86rf215::csma_maxbe</a></div><div class="ttdeci">uint8_t csma_maxbe</div><div class="ttdoc">CSMA maximum backoff exponent.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:366</div></div>
+<div class="ttc" id="astructat86rf215_html_a27f04f560161ee8e033adf68378e9e27"><div class="ttname"><a href="structat86rf215.html#a27f04f560161ee8e033adf68378e9e27">at86rf215::ack_timeout_usec</a></div><div class="ttdeci">uint32_t ack_timeout_usec</div><div class="ttdoc">time to wait before retransmission in µs</div><div class="ttdef"><b>Definition:</b> at86rf215.h:351</div></div>
+<div class="ttc" id="astructat86rf215_html_a312a552477e85218b8f6f96a0082f61a"><div class="ttname"><a href="structat86rf215.html#a312a552477e85218b8f6f96a0082f61a">at86rf215::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdoc">Device specific flags.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:353</div></div>
+<div class="ttc" id="astructat86rf215_html_a4ac18d357632f5ab2cd4153143b23dad"><div class="ttname"><a href="structat86rf215.html#a4ac18d357632f5ab2cd4153143b23dad">at86rf215::csma_retries_max</a></div><div class="ttdeci">uint8_t csma_retries_max</div><div class="ttdoc">number of retries until channel is clear</div><div class="ttdef"><b>Definition:</b> at86rf215.h:360</div></div>
+<div class="ttc" id="astructat86rf215_html_a576a285ee0ae7fe899c0ba2789e6512c"><div class="ttname"><a href="structat86rf215.html#a576a285ee0ae7fe899c0ba2789e6512c">at86rf215::retries</a></div><div class="ttdeci">uint8_t retries</div><div class="ttdoc">retries left</div><div class="ttdef"><b>Definition:</b> at86rf215.h:359</div></div>
+<div class="ttc" id="astructat86rf215_html_a633f8fb62fb8ef47df203a1e163c7d3d"><div class="ttname"><a href="structat86rf215.html#a633f8fb62fb8ef47df203a1e163c7d3d">at86rf215::csma_retries</a></div><div class="ttdeci">uint8_t csma_retries</div><div class="ttdoc">CSMA retries left.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:361</div></div>
+<div class="ttc" id="astructat86rf215_html_a8e0410a485f6a4d8b138f643287fee6c"><div class="ttname"><a href="structat86rf215.html#a8e0410a485f6a4d8b138f643287fee6c">at86rf215::csma_ed</a></div><div class="ttdeci">int8_t csma_ed</div><div class="ttdoc">CSMA energy detect threshold.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:367</div></div>
+<div class="ttc" id="astructat86rf215_html_a9ccb4ecb6f3ebdb927d81ff151b761ae"><div class="ttname"><a href="structat86rf215.html#a9ccb4ecb6f3ebdb927d81ff151b761ae">at86rf215::timer</a></div><div class="ttdeci">xtimer_t timer</div><div class="ttdoc">timer for ACK &amp; CSMA timeout</div><div class="ttdef"><b>Definition:</b> at86rf215.h:350</div></div>
+<div class="ttc" id="astructat86rf215_html_aad93fef7e62a3d50f028a345a93f07f0"><div class="ttname"><a href="structat86rf215.html#aad93fef7e62a3d50f028a345a93f07f0">at86rf215::csma_minbe</a></div><div class="ttdeci">uint8_t csma_minbe</div><div class="ttdoc">CSMA minimum backoff exponent.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:365</div></div>
+<div class="ttc" id="astructat86rf215_html_aaea182922ed8f9b9c943ec4ee1cd0863"><div class="ttname"><a href="structat86rf215.html#aaea182922ed8f9b9c943ec4ee1cd0863">at86rf215::num_chans</a></div><div class="ttdeci">uint16_t num_chans</div><div class="ttdoc">Number of legal channel at current modulation.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:354</div></div>
+<div class="ttc" id="astructat86rf215_html_abf64fd0e342e9ed1df99a3ce75631a1e"><div class="ttname"><a href="structat86rf215.html#abf64fd0e342e9ed1df99a3ce75631a1e">at86rf215::BBC</a></div><div class="ttdeci">const at86rf215_BBC_regs_t * BBC</div><div class="ttdoc">Baseband Registers.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:349</div></div>
+<div class="ttc" id="astructat86rf215_html_acf093c322f91d258237c3ea9d2a6a7dc"><div class="ttname"><a href="structat86rf215.html#acf093c322f91d258237c3ea9d2a6a7dc">at86rf215::retries_max</a></div><div class="ttdeci">uint8_t retries_max</div><div class="ttdoc">number of retries until ACK is received</div><div class="ttdef"><b>Definition:</b> at86rf215.h:358</div></div>
+<div class="ttc" id="astructat86rf215_html_ad7d565870322a34b2ddb35eb1f90c2c8"><div class="ttname"><a href="structat86rf215.html#ad7d565870322a34b2ddb35eb1f90c2c8">at86rf215::tx_frame_len</a></div><div class="ttdeci">uint16_t tx_frame_len</div><div class="ttdoc">length of the current TX frame</div><div class="ttdef"><b>Definition:</b> at86rf215.h:355</div></div>
+<div class="ttc" id="astructat86rf215_html_ae274d36cec0b5230be10ae50f9d35b76"><div class="ttname"><a href="structat86rf215.html#ae274d36cec0b5230be10ae50f9d35b76">at86rf215::sibling</a></div><div class="ttdeci">struct at86rf215 * sibling</div><div class="ttdoc">The other radio.</div><div class="ttdef"><b>Definition:</b> at86rf215.h:347</div></div>
+<div class="ttc" id="astructat86rf215_html_ae46ea9dd0f653dc08af230a14ef5cfb2"><div class="ttname"><a href="structat86rf215.html#ae46ea9dd0f653dc08af230a14ef5cfb2">at86rf215::timeout</a></div><div class="ttdeci">uint8_t timeout</div><div class="ttdoc">indicates which timeout was reached</div><div class="ttdef"><b>Definition:</b> at86rf215.h:356</div></div>
+<div class="ttc" id="astructat86rf215_html_af978dd0c3764787e04a3cbe0dec5c2f5"><div class="ttname"><a href="structat86rf215.html#af978dd0c3764787e04a3cbe0dec5c2f5">at86rf215::netdev</a></div><div class="ttdeci">netdev_ieee802154_t netdev</div><div class="ttdoc">netdev parent struct</div><div class="ttdef"><b>Definition:</b> at86rf215.h:344</div></div>
+<div class="ttc" id="astructat86rf215_html_afaf5ba2ebd2bba60583fff36b56c6945"><div class="ttname"><a href="structat86rf215.html#afaf5ba2ebd2bba60583fff36b56c6945">at86rf215::state</a></div><div class="ttdeci">uint8_t state</div><div class="ttdoc">current state of the radio</div><div class="ttdef"><b>Definition:</b> at86rf215.h:357</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html"><div class="ttname"><a href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a></div><div class="ttdoc">Extended structure to hold IEEE 802.15.4 driver state.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:100</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a2d809f49131c9d2e6f7f67370ada6dfe"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a2d809f49131c9d2e6f7f67370ada6dfe">netdev_ieee802154_t::pan</a></div><div class="ttdeci">uint16_t pan</div><div class="ttdoc">IEEE 802.15.4 specific fields.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:113</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a82974310b4669e6530bea71cf598e9f4"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a82974310b4669e6530bea71cf598e9f4">netdev_ieee802154_t::txpower</a></div><div class="ttdeci">int16_t txpower</div><div class="ttdoc">tx power in dBm</div><div class="ttdef"><b>Definition:</b> ieee802154.h:128</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a8b7b2c7732c22a9f3740555f6b3333c2"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a8b7b2c7732c22a9f3740555f6b3333c2">netdev_ieee802154_t::chan</a></div><div class="ttdeci">uint8_t chan</div><div class="ttdoc">channel</div><div class="ttdef"><b>Definition:</b> ieee802154.h:125</div></div>
+<div class="ttc" id="astructxtimer_html"><div class="ttname"><a href="structxtimer.html">xtimer</a></div><div class="ttdoc">xtimer timer structure</div><div class="ttdef"><b>Definition:</b> xtimer.h:97</div></div>
+<div class="ttc" id="axtimer_8h_html"><div class="ttname"><a href="xtimer_8h.html">xtimer.h</a></div><div class="ttdoc">xtimer interface definitions</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="at86rf215_8h.html">at86rf215.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

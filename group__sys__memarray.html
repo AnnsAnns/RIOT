@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: memory array allocator</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__sys__memarray.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">memory array allocator<div class="ingroups"><a class="el" href="group__sys.html">System</a> &raquo; <a class="el" href="group__sys__memory__management.html">Memory management</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>memory array allocator </p>
+<p>pseudo dynamic allocation in static memory arrays </p><dl class="section author"><dt>Author</dt><dd>Tobias Heider <a href="#" onclick="location.href='mai'+'lto:'+'hei'+'de'+'rt@'+'nm'+'.if'+'i.'+'lmu'+'.d'+'e'; return false;">heide<span style="display: none;">.nosp@m.</span>rt@n<span style="display: none;">.nosp@m.</span>m.ifi<span style="display: none;">.nosp@m.</span>.lmu<span style="display: none;">.nosp@m.</span>.de</a> </dd>
+<dd>
+Koen Zandberg <a href="#" onclick="location.href='mai'+'lto:'+'koe'+'n@'+'ber'+'gz'+'and'+'.n'+'et'; return false;">koen@<span style="display: none;">.nosp@m.</span>berg<span style="display: none;">.nosp@m.</span>zand.<span style="display: none;">.nosp@m.</span>net</a> </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmemarray__t.html">memarray_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory pool.  <a href="structmemarray__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmemarray__element.html">memarray_element</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory pool element.  <a href="structmemarray__element.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gaee97547df366a8aa0e8276c10fd09e8a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structmemarray__element.html">memarray_element</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#gaee97547df366a8aa0e8276c10fd09e8a">memarray_element_t</a></td></tr>
+<tr class="memdesc:gaee97547df366a8aa0e8276c10fd09e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory pool element.  <a href="group__sys__memarray.html#gaee97547df366a8aa0e8276c10fd09e8a">More...</a><br /></td></tr>
+<tr class="separator:gaee97547df366a8aa0e8276c10fd09e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga909c3b3b5ae072abb2bb538ead44128d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#ga909c3b3b5ae072abb2bb538ead44128d">memarray_init</a> (<a class="el" href="structmemarray__t.html">memarray_t</a> *mem, void *data, size_t size, size_t num)</td></tr>
+<tr class="memdesc:ga909c3b3b5ae072abb2bb538ead44128d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize memarray pool with free list.  <a href="group__sys__memarray.html#ga909c3b3b5ae072abb2bb538ead44128d">More...</a><br /></td></tr>
+<tr class="separator:ga909c3b3b5ae072abb2bb538ead44128d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga494e849500f569f233cacac15479fd2e"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#ga494e849500f569f233cacac15479fd2e">memarray_alloc</a> (<a class="el" href="structmemarray__t.html">memarray_t</a> *mem)</td></tr>
+<tr class="memdesc:ga494e849500f569f233cacac15479fd2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate memory chunk in memarray pool.  <a href="group__sys__memarray.html#ga494e849500f569f233cacac15479fd2e">More...</a><br /></td></tr>
+<tr class="separator:ga494e849500f569f233cacac15479fd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ed250c6b850055238418c5326e44215"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#ga2ed250c6b850055238418c5326e44215">memarray_calloc</a> (<a class="el" href="structmemarray__t.html">memarray_t</a> *mem)</td></tr>
+<tr class="memdesc:ga2ed250c6b850055238418c5326e44215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate and clear memory chunk in memarray pool.  <a href="group__sys__memarray.html#ga2ed250c6b850055238418c5326e44215">More...</a><br /></td></tr>
+<tr class="separator:ga2ed250c6b850055238418c5326e44215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac48c1df6dba9c365a3a04ecf07207581"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#gac48c1df6dba9c365a3a04ecf07207581">memarray_free</a> (<a class="el" href="structmemarray__t.html">memarray_t</a> *mem, void *ptr)</td></tr>
+<tr class="memdesc:gac48c1df6dba9c365a3a04ecf07207581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free memory chunk in memarray pool.  <a href="group__sys__memarray.html#gac48c1df6dba9c365a3a04ecf07207581">More...</a><br /></td></tr>
+<tr class="separator:gac48c1df6dba9c365a3a04ecf07207581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafc794fb227ab2055aba0151cc732868c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#gafc794fb227ab2055aba0151cc732868c">memarray_extend</a> (<a class="el" href="structmemarray__t.html">memarray_t</a> *mem, void *data, size_t num)</td></tr>
+<tr class="memdesc:gafc794fb227ab2055aba0151cc732868c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extend the memarray with a new memory region.  <a href="group__sys__memarray.html#gafc794fb227ab2055aba0151cc732868c">More...</a><br /></td></tr>
+<tr class="separator:gafc794fb227ab2055aba0151cc732868c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae3e3838130cb4081c56b029f50558f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#gaae3e3838130cb4081c56b029f50558f2">memarray_reduce</a> (<a class="el" href="structmemarray__t.html">memarray_t</a> *mem, void *data, size_t num)</td></tr>
+<tr class="memdesc:gaae3e3838130cb4081c56b029f50558f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce the memarray space, subtracting the memory pool.  <a href="group__sys__memarray.html#gaae3e3838130cb4081c56b029f50558f2">More...</a><br /></td></tr>
+<tr class="separator:gaae3e3838130cb4081c56b029f50558f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d880e76416369679653a9829ae2c815"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__memarray.html#ga9d880e76416369679653a9829ae2c815">memarray_available</a> (<a class="el" href="structmemarray__t.html">memarray_t</a> *mem)</td></tr>
+<tr class="memdesc:ga9d880e76416369679653a9829ae2c815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of blocks available.  <a href="group__sys__memarray.html#ga9d880e76416369679653a9829ae2c815">More...</a><br /></td></tr>
+<tr class="separator:ga9d880e76416369679653a9829ae2c815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="gaee97547df366a8aa0e8276c10fd09e8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaee97547df366a8aa0e8276c10fd09e8a">&#9670;&nbsp;</a></span>memarray_element_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structmemarray__element.html">memarray_element</a> <a class="el" href="group__sys__memarray.html#gaee97547df366a8aa0e8276c10fd09e8a">memarray_element_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Memory pool element. </p>
+<p>Internal memarray element struct to increase code readability </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga494e849500f569f233cacac15479fd2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga494e849500f569f233cacac15479fd2e">&#9670;&nbsp;</a></span>memarray_alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void* memarray_alloc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmemarray__t.html">memarray_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allocate memory chunk in memarray pool. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>mem != NULL</code></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Allocated structure is not cleared before returned</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem</td><td>memarray pool to allocate block in</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to allocated structure, if enough memory was available </dd>
+<dd>
+NULL, on failure </dd></dl>
+
+</div>
+</div>
+<a id="ga9d880e76416369679653a9829ae2c815"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9d880e76416369679653a9829ae2c815">&#9670;&nbsp;</a></span>memarray_available()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t memarray_available </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmemarray__t.html">memarray_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of blocks available. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mem</td><td>memarray pool</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of elements available in the memarray pool </dd></dl>
+
+</div>
+</div>
+<a id="ga2ed250c6b850055238418c5326e44215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2ed250c6b850055238418c5326e44215">&#9670;&nbsp;</a></span>memarray_calloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void* memarray_calloc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmemarray__t.html">memarray_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allocate and clear memory chunk in memarray pool. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>mem != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem</td><td>memarray pool to allocate block in</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to allocated structure, if enough memory was available </dd>
+<dd>
+NULL, on failure </dd></dl>
+
+</div>
+</div>
+<a id="gafc794fb227ab2055aba0151cc732868c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafc794fb227ab2055aba0151cc732868c">&#9670;&nbsp;</a></span>memarray_extend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void memarray_extend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmemarray__t.html">memarray_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extend the memarray with a new memory region. </p>
+<p>This function extends the memarray pool with a new memory region. The region must be able to fit the supplied number of elements of the size used when initializing this memarray.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>mem != NULL</code> </dd>
+<dd>
+<code>data != NULL</code> </dd>
+<dd>
+<code>num != 0</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem</td><td>memarray pool to extend </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>pointer to user-allocated data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>number of elements in <code>data</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac48c1df6dba9c365a3a04ecf07207581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac48c1df6dba9c365a3a04ecf07207581">&#9670;&nbsp;</a></span>memarray_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void memarray_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmemarray__t.html">memarray_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Free memory chunk in memarray pool. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>mem != NULL</code> </dd>
+<dd>
+<code>ptr != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem</td><td>memarray pool to free block in </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to memarray chunk </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga909c3b3b5ae072abb2bb538ead44128d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga909c3b3b5ae072abb2bb538ead44128d">&#9670;&nbsp;</a></span>memarray_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void memarray_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmemarray__t.html">memarray_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize memarray pool with free list. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>mem != NULL</code> </dd>
+<dd>
+<code>data != NULL</code> </dd>
+<dd>
+<code>size &gt;= sizeof(void*)</code> </dd>
+<dd>
+<code>num != 0</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem</td><td>memarray pool to initialize </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>pointer to user-allocated data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>size of a single element in data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>number of elements in <code>data</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaae3e3838130cb4081c56b029f50558f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaae3e3838130cb4081c56b029f50558f2">&#9670;&nbsp;</a></span>memarray_reduce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int memarray_reduce </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmemarray__t.html">memarray_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reduce the memarray space, subtracting the memory pool. </p>
+<p>It is up to the user to free all chunks in the reduced pool. The function will check if all elements in the pool are freed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem</td><td>memarray pool to reduce </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>pointer to the user-allocated data to reduce </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>number of elements to reduce the data pool with </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

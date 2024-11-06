@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/cc26x2_cc13x2/include/cc26x2_cc13x2_prcm.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('cc26x2__cc13x2__prcm_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">cc26x2_cc13x2_prcm.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="cc26x2__cc13x2__prcm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 Leon George</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef CC26X2_CC13X2_PRCM_H</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define CC26X2_CC13X2_PRCM_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="cc26xx__cc13xx_8h.html">cc26xx_cc13xx.h</a>&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CTL0; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CTL1; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> RADCEXTCFG; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> AMPCOMPCTL; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> AMPCOMPTH1; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> AMPCOMPTH2; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> ANABYPASSVAL1; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> ANABYPASSVAL2; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> ATESTCTL; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> ADCDOUBLERNANOAMPCTL; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> XOSCHFCTL; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> LFOSCCTL; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> RCOSCHFCTL; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__t.html#a3e3928254ed4e517a024765aef4ef4e7">   43</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structddi0__osc__regs__t.html#a3e3928254ed4e517a024765aef4ef4e7">RCOSCMFCTL</a>; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__t.html#adcee55d757bcab5c7777f0c6623d27f7">   44</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structddi0__osc__regs__t.html#adcee55d757bcab5c7777f0c6623d27f7">__reserved1</a>; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> STAT0; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> STAT1; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> STAT2; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <a class="code" href="structddi0__osc__regs__t.html">ddi0_osc_regs_t</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html">   53</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a62861ccfb55f6fe531c3e6e8c34596f3">   54</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a62861ccfb55f6fe531c3e6e8c34596f3">CTL0</a>; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a39ba3e488211e43f88ca08bed3c05235">   55</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a39ba3e488211e43f88ca08bed3c05235">CTL1</a>; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a94e824ffa90aeb2413d016df5738a18e">   56</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a94e824ffa90aeb2413d016df5738a18e">RADCEXTCFG</a>; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a10823e9cb59294f095d9bac281a39a05">   57</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a10823e9cb59294f095d9bac281a39a05">AMPCOMPCTL</a>; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#ae13b72358b36a219988ad407415999ea">   58</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#ae13b72358b36a219988ad407415999ea">AMPCOMPTH1</a>; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a1930958859471ede97830ad12b143a92">   59</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a1930958859471ede97830ad12b143a92">AMPCOMPTH2</a>; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a23839287737d37d4895f54b169cf9bc6">   60</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a23839287737d37d4895f54b169cf9bc6">ANABYPASSVAL1</a>; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#ade695e2b49cad7e67b493cb5120b1c7d">   61</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#ade695e2b49cad7e67b493cb5120b1c7d">ANABYPASSVAL2</a>; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#ad237d6509c8712b61beec93d52acc11e">   62</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#ad237d6509c8712b61beec93d52acc11e">ATESTCTL</a>; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a158c2b03ac98ef9dfff4fb7927646bf8">   63</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a158c2b03ac98ef9dfff4fb7927646bf8">ADCDOUBLERNANOAMPCTL</a>; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a2ab5eace925cd9454ea125318ba7272e">   64</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a2ab5eace925cd9454ea125318ba7272e">XOSCHFCTL</a>; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a7876ce802528ea32b6864ca2638d14b3">   65</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a7876ce802528ea32b6864ca2638d14b3">LFOSCCTL</a>; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#aa285a94135e9d1eb6b5291e0de354bf1">   66</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#aa285a94135e9d1eb6b5291e0de354bf1">RCOSCHFCTL</a>; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a9849ca92b5722dd016ce181d37b158fe">   67</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a9849ca92b5722dd016ce181d37b158fe">RCOSCMFCTL</a>; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a971a419404c7e0a06881ebbd9525f1b3">   68</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a971a419404c7e0a06881ebbd9525f1b3">__reserved1</a>; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#ad4b5c495fa697898975d593622c2a657">   69</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#ad4b5c495fa697898975d593622c2a657">STAT0</a>; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a488d6a1184da126ebc8f5bd62f18b0ba">   70</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a488d6a1184da126ebc8f5bd62f18b0ba">STAT1</a>; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structddi0__osc__regs__m16__t.html#a9100c9b3d4a5177b3f6780632a4d4895">   71</a></span>&#160;    <a class="code" href="structreg32__m16__t.html">reg32_m16_t</a> <a class="code" href="structddi0__osc__regs__m16__t.html#a9100c9b3d4a5177b3f6780632a4d4895">STAT2</a>; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;} <a class="code" href="structddi0__osc__regs__m16__t.html">ddi0_osc_regs_m16_t</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#a46bd158a8d4f1e21034ca410de1c5369">   78</a></span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_SCLK_HF_SRC_SEL_m        0x00000001</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_SCLK_HF_SRC_SEL_s        0</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_SCLK_HF_SRC_SEL_XOSC     0x00000001</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_SCLK_HF_SRC_SEL_RCOSC    0x00000000</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_SCLK_LF_SRC_SEL_m        0x0000000C</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_SCLK_LF_SRC_SEL_s        2</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_ACLK_TDC_SRC_SEL         0x00000180</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_CLK_LOSS_EN              0x00000200</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_XOSC_LF_DIG_BYPASS       0x00000400</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_XOSC_HF_POWER_MODE       0x00000800</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_RCOSC_LF_TRIMMED         0x00001000</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_HPOSC_MODE_EN            0x00004000</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_CLK_DCDC_SRC_SEL_m       0x01000000</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_DOUBLER_RESET_DURATION   0x02000000</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_DOUBLER_START_DURATION   0x0C000000</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_BYPASS_RCOSC_LF_CLK_QUAL 0x10000000</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_BYPASS_XOSC_LF_CLK_QUAL  0x20000000</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define DDI_0_OSC_CTL0_XTAL_IS_24M              0x80000000</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#define DDI_0_OSC_STAT0_PENDINGSCLKHFSWITCHING  0x00000001</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define DDI_0_OSC_STAT0_SCLK_HF_SRC_m           0x10000000</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#define DDI_0_OSC_STAT0_SCLK_HF_SRC_s           28</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#define DDI_0_OSC_STAT0_SCLK_LF_SRC_m           0x60000000</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#define DDI_0_OSC_STAT0_SCLK_LF_SRC_s           29</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define DDI_DIR              0x00000000</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#define DDI_SET              0x00000080</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define DDI_CLR              0x00000100</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#define DDI_MASK4B           0x00000200</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#define DDI_MASK8B           0x00000300</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#define DDI_MASK16B          0x00000400</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="group__cpu__cc26x2__cc13x2__peripheral__memory__map.html#ga93916f09e1ed76fac22f58e8fcc4be3a">  116</a></span>&#160;<span class="preprocessor">#define DDI0_OSC_BASE        (PERIPH_BASE + 0xCA000)</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__cpu__cc26x2__cc13x2__peripheral__memory__map.html#gab3672a6c9f11fde8e6c838b50ddf8538">  120</a></span>&#160;<span class="preprocessor">#define DDI0_OSC_BASE_M16    (DDI0_OSC_BASE + DDI_MASK16B)</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#a3a79f997a72da9fb5b6acc7265db515d">  126</a></span>&#160;<span class="preprocessor">#define DDI_0_OSC            ((ddi0_osc_regs_t *) (DDI0_OSC_BASE))</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#a5eeffd05d7f4335eac78014e38771c84">  130</a></span>&#160;<span class="preprocessor">#define DDI_0_OSC_M16        ((ddi0_osc_regs_m16_t *) (DDI0_OSC_BASE_M16))</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#a69c226c32f77c516b33207cc23179c34">  136</a></span>&#160;<span class="preprocessor">#define OSC_RCOSC_HF         0x00000000 </span></div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#aa167a08c9239cfcfefb8c35bf984ce8b">  137</a></span>&#160;<span class="preprocessor">#define OSC_XOSC_HF          0x00000001 </span></div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#ad193814540e7f52285fd617eed8540fc">  151</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc26x2__cc13x2__prcm_8h.html#ad193814540e7f52285fd617eed8540fc">osc_hf_source_switch</a>(uint32_t osc);</div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html">  157</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a48b728468f477d98f5723e36f5877a38">  158</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a48b728468f477d98f5723e36f5877a38">__reserved1</a>; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#aef024f69e300cdf6a313d6a3a9a67796">  159</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#aef024f69e300cdf6a313d6a3a9a67796">AUXSCECLK</a>; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#ad4ead486145b4f63592af76af45cbb91">  160</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#ad4ead486145b4f63592af76af45cbb91">RAMCFG</a>; </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#ae7dec07b5417fe9b2becd634b6239d94">  161</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#ae7dec07b5417fe9b2becd634b6239d94">__reserved2</a>; </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a5a7e7b942c1289cbc029a9bbf5e0673b">  162</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a5a7e7b942c1289cbc029a9bbf5e0673b">PWRCTL</a>; </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a102231c48b2905ac44172af92f5ff033">  163</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a102231c48b2905ac44172af92f5ff033">PWRSTAT</a>; </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a8a6d48a98d0ff161fb9c3934bbc49941">  164</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a8a6d48a98d0ff161fb9c3934bbc49941">SHUTDOWN</a>; </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#ade4e5b679fa80ac67a1c795654c87043">  165</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#ade4e5b679fa80ac67a1c795654c87043">RECHARGECFG</a>; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#ae1e3c72933aeb658d3b2924c97eff41a">  166</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#ae1e3c72933aeb658d3b2924c97eff41a">RECHARGESTAT</a>; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a28ea171619db94b3798155b525859e37">  167</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a28ea171619db94b3798155b525859e37">OSCCFG</a>; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a8e8c2be053bfd8ec39ed311f391362e8">  168</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a8e8c2be053bfd8ec39ed311f391362e8">RESETCTL</a>; </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a716c045f8f4387ebc81929576ca1f72e">  169</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a716c045f8f4387ebc81929576ca1f72e">SLEEPCTL</a>; </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a12ad87b961aa4b17da5f5852d09f4005">  170</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a12ad87b961aa4b17da5f5852d09f4005">__reserved3</a>; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#af47bac807ccac841eaa149af548ed017">  171</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#af47bac807ccac841eaa149af548ed017">JTAGCFG</a>; </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#aa022f2bf3f7116882a96408ca3633d85">  172</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#aa022f2bf3f7116882a96408ca3633d85">__reserved4</a>; </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="structaon__pmctl__regs__t.html#a7daaf256f348701b2c585431bae7c8a5">  173</a></span>&#160;   <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__pmctl__regs__t.html#a7daaf256f348701b2c585431bae7c8a5">JTAGUSERCODE</a>; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;} <a class="code" href="structaon__pmctl__regs__t.html">aon_pmctl_regs_t</a>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#ac276829d8b5b515e48d7c72bcddedf90">  180</a></span>&#160;<span class="preprocessor">#define AON_PMCTL_SLEEPCTL_IO_PAD_SLEEP_DIS 0x00000001</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_BOOT_DET_1_CLR_m 0x02000000</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_BOOT_DET_0_CLR_m 0x01000000</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_BOOT_DET_1_SET_m 0x00020000</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_BOOT_DET_0_SET_m 0x00010000</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_BOOT_DET_1_m     0x00002000</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_BOOT_DET_0_m     0x00001000</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_BOOT_DET_0_s     12</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#define AON_PMCTL_RESETCTL_MCU_WARM_RESET_m 0x00000010</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="group__cpu__specific__peripheral__memory__map.html#ga9f79dda55435a04105558f3fb022b9e6">  198</a></span>&#160;<span class="preprocessor">#define AON_PMCTL_BASE       (PERIPH_BASE + 0x90000)</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#ae58d30159e5b0a12011afc691e6eaa4f">  204</a></span>&#160;<span class="preprocessor">#define AON_PMCTL            ((aon_pmctl_regs_t *) (AON_PMCTL_BASE))</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CTL; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> EVFLAGS; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SEC; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SUBSEC; </div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SUBSECINC; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CHCTL; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CH0CMP; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CH1CMP; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CH2CMP; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CH2CMPINC; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CH1CAPT; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SYNC; </div>
+<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="structaon__rtc__regs__t.html#a27a1fa5eaa49dd281c4d1138d6864d07">  222</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__rtc__regs__t.html#a27a1fa5eaa49dd281c4d1138d6864d07">TIME</a>; </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="structaon__rtc__regs__t.html#a977d2ab1134841ed082059553ca4ba2c">  223</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structaon__rtc__regs__t.html#a977d2ab1134841ed082059553ca4ba2c">SYNCLF</a>; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;} <a class="code" href="structaon__rtc__regs__t.html">aon_rtc_regs_t</a>;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#ab3a4ae444a34de27ca96c196ac211b43">  232</a></span>&#160;<span class="preprocessor">#define AON_RTC_CTL_RTC_UPD_EN 0x00000002</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="group__cpu__specific__peripheral__memory__map.html#ga970a2d6a2505152440e60300ca212d93">  237</a></span>&#160;<span class="preprocessor">#define AON_RTC_BASE (PERIPH_BASE + 0x92000) </span></div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#a4ae9b27955e4da5b95407ec1ea943fff">  240</a></span>&#160;<span class="preprocessor">#define AON_RTC ((aon_rtc_regs_t *) (AON_RTC_BASE)) </span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> INFRCLKDIVR; </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> INFRCLKDIVS; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> INFRCLKDIVDS; </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> VDCTL; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved1[6]; </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CLKLOADCTL; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> RFCCLKG; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> VIMSCLKG; </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved2[2]; </div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SECDMACLKGR; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SECDMACLKGS; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SECDMACLKGDS; </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> GPIOCLKGR; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> GPIOCLKGS; </div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> GPIOCLKGDS; </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> GPTCLKGR; </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> GPTCLKGS; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> GPTCLKGDS; </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2CCLKGR; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2CCLKGS; </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2CCLKGDS; </div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> UARTCLKGR; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> UARTCLKGS; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> UARTCLKGDS; </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SSICLKGR; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SSICLKGS; </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> SSICLKGDS; </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SCLKGR; </div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SCLKGS; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SCLKGDS; </div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved3[9]; </div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a8fc7d6bade3f0d622daf7aa4e169925d">  277</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a8fc7d6bade3f0d622daf7aa4e169925d">SYSBUSCLKDIV</a>; </div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> CPUCLKDIV; </div>
+<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#afff5d96ca54731aecbcacd3010267cb5">  279</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#afff5d96ca54731aecbcacd3010267cb5">PERBUSCPUCLKDIV</a>; </div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved4; </div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#af64d1265dab919a8c3e3d823a8cb0704">  281</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#af64d1265dab919a8c3e3d823a8cb0704">PERDMACLKDIV</a>; </div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SBCLKSEL; </div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> GPTCLKDIV; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SCLKCTL; </div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SMCLKDIV; </div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SBCLKDIV; </div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> I2SWCLKDIV; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved5[4]; </div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a5e507e0b962441a21b4cd69843b98fbc">  289</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a5e507e0b962441a21b4cd69843b98fbc">RESETSECDMA</a>; </div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a09d3725bcffedd734baee6e20ef4bc27">  290</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a09d3725bcffedd734baee6e20ef4bc27">RESETGPIO</a>; </div>
+<div class="line"><a name="l00291"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#aa233840c980c898aa47cda83da786cd7">  291</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#aa233840c980c898aa47cda83da786cd7">RESETGPT</a>; </div>
+<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a75d57d0af55c34decd400193cbfa1c80">  292</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a75d57d0af55c34decd400193cbfa1c80">RESETI2C</a>; </div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a2080a1730289c68018a09aeaf7b6ab0a">  293</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a2080a1730289c68018a09aeaf7b6ab0a">RESETUART</a>; </div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a01051769b5bae89a9891fe89b43c1f3b">  294</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a01051769b5bae89a9891fe89b43c1f3b">RESETSSI</a>; </div>
+<div class="line"><a name="l00295"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a537da8fa76f66c6084571717a6b982e1">  295</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a537da8fa76f66c6084571717a6b982e1">RESETI2S</a>; </div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved6[8]; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL0; </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL0RFC; </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL0SERIAL; </div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL0PERIPH; </div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved7; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT0; </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT0RFC; </div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT0SERIAL; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT0PERIPH; </div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved8[11]; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL1; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved9; </div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL1CPU; </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL1RFC; </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDCTL1VIMS; </div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved10; </div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT1; </div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT1BUS; </div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT1RFC; </div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT1CPU; </div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> PDSTAT1VIMS; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved11[9]; </div>
+<div class="line"><a name="l00319"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a67660a6a3bda8766640b66a3ef25478f">  319</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a67660a6a3bda8766640b66a3ef25478f">RFCBITS</a>; </div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> RFCMODESEL; </div>
+<div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a32f3e1ba5724e44f495bbf4731070269">  321</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a32f3e1ba5724e44f495bbf4731070269">RFCMODEHWOPT</a>; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved12[2]; </div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#aef661c232a61fce8ffd9c5b00a6ac055">  323</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#aef661c232a61fce8ffd9c5b00a6ac055">PWRPROFSTAT</a>; </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved13[14]; </div>
+<div class="line"><a name="l00325"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#ae0d6a4c6a49e3532c471417ecebe50b7">  325</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#ae0d6a4c6a49e3532c471417ecebe50b7">MCUSRAMCFG</a>; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved14; </div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> RAMRETEN; </div>
+<div class="line"><a name="l00328"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#ae61e60b8816580fe40686d9816a446fc">  328</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> __reserved15[27]; </div>
+<div class="line"><a name="l00329"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a546a1375c03fc948fce54c029f5ae834">  329</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a546a1375c03fc948fce54c029f5ae834">OSCIMSC</a>; </div>
+<div class="line"><a name="l00330"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#a57600d664d774222f326a6f85502b749">  330</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#a57600d664d774222f326a6f85502b749">OSCRIS</a>; </div>
+<div class="line"><a name="l00331"></a><span class="lineno"><a class="line" href="structprcm__regs__t.html#ac2c5b84c61c7e02312b124ca543f64a3">  331</a></span>&#160;    <a class="code" href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a> <a class="code" href="structprcm__regs__t.html#ac2c5b84c61c7e02312b124ca543f64a3">OSCICR</a>; </div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;} <a class="code" href="structprcm__regs__t.html">prcm_regs_t</a>;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
+<div class="line"><a name="l00338"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#a9a7bdd8690260b992060da04bc34e3b5">  338</a></span>&#160;<span class="preprocessor">#define CLKLOADCTL_LOAD        0x1</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="preprocessor">#define CLKLOADCTL_LOADDONE    0x2</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="preprocessor">#define PDCTL0_RFC_ON       0x1</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="preprocessor">#define PDCTL0_SERIAL_ON    0x2</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="preprocessor">#define PDCTL0_PERIPH_ON    0x4</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="preprocessor">#define PDSTAT0_RFC_ON       0x1</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="preprocessor">#define PDSTAT0_SERIAL_ON    0x2</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="preprocessor">#define PDSTAT0_PERIPH_ON    0x4</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="preprocessor">#define PDCTL1_CPU_ON       0x2</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="preprocessor">#define PDCTL1_RFC_ON       0x4</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="preprocessor">#define PDCTL1_VIMS_ON      0x8</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="preprocessor">#define PDSTAT1_CPU_ON      0x2</span></div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="preprocessor">#define PDSTAT1_RFC_ON      0x4</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="preprocessor">#define PDSTAT1_VIMS_ON     0x8</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="preprocessor">#define GPIOCLKGR_CLK_EN        0x1</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="preprocessor">#define I2CCLKGR_CLK_EN         0x1</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="preprocessor">#define UARTCLKGR_CLK_EN_UART0  0x1</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">#define UARTCLKGR_CLK_EN_UART1  0x2</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">#define GPIOCLKGS_CLK_EN        0x1</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="preprocessor">#define I2CCLKGS_CLK_EN         0x1</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">#define UARTCLKGS_CLK_EN_UART0  0x1</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="preprocessor">#define UARTCLKGS_CLK_EN_UART1  0x2</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="preprocessor">#define GPIOCLKGDS_CLK_EN       0x1</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="preprocessor">#define I2CCLKGDS_CLK_EN        0x1</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="preprocessor">#define UARTCLKGDS_CLK_EN_UART0 0x1</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="preprocessor">#define UARTCLKGDS_CLK_EN_UART1 0x2</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno"><a class="line" href="group__cpu__specific__peripheral__memory__map.html#ga401543253f69d73c52bf17b98f52bca9">  377</a></span>&#160;<span class="preprocessor">#define PRCM_BASE        (PERIPH_BASE + 0x82000) </span></div>
+<div class="line"><a name="l00378"></a><span class="lineno"><a class="line" href="group__cpu__specific__peripheral__memory__map.html#ga3bd6361f5594f825e030d77ed3758742">  378</a></span>&#160;<span class="preprocessor">#define PRCM_BASE_NONBUF (PERIPH_BASE_NONBUF + 0x82000) </span></div>
+<div class="line"><a name="l00381"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#adb5ef2ff679b3b7fc3cf80ba81efd141">  381</a></span>&#160;<span class="preprocessor">#define PRCM        ((prcm_regs_t *) (PRCM_BASE)) </span></div>
+<div class="line"><a name="l00382"></a><span class="lineno"><a class="line" href="cc26x2__cc13x2__prcm_8h.html#aae072130ff8a8b76c0c713ea7a298021">  382</a></span>&#160;<span class="preprocessor">#define PRCM_NONBUF ((prcm_regs_t *) (PRCM_BASE_NONBUF)) </span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;} <span class="comment">/* end extern &quot;C&quot; */</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CC26X2_CC13X2_PRCM_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acc26x2__cc13x2__prcm_8h_html_ad193814540e7f52285fd617eed8540fc"><div class="ttname"><a href="cc26x2__cc13x2__prcm_8h.html#ad193814540e7f52285fd617eed8540fc">osc_hf_source_switch</a></div><div class="ttdeci">void osc_hf_source_switch(uint32_t osc)</div><div class="ttdoc">DDI_0_OSC functions.</div></div>
+<div class="ttc" id="acc26xx__cc13xx_8h_html"><div class="ttname"><a href="cc26xx__cc13xx_8h.html">cc26xx_cc13xx.h</a></div><div class="ttdoc">CC26xx, CC13xx definitions.</div></div>
+<div class="ttc" id="agroup__CC13x2__cmsis_html_ga0e1b07bbc5af28a654767bb3dfb132ad"><div class="ttname"><a href="group__CC13x2__cmsis.html#ga0e1b07bbc5af28a654767bb3dfb132ad">reg32_t</a></div><div class="ttdeci">volatile uint32_t reg32_t</div><div class="ttdoc">Unsigned 32-bit register type.</div><div class="ttdef"><b>Definition:</b> cc26xx_cc13xx.h:40</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html"><div class="ttname"><a href="structaon__pmctl__regs__t.html">aon_pmctl_regs_t</a></div><div class="ttdoc">AON_PMCTL registers.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:157</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a102231c48b2905ac44172af92f5ff033"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a102231c48b2905ac44172af92f5ff033">aon_pmctl_regs_t::PWRSTAT</a></div><div class="ttdeci">reg32_t PWRSTAT</div><div class="ttdoc">Power status.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:163</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a12ad87b961aa4b17da5f5852d09f4005"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a12ad87b961aa4b17da5f5852d09f4005">aon_pmctl_regs_t::__reserved3</a></div><div class="ttdeci">reg32_t __reserved3</div><div class="ttdoc">Reserved.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:170</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a28ea171619db94b3798155b525859e37"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a28ea171619db94b3798155b525859e37">aon_pmctl_regs_t::OSCCFG</a></div><div class="ttdeci">reg32_t OSCCFG</div><div class="ttdoc">Oscillator configuration.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:167</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a48b728468f477d98f5723e36f5877a38"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a48b728468f477d98f5723e36f5877a38">aon_pmctl_regs_t::__reserved1</a></div><div class="ttdeci">reg32_t __reserved1</div><div class="ttdoc">Reserved.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:158</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a5a7e7b942c1289cbc029a9bbf5e0673b"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a5a7e7b942c1289cbc029a9bbf5e0673b">aon_pmctl_regs_t::PWRCTL</a></div><div class="ttdeci">reg32_t PWRCTL</div><div class="ttdoc">Power management control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:162</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a716c045f8f4387ebc81929576ca1f72e"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a716c045f8f4387ebc81929576ca1f72e">aon_pmctl_regs_t::SLEEPCTL</a></div><div class="ttdeci">reg32_t SLEEPCTL</div><div class="ttdoc">Reset control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:169</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a7daaf256f348701b2c585431bae7c8a5"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a7daaf256f348701b2c585431bae7c8a5">aon_pmctl_regs_t::JTAGUSERCODE</a></div><div class="ttdeci">reg32_t JTAGUSERCODE</div><div class="ttdoc">JTAG USERCODE.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:173</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a8a6d48a98d0ff161fb9c3934bbc49941"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a8a6d48a98d0ff161fb9c3934bbc49941">aon_pmctl_regs_t::SHUTDOWN</a></div><div class="ttdeci">reg32_t SHUTDOWN</div><div class="ttdoc">Shutdown control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:164</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_a8e8c2be053bfd8ec39ed311f391362e8"><div class="ttname"><a href="structaon__pmctl__regs__t.html#a8e8c2be053bfd8ec39ed311f391362e8">aon_pmctl_regs_t::RESETCTL</a></div><div class="ttdeci">reg32_t RESETCTL</div><div class="ttdoc">Reset control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:168</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_aa022f2bf3f7116882a96408ca3633d85"><div class="ttname"><a href="structaon__pmctl__regs__t.html#aa022f2bf3f7116882a96408ca3633d85">aon_pmctl_regs_t::__reserved4</a></div><div class="ttdeci">reg32_t __reserved4</div><div class="ttdoc">Reserved.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:172</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_ad4ead486145b4f63592af76af45cbb91"><div class="ttname"><a href="structaon__pmctl__regs__t.html#ad4ead486145b4f63592af76af45cbb91">aon_pmctl_regs_t::RAMCFG</a></div><div class="ttdeci">reg32_t RAMCFG</div><div class="ttdoc">RAM configuration.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:160</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_ade4e5b679fa80ac67a1c795654c87043"><div class="ttname"><a href="structaon__pmctl__regs__t.html#ade4e5b679fa80ac67a1c795654c87043">aon_pmctl_regs_t::RECHARGECFG</a></div><div class="ttdeci">reg32_t RECHARGECFG</div><div class="ttdoc">Recharge controller configuration.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:165</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_ae1e3c72933aeb658d3b2924c97eff41a"><div class="ttname"><a href="structaon__pmctl__regs__t.html#ae1e3c72933aeb658d3b2924c97eff41a">aon_pmctl_regs_t::RECHARGESTAT</a></div><div class="ttdeci">reg32_t RECHARGESTAT</div><div class="ttdoc">Recharge controller status.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:166</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_ae7dec07b5417fe9b2becd634b6239d94"><div class="ttname"><a href="structaon__pmctl__regs__t.html#ae7dec07b5417fe9b2becd634b6239d94">aon_pmctl_regs_t::__reserved2</a></div><div class="ttdeci">reg32_t __reserved2</div><div class="ttdoc">Reserved.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:161</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_aef024f69e300cdf6a313d6a3a9a67796"><div class="ttname"><a href="structaon__pmctl__regs__t.html#aef024f69e300cdf6a313d6a3a9a67796">aon_pmctl_regs_t::AUXSCECLK</a></div><div class="ttdeci">reg32_t AUXSCECLK</div><div class="ttdoc">AUX SCE management.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:159</div></div>
+<div class="ttc" id="astructaon__pmctl__regs__t_html_af47bac807ccac841eaa149af548ed017"><div class="ttname"><a href="structaon__pmctl__regs__t.html#af47bac807ccac841eaa149af548ed017">aon_pmctl_regs_t::JTAGCFG</a></div><div class="ttdeci">reg32_t JTAGCFG</div><div class="ttdoc">JTAG configuration.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:171</div></div>
+<div class="ttc" id="astructaon__rtc__regs__t_html"><div class="ttname"><a href="structaon__rtc__regs__t.html">aon_rtc_regs_t</a></div><div class="ttdoc">AON_RTC registers.</div><div class="ttdef"><b>Definition:</b> cc26x0_cc13x0_prcm.h:201</div></div>
+<div class="ttc" id="astructaon__rtc__regs__t_html_a27a1fa5eaa49dd281c4d1138d6864d07"><div class="ttname"><a href="structaon__rtc__regs__t.html#a27a1fa5eaa49dd281c4d1138d6864d07">aon_rtc_regs_t::TIME</a></div><div class="ttdeci">reg32_t TIME</div><div class="ttdoc">Current Counter Value.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:222</div></div>
+<div class="ttc" id="astructaon__rtc__regs__t_html_a977d2ab1134841ed082059553ca4ba2c"><div class="ttname"><a href="structaon__rtc__regs__t.html#a977d2ab1134841ed082059553ca4ba2c">aon_rtc_regs_t::SYNCLF</a></div><div class="ttdeci">reg32_t SYNCLF</div><div class="ttdoc">Synchronization to SCLK_LF.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:223</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html">ddi0_osc_regs_m16_t</a></div><div class="ttdoc">DDI_0_OSC registers with masked 16-bit access.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:53</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a10823e9cb59294f095d9bac281a39a05"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a10823e9cb59294f095d9bac281a39a05">ddi0_osc_regs_m16_t::AMPCOMPCTL</a></div><div class="ttdeci">reg32_m16_t AMPCOMPCTL</div><div class="ttdoc">Amplitude Compensation Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:57</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a158c2b03ac98ef9dfff4fb7927646bf8"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a158c2b03ac98ef9dfff4fb7927646bf8">ddi0_osc_regs_m16_t::ADCDOUBLERNANOAMPCTL</a></div><div class="ttdeci">reg32_m16_t ADCDOUBLERNANOAMPCTL</div><div class="ttdoc">ADC Doubler Nanoamp Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:63</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a1930958859471ede97830ad12b143a92"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a1930958859471ede97830ad12b143a92">ddi0_osc_regs_m16_t::AMPCOMPTH2</a></div><div class="ttdeci">reg32_m16_t AMPCOMPTH2</div><div class="ttdoc">Amplitude Compensation Threshold 2.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:59</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a23839287737d37d4895f54b169cf9bc6"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a23839287737d37d4895f54b169cf9bc6">ddi0_osc_regs_m16_t::ANABYPASSVAL1</a></div><div class="ttdeci">reg32_m16_t ANABYPASSVAL1</div><div class="ttdoc">Analog Bypass Values 1.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:60</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a2ab5eace925cd9454ea125318ba7272e"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a2ab5eace925cd9454ea125318ba7272e">ddi0_osc_regs_m16_t::XOSCHFCTL</a></div><div class="ttdeci">reg32_m16_t XOSCHFCTL</div><div class="ttdoc">XOSCHF Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:64</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a39ba3e488211e43f88ca08bed3c05235"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a39ba3e488211e43f88ca08bed3c05235">ddi0_osc_regs_m16_t::CTL1</a></div><div class="ttdeci">reg32_m16_t CTL1</div><div class="ttdoc">Control 1.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:55</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a488d6a1184da126ebc8f5bd62f18b0ba"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a488d6a1184da126ebc8f5bd62f18b0ba">ddi0_osc_regs_m16_t::STAT1</a></div><div class="ttdeci">reg32_m16_t STAT1</div><div class="ttdoc">Status 1.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:70</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a62861ccfb55f6fe531c3e6e8c34596f3"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a62861ccfb55f6fe531c3e6e8c34596f3">ddi0_osc_regs_m16_t::CTL0</a></div><div class="ttdeci">reg32_m16_t CTL0</div><div class="ttdoc">Control 0.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:54</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a7876ce802528ea32b6864ca2638d14b3"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a7876ce802528ea32b6864ca2638d14b3">ddi0_osc_regs_m16_t::LFOSCCTL</a></div><div class="ttdeci">reg32_m16_t LFOSCCTL</div><div class="ttdoc">Low Frequency Oscillator Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:65</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a9100c9b3d4a5177b3f6780632a4d4895"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a9100c9b3d4a5177b3f6780632a4d4895">ddi0_osc_regs_m16_t::STAT2</a></div><div class="ttdeci">reg32_m16_t STAT2</div><div class="ttdoc">Status 2.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:71</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a94e824ffa90aeb2413d016df5738a18e"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a94e824ffa90aeb2413d016df5738a18e">ddi0_osc_regs_m16_t::RADCEXTCFG</a></div><div class="ttdeci">reg32_m16_t RADCEXTCFG</div><div class="ttdoc">RADC External Configuration.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:56</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a971a419404c7e0a06881ebbd9525f1b3"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a971a419404c7e0a06881ebbd9525f1b3">ddi0_osc_regs_m16_t::__reserved1</a></div><div class="ttdeci">reg32_m16_t __reserved1</div><div class="ttdoc">Reserved.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:68</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_a9849ca92b5722dd016ce181d37b158fe"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#a9849ca92b5722dd016ce181d37b158fe">ddi0_osc_regs_m16_t::RCOSCMFCTL</a></div><div class="ttdeci">reg32_m16_t RCOSCMFCTL</div><div class="ttdoc">RCOSC_MF Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:67</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_aa285a94135e9d1eb6b5291e0de354bf1"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#aa285a94135e9d1eb6b5291e0de354bf1">ddi0_osc_regs_m16_t::RCOSCHFCTL</a></div><div class="ttdeci">reg32_m16_t RCOSCHFCTL</div><div class="ttdoc">RCOSCHF Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:66</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_ad237d6509c8712b61beec93d52acc11e"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#ad237d6509c8712b61beec93d52acc11e">ddi0_osc_regs_m16_t::ATESTCTL</a></div><div class="ttdeci">reg32_m16_t ATESTCTL</div><div class="ttdoc">Analog Test Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:62</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_ad4b5c495fa697898975d593622c2a657"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#ad4b5c495fa697898975d593622c2a657">ddi0_osc_regs_m16_t::STAT0</a></div><div class="ttdeci">reg32_m16_t STAT0</div><div class="ttdoc">Status 0.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:69</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_ade695e2b49cad7e67b493cb5120b1c7d"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#ade695e2b49cad7e67b493cb5120b1c7d">ddi0_osc_regs_m16_t::ANABYPASSVAL2</a></div><div class="ttdeci">reg32_m16_t ANABYPASSVAL2</div><div class="ttdoc">Internal.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:61</div></div>
+<div class="ttc" id="astructddi0__osc__regs__m16__t_html_ae13b72358b36a219988ad407415999ea"><div class="ttname"><a href="structddi0__osc__regs__m16__t.html#ae13b72358b36a219988ad407415999ea">ddi0_osc_regs_m16_t::AMPCOMPTH1</a></div><div class="ttdeci">reg32_m16_t AMPCOMPTH1</div><div class="ttdoc">Amplitude Compensation Threshold 1.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:58</div></div>
+<div class="ttc" id="astructddi0__osc__regs__t_html"><div class="ttname"><a href="structddi0__osc__regs__t.html">ddi0_osc_regs_t</a></div><div class="ttdoc">DDI_0_OSC registers.</div><div class="ttdef"><b>Definition:</b> cc26x0_cc13x0_prcm.h:29</div></div>
+<div class="ttc" id="astructddi0__osc__regs__t_html_a3e3928254ed4e517a024765aef4ef4e7"><div class="ttname"><a href="structddi0__osc__regs__t.html#a3e3928254ed4e517a024765aef4ef4e7">ddi0_osc_regs_t::RCOSCMFCTL</a></div><div class="ttdeci">reg32_t RCOSCMFCTL</div><div class="ttdoc">RCOSC_MF Control.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:43</div></div>
+<div class="ttc" id="astructddi0__osc__regs__t_html_adcee55d757bcab5c7777f0c6623d27f7"><div class="ttname"><a href="structddi0__osc__regs__t.html#adcee55d757bcab5c7777f0c6623d27f7">ddi0_osc_regs_t::__reserved1</a></div><div class="ttdeci">reg32_t __reserved1</div><div class="ttdoc">Reserved.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:44</div></div>
+<div class="ttc" id="astructprcm__regs__t_html"><div class="ttname"><a href="structprcm__regs__t.html">prcm_regs_t</a></div><div class="ttdoc">PRCM registers.</div><div class="ttdef"><b>Definition:</b> cc26x0_cc13x0_prcm.h:236</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a01051769b5bae89a9891fe89b43c1f3b"><div class="ttname"><a href="structprcm__regs__t.html#a01051769b5bae89a9891fe89b43c1f3b">prcm_regs_t::RESETSSI</a></div><div class="ttdeci">reg32_t RESETSSI</div><div class="ttdoc">Reset SSI.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:294</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a09d3725bcffedd734baee6e20ef4bc27"><div class="ttname"><a href="structprcm__regs__t.html#a09d3725bcffedd734baee6e20ef4bc27">prcm_regs_t::RESETGPIO</a></div><div class="ttdeci">reg32_t RESETGPIO</div><div class="ttdoc">Reset GPIO.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:290</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a2080a1730289c68018a09aeaf7b6ab0a"><div class="ttname"><a href="structprcm__regs__t.html#a2080a1730289c68018a09aeaf7b6ab0a">prcm_regs_t::RESETUART</a></div><div class="ttdeci">reg32_t RESETUART</div><div class="ttdoc">Reset UART.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:293</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a32f3e1ba5724e44f495bbf4731070269"><div class="ttname"><a href="structprcm__regs__t.html#a32f3e1ba5724e44f495bbf4731070269">prcm_regs_t::RFCMODEHWOPT</a></div><div class="ttdeci">reg32_t RFCMODEHWOPT</div><div class="ttdoc">allowed RFC modes</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:321</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a537da8fa76f66c6084571717a6b982e1"><div class="ttname"><a href="structprcm__regs__t.html#a537da8fa76f66c6084571717a6b982e1">prcm_regs_t::RESETI2S</a></div><div class="ttdeci">reg32_t RESETI2S</div><div class="ttdoc">Reset I2S.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:295</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a546a1375c03fc948fce54c029f5ae834"><div class="ttname"><a href="structprcm__regs__t.html#a546a1375c03fc948fce54c029f5ae834">prcm_regs_t::OSCIMSC</a></div><div class="ttdeci">reg32_t OSCIMSC</div><div class="ttdoc">oscillator interrupt mask</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:329</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a57600d664d774222f326a6f85502b749"><div class="ttname"><a href="structprcm__regs__t.html#a57600d664d774222f326a6f85502b749">prcm_regs_t::OSCRIS</a></div><div class="ttdeci">reg32_t OSCRIS</div><div class="ttdoc">oscillator raw interrupt status</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:330</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a5e507e0b962441a21b4cd69843b98fbc"><div class="ttname"><a href="structprcm__regs__t.html#a5e507e0b962441a21b4cd69843b98fbc">prcm_regs_t::RESETSECDMA</a></div><div class="ttdeci">reg32_t RESETSECDMA</div><div class="ttdoc">Reset SEC and UDMA.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:289</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a67660a6a3bda8766640b66a3ef25478f"><div class="ttname"><a href="structprcm__regs__t.html#a67660a6a3bda8766640b66a3ef25478f">prcm_regs_t::RFCBITS</a></div><div class="ttdeci">reg32_t RFCBITS</div><div class="ttdoc">Control to RFC.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:319</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a75d57d0af55c34decd400193cbfa1c80"><div class="ttname"><a href="structprcm__regs__t.html#a75d57d0af55c34decd400193cbfa1c80">prcm_regs_t::RESETI2C</a></div><div class="ttdeci">reg32_t RESETI2C</div><div class="ttdoc">Reset I2C.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:292</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_a8fc7d6bade3f0d622daf7aa4e169925d"><div class="ttname"><a href="structprcm__regs__t.html#a8fc7d6bade3f0d622daf7aa4e169925d">prcm_regs_t::SYSBUSCLKDIV</a></div><div class="ttdeci">reg32_t SYSBUSCLKDIV</div><div class="ttdoc">System bus clock division factor.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:277</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_aa233840c980c898aa47cda83da786cd7"><div class="ttname"><a href="structprcm__regs__t.html#aa233840c980c898aa47cda83da786cd7">prcm_regs_t::RESETGPT</a></div><div class="ttdeci">reg32_t RESETGPT</div><div class="ttdoc">Reset GPTs.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:291</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_ac2c5b84c61c7e02312b124ca543f64a3"><div class="ttname"><a href="structprcm__regs__t.html#ac2c5b84c61c7e02312b124ca543f64a3">prcm_regs_t::OSCICR</a></div><div class="ttdeci">reg32_t OSCICR</div><div class="ttdoc">oscillator raw interrupt clear</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:331</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_ae0d6a4c6a49e3532c471417ecebe50b7"><div class="ttname"><a href="structprcm__regs__t.html#ae0d6a4c6a49e3532c471417ecebe50b7">prcm_regs_t::MCUSRAMCFG</a></div><div class="ttdeci">reg32_t MCUSRAMCFG</div><div class="ttdoc">MCU SRAM configuration.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:325</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_aef661c232a61fce8ffd9c5b00a6ac055"><div class="ttname"><a href="structprcm__regs__t.html#aef661c232a61fce8ffd9c5b00a6ac055">prcm_regs_t::PWRPROFSTAT</a></div><div class="ttdeci">reg32_t PWRPROFSTAT</div><div class="ttdoc">power profiler register</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:323</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_af64d1265dab919a8c3e3d823a8cb0704"><div class="ttname"><a href="structprcm__regs__t.html#af64d1265dab919a8c3e3d823a8cb0704">prcm_regs_t::PERDMACLKDIV</a></div><div class="ttdeci">reg32_t PERDMACLKDIV</div><div class="ttdoc">DMA clock division factor.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:281</div></div>
+<div class="ttc" id="astructprcm__regs__t_html_afff5d96ca54731aecbcacd3010267cb5"><div class="ttname"><a href="structprcm__regs__t.html#afff5d96ca54731aecbcacd3010267cb5">prcm_regs_t::PERBUSCPUCLKDIV</a></div><div class="ttdeci">reg32_t PERBUSCPUCLKDIV</div><div class="ttdoc">Peripheral bus division factor.</div><div class="ttdef"><b>Definition:</b> cc26x2_cc13x2_prcm.h:279</div></div>
+<div class="ttc" id="astructreg32__m16__t_html"><div class="ttname"><a href="structreg32__m16__t.html">reg32_m16_t</a></div><div class="ttdoc">Masked 32-bit register.</div><div class="ttdef"><b>Definition:</b> cc26xx_cc13xx.h:58</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_dba6502363e3a06392838b5f4d478371.html">cc26x2_cc13x2</a></li><li class="navelem"><a class="el" href="dir_2770ff3338bc330f4625676247aa44a2.html">include</a></li><li class="navelem"><a class="el" href="cc26x2__cc13x2__prcm_8h.html">cc26x2_cc13x2_prcm.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

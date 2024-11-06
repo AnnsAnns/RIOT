@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/mtd_spi_nor.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mtd__spi__nor_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mtd_spi_nor.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mtd__spi__nor_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 Eistec AB</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2017 OTA keys S.A.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#ifndef MTD_SPI_NOR_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define MTD_SPI_NOR_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;periph_conf.h&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mtd_8h.html">mtd.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html">   42</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#af51dbf25ff0b397c32f32e6b43e35f9d">   43</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#af51dbf25ff0b397c32f32e6b43e35f9d">rdid</a>;            </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#af56bcd77e3cfb43279eb4643a98d177a">   44</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#af56bcd77e3cfb43279eb4643a98d177a">wren</a>;            </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#afc83f703e757f0bd0542ac3ca2b25e2c">   45</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#afc83f703e757f0bd0542ac3ca2b25e2c">rdsr</a>;            </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#a54eb3fb37a5b86fe96b094c428be5e10">   46</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#a54eb3fb37a5b86fe96b094c428be5e10">wrsr</a>;            </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#a8f30ed1fee594d3d9e0c22d6790e54d2">   47</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#a8f30ed1fee594d3d9e0c22d6790e54d2">read</a>;            </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#a4c10632a87fe45794c676d1564ffd68d">   48</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#a4c10632a87fe45794c676d1564ffd68d">read_fast</a>;       </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#a8af08f0967f056abf4ce3a4cb68082cc">   49</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#a8af08f0967f056abf4ce3a4cb68082cc">page_program</a>;    </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#aea528e7adb614cdda7cf3772d76aa9d8">   50</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#aea528e7adb614cdda7cf3772d76aa9d8">sector_erase</a>;    </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#a5916a6c57d52e6d74f71a939c38a1f6d">   51</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#a5916a6c57d52e6d74f71a939c38a1f6d">block_erase_32k</a>; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#ab04caecd50eb8571a272014e7fcf8596">   52</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#ab04caecd50eb8571a272014e7fcf8596">block_erase_64k</a>; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#a901ead7b51c7cf93f41e7d469fc595bd">   53</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#a901ead7b51c7cf93f41e7d469fc595bd">chip_erase</a>;      </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#ae48b6a09752f9867fa6c40b70a91bc5c">   54</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#ae48b6a09752f9867fa6c40b70a91bc5c">sleep</a>;           </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__opcode__t.html#ac13b15fcf2592c5121453a870b32d779">   55</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__opcode__t.html#ac13b15fcf2592c5121453a870b32d779">wake</a>;            </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">/* TODO: enter 4 byte address mode for large memories */</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;} <a class="code" href="structmtd__spi__nor__opcode__t.html">mtd_spi_nor_opcode_t</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structmtd__jedec__id__t.html">   64</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structmtd__jedec__id__t.html#a8526c01842b574c90266fd284e447ff4">   65</a></span>&#160;    uint8_t <a class="code" href="structmtd__jedec__id__t.html#a8526c01842b574c90266fd284e447ff4">bank</a>;      </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structmtd__jedec__id__t.html#a9a2a181e0ce764044787ab7366d56adf">   66</a></span>&#160;    uint8_t <a class="code" href="structmtd__jedec__id__t.html#a9a2a181e0ce764044787ab7366d56adf">manuf</a>;     </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structmtd__jedec__id__t.html#a5fbeb3242181db80f8b9e65726358b8d">   67</a></span>&#160;    uint8_t device[2]; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;} <a class="code" href="structmtd__jedec__id__t.html">mtd_jedec_id_t</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__drivers__mtd__spi__nor.html#gaea62da6fc7567e17f64b838d0e94a0c6">   75</a></span>&#160;<span class="preprocessor">#define JEDEC_NEXT_BANK (0x7f)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="group__drivers__mtd__spi__nor.html#ga38034dc7bb08b6a3e742e75f32c07c4f">   82</a></span>&#160;<span class="preprocessor">#define JEDEC_BANK_MAX  (10)</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="group__drivers__mtd__spi__nor.html#ga4c5a7b9da43ceef5c8f3f173cc9813e2">   87</a></span>&#160;<span class="preprocessor">#define SPI_NOR_F_SECT_4K   (1)</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="group__drivers__mtd__spi__nor.html#ga9dc56c1141d961001a1f64fff4bfa6f7">   92</a></span>&#160;<span class="preprocessor">#define SPI_NOR_F_SECT_32K  (2)</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group__drivers__mtd__spi__nor.html#ga84d30ef690667c2c1beca634608cb118">   97</a></span>&#160;<span class="preprocessor">#define SPI_NOR_F_SECT_64K  (4)</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html">  102</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a6fb7742bfbbd6583a2c56794932f5000">  103</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structmtd__spi__nor__opcode__t.html">mtd_spi_nor_opcode_t</a> *<a class="code" href="structmtd__spi__nor__params__t.html#a6fb7742bfbbd6583a2c56794932f5000">opcode</a>; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a87eebb1410f285508e32356e47691c83">  104</a></span>&#160;    uint32_t <a class="code" href="structmtd__spi__nor__params__t.html#a87eebb1410f285508e32356e47691c83">wait_chip_erase</a>;   </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#af1249938d9e535c6620143049843a030">  105</a></span>&#160;    uint32_t <a class="code" href="structmtd__spi__nor__params__t.html#af1249938d9e535c6620143049843a030">wait_64k_erase</a>;    </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#adfb0541e8d87accf80c9bc6caa4abab7">  106</a></span>&#160;    uint32_t <a class="code" href="structmtd__spi__nor__params__t.html#adfb0541e8d87accf80c9bc6caa4abab7">wait_32k_erase</a>;    </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a825e05851a6c9745803c502e7dac7bd7">  107</a></span>&#160;    uint32_t <a class="code" href="structmtd__spi__nor__params__t.html#a825e05851a6c9745803c502e7dac7bd7">wait_sector_erase</a>; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a08a096191e2c43e91bf4b8fa1e24104e">  108</a></span>&#160;    uint32_t <a class="code" href="structmtd__spi__nor__params__t.html#a08a096191e2c43e91bf4b8fa1e24104e">wait_chip_wake_up</a>; </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a5828ed5db4d96b283d7e13349732f052">  109</a></span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> <a class="code" href="structmtd__spi__nor__params__t.html#a5828ed5db4d96b283d7e13349732f052">clk</a>;           </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a3a5ba608fa1f7464fe94eb0313f4cb6a">  110</a></span>&#160;    uint16_t <a class="code" href="structmtd__spi__nor__params__t.html#a3a5ba608fa1f7464fe94eb0313f4cb6a">flag</a>;           </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a702f701717c39da7feb4d246dae0e015">  111</a></span>&#160;    spi_t <a class="code" href="structmtd__spi__nor__params__t.html#a702f701717c39da7feb4d246dae0e015">spi</a>;               </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a7388fd8197bad9a1850d0b9d413a1b58">  112</a></span>&#160;    <a class="code" href="msp430_2include_2f2xx__g2xx_2periph__cpu_8h.html#ac4b206a51636d91c5cffcbcee458c3cb">spi_mode_t</a> <a class="code" href="structmtd__spi__nor__params__t.html#a7388fd8197bad9a1850d0b9d413a1b58">mode</a>;         </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a898be66fd885e69f88d1ac12f99e48ba">  113</a></span>&#160;    gpio_t <a class="code" href="structmtd__spi__nor__params__t.html#a898be66fd885e69f88d1ac12f99e48ba">cs</a>;               </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a240d0d73443ffea2c79c779bc5782083">  114</a></span>&#160;    gpio_t <a class="code" href="structmtd__spi__nor__params__t.html#a240d0d73443ffea2c79c779bc5782083">wp</a>;               </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__params__t.html#a1c64a2c9c34d4fc356ead4146f3dbf52">  115</a></span>&#160;    gpio_t <a class="code" href="structmtd__spi__nor__params__t.html#a1c64a2c9c34d4fc356ead4146f3dbf52">hold</a>;             </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;} <a class="code" href="structmtd__spi__nor__params__t.html">mtd_spi_nor_params_t</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html">  123</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#a5e7566a79757a8b3ae3bc010cce63d6e">  124</a></span>&#160;    <a class="code" href="structmtd__dev__t.html">mtd_dev_t</a> <a class="code" href="structmtd__spi__nor__t.html#a5e7566a79757a8b3ae3bc010cce63d6e">base</a>;          </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#a6b92fa57ddf6e2b218799003253b12d3">  125</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structmtd__spi__nor__params__t.html">mtd_spi_nor_params_t</a> *<a class="code" href="structmtd__spi__nor__t.html#a6b92fa57ddf6e2b218799003253b12d3">params</a>; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#a4af66c3f88d6b33431237515c48dc774">  126</a></span>&#160;    <a class="code" href="structmtd__jedec__id__t.html">mtd_jedec_id_t</a> <a class="code" href="structmtd__spi__nor__t.html#a4af66c3f88d6b33431237515c48dc774">jedec_id</a>; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#a0602ceba18303c236cb39bfb516d9f35">  133</a></span>&#160;    uint32_t <a class="code" href="structmtd__spi__nor__t.html#a0602ceba18303c236cb39bfb516d9f35">page_addr_mask</a>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#abc5fddace93fba81caaed121bf866fac">  139</a></span>&#160;    uint32_t <a class="code" href="structmtd__spi__nor__t.html#abc5fddace93fba81caaed121bf866fac">sec_addr_mask</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#ac5e8c0762d54a9cb9b71b8864eba9e26">  145</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__t.html#ac5e8c0762d54a9cb9b71b8864eba9e26">page_addr_shift</a>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#a7093bbebb387f2ba9b7fcb11630592a7">  151</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__t.html#a7093bbebb387f2ba9b7fcb11630592a7">sec_addr_shift</a>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structmtd__spi__nor__t.html#af3375ee883b3291e7d4d5525367c9749">  157</a></span>&#160;    uint8_t <a class="code" href="structmtd__spi__nor__t.html#af3375ee883b3291e7d4d5525367c9749">addr_width</a>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;} <a class="code" href="structmtd__spi__nor__t.html">mtd_spi_nor_t</a>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="structmtd__desc.html">mtd_desc_t</a> <a class="code" href="group__drivers__mtd__spi__nor.html#gac22c586a8b05f92d01bbbcfffaec552b">mtd_spi_nor_driver</a>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">/* Available opcode tables for known devices */</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">/* Defined in mtd_spi_nor_configs.c */</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="structmtd__spi__nor__opcode__t.html">mtd_spi_nor_opcode_t</a> <a class="code" href="group__drivers__mtd__spi__nor.html#ga3125f86f0fccaee059286f3e24fb20b4">mtd_spi_nor_opcode_default</a>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <a class="code" href="structmtd__spi__nor__opcode__t.html">mtd_spi_nor_opcode_t</a> <a class="code" href="group__drivers__mtd__spi__nor.html#gae5b39cdad8b563b2d6e3844cb868ace8">mtd_spi_nor_opcode_default_4bytes</a>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;}</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MTD_SPI_NOR_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__mtd__spi__nor_html_ga3125f86f0fccaee059286f3e24fb20b4"><div class="ttname"><a href="group__drivers__mtd__spi__nor.html#ga3125f86f0fccaee059286f3e24fb20b4">mtd_spi_nor_opcode_default</a></div><div class="ttdeci">const mtd_spi_nor_opcode_t mtd_spi_nor_opcode_default</div><div class="ttdoc">Default command opcodes.</div></div>
+<div class="ttc" id="agroup__drivers__mtd__spi__nor_html_gac22c586a8b05f92d01bbbcfffaec552b"><div class="ttname"><a href="group__drivers__mtd__spi__nor.html#gac22c586a8b05f92d01bbbcfffaec552b">mtd_spi_nor_driver</a></div><div class="ttdeci">const mtd_desc_t mtd_spi_nor_driver</div><div class="ttdoc">NOR flash SPI MTD device operations table.</div></div>
+<div class="ttc" id="agroup__drivers__mtd__spi__nor_html_gae5b39cdad8b563b2d6e3844cb868ace8"><div class="ttname"><a href="group__drivers__mtd__spi__nor.html#gae5b39cdad8b563b2d6e3844cb868ace8">mtd_spi_nor_opcode_default_4bytes</a></div><div class="ttdeci">const mtd_spi_nor_opcode_t mtd_spi_nor_opcode_default_4bytes</div><div class="ttdoc">Default 4-byte addresses opcodes.</div></div>
+<div class="ttc" id="amsp430_2include_2f2xx__g2xx_2periph__cpu_8h_html_ac4b206a51636d91c5cffcbcee458c3cb"><div class="ttname"><a href="msp430_2include_2f2xx__g2xx_2periph__cpu_8h.html#ac4b206a51636d91c5cffcbcee458c3cb">spi_mode_t</a></div><div class="ttdeci">spi_mode_t</div><div class="ttdoc">Support SPI modes.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:43</div></div>
+<div class="ttc" id="amtd_8h_html"><div class="ttname"><a href="mtd_8h.html">mtd.h</a></div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructmtd__desc_html"><div class="ttname"><a href="structmtd__desc.html">mtd_desc</a></div><div class="ttdoc">MTD driver interface.</div><div class="ttdef"><b>Definition:</b> mtd.h:204</div></div>
+<div class="ttc" id="astructmtd__dev__t_html"><div class="ttname"><a href="structmtd__dev__t.html">mtd_dev_t</a></div><div class="ttdoc">MTD device descriptor.</div><div class="ttdef"><b>Definition:</b> mtd.h:112</div></div>
+<div class="ttc" id="astructmtd__jedec__id__t_html"><div class="ttname"><a href="structmtd__jedec__id__t.html">mtd_jedec_id_t</a></div><div class="ttdoc">Internal representation of JEDEC memory ID codes.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:64</div></div>
+<div class="ttc" id="astructmtd__jedec__id__t_html_a8526c01842b574c90266fd284e447ff4"><div class="ttname"><a href="structmtd__jedec__id__t.html#a8526c01842b574c90266fd284e447ff4">mtd_jedec_id_t::bank</a></div><div class="ttdeci">uint8_t bank</div><div class="ttdoc">Manufacturer ID bank number, 1 through 10, see JEP106.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:65</div></div>
+<div class="ttc" id="astructmtd__jedec__id__t_html_a9a2a181e0ce764044787ab7366d56adf"><div class="ttname"><a href="structmtd__jedec__id__t.html#a9a2a181e0ce764044787ab7366d56adf">mtd_jedec_id_t::manuf</a></div><div class="ttdeci">uint8_t manuf</div><div class="ttdoc">Manufacturer ID, 1 byte.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:66</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html">mtd_spi_nor_opcode_t</a></div><div class="ttdoc">SPI NOR flash opcode table.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:42</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_a4c10632a87fe45794c676d1564ffd68d"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#a4c10632a87fe45794c676d1564ffd68d">mtd_spi_nor_opcode_t::read_fast</a></div><div class="ttdeci">uint8_t read_fast</div><div class="ttdoc">Read data bytes, 3 byte address, at higher speed.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:48</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_a54eb3fb37a5b86fe96b094c428be5e10"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#a54eb3fb37a5b86fe96b094c428be5e10">mtd_spi_nor_opcode_t::wrsr</a></div><div class="ttdeci">uint8_t wrsr</div><div class="ttdoc">Write status register.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:46</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_a5916a6c57d52e6d74f71a939c38a1f6d"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#a5916a6c57d52e6d74f71a939c38a1f6d">mtd_spi_nor_opcode_t::block_erase_32k</a></div><div class="ttdeci">uint8_t block_erase_32k</div><div class="ttdoc">32KiB block erase</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:51</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_a8af08f0967f056abf4ce3a4cb68082cc"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#a8af08f0967f056abf4ce3a4cb68082cc">mtd_spi_nor_opcode_t::page_program</a></div><div class="ttdeci">uint8_t page_program</div><div class="ttdoc">Page program.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:49</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_a8f30ed1fee594d3d9e0c22d6790e54d2"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#a8f30ed1fee594d3d9e0c22d6790e54d2">mtd_spi_nor_opcode_t::read</a></div><div class="ttdeci">uint8_t read</div><div class="ttdoc">Read data bytes, 3 byte address.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:47</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_a901ead7b51c7cf93f41e7d469fc595bd"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#a901ead7b51c7cf93f41e7d469fc595bd">mtd_spi_nor_opcode_t::chip_erase</a></div><div class="ttdeci">uint8_t chip_erase</div><div class="ttdoc">Chip erase.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:53</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_ab04caecd50eb8571a272014e7fcf8596"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#ab04caecd50eb8571a272014e7fcf8596">mtd_spi_nor_opcode_t::block_erase_64k</a></div><div class="ttdeci">uint8_t block_erase_64k</div><div class="ttdoc">Block erase (usually 64 KiB)</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:52</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_ac13b15fcf2592c5121453a870b32d779"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#ac13b15fcf2592c5121453a870b32d779">mtd_spi_nor_opcode_t::wake</a></div><div class="ttdeci">uint8_t wake</div><div class="ttdoc">Release from deep power down.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:55</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_ae48b6a09752f9867fa6c40b70a91bc5c"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#ae48b6a09752f9867fa6c40b70a91bc5c">mtd_spi_nor_opcode_t::sleep</a></div><div class="ttdeci">uint8_t sleep</div><div class="ttdoc">Deep power down.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:54</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_aea528e7adb614cdda7cf3772d76aa9d8"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#aea528e7adb614cdda7cf3772d76aa9d8">mtd_spi_nor_opcode_t::sector_erase</a></div><div class="ttdeci">uint8_t sector_erase</div><div class="ttdoc">Block erase 4 KiB.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:50</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_af51dbf25ff0b397c32f32e6b43e35f9d"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#af51dbf25ff0b397c32f32e6b43e35f9d">mtd_spi_nor_opcode_t::rdid</a></div><div class="ttdeci">uint8_t rdid</div><div class="ttdoc">Read identification (JEDEC ID)</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:43</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_af56bcd77e3cfb43279eb4643a98d177a"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#af56bcd77e3cfb43279eb4643a98d177a">mtd_spi_nor_opcode_t::wren</a></div><div class="ttdeci">uint8_t wren</div><div class="ttdoc">Write enable.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:44</div></div>
+<div class="ttc" id="astructmtd__spi__nor__opcode__t_html_afc83f703e757f0bd0542ac3ca2b25e2c"><div class="ttname"><a href="structmtd__spi__nor__opcode__t.html#afc83f703e757f0bd0542ac3ca2b25e2c">mtd_spi_nor_opcode_t::rdsr</a></div><div class="ttdeci">uint8_t rdsr</div><div class="ttdoc">Read status register.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:45</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html"><div class="ttname"><a href="structmtd__spi__nor__params__t.html">mtd_spi_nor_params_t</a></div><div class="ttdoc">Compile-time parameters for a serial flash device.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:102</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a08a096191e2c43e91bf4b8fa1e24104e"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a08a096191e2c43e91bf4b8fa1e24104e">mtd_spi_nor_params_t::wait_chip_wake_up</a></div><div class="ttdeci">uint32_t wait_chip_wake_up</div><div class="ttdoc">Chip wake up time in µs.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:108</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a1c64a2c9c34d4fc356ead4146f3dbf52"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a1c64a2c9c34d4fc356ead4146f3dbf52">mtd_spi_nor_params_t::hold</a></div><div class="ttdeci">gpio_t hold</div><div class="ttdoc">HOLD pin GPIO handle.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:115</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a240d0d73443ffea2c79c779bc5782083"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a240d0d73443ffea2c79c779bc5782083">mtd_spi_nor_params_t::wp</a></div><div class="ttdeci">gpio_t wp</div><div class="ttdoc">Write Protect pin GPIO handle.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:114</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a3a5ba608fa1f7464fe94eb0313f4cb6a"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a3a5ba608fa1f7464fe94eb0313f4cb6a">mtd_spi_nor_params_t::flag</a></div><div class="ttdeci">uint16_t flag</div><div class="ttdoc">Config flags.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:110</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a5828ed5db4d96b283d7e13349732f052"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a5828ed5db4d96b283d7e13349732f052">mtd_spi_nor_params_t::clk</a></div><div class="ttdeci">spi_clk_t clk</div><div class="ttdoc">SPI clock.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:109</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a6fb7742bfbbd6583a2c56794932f5000"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a6fb7742bfbbd6583a2c56794932f5000">mtd_spi_nor_params_t::opcode</a></div><div class="ttdeci">const mtd_spi_nor_opcode_t * opcode</div><div class="ttdoc">Opcode table for the device.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:103</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a702f701717c39da7feb4d246dae0e015"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a702f701717c39da7feb4d246dae0e015">mtd_spi_nor_params_t::spi</a></div><div class="ttdeci">spi_t spi</div><div class="ttdoc">SPI bus the device is connected to.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:111</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a7388fd8197bad9a1850d0b9d413a1b58"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a7388fd8197bad9a1850d0b9d413a1b58">mtd_spi_nor_params_t::mode</a></div><div class="ttdeci">spi_mode_t mode</div><div class="ttdoc">SPI mode.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:112</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a825e05851a6c9745803c502e7dac7bd7"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a825e05851a6c9745803c502e7dac7bd7">mtd_spi_nor_params_t::wait_sector_erase</a></div><div class="ttdeci">uint32_t wait_sector_erase</div><div class="ttdoc">4KB sector erase wait time in µs</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:107</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a87eebb1410f285508e32356e47691c83"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a87eebb1410f285508e32356e47691c83">mtd_spi_nor_params_t::wait_chip_erase</a></div><div class="ttdeci">uint32_t wait_chip_erase</div><div class="ttdoc">Full chip erase wait time in µs.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:104</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_a898be66fd885e69f88d1ac12f99e48ba"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#a898be66fd885e69f88d1ac12f99e48ba">mtd_spi_nor_params_t::cs</a></div><div class="ttdeci">gpio_t cs</div><div class="ttdoc">CS pin GPIO handle.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:113</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_adfb0541e8d87accf80c9bc6caa4abab7"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#adfb0541e8d87accf80c9bc6caa4abab7">mtd_spi_nor_params_t::wait_32k_erase</a></div><div class="ttdeci">uint32_t wait_32k_erase</div><div class="ttdoc">32KB page erase wait time in µs</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:106</div></div>
+<div class="ttc" id="astructmtd__spi__nor__params__t_html_af1249938d9e535c6620143049843a030"><div class="ttname"><a href="structmtd__spi__nor__params__t.html#af1249938d9e535c6620143049843a030">mtd_spi_nor_params_t::wait_64k_erase</a></div><div class="ttdeci">uint32_t wait_64k_erase</div><div class="ttdoc">64KB page erase wait time in µs</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:105</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html"><div class="ttname"><a href="structmtd__spi__nor__t.html">mtd_spi_nor_t</a></div><div class="ttdoc">Device descriptor for serial flash memory devices.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:123</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_a0602ceba18303c236cb39bfb516d9f35"><div class="ttname"><a href="structmtd__spi__nor__t.html#a0602ceba18303c236cb39bfb516d9f35">mtd_spi_nor_t::page_addr_mask</a></div><div class="ttdeci">uint32_t page_addr_mask</div><div class="ttdoc">bitmask to corresponding to the page address</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:133</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_a4af66c3f88d6b33431237515c48dc774"><div class="ttname"><a href="structmtd__spi__nor__t.html#a4af66c3f88d6b33431237515c48dc774">mtd_spi_nor_t::jedec_id</a></div><div class="ttdeci">mtd_jedec_id_t jedec_id</div><div class="ttdoc">JEDEC ID of the chip.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:126</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_a5e7566a79757a8b3ae3bc010cce63d6e"><div class="ttname"><a href="structmtd__spi__nor__t.html#a5e7566a79757a8b3ae3bc010cce63d6e">mtd_spi_nor_t::base</a></div><div class="ttdeci">mtd_dev_t base</div><div class="ttdoc">inherit from mtd_dev_t object</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:124</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_a6b92fa57ddf6e2b218799003253b12d3"><div class="ttname"><a href="structmtd__spi__nor__t.html#a6b92fa57ddf6e2b218799003253b12d3">mtd_spi_nor_t::params</a></div><div class="ttdeci">const mtd_spi_nor_params_t * params</div><div class="ttdoc">SPI NOR params.</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:125</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_a7093bbebb387f2ba9b7fcb11630592a7"><div class="ttname"><a href="structmtd__spi__nor__t.html#a7093bbebb387f2ba9b7fcb11630592a7">mtd_spi_nor_t::sec_addr_shift</a></div><div class="ttdeci">uint8_t sec_addr_shift</div><div class="ttdoc">number of right shifts to get the address to the start of the sector</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:151</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_abc5fddace93fba81caaed121bf866fac"><div class="ttname"><a href="structmtd__spi__nor__t.html#abc5fddace93fba81caaed121bf866fac">mtd_spi_nor_t::sec_addr_mask</a></div><div class="ttdeci">uint32_t sec_addr_mask</div><div class="ttdoc">bitmask to corresponding to the sector address</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:139</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_ac5e8c0762d54a9cb9b71b8864eba9e26"><div class="ttname"><a href="structmtd__spi__nor__t.html#ac5e8c0762d54a9cb9b71b8864eba9e26">mtd_spi_nor_t::page_addr_shift</a></div><div class="ttdeci">uint8_t page_addr_shift</div><div class="ttdoc">number of right shifts to get the address to the start of the page</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:145</div></div>
+<div class="ttc" id="astructmtd__spi__nor__t_html_af3375ee883b3291e7d4d5525367c9749"><div class="ttname"><a href="structmtd__spi__nor__t.html#af3375ee883b3291e7d4d5525367c9749">mtd_spi_nor_t::addr_width</a></div><div class="ttdeci">uint8_t addr_width</div><div class="ttdoc">number of address bytes</div><div class="ttdef"><b>Definition:</b> mtd_spi_nor.h:157</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="mtd__spi__nor_8h.html">mtd_spi_nor.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

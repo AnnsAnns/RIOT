@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/hmc5883l.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('hmc5883l_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">hmc5883l.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="hmc5883l_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2018 Gunar Schorcht</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifndef HMC5883L_H</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define HMC5883L_H</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga842da914d7c94f6d4ca50f7b044335d6">   47</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a93848ebbc53ba7120374535b5f787ab6">   48</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a93848ebbc53ba7120374535b5f787ab6">HMC5883L_OK</a>             =  0,  </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6ab779fd0032678a2f057e3e8a83e15d05">   49</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6ab779fd0032678a2f057e3e8a83e15d05">HMC5883L_ERROR_I2C</a>      = -1,  </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a7399e4e9368188375068111dfc420e2b">   50</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a7399e4e9368188375068111dfc420e2b">HMC5883L_ERROR_WRONG_ID</a> = -2,  </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a628f17d71d89839e60a554d5078a6d19">   51</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a628f17d71d89839e60a554d5078a6d19">HMC5883L_ERROR_NO_DATA</a>  = -3,  </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a7fc8cffe55009a15f65f3fb45d1b3fad">   52</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a7fc8cffe55009a15f65f3fb45d1b3fad">HMC5883L_ERROR_RAW_DATA</a> = -4,  </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a58f252989094cff7073e632855d945d0">   53</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a58f252989094cff7073e632855d945d0">HMC5883L_ERROR_COMMON</a>   = -5,  </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;} <a class="code" href="group__drivers__hmc5883l.html#ga842da914d7c94f6d4ca50f7b044335d6">hmc5883l_error_codes_t</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga3e5c11028acf2fcbecadb688cc45e78e">   61</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea4cd36dfe2c711ef43b4fc087960ef026">   62</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea4cd36dfe2c711ef43b4fc087960ef026">HMC5883L_DOR_0_75</a> = 0x00,   </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea7150ff51b1ebbb73170f97d7b4a1a017">   63</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea7150ff51b1ebbb73170f97d7b4a1a017">HMC5883L_DOR_1_5</a>  = 0x04,   </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78eac440bf72ca050439cb51bf7c5be87290">   64</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78eac440bf72ca050439cb51bf7c5be87290">HMC5883L_DOR_3</a>    = 0x08,   </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea2d6a7a7e52edafb84c2f9896eedf751e">   65</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea2d6a7a7e52edafb84c2f9896eedf751e">HMC5883L_DOR_7_5</a>  = 0x0c,   </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea6b5249d0d639822fadc9ae6039c912fb">   66</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea6b5249d0d639822fadc9ae6039c912fb">HMC5883L_DOR_15</a>   = 0x10,   </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea2d52f3a9d99bb14fd9656fcc50a12965">   67</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea2d52f3a9d99bb14fd9656fcc50a12965">HMC5883L_DOR_30</a>   = 0x14,   </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea30199fb23acb74b8279056b69dbd9d33">   68</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea30199fb23acb74b8279056b69dbd9d33">HMC5883L_DOR_75</a>   = 0x18,   </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;} <a class="code" href="group__drivers__hmc5883l.html#ga3e5c11028acf2fcbecadb688cc45e78e">hmc5883l_dor_t</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga96c5201ec65c03524407216582c13523">   76</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523af5b00f62a3510214dc46356cd2632061">   77</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523af5b00f62a3510214dc46356cd2632061">HMC5883L_MEAS_MODE_NORMAL</a>   = 0x00, </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523af20657af5c84b67b6f9c2aeba1fda8b0">   78</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523af20657af5c84b67b6f9c2aeba1fda8b0">HMC5883L_MEAS_MODE_BIAS_POS</a> = 0x01, </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523a567dd03fd716c1a4f56f51bd062fcb2d">   79</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523a567dd03fd716c1a4f56f51bd062fcb2d">HMC5883L_MEAS_MODE_BIAS_NEG</a> = 0x02, </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <a class="code" href="group__drivers__hmc5883l.html#ga96c5201ec65c03524407216582c13523">hmc5883l_meas_mode_t</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gad6109c322ed916c8add64e36dbdfa602">   87</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a0f8bc9f25e919e05789b7b8d5c4ca7be">   88</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a0f8bc9f25e919e05789b7b8d5c4ca7be">HMC5883L_MEAS_AVG_NONE</a> = 0x00,  </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a29df2fbd2cfe15a37316b169a0228ef9">   89</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a29df2fbd2cfe15a37316b169a0228ef9">HMC5883L_MEAS_AVG_2</a>    = 0x20,  </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a47bb8225bacc3e61a1ec10f41b623a9f">   90</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a47bb8225bacc3e61a1ec10f41b623a9f">HMC5883L_MEAS_AVG_4</a>    = 0x40,  </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a39480f2e75ada5dc477598f9a645bf71">   91</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a39480f2e75ada5dc477598f9a645bf71">HMC5883L_MEAS_AVG_8</a>    = 0x60,  </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <a class="code" href="group__drivers__hmc5883l.html#gad6109c322ed916c8add64e36dbdfa602">hmc5883l_meas_avg_t</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gadabcbc5ac02fdfe5ae625f29e42a5c35">   99</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35ab943075aacc8638d7d184577aedc0e3c">  100</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35ab943075aacc8638d7d184577aedc0e3c">HMC5883L_OP_MODE_CONTINUOUS</a> = 0x00, </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35ab103b8056db6f1b7ef39faa39dbb2c39">  101</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35ab103b8056db6f1b7ef39faa39dbb2c39">HMC5883L_OP_MODE_SINGLE</a>     = 0x01, </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35a05a97940c55510f6c4165dc82e88c9cc">  102</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35a05a97940c55510f6c4165dc82e88c9cc">HMC5883L_OP_MODE_IDLE</a>       = 0x02, </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;} <a class="code" href="group__drivers__hmc5883l.html#gadabcbc5ac02fdfe5ae625f29e42a5c35">hmc5883l_op_mode_t</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga8afc10b5440bd119a4b9238fd9fa9920">  110</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a4f8dff983b7cd3d746923b15c8b81381">  111</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a4f8dff983b7cd3d746923b15c8b81381">HMC5883L_GAIN_1370</a> = 0x00,  </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a4c9fb5ef3e6503e2cb8b996eae4ab4d1">  112</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a4c9fb5ef3e6503e2cb8b996eae4ab4d1">HMC5883L_GAIN_1090</a> = 0x20,  </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a6f6d2a7052a5f6034173291b21b09feb">  113</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a6f6d2a7052a5f6034173291b21b09feb">HMC5883L_GAIN_820</a>  = 0x40,  </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920afc7f1827e7a1dc3253a0b29e0c644543">  114</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920afc7f1827e7a1dc3253a0b29e0c644543">HMC5883L_GAIN_660</a>  = 0x60,  </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920ab0bf948de94998b8b52bbe2202c1b497">  115</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920ab0bf948de94998b8b52bbe2202c1b497">HMC5883L_GAIN_440</a>  = 0x80,  </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a1a7dd4a5b0288e8ddf45398f1b35583d">  116</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a1a7dd4a5b0288e8ddf45398f1b35583d">HMC5883L_GAIN_390</a>  = 0xa0,  </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a374a3840fb5f01e1e7cbc03153ea8ec3">  117</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a374a3840fb5f01e1e7cbc03153ea8ec3">HMC5883L_GAIN_330</a>  = 0xc0,  </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a7f55cd7dc7c08cbb1c2a26f00704be51">  118</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a7f55cd7dc7c08cbb1c2a26f00704be51">HMC5883L_GAIN_230</a>  = 0xe0,  </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;} <a class="code" href="group__drivers__hmc5883l.html#ga8afc10b5440bd119a4b9238fd9fa9920">hmc5883l_gain_t</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structhmc5883l__data__t.html">  124</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structhmc5883l__data__t.html#acc41498cfaa134940c6a3149b7d45b96">  125</a></span>&#160;    int16_t <a class="code" href="structhmc5883l__data__t.html#acc41498cfaa134940c6a3149b7d45b96">x</a>;  </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="structhmc5883l__data__t.html#a9cd0553d57bf3d7d6630b63b0e0759e8">  126</a></span>&#160;    int16_t <a class="code" href="structhmc5883l__data__t.html#a9cd0553d57bf3d7d6630b63b0e0759e8">y</a>;  </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="structhmc5883l__data__t.html#a52840a891e32e6cf0f6b9f14ce6b6557">  127</a></span>&#160;    int16_t <a class="code" href="structhmc5883l__data__t.html#a52840a891e32e6cf0f6b9f14ce6b6557">z</a>;  </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;} <a class="code" href="structhmc5883l__data__t.html">hmc5883l_data_t</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="structhmc5883l__raw__data__t.html">  133</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="structhmc5883l__raw__data__t.html#a90821ee7d1660c5b2778e90f68413fbd">  134</a></span>&#160;    int16_t <a class="code" href="structhmc5883l__raw__data__t.html#a90821ee7d1660c5b2778e90f68413fbd">x</a>; </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="structhmc5883l__raw__data__t.html#aa602ad1b0c42584397808850196d6526">  135</a></span>&#160;    int16_t <a class="code" href="structhmc5883l__raw__data__t.html#aa602ad1b0c42584397808850196d6526">y</a>; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="structhmc5883l__raw__data__t.html#a4a0c67791e28d27bf737ddea8afdff7a">  136</a></span>&#160;    int16_t <a class="code" href="structhmc5883l__raw__data__t.html#a4a0c67791e28d27bf737ddea8afdff7a">z</a>; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;} <a class="code" href="structhmc5883l__raw__data__t.html">hmc5883l_raw_data_t</a>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#if MODULE_HMC5883L_INT || DOXYGEN</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gac1daac0a7a0c3360f81ec66b09ca29be">  151</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__drivers__hmc5883l.html#gac1daac0a7a0c3360f81ec66b09ca29be">hmc5883l_drdy_int_cb_t</a>)(<span class="keywordtype">void</span> *);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MODULE_HMC5883L_INT || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structhmc5883l__params__t.html">  158</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="structhmc5883l__params__t.html#a10a96099e1e62e6cc8fe03379f3d8fdf">  159</a></span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="structhmc5883l__params__t.html#a10a96099e1e62e6cc8fe03379f3d8fdf">dev</a>;    </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#if MODULE_HMC5883L_INT</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    gpio_t int_pin;  </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="structhmc5883l__params__t.html#a3cdaf625e21233517452e3ef402c2139">  163</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ga96c5201ec65c03524407216582c13523">hmc5883l_meas_mode_t</a> <a class="code" href="structhmc5883l__params__t.html#a3cdaf625e21233517452e3ef402c2139">meas_mode</a>; </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="structhmc5883l__params__t.html#a8da323b7f8d2720f5bede13b414f66af">  164</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gad6109c322ed916c8add64e36dbdfa602">hmc5883l_meas_avg_t</a>  <a class="code" href="structhmc5883l__params__t.html#a8da323b7f8d2720f5bede13b414f66af">meas_avg</a>;  </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="structhmc5883l__params__t.html#a23428db8e73aed977227eb658415d262">  165</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ga3e5c11028acf2fcbecadb688cc45e78e">hmc5883l_dor_t</a>       <a class="code" href="structhmc5883l__params__t.html#a23428db8e73aed977227eb658415d262">dor</a>;       </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="structhmc5883l__params__t.html#af7eb0d03b543f182d78db3e7ee5fdfd5">  166</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gadabcbc5ac02fdfe5ae625f29e42a5c35">hmc5883l_op_mode_t</a>   <a class="code" href="structhmc5883l__params__t.html#af7eb0d03b543f182d78db3e7ee5fdfd5">op_mode</a>;   </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="structhmc5883l__params__t.html#a8e7b563368f91b324ba2e0d3aa532a32">  167</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ga8afc10b5440bd119a4b9238fd9fa9920">hmc5883l_gain_t</a>      <a class="code" href="structhmc5883l__params__t.html#a8e7b563368f91b324ba2e0d3aa532a32">gain</a>;      </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;} <a class="code" href="structhmc5883l__params__t.html">hmc5883l_params_t</a>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="structhmc5883l__t.html">  173</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="structhmc5883l__t.html#a291def769d6f8fc031cc4c61dd8869c2">  174</a></span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="structhmc5883l__t.html#a291def769d6f8fc031cc4c61dd8869c2">dev</a>;    </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#if MODULE_HMC5883L_INT</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    gpio_t int_pin;  </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="structhmc5883l__t.html#a480aaa4131eb5a929c1881a8426d221d">  178</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#gadabcbc5ac02fdfe5ae625f29e42a5c35">hmc5883l_op_mode_t</a>   <a class="code" href="structhmc5883l__t.html#a480aaa4131eb5a929c1881a8426d221d">op_mode</a>;   </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="structhmc5883l__t.html#adb0e0ec673dca03c60497997c5393d4e">  179</a></span>&#160;    <a class="code" href="group__drivers__hmc5883l.html#ga8afc10b5440bd119a4b9238fd9fa9920">hmc5883l_gain_t</a>      <a class="code" href="structhmc5883l__t.html#adb0e0ec673dca03c60497997c5393d4e">gain</a>;      </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;} <a class="code" href="structhmc5883l__t.html">hmc5883l_t</a>;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga7513553b960a8d986ef7bef1193b1a1d">  195</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hmc5883l.html#ga7513553b960a8d986ef7bef1193b1a1d">hmc5883l_init</a>(<a class="code" href="structhmc5883l__t.html">hmc5883l_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structhmc5883l__params__t.html">hmc5883l_params_t</a> *params);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#if MODULE_HMC5883L_INT || DOXYGEN</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga7bc2a5d291b241e4467e565853ad7158">  219</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hmc5883l.html#ga7bc2a5d291b241e4467e565853ad7158">hmc5883l_init_int</a>(<a class="code" href="structhmc5883l__t.html">hmc5883l_t</a> *dev, <a class="code" href="group__drivers__hmc5883l.html#gac1daac0a7a0c3360f81ec66b09ca29be">hmc5883l_drdy_int_cb_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MODULE_HMC5883L_INT || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga53d9e5dd9014c73be3397cb1c34ceaa3">  235</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hmc5883l.html#ga53d9e5dd9014c73be3397cb1c34ceaa3">hmc5883l_data_ready</a>(<span class="keyword">const</span> <a class="code" href="structhmc5883l__t.html">hmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gaad9f0e778bc576d3a47ec0a16acf24ba">  251</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hmc5883l.html#gaad9f0e778bc576d3a47ec0a16acf24ba">hmc5883l_read</a>(<span class="keyword">const</span> <a class="code" href="structhmc5883l__t.html">hmc5883l_t</a> *dev, <a class="code" href="structhmc5883l__data__t.html">hmc5883l_data_t</a> *data);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga91d1e25517c316b6eb56ea7ff37ab4fe">  263</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hmc5883l.html#ga91d1e25517c316b6eb56ea7ff37ab4fe">hmc5883l_read_raw</a>(<span class="keyword">const</span> <a class="code" href="structhmc5883l__t.html">hmc5883l_t</a> *dev, <a class="code" href="structhmc5883l__raw__data__t.html">hmc5883l_raw_data_t</a> *raw);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#ga4cc423b529c6f6c15690cdd0d9007904">  277</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hmc5883l.html#ga4cc423b529c6f6c15690cdd0d9007904">hmc5883l_power_down</a>(<a class="code" href="structhmc5883l__t.html">hmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="group__drivers__hmc5883l.html#gaba93952471934e11bb55c8cce4109946">  289</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hmc5883l.html#gaba93952471934e11bb55c8cce4109946">hmc5883l_power_up</a>(<a class="code" href="structhmc5883l__t.html">hmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;}</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HMC5883L_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga3e5c11028acf2fcbecadb688cc45e78e"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga3e5c11028acf2fcbecadb688cc45e78e">hmc5883l_dor_t</a></div><div class="ttdeci">hmc5883l_dor_t</div><div class="ttdoc">Data output rates (DOR)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:61</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga4cc423b529c6f6c15690cdd0d9007904"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga4cc423b529c6f6c15690cdd0d9007904">hmc5883l_power_down</a></div><div class="ttdeci">int hmc5883l_power_down(hmc5883l_t *dev)</div><div class="ttdoc">Power down the sensor.</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga53d9e5dd9014c73be3397cb1c34ceaa3"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga53d9e5dd9014c73be3397cb1c34ceaa3">hmc5883l_data_ready</a></div><div class="ttdeci">int hmc5883l_data_ready(const hmc5883l_t *dev)</div><div class="ttdoc">Data-ready status function.</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga7513553b960a8d986ef7bef1193b1a1d"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga7513553b960a8d986ef7bef1193b1a1d">hmc5883l_init</a></div><div class="ttdeci">int hmc5883l_init(hmc5883l_t *dev, const hmc5883l_params_t *params)</div><div class="ttdoc">Initialize the HMC5883L sensor device.</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga7bc2a5d291b241e4467e565853ad7158"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga7bc2a5d291b241e4467e565853ad7158">hmc5883l_init_int</a></div><div class="ttdeci">int hmc5883l_init_int(hmc5883l_t *dev, hmc5883l_drdy_int_cb_t cb, void *arg)</div><div class="ttdoc">Initialize and activate the DRDY interrupt of HMC5883L sensor device.</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga842da914d7c94f6d4ca50f7b044335d6"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga842da914d7c94f6d4ca50f7b044335d6">hmc5883l_error_codes_t</a></div><div class="ttdeci">hmc5883l_error_codes_t</div><div class="ttdoc">Definition of error codes.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:47</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga8afc10b5440bd119a4b9238fd9fa9920"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga8afc10b5440bd119a4b9238fd9fa9920">hmc5883l_gain_t</a></div><div class="ttdeci">hmc5883l_gain_t</div><div class="ttdoc">Gain (determines the sensitivity and the range)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:110</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga91d1e25517c316b6eb56ea7ff37ab4fe"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga91d1e25517c316b6eb56ea7ff37ab4fe">hmc5883l_read_raw</a></div><div class="ttdeci">int hmc5883l_read_raw(const hmc5883l_t *dev, hmc5883l_raw_data_t *raw)</div><div class="ttdoc">Read one sample of raw sensor data as 16 bit two's complements.</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ga96c5201ec65c03524407216582c13523"><div class="ttname"><a href="group__drivers__hmc5883l.html#ga96c5201ec65c03524407216582c13523">hmc5883l_meas_mode_t</a></div><div class="ttdeci">hmc5883l_meas_mode_t</div><div class="ttdoc">Measurement modes.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:76</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gaad9f0e778bc576d3a47ec0a16acf24ba"><div class="ttname"><a href="group__drivers__hmc5883l.html#gaad9f0e778bc576d3a47ec0a16acf24ba">hmc5883l_read</a></div><div class="ttdeci">int hmc5883l_read(const hmc5883l_t *dev, hmc5883l_data_t *data)</div><div class="ttdoc">Read one sample of magnetic field values in milli-Gauss (mGs)</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gaba93952471934e11bb55c8cce4109946"><div class="ttname"><a href="group__drivers__hmc5883l.html#gaba93952471934e11bb55c8cce4109946">hmc5883l_power_up</a></div><div class="ttdeci">int hmc5883l_power_up(hmc5883l_t *dev)</div><div class="ttdoc">Power up the sensor.</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gac1daac0a7a0c3360f81ec66b09ca29be"><div class="ttname"><a href="group__drivers__hmc5883l.html#gac1daac0a7a0c3360f81ec66b09ca29be">hmc5883l_drdy_int_cb_t</a></div><div class="ttdeci">void(* hmc5883l_drdy_int_cb_t)(void *)</div><div class="ttdoc">HMC5883L DRDY interrupt callback function type.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:151</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gad6109c322ed916c8add64e36dbdfa602"><div class="ttname"><a href="group__drivers__hmc5883l.html#gad6109c322ed916c8add64e36dbdfa602">hmc5883l_meas_avg_t</a></div><div class="ttdeci">hmc5883l_meas_avg_t</div><div class="ttdoc">Measurement avaraging (number of samples are averaged for output)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:87</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gadabcbc5ac02fdfe5ae625f29e42a5c35"><div class="ttname"><a href="group__drivers__hmc5883l.html#gadabcbc5ac02fdfe5ae625f29e42a5c35">hmc5883l_op_mode_t</a></div><div class="ttdeci">hmc5883l_op_mode_t</div><div class="ttdoc">Operation modes.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:99</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga3e5c11028acf2fcbecadb688cc45e78ea2d52f3a9d99bb14fd9656fcc50a12965"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea2d52f3a9d99bb14fd9656fcc50a12965">HMC5883L_DOR_30</a></div><div class="ttdeci">@ HMC5883L_DOR_30</div><div class="ttdoc">30 Hz</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:67</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga3e5c11028acf2fcbecadb688cc45e78ea2d6a7a7e52edafb84c2f9896eedf751e"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea2d6a7a7e52edafb84c2f9896eedf751e">HMC5883L_DOR_7_5</a></div><div class="ttdeci">@ HMC5883L_DOR_7_5</div><div class="ttdoc">7.5 Hz</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:65</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga3e5c11028acf2fcbecadb688cc45e78ea30199fb23acb74b8279056b69dbd9d33"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea30199fb23acb74b8279056b69dbd9d33">HMC5883L_DOR_75</a></div><div class="ttdeci">@ HMC5883L_DOR_75</div><div class="ttdoc">75 Hz</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:68</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga3e5c11028acf2fcbecadb688cc45e78ea4cd36dfe2c711ef43b4fc087960ef026"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea4cd36dfe2c711ef43b4fc087960ef026">HMC5883L_DOR_0_75</a></div><div class="ttdeci">@ HMC5883L_DOR_0_75</div><div class="ttdoc">0.75 Hz</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:62</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga3e5c11028acf2fcbecadb688cc45e78ea6b5249d0d639822fadc9ae6039c912fb"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea6b5249d0d639822fadc9ae6039c912fb">HMC5883L_DOR_15</a></div><div class="ttdeci">@ HMC5883L_DOR_15</div><div class="ttdoc">15 Hz (default)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:66</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga3e5c11028acf2fcbecadb688cc45e78ea7150ff51b1ebbb73170f97d7b4a1a017"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78ea7150ff51b1ebbb73170f97d7b4a1a017">HMC5883L_DOR_1_5</a></div><div class="ttdeci">@ HMC5883L_DOR_1_5</div><div class="ttdoc">1.5 Hz</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:63</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga3e5c11028acf2fcbecadb688cc45e78eac440bf72ca050439cb51bf7c5be87290"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga3e5c11028acf2fcbecadb688cc45e78eac440bf72ca050439cb51bf7c5be87290">HMC5883L_DOR_3</a></div><div class="ttdeci">@ HMC5883L_DOR_3</div><div class="ttdoc">3 Hz</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:64</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga842da914d7c94f6d4ca50f7b044335d6a58f252989094cff7073e632855d945d0"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a58f252989094cff7073e632855d945d0">HMC5883L_ERROR_COMMON</a></div><div class="ttdeci">@ HMC5883L_ERROR_COMMON</div><div class="ttdoc">common error</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:53</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga842da914d7c94f6d4ca50f7b044335d6a628f17d71d89839e60a554d5078a6d19"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a628f17d71d89839e60a554d5078a6d19">HMC5883L_ERROR_NO_DATA</a></div><div class="ttdeci">@ HMC5883L_ERROR_NO_DATA</div><div class="ttdoc">no data are available</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:51</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga842da914d7c94f6d4ca50f7b044335d6a7399e4e9368188375068111dfc420e2b"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a7399e4e9368188375068111dfc420e2b">HMC5883L_ERROR_WRONG_ID</a></div><div class="ttdeci">@ HMC5883L_ERROR_WRONG_ID</div><div class="ttdoc">wrong id read</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:50</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga842da914d7c94f6d4ca50f7b044335d6a7fc8cffe55009a15f65f3fb45d1b3fad"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a7fc8cffe55009a15f65f3fb45d1b3fad">HMC5883L_ERROR_RAW_DATA</a></div><div class="ttdeci">@ HMC5883L_ERROR_RAW_DATA</div><div class="ttdoc">reading raw data failed</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:52</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga842da914d7c94f6d4ca50f7b044335d6a93848ebbc53ba7120374535b5f787ab6"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6a93848ebbc53ba7120374535b5f787ab6">HMC5883L_OK</a></div><div class="ttdeci">@ HMC5883L_OK</div><div class="ttdoc">success</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:48</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga842da914d7c94f6d4ca50f7b044335d6ab779fd0032678a2f057e3e8a83e15d05"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga842da914d7c94f6d4ca50f7b044335d6ab779fd0032678a2f057e3e8a83e15d05">HMC5883L_ERROR_I2C</a></div><div class="ttdeci">@ HMC5883L_ERROR_I2C</div><div class="ttdoc">any I2C communication error</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:49</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920a1a7dd4a5b0288e8ddf45398f1b35583d"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a1a7dd4a5b0288e8ddf45398f1b35583d">HMC5883L_GAIN_390</a></div><div class="ttdeci">@ HMC5883L_GAIN_390</div><div class="ttdoc">Range +-4.7 Gs, Resolution 2.56 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:116</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920a374a3840fb5f01e1e7cbc03153ea8ec3"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a374a3840fb5f01e1e7cbc03153ea8ec3">HMC5883L_GAIN_330</a></div><div class="ttdeci">@ HMC5883L_GAIN_330</div><div class="ttdoc">Range +-5.6 Gs, Resolution 3.03 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:117</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920a4c9fb5ef3e6503e2cb8b996eae4ab4d1"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a4c9fb5ef3e6503e2cb8b996eae4ab4d1">HMC5883L_GAIN_1090</a></div><div class="ttdeci">@ HMC5883L_GAIN_1090</div><div class="ttdoc">Range +-1.3 Gs, Resolution 0.92 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:112</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920a4f8dff983b7cd3d746923b15c8b81381"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a4f8dff983b7cd3d746923b15c8b81381">HMC5883L_GAIN_1370</a></div><div class="ttdeci">@ HMC5883L_GAIN_1370</div><div class="ttdoc">Range +-0.88 Gs, Resolution 0.73 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:111</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920a6f6d2a7052a5f6034173291b21b09feb"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a6f6d2a7052a5f6034173291b21b09feb">HMC5883L_GAIN_820</a></div><div class="ttdeci">@ HMC5883L_GAIN_820</div><div class="ttdoc">Range +-1.9 Gs, Resolution 1.22 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:113</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920a7f55cd7dc7c08cbb1c2a26f00704be51"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920a7f55cd7dc7c08cbb1c2a26f00704be51">HMC5883L_GAIN_230</a></div><div class="ttdeci">@ HMC5883L_GAIN_230</div><div class="ttdoc">Range +-8.1 Gs, Resolution 4.35 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:118</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920ab0bf948de94998b8b52bbe2202c1b497"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920ab0bf948de94998b8b52bbe2202c1b497">HMC5883L_GAIN_440</a></div><div class="ttdeci">@ HMC5883L_GAIN_440</div><div class="ttdoc">Range +-4.0 Gs, Resolution 2.27 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:115</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga8afc10b5440bd119a4b9238fd9fa9920afc7f1827e7a1dc3253a0b29e0c644543"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga8afc10b5440bd119a4b9238fd9fa9920afc7f1827e7a1dc3253a0b29e0c644543">HMC5883L_GAIN_660</a></div><div class="ttdeci">@ HMC5883L_GAIN_660</div><div class="ttdoc">Range +-2.5 Gs, Resolution 1.52 mGs/LSB.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:114</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga96c5201ec65c03524407216582c13523a567dd03fd716c1a4f56f51bd062fcb2d"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523a567dd03fd716c1a4f56f51bd062fcb2d">HMC5883L_MEAS_MODE_BIAS_NEG</a></div><div class="ttdeci">@ HMC5883L_MEAS_MODE_BIAS_NEG</div><div class="ttdoc">Negative bias config for all axes.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:79</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga96c5201ec65c03524407216582c13523af20657af5c84b67b6f9c2aeba1fda8b0"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523af20657af5c84b67b6f9c2aeba1fda8b0">HMC5883L_MEAS_MODE_BIAS_POS</a></div><div class="ttdeci">@ HMC5883L_MEAS_MODE_BIAS_POS</div><div class="ttdoc">Positive bias config for all axes.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:78</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_gga96c5201ec65c03524407216582c13523af5b00f62a3510214dc46356cd2632061"><div class="ttname"><a href="group__drivers__hmc5883l.html#gga96c5201ec65c03524407216582c13523af5b00f62a3510214dc46356cd2632061">HMC5883L_MEAS_MODE_NORMAL</a></div><div class="ttdeci">@ HMC5883L_MEAS_MODE_NORMAL</div><div class="ttdoc">Normal measurement config.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:77</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ggad6109c322ed916c8add64e36dbdfa602a0f8bc9f25e919e05789b7b8d5c4ca7be"><div class="ttname"><a href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a0f8bc9f25e919e05789b7b8d5c4ca7be">HMC5883L_MEAS_AVG_NONE</a></div><div class="ttdeci">@ HMC5883L_MEAS_AVG_NONE</div><div class="ttdoc">No averaging.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:88</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ggad6109c322ed916c8add64e36dbdfa602a29df2fbd2cfe15a37316b169a0228ef9"><div class="ttname"><a href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a29df2fbd2cfe15a37316b169a0228ef9">HMC5883L_MEAS_AVG_2</a></div><div class="ttdeci">@ HMC5883L_MEAS_AVG_2</div><div class="ttdoc">2 samples are averaged</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:89</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ggad6109c322ed916c8add64e36dbdfa602a39480f2e75ada5dc477598f9a645bf71"><div class="ttname"><a href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a39480f2e75ada5dc477598f9a645bf71">HMC5883L_MEAS_AVG_8</a></div><div class="ttdeci">@ HMC5883L_MEAS_AVG_8</div><div class="ttdoc">8 samples are averaged</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:91</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ggad6109c322ed916c8add64e36dbdfa602a47bb8225bacc3e61a1ec10f41b623a9f"><div class="ttname"><a href="group__drivers__hmc5883l.html#ggad6109c322ed916c8add64e36dbdfa602a47bb8225bacc3e61a1ec10f41b623a9f">HMC5883L_MEAS_AVG_4</a></div><div class="ttdeci">@ HMC5883L_MEAS_AVG_4</div><div class="ttdoc">4 samples are averaged</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:90</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ggadabcbc5ac02fdfe5ae625f29e42a5c35a05a97940c55510f6c4165dc82e88c9cc"><div class="ttname"><a href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35a05a97940c55510f6c4165dc82e88c9cc">HMC5883L_OP_MODE_IDLE</a></div><div class="ttdeci">@ HMC5883L_OP_MODE_IDLE</div><div class="ttdoc">Idle mode.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:102</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ggadabcbc5ac02fdfe5ae625f29e42a5c35ab103b8056db6f1b7ef39faa39dbb2c39"><div class="ttname"><a href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35ab103b8056db6f1b7ef39faa39dbb2c39">HMC5883L_OP_MODE_SINGLE</a></div><div class="ttdeci">@ HMC5883L_OP_MODE_SINGLE</div><div class="ttdoc">Single measurement.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:101</div></div>
+<div class="ttc" id="agroup__drivers__hmc5883l_html_ggadabcbc5ac02fdfe5ae625f29e42a5c35ab943075aacc8638d7d184577aedc0e3c"><div class="ttname"><a href="group__drivers__hmc5883l.html#ggadabcbc5ac02fdfe5ae625f29e42a5c35ab943075aacc8638d7d184577aedc0e3c">HMC5883L_OP_MODE_CONTINUOUS</a></div><div class="ttdeci">@ HMC5883L_OP_MODE_CONTINUOUS</div><div class="ttdoc">Continuous measurement.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:100</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructhmc5883l__data__t_html"><div class="ttname"><a href="structhmc5883l__data__t.html">hmc5883l_data_t</a></div><div class="ttdoc">Magnetic field values in milli-Gauss (mGs)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:124</div></div>
+<div class="ttc" id="astructhmc5883l__data__t_html_a52840a891e32e6cf0f6b9f14ce6b6557"><div class="ttname"><a href="structhmc5883l__data__t.html#a52840a891e32e6cf0f6b9f14ce6b6557">hmc5883l_data_t::z</a></div><div class="ttdeci">int16_t z</div><div class="ttdoc">magnetic field y-axis</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:127</div></div>
+<div class="ttc" id="astructhmc5883l__data__t_html_a9cd0553d57bf3d7d6630b63b0e0759e8"><div class="ttname"><a href="structhmc5883l__data__t.html#a9cd0553d57bf3d7d6630b63b0e0759e8">hmc5883l_data_t::y</a></div><div class="ttdeci">int16_t y</div><div class="ttdoc">magnetic field y-axis</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:126</div></div>
+<div class="ttc" id="astructhmc5883l__data__t_html_acc41498cfaa134940c6a3149b7d45b96"><div class="ttname"><a href="structhmc5883l__data__t.html#acc41498cfaa134940c6a3149b7d45b96">hmc5883l_data_t::x</a></div><div class="ttdeci">int16_t x</div><div class="ttdoc">magnetic field x-axis</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:125</div></div>
+<div class="ttc" id="astructhmc5883l__params__t_html"><div class="ttname"><a href="structhmc5883l__params__t.html">hmc5883l_params_t</a></div><div class="ttdoc">HMC5883L device initialization parameters.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:158</div></div>
+<div class="ttc" id="astructhmc5883l__params__t_html_a10a96099e1e62e6cc8fe03379f3d8fdf"><div class="ttname"><a href="structhmc5883l__params__t.html#a10a96099e1e62e6cc8fe03379f3d8fdf">hmc5883l_params_t::dev</a></div><div class="ttdeci">unsigned dev</div><div class="ttdoc">I2C device.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:159</div></div>
+<div class="ttc" id="astructhmc5883l__params__t_html_a23428db8e73aed977227eb658415d262"><div class="ttname"><a href="structhmc5883l__params__t.html#a23428db8e73aed977227eb658415d262">hmc5883l_params_t::dor</a></div><div class="ttdeci">hmc5883l_dor_t dor</div><div class="ttdoc">Data output rate (default HMC5883L_DOR_15)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:165</div></div>
+<div class="ttc" id="astructhmc5883l__params__t_html_a3cdaf625e21233517452e3ef402c2139"><div class="ttname"><a href="structhmc5883l__params__t.html#a3cdaf625e21233517452e3ef402c2139">hmc5883l_params_t::meas_mode</a></div><div class="ttdeci">hmc5883l_meas_mode_t meas_mode</div><div class="ttdoc">Measurement mode (default HMC5883L_MEAS_MODE_NORMAL)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:163</div></div>
+<div class="ttc" id="astructhmc5883l__params__t_html_a8da323b7f8d2720f5bede13b414f66af"><div class="ttname"><a href="structhmc5883l__params__t.html#a8da323b7f8d2720f5bede13b414f66af">hmc5883l_params_t::meas_avg</a></div><div class="ttdeci">hmc5883l_meas_avg_t meas_avg</div><div class="ttdoc">Measurement avaraging (default HMC5883L_MEAS_AVG_NONE)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:164</div></div>
+<div class="ttc" id="astructhmc5883l__params__t_html_a8e7b563368f91b324ba2e0d3aa532a32"><div class="ttname"><a href="structhmc5883l__params__t.html#a8e7b563368f91b324ba2e0d3aa532a32">hmc5883l_params_t::gain</a></div><div class="ttdeci">hmc5883l_gain_t gain</div><div class="ttdoc">Gain (default HMC5883L_GAIN_1090)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:167</div></div>
+<div class="ttc" id="astructhmc5883l__params__t_html_af7eb0d03b543f182d78db3e7ee5fdfd5"><div class="ttname"><a href="structhmc5883l__params__t.html#af7eb0d03b543f182d78db3e7ee5fdfd5">hmc5883l_params_t::op_mode</a></div><div class="ttdeci">hmc5883l_op_mode_t op_mode</div><div class="ttdoc">Operation mode (HMC5883L_OP_MODE_CONTINUOUS)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:166</div></div>
+<div class="ttc" id="astructhmc5883l__raw__data__t_html"><div class="ttname"><a href="structhmc5883l__raw__data__t.html">hmc5883l_raw_data_t</a></div><div class="ttdoc">Raw data set as two complements.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:133</div></div>
+<div class="ttc" id="astructhmc5883l__raw__data__t_html_a4a0c67791e28d27bf737ddea8afdff7a"><div class="ttname"><a href="structhmc5883l__raw__data__t.html#a4a0c67791e28d27bf737ddea8afdff7a">hmc5883l_raw_data_t::z</a></div><div class="ttdeci">int16_t z</div><div class="ttdoc">magnetic field z-axis as 16 bit two's complements</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:136</div></div>
+<div class="ttc" id="astructhmc5883l__raw__data__t_html_a90821ee7d1660c5b2778e90f68413fbd"><div class="ttname"><a href="structhmc5883l__raw__data__t.html#a90821ee7d1660c5b2778e90f68413fbd">hmc5883l_raw_data_t::x</a></div><div class="ttdeci">int16_t x</div><div class="ttdoc">magnetic field x-axis as 16 bit two's complements</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:134</div></div>
+<div class="ttc" id="astructhmc5883l__raw__data__t_html_aa602ad1b0c42584397808850196d6526"><div class="ttname"><a href="structhmc5883l__raw__data__t.html#aa602ad1b0c42584397808850196d6526">hmc5883l_raw_data_t::y</a></div><div class="ttdeci">int16_t y</div><div class="ttdoc">magnetic field y-axis as 16 bit two's complements</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:135</div></div>
+<div class="ttc" id="astructhmc5883l__t_html"><div class="ttname"><a href="structhmc5883l__t.html">hmc5883l_t</a></div><div class="ttdoc">HMC5883L sensor device data structure type.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:173</div></div>
+<div class="ttc" id="astructhmc5883l__t_html_a291def769d6f8fc031cc4c61dd8869c2"><div class="ttname"><a href="structhmc5883l__t.html#a291def769d6f8fc031cc4c61dd8869c2">hmc5883l_t::dev</a></div><div class="ttdeci">unsigned dev</div><div class="ttdoc">I2C device.</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:174</div></div>
+<div class="ttc" id="astructhmc5883l__t_html_a480aaa4131eb5a929c1881a8426d221d"><div class="ttname"><a href="structhmc5883l__t.html#a480aaa4131eb5a929c1881a8426d221d">hmc5883l_t::op_mode</a></div><div class="ttdeci">hmc5883l_op_mode_t op_mode</div><div class="ttdoc">Operation mode (HMC5883L_OP_MODE_CONTINUOUS)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:178</div></div>
+<div class="ttc" id="astructhmc5883l__t_html_adb0e0ec673dca03c60497997c5393d4e"><div class="ttname"><a href="structhmc5883l__t.html#adb0e0ec673dca03c60497997c5393d4e">hmc5883l_t::gain</a></div><div class="ttdeci">hmc5883l_gain_t gain</div><div class="ttdoc">Gain (default HMC5883L_GAIN_1090)</div><div class="ttdef"><b>Definition:</b> hmc5883l.h:179</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="hmc5883l_8h.html">hmc5883l.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+var periph__cpu__esp32c3_8h =
+[
+    [ "CLOCK_CORECLOCK", "periph__cpu__esp32c3_8h.html#afc465f12242e68f6c3695caa3ba0a169", null ],
+    [ "CPU_CYCLES_PER_LOOP", "periph__cpu__esp32c3_8h.html#aa39609ca78463e2f63f038cb8693f296", null ],
+    [ "GPIO0", "periph__cpu__esp32c3_8h.html#a20f88dbc839eb32b5fec903474befdd7", null ],
+    [ "GPIO1", "periph__cpu__esp32c3_8h.html#abe59d3a7ce7a18e9440bd54cae1f3fc8", null ],
+    [ "GPIO10", "periph__cpu__esp32c3_8h.html#ae285b2475841ecb1ac23d8511b360d0e", null ],
+    [ "GPIO11", "periph__cpu__esp32c3_8h.html#ac376b1c124378935df7b3c171b2bef35", null ],
+    [ "GPIO12", "periph__cpu__esp32c3_8h.html#a1dfa6e5489489f2797d3d80c718716ce", null ],
+    [ "GPIO13", "periph__cpu__esp32c3_8h.html#a4b7d9a3961712ddd2a58532f4dcedc1d", null ],
+    [ "GPIO14", "periph__cpu__esp32c3_8h.html#ad42a78782c6bb99ad7e7c1ec975b5b96", null ],
+    [ "GPIO15", "periph__cpu__esp32c3_8h.html#aabc2f003b1495cd03eef1fae31e6847a", null ],
+    [ "GPIO16", "periph__cpu__esp32c3_8h.html#a209f1a013588f481824ff0f57d2fc21e", null ],
+    [ "GPIO17", "periph__cpu__esp32c3_8h.html#abf972cfb05a7f86e9a69db243792cbac", null ],
+    [ "GPIO18", "periph__cpu__esp32c3_8h.html#aaa3c86348d99077ec718c2461f0d4a91", null ],
+    [ "GPIO19", "periph__cpu__esp32c3_8h.html#a546be0d3be4335be87bd46b9d6442edd", null ],
+    [ "GPIO2", "periph__cpu__esp32c3_8h.html#a88a95401ea8409c83cbda42f31450cd0", null ],
+    [ "GPIO20", "periph__cpu__esp32c3_8h.html#a414493de8389b7908e5e8b6723a5fdd3", null ],
+    [ "GPIO21", "periph__cpu__esp32c3_8h.html#a3b9ee0b882294530e8d2f343af3ba0fe", null ],
+    [ "GPIO3", "periph__cpu__esp32c3_8h.html#af3cc04d651b622d5323d74dc2f0999a0", null ],
+    [ "GPIO4", "periph__cpu__esp32c3_8h.html#a98aeff9c8b3bbdfd119e4ec4d3f615c8", null ],
+    [ "GPIO5", "periph__cpu__esp32c3_8h.html#a1a96368c99d63b0e715b7e0421f4a209", null ],
+    [ "GPIO6", "periph__cpu__esp32c3_8h.html#a46027cd97ff756e5ddadcc10811b5699", null ],
+    [ "GPIO7", "periph__cpu__esp32c3_8h.html#a3820cacb614277004870fc37b33ad084", null ],
+    [ "GPIO8", "periph__cpu__esp32c3_8h.html#aa951be0ce26f788049a86e407a70ae20", null ],
+    [ "GPIO9", "periph__cpu__esp32c3_8h.html#ae2a4c4d28729daf18e1923a1878e7352", null ]
+];

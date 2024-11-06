@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/net/sock/dtls.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('sock_2dtls_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">dtls.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="sock_2dtls_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga8595b9670004ad4afc5738109ecce649">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019 HAW Hamburg</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *                    Freie Universität Berlin</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *                    Inria</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *                    Daniele Lacamera</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *                    Ken Bannister</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="preprocessor">#ifndef NET_SOCK_DTLS_H</span></div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="preprocessor">#define NET_SOCK_DTLS_H</span></div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160; </div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="assert_8h.html">assert.h</a>&gt;</span></div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="errno_8h.html">errno.h</a>&gt;</span></div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160; </div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="comment">/* net/sock/async/types.h included by net/sock.h needs to re-typedef the</span></div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="comment"> * `sock_dtls_t` to prevent cyclic includes */</span></div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="preprocessor">#if defined (__clang__)</span></div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;<span class="preprocessor"># pragma clang diagnostic push</span></div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="preprocessor"># pragma clang diagnostic ignored &quot;-Wtypedef-redefinition&quot;</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sock_8h.html">net/sock.h</a>&quot;</span></div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sock_2udp_8h.html">net/sock/udp.h</a>&quot;</span></div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="credman_8h.html">net/credman.h</a>&quot;</span></div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160; </div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160; </div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;<span class="preprocessor">#ifndef CONFIG_DTLS_HANDSHAKE_BUFSIZE_EXP</span></div>
+<div class="line"><a name="l00568"></a><span class="lineno"><a class="line" href="group__net__sock__dtls__conf.html#ga0cbc6d1ac3648c3e4b6803d0272535ef">  568</a></span>&#160;<span class="preprocessor">#define CONFIG_DTLS_HANDSHAKE_BUFSIZE_EXP  8</span></div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;<span class="preprocessor">#ifndef DTLS_HANDSHAKE_BUFSIZE</span></div>
+<div class="line"><a name="l00576"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gad77967da0dcabd6ceea9e523897b6798">  576</a></span>&#160;<span class="preprocessor">#define DTLS_HANDSHAKE_BUFSIZE  (1 &lt;&lt; CONFIG_DTLS_HANDSHAKE_BUFSIZE_EXP)</span></div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160; </div>
+<div class="line"><a name="l00582"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga3f7ccb93f455150d01aad0295d398762">  582</a></span>&#160;<span class="preprocessor">#define SOCK_DTLS_HANDSHAKE     (EXDEV)</span></div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160; </div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;<span class="preprocessor">#ifndef CONFIG_DTLS_FORCE_EXTENDED_MASTER_SECRET</span></div>
+<div class="line"><a name="l00588"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gad41621093a9a2d9e7830e372125cb8fd">  588</a></span>&#160;<span class="preprocessor">#define CONFIG_DTLS_FORCE_EXTENDED_MASTER_SECRET 1</span></div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160; </div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;<span class="preprocessor">#ifndef CONFIG_DTLS_FORCE_RENEGOTIATION_INFO</span></div>
+<div class="line"><a name="l00595"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga05770995cf620f04210dc5517517db70">  595</a></span>&#160;<span class="preprocessor">#define CONFIG_DTLS_FORCE_RENEGOTIATION_INFO 1</span></div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160; </div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00604"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987ca1c0824e2bb84e5d4654893ded0788bbb">  604</a></span>&#160;    <a class="code" href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987ca1c0824e2bb84e5d4654893ded0788bbb">SOCK_DTLS_1_0</a> = 1,  </div>
+<div class="line"><a name="l00605"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987ca3d86ab5555dcad0072067eeca3db9696">  605</a></span>&#160;    <a class="code" href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987ca3d86ab5555dcad0072067eeca3db9696">SOCK_DTLS_1_2</a> = 2,  </div>
+<div class="line"><a name="l00606"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987cac5122daec5c2cf0c50766b073facde42">  606</a></span>&#160;    <a class="code" href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987cac5122daec5c2cf0c50766b073facde42">SOCK_DTLS_1_3</a> = 3,  </div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;};</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00616"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gga2397dacb6bf5299415d295e773dfeb44a5d0ebcac70c848b4c09c9a35e40cfdaf">  616</a></span>&#160;    <a class="code" href="group__net__sock__dtls.html#gga2397dacb6bf5299415d295e773dfeb44a5d0ebcac70c848b4c09c9a35e40cfdaf">SOCK_DTLS_CLIENT</a> = 1,   </div>
+<div class="line"><a name="l00617"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gga2397dacb6bf5299415d295e773dfeb44af8548d1d8748a66e59667582bed23a17">  617</a></span>&#160;    <a class="code" href="group__net__sock__dtls.html#gga2397dacb6bf5299415d295e773dfeb44af8548d1d8748a66e59667582bed23a17">SOCK_DTLS_SERVER</a> = 2,   </div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;};</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structsock__dtls.html">sock_dtls</a> <a class="code" href="structsock__dtls.html">sock_dtls_t</a>;</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160; </div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;<span class="preprocessor">#if defined (__clang__)</span></div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;<span class="preprocessor"># pragma clang diagnostic pop</span></div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160; </div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structsock__dtls__session.html">sock_dtls_session</a> <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a>;</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160; </div>
+<div class="line"><a name="l00646"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga9512682d85257239769e4f62d3968839">  646</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="structsock__udp__aux__rx__t.html">sock_udp_aux_rx_t</a> <a class="code" href="group__net__sock__dtls.html#ga9512682d85257239769e4f62d3968839">sock_dtls_aux_rx_t</a>;</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160; </div>
+<div class="line"><a name="l00656"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gac7bc6f25016a05b5b793eb5d4745166a">  656</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="structsock__udp__aux__tx__t.html">sock_udp_aux_tx_t</a> <a class="code" href="group__net__sock__dtls.html#gac7bc6f25016a05b5b793eb5d4745166a">sock_dtls_aux_tx_t</a>;</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160; </div>
+<div class="line"><a name="l00663"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga53b88f47412139d54c8e480404435ea8">  663</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__sock__dtls.html#ga53b88f47412139d54c8e480404435ea8">sock_dtls_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160; </div>
+<div class="line"><a name="l00687"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga10998fac05f15688f9dd34a22c7bb682">  687</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__sock__dtls.html#ga10998fac05f15688f9dd34a22c7bb682">sock_dtls_create</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock, <a class="code" href="structsock__udp.html">sock_udp_t</a> *udp_sock,</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;                     <a class="code" href="group__net__credman.html#ga89fc115fe10d879da7faf1c0d0f901a7">credman_tag_t</a> tag, <span class="keywordtype">unsigned</span> version, <span class="keywordtype">unsigned</span> role);</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160; </div>
+<div class="line"><a name="l00699"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga3ff1ae03ea628694d6133fd603212c4c">  699</a></span>&#160;<a class="code" href="structsock__udp.html">sock_udp_t</a> *<a class="code" href="group__net__sock__dtls.html#ga3ff1ae03ea628694d6133fd603212c4c">sock_dtls_get_udp_sock</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock);</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160; </div>
+<div class="line"><a name="l00718"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga6ebde4fba6fd184710d1ec1c6285e7a2">  718</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__sock__dtls.html#ga6ebde4fba6fd184710d1ec1c6285e7a2">sock_dtls_session_init</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock, <span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *ep,</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;                           <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote);</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160; </div>
+<div class="line"><a name="l00734"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga5e2688dd03fe5d365ec81c4f82ff03ed">  734</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__sock__dtls.html#ga5e2688dd03fe5d365ec81c4f82ff03ed">sock_dtls_session_destroy</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock, <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote);</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160; </div>
+<div class="line"><a name="l00744"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gaceffefc3c421cb696560e87ecf040161">  744</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__sock__dtls.html#gaceffefc3c421cb696560e87ecf040161">sock_dtls_session_get_udp_ep</a>(<span class="keyword">const</span> <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *session,</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;                                  <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *ep);</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160; </div>
+<div class="line"><a name="l00758"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gaddac5bc68779c993cc613042a2515b12">  758</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__sock__dtls.html#gaddac5bc68779c993cc613042a2515b12">sock_dtls_session_set_udp_ep</a>(<a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *session,</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *ep);</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160; </div>
+<div class="line"><a name="l00790"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga91476f35b5ea85b789e19cb3fd256f42">  790</a></span>&#160;ssize_t <a class="code" href="group__net__sock__dtls.html#ga91476f35b5ea85b789e19cb3fd256f42">sock_dtls_recv_aux</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock, <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;                           <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> maxlen, uint32_t timeout,</div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;                           <a class="code" href="structsock__udp__aux__rx__t.html">sock_dtls_aux_rx_t</a> *aux);</div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160; </div>
+<div class="line"><a name="l00821"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga893395d4c18709210d66d979a2f9ea69">  821</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> ssize_t <a class="code" href="group__net__sock__dtls.html#ga893395d4c18709210d66d979a2f9ea69">sock_dtls_recv</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock,</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                                     <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                                     <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> maxlen,</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                                     uint32_t timeout)</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;{</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__sock__dtls.html#ga91476f35b5ea85b789e19cb3fd256f42">sock_dtls_recv_aux</a>(sock, remote, data, maxlen, timeout, NULL);</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;}</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160; </div>
+<div class="line"><a name="l00871"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga208fb85350aa404db39305d6fe6cc0a9">  871</a></span>&#160;ssize_t <a class="code" href="group__net__sock__dtls.html#ga208fb85350aa404db39305d6fe6cc0a9">sock_dtls_recv_buf_aux</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock, <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;                               <span class="keywordtype">void</span> **data, <span class="keywordtype">void</span> **buf_ctx, uint32_t timeout,</div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;                               <a class="code" href="structsock__udp__aux__rx__t.html">sock_dtls_aux_rx_t</a> *aux);</div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160; </div>
+<div class="line"><a name="l00915"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga026748dd9ad74a8a216eaad086551a7d">  915</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> ssize_t <a class="code" href="group__net__sock__dtls.html#ga026748dd9ad74a8a216eaad086551a7d">sock_dtls_recv_buf</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock,</div>
+<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;                                         <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;                                         <span class="keywordtype">void</span> **data, <span class="keywordtype">void</span> **buf_ctx,</div>
+<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;                                         uint32_t timeout)</div>
+<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;{</div>
+<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__sock__dtls.html#ga208fb85350aa404db39305d6fe6cc0a9">sock_dtls_recv_buf_aux</a>(sock, remote, data, buf_ctx, timeout, NULL);</div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;}</div>
+<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160; </div>
+<div class="line"><a name="l00957"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#gaebdaa80fe988205e8aa2106898095e8c">  957</a></span>&#160;ssize_t <a class="code" href="group__net__sock__dtls.html#gaebdaa80fe988205e8aa2106898095e8c">sock_dtls_sendv_aux</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock, <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;                            <span class="keyword">const</span> <a class="code" href="structiolist.html">iolist_t</a> *snips, uint32_t timeout,</div>
+<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;                            <a class="code" href="structsock__udp__aux__tx__t.html">sock_dtls_aux_tx_t</a> *aux);</div>
+<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160; </div>
+<div class="line"><a name="l00995"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga1abd23c69aef1066a139cfc2ffb0d3e7">  995</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> ssize_t <a class="code" href="group__net__sock__dtls.html#ga1abd23c69aef1066a139cfc2ffb0d3e7">sock_dtls_send_aux</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock,</div>
+<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;                                         <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;                                         <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;                                         uint32_t timeout,</div>
+<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;                                         <a class="code" href="structsock__udp__aux__tx__t.html">sock_dtls_aux_tx_t</a> *aux)</div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;{</div>
+<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;    <span class="keyword">const</span> <a class="code" href="structiolist.html">iolist_t</a> snip = {</div>
+<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;        .<a class="code" href="structiolist.html#a3243f9752affc115c895b28340b58ec3">iol_base</a> = (<span class="keywordtype">void</span> *)data,</div>
+<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;        .iol_len  = len,</div>
+<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;    };</div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160; </div>
+<div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__sock__dtls.html#gaebdaa80fe988205e8aa2106898095e8c">sock_dtls_sendv_aux</a>(sock, remote, &amp;snip, timeout, aux);</div>
+<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;}</div>
+<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160; </div>
+<div class="line"><a name="l01049"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga630360b12614e2b57fca0cd81cdf9e4e"> 1049</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> ssize_t <a class="code" href="group__net__sock__dtls.html#ga630360b12614e2b57fca0cd81cdf9e4e">sock_dtls_send</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock,</div>
+<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;                                     <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;                                     <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;                                     uint32_t timeout)</div>
+<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;{</div>
+<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__sock__dtls.html#ga1abd23c69aef1066a139cfc2ffb0d3e7">sock_dtls_send_aux</a>(sock, remote, data, len, timeout, NULL);</div>
+<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;}</div>
+<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160; </div>
+<div class="line"><a name="l01097"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga16197978f12dc0efd521e8dba2853c45"> 1097</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> ssize_t <a class="code" href="group__net__sock__dtls.html#ga16197978f12dc0efd521e8dba2853c45">sock_dtls_sendv</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock,</div>
+<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;                                      <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> *remote,</div>
+<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;                                      <span class="keyword">const</span> <a class="code" href="structiolist.html">iolist_t</a> *snips,</div>
+<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;                                      uint32_t timeout)</div>
+<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;{</div>
+<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__sock__dtls.html#gaebdaa80fe988205e8aa2106898095e8c">sock_dtls_sendv_aux</a>(sock, remote, snips, timeout, NULL);</div>
+<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;}</div>
+<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160; </div>
+<div class="line"><a name="l01117"></a><span class="lineno"><a class="line" href="group__net__sock__dtls.html#ga47fde8af808ceed2db7fefbb05bbd04c"> 1117</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__sock__dtls.html#ga47fde8af808ceed2db7fefbb05bbd04c">sock_dtls_close</a>(<a class="code" href="structsock__dtls.html">sock_dtls_t</a> *sock);</div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160; </div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;<span class="preprocessor">#ifdef MODULE_SOCK_DTLS</span></div>
+<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sock__dtls__types_8h.html">sock_dtls_types.h</a>&quot;</span></div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160; </div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;}</div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160; </div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NET_SOCK_DTLS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div><div class="ttdoc">POSIX.1-2008 compliant version of the assert macro.</div></div>
+<div class="ttc" id="acredman_8h_html"><div class="ttname"><a href="credman_8h.html">credman.h</a></div><div class="ttdoc">(D)TLS credentials management module definitions</div></div>
+<div class="ttc" id="aerrno_8h_html"><div class="ttname"><a href="errno_8h.html">errno.h</a></div></div>
+<div class="ttc" id="agroup__net__credman_html_ga89fc115fe10d879da7faf1c0d0f901a7"><div class="ttname"><a href="group__net__credman.html#ga89fc115fe10d879da7faf1c0d0f901a7">credman_tag_t</a></div><div class="ttdeci">uint16_t credman_tag_t</div><div class="ttdoc">Tag of the credential.</div><div class="ttdef"><b>Definition:</b> credman.h:96</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga026748dd9ad74a8a216eaad086551a7d"><div class="ttname"><a href="group__net__sock__dtls.html#ga026748dd9ad74a8a216eaad086551a7d">sock_dtls_recv_buf</a></div><div class="ttdeci">static ssize_t sock_dtls_recv_buf(sock_dtls_t *sock, sock_dtls_session_t *remote, void **data, void **buf_ctx, uint32_t timeout)</div><div class="ttdoc">Decrypts and provides stack-internal buffer space containing a message from a remote peer.</div><div class="ttdef"><b>Definition:</b> dtls.h:915</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga10998fac05f15688f9dd34a22c7bb682"><div class="ttname"><a href="group__net__sock__dtls.html#ga10998fac05f15688f9dd34a22c7bb682">sock_dtls_create</a></div><div class="ttdeci">int sock_dtls_create(sock_dtls_t *sock, sock_udp_t *udp_sock, credman_tag_t tag, unsigned version, unsigned role)</div><div class="ttdoc">Creates a new DTLS sock object.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga16197978f12dc0efd521e8dba2853c45"><div class="ttname"><a href="group__net__sock__dtls.html#ga16197978f12dc0efd521e8dba2853c45">sock_dtls_sendv</a></div><div class="ttdeci">static ssize_t sock_dtls_sendv(sock_dtls_t *sock, sock_dtls_session_t *remote, const iolist_t *snips, uint32_t timeout)</div><div class="ttdoc">Encrypts and sends a message to a remote peer with non-continous payload.</div><div class="ttdef"><b>Definition:</b> dtls.h:1097</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga1abd23c69aef1066a139cfc2ffb0d3e7"><div class="ttname"><a href="group__net__sock__dtls.html#ga1abd23c69aef1066a139cfc2ffb0d3e7">sock_dtls_send_aux</a></div><div class="ttdeci">static ssize_t sock_dtls_send_aux(sock_dtls_t *sock, sock_dtls_session_t *remote, const void *data, size_t len, uint32_t timeout, sock_dtls_aux_tx_t *aux)</div><div class="ttdoc">Encrypts and sends a message to a remote peer.</div><div class="ttdef"><b>Definition:</b> dtls.h:995</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga208fb85350aa404db39305d6fe6cc0a9"><div class="ttname"><a href="group__net__sock__dtls.html#ga208fb85350aa404db39305d6fe6cc0a9">sock_dtls_recv_buf_aux</a></div><div class="ttdeci">ssize_t sock_dtls_recv_buf_aux(sock_dtls_t *sock, sock_dtls_session_t *remote, void **data, void **buf_ctx, uint32_t timeout, sock_dtls_aux_rx_t *aux)</div><div class="ttdoc">Decrypts and provides stack-internal buffer space containing a message from a remote peer.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga3ff1ae03ea628694d6133fd603212c4c"><div class="ttname"><a href="group__net__sock__dtls.html#ga3ff1ae03ea628694d6133fd603212c4c">sock_dtls_get_udp_sock</a></div><div class="ttdeci">sock_udp_t * sock_dtls_get_udp_sock(sock_dtls_t *sock)</div><div class="ttdoc">Get underlying UDP sock.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga47fde8af808ceed2db7fefbb05bbd04c"><div class="ttname"><a href="group__net__sock__dtls.html#ga47fde8af808ceed2db7fefbb05bbd04c">sock_dtls_close</a></div><div class="ttdeci">void sock_dtls_close(sock_dtls_t *sock)</div><div class="ttdoc">Closes a DTLS sock.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga53b88f47412139d54c8e480404435ea8"><div class="ttname"><a href="group__net__sock__dtls.html#ga53b88f47412139d54c8e480404435ea8">sock_dtls_init</a></div><div class="ttdeci">void sock_dtls_init(void)</div><div class="ttdoc">Called exactly once during auto_init.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga5e2688dd03fe5d365ec81c4f82ff03ed"><div class="ttname"><a href="group__net__sock__dtls.html#ga5e2688dd03fe5d365ec81c4f82ff03ed">sock_dtls_session_destroy</a></div><div class="ttdeci">void sock_dtls_session_destroy(sock_dtls_t *sock, sock_dtls_session_t *remote)</div><div class="ttdoc">Destroys an existing DTLS session.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga630360b12614e2b57fca0cd81cdf9e4e"><div class="ttname"><a href="group__net__sock__dtls.html#ga630360b12614e2b57fca0cd81cdf9e4e">sock_dtls_send</a></div><div class="ttdeci">static ssize_t sock_dtls_send(sock_dtls_t *sock, sock_dtls_session_t *remote, const void *data, size_t len, uint32_t timeout)</div><div class="ttdoc">Encrypts and sends a message to a remote peer.</div><div class="ttdef"><b>Definition:</b> dtls.h:1049</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga6ebde4fba6fd184710d1ec1c6285e7a2"><div class="ttname"><a href="group__net__sock__dtls.html#ga6ebde4fba6fd184710d1ec1c6285e7a2">sock_dtls_session_init</a></div><div class="ttdeci">int sock_dtls_session_init(sock_dtls_t *sock, const sock_udp_ep_t *ep, sock_dtls_session_t *remote)</div><div class="ttdoc">Initialize session handshake.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga893395d4c18709210d66d979a2f9ea69"><div class="ttname"><a href="group__net__sock__dtls.html#ga893395d4c18709210d66d979a2f9ea69">sock_dtls_recv</a></div><div class="ttdeci">static ssize_t sock_dtls_recv(sock_dtls_t *sock, sock_dtls_session_t *remote, void *data, size_t maxlen, uint32_t timeout)</div><div class="ttdoc">Receive handshake messages and application data from remote peer.</div><div class="ttdef"><b>Definition:</b> dtls.h:821</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga91476f35b5ea85b789e19cb3fd256f42"><div class="ttname"><a href="group__net__sock__dtls.html#ga91476f35b5ea85b789e19cb3fd256f42">sock_dtls_recv_aux</a></div><div class="ttdeci">ssize_t sock_dtls_recv_aux(sock_dtls_t *sock, sock_dtls_session_t *remote, void *data, size_t maxlen, uint32_t timeout, sock_dtls_aux_rx_t *aux)</div><div class="ttdoc">Receive handshake messages and application data from remote peer.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga9512682d85257239769e4f62d3968839"><div class="ttname"><a href="group__net__sock__dtls.html#ga9512682d85257239769e4f62d3968839">sock_dtls_aux_rx_t</a></div><div class="ttdeci">sock_udp_aux_rx_t sock_dtls_aux_rx_t</div><div class="ttdoc">Auxiliary data provided when receiving using an DTLS sock object.</div><div class="ttdef"><b>Definition:</b> dtls.h:646</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_gac7bc6f25016a05b5b793eb5d4745166a"><div class="ttname"><a href="group__net__sock__dtls.html#gac7bc6f25016a05b5b793eb5d4745166a">sock_dtls_aux_tx_t</a></div><div class="ttdeci">sock_udp_aux_tx_t sock_dtls_aux_tx_t</div><div class="ttdoc">Auxiliary data provided when sending using an DTLS sock object.</div><div class="ttdef"><b>Definition:</b> dtls.h:656</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_gaceffefc3c421cb696560e87ecf040161"><div class="ttname"><a href="group__net__sock__dtls.html#gaceffefc3c421cb696560e87ecf040161">sock_dtls_session_get_udp_ep</a></div><div class="ttdeci">void sock_dtls_session_get_udp_ep(const sock_dtls_session_t *session, sock_udp_ep_t *ep)</div><div class="ttdoc">Get the remote UDP endpoint from a session.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_gaddac5bc68779c993cc613042a2515b12"><div class="ttname"><a href="group__net__sock__dtls.html#gaddac5bc68779c993cc613042a2515b12">sock_dtls_session_set_udp_ep</a></div><div class="ttdeci">void sock_dtls_session_set_udp_ep(sock_dtls_session_t *session, const sock_udp_ep_t *ep)</div><div class="ttdoc">Set the remote UDP endpoint from a session.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_gaebdaa80fe988205e8aa2106898095e8c"><div class="ttname"><a href="group__net__sock__dtls.html#gaebdaa80fe988205e8aa2106898095e8c">sock_dtls_sendv_aux</a></div><div class="ttdeci">ssize_t sock_dtls_sendv_aux(sock_dtls_t *sock, sock_dtls_session_t *remote, const iolist_t *snips, uint32_t timeout, sock_dtls_aux_tx_t *aux)</div><div class="ttdoc">Encrypts and sends a message to a remote peer with non-continous payload.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_gga2397dacb6bf5299415d295e773dfeb44a5d0ebcac70c848b4c09c9a35e40cfdaf"><div class="ttname"><a href="group__net__sock__dtls.html#gga2397dacb6bf5299415d295e773dfeb44a5d0ebcac70c848b4c09c9a35e40cfdaf">SOCK_DTLS_CLIENT</a></div><div class="ttdeci">@ SOCK_DTLS_CLIENT</div><div class="ttdoc">Endpoint client role.</div><div class="ttdef"><b>Definition:</b> dtls.h:616</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_gga2397dacb6bf5299415d295e773dfeb44af8548d1d8748a66e59667582bed23a17"><div class="ttname"><a href="group__net__sock__dtls.html#gga2397dacb6bf5299415d295e773dfeb44af8548d1d8748a66e59667582bed23a17">SOCK_DTLS_SERVER</a></div><div class="ttdeci">@ SOCK_DTLS_SERVER</div><div class="ttdoc">Endpoint server role.</div><div class="ttdef"><b>Definition:</b> dtls.h:617</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ggad99ad19d954966f46d918c3610ee987ca1c0824e2bb84e5d4654893ded0788bbb"><div class="ttname"><a href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987ca1c0824e2bb84e5d4654893ded0788bbb">SOCK_DTLS_1_0</a></div><div class="ttdeci">@ SOCK_DTLS_1_0</div><div class="ttdoc">DTLS version 1.0.</div><div class="ttdef"><b>Definition:</b> dtls.h:604</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ggad99ad19d954966f46d918c3610ee987ca3d86ab5555dcad0072067eeca3db9696"><div class="ttname"><a href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987ca3d86ab5555dcad0072067eeca3db9696">SOCK_DTLS_1_2</a></div><div class="ttdeci">@ SOCK_DTLS_1_2</div><div class="ttdoc">DTLS version 1.2.</div><div class="ttdef"><b>Definition:</b> dtls.h:605</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ggad99ad19d954966f46d918c3610ee987cac5122daec5c2cf0c50766b073facde42"><div class="ttname"><a href="group__net__sock__dtls.html#ggad99ad19d954966f46d918c3610ee987cac5122daec5c2cf0c50766b073facde42">SOCK_DTLS_1_3</a></div><div class="ttdeci">@ SOCK_DTLS_1_3</div><div class="ttdoc">DTLS version 1.3.</div><div class="ttdef"><b>Definition:</b> dtls.h:606</div></div>
+<div class="ttc" id="asock_2udp_8h_html"><div class="ttname"><a href="sock_2udp_8h.html">udp.h</a></div><div class="ttdoc">UDP sock definitions.</div></div>
+<div class="ttc" id="asock_8h_html"><div class="ttname"><a href="sock_8h.html">sock.h</a></div><div class="ttdoc">Common sock API definitions.</div></div>
+<div class="ttc" id="asock__dtls__types_8h_html"><div class="ttname"><a href="sock__dtls__types_8h.html">sock_dtls_types.h</a></div><div class="ttdoc">tinydtls-specific types and functions definitions</div></div>
+<div class="ttc" id="astruct__sock__tl__ep_html"><div class="ttname"><a href="struct__sock__tl__ep.html">_sock_tl_ep</a></div><div class="ttdoc">Common IP-based transport layer end point.</div><div class="ttdef"><b>Definition:</b> sock.h:215</div></div>
+<div class="ttc" id="astructiolist_html"><div class="ttname"><a href="structiolist.html">iolist</a></div><div class="ttdoc">iolist structure definition</div><div class="ttdef"><b>Definition:</b> iolist.h:39</div></div>
+<div class="ttc" id="astructiolist_html_a3243f9752affc115c895b28340b58ec3"><div class="ttname"><a href="structiolist.html#a3243f9752affc115c895b28340b58ec3">iolist::iol_base</a></div><div class="ttdeci">void * iol_base</div><div class="ttdoc">ptr to this list entries data</div><div class="ttdef"><b>Definition:</b> iolist.h:41</div></div>
+<div class="ttc" id="astructsock__dtls__session_html"><div class="ttname"><a href="structsock__dtls__session.html">sock_dtls_session</a></div><div class="ttdoc">Information about remote client connected to the server.</div><div class="ttdef"><b>Definition:</b> sock_dtls_types.h:89</div></div>
+<div class="ttc" id="astructsock__dtls_html"><div class="ttname"><a href="structsock__dtls.html">sock_dtls</a></div><div class="ttdoc">Information about DTLS sock.</div><div class="ttdef"><b>Definition:</b> sock_dtls_types.h:41</div></div>
+<div class="ttc" id="astructsock__udp__aux__rx__t_html"><div class="ttname"><a href="structsock__udp__aux__rx__t.html">sock_udp_aux_rx_t</a></div><div class="ttdoc">Auxiliary data provided when receiving using an UDP sock object.</div><div class="ttdef"><b>Definition:</b> udp.h:310</div></div>
+<div class="ttc" id="astructsock__udp__aux__tx__t_html"><div class="ttname"><a href="structsock__udp__aux__tx__t.html">sock_udp_aux_tx_t</a></div><div class="ttdoc">Auxiliary data provided when sending using an UDP sock object.</div><div class="ttdef"><b>Definition:</b> udp.h:349</div></div>
+<div class="ttc" id="astructsock__udp_html"><div class="ttname"><a href="structsock__udp.html">sock_udp</a></div><div class="ttdoc">UDP sock type.</div><div class="ttdef"><b>Definition:</b> sock_types.h:128</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_7afc5d30923bebdd1513d1cc48150ca7.html">net</a></li><li class="navelem"><a class="el" href="dir_48b41b7e8e83db20e1d5c14a00a79cee.html">sock</a></li><li class="navelem"><a class="el" href="sock_2dtls_8h.html">dtls.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

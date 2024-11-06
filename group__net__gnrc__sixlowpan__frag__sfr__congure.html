@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: Congestion control for 6LoWPAN SFR</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__net__gnrc__sixlowpan__frag__sfr__congure.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#files">Files</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Congestion control for 6LoWPAN SFR<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__network__layer.html">Network Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__transportlayer.html">Transport Layer</a> &raquo; <a class="el" href="group__net__gnrc.html">Generic (GNRC) network stack</a> &raquo; <a class="el" href="group__net__gnrc__sixlowpan.html">6LoWPAN</a> &raquo; <a class="el" href="group__net__gnrc__sixlowpan__frag__sfr.html">6LoWPAN selective fragment recovery</a> &#124; <a class="el" href="group__pseudomodules.html">Generic pseudomodules</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Congestion control for 6LoWPAN SFR using the <a class="el" href="group__sys__congure.html">CongURE - A Congestion control framework</a>. </p>
+<p>When included, this module enables congestion control for 6LoWPAN Selective Fragment Recovery (SFR). The flavor of congestion control can be selected using the following sub-modules:</p>
+<ul>
+<li><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__sfr.html">gnrc_sixlowpan_frag_sfr_congure_sfr: Appendix C</a> (the default)</li>
+<li><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__quic.html">gnrc_sixlowpan_frag_sfr_congure_quic: QUIC CC</a></li>
+<li><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__reno.html">gnrc_sixlowpan_frag_sfr_congure_reno: TCP Reno</a></li>
+<li><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__abe.html">gnrc_sixlowpan_frag_sfr_congure_abe: TCP Reno with ABE</a> </li>
+</ul>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__net__gnrc__sixlowpan__frag__sfr__congure__abe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__abe.html">gnrc_sixlowpan_frag_sfr_congure_abe: TCP Reno with ABE</a></td></tr>
+<tr class="memdesc:group__net__gnrc__sixlowpan__frag__sfr__congure__abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Congestion control for SFR using the <a class="el" href="group__sys__congure__abe.html">TCP Reno congestion control algorithm with ABE</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__net__gnrc__sixlowpan__frag__sfr__congure__quic"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__quic.html">gnrc_sixlowpan_frag_sfr_congure_quic: QUIC CC</a></td></tr>
+<tr class="memdesc:group__net__gnrc__sixlowpan__frag__sfr__congure__quic"><td class="mdescLeft">&#160;</td><td class="mdescRight">Congestion control for SFR using the <a class="el" href="group__sys__congure__quic.html">congestion control algorithm of QUIC</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__net__gnrc__sixlowpan__frag__sfr__congure__reno"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__reno.html">gnrc_sixlowpan_frag_sfr_congure_reno: TCP Reno</a></td></tr>
+<tr class="memdesc:group__net__gnrc__sixlowpan__frag__sfr__congure__reno"><td class="mdescLeft">&#160;</td><td class="mdescRight">Congestion control for SFR using the <a class="el" href="group__sys__congure__reno.html">TCP Reno congestion control algorithm</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__net__gnrc__sixlowpan__frag__sfr__congure__sfr"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure__sfr.html">gnrc_sixlowpan_frag_sfr_congure_sfr: Appendix C</a></td></tr>
+<tr class="memdesc:group__net__gnrc__sixlowpan__frag__sfr__congure__sfr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic congestion control for 6LoWPAN SFR as proposed in Appendix C of RFC 8931. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:net_2gnrc_2sixlowpan_2frag_2sfr_2congure_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="net_2gnrc_2sixlowpan_2frag_2sfr_2congure_8h.html">congure.h</a></td></tr>
+<tr class="memdesc:net_2gnrc_2sixlowpan_2frag_2sfr_2congure_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Congure definitions for <a class="el" href="group__net__gnrc__sixlowpan__frag__sfr.html">6LoWPAN selective fragment recovery</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gae36caf888a6a9ec90a8620df615d0d55"><td class="memItemLeft" align="right" valign="top"><a id="gae36caf888a6a9ec90a8620df615d0d55"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gae36caf888a6a9ec90a8620df615d0d55">GNRC_SIXLOWPAN_FRAG_SFR_CONGURE_UNIT</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:gae36caf888a6a9ec90a8620df615d0d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">The user-defined window unit for congure is one fragment with SFR. <br /></td></tr>
+<tr class="separator:gae36caf888a6a9ec90a8620df615d0d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga743788066a78b015ddfffde75e3f0fa2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcongure__snd__t.html">congure_snd_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga743788066a78b015ddfffde75e3f0fa2">gnrc_sixlowpan_frag_sfr_congure_snd_get</a> (void)</td></tr>
+<tr class="memdesc:ga743788066a78b015ddfffde75e3f0fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve CongURE state object from a pool of free objects.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga743788066a78b015ddfffde75e3f0fa2">More...</a><br /></td></tr>
+<tr class="separator:ga743788066a78b015ddfffde75e3f0fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga351a543ec7131656f8b08eee765de416"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga351a543ec7131656f8b08eee765de416">gnrc_sixlowpan_frag_sfr_congure_snd_free</a> (<a class="el" href="structcongure__snd__t.html">congure_snd_t</a> *c)</td></tr>
+<tr class="memdesc:ga351a543ec7131656f8b08eee765de416"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the CongURE state object.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga351a543ec7131656f8b08eee765de416">More...</a><br /></td></tr>
+<tr class="separator:ga351a543ec7131656f8b08eee765de416"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4140de87e4008308e3354840c85ff2fd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga4140de87e4008308e3354840c85ff2fd">gnrc_sixlowpan_frag_sfr_congure_snd_destroy</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:ga4140de87e4008308e3354840c85ff2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the CongURE state object of a fragmentation buffer and set's it to <code>NULL</code>  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga4140de87e4008308e3354840c85ff2fd">More...</a><br /></td></tr>
+<tr class="separator:ga4140de87e4008308e3354840c85ff2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a9a20ae03d86b4b2da0ab7dc746e8ee"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga7a9a20ae03d86b4b2da0ab7dc746e8ee">gnrc_sixlowpan_frag_sfr_congure_snd_init</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:ga7a9a20ae03d86b4b2da0ab7dc746e8ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a CongURE state object in a fragmentation buffer entry.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga7a9a20ae03d86b4b2da0ab7dc746e8ee">More...</a><br /></td></tr>
+<tr class="separator:ga7a9a20ae03d86b4b2da0ab7dc746e8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga24f794ec3cc48a37764153e3d479697e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga24f794ec3cc48a37764153e3d479697e">gnrc_sixlowpan_frag_sfr_congure_snd_setup</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:ga24f794ec3cc48a37764153e3d479697e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve CongURE state object when not retrieved and initialize it for a fragmentation buffer entry.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga24f794ec3cc48a37764153e3d479697e">More...</a><br /></td></tr>
+<tr class="separator:ga24f794ec3cc48a37764153e3d479697e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc3bccbd5b6e0bf772a5dd3b0895e254"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gacc3bccbd5b6e0bf772a5dd3b0895e254">gnrc_sixlowpan_frag_sfr_congure_snd_in_cwnd</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:gacc3bccbd5b6e0bf772a5dd3b0895e254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if given fragmentation buffer entry is within congestion window.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gacc3bccbd5b6e0bf772a5dd3b0895e254">More...</a><br /></td></tr>
+<tr class="separator:gacc3bccbd5b6e0bf772a5dd3b0895e254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13748d14b7b26bee8b865500980bff8f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga13748d14b7b26bee8b865500980bff8f">gnrc_sixlowpan_frag_sfr_congure_snd_next_in_cwnd</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:ga13748d14b7b26bee8b865500980bff8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if given fragmentation buffer entry would still be within congestion window after next send.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga13748d14b7b26bee8b865500980bff8f">More...</a><br /></td></tr>
+<tr class="separator:ga13748d14b7b26bee8b865500980bff8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga35b7b68db0aecffc00a6459c3b326322"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga35b7b68db0aecffc00a6459c3b326322">gnrc_sixlowpan_frag_sfr_congure_snd_has_inter_frame_gap</a> (void)</td></tr>
+<tr class="memdesc:ga35b7b68db0aecffc00a6459c3b326322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if inter-frame gap is provided.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga35b7b68db0aecffc00a6459c3b326322">More...</a><br /></td></tr>
+<tr class="separator:ga35b7b68db0aecffc00a6459c3b326322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5c587dae2525154c19f5068214d1a7f"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gac5c587dae2525154c19f5068214d1a7f">gnrc_sixlowpan_frag_sfr_congure_snd_inter_frame_gap</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:gac5c587dae2525154c19f5068214d1a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns inter-frame gap if provided by CongURE implementation.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gac5c587dae2525154c19f5068214d1a7f">More...</a><br /></td></tr>
+<tr class="separator:gac5c587dae2525154c19f5068214d1a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3de49734091e7b04c2c4ad6d2c2eb7e9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga3de49734091e7b04c2c4ad6d2c2eb7e9">gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_sent</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:ga3de49734091e7b04c2c4ad6d2c2eb7e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report to CongURE that a fragment was sent.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga3de49734091e7b04c2c4ad6d2c2eb7e9">More...</a><br /></td></tr>
+<tr class="separator:ga3de49734091e7b04c2c4ad6d2c2eb7e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga65650983618d7bc77f65c921be5e9e8b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga65650983618d7bc77f65c921be5e9e8b">gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_discard</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:ga65650983618d7bc77f65c921be5e9e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report to CongURE that a fragment as discarded.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga65650983618d7bc77f65c921be5e9e8b">More...</a><br /></td></tr>
+<tr class="separator:ga65650983618d7bc77f65c921be5e9e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga10412feae2647d9dc3cb7b26f3cb0b8b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga10412feae2647d9dc3cb7b26f3cb0b8b">gnrc_sixlowpan_frag_sfr_congure_snd_report_frags_timeout</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb)</td></tr>
+<tr class="memdesc:ga10412feae2647d9dc3cb7b26f3cb0b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report to CongURE that the ACK for a fragment timed out.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga10412feae2647d9dc3cb7b26f3cb0b8b">More...</a><br /></td></tr>
+<tr class="separator:ga10412feae2647d9dc3cb7b26f3cb0b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30d729d6d5975aaaf38c0c925e969950"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga30d729d6d5975aaaf38c0c925e969950">gnrc_sixlowpan_frag_sfr_congure_snd_report_frags_lost</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb, <a class="el" href="structcongure__snd__msg__t.html">congure_snd_msg_t</a> *frags)</td></tr>
+<tr class="memdesc:ga30d729d6d5975aaaf38c0c925e969950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report to CongURE that a number of fragments are known to be lost.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga30d729d6d5975aaaf38c0c925e969950">More...</a><br /></td></tr>
+<tr class="separator:ga30d729d6d5975aaaf38c0c925e969950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad13154242f49524a27dee26362192eaa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gad13154242f49524a27dee26362192eaa">gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_acked</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb, <a class="el" href="structcongure__snd__msg__t.html">congure_snd_msg_t</a> *frag, <a class="el" href="structcongure__snd__ack__t.html">congure_snd_ack_t</a> *ack)</td></tr>
+<tr class="memdesc:gad13154242f49524a27dee26362192eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report to CongURE that a number of fragments are known to be lost.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gad13154242f49524a27dee26362192eaa">More...</a><br /></td></tr>
+<tr class="separator:gad13154242f49524a27dee26362192eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac651c23b025637a64573b797cb5fe6a2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gac651c23b025637a64573b797cb5fe6a2">gnrc_sixlowpan_frag_sfr_congure_snd_report_ecn</a> (<a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *fb, uint32_t time)</td></tr>
+<tr class="memdesc:gac651c23b025637a64573b797cb5fe6a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report to CongURE that ECN bit was set in an ACK.  <a href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gac651c23b025637a64573b797cb5fe6a2">More...</a><br /></td></tr>
+<tr class="separator:gac651c23b025637a64573b797cb5fe6a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga4140de87e4008308e3354840c85ff2fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4140de87e4008308e3354840c85ff2fd">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_destroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Frees the CongURE state object of a fragmentation buffer and set's it to <code>NULL</code> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Does not do anything without the module <code>gnrc_sixlowpan_frag_sfr_congure</code> </dd></dl>
+
+</div>
+</div>
+<a id="ga351a543ec7131656f8b08eee765de416"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga351a543ec7131656f8b08eee765de416">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcongure__snd__t.html">congure_snd_t</a> *&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Frees the CongURE state object. </p>
+<p>This makes a CongURE state object retrievable with <a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#ga743788066a78b015ddfffde75e3f0fa2">gnrc_sixlowpan_frag_sfr_congure_snd_get</a> again.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object is not NULL when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>A CongURE state object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Does not do anything without the module <code>gnrc_sixlowpan_frag_sfr_congure</code> </dd></dl>
+
+</div>
+</div>
+<a id="ga743788066a78b015ddfffde75e3f0fa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga743788066a78b015ddfffde75e3f0fa2">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcongure__snd__t.html">congure_snd_t</a>* gnrc_sixlowpan_frag_sfr_congure_snd_get </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve CongURE state object from a pool of free objects. </p>
+<p>Needs to be defined in for a each CongURE implementation <code>congure_x</code> e.g. as a sub-module <code>gnrc_sixlowpan_frag_sfr_congure_x</code> and call the respective <code>congure_x_snd_setup</code> function when a free object is available for that object. As such, <a class="el" href="structcongure__snd__t.html#a5e607d3b240c468deb7ef0f006a736ff" title="Driver for the state object.">congure_snd_t::driver</a> == NULL can be used as an identifier if a state object is free.</p>
+<p>The pool of objects has to have an initial size of at least <a class="el" href="group__net__gnrc__sixlowpan__config.html#ga5ba6c4be8d7c93d505ed6e10106f211e">CONFIG_GNRC_SIXLOWPAN_FRAG_FB_SIZE</a>.</p>
+<p>The window unit is <a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gae36caf888a6a9ec90a8620df615d0d55">GNRC_SIXLOWPAN_FRAG_SFR_CONGURE_UNIT</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>A CongURE state object on success </dd>
+<dd>
+NULL, if no free CongURE state object is available (including when when module <code>gnrc_sixlowpan_frag_sfr_congure</code> is not included). </dd></dl>
+
+</div>
+</div>
+<a id="ga35b7b68db0aecffc00a6459c3b326322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga35b7b68db0aecffc00a6459c3b326322">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_has_inter_frame_gap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool gnrc_sixlowpan_frag_sfr_congure_snd_has_inter_frame_gap </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if inter-frame gap is provided. </p>
+<p>Either because <a class="el" href="group__net__gnrc__sixlowpan__config.html#ga8d0316ef279f1a8749352e56d81fba16">CONFIG_GNRC_SIXLOWPAN_SFR_INTER_FRAME_GAP_US</a> is greater 0 or module <code>gnrc_sixlowpan_frag_sfr_congure</code> is provided</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>When an inter-frame gap can be provided </td></tr>
+    <tr><td class="paramname">false</td><td>When the inter-frame gap is supposed to be 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gacc3bccbd5b6e0bf772a5dd3b0895e254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacc3bccbd5b6e0bf772a5dd3b0895e254">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_in_cwnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool gnrc_sixlowpan_frag_sfr_congure_snd_in_cwnd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if given fragmentation buffer entry is within congestion window. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Without the module <code>gnrc_sixlowpan_frag_sfr_congure</code> the fragmentation buffer entry is checked against <a class="el" href="group__net__gnrc__sixlowpan__config.html#ga5c13176cabc5dc17b93dadc0f54efd1f">CONFIG_GNRC_SIXLOWPAN_SFR_OPT_WIN_SIZE</a></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>When <code>fb</code> is in congestion window </td></tr>
+    <tr><td class="paramname">false</td><td>When <code>fb</code> is not in congestion window </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7a9a20ae03d86b4b2da0ab7dc746e8ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a9a20ae03d86b4b2da0ab7dc746e8ee">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes a CongURE state object in a fragmentation buffer entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Does not do anything without the module <code>gnrc_sixlowpan_frag_sfr_congure</code> </dd></dl>
+
+</div>
+</div>
+<a id="gac5c587dae2525154c19f5068214d1a7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5c587dae2525154c19f5068214d1a7f">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_inter_frame_gap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t gnrc_sixlowpan_frag_sfr_congure_snd_inter_frame_gap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns inter-frame gap if provided by CongURE implementation. </p>
+<p>When module <code>gnrc_sixlowpan_frag_sfr_congure</code> is provided it will provide congure_snd_driver_t::inter_message_interval() of the CongURE state object of the provided fragmentation buffer with <a class="el" href="group__net__gnrc__sixlowpan__config.html#ga8d0316ef279f1a8749352e56d81fba16">CONFIG_GNRC_SIXLOWPAN_SFR_INTER_FRAME_GAP_US</a> as a lower bound. If congure_snd_driver_t::inter_message_interval returns -1, <code>fb</code> is NULL, or without the module <code>gnrc_sixlowpan_frag_sfr_congure</code> it will return <a class="el" href="group__net__gnrc__sixlowpan__config.html#ga8d0316ef279f1a8749352e56d81fba16">CONFIG_GNRC_SIXLOWPAN_SFR_INTER_FRAME_GAP_US</a></p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when <code>fb</code> is <code>NULL</code> and when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer. May be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The inter-frame gap for the given fragmentation buffer, but </dd></dl>
+
+</div>
+</div>
+<a id="ga13748d14b7b26bee8b865500980bff8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga13748d14b7b26bee8b865500980bff8f">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_next_in_cwnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool gnrc_sixlowpan_frag_sfr_congure_snd_next_in_cwnd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if given fragmentation buffer entry would still be within congestion window after next send. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Without the module <code>gnrc_sixlowpan_frag_sfr_congure</code> the fragmentation buffer entry is checked against <a class="el" href="group__net__gnrc__sixlowpan__config.html#ga5c13176cabc5dc17b93dadc0f54efd1f">CONFIG_GNRC_SIXLOWPAN_SFR_OPT_WIN_SIZE</a></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>When <code>fb</code> can still send one fragment under the congestion window constraint. </td></tr>
+    <tr><td class="paramname">false</td><td>When <code>fb</code> can not still send one fragment under the congestion window constraint. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac651c23b025637a64573b797cb5fe6a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac651c23b025637a64573b797cb5fe6a2">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_report_ecn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_report_ecn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Report to CongURE that ECN bit was set in an ACK. </p>
+<p>Calls <a class="el" href="structcongure__snd__driver.html#a6d84e81002a9ab715325cd675a80f101" title="Report that &quot;congestion encountered&quot; CE signals were received for a message by means of explicit cong...">congure_snd_driver_t::report_ecn_ce</a> for the CongURE state object of <code>fb</code> with <code>time</code>.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">time</td><td>Timestamp in milliseconds of the earliest fragment for which the notified congestion occurred was sent. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad13154242f49524a27dee26362192eaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad13154242f49524a27dee26362192eaa">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_acked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_acked </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcongure__snd__msg__t.html">congure_snd_msg_t</a> *&#160;</td>
+          <td class="paramname"><em>frag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcongure__snd__ack__t.html">congure_snd_ack_t</a> *&#160;</td>
+          <td class="paramname"><em>ack</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Report to CongURE that a number of fragments are known to be lost. </p>
+<p>Calls congure_snd_driver_t::report_msgs_acked for the CongURE state object of <code>fb</code> with <code>frag</code> and <code>ack</code>.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frag</td><td>The ACK'd fragment. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ack</td><td>The received ACK. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga65650983618d7bc77f65c921be5e9e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga65650983618d7bc77f65c921be5e9e8b">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_discard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_discard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Report to CongURE that a fragment as discarded. </p>
+<p>Calls <a class="el" href="structcongure__snd__driver.html#aae1de0041920f2666803d7ba618d78c7" title="Report message as discarded.">congure_snd_driver_t::report_msg_discarded</a> for the CongURE state object of <code>fb</code> with <code>msg_size</code> <a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gae36caf888a6a9ec90a8620df615d0d55">GNRC_SIXLOWPAN_FRAG_SFR_CONGURE_UNIT</a>.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga3de49734091e7b04c2c4ad6d2c2eb7e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3de49734091e7b04c2c4ad6d2c2eb7e9">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_sent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_report_frag_sent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Report to CongURE that a fragment was sent. </p>
+<p>Calls <a class="el" href="structcongure__snd__driver.html#a0d086fd9d6316577ca210d920980a382" title="Report that a message was sent.">congure_snd_driver_t::report_msg_sent</a> for the CongURE state object of <code>fb</code> with <code>msg_size</code> <a class="el" href="group__net__gnrc__sixlowpan__frag__sfr__congure.html#gae36caf888a6a9ec90a8620df615d0d55">GNRC_SIXLOWPAN_FRAG_SFR_CONGURE_UNIT</a>.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga30d729d6d5975aaaf38c0c925e969950"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30d729d6d5975aaaf38c0c925e969950">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_report_frags_lost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_report_frags_lost </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcongure__snd__msg__t.html">congure_snd_msg_t</a> *&#160;</td>
+          <td class="paramname"><em>frags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Report to CongURE that a number of fragments are known to be lost. </p>
+<p>Calls <a class="el" href="structcongure__snd__driver.html#a4504bded5e1a13662e5c858c7aaf59d4" title="Report that a collection of messages that is known to be lost.">congure_snd_driver_t::report_msgs_lost</a> for the CongURE state object of <code>fb</code> with <code>frags</code>.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frags</td><td>A collection of messages that are known to be lost. The list may be changed by the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga10412feae2647d9dc3cb7b26f3cb0b8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga10412feae2647d9dc3cb7b26f3cb0b8b">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_report_frags_timeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_report_frags_timeout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Report to CongURE that the ACK for a fragment timed out. </p>
+<p>Calls <a class="el" href="structcongure__snd__driver.html#a83c1ff0def5814c0050ad23a928335fa" title="Report that the ACKs for a collection of messages timed out.">congure_snd_driver_t::report_msgs_timeout</a> for the CongURE state object of <code>fb</code> with <a class="el" href="structgnrc__sixlowpan__frag__sfr__fb.html#aabc2932e958533c9baf0d3fa165638ad" title="Sent fragments of the current window.">gnrc_sixlowpan_frag_sfr_fb_t::window</a> of <code>fb</code> as <code>msgs</code>.</p>
+<dl class="section pre"><dt>Precondition</dt><dd>CongURE object of the fragmentation buffer entry is initialized when called with module <code>gnrc_sixlowpan_frag_sfr_congure</code> used.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga24f794ec3cc48a37764153e3d479697e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga24f794ec3cc48a37764153e3d479697e">&#9670;&nbsp;</a></span>gnrc_sixlowpan_frag_sfr_congure_snd_setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_sixlowpan_frag_sfr_congure_snd_setup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__sixlowpan__frag__fb__t.html">gnrc_sixlowpan_frag_fb_t</a> *&#160;</td>
+          <td class="paramname"><em>fb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve CongURE state object when not retrieved and initialize it for a fragmentation buffer entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fb</td><td>A fragmentation buffer entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Does not do anything without the module <code>gnrc_sixlowpan_frag_sfr_congure</code> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+var structdwc2__usb__otg__fshs__config__t =
+[
+    [ "af", "structdwc2__usb__otg__fshs__config__t.html#a00db60a114c988eb1101247b15ee8edd", null ],
+    [ "ahb", "structdwc2__usb__otg__fshs__config__t.html#a0c6b6869e5776e120c5137ac0321d8b9", null ],
+    [ "dm", "structdwc2__usb__otg__fshs__config__t.html#a44903db5b067b00faca88551d4b82164", null ],
+    [ "dp", "structdwc2__usb__otg__fshs__config__t.html#a08b83a81062a40cb37de180c8feadb2e", null ],
+    [ "irqn", "structdwc2__usb__otg__fshs__config__t.html#aa9af56b86af17ee480bdf4702ece6707", null ],
+    [ "periph", "structdwc2__usb__otg__fshs__config__t.html#a2f0314bcf385c06453f9d23dada70b13", null ],
+    [ "phy", "structdwc2__usb__otg__fshs__config__t.html#a82a210ddd3eaf3ad87deeaa2ef0dec47", null ],
+    [ "phy_tune", "structdwc2__usb__otg__fshs__config__t.html#a9ec891359e845715dbeeeb8be1aba75b", null ],
+    [ "rcc_mask", "structdwc2__usb__otg__fshs__config__t.html#a69e87ba9b511182de3e0c1228b6d90dd", null ],
+    [ "type", "structdwc2__usb__otg__fshs__config__t.html#a5f81f7652b5990d7310984588df8999e", null ],
+    [ "ulpi_af", "structdwc2__usb__otg__fshs__config__t.html#aab9086283fe0e1874182d0e2271da9bb", null ],
+    [ "ulpi_clk", "structdwc2__usb__otg__fshs__config__t.html#af6b653c3ff7bf2bf584da766612534ac", null ],
+    [ "ulpi_d0", "structdwc2__usb__otg__fshs__config__t.html#a165ea1aae13e5a00cd2fa249c4204c52", null ],
+    [ "ulpi_d1", "structdwc2__usb__otg__fshs__config__t.html#ade22ee75138093b91bb3de9f890da217", null ],
+    [ "ulpi_d2", "structdwc2__usb__otg__fshs__config__t.html#ac13b4d85ef4a349f2e05f5ad883a8c0e", null ],
+    [ "ulpi_d3", "structdwc2__usb__otg__fshs__config__t.html#a951908e77840264a3fb3f5354e008f2a", null ],
+    [ "ulpi_d4", "structdwc2__usb__otg__fshs__config__t.html#a0a914c32f5e1410c4e383476f6de2db5", null ],
+    [ "ulpi_d5", "structdwc2__usb__otg__fshs__config__t.html#a0dca36c12e6598a5d3641f8a49333d50", null ],
+    [ "ulpi_d6", "structdwc2__usb__otg__fshs__config__t.html#a5e1db9c4f349c7f742cc40fc7dc63ffa", null ],
+    [ "ulpi_d7", "structdwc2__usb__otg__fshs__config__t.html#adebb13b80060e32ae94b639e5e4ee4be", null ],
+    [ "ulpi_dir", "structdwc2__usb__otg__fshs__config__t.html#a2872bd214354db44d6b4480434d05c78", null ],
+    [ "ulpi_nxt", "structdwc2__usb__otg__fshs__config__t.html#a7744d6c4a2b83dc70eeb5039f2986f79", null ],
+    [ "ulpi_stp", "structdwc2__usb__otg__fshs__config__t.html#ae1309d59ac0261d453ea80880df77393", null ]
+];

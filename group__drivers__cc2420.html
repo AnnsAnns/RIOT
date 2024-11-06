@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: CC2420 radio driver</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__drivers__cc2420.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">CC2420 radio driver<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:cc2420__internal_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2420__internal_8h.html">cc2420_internal.h</a></td></tr>
+<tr class="memdesc:cc2420__internal_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definitions and settings for the cc2420. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:cc2420__netdev_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2420__netdev_8h.html">cc2420_netdev.h</a></td></tr>
+<tr class="memdesc:cc2420__netdev_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Netdev interface for the CC2420. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:cc2420__params_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2420__params_8h.html">cc2420_params.h</a></td></tr>
+<tr class="memdesc:cc2420__params_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default configuration for the CC2420 driver. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:cc2420__registers_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2420__registers_8h.html">cc2420_registers.h</a></td></tr>
+<tr class="memdesc:cc2420__registers_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register and command definitions for CC2420. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:cc2420_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2420_8h.html">cc2420.h</a></td></tr>
+<tr class="memdesc:cc2420_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface definition for the CC2420 driver. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcc2420__params.html">cc2420_params</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct holding all parameters needed for device initialization.  <a href="structcc2420__params.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcc2420__t.html">cc2420_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device descriptor for CC2420 radio devices.  <a href="structcc2420__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga7cf4cf554323505c1c233a52aca1f38e"><td class="memItemLeft" align="right" valign="top"><a id="ga7cf4cf554323505c1c233a52aca1f38e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga7cf4cf554323505c1c233a52aca1f38e">CC2420_PKT_MAXLEN</a>&#160;&#160;&#160;(<a class="el" href="group__net__ieee802154__header.html#ga2d919240154a1a93874f8d41c43bf7c6">IEEE802154_FRAME_LEN_MAX</a>)</td></tr>
+<tr class="memdesc:ga7cf4cf554323505c1c233a52aca1f38e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum possible packet size in byte. <br /></td></tr>
+<tr class="separator:ga7cf4cf554323505c1c233a52aca1f38e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga76a10b9e295bc7003901c20462e750e9"><td class="memItemLeft" align="right" valign="top"><a id="ga76a10b9e295bc7003901c20462e750e9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga76a10b9e295bc7003901c20462e750e9">CC2420_RSSI_OFFSET</a>&#160;&#160;&#160;(-45)</td></tr>
+<tr class="memdesc:ga76a10b9e295bc7003901c20462e750e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSSI offset. <br /></td></tr>
+<tr class="separator:ga76a10b9e295bc7003901c20462e750e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga7129aded13f475e31753fc6deded1ea7"><td class="memItemLeft" align="right" valign="top"><a id="ga7129aded13f475e31753fc6deded1ea7"></a>
+typedef struct <a class="el" href="structcc2420__params.html">cc2420_params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga7129aded13f475e31753fc6deded1ea7">cc2420_params_t</a></td></tr>
+<tr class="memdesc:ga7129aded13f475e31753fc6deded1ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct holding all parameters needed for device initialization. <br /></td></tr>
+<tr class="separator:ga7129aded13f475e31753fc6deded1ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gab98c672c5aaffb98a9189cd99e58ff23"><td class="memItemLeft" align="right" valign="top"><a id="gab98c672c5aaffb98a9189cd99e58ff23"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>CC2420_RET_CHAN_OK</b> = 2
+ }</td></tr>
+<tr class="memdesc:gab98c672c5aaffb98a9189cd99e58ff23"><td class="mdescLeft">&#160;</td><td class="mdescRight">A couple of return values used in this driver. <br /></td></tr>
+<tr class="separator:gab98c672c5aaffb98a9189cd99e58ff23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga5403e7570e59d635afb8e8c48a5fd2fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga5403e7570e59d635afb8e8c48a5fd2fe">cc2420_setup</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, const <a class="el" href="group__drivers__cc2420.html#ga7129aded13f475e31753fc6deded1ea7">cc2420_params_t</a> *params, uint8_t index)</td></tr>
+<tr class="memdesc:ga5403e7570e59d635afb8e8c48a5fd2fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the device descriptor for the given device.  <a href="group__drivers__cc2420.html#ga5403e7570e59d635afb8e8c48a5fd2fe">More...</a><br /></td></tr>
+<tr class="separator:ga5403e7570e59d635afb8e8c48a5fd2fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0ce5e9cc058fd84404852702e61beca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gaa0ce5e9cc058fd84404852702e61beca">cc2420_init</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa0ce5e9cc058fd84404852702e61beca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a given CC2420 device.  <a href="group__drivers__cc2420.html#gaa0ce5e9cc058fd84404852702e61beca">More...</a><br /></td></tr>
+<tr class="separator:gaa0ce5e9cc058fd84404852702e61beca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac9811078b83509f2c46b925719e94bce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gac9811078b83509f2c46b925719e94bce">cc2420_reset</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:gac9811078b83509f2c46b925719e94bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger a hardware reset and configure radio with default values.  <a href="group__drivers__cc2420.html#gac9811078b83509f2c46b925719e94bce">More...</a><br /></td></tr>
+<tr class="separator:gac9811078b83509f2c46b925719e94bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88026e56a0a41864731eb85b8c7f3ef2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga88026e56a0a41864731eb85b8c7f3ef2">cc2420_cca</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:ga88026e56a0a41864731eb85b8c7f3ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger a clear channel assessment.  <a href="group__drivers__cc2420.html#ga88026e56a0a41864731eb85b8c7f3ef2">More...</a><br /></td></tr>
+<tr class="separator:ga88026e56a0a41864731eb85b8c7f3ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1df6ad4296c4b4298aaedd414f261fbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga1df6ad4296c4b4298aaedd414f261fbe">cc2420_get_addr_short</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, uint8_t *addr)</td></tr>
+<tr class="memdesc:ga1df6ad4296c4b4298aaedd414f261fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the short address of the given device.  <a href="group__drivers__cc2420.html#ga1df6ad4296c4b4298aaedd414f261fbe">More...</a><br /></td></tr>
+<tr class="separator:ga1df6ad4296c4b4298aaedd414f261fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5e07b68cae7c428dbe40c60a9c9d33d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gac5e07b68cae7c428dbe40c60a9c9d33d">cc2420_set_addr_short</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, const uint8_t *addr)</td></tr>
+<tr class="memdesc:gac5e07b68cae7c428dbe40c60a9c9d33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the short address of the given device.  <a href="group__drivers__cc2420.html#gac5e07b68cae7c428dbe40c60a9c9d33d">More...</a><br /></td></tr>
+<tr class="separator:gac5e07b68cae7c428dbe40c60a9c9d33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabaeda7c33712d35704358ce8258979ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gabaeda7c33712d35704358ce8258979ee">cc2420_get_addr_long</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, uint8_t *addr_long)</td></tr>
+<tr class="memdesc:gabaeda7c33712d35704358ce8258979ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured long address of the given device.  <a href="group__drivers__cc2420.html#gabaeda7c33712d35704358ce8258979ee">More...</a><br /></td></tr>
+<tr class="separator:gabaeda7c33712d35704358ce8258979ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f340ea1673d1cceca82f397877390e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga4f340ea1673d1cceca82f397877390e5">cc2420_set_addr_long</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, const uint8_t *addr_long)</td></tr>
+<tr class="memdesc:ga4f340ea1673d1cceca82f397877390e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the long address of the given device.  <a href="group__drivers__cc2420.html#ga4f340ea1673d1cceca82f397877390e5">More...</a><br /></td></tr>
+<tr class="separator:ga4f340ea1673d1cceca82f397877390e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabefea788f749ba1256c634d6878e386e"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gabefea788f749ba1256c634d6878e386e">cc2420_get_pan</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:gabefea788f749ba1256c634d6878e386e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured PAN ID of the given device.  <a href="group__drivers__cc2420.html#gabefea788f749ba1256c634d6878e386e">More...</a><br /></td></tr>
+<tr class="separator:gabefea788f749ba1256c634d6878e386e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34da69b42e7c7dd8966b8295e4cd7fda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga34da69b42e7c7dd8966b8295e4cd7fda">cc2420_set_pan</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, uint16_t pan)</td></tr>
+<tr class="memdesc:ga34da69b42e7c7dd8966b8295e4cd7fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the PAN ID of the given device.  <a href="group__drivers__cc2420.html#ga34da69b42e7c7dd8966b8295e4cd7fda">More...</a><br /></td></tr>
+<tr class="separator:ga34da69b42e7c7dd8966b8295e4cd7fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58413f3832a6e713fef2eec199b9753f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga58413f3832a6e713fef2eec199b9753f">cc2420_get_chan</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:ga58413f3832a6e713fef2eec199b9753f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured channel of the given device.  <a href="group__drivers__cc2420.html#ga58413f3832a6e713fef2eec199b9753f">More...</a><br /></td></tr>
+<tr class="separator:ga58413f3832a6e713fef2eec199b9753f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada44bf49b80b7d4881b7d16ba91cba5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gada44bf49b80b7d4881b7d16ba91cba5a">cc2420_set_chan</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, uint16_t chan)</td></tr>
+<tr class="memdesc:gada44bf49b80b7d4881b7d16ba91cba5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the channel of the given device.  <a href="group__drivers__cc2420.html#gada44bf49b80b7d4881b7d16ba91cba5a">More...</a><br /></td></tr>
+<tr class="separator:gada44bf49b80b7d4881b7d16ba91cba5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3505547ea5ed61f9d02625fca512c039"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga3505547ea5ed61f9d02625fca512c039">cc2420_get_txpower</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:ga3505547ea5ed61f9d02625fca512c039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured transmission power of the given device [in dBm].  <a href="group__drivers__cc2420.html#ga3505547ea5ed61f9d02625fca512c039">More...</a><br /></td></tr>
+<tr class="separator:ga3505547ea5ed61f9d02625fca512c039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga388532eff46b73b1c9805db565ca3232"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga388532eff46b73b1c9805db565ca3232">cc2420_set_txpower</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, int16_t txpower)</td></tr>
+<tr class="memdesc:ga388532eff46b73b1c9805db565ca3232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the transmission power of the given device [in dBm].  <a href="group__drivers__cc2420.html#ga388532eff46b73b1c9805db565ca3232">More...</a><br /></td></tr>
+<tr class="separator:ga388532eff46b73b1c9805db565ca3232"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e2d3dab50c507a9228b93d7c24f8632"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga4e2d3dab50c507a9228b93d7c24f8632">cc2420_set_option</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, uint16_t option, bool state)</td></tr>
+<tr class="memdesc:ga4e2d3dab50c507a9228b93d7c24f8632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable driver specific options.  <a href="group__drivers__cc2420.html#ga4e2d3dab50c507a9228b93d7c24f8632">More...</a><br /></td></tr>
+<tr class="separator:ga4e2d3dab50c507a9228b93d7c24f8632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae57a039a81a947cd04cc97b6ea1682af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gae57a039a81a947cd04cc97b6ea1682af">cc2420_set_state</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, <a class="el" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a> state)</td></tr>
+<tr class="memdesc:gae57a039a81a947cd04cc97b6ea1682af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the state of the given device (trigger a state change)  <a href="group__drivers__cc2420.html#gae57a039a81a947cd04cc97b6ea1682af">More...</a><br /></td></tr>
+<tr class="separator:gae57a039a81a947cd04cc97b6ea1682af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab0bcb0a373c9a847b1b3ff88b8f1da74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gab0bcb0a373c9a847b1b3ff88b8f1da74">cc2420_get_state</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:gab0bcb0a373c9a847b1b3ff88b8f1da74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state of the given device.  <a href="group__drivers__cc2420.html#gab0bcb0a373c9a847b1b3ff88b8f1da74">More...</a><br /></td></tr>
+<tr class="separator:gab0bcb0a373c9a847b1b3ff88b8f1da74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaedbac8f277142b377f5b5126d2fd2843"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gaedbac8f277142b377f5b5126d2fd2843">cc2420_send</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, const <a class="el" href="group__sys__iolist.html#gaa17f91ef26edec149cd806d8457aa3a0">iolist_t</a> *<a class="el" href="structiolist.html">iolist</a>)</td></tr>
+<tr class="memdesc:gaedbac8f277142b377f5b5126d2fd2843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function for simply sending data.  <a href="group__drivers__cc2420.html#gaedbac8f277142b377f5b5126d2fd2843">More...</a><br /></td></tr>
+<tr class="separator:gaedbac8f277142b377f5b5126d2fd2843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88ce045461eb40a515e1f46b0197d974"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga88ce045461eb40a515e1f46b0197d974">cc2420_tx_prepare</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, const <a class="el" href="group__sys__iolist.html#gaa17f91ef26edec149cd806d8457aa3a0">iolist_t</a> *<a class="el" href="structiolist.html">iolist</a>)</td></tr>
+<tr class="memdesc:ga88ce045461eb40a515e1f46b0197d974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare for sending of data.  <a href="group__drivers__cc2420.html#ga88ce045461eb40a515e1f46b0197d974">More...</a><br /></td></tr>
+<tr class="separator:ga88ce045461eb40a515e1f46b0197d974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa1e5201aa266e4b5fb45b0f8da3aeb07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#gaa1e5201aa266e4b5fb45b0f8da3aeb07">cc2420_tx_exec</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa1e5201aa266e4b5fb45b0f8da3aeb07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger sending of data previously loaded into transmit buffer.  <a href="group__drivers__cc2420.html#gaa1e5201aa266e4b5fb45b0f8da3aeb07">More...</a><br /></td></tr>
+<tr class="separator:gaa1e5201aa266e4b5fb45b0f8da3aeb07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c39f7a16aadcbb1c73456d37cd68096"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__cc2420.html#ga4c39f7a16aadcbb1c73456d37cd68096">cc2420_rx</a> (<a class="el" href="structcc2420__t.html">cc2420_t</a> *dev, uint8_t *buf, size_t max_len, void *info)</td></tr>
+<tr class="memdesc:ga4c39f7a16aadcbb1c73456d37cd68096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data from the receive buffer of the given device.  <a href="group__drivers__cc2420.html#ga4c39f7a16aadcbb1c73456d37cd68096">More...</a><br /></td></tr>
+<tr class="separator:ga4c39f7a16aadcbb1c73456d37cd68096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Channel configuration</h2></td></tr>
+<tr class="memitem:ga37c7345e605b0f78e26f75a19af7f5aa"><td class="memItemLeft" align="right" valign="top"><a id="ga37c7345e605b0f78e26f75a19af7f5aa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2420_CHAN_MIN</b>&#160;&#160;&#160;(<a class="el" href="group__net__ieee802154__header.html#ga99a0b93f45c1d6d9f16996249a30a2d3">IEEE802154_CHANNEL_MIN</a>)</td></tr>
+<tr class="separator:ga37c7345e605b0f78e26f75a19af7f5aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4551b5840f5cdd4d1f990d01e98a537a"><td class="memItemLeft" align="right" valign="top"><a id="ga4551b5840f5cdd4d1f990d01e98a537a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2420_CHAN_MAX</b>&#160;&#160;&#160;(<a class="el" href="group__net__ieee802154__header.html#gae1edb472bdf13d857a170aa7bf087d44">IEEE802154_CHANNEL_MAX</a>)</td></tr>
+<tr class="separator:ga4551b5840f5cdd4d1f990d01e98a537a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2fb5836a1f8b1246df587403ebc20cce"><td class="memItemLeft" align="right" valign="top"><a id="ga2fb5836a1f8b1246df587403ebc20cce"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2420_CHAN_DEFAULT</b>&#160;&#160;&#160;(<a class="el" href="group__net__ieee802154__conf.html#gaaf010b48025ab9631e632c8ca936dc54">CONFIG_IEEE802154_DEFAULT_CHANNEL</a>)</td></tr>
+<tr class="separator:ga2fb5836a1f8b1246df587403ebc20cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Default TX power configuration [in dBm]</h2></td></tr>
+<tr class="memitem:gaa1955784a38556de75e30d320ee431fd"><td class="memItemLeft" align="right" valign="top"><a id="gaa1955784a38556de75e30d320ee431fd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2420_TXPOWER_MIN</b>&#160;&#160;&#160;(-25)</td></tr>
+<tr class="separator:gaa1955784a38556de75e30d320ee431fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga095208e776ff795f09eacc30f01a60e0"><td class="memItemLeft" align="right" valign="top"><a id="ga095208e776ff795f09eacc30f01a60e0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2420_TXPOWER_MAX</b>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:ga095208e776ff795f09eacc30f01a60e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9a9de440f20fc71a70509750f953280"><td class="memItemLeft" align="right" valign="top"><a id="gad9a9de440f20fc71a70509750f953280"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2420_TXPOWER_DEFAULT</b>&#160;&#160;&#160;(<a class="el" href="group__net__ieee802154__conf.html#gad1056c7e3357b51a711f7a20a632c1af">CONFIG_IEEE802154_DEFAULT_TXPOWER</a>)</td></tr>
+<tr class="separator:gad9a9de440f20fc71a70509750f953280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga88026e56a0a41864731eb85b8c7f3ef2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga88026e56a0a41864731eb85b8c7f3ef2">&#9670;&nbsp;</a></span>cc2420_cca()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cc2420_cca </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger a clear channel assessment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to use</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if channel is clear </dd>
+<dd>
+false if channel is busy </dd></dl>
+
+</div>
+</div>
+<a id="gabaeda7c33712d35704358ce8258979ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabaeda7c33712d35704358ce8258979ee">&#9670;&nbsp;</a></span>cc2420_get_addr_long()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_get_addr_long </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>addr_long</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured long address of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">addr_long</td><td>buffer to save the read address</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the currently set (8-byte) long address </dd></dl>
+
+</div>
+</div>
+<a id="ga1df6ad4296c4b4298aaedd414f261fbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1df6ad4296c4b4298aaedd414f261fbe">&#9670;&nbsp;</a></span>cc2420_get_addr_short()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_get_addr_short </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the short address of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">addr</td><td>memory to write the 2 byte address into </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga58413f3832a6e713fef2eec199b9753f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga58413f3832a6e713fef2eec199b9753f">&#9670;&nbsp;</a></span>cc2420_get_chan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t cc2420_get_chan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured channel of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the currently set channel </dd></dl>
+
+</div>
+</div>
+<a id="gabefea788f749ba1256c634d6878e386e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabefea788f749ba1256c634d6878e386e">&#9670;&nbsp;</a></span>cc2420_get_pan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t cc2420_get_pan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured PAN ID of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the currently set PAN ID </dd></dl>
+
+</div>
+</div>
+<a id="gab0bcb0a373c9a847b1b3ff88b8f1da74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab0bcb0a373c9a847b1b3ff88b8f1da74">&#9670;&nbsp;</a></span>cc2420_get_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a> cc2420_get_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the state of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to change state of</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the device's current state </dd></dl>
+
+</div>
+</div>
+<a id="ga3505547ea5ed61f9d02625fca512c039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3505547ea5ed61f9d02625fca512c039">&#9670;&nbsp;</a></span>cc2420_get_txpower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t cc2420_get_txpower </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured transmission power of the given device [in dBm]. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>configured transmission power in dBm </dd></dl>
+
+</div>
+</div>
+<a id="gaa0ce5e9cc058fd84404852702e61beca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa0ce5e9cc058fd84404852702e61beca">&#9670;&nbsp;</a></span>cc2420_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cc2420_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a given CC2420 device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="gac9811078b83509f2c46b925719e94bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac9811078b83509f2c46b925719e94bce">&#9670;&nbsp;</a></span>cc2420_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cc2420_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger a hardware reset and configure radio with default values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to reset</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TODO </dd></dl>
+
+</div>
+</div>
+<a id="ga4c39f7a16aadcbb1c73456d37cd68096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c39f7a16aadcbb1c73456d37cd68096">&#9670;&nbsp;</a></span>cc2420_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cc2420_rx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>max_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data from the receive buffer of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>buffer to write data to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">max_len</td><td>number of bytes to read from device </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>to be removed</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of bytes in the Rx FIFO </dd>
+<dd>
+the number of bytes written to <code>buf</code> if present </dd></dl>
+
+</div>
+</div>
+<a id="gaedbac8f277142b377f5b5126d2fd2843"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaedbac8f277142b377f5b5126d2fd2843">&#9670;&nbsp;</a></span>cc2420_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t cc2420_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__sys__iolist.html#gaa17f91ef26edec149cd806d8457aa3a0">iolist_t</a> *&#160;</td>
+          <td class="paramname"><em>iolist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convenience function for simply sending data. </p>
+<dl class="section note"><dt>Note</dt><dd>This function ignores the PRELOADING option</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to use for sending </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iolist</td><td>data to send (must include IEEE802.15.4 header)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of bytes that were actually send </dd>
+<dd>
+0 on error </dd></dl>
+
+</div>
+</div>
+<a id="ga4f340ea1673d1cceca82f397877390e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4f340ea1673d1cceca82f397877390e5">&#9670;&nbsp;</a></span>cc2420_set_addr_long()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_set_addr_long </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>addr_long</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the long address of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr_long</td><td>(8-byte) long address to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac5e07b68cae7c428dbe40c60a9c9d33d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5e07b68cae7c428dbe40c60a9c9d33d">&#9670;&nbsp;</a></span>cc2420_set_addr_short()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_set_addr_short </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the short address of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>(2-byte) short address to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gada44bf49b80b7d4881b7d16ba91cba5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gada44bf49b80b7d4881b7d16ba91cba5a">&#9670;&nbsp;</a></span>cc2420_set_chan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cc2420_set_chan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>chan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the channel of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">chan</td><td>channel to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga4e2d3dab50c507a9228b93d7c24f8632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4e2d3dab50c507a9228b93d7c24f8632">&#9670;&nbsp;</a></span>cc2420_set_option()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cc2420_set_option </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>option</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable driver specific options. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to set/clear option flag for </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">option</td><td>option to enable/disable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>true for enable, false for disable </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga34da69b42e7c7dd8966b8295e4cd7fda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga34da69b42e7c7dd8966b8295e4cd7fda">&#9670;&nbsp;</a></span>cc2420_set_pan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_set_pan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>pan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the PAN ID of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pan</td><td>PAN ID to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae57a039a81a947cd04cc97b6ea1682af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae57a039a81a947cd04cc97b6ea1682af">&#9670;&nbsp;</a></span>cc2420_set_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cc2420_set_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a>&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the state of the given device (trigger a state change) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to change state of </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>the targeted new state </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga388532eff46b73b1c9805db565ca3232"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga388532eff46b73b1c9805db565ca3232">&#9670;&nbsp;</a></span>cc2420_set_txpower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_set_txpower </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>txpower</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the transmission power of the given device [in dBm]. </p>
+<p>If the device does not support the exact dBm value given, it will set a value as close as possible to the given value. If the given value is larger or lower then the maximal or minimal possible value, the min or max value is set, respectively.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">txpower</td><td>transmission power in dBm </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5403e7570e59d635afb8e8c48a5fd2fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5403e7570e59d635afb8e8c48a5fd2fe">&#9670;&nbsp;</a></span>cc2420_setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_setup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__drivers__cc2420.html#ga7129aded13f475e31753fc6deded1ea7">cc2420_params_t</a> *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setup the device descriptor for the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>device parameters </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>index of <code>params</code> in a global parameter struct array. If initialized manually, pass a unique identifier instead.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+-1 on error </dd></dl>
+
+</div>
+</div>
+<a id="gaa1e5201aa266e4b5fb45b0f8da3aeb07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa1e5201aa266e4b5fb45b0f8da3aeb07">&#9670;&nbsp;</a></span>cc2420_tx_exec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2420_tx_exec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger sending of data previously loaded into transmit buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to trigger </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga88ce045461eb40a515e1f46b0197d974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga88ce045461eb40a515e1f46b0197d974">&#9670;&nbsp;</a></span>cc2420_tx_prepare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t cc2420_tx_prepare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2420__t.html">cc2420_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__sys__iolist.html#gaa17f91ef26edec149cd806d8457aa3a0">iolist_t</a> *&#160;</td>
+          <td class="paramname"><em>iolist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prepare for sending of data. </p>
+<p>This function puts the given device into the TX state, so no receiving of data is possible after it was called.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to prepare for sending </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iolist</td><td>data to prepare (must include IEEE802.15.4 header) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/sht3x.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('sht3x_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">sht3x.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="sht3x_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2018 Gunar Schorcht</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef SHT3X_H</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define SHT3X_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a2314bab5f878779d23b01ef1b3caf5fc">   30</a></span>&#160;<span class="preprocessor">#define SHT3X_I2C_ADDR_1    (0x44)  </span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="sht3x_8h.html#ad0243db74a1196b9179f723711027b76">   31</a></span>&#160;<span class="preprocessor">#define SHT3X_I2C_ADDR_2    (0x45)  </span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354">   36</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354aabf39b2c05170a3c0909b5764ff69760">   37</a></span>&#160;    <a class="code" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354aabf39b2c05170a3c0909b5764ff69760">SHT3X_OK</a>,                       </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a314a6c03e25e8759fea4d451ef1d8312">   38</a></span>&#160;    <a class="code" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a314a6c03e25e8759fea4d451ef1d8312">SHT3X_ERROR_I2C</a>,                </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a763526d5c4d52e15bdf1584e32d1af58">   39</a></span>&#160;    <a class="code" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a763526d5c4d52e15bdf1584e32d1af58">SHT3X_ERROR_CRC</a>,                </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a0bb10a697419db596da1e54f4b2258ef">   40</a></span>&#160;    <a class="code" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a0bb10a697419db596da1e54f4b2258ef">SHT3X_ERROR_STATUS</a>,             </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a55542665ab431429b33f7751593ef6d2">   41</a></span>&#160;    <a class="code" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a55542665ab431429b33f7751593ef6d2">SHT3X_ERROR_MEASURE_CMD_INV</a>,    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;} <a class="code" href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354">sht3x_error_codes</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946">   47</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a1a7dc02a9928fe16f5b58a8b218227ef">   48</a></span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a1a7dc02a9928fe16f5b58a8b218227ef">SHT3X_SINGLE_SHOT</a> = 0,  </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946aeee68e2ae5f28e0bb64ad5a298ca86a4">   49</a></span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946aeee68e2ae5f28e0bb64ad5a298ca86a4">SHT3X_PERIODIC_0_5_MPS</a>, </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a7687ea3401997a33185c485028b31c6b">   50</a></span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a7687ea3401997a33185c485028b31c6b">SHT3X_PERIODIC_1_MPS</a>,   </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a02dfc321f65b8cca7da8cab6d3732198">   51</a></span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a02dfc321f65b8cca7da8cab6d3732198">SHT3X_PERIODIC_2_MPS</a>,   </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a0dfcf0a63ea5874300278d7cc6225666">   52</a></span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a0dfcf0a63ea5874300278d7cc6225666">SHT3X_PERIODIC_4_MPS</a>,   </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946aeb1a3d0bebc77feb0f5a2ede0d7f9ecc">SHT3X_PERIODIC_10_MPS</a>   </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946aeb1a3d0bebc77feb0f5a2ede0d7f9ecc">   54</a></span>&#160;} <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946">sht3x_mode_t</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926">   74</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926a85ade8ecc9051e3973bcb50491ba6bd3">   75</a></span>&#160;    <a class="code" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926a85ade8ecc9051e3973bcb50491ba6bd3">SHT3X_HIGH</a> = 0, </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926adedc6b37ff14e6afd21b46e50cfeaee8">   76</a></span>&#160;    <a class="code" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926adedc6b37ff14e6afd21b46e50cfeaee8">SHT3X_MEDIUM</a>,   </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926a4fac84a6508275c7bf516dde49d6dee4">SHT3X_LOW</a>       </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926a4fac84a6508275c7bf516dde49d6dee4">   78</a></span>&#160;} <a class="code" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926">sht3x_repeat_t</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structsht3x__params__t.html">   83</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="structsht3x__params__t.html#a27b175a36e796e9dbb52e67da039750f">   84</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a>          <a class="code" href="structsht3x__params__t.html#a27b175a36e796e9dbb52e67da039750f">i2c_dev</a>;   </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="structsht3x__params__t.html#aad9f7b9e3995e4656870cf9350920183">   85</a></span>&#160;    uint8_t        <a class="code" href="structsht3x__params__t.html#aad9f7b9e3995e4656870cf9350920183">i2c_addr</a>;  </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="structsht3x__params__t.html#ae7cbfaef6de0167c0cc0989b7898eb5c">   86</a></span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946">sht3x_mode_t</a>   <a class="code" href="structsht3x__params__t.html#ae7cbfaef6de0167c0cc0989b7898eb5c">mode</a>;      </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structsht3x__params__t.html#abe4acd7445c544651408888196ed45de">   87</a></span>&#160;    <a class="code" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926">sht3x_repeat_t</a> <a class="code" href="structsht3x__params__t.html#abe4acd7445c544651408888196ed45de">repeat</a>;    </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;} <a class="code" href="structsht3x__params__t.html">sht3x_params_t</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html">   93</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html#a450ac0e8ca6dd48d1a6505277276091a">   95</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a>           <a class="code" href="structsht3x__dev__t.html#a450ac0e8ca6dd48d1a6505277276091a">i2c_dev</a>;         </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html#a3e83ddad53ab729c2c42598e7528889c">   96</a></span>&#160;    uint8_t         <a class="code" href="structsht3x__dev__t.html#a3e83ddad53ab729c2c42598e7528889c">i2c_addr</a>;        </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html#aee5be9887fa1fed84010164f650140de">   98</a></span>&#160;    <a class="code" href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946">sht3x_mode_t</a>    <a class="code" href="structsht3x__dev__t.html#aee5be9887fa1fed84010164f650140de">mode</a>;            </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html#a838f07fca05aa94d26994e1ffd56b89b">   99</a></span>&#160;    <a class="code" href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926">sht3x_repeat_t</a>  <a class="code" href="structsht3x__dev__t.html#a838f07fca05aa94d26994e1ffd56b89b">repeat</a>;          </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html#ab3fb6dab6b94d77badfd74cb08ee3e6c">  101</a></span>&#160;    <span class="keywordtype">bool</span>            <a class="code" href="structsht3x__dev__t.html#ab3fb6dab6b94d77badfd74cb08ee3e6c">meas_started</a>;    </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html#ab9e55892549001cb492b50f9b5edc7de">  102</a></span>&#160;    uint32_t        <a class="code" href="structsht3x__dev__t.html#ab9e55892549001cb492b50f9b5edc7de">meas_start_time</a>; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structsht3x__dev__t.html#a5646f16300b496973ae8f6058c24e370">  103</a></span>&#160;    uint32_t        <a class="code" href="structsht3x__dev__t.html#a5646f16300b496973ae8f6058c24e370">meas_duration</a>;   </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;} <a class="code" href="structsht3x__dev__t.html">sht3x_dev_t</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="sht3x_8h.html#aae26482bfb0ffbe6461b3be443d5427c">  124</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="sht3x_8h.html#aae26482bfb0ffbe6461b3be443d5427c">sht3x_init</a> (<a class="code" href="structsht3x__dev__t.html">sht3x_dev_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structsht3x__params__t.html">sht3x_params_t</a> *params);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="sht3x_8h.html#a53d8225e4a1af1b8ca43b64d6315e442">  160</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="sht3x_8h.html#a53d8225e4a1af1b8ca43b64d6315e442">sht3x_read</a> (<a class="code" href="structsht3x__dev__t.html">sht3x_dev_t</a>* dev, int16_t* temp, int16_t* hum);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;}</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SHT3X_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="asht3x_8h_html_a53d8225e4a1af1b8ca43b64d6315e442"><div class="ttname"><a href="sht3x_8h.html#a53d8225e4a1af1b8ca43b64d6315e442">sht3x_read</a></div><div class="ttdeci">int sht3x_read(sht3x_dev_t *dev, int16_t *temp, int16_t *hum)</div><div class="ttdoc">Read SHT3x measurement results (temperature and humidity)</div></div>
+<div class="ttc" id="asht3x_8h_html_a5e7001f3a8976f5618aab4ff97243946"><div class="ttname"><a href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946">sht3x_mode_t</a></div><div class="ttdeci">sht3x_mode_t</div><div class="ttdoc">SHT3x measurement modes.</div><div class="ttdef"><b>Definition:</b> sht3x.h:47</div></div>
+<div class="ttc" id="asht3x_8h_html_a5e7001f3a8976f5618aab4ff97243946a02dfc321f65b8cca7da8cab6d3732198"><div class="ttname"><a href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a02dfc321f65b8cca7da8cab6d3732198">SHT3X_PERIODIC_2_MPS</a></div><div class="ttdeci">@ SHT3X_PERIODIC_2_MPS</div><div class="ttdoc">periodic with 2 measurements per second (mps)</div><div class="ttdef"><b>Definition:</b> sht3x.h:51</div></div>
+<div class="ttc" id="asht3x_8h_html_a5e7001f3a8976f5618aab4ff97243946a0dfcf0a63ea5874300278d7cc6225666"><div class="ttname"><a href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a0dfcf0a63ea5874300278d7cc6225666">SHT3X_PERIODIC_4_MPS</a></div><div class="ttdeci">@ SHT3X_PERIODIC_4_MPS</div><div class="ttdoc">periodic with 4 measurements per second (mps)</div><div class="ttdef"><b>Definition:</b> sht3x.h:52</div></div>
+<div class="ttc" id="asht3x_8h_html_a5e7001f3a8976f5618aab4ff97243946a1a7dc02a9928fe16f5b58a8b218227ef"><div class="ttname"><a href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a1a7dc02a9928fe16f5b58a8b218227ef">SHT3X_SINGLE_SHOT</a></div><div class="ttdeci">@ SHT3X_SINGLE_SHOT</div><div class="ttdoc">single shot measurement</div><div class="ttdef"><b>Definition:</b> sht3x.h:48</div></div>
+<div class="ttc" id="asht3x_8h_html_a5e7001f3a8976f5618aab4ff97243946a7687ea3401997a33185c485028b31c6b"><div class="ttname"><a href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946a7687ea3401997a33185c485028b31c6b">SHT3X_PERIODIC_1_MPS</a></div><div class="ttdeci">@ SHT3X_PERIODIC_1_MPS</div><div class="ttdoc">periodic with 1 measurements per second (mps)</div><div class="ttdef"><b>Definition:</b> sht3x.h:50</div></div>
+<div class="ttc" id="asht3x_8h_html_a5e7001f3a8976f5618aab4ff97243946aeb1a3d0bebc77feb0f5a2ede0d7f9ecc"><div class="ttname"><a href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946aeb1a3d0bebc77feb0f5a2ede0d7f9ecc">SHT3X_PERIODIC_10_MPS</a></div><div class="ttdeci">@ SHT3X_PERIODIC_10_MPS</div><div class="ttdoc">periodic with 10 measurements per second (mps)</div><div class="ttdef"><b>Definition:</b> sht3x.h:53</div></div>
+<div class="ttc" id="asht3x_8h_html_a5e7001f3a8976f5618aab4ff97243946aeee68e2ae5f28e0bb64ad5a298ca86a4"><div class="ttname"><a href="sht3x_8h.html#a5e7001f3a8976f5618aab4ff97243946aeee68e2ae5f28e0bb64ad5a298ca86a4">SHT3X_PERIODIC_0_5_MPS</a></div><div class="ttdeci">@ SHT3X_PERIODIC_0_5_MPS</div><div class="ttdoc">periodic with 0.5 measurements per second (mps)</div><div class="ttdef"><b>Definition:</b> sht3x.h:49</div></div>
+<div class="ttc" id="asht3x_8h_html_a699ceeac8cdedf1ed37ca231cdfff354"><div class="ttname"><a href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354">sht3x_error_codes</a></div><div class="ttdeci">sht3x_error_codes</div><div class="ttdoc">Driver error codes (returned as negative values)</div><div class="ttdef"><b>Definition:</b> sht3x.h:36</div></div>
+<div class="ttc" id="asht3x_8h_html_a699ceeac8cdedf1ed37ca231cdfff354a0bb10a697419db596da1e54f4b2258ef"><div class="ttname"><a href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a0bb10a697419db596da1e54f4b2258ef">SHT3X_ERROR_STATUS</a></div><div class="ttdeci">@ SHT3X_ERROR_STATUS</div><div class="ttdoc">sensor has wrong status</div><div class="ttdef"><b>Definition:</b> sht3x.h:40</div></div>
+<div class="ttc" id="asht3x_8h_html_a699ceeac8cdedf1ed37ca231cdfff354a314a6c03e25e8759fea4d451ef1d8312"><div class="ttname"><a href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a314a6c03e25e8759fea4d451ef1d8312">SHT3X_ERROR_I2C</a></div><div class="ttdeci">@ SHT3X_ERROR_I2C</div><div class="ttdoc">I2C communication failure.</div><div class="ttdef"><b>Definition:</b> sht3x.h:38</div></div>
+<div class="ttc" id="asht3x_8h_html_a699ceeac8cdedf1ed37ca231cdfff354a55542665ab431429b33f7751593ef6d2"><div class="ttname"><a href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a55542665ab431429b33f7751593ef6d2">SHT3X_ERROR_MEASURE_CMD_INV</a></div><div class="ttdeci">@ SHT3X_ERROR_MEASURE_CMD_INV</div><div class="ttdoc">measurement command not executed</div><div class="ttdef"><b>Definition:</b> sht3x.h:41</div></div>
+<div class="ttc" id="asht3x_8h_html_a699ceeac8cdedf1ed37ca231cdfff354a763526d5c4d52e15bdf1584e32d1af58"><div class="ttname"><a href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354a763526d5c4d52e15bdf1584e32d1af58">SHT3X_ERROR_CRC</a></div><div class="ttdeci">@ SHT3X_ERROR_CRC</div><div class="ttdoc">CRC check failed.</div><div class="ttdef"><b>Definition:</b> sht3x.h:39</div></div>
+<div class="ttc" id="asht3x_8h_html_a699ceeac8cdedf1ed37ca231cdfff354aabf39b2c05170a3c0909b5764ff69760"><div class="ttname"><a href="sht3x_8h.html#a699ceeac8cdedf1ed37ca231cdfff354aabf39b2c05170a3c0909b5764ff69760">SHT3X_OK</a></div><div class="ttdeci">@ SHT3X_OK</div><div class="ttdoc">no error</div><div class="ttdef"><b>Definition:</b> sht3x.h:37</div></div>
+<div class="ttc" id="asht3x_8h_html_aa85887f2dbeb5b218a3fbc9f1a415926"><div class="ttname"><a href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926">sht3x_repeat_t</a></div><div class="ttdeci">sht3x_repeat_t</div><div class="ttdoc">SHT3x repeatability levels.</div><div class="ttdef"><b>Definition:</b> sht3x.h:74</div></div>
+<div class="ttc" id="asht3x_8h_html_aa85887f2dbeb5b218a3fbc9f1a415926a4fac84a6508275c7bf516dde49d6dee4"><div class="ttname"><a href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926a4fac84a6508275c7bf516dde49d6dee4">SHT3X_LOW</a></div><div class="ttdeci">@ SHT3X_LOW</div><div class="ttdoc">low repeatability</div><div class="ttdef"><b>Definition:</b> sht3x.h:77</div></div>
+<div class="ttc" id="asht3x_8h_html_aa85887f2dbeb5b218a3fbc9f1a415926a85ade8ecc9051e3973bcb50491ba6bd3"><div class="ttname"><a href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926a85ade8ecc9051e3973bcb50491ba6bd3">SHT3X_HIGH</a></div><div class="ttdeci">@ SHT3X_HIGH</div><div class="ttdoc">high repeatability</div><div class="ttdef"><b>Definition:</b> sht3x.h:75</div></div>
+<div class="ttc" id="asht3x_8h_html_aa85887f2dbeb5b218a3fbc9f1a415926adedc6b37ff14e6afd21b46e50cfeaee8"><div class="ttname"><a href="sht3x_8h.html#aa85887f2dbeb5b218a3fbc9f1a415926adedc6b37ff14e6afd21b46e50cfeaee8">SHT3X_MEDIUM</a></div><div class="ttdeci">@ SHT3X_MEDIUM</div><div class="ttdoc">medium repeatability</div><div class="ttdef"><b>Definition:</b> sht3x.h:76</div></div>
+<div class="ttc" id="asht3x_8h_html_aae26482bfb0ffbe6461b3be443d5427c"><div class="ttname"><a href="sht3x_8h.html#aae26482bfb0ffbe6461b3be443d5427c">sht3x_init</a></div><div class="ttdeci">int sht3x_init(sht3x_dev_t *dev, const sht3x_params_t *params)</div><div class="ttdoc">Initialize the SHT3x sensor device.</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html"><div class="ttname"><a href="structsht3x__dev__t.html">sht3x_dev_t</a></div><div class="ttdoc">SHT3x sensor device data structure.</div><div class="ttdef"><b>Definition:</b> sht3x.h:93</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html_a3e83ddad53ab729c2c42598e7528889c"><div class="ttname"><a href="structsht3x__dev__t.html#a3e83ddad53ab729c2c42598e7528889c">sht3x_dev_t::i2c_addr</a></div><div class="ttdeci">uint8_t i2c_addr</div><div class="ttdoc">I2C address.</div><div class="ttdef"><b>Definition:</b> sht3x.h:96</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html_a450ac0e8ca6dd48d1a6505277276091a"><div class="ttname"><a href="structsht3x__dev__t.html#a450ac0e8ca6dd48d1a6505277276091a">sht3x_dev_t::i2c_dev</a></div><div class="ttdeci">i2c_t i2c_dev</div><div class="ttdoc">I2C device</div><div class="ttdef"><b>Definition:</b> sht3x.h:95</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html_a5646f16300b496973ae8f6058c24e370"><div class="ttname"><a href="structsht3x__dev__t.html#a5646f16300b496973ae8f6058c24e370">sht3x_dev_t::meas_duration</a></div><div class="ttdeci">uint32_t meas_duration</div><div class="ttdoc">time in us until the results of the current measurement become available</div><div class="ttdef"><b>Definition:</b> sht3x.h:103</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html_a838f07fca05aa94d26994e1ffd56b89b"><div class="ttname"><a href="structsht3x__dev__t.html#a838f07fca05aa94d26994e1ffd56b89b">sht3x_dev_t::repeat</a></div><div class="ttdeci">sht3x_repeat_t repeat</div><div class="ttdoc">repeatability level used</div><div class="ttdef"><b>Definition:</b> sht3x.h:99</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html_ab3fb6dab6b94d77badfd74cb08ee3e6c"><div class="ttname"><a href="structsht3x__dev__t.html#ab3fb6dab6b94d77badfd74cb08ee3e6c">sht3x_dev_t::meas_started</a></div><div class="ttdeci">bool meas_started</div><div class="ttdoc">indicates whether measurement is started</div><div class="ttdef"><b>Definition:</b> sht3x.h:101</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html_ab9e55892549001cb492b50f9b5edc7de"><div class="ttname"><a href="structsht3x__dev__t.html#ab9e55892549001cb492b50f9b5edc7de">sht3x_dev_t::meas_start_time</a></div><div class="ttdeci">uint32_t meas_start_time</div><div class="ttdoc">start time of current measurement in us</div><div class="ttdef"><b>Definition:</b> sht3x.h:102</div></div>
+<div class="ttc" id="astructsht3x__dev__t_html_aee5be9887fa1fed84010164f650140de"><div class="ttname"><a href="structsht3x__dev__t.html#aee5be9887fa1fed84010164f650140de">sht3x_dev_t::mode</a></div><div class="ttdeci">sht3x_mode_t mode</div><div class="ttdoc">measurement mode used</div><div class="ttdef"><b>Definition:</b> sht3x.h:98</div></div>
+<div class="ttc" id="astructsht3x__params__t_html"><div class="ttname"><a href="structsht3x__params__t.html">sht3x_params_t</a></div><div class="ttdoc">SHT3x device initialization parameters.</div><div class="ttdef"><b>Definition:</b> sht3x.h:83</div></div>
+<div class="ttc" id="astructsht3x__params__t_html_a27b175a36e796e9dbb52e67da039750f"><div class="ttname"><a href="structsht3x__params__t.html#a27b175a36e796e9dbb52e67da039750f">sht3x_params_t::i2c_dev</a></div><div class="ttdeci">i2c_t i2c_dev</div><div class="ttdoc">I2C device</div><div class="ttdef"><b>Definition:</b> sht3x.h:84</div></div>
+<div class="ttc" id="astructsht3x__params__t_html_aad9f7b9e3995e4656870cf9350920183"><div class="ttname"><a href="structsht3x__params__t.html#aad9f7b9e3995e4656870cf9350920183">sht3x_params_t::i2c_addr</a></div><div class="ttdeci">uint8_t i2c_addr</div><div class="ttdoc">I2C address</div><div class="ttdef"><b>Definition:</b> sht3x.h:85</div></div>
+<div class="ttc" id="astructsht3x__params__t_html_abe4acd7445c544651408888196ed45de"><div class="ttname"><a href="structsht3x__params__t.html#abe4acd7445c544651408888196ed45de">sht3x_params_t::repeat</a></div><div class="ttdeci">sht3x_repeat_t repeat</div><div class="ttdoc">repeatability level used</div><div class="ttdef"><b>Definition:</b> sht3x.h:87</div></div>
+<div class="ttc" id="astructsht3x__params__t_html_ae7cbfaef6de0167c0cc0989b7898eb5c"><div class="ttname"><a href="structsht3x__params__t.html#ae7cbfaef6de0167c0cc0989b7898eb5c">sht3x_params_t::mode</a></div><div class="ttdeci">sht3x_mode_t mode</div><div class="ttdoc">measurement mode used</div><div class="ttdef"><b>Definition:</b> sht3x.h:86</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="sht3x_8h.html">sht3x.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

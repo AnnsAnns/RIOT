@@ -1,0 +1,28 @@
+var vl6180x__params_8h =
+[
+    [ "CONFIG_VL6180X_ALS_GAIN", "vl6180x__params_8h.html#aec5488b6a0b11cad9d1f3e06d535b50f", null ],
+    [ "CONFIG_VL6180X_ALS_INT", "vl6180x__params_8h.html#ac5b5aeff9ce5d34776a30cfff4894b94", null ],
+    [ "CONFIG_VL6180X_ALS_INT_TIME", "vl6180x__params_8h.html#a8bf28cae2db673143f3d59d85b32aa7e", null ],
+    [ "CONFIG_VL6180X_ALS_LUX_RES", "vl6180x__params_8h.html#ab3b82d2723f6b3001e7f5de02ede4bb4", null ],
+    [ "CONFIG_VL6180X_ALS_THRESH_HIGH", "vl6180x__params_8h.html#a5f98d525b31bf04eff55438cb210ba51", null ],
+    [ "CONFIG_VL6180X_ALS_THRESH_LOW", "vl6180x__params_8h.html#a5414c856854f9326cdb0c1a61a5dee4c", null ],
+    [ "CONFIG_VL6180X_MEAS_PERIOD", "vl6180x__params_8h.html#ad7563baf87022fa175ded623d2bcecae", null ],
+    [ "CONFIG_VL6180X_RNG_INT", "vl6180x__params_8h.html#a8b7cf23f4d6e61d055f286387972e26c", null ],
+    [ "CONFIG_VL6180X_RNG_MAX_TIME", "vl6180x__params_8h.html#a250c29b2b29715fd5e3d3dd684713531", null ],
+    [ "CONFIG_VL6180X_RNG_THRESH_HIGH", "vl6180x__params_8h.html#ab9cb7f28990e0694fa5440e3e8b1d64a", null ],
+    [ "CONFIG_VL6180X_RNG_THRESH_LOW", "vl6180x__params_8h.html#a1048ee277260b835f2e433e197b03b3c", null ],
+    [ "VL6180X_PARAM_ADDR", "vl6180x__params_8h.html#a363fe8d70c5adf432ba644346b6c5e66", null ],
+    [ "VL6180X_PARAM_ALS", "vl6180x__params_8h.html#a07ed1b7561d7ecbd6d7cef234ddf996b", null ],
+    [ "VL6180X_PARAM_DEV", "vl6180x__params_8h.html#a5a200a6e333199ca974603fc2bdfe006", null ],
+    [ "VL6180X_PARAM_INT", "vl6180x__params_8h.html#ad1c2036c6ee4d47dc8e0538f8a6d1db6", null ],
+    [ "VL6180X_PARAM_INT_ALS_CFG", "vl6180x__params_8h.html#abb09c58bb611a3ad3fd0fbaa07a7ed7d", null ],
+    [ "VL6180X_PARAM_INT_PIN", "vl6180x__params_8h.html#a06800eff0d16061477e3bf7eea64d67c", null ],
+    [ "VL6180X_PARAM_INT_RNG_CFG", "vl6180x__params_8h.html#a1147b3dee3e1d92c392d8dd67e7c0afc", null ],
+    [ "VL6180X_PARAM_RANGE", "vl6180x__params_8h.html#add92009b5d4f001d233833b147530fba", null ],
+    [ "VL6180X_PARAM_SHUTDOWN", "vl6180x__params_8h.html#ac62ddecefdd75c0ee778cc9ee5b40665", null ],
+    [ "VL6180X_PARAM_SHUTDOWN_PIN", "vl6180x__params_8h.html#aecb6cd928b087f66bdcc861099819308", null ],
+    [ "VL6180X_PARAMS", "vl6180x__params_8h.html#ab7e70a494bcf6403298563094179549e", null ],
+    [ "VL6180X_SAUL_INFO", "vl6180x__params_8h.html#ab8a2cd25cd752a6edb5bc0afe6b55ba6", null ],
+    [ "vl6180x_params", "vl6180x__params_8h.html#aa0b0b88748c8003a74f11056a8a04045", null ],
+    [ "vl6180x_saul_info", "vl6180x__params_8h.html#ae21459acefafa904a9629726a4aeb7bf", null ]
+];

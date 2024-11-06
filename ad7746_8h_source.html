@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/ad7746.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ad7746_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ad7746.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ad7746_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019 HAW Hamburg</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#ifndef AD7746_H</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define AD7746_H</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga383d01a224c5adf390b467bc9f08634b">   57</a></span>&#160;<span class="preprocessor">#define AD7746_ZERO_SCALE_CODE  (0x800000LL)</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gaf04323308d8d0039151ccf44224705cd">   62</a></span>&#160;<span class="preprocessor">#define AD7746_INTERNAL_VREF    (1170)</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga4f6d68b3047e135293ae4e650c4f46b8">   67</a></span>&#160;<span class="preprocessor">#define AD7746_DAC_MAX          (0x7F)</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga1e06e534e565b0e44afdf96c77951725ae8c9e628ca186f4bb226ef573ced594c">   73</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga1e06e534e565b0e44afdf96c77951725ae8c9e628ca186f4bb226ef573ced594c">AD7746_READ_CAP_CH</a> = 0, </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga1e06e534e565b0e44afdf96c77951725a7c51db43075025a0f097f427ad0257c5">AD7746_READ_VT_CH</a>  = 1  </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga1e06e534e565b0e44afdf96c77951725a7c51db43075025a0f097f427ad0257c5">   75</a></span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fa93fca5d46173e9e4014b5695d18a4113">   81</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fa93fca5d46173e9e4014b5695d18a4113">AD7746_OK</a>          =  0,       </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fa643d6f8970013da177cda5730b6c1ec3">   82</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fa643d6f8970013da177cda5730b6c1ec3">AD7746_NOI2C</a>       = -1,       </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fac6961ee4afce65e73e13fc2b0f3eb991">   83</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fac6961ee4afce65e73e13fc2b0f3eb991">AD7746_NODEV</a>       = -2,       </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fafd4ae9c38b193247ae742bf9c59780bc">AD7746_NODATA</a>      = -3        </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fafd4ae9c38b193247ae742bf9c59780bc">   85</a></span>&#160;};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga902b40e31d90a6b189bebe78f241339b">   90</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba99d1c7893e844662ea2b3257d4243533">   91</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba99d1c7893e844662ea2b3257d4243533">AD7746_VT_SR_498</a> = 0, </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba58c79f17b040c2fce06c0d107df184ad">   92</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba58c79f17b040c2fce06c0d107df184ad">AD7746_VT_SR_312</a> = 1, </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339bae8fd1708dc4eef9e1729410ec6f6f194">   93</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339bae8fd1708dc4eef9e1729410ec6f6f194">AD7746_VT_SR_161</a> = 2, </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba1ab68f48239daff781ff2a543e336343">AD7746_VT_SR_082</a> = 3  </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba1ab68f48239daff781ff2a543e336343">   95</a></span>&#160;} <a class="code" href="group__drivers__ad7746.html#ga902b40e31d90a6b189bebe78f241339b">ad7746_vt_sample_rate_t</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga767e5f771c9256fa61a424623dee3750">  100</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750a75bf4ee126314b45adfb51840de37ea3">  101</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750a75bf4ee126314b45adfb51840de37ea3">AD7746_VT_MD_DIS</a>   = -1, </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750a1d0a9af7c559f319b4d757c934d11ae1">  102</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750a1d0a9af7c559f319b4d757c934d11ae1">AD7746_VT_MD_TEMP</a>  = 0,  </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750aad6ea3cf890f034c79654f544bb2bf59">  103</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750aad6ea3cf890f034c79654f544bb2bf59">AD7746_VT_MD_ETEMP</a> = 1,  </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750aa999de2f5a63ef8cebfe534d4ffd0679">  104</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750aa999de2f5a63ef8cebfe534d4ffd0679">AD7746_VT_MD_VDD</a>   = 2,  </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750ac9bbc54f127c94dd0c4a0a44e6a4625e">AD7746_VT_MD_VIN</a>   = 3   </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750ac9bbc54f127c94dd0c4a0a44e6a4625e">  106</a></span>&#160;} <a class="code" href="group__drivers__ad7746.html#ga767e5f771c9256fa61a424623dee3750">ad7746_vt_mode_t</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga4288ad466feb87f7f8d0493a15dc7163">  111</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga4288ad466feb87f7f8d0493a15dc7163a2243f2623d024dec578ccd32f8d84145">  112</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga4288ad466feb87f7f8d0493a15dc7163a2243f2623d024dec578ccd32f8d84145">AD7746_CAP_IN_1</a> = 0, </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga4288ad466feb87f7f8d0493a15dc7163ac3157d289ba9f6ce053a1b7883d45892">AD7746_CAP_IN_2</a>      </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga4288ad466feb87f7f8d0493a15dc7163ac3157d289ba9f6ce053a1b7883d45892">  114</a></span>&#160;} <a class="code" href="group__drivers__ad7746.html#ga4288ad466feb87f7f8d0493a15dc7163">ad7746_cap_input_t</a>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gac27e150f98c939be117a8c933f9b6017">  119</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017af616edfae0afc33455b9d790421f6737">  120</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017af616edfae0afc33455b9d790421f6737">AD7746_CAP_SR_909</a> = 0, </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017afa70ea476924c34b75e16d40c9e0e103">  121</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017afa70ea476924c34b75e16d40c9e0e103">AD7746_CAP_SR_838</a> = 1, </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ac30fe66a2ddca473af81e078cdc9ccbd">  122</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ac30fe66a2ddca473af81e078cdc9ccbd">AD7746_CAP_SR_500</a> = 2, </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a48bbef3733d080600d4b2d506c8de8c5">  123</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a48bbef3733d080600d4b2d506c8de8c5">AD7746_CAP_SR_263</a> = 3, </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ac8b87609926719003b5136462339be4a">  124</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ac8b87609926719003b5136462339be4a">AD7746_CAP_SR_161</a> = 4, </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a3871e7e3e0f9ac4a0f9851ab12b07c75">  125</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a3871e7e3e0f9ac4a0f9851ab12b07c75">AD7746_CAP_SR_130</a> = 5, </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a0f355ee421640c8adc67991c9b1a1794">  126</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a0f355ee421640c8adc67991c9b1a1794">AD7746_CAP_SR_109</a> = 6, </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ade582ec9ae373cba8c389ca2ba633838">AD7746_CAP_SR_091</a> = 7  </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ade582ec9ae373cba8c389ca2ba633838">  128</a></span>&#160;} <a class="code" href="group__drivers__ad7746.html#gac27e150f98c939be117a8c933f9b6017">ad7746_cap_sample_rate_t</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga2f12d0b2408d43c5aeb3a1de3c8a22cc">  133</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca9f5b3e805ff107188c101834dfc8a086">  134</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca9f5b3e805ff107188c101834dfc8a086">AD7746_EXC_A</a>  = 0x06,  </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca3c09262faeff1d8e119474f80f903189">  135</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca3c09262faeff1d8e119474f80f903189">AD7746_EXC_B</a>  = 0x09,  </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <a class="code" href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca61d2cafcb01d64c2e67b5e54db1b1f42">AD7746_EXC_AB</a> = 0x0A   </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca61d2cafcb01d64c2e67b5e54db1b1f42">  137</a></span>&#160;} <a class="code" href="group__drivers__ad7746.html#ga2f12d0b2408d43c5aeb3a1de3c8a22cc">ad7746_exc_config_t</a>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="structad7746__params.html">  142</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structad7746__params.html">ad7746_params</a> {</div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="structad7746__params.html#a3073ca6a2815a8f8174ef4c8d63b1fcd">  143</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structad7746__params.html#a3073ca6a2815a8f8174ef4c8d63b1fcd">i2c</a>;                                </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="structad7746__params.html#a2f14925d6071350ea47aa03db997db57">  144</a></span>&#160;    uint8_t <a class="code" href="structad7746__params.html#a2f14925d6071350ea47aa03db997db57">addr</a>;                             </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="structad7746__params.html#ac5ed739b970146d6b3b455c2f279d3cd">  145</a></span>&#160;    uint8_t <a class="code" href="structad7746__params.html#ac5ed739b970146d6b3b455c2f279d3cd">dac_a_cap</a>;                        </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="structad7746__params.html#a9daa6ae42ea92a1fc821e954cf922239">  146</a></span>&#160;    uint8_t <a class="code" href="structad7746__params.html#a9daa6ae42ea92a1fc821e954cf922239">dac_b_cap</a>;                        </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="structad7746__params.html#a475d741911d6d9c78afaf9a5c5f5dad1">  147</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ga2f12d0b2408d43c5aeb3a1de3c8a22cc">ad7746_exc_config_t</a> <a class="code" href="structad7746__params.html#a475d741911d6d9c78afaf9a5c5f5dad1">exc_config</a>;           </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="structad7746__params.html#a77551e877f3132c86498317cf6b580e9">  148</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#gac27e150f98c939be117a8c933f9b6017">ad7746_cap_sample_rate_t</a> <a class="code" href="structad7746__params.html#a77551e877f3132c86498317cf6b580e9">cap_sample_rate</a>; </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="structad7746__params.html#acb2c16cf4a587c7d9aa48693c9d321e0">  149</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ga902b40e31d90a6b189bebe78f241339b">ad7746_vt_sample_rate_t</a> <a class="code" href="structad7746__params.html#acb2c16cf4a587c7d9aa48693c9d321e0">vt_sample_rate</a>;   </div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="structad7746__params.html#a680236e96ee6fe7ea1ca4fc23bc496e6">  150</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ga767e5f771c9256fa61a424623dee3750">ad7746_vt_mode_t</a> <a class="code" href="structad7746__params.html#a680236e96ee6fe7ea1ca4fc23bc496e6">vt_mode</a>;                 </div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="structad7746__params.html#abff2f374cf547a666f17ace518d54a0d">  151</a></span>&#160;    <a class="code" href="group__drivers__ad7746.html#ga4288ad466feb87f7f8d0493a15dc7163">ad7746_cap_input_t</a> <a class="code" href="structad7746__params.html#abff2f374cf547a666f17ace518d54a0d">cap_input</a>;             </div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga8cfffa7af86f9a061367ebeb3aa76f47">  152</a></span>&#160;} <a class="code" href="group__drivers__ad7746.html#ga8cfffa7af86f9a061367ebeb3aa76f47">ad7746_params_t</a>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structad7746.html">  157</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structad7746.html">ad7746</a> {</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structad7746.html#a07b62becbb56599ea71a21ae352cf863">  158</a></span>&#160;    <a class="code" href="structad7746__params.html">ad7746_params_t</a> <a class="code" href="structad7746.html#a07b62becbb56599ea71a21ae352cf863">params</a>; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga250361115dd59874bdbcfa842ebac5da">  159</a></span>&#160;} <a class="code" href="group__drivers__ad7746.html#ga250361115dd59874bdbcfa842ebac5da">ad7746_t</a>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga7497907fe66f9f82cde1aa08efa4d326">  171</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga7497907fe66f9f82cde1aa08efa4d326">ad7746_init</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structad7746__params.html">ad7746_params_t</a> *params);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga84bd93766dd890584d98ae32affad8e2">  189</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga84bd93766dd890584d98ae32affad8e2">ad7746_read_capacitance_1</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <span class="keywordtype">int</span> *value);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga5cf43a18214493cdded0f4a18ce1bc52">  207</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga5cf43a18214493cdded0f4a18ce1bc52">ad7746_read_capacitance_2</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <span class="keywordtype">int</span> *value);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga78d4224109e9b82e4e847d228c7d83bf">  226</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga78d4224109e9b82e4e847d228c7d83bf">ad7746_read_voltage_in</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <span class="keywordtype">int</span> *value);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga9934d5bdb2776582658227f16362b4ef">  244</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga9934d5bdb2776582658227f16362b4ef">ad7746_read_voltage_vdd</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <span class="keywordtype">int</span> *value);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#gae1549c823f61530e051a5ddd54b38dc6">  262</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#gae1549c823f61530e051a5ddd54b38dc6">ad7746_read_temperature_int</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <span class="keywordtype">int</span> *value);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga87609e64fbc014ffc961cb2a8f90b252">  280</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga87609e64fbc014ffc961cb2a8f90b252">ad7746_read_temperature_ext</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <span class="keywordtype">int</span> *value);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga24f7c23e22d6d88b94d131f4f88ae53f">  293</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga24f7c23e22d6d88b94d131f4f88ae53f">ad7746_set_cap_ch_input</a>(<span class="keyword">const</span> <a class="code" href="structad7746.html">ad7746_t</a> *dev, <a class="code" href="group__drivers__ad7746.html#ga4288ad466feb87f7f8d0493a15dc7163">ad7746_cap_input_t</a> input);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
+<div class="line"><a name="l00306"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga330f467eb4699fd401ea01d2b99b6e33">  306</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga330f467eb4699fd401ea01d2b99b6e33">ad7746_set_vt_ch_mode</a>(<a class="code" href="structad7746.html">ad7746_t</a> *dev, <a class="code" href="group__drivers__ad7746.html#ga767e5f771c9256fa61a424623dee3750">ad7746_vt_mode_t</a> mode);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga8216bd3dddd059955ae61ff341bf2c53">  317</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga8216bd3dddd059955ae61ff341bf2c53">ad7746_set_vt_sr</a>(<span class="keyword">const</span> <a class="code" href="structad7746.html">ad7746_t</a> *dev, <a class="code" href="group__drivers__ad7746.html#ga902b40e31d90a6b189bebe78f241339b">ad7746_vt_sample_rate_t</a> sr);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
+<div class="line"><a name="l00328"></a><span class="lineno"><a class="line" href="group__drivers__ad7746.html#ga9e823cbfb7138270312dad717be7118e">  328</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ad7746.html#ga9e823cbfb7138270312dad717be7118e">ad7746_set_cap_sr</a>(<span class="keyword">const</span> <a class="code" href="structad7746.html">ad7746_t</a> *dev, <a class="code" href="group__drivers__ad7746.html#gac27e150f98c939be117a8c933f9b6017">ad7746_cap_sample_rate_t</a> sr);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;}</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* AD7746_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga24f7c23e22d6d88b94d131f4f88ae53f"><div class="ttname"><a href="group__drivers__ad7746.html#ga24f7c23e22d6d88b94d131f4f88ae53f">ad7746_set_cap_ch_input</a></div><div class="ttdeci">int ad7746_set_cap_ch_input(const ad7746_t *dev, ad7746_cap_input_t input)</div><div class="ttdoc">Sets the current input for the capacitive measurement.If not configured manually, the driver sets the...</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga250361115dd59874bdbcfa842ebac5da"><div class="ttname"><a href="group__drivers__ad7746.html#ga250361115dd59874bdbcfa842ebac5da">ad7746_t</a></div><div class="ttdeci">struct ad7746 ad7746_t</div><div class="ttdoc">AD7746 device descriptor.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga2f12d0b2408d43c5aeb3a1de3c8a22cc"><div class="ttname"><a href="group__drivers__ad7746.html#ga2f12d0b2408d43c5aeb3a1de3c8a22cc">ad7746_exc_config_t</a></div><div class="ttdeci">ad7746_exc_config_t</div><div class="ttdoc">Excitation signal output configuration.</div><div class="ttdef"><b>Definition:</b> ad7746.h:133</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga330f467eb4699fd401ea01d2b99b6e33"><div class="ttname"><a href="group__drivers__ad7746.html#ga330f467eb4699fd401ea01d2b99b6e33">ad7746_set_vt_ch_mode</a></div><div class="ttdeci">int ad7746_set_vt_ch_mode(ad7746_t *dev, ad7746_vt_mode_t mode)</div><div class="ttdoc">Sets the mode for the voltage / temperature channel and updates the descriptor with the new configura...</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga4288ad466feb87f7f8d0493a15dc7163"><div class="ttname"><a href="group__drivers__ad7746.html#ga4288ad466feb87f7f8d0493a15dc7163">ad7746_cap_input_t</a></div><div class="ttdeci">ad7746_cap_input_t</div><div class="ttdoc">Capacitance channel input.</div><div class="ttdef"><b>Definition:</b> ad7746.h:111</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga5cf43a18214493cdded0f4a18ce1bc52"><div class="ttname"><a href="group__drivers__ad7746.html#ga5cf43a18214493cdded0f4a18ce1bc52">ad7746_read_capacitance_2</a></div><div class="ttdeci">int ad7746_read_capacitance_2(ad7746_t *dev, int *value)</div><div class="ttdoc">Reads the capacitance from the input 2 (CIN2).</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga7497907fe66f9f82cde1aa08efa4d326"><div class="ttname"><a href="group__drivers__ad7746.html#ga7497907fe66f9f82cde1aa08efa4d326">ad7746_init</a></div><div class="ttdeci">int ad7746_init(ad7746_t *dev, const ad7746_params_t *params)</div><div class="ttdoc">Initializes an AD7746 device.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga767e5f771c9256fa61a424623dee3750"><div class="ttname"><a href="group__drivers__ad7746.html#ga767e5f771c9256fa61a424623dee3750">ad7746_vt_mode_t</a></div><div class="ttdeci">ad7746_vt_mode_t</div><div class="ttdoc">Voltage / Temperature channel modes.</div><div class="ttdef"><b>Definition:</b> ad7746.h:100</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga78d4224109e9b82e4e847d228c7d83bf"><div class="ttname"><a href="group__drivers__ad7746.html#ga78d4224109e9b82e4e847d228c7d83bf">ad7746_read_voltage_in</a></div><div class="ttdeci">int ad7746_read_voltage_in(ad7746_t *dev, int *value)</div><div class="ttdoc">Reads the voltage from the external voltage input (VIN).</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga8216bd3dddd059955ae61ff341bf2c53"><div class="ttname"><a href="group__drivers__ad7746.html#ga8216bd3dddd059955ae61ff341bf2c53">ad7746_set_vt_sr</a></div><div class="ttdeci">int ad7746_set_vt_sr(const ad7746_t *dev, ad7746_vt_sample_rate_t sr)</div><div class="ttdoc">Sets the sample rate for the voltage / temperature channel.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga84bd93766dd890584d98ae32affad8e2"><div class="ttname"><a href="group__drivers__ad7746.html#ga84bd93766dd890584d98ae32affad8e2">ad7746_read_capacitance_1</a></div><div class="ttdeci">int ad7746_read_capacitance_1(ad7746_t *dev, int *value)</div><div class="ttdoc">Reads the capacitance from the input 1 (CIN1).</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga87609e64fbc014ffc961cb2a8f90b252"><div class="ttname"><a href="group__drivers__ad7746.html#ga87609e64fbc014ffc961cb2a8f90b252">ad7746_read_temperature_ext</a></div><div class="ttdeci">int ad7746_read_temperature_ext(ad7746_t *dev, int *value)</div><div class="ttdoc">Reads the temperature from the external sensor (see datasheet).</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga8cfffa7af86f9a061367ebeb3aa76f47"><div class="ttname"><a href="group__drivers__ad7746.html#ga8cfffa7af86f9a061367ebeb3aa76f47">ad7746_params_t</a></div><div class="ttdeci">struct ad7746_params ad7746_params_t</div><div class="ttdoc">AD7746 params.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga902b40e31d90a6b189bebe78f241339b"><div class="ttname"><a href="group__drivers__ad7746.html#ga902b40e31d90a6b189bebe78f241339b">ad7746_vt_sample_rate_t</a></div><div class="ttdeci">ad7746_vt_sample_rate_t</div><div class="ttdoc">Voltage / Temperature channel sample rates.</div><div class="ttdef"><b>Definition:</b> ad7746.h:90</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga9934d5bdb2776582658227f16362b4ef"><div class="ttname"><a href="group__drivers__ad7746.html#ga9934d5bdb2776582658227f16362b4ef">ad7746_read_voltage_vdd</a></div><div class="ttdeci">int ad7746_read_voltage_vdd(ad7746_t *dev, int *value)</div><div class="ttdoc">Reads the voltage from the VDD pin.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ga9e823cbfb7138270312dad717be7118e"><div class="ttname"><a href="group__drivers__ad7746.html#ga9e823cbfb7138270312dad717be7118e">ad7746_set_cap_sr</a></div><div class="ttdeci">int ad7746_set_cap_sr(const ad7746_t *dev, ad7746_cap_sample_rate_t sr)</div><div class="ttdoc">Sets the sample rate for the capacitance channel.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gac27e150f98c939be117a8c933f9b6017"><div class="ttname"><a href="group__drivers__ad7746.html#gac27e150f98c939be117a8c933f9b6017">ad7746_cap_sample_rate_t</a></div><div class="ttdeci">ad7746_cap_sample_rate_t</div><div class="ttdoc">Capacitive channel sample rate.</div><div class="ttdef"><b>Definition:</b> ad7746.h:119</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gae1549c823f61530e051a5ddd54b38dc6"><div class="ttname"><a href="group__drivers__ad7746.html#gae1549c823f61530e051a5ddd54b38dc6">ad7746_read_temperature_int</a></div><div class="ttdeci">int ad7746_read_temperature_int(ad7746_t *dev, int *value)</div><div class="ttdoc">Reads the temperature from the internal sensor.</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga1e06e534e565b0e44afdf96c77951725a7c51db43075025a0f097f427ad0257c5"><div class="ttname"><a href="group__drivers__ad7746.html#gga1e06e534e565b0e44afdf96c77951725a7c51db43075025a0f097f427ad0257c5">AD7746_READ_VT_CH</a></div><div class="ttdeci">@ AD7746_READ_VT_CH</div><div class="ttdoc">read voltage / temperature channel</div><div class="ttdef"><b>Definition:</b> ad7746.h:74</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga1e06e534e565b0e44afdf96c77951725ae8c9e628ca186f4bb226ef573ced594c"><div class="ttname"><a href="group__drivers__ad7746.html#gga1e06e534e565b0e44afdf96c77951725ae8c9e628ca186f4bb226ef573ced594c">AD7746_READ_CAP_CH</a></div><div class="ttdeci">@ AD7746_READ_CAP_CH</div><div class="ttdoc">read capacitive channel</div><div class="ttdef"><b>Definition:</b> ad7746.h:73</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga2f12d0b2408d43c5aeb3a1de3c8a22cca3c09262faeff1d8e119474f80f903189"><div class="ttname"><a href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca3c09262faeff1d8e119474f80f903189">AD7746_EXC_B</a></div><div class="ttdeci">@ AD7746_EXC_B</div><div class="ttdoc">enable only exc B output</div><div class="ttdef"><b>Definition:</b> ad7746.h:135</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga2f12d0b2408d43c5aeb3a1de3c8a22cca61d2cafcb01d64c2e67b5e54db1b1f42"><div class="ttname"><a href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca61d2cafcb01d64c2e67b5e54db1b1f42">AD7746_EXC_AB</a></div><div class="ttdeci">@ AD7746_EXC_AB</div><div class="ttdoc">enable exc A and B outputs</div><div class="ttdef"><b>Definition:</b> ad7746.h:136</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga2f12d0b2408d43c5aeb3a1de3c8a22cca9f5b3e805ff107188c101834dfc8a086"><div class="ttname"><a href="group__drivers__ad7746.html#gga2f12d0b2408d43c5aeb3a1de3c8a22cca9f5b3e805ff107188c101834dfc8a086">AD7746_EXC_A</a></div><div class="ttdeci">@ AD7746_EXC_A</div><div class="ttdoc">enable only exc A output</div><div class="ttdef"><b>Definition:</b> ad7746.h:134</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga4288ad466feb87f7f8d0493a15dc7163a2243f2623d024dec578ccd32f8d84145"><div class="ttname"><a href="group__drivers__ad7746.html#gga4288ad466feb87f7f8d0493a15dc7163a2243f2623d024dec578ccd32f8d84145">AD7746_CAP_IN_1</a></div><div class="ttdeci">@ AD7746_CAP_IN_1</div><div class="ttdoc">CIN1 input.</div><div class="ttdef"><b>Definition:</b> ad7746.h:112</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga4288ad466feb87f7f8d0493a15dc7163ac3157d289ba9f6ce053a1b7883d45892"><div class="ttname"><a href="group__drivers__ad7746.html#gga4288ad466feb87f7f8d0493a15dc7163ac3157d289ba9f6ce053a1b7883d45892">AD7746_CAP_IN_2</a></div><div class="ttdeci">@ AD7746_CAP_IN_2</div><div class="ttdoc">CIN2 input.</div><div class="ttdef"><b>Definition:</b> ad7746.h:113</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga767e5f771c9256fa61a424623dee3750a1d0a9af7c559f319b4d757c934d11ae1"><div class="ttname"><a href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750a1d0a9af7c559f319b4d757c934d11ae1">AD7746_VT_MD_TEMP</a></div><div class="ttdeci">@ AD7746_VT_MD_TEMP</div><div class="ttdoc">internal temperature sensor</div><div class="ttdef"><b>Definition:</b> ad7746.h:102</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga767e5f771c9256fa61a424623dee3750a75bf4ee126314b45adfb51840de37ea3"><div class="ttname"><a href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750a75bf4ee126314b45adfb51840de37ea3">AD7746_VT_MD_DIS</a></div><div class="ttdeci">@ AD7746_VT_MD_DIS</div><div class="ttdoc">channel disabled</div><div class="ttdef"><b>Definition:</b> ad7746.h:101</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga767e5f771c9256fa61a424623dee3750aa999de2f5a63ef8cebfe534d4ffd0679"><div class="ttname"><a href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750aa999de2f5a63ef8cebfe534d4ffd0679">AD7746_VT_MD_VDD</a></div><div class="ttdeci">@ AD7746_VT_MD_VDD</div><div class="ttdoc">Vdd voltage monitor.</div><div class="ttdef"><b>Definition:</b> ad7746.h:104</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga767e5f771c9256fa61a424623dee3750aad6ea3cf890f034c79654f544bb2bf59"><div class="ttname"><a href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750aad6ea3cf890f034c79654f544bb2bf59">AD7746_VT_MD_ETEMP</a></div><div class="ttdeci">@ AD7746_VT_MD_ETEMP</div><div class="ttdoc">external temperature sensor (see datasheet)</div><div class="ttdef"><b>Definition:</b> ad7746.h:103</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga767e5f771c9256fa61a424623dee3750ac9bbc54f127c94dd0c4a0a44e6a4625e"><div class="ttname"><a href="group__drivers__ad7746.html#gga767e5f771c9256fa61a424623dee3750ac9bbc54f127c94dd0c4a0a44e6a4625e">AD7746_VT_MD_VIN</a></div><div class="ttdeci">@ AD7746_VT_MD_VIN</div><div class="ttdoc">external voltage input (Vin)</div><div class="ttdef"><b>Definition:</b> ad7746.h:105</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga902b40e31d90a6b189bebe78f241339ba1ab68f48239daff781ff2a543e336343"><div class="ttname"><a href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba1ab68f48239daff781ff2a543e336343">AD7746_VT_SR_082</a></div><div class="ttdeci">@ AD7746_VT_SR_082</div><div class="ttdoc">8.2 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:94</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga902b40e31d90a6b189bebe78f241339ba58c79f17b040c2fce06c0d107df184ad"><div class="ttname"><a href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba58c79f17b040c2fce06c0d107df184ad">AD7746_VT_SR_312</a></div><div class="ttdeci">@ AD7746_VT_SR_312</div><div class="ttdoc">31.2 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:92</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga902b40e31d90a6b189bebe78f241339ba99d1c7893e844662ea2b3257d4243533"><div class="ttname"><a href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339ba99d1c7893e844662ea2b3257d4243533">AD7746_VT_SR_498</a></div><div class="ttdeci">@ AD7746_VT_SR_498</div><div class="ttdoc">49.8 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:91</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_gga902b40e31d90a6b189bebe78f241339bae8fd1708dc4eef9e1729410ec6f6f194"><div class="ttname"><a href="group__drivers__ad7746.html#gga902b40e31d90a6b189bebe78f241339bae8fd1708dc4eef9e1729410ec6f6f194">AD7746_VT_SR_161</a></div><div class="ttdeci">@ AD7746_VT_SR_161</div><div class="ttdoc">16.1 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:93</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017a0f355ee421640c8adc67991c9b1a1794"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a0f355ee421640c8adc67991c9b1a1794">AD7746_CAP_SR_109</a></div><div class="ttdeci">@ AD7746_CAP_SR_109</div><div class="ttdoc">10.9 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:126</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017a3871e7e3e0f9ac4a0f9851ab12b07c75"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a3871e7e3e0f9ac4a0f9851ab12b07c75">AD7746_CAP_SR_130</a></div><div class="ttdeci">@ AD7746_CAP_SR_130</div><div class="ttdoc">13.0 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:125</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017a48bbef3733d080600d4b2d506c8de8c5"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017a48bbef3733d080600d4b2d506c8de8c5">AD7746_CAP_SR_263</a></div><div class="ttdeci">@ AD7746_CAP_SR_263</div><div class="ttdoc">26.3 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:123</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017ac30fe66a2ddca473af81e078cdc9ccbd"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ac30fe66a2ddca473af81e078cdc9ccbd">AD7746_CAP_SR_500</a></div><div class="ttdeci">@ AD7746_CAP_SR_500</div><div class="ttdoc">50.0 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:122</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017ac8b87609926719003b5136462339be4a"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ac8b87609926719003b5136462339be4a">AD7746_CAP_SR_161</a></div><div class="ttdeci">@ AD7746_CAP_SR_161</div><div class="ttdoc">16.1 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:124</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017ade582ec9ae373cba8c389ca2ba633838"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017ade582ec9ae373cba8c389ca2ba633838">AD7746_CAP_SR_091</a></div><div class="ttdeci">@ AD7746_CAP_SR_091</div><div class="ttdoc">9.1 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:127</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017af616edfae0afc33455b9d790421f6737"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017af616edfae0afc33455b9d790421f6737">AD7746_CAP_SR_909</a></div><div class="ttdeci">@ AD7746_CAP_SR_909</div><div class="ttdoc">90.9 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:120</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggac27e150f98c939be117a8c933f9b6017afa70ea476924c34b75e16d40c9e0e103"><div class="ttname"><a href="group__drivers__ad7746.html#ggac27e150f98c939be117a8c933f9b6017afa70ea476924c34b75e16d40c9e0e103">AD7746_CAP_SR_838</a></div><div class="ttdeci">@ AD7746_CAP_SR_838</div><div class="ttdoc">83.8 Hz</div><div class="ttdef"><b>Definition:</b> ad7746.h:121</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggaf38129fd1797a5cfd7d746065784a44fa643d6f8970013da177cda5730b6c1ec3"><div class="ttname"><a href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fa643d6f8970013da177cda5730b6c1ec3">AD7746_NOI2C</a></div><div class="ttdeci">@ AD7746_NOI2C</div><div class="ttdoc">I2C communication failed.</div><div class="ttdef"><b>Definition:</b> ad7746.h:82</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggaf38129fd1797a5cfd7d746065784a44fa93fca5d46173e9e4014b5695d18a4113"><div class="ttname"><a href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fa93fca5d46173e9e4014b5695d18a4113">AD7746_OK</a></div><div class="ttdeci">@ AD7746_OK</div><div class="ttdoc">everything was fine</div><div class="ttdef"><b>Definition:</b> ad7746.h:81</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggaf38129fd1797a5cfd7d746065784a44fac6961ee4afce65e73e13fc2b0f3eb991"><div class="ttname"><a href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fac6961ee4afce65e73e13fc2b0f3eb991">AD7746_NODEV</a></div><div class="ttdeci">@ AD7746_NODEV</div><div class="ttdoc">no AD7746 device found on the bus</div><div class="ttdef"><b>Definition:</b> ad7746.h:83</div></div>
+<div class="ttc" id="agroup__drivers__ad7746_html_ggaf38129fd1797a5cfd7d746065784a44fafd4ae9c38b193247ae742bf9c59780bc"><div class="ttname"><a href="group__drivers__ad7746.html#ggaf38129fd1797a5cfd7d746065784a44fafd4ae9c38b193247ae742bf9c59780bc">AD7746_NODATA</a></div><div class="ttdeci">@ AD7746_NODATA</div><div class="ttdoc">no data available</div><div class="ttdef"><b>Definition:</b> ad7746.h:84</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructad7746__params_html"><div class="ttname"><a href="structad7746__params.html">ad7746_params</a></div><div class="ttdoc">AD7746 params.</div><div class="ttdef"><b>Definition:</b> ad7746.h:142</div></div>
+<div class="ttc" id="astructad7746__params_html_a2f14925d6071350ea47aa03db997db57"><div class="ttname"><a href="structad7746__params.html#a2f14925d6071350ea47aa03db997db57">ad7746_params::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdoc">i2c address</div><div class="ttdef"><b>Definition:</b> ad7746.h:144</div></div>
+<div class="ttc" id="astructad7746__params_html_a3073ca6a2815a8f8174ef4c8d63b1fcd"><div class="ttname"><a href="structad7746__params.html#a3073ca6a2815a8f8174ef4c8d63b1fcd">ad7746_params::i2c</a></div><div class="ttdeci">i2c_t i2c</div><div class="ttdoc">i2c device</div><div class="ttdef"><b>Definition:</b> ad7746.h:143</div></div>
+<div class="ttc" id="astructad7746__params_html_a475d741911d6d9c78afaf9a5c5f5dad1"><div class="ttname"><a href="structad7746__params.html#a475d741911d6d9c78afaf9a5c5f5dad1">ad7746_params::exc_config</a></div><div class="ttdeci">ad7746_exc_config_t exc_config</div><div class="ttdoc">excitation signal config</div><div class="ttdef"><b>Definition:</b> ad7746.h:147</div></div>
+<div class="ttc" id="astructad7746__params_html_a680236e96ee6fe7ea1ca4fc23bc496e6"><div class="ttname"><a href="structad7746__params.html#a680236e96ee6fe7ea1ca4fc23bc496e6">ad7746_params::vt_mode</a></div><div class="ttdeci">ad7746_vt_mode_t vt_mode</div><div class="ttdoc">mode of the voltage/temp ch</div><div class="ttdef"><b>Definition:</b> ad7746.h:150</div></div>
+<div class="ttc" id="astructad7746__params_html_a77551e877f3132c86498317cf6b580e9"><div class="ttname"><a href="structad7746__params.html#a77551e877f3132c86498317cf6b580e9">ad7746_params::cap_sample_rate</a></div><div class="ttdeci">ad7746_cap_sample_rate_t cap_sample_rate</div><div class="ttdoc">capacitance sample rate</div><div class="ttdef"><b>Definition:</b> ad7746.h:148</div></div>
+<div class="ttc" id="astructad7746__params_html_a9daa6ae42ea92a1fc821e954cf922239"><div class="ttname"><a href="structad7746__params.html#a9daa6ae42ea92a1fc821e954cf922239">ad7746_params::dac_b_cap</a></div><div class="ttdeci">uint8_t dac_b_cap</div><div class="ttdoc">DAC B capacitance.</div><div class="ttdef"><b>Definition:</b> ad7746.h:146</div></div>
+<div class="ttc" id="astructad7746__params_html_abff2f374cf547a666f17ace518d54a0d"><div class="ttname"><a href="structad7746__params.html#abff2f374cf547a666f17ace518d54a0d">ad7746_params::cap_input</a></div><div class="ttdeci">ad7746_cap_input_t cap_input</div><div class="ttdoc">selected capacitance input</div><div class="ttdef"><b>Definition:</b> ad7746.h:151</div></div>
+<div class="ttc" id="astructad7746__params_html_ac5ed739b970146d6b3b455c2f279d3cd"><div class="ttname"><a href="structad7746__params.html#ac5ed739b970146d6b3b455c2f279d3cd">ad7746_params::dac_a_cap</a></div><div class="ttdeci">uint8_t dac_a_cap</div><div class="ttdoc">DAC A capacitance.</div><div class="ttdef"><b>Definition:</b> ad7746.h:145</div></div>
+<div class="ttc" id="astructad7746__params_html_acb2c16cf4a587c7d9aa48693c9d321e0"><div class="ttname"><a href="structad7746__params.html#acb2c16cf4a587c7d9aa48693c9d321e0">ad7746_params::vt_sample_rate</a></div><div class="ttdeci">ad7746_vt_sample_rate_t vt_sample_rate</div><div class="ttdoc">voltage/temp sample rate</div><div class="ttdef"><b>Definition:</b> ad7746.h:149</div></div>
+<div class="ttc" id="astructad7746_html"><div class="ttname"><a href="structad7746.html">ad7746</a></div><div class="ttdoc">AD7746 device descriptor.</div><div class="ttdef"><b>Definition:</b> ad7746.h:157</div></div>
+<div class="ttc" id="astructad7746_html_a07b62becbb56599ea71a21ae352cf863"><div class="ttname"><a href="structad7746.html#a07b62becbb56599ea71a21ae352cf863">ad7746::params</a></div><div class="ttdeci">ad7746_params_t params</div><div class="ttdoc">device driver configuration</div><div class="ttdef"><b>Definition:</b> ad7746.h:158</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="ad7746_8h.html">ad7746.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

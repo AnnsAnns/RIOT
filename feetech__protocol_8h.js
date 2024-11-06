@@ -1,0 +1,65 @@
+var feetech__protocol_8h =
+[
+    [ "FEETECH_START", "feetech__protocol_8h.html#a205e74c2c23293e068c10a22dd84ebaa", null ],
+    [ "feetech_intruction_t", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269", [
+      [ "INST_PING", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269a8a3eb7b03f17ea78eca8468e558304e8", null ],
+      [ "INST_READ", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269a50af767f094f53bcfc7602930c20d0bc", null ],
+      [ "INST_WRITE", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269aedb395739cb181febafa7a081b5f72cd", null ],
+      [ "INST_REG_WRITE", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269ae7d5d1c5ae85eea4447d9b207e075f47", null ],
+      [ "INST_ACTION", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269a42e5f840e8f1790352170a5f48bcd503", null ],
+      [ "INST_RESET", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269abd297d02793f83b8e470018158749fad", null ],
+      [ "INST_SYNC_WRITE", "feetech__protocol_8h.html#a6efccc0463a75686040734497a438269a3fc575c5b0049d047fd93eee29346086", null ]
+    ] ],
+    [ "scs15_baudrate_t", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8", [
+      [ "SCS15_B_1M", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8a33334b534c368da46514e5d611ed8fff", null ],
+      [ "SCS15_B_0_5M", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8ae8c0819cfecaa22a79a7206e3f152210", null ],
+      [ "SCS15_B_250K", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8ae9222064eb666d3e46a01ce7ef2f86b5", null ],
+      [ "SCS15_B_128K", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8a1d801029ce82ce1e2113df5f35ba5248", null ],
+      [ "SCS15_B_115200", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8a673ec66ad76999da6ef5519851e27622", null ],
+      [ "SCS15_B_76800", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8a1d063650f8a7c0df460d46b13d897ba4", null ],
+      [ "SCS15_B_57600", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8ab4d89b6433f0cf0e5c969d76eb085be1", null ],
+      [ "SCS15_B_38400", "feetech__protocol_8h.html#a54e4675ccd4f9c6cb21222ac5f0b4bb8a6de03dc13d06991b6d426b292aeff0f7", null ]
+    ] ],
+    [ "scs15_register16_t", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32", [
+      [ "SCS15_MODEL_NUMBER", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32a0a38eec2502606e59d303909b5cd259c", null ],
+      [ "SCS15_VERSION", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32af9512ad0e38106c393331fcfc163d7c1", null ],
+      [ "SCS15_MIN_ANGLE_LIMIT", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32a91ec2430fa91790061b6b70b93396ee1", null ],
+      [ "SCS15_MAX_ANGLE_LIMIT", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32ab548931e7c2f6127b0c4ff880e1fb9ae", null ],
+      [ "SCS15_MAX_TORQUE", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32a51f46c1057752884161b858949eef3b9", null ],
+      [ "SCS15_PUNCH", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32a0cee790f5cd1f41d98185994316dc453", null ],
+      [ "SCS15_IMAX", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32ad9e32116bb4372fddd496177d29d3ea5", null ],
+      [ "SCS15_OFFSET", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32ab48f46821f221e156eb57ede1059adb2", null ],
+      [ "SCS15_GOAL_POSITION", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32aef602469f6dc5a1feeecc989f6a295e0", null ],
+      [ "SCS15_GOAL_TIME", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32aee91483627a2cebf12de89890a42d3f4", null ],
+      [ "SCS15_GOAL_SPEED", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32ad5df6ff3b5bddec46246ed0d07de031d", null ],
+      [ "SCS15_PRESENT_POSITION", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32a4d4ffa9098c98007a41bbcb2d0159ab4", null ],
+      [ "SCS15_PRESENT_SPEED", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32a892d711f2cdc61826e9a57ee3a7d2b6f", null ],
+      [ "SCS15_PRESENT_LOAD", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32adafee01baee4cc4dc31c7b72a1e3cdba", null ],
+      [ "SCS15_VIR_POSITION", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32aa80b0f364e4e3f5f463de9ae36f0802d", null ],
+      [ "SCS15_CURRENT", "feetech__protocol_8h.html#a04f844597620dee5bddb837bc0cfde32ad2a53a07b962e2555a1b9dccd7cffb8e", null ]
+    ] ],
+    [ "scs15_register8_t", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150", [
+      [ "SCS15_ID", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a7b0081b283ce8058404835082f5882e1", null ],
+      [ "SCS15_BAUD_RATE", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150ac8d8f37b21528df7bfd33eeb1e2db5f1", null ],
+      [ "SCS15_RETURN_DELAY_TIME", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150ad067420f7e4a33394c13fa1b35f21e50", null ],
+      [ "SCS15_RETURN_LEVEL", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a93ce94741ac46386f1a814ca2cc54df9", null ],
+      [ "SCS15_LIMIT_TEMPERATURE", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a27ee5428c439a6bb66f26c3368cfbd3c", null ],
+      [ "SCS15_MAX_LIMIT_VOLTAGE", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a3c4c5c857f83373ddc3a6959024f68d8", null ],
+      [ "SCS15_MIN_LIMIT_VOLTAGE", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a7291ee9c722b5c23937d30b326e2a6d4", null ],
+      [ "SCS15_ALARM_LED", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a4cf9d6e570c25e1a2ee1f44f84a7ce1a", null ],
+      [ "SCS15_ALARM_SHUTDOWN", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a22bfffd930c45c9e384625bbda3ccbc2", null ],
+      [ "SCS15_COMPLIANCE_P", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a51cc75a2bed1dd402bc07fdda245146c", null ],
+      [ "SCS15_COMPLIANCE_D", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a174323f7fd777e1786aa2909d2bf17cf", null ],
+      [ "SCS15_COMPLIANCE_I", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a4055e82366957c00c74f1b35dbe9bccc", null ],
+      [ "SCS15_CW_DEAD", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a5f2726e720e92bd6969de0db6473718e", null ],
+      [ "SCS15_CCW_DEAD", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150af3f121ed18a600f4cbf4090419b87c95", null ],
+      [ "SCS15_TORQUE_ENABLE", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150aadf408f11091a67587dada46f0a4888e", null ],
+      [ "SCS15_LED", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150ae2f5b421e9381d5e87f04260b827372e", null ],
+      [ "SCS15_LOCK", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150ac016fcff2a2784cdacd0b216206a3de1", null ],
+      [ "SCS15_PRESENT_VOLTAGE", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a8b05372e2dfe7ea39fb6325d0a9e2332", null ],
+      [ "SCS15_PRESENT_TEMPERATURE", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a7a5e53ebc29006e0eaad0e1a4c855933", null ],
+      [ "SCS15_REGISTERED_INSTRUCTION", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a4b955080e75d0606c40c90026923739c", null ],
+      [ "SCS15_ERROR", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a4a7de097d55d2ff9ff55d56bfa695d88", null ],
+      [ "SCS15_MOVING", "feetech__protocol_8h.html#a8da0d0c4b222a0e0f52a377421321150a75c560554afaf050d0d97fefb262a73f", null ]
+    ] ]
+];

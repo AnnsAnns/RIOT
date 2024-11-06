@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: pH OEM sensor device driver</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__drivers__ph__oem.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">pH OEM sensor device driver<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__sensors.html">Sensor Device Drivers</a> &#124; <a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__saul.html">[S]ensor [A]ctuator [U]ber [L]ayer</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Device driver for Atlas Scientific pH OEM sensor with SMBus/I2C interface. </p>
+<p>The Atlas Scientific pH OEM sensor can be used with or without the interrupt pin. Per default this pin is mapped to <a class="el" href="group__drivers__periph__gpio.html#ga3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a> if not otherwise defined in your makefile.</p>
+<p>If you use an electrical isolation for most accurate readings e.g. with the ADM3260, keep in mind that its not recommended to use the interrupt pin without also isolating it somehow. The preferred method, if not using an isolation on the interrupt line, would be polling. In this case leave the interrupt pin undefined.</p>
+<p>The Sensor has no integrated temperature sensor and for the highest possible precision it requires another device to provide the temperature for error compensation.</p>
+<p>Once the pH OEM is powered on it will be ready to receive commands and take readings after 1ms.</p>
+<dl class="section note"><dt>Note</dt><dd>This driver provides <a class="el" href="group__drivers__saul.html">[S]ensor [A]ctuator [U]ber [L]ayer</a> capabilities. Reading (<a class="el" href="structsaul__driver__t.html#a61cc7eac43a095d01db90d23286217ab">saul_driver_t::read</a>) from the device returns the current pH value. Writing (<a class="el" href="structsaul__driver__t.html#a36521b54ed4c2ed7d038928d42f8c28c">saul_driver_t::write</a>) a temperature value in celsius to the device sets the temperature compensation. A valid temperature range is 1 - 20000 (0.01 °C to 200.0 °C)</dd>
+<dd>
+Communication is done using SMBus/I2C protocol at speeds of 10-100 kHz. Set your board I2C speed to <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a> or <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a> </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:ph__oem_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ph__oem_8h.html">ph_oem.h</a></td></tr>
+<tr class="memdesc:ph__oem_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device driver for Atlas Scientific pH OEM Sensor with SMBus/I2C interface. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ph__oem__params_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ph__oem__params_8h.html">ph_oem_params.h</a></td></tr>
+<tr class="memdesc:ph__oem__params_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default configuration for Atlas Scientific pH OEM sensors. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ph__oem__regs_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ph__oem__regs_8h.html">ph_oem_regs.h</a></td></tr>
+<tr class="memdesc:ph__oem__regs_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register definitions for the Atlas Scientific pH OEM sensor. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structph__oem__params.html">ph_oem_params</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">pH OEM sensor params  <a href="structph__oem__params.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structph__oem.html">ph_oem</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">pH OEM device descriptor  <a href="structph__oem.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga6d8a51371443cba0c02b3e20f06bb7b7"><td class="memItemLeft" align="right" valign="top"><a id="ga6d8a51371443cba0c02b3e20f06bb7b7"></a>
+typedef struct <a class="el" href="structph__oem__params.html">ph_oem_params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga6d8a51371443cba0c02b3e20f06bb7b7">ph_oem_params_t</a></td></tr>
+<tr class="memdesc:ga6d8a51371443cba0c02b3e20f06bb7b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">pH OEM sensor params <br /></td></tr>
+<tr class="separator:ga6d8a51371443cba0c02b3e20f06bb7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga46905a646ccbf3030706c31a3c755ab2"><td class="memItemLeft" align="right" valign="top"><a id="ga46905a646ccbf3030706c31a3c755ab2"></a>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga46905a646ccbf3030706c31a3c755ab2">ph_oem_interrupt_pin_cb_t</a>) (void *)</td></tr>
+<tr class="memdesc:ga46905a646ccbf3030706c31a3c755ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">pH OEM interrupt pin callback <br /></td></tr>
+<tr class="separator:ga46905a646ccbf3030706c31a3c755ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea361c1d046340542397933bfc69aa66"><td class="memItemLeft" align="right" valign="top"><a id="gaea361c1d046340542397933bfc69aa66"></a>
+typedef struct <a class="el" href="structph__oem.html">ph_oem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a></td></tr>
+<tr class="memdesc:gaea361c1d046340542397933bfc69aa66"><td class="mdescLeft">&#160;</td><td class="mdescRight">pH OEM device descriptor <br /></td></tr>
+<tr class="separator:gaea361c1d046340542397933bfc69aa66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gac06302df40bc05bc56dec2ed7f7052b6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gac06302df40bc05bc56dec2ed7f7052b6">ph_oem_named_returns_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> = 0
+, <a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6aa31f3ac5b2c82a65101cc236aa97cae1">PH_OEM_NODEV</a> = -1
+, <a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82">PH_OEM_READ_ERR</a> = -2
+, <a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> = -3
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a6dba40774bf039df66d669c022ed9905">PH_OEM_NOT_PH</a> = -4
+, <a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a50eba0da46a1b7d0b35a4fc9fe0e1fab">PH_OEM_INTERRUPT_GPIO_UNDEF</a> = -5
+, <a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a1458841d75da3d375c5266277564ff69">PH_OEM_GPIO_INIT_ERR</a> = -6
+, <a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a8cb575b4092068b73b68e66dece4a6c8">PH_OEM_TEMP_OUT_OF_RANGE</a> = -7
+<br />
+ }</td></tr>
+<tr class="memdesc:gac06302df40bc05bc56dec2ed7f7052b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Named return values.  <a href="group__drivers__ph__oem.html#gac06302df40bc05bc56dec2ed7f7052b6">More...</a><br /></td></tr>
+<tr class="separator:gac06302df40bc05bc56dec2ed7f7052b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac7b39997a60eb597cb14d067f562bfee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gac7b39997a60eb597cb14d067f562bfee">ph_oem_led_state_t</a> { <a class="el" href="group__drivers__ph__oem.html#ggac7b39997a60eb597cb14d067f562bfeea8f76be894579a02d81bfbee7072b6b11">PH_OEM_LED_ON</a> = 0x01
+, <a class="el" href="group__drivers__ph__oem.html#ggac7b39997a60eb597cb14d067f562bfeea4586a3a97152e78cd82ce764a1f44933">PH_OEM_LED_OFF</a> = 0x00
+ }</td></tr>
+<tr class="memdesc:gac7b39997a60eb597cb14d067f562bfee"><td class="mdescLeft">&#160;</td><td class="mdescRight">LED state values.  <a href="group__drivers__ph__oem.html#gac7b39997a60eb597cb14d067f562bfee">More...</a><br /></td></tr>
+<tr class="separator:gac7b39997a60eb597cb14d067f562bfee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gace6f50a055f37bd6e69170c462c170f5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gace6f50a055f37bd6e69170c462c170f5">ph_oem_device_state_t</a> { <a class="el" href="group__drivers__ph__oem.html#ggace6f50a055f37bd6e69170c462c170f5afec2edc47d45159b48af93bf712d3e8b">PH_OEM_TAKE_READINGS</a> = 0x01
+, <a class="el" href="group__drivers__ph__oem.html#ggace6f50a055f37bd6e69170c462c170f5a3b1f9d36e8269387ed6a7a52d36eaa0f">PH_OEM_STOP_READINGS</a> = 0x00
+ }</td></tr>
+<tr class="memdesc:gace6f50a055f37bd6e69170c462c170f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device state values.  <a href="group__drivers__ph__oem.html#gace6f50a055f37bd6e69170c462c170f5">More...</a><br /></td></tr>
+<tr class="separator:gace6f50a055f37bd6e69170c462c170f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga80b8082b315169a3cfa8e71287b2fdfe"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga80b8082b315169a3cfa8e71287b2fdfe">ph_oem_irq_option_t</a> { <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea64cc7bed660a33198b9ca108426c090a">PH_OEM_IRQ_RISING</a> = 0x02
+, <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea1eedd530821a380a8bf0069b2c2310d4">PH_OEM_IRQ_FALLING</a> = 0x04
+, <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea2955602537e7974b5f98808ddcc28ce9">PH_OEM_IRQ_BOTH</a> = 0x08
+ }</td></tr>
+<tr class="memdesc:ga80b8082b315169a3cfa8e71287b2fdfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt pin option values.  <a href="group__drivers__ph__oem.html#ga80b8082b315169a3cfa8e71287b2fdfe">More...</a><br /></td></tr>
+<tr class="separator:ga80b8082b315169a3cfa8e71287b2fdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf859a7a988d4650f5c6d449633667673"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gaf859a7a988d4650f5c6d449633667673">ph_oem_calibration_option_t</a> { <a class="el" href="group__drivers__ph__oem.html#ggaf859a7a988d4650f5c6d449633667673a3d1cfde14521375cdf8f8352dd57f035">PH_OEM_CALIBRATE_LOW_POINT</a> = 0x02
+, <a class="el" href="group__drivers__ph__oem.html#ggaf859a7a988d4650f5c6d449633667673acb61f4b3120d133c93615c6a13bd349f">PH_OEM_CALIBRATE_MID_POINT</a> = 0x03
+, <a class="el" href="group__drivers__ph__oem.html#ggaf859a7a988d4650f5c6d449633667673ab91707cdd382105c0f66131468d686b1">PH_OEM_CALIBRATE_HIGH_POINT</a> = 0x04
+ }</td></tr>
+<tr class="memdesc:gaf859a7a988d4650f5c6d449633667673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibration option values.  <a href="group__drivers__ph__oem.html#gaf859a7a988d4650f5c6d449633667673">More...</a><br /></td></tr>
+<tr class="separator:gaf859a7a988d4650f5c6d449633667673"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gae2d0761f6ddd367e75f32bda7f919a1a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gae2d0761f6ddd367e75f32bda7f919a1a">ph_oem_init</a> (<a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, const <a class="el" href="group__drivers__ph__oem.html#ga6d8a51371443cba0c02b3e20f06bb7b7">ph_oem_params_t</a> *params)</td></tr>
+<tr class="memdesc:gae2d0761f6ddd367e75f32bda7f919a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a pH OEM sensor.  <a href="group__drivers__ph__oem.html#gae2d0761f6ddd367e75f32bda7f919a1a">More...</a><br /></td></tr>
+<tr class="separator:gae2d0761f6ddd367e75f32bda7f919a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa7af3f95a8c9b51d03d1e1fa8344f7c9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gaa7af3f95a8c9b51d03d1e1fa8344f7c9">ph_oem_set_i2c_address</a> (<a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, uint8_t addr)</td></tr>
+<tr class="memdesc:gaa7af3f95a8c9b51d03d1e1fa8344f7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new address to the pH OEM device by unlocking the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a4c00e65e4e9c773992685c79c4925b2e">PH_OEM_REG_UNLOCK</a> register and writing a new address to the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534af1a24a62906dee63180eb696cf143b48">PH_OEM_REG_ADDRESS</a> register.  <a href="group__drivers__ph__oem.html#gaa7af3f95a8c9b51d03d1e1fa8344f7c9">More...</a><br /></td></tr>
+<tr class="separator:gaa7af3f95a8c9b51d03d1e1fa8344f7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga094fa695a2acd5c275e2f79f705396d5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga094fa695a2acd5c275e2f79f705396d5">ph_oem_enable_interrupt</a> (<a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, <a class="el" href="group__drivers__ph__oem.html#ga46905a646ccbf3030706c31a3c755ab2">ph_oem_interrupt_pin_cb_t</a> cb, void *arg)</td></tr>
+<tr class="memdesc:ga094fa695a2acd5c275e2f79f705396d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the pH OEM interrupt pin if <a class="el" href="structph__oem__params.html#ae8a7cf150979e1e0bc41cb8d9ff7f339">ph_oem_params_t::interrupt_pin</a> is defined.  <a href="group__drivers__ph__oem.html#ga094fa695a2acd5c275e2f79f705396d5">More...</a><br /></td></tr>
+<tr class="separator:ga094fa695a2acd5c275e2f79f705396d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30f23632123b2635041d0e21a3b844fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga30f23632123b2635041d0e21a3b844fd">ph_oem_reset_interrupt_pin</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev)</td></tr>
+<tr class="memdesc:ga30f23632123b2635041d0e21a3b844fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The interrupt pin will not auto reset on option <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea64cc7bed660a33198b9ca108426c090a">PH_OEM_IRQ_RISING</a> and <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea1eedd530821a380a8bf0069b2c2310d4">PH_OEM_IRQ_FALLING</a> after interrupt fires, so call this function again to reset the pin state.  <a href="group__drivers__ph__oem.html#ga30f23632123b2635041d0e21a3b844fd">More...</a><br /></td></tr>
+<tr class="separator:ga30f23632123b2635041d0e21a3b844fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5319d1ffce159800e816c1325b368a80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga5319d1ffce159800e816c1325b368a80">ph_oem_set_led_state</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, <a class="el" href="group__drivers__ph__oem.html#gac7b39997a60eb597cb14d067f562bfee">ph_oem_led_state_t</a> state)</td></tr>
+<tr class="memdesc:ga5319d1ffce159800e816c1325b368a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the LED state of the pH OEM sensor by writing to the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a4f8eef844c23e74d2e1d6cd6c27ef431">PH_OEM_REG_LED</a> register.  <a href="group__drivers__ph__oem.html#ga5319d1ffce159800e816c1325b368a80">More...</a><br /></td></tr>
+<tr class="separator:ga5319d1ffce159800e816c1325b368a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f553d7c75e3e12336628c4ff384e3c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga7f553d7c75e3e12336628c4ff384e3c8">ph_oem_set_device_state</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, <a class="el" href="group__drivers__ph__oem.html#gace6f50a055f37bd6e69170c462c170f5">ph_oem_device_state_t</a> state)</td></tr>
+<tr class="memdesc:ga7f553d7c75e3e12336628c4ff384e3c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the device state (active/hibernate) of the pH OEM sensor by writing to the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534afd9796d70d0bbfb709b0e92bda6c3e55">PH_OEM_REG_HIBERNATE</a> register.  <a href="group__drivers__ph__oem.html#ga7f553d7c75e3e12336628c4ff384e3c8">More...</a><br /></td></tr>
+<tr class="separator:ga7f553d7c75e3e12336628c4ff384e3c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c69721413cd1e6538ce1147e641c324"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga7c69721413cd1e6538ce1147e641c324">ph_oem_start_new_reading</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev)</td></tr>
+<tr class="memdesc:ga7c69721413cd1e6538ce1147e641c324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a new reading by setting the device state to <a class="el" href="group__drivers__ph__oem.html#ggace6f50a055f37bd6e69170c462c170f5afec2edc47d45159b48af93bf712d3e8b">PH_OEM_TAKE_READINGS</a>.  <a href="group__drivers__ph__oem.html#ga7c69721413cd1e6538ce1147e641c324">More...</a><br /></td></tr>
+<tr class="separator:ga7c69721413cd1e6538ce1147e641c324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae370e9573d6838746eefc2cdc64583d5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gae370e9573d6838746eefc2cdc64583d5">ph_oem_clear_calibration</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev)</td></tr>
+<tr class="memdesc:gae370e9573d6838746eefc2cdc64583d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all calibrations previously done.  <a href="group__drivers__ph__oem.html#gae370e9573d6838746eefc2cdc64583d5">More...</a><br /></td></tr>
+<tr class="separator:gae370e9573d6838746eefc2cdc64583d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c09a34270060f83c89f5267d58a2233"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga3c09a34270060f83c89f5267d58a2233">ph_oem_set_calibration</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, uint16_t calibration_value, <a class="el" href="group__drivers__ph__oem.html#gaf859a7a988d4650f5c6d449633667673">ph_oem_calibration_option_t</a> option)</td></tr>
+<tr class="memdesc:ga3c09a34270060f83c89f5267d58a2233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a2670bd8d9ea3f07b67e5833a77b373d9">PH_OEM_REG_CALIBRATION_BASE</a> register to the calibration_value which the pH OEM sensor will be calibrated to.  <a href="group__drivers__ph__oem.html#ga3c09a34270060f83c89f5267d58a2233">More...</a><br /></td></tr>
+<tr class="separator:ga3c09a34270060f83c89f5267d58a2233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga90048aec75905488c5c8786148ad3ed6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga90048aec75905488c5c8786148ad3ed6">ph_oem_read_calibration_state</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, uint16_t *calibration_state)</td></tr>
+<tr class="memdesc:ga90048aec75905488c5c8786148ad3ed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534ad5d8773f6f5b19db61991283d7b33302">PH_OEM_REG_CALIBRATION_CONFIRM</a> register.  <a href="group__drivers__ph__oem.html#ga90048aec75905488c5c8786148ad3ed6">More...</a><br /></td></tr>
+<tr class="separator:ga90048aec75905488c5c8786148ad3ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe87d8f452660dc3956e75140a0aafde"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#gabe87d8f452660dc3956e75140a0aafde">ph_oem_set_compensation</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, uint16_t temperature_compensation)</td></tr>
+<tr class="memdesc:gabe87d8f452660dc3956e75140a0aafde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a8ed817ec57616b06b6de37d9c2ef91bd">PH_OEM_REG_TEMP_COMPENSATION_BASE</a> register to the temperature_compensation value which the pH OEM sensor will use to compensate the reading error.  <a href="group__drivers__ph__oem.html#gabe87d8f452660dc3956e75140a0aafde">More...</a><br /></td></tr>
+<tr class="separator:gabe87d8f452660dc3956e75140a0aafde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b3f8a5f343f7906527ae843397f28a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga4b3f8a5f343f7906527ae843397f28a5">ph_oem_read_compensation</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, uint16_t *temperature_compensation)</td></tr>
+<tr class="memdesc:ga4b3f8a5f343f7906527ae843397f28a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534ad2636d4aa521ae51004a7191cc327f7e">PH_OEM_REG_TEMP_CONFIRMATION_BASE</a> register to verify the temperature compensation value that was used to take the pH reading is set to the correct temperature.  <a href="group__drivers__ph__oem.html#ga4b3f8a5f343f7906527ae843397f28a5">More...</a><br /></td></tr>
+<tr class="separator:ga4b3f8a5f343f7906527ae843397f28a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ed33b1757d6297da1f6a23c7c768fce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__ph__oem.html#ga2ed33b1757d6297da1f6a23c7c768fce">ph_oem_read_ph</a> (const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *dev, uint16_t *ph_value)</td></tr>
+<tr class="memdesc:ga2ed33b1757d6297da1f6a23c7c768fce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a1fa4ee560bf8a18e35479d2de33b479d">PH_OEM_REG_PH_READING_BASE</a> register to get the current pH reading.  <a href="group__drivers__ph__oem.html#ga2ed33b1757d6297da1f6a23c7c768fce">More...</a><br /></td></tr>
+<tr class="separator:ga2ed33b1757d6297da1f6a23c7c768fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gaf859a7a988d4650f5c6d449633667673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf859a7a988d4650f5c6d449633667673">&#9670;&nbsp;</a></span>ph_oem_calibration_option_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__ph__oem.html#gaf859a7a988d4650f5c6d449633667673">ph_oem_calibration_option_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calibration option values. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaf859a7a988d4650f5c6d449633667673a3d1cfde14521375cdf8f8352dd57f035"></a>PH_OEM_CALIBRATE_LOW_POINT&#160;</td><td class="fielddoc"><p>Low point calibration option. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf859a7a988d4650f5c6d449633667673acb61f4b3120d133c93615c6a13bd349f"></a>PH_OEM_CALIBRATE_MID_POINT&#160;</td><td class="fielddoc"><p>Mid point calibration option. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf859a7a988d4650f5c6d449633667673ab91707cdd382105c0f66131468d686b1"></a>PH_OEM_CALIBRATE_HIGH_POINT&#160;</td><td class="fielddoc"><p>High point calibration option. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gace6f50a055f37bd6e69170c462c170f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gace6f50a055f37bd6e69170c462c170f5">&#9670;&nbsp;</a></span>ph_oem_device_state_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__ph__oem.html#gace6f50a055f37bd6e69170c462c170f5">ph_oem_device_state_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Device state values. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggace6f50a055f37bd6e69170c462c170f5afec2edc47d45159b48af93bf712d3e8b"></a>PH_OEM_TAKE_READINGS&#160;</td><td class="fielddoc"><p>Device active state. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggace6f50a055f37bd6e69170c462c170f5a3b1f9d36e8269387ed6a7a52d36eaa0f"></a>PH_OEM_STOP_READINGS&#160;</td><td class="fielddoc"><p>Device hibernate state. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga80b8082b315169a3cfa8e71287b2fdfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga80b8082b315169a3cfa8e71287b2fdfe">&#9670;&nbsp;</a></span>ph_oem_irq_option_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__ph__oem.html#ga80b8082b315169a3cfa8e71287b2fdfe">ph_oem_irq_option_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interrupt pin option values. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga80b8082b315169a3cfa8e71287b2fdfea64cc7bed660a33198b9ca108426c090a"></a>PH_OEM_IRQ_RISING&#160;</td><td class="fielddoc"><p>Pin high on new reading (manually reset) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga80b8082b315169a3cfa8e71287b2fdfea1eedd530821a380a8bf0069b2c2310d4"></a>PH_OEM_IRQ_FALLING&#160;</td><td class="fielddoc"><p>Pin low on new reading (manually reset) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga80b8082b315169a3cfa8e71287b2fdfea2955602537e7974b5f98808ddcc28ce9"></a>PH_OEM_IRQ_BOTH&#160;</td><td class="fielddoc"><p>Invert state on new reading (automatically reset) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gac7b39997a60eb597cb14d067f562bfee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac7b39997a60eb597cb14d067f562bfee">&#9670;&nbsp;</a></span>ph_oem_led_state_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__ph__oem.html#gac7b39997a60eb597cb14d067f562bfee">ph_oem_led_state_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>LED state values. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggac7b39997a60eb597cb14d067f562bfeea8f76be894579a02d81bfbee7072b6b11"></a>PH_OEM_LED_ON&#160;</td><td class="fielddoc"><p>LED on state. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac7b39997a60eb597cb14d067f562bfeea4586a3a97152e78cd82ce764a1f44933"></a>PH_OEM_LED_OFF&#160;</td><td class="fielddoc"><p>LED off state. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gac06302df40bc05bc56dec2ed7f7052b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac06302df40bc05bc56dec2ed7f7052b6">&#9670;&nbsp;</a></span>ph_oem_named_returns_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__ph__oem.html#gac06302df40bc05bc56dec2ed7f7052b6">ph_oem_named_returns_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Named return values. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d"></a>PH_OEM_OK&#160;</td><td class="fielddoc"><p>Everything was fine. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6aa31f3ac5b2c82a65101cc236aa97cae1"></a>PH_OEM_NODEV&#160;</td><td class="fielddoc"><p>No device found on the bus. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82"></a>PH_OEM_READ_ERR&#160;</td><td class="fielddoc"><p>Reading to device failed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5"></a>PH_OEM_WRITE_ERR&#160;</td><td class="fielddoc"><p>Writing to device failed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6a6dba40774bf039df66d669c022ed9905"></a>PH_OEM_NOT_PH&#160;</td><td class="fielddoc"><p>Not an Atlas Scientific pH OEM device. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6a50eba0da46a1b7d0b35a4fc9fe0e1fab"></a>PH_OEM_INTERRUPT_GPIO_UNDEF&#160;</td><td class="fielddoc"><p>Interrupt pin is <a class="el" href="group__drivers__periph__gpio.html#ga3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6a1458841d75da3d375c5266277564ff69"></a>PH_OEM_GPIO_INIT_ERR&#160;</td><td class="fielddoc"><p>Error while initializing GPIO PIN. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac06302df40bc05bc56dec2ed7f7052b6a8cb575b4092068b73b68e66dece4a6c8"></a>PH_OEM_TEMP_OUT_OF_RANGE&#160;</td><td class="fielddoc"><p>Temperature is out of range. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gae370e9573d6838746eefc2cdc64583d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae370e9573d6838746eefc2cdc64583d5">&#9670;&nbsp;</a></span>ph_oem_clear_calibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_clear_calibration </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears all calibrations previously done. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82">PH_OEM_READ_ERR</a> if reading from the device failed </dd></dl>
+
+</div>
+</div>
+<a id="ga094fa695a2acd5c275e2f79f705396d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga094fa695a2acd5c275e2f79f705396d5">&#9670;&nbsp;</a></span>ph_oem_enable_interrupt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_enable_interrupt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__ph__oem.html#ga46905a646ccbf3030706c31a3c755ab2">ph_oem_interrupt_pin_cb_t</a>&#160;</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable the pH OEM interrupt pin if <a class="el" href="structph__oem__params.html#ae8a7cf150979e1e0bc41cb8d9ff7f339">ph_oem_params_t::interrupt_pin</a> is defined. </p>
+<dl class="section note"><dt>Note</dt><dd><a class="el" href="group__drivers__ph__oem.html#ga30f23632123b2635041d0e21a3b844fd">ph_oem_reset_interrupt_pin</a> needs to be called in the callback if you use <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea1eedd530821a380a8bf0069b2c2310d4">PH_OEM_IRQ_FALLING</a> or <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea64cc7bed660a33198b9ca108426c090a">PH_OEM_IRQ_RISING</a></dd>
+<dd>
+Provide the PH_OEM_PARAM_INTERRUPT_OPTION flag in your makefile. Valid options see: <a class="el" href="group__drivers__ph__oem.html#ga80b8082b315169a3cfa8e71287b2fdfe">ph_oem_irq_option_t</a>. The default is <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea2955602537e7974b5f98808ddcc28ce9">PH_OEM_IRQ_BOTH</a>.</dd>
+<dd>
+Also provide the <a class="el" href="group__drivers__periph__gpio.html#ga491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a> as a CFLAG in your makefile. Most likely <a class="el" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a3343e227f62c4c536efff81438a8e155">GPIO_IN</a>. If the pin is to sensitive use <a class="el" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c">GPIO_IN_PU</a> for <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea1eedd530821a380a8bf0069b2c2310d4">PH_OEM_IRQ_FALLING</a> or <a class="el" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c">GPIO_IN_PD</a> for <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea64cc7bed660a33198b9ca108426c090a">PH_OEM_IRQ_RISING</a> and <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea2955602537e7974b5f98808ddcc28ce9">PH_OEM_IRQ_BOTH</a>. The default is <a class="el" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c">GPIO_IN_PD</a></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cb</td><td>callback called when the pH OEM interrupt pin fires </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>callback argument</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a50eba0da46a1b7d0b35a4fc9fe0e1fab">PH_OEM_INTERRUPT_GPIO_UNDEF</a> if the interrupt pin is undefined </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a1458841d75da3d375c5266277564ff69">PH_OEM_GPIO_INIT_ERR</a> if initializing the interrupt gpio pin failed </dd></dl>
+
+</div>
+</div>
+<a id="gae2d0761f6ddd367e75f32bda7f919a1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2d0761f6ddd367e75f32bda7f919a1a">&#9670;&nbsp;</a></span>ph_oem_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#ga6d8a51371443cba0c02b3e20f06bb7b7">ph_oem_params_t</a> *&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a pH OEM sensor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>device configuration</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6aa31f3ac5b2c82a65101cc236aa97cae1">PH_OEM_NODEV</a> if no device is found on the bus </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a6dba40774bf039df66d669c022ed9905">PH_OEM_NOT_PH</a> if the device found at the address is not a pH OEM device </dd>
+<dd>
+</dd></dl>
+
+</div>
+</div>
+<a id="ga90048aec75905488c5c8786148ad3ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga90048aec75905488c5c8786148ad3ed6">&#9670;&nbsp;</a></span>ph_oem_read_calibration_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_read_calibration_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>calibration_state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534ad5d8773f6f5b19db61991283d7b33302">PH_OEM_REG_CALIBRATION_CONFIRM</a> register. </p>
+<p>After a calibration event has been successfully carried out, the calibration confirmation register will reflect what calibration has been done, by setting bits 0 - 2.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">calibration_state</td><td>calibration state reflected by bits 0 - 2 <br  />
+ (0 = low, 1 = mid, 2 = high)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82">PH_OEM_READ_ERR</a> if reading from the device failed </dd></dl>
+
+</div>
+</div>
+<a id="ga4b3f8a5f343f7906527ae843397f28a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b3f8a5f343f7906527ae843397f28a5">&#9670;&nbsp;</a></span>ph_oem_read_compensation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_read_compensation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>temperature_compensation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534ad2636d4aa521ae51004a7191cc327f7e">PH_OEM_REG_TEMP_CONFIRMATION_BASE</a> register to verify the temperature compensation value that was used to take the pH reading is set to the correct temperature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">temperature_compensation</td><td>raw temperature compensation value. <br  />
+ Divide by 100 for floating point <br  />
+ e.g 3426 / 100 = 34.26</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82">PH_OEM_READ_ERR</a> if reading from the device failed </dd></dl>
+
+</div>
+</div>
+<a id="ga2ed33b1757d6297da1f6a23c7c768fce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2ed33b1757d6297da1f6a23c7c768fce">&#9670;&nbsp;</a></span>ph_oem_read_ph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_read_ph </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>ph_value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a1fa4ee560bf8a18e35479d2de33b479d">PH_OEM_REG_PH_READING_BASE</a> register to get the current pH reading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ph_value</td><td>raw pH value <br  />
+ divide by 1000 for floating point <br  />
+ e.g 8347 / 1000 = 8.347</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82">PH_OEM_READ_ERR</a> if reading from the device failed </dd></dl>
+
+</div>
+</div>
+<a id="ga30f23632123b2635041d0e21a3b844fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30f23632123b2635041d0e21a3b844fd">&#9670;&nbsp;</a></span>ph_oem_reset_interrupt_pin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_reset_interrupt_pin </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The interrupt pin will not auto reset on option <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea64cc7bed660a33198b9ca108426c090a">PH_OEM_IRQ_RISING</a> and <a class="el" href="group__drivers__ph__oem.html#gga80b8082b315169a3cfa8e71287b2fdfea1eedd530821a380a8bf0069b2c2310d4">PH_OEM_IRQ_FALLING</a> after interrupt fires, so call this function again to reset the pin state. </p>
+<dl class="section note"><dt>Note</dt><dd>The interrupt settings are not retained if the power is cut, so you have to call this function again after powering on the device.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd></dl>
+
+</div>
+</div>
+<a id="ga3c09a34270060f83c89f5267d58a2233"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c09a34270060f83c89f5267d58a2233">&#9670;&nbsp;</a></span>ph_oem_set_calibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_set_calibration </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>calibration_value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__ph__oem.html#gaf859a7a988d4650f5c6d449633667673">ph_oem_calibration_option_t</a>&#160;</td>
+          <td class="paramname"><em>option</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a2670bd8d9ea3f07b67e5833a77b373d9">PH_OEM_REG_CALIBRATION_BASE</a> register to the calibration_value which the pH OEM sensor will be calibrated to. </p>
+<p>Multiply the floating point calibration value of your solution by 1000 e.g. pH calibration solution =&gt; 7.002 * 1000 = 7002 = 0x00001B5A</p>
+<p>The calibration value will be saved based on the given <a class="el" href="group__drivers__ph__oem.html#gaf859a7a988d4650f5c6d449633667673">ph_oem_calibration_option_t</a> and retained after the power is cut.</p>
+<dl class="section note"><dt>Note</dt><dd>Calibrating with <a class="el" href="group__drivers__ph__oem.html#ggaf859a7a988d4650f5c6d449633667673acb61f4b3120d133c93615c6a13bd349f">PH_OEM_CALIBRATE_MID_POINT</a> will reset the previous calibrations. Always start with <a class="el" href="group__drivers__ph__oem.html#ggaf859a7a988d4650f5c6d449633667673acb61f4b3120d133c93615c6a13bd349f">PH_OEM_CALIBRATE_MID_POINT</a> if you doing 2 or 3 point calibration</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">calibration_value</td><td>pH value multiplied by 1000 e.g 7,002 * 1000 = 7002 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">option</td><td><a class="el" href="group__drivers__ph__oem.html#gaf859a7a988d4650f5c6d449633667673">ph_oem_calibration_option_t</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82">PH_OEM_READ_ERR</a> if reading from the device failed </dd></dl>
+
+</div>
+</div>
+<a id="gabe87d8f452660dc3956e75140a0aafde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe87d8f452660dc3956e75140a0aafde">&#9670;&nbsp;</a></span>ph_oem_set_compensation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_set_compensation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>temperature_compensation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a8ed817ec57616b06b6de37d9c2ef91bd">PH_OEM_REG_TEMP_COMPENSATION_BASE</a> register to the temperature_compensation value which the pH OEM sensor will use to compensate the reading error. </p>
+<p>Multiply the floating point temperature value by 100 e.g. temperature in degree Celsius = 34.26 * 100 = 3426</p>
+<dl class="section note"><dt>Note</dt><dd>The temperature compensation will not be retained if the power is cut.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">temperature_compensation</td><td>valid temperature range is 1 - 20000 (0.01 °C to 200.0 °C)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a8cb575b4092068b73b68e66dece4a6c8">PH_OEM_TEMP_OUT_OF_RANGE</a> if the temperature_compensation is not in the valid range </dd></dl>
+
+</div>
+</div>
+<a id="ga7f553d7c75e3e12336628c4ff384e3c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f553d7c75e3e12336628c4ff384e3c8">&#9670;&nbsp;</a></span>ph_oem_set_device_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_set_device_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__ph__oem.html#gace6f50a055f37bd6e69170c462c170f5">ph_oem_device_state_t</a>&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the device state (active/hibernate) of the pH OEM sensor by writing to the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534afd9796d70d0bbfb709b0e92bda6c3e55">PH_OEM_REG_HIBERNATE</a> register. </p>
+<dl class="section note"><dt>Note</dt><dd>Once the device has been woken up it will continuously take readings every 420ms. Waking the device is the only way to take a reading. Hibernating the device is the only way to stop taking readings.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td><a class="el" href="group__drivers__ph__oem.html#gace6f50a055f37bd6e69170c462c170f5">ph_oem_device_state_t</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd></dl>
+
+</div>
+</div>
+<a id="gaa7af3f95a8c9b51d03d1e1fa8344f7c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa7af3f95a8c9b51d03d1e1fa8344f7c9">&#9670;&nbsp;</a></span>ph_oem_set_i2c_address()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_set_i2c_address </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a new address to the pH OEM device by unlocking the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a4c00e65e4e9c773992685c79c4925b2e">PH_OEM_REG_UNLOCK</a> register and writing a new address to the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534af1a24a62906dee63180eb696cf143b48">PH_OEM_REG_ADDRESS</a> register. </p>
+<p>The device address will also be updated in the device descriptor so it is still usable.</p>
+<p>Settings are retained in the sensor if the power is cut.</p>
+<p>The address in the device descriptor will reverse to the default address you provided through PH_OEM_PARAM_ADDR after the microcontroller restarts</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>new address for the device. Range: 0x01 - 0x7f</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd></dl>
+
+</div>
+</div>
+<a id="ga5319d1ffce159800e816c1325b368a80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5319d1ffce159800e816c1325b368a80">&#9670;&nbsp;</a></span>ph_oem_set_led_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_set_led_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__ph__oem.html#gac7b39997a60eb597cb14d067f562bfee">ph_oem_led_state_t</a>&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the LED state of the pH OEM sensor by writing to the <a class="el" href="ph__oem__regs_8h.html#ae7fbcf4a00512be94584cbcb17ceb534a4f8eef844c23e74d2e1d6cd6c27ef431">PH_OEM_REG_LED</a> register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td><a class="el" href="group__drivers__ph__oem.html#gac7b39997a60eb597cb14d067f562bfee">ph_oem_led_state_t</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd></dl>
+
+</div>
+</div>
+<a id="ga7c69721413cd1e6538ce1147e641c324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c69721413cd1e6538ce1147e641c324">&#9670;&nbsp;</a></span>ph_oem_start_new_reading()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ph_oem_start_new_reading </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__ph__oem.html#gaea361c1d046340542397933bfc69aa66">ph_oem_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Starts a new reading by setting the device state to <a class="el" href="group__drivers__ph__oem.html#ggace6f50a055f37bd6e69170c462c170f5afec2edc47d45159b48af93bf712d3e8b">PH_OEM_TAKE_READINGS</a>. </p>
+<dl class="section note"><dt>Note</dt><dd>If the <a class="el" href="structph__oem__params.html#ae8a7cf150979e1e0bc41cb8d9ff7f339">ph_oem_params_t::interrupt_pin</a> is <a class="el" href="group__drivers__periph__gpio.html#ga3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a> this function will poll every 20ms till a reading is done (~420ms) and stop the device from taking further readings</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6abdee79c2ebbd2d9c05e38ed40eac9d8d">PH_OEM_OK</a> on success </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a5d5b7f110a4767f8e371d69057fca1b5">PH_OEM_WRITE_ERR</a> if writing to the device failed </dd>
+<dd>
+<a class="el" href="group__drivers__ph__oem.html#ggac06302df40bc05bc56dec2ed7f7052b6a7207224e20a2aae92420ac0ff1d0aa82">PH_OEM_READ_ERR</a> if reading from the device failed </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

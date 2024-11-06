@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/mrf24j40.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mrf24j40_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mrf24j40.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mrf24j40_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2017 Neo Nenaco &lt;neo@nenaco.de&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Copyright (C) 2017 Koen Zandberg &lt;koen@bergzand.net&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for more</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#ifndef MRF24J40_H</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#define MRF24J40_H</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#include &quot;board.h&quot;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_8h.html">net/netdev.h</a>&quot;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_2ieee802154_8h.html">net/netdev/ieee802154.h</a>&quot;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nettype_8h.html">net/gnrc/nettype.h</a>&quot;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#include &quot;net/ieee802154/radio.h&quot;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gaffbac4bb742fd7aafcc72f51ba690b7a">   91</a></span>&#160;<span class="preprocessor">#define MRF24J40_PSEUDO_STATE_IDLE      (0x01)      </span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga6bff10e238840b2d8f0d4754ff613e46">   92</a></span>&#160;<span class="preprocessor">#define MRF24J40_PSEUDO_STATE_SLEEP     (0x02)      </span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga06793e67da2920648b24ae065081e6cf">   93</a></span>&#160;<span class="preprocessor">#define MRF24J40_PSEUDO_STATE_RESET     (0x04)      </span></div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga033df8445d72fd0fba75dc5c9b3f4df1">  104</a></span>&#160;<span class="preprocessor">#define MRF24J40_OPT_CSMA               (0x0100)    </span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#define MRF24J40_OPT_PROMISCUOUS        (0x0200)    </span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga47062a349a104ccf014cfc34cd5446eb">  107</a></span>&#160;<span class="preprocessor">#define MRF24J40_OPT_PRELOADING         (0x0400)    </span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gaf1cf7f4253e339608cc84d27f3a07327">  110</a></span>&#160;<span class="preprocessor">#define MRF24J40_TASK_TX_DONE           (0x01)      </span></div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga15570e22c86018e9fe748718b69a9367">  111</a></span>&#160;<span class="preprocessor">#define MRF24J40_TASK_TX_READY          (0x02)      </span></div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gadcfaee277331c308c7474fe832eede2b">  112</a></span>&#160;<span class="preprocessor">#define MRF24J40_TASK_RX_READY          (0x04)      </span></div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga84ab808cc5700e412a84c97fabe7d534">  114</a></span>&#160;<span class="preprocessor">#define MRF24J40_MAX_FRAME_RETRIES      (3U)        </span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#define MRF24J40_MAX_MINBE              (3U)        </span></div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga7d43f48e76a5d8dc863593d6589bf4e5">  118</a></span>&#160;<span class="preprocessor">#define MRF24J40_MIN_TXPOWER            (-36)       </span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gac6e7be6071967ef84ede5df812ff52f8">  119</a></span>&#160;<span class="preprocessor">#define MRF24J40_MAX_TXPOWER            (0)         </span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#if defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40__config.html#gadd8ffb8636440a32ab0bc9e4b0fa0268">  136</a></span>&#160;<span class="preprocessor">#define CONFIG_MRF24J40_USE_EXT_PA_LNA</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#if defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40__config.html#ga04e6d455111453e5109d863469f0010f">  148</a></span>&#160;<span class="preprocessor">#define CONFIG_MRF24J40_TEST_SPI_CONNECTION</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="structmrf24j40__params.html">  155</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structmrf24j40__params.html">mrf24j40_params</a> {</div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="structmrf24j40__params.html#a64b3a95e750885910a06d8c7652445c8">  156</a></span>&#160;    spi_t <a class="code" href="structmrf24j40__params.html#a64b3a95e750885910a06d8c7652445c8">spi</a>;              </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structmrf24j40__params.html#aafd68a29a6e4e5545ccc1c9d859fa5a0">  157</a></span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> <a class="code" href="structmrf24j40__params.html#aafd68a29a6e4e5545ccc1c9d859fa5a0">spi_clk</a>;      </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structmrf24j40__params.html#a7bf31ed518e5885748973a4855e52f7d">  158</a></span>&#160;    <a class="code" href="group__drivers__periph__spi.html#gaf5fbaf43946646c588c9372e8906c99e">spi_cs_t</a> <a class="code" href="structmrf24j40__params.html#a7bf31ed518e5885748973a4855e52f7d">cs_pin</a>;        </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="structmrf24j40__params.html#adc443c0afb19f0767761aebed15f8ddd">  159</a></span>&#160;    gpio_t <a class="code" href="structmrf24j40__params.html#adc443c0afb19f0767761aebed15f8ddd">int_pin</a>;         </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="structmrf24j40__params.html#af3d27be658ce5422e370256a717b9ce3">  160</a></span>&#160;    gpio_t <a class="code" href="structmrf24j40__params.html#af3d27be658ce5422e370256a717b9ce3">reset_pin</a>;       </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga85a02a43d89b44cc45c213e5f511f900">  161</a></span>&#160;} <a class="code" href="group__drivers__mrf24j40.html#ga85a02a43d89b44cc45c213e5f511f900">mrf24j40_params_t</a>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="structmrf24j40__t.html">  166</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">/*  device specific fields  */</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="structmrf24j40__t.html#a72478edfb14739d380e545c251a4be35">  168</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structmrf24j40__params.html">mrf24j40_params_t</a> *<a class="code" href="structmrf24j40__t.html#a72478edfb14739d380e545c251a4be35">params</a>;        </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="structmrf24j40__t.html#af0743350725c76c4206474a1aed426b6">  169</a></span>&#160;    uint8_t <a class="code" href="structmrf24j40__t.html#af0743350725c76c4206474a1aed426b6">fcf_low</a>;                        </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="structmrf24j40__t.html#affaccd70781367026305ce6ec34c752a">  170</a></span>&#160;    uint8_t <a class="code" href="structmrf24j40__t.html#affaccd70781367026305ce6ec34c752a">pending</a>;                        </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="structmrf24j40__t.html#ae0616dc69affc599b811b42afa02ec34">  171</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structmrf24j40__t.html#ae0616dc69affc599b811b42afa02ec34">tx_pending</a>;                        </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;} <a class="code" href="structmrf24j40__t.html">mrf24j40_t</a>;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gaaead3f046c789ebeaa75d48145032bc2">  181</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mrf24j40.html#gaaead3f046c789ebeaa75d48145032bc2">mrf24j40_reset</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gaec173376dad8734c3dafd61812a43738">  189</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gaec173376dad8734c3dafd61812a43738">mrf24j40_set_addr_short</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, uint16_t addr);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga532f01019a7be05c7b04276ed3cdc0af">  197</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga532f01019a7be05c7b04276ed3cdc0af">mrf24j40_set_addr_long</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, <span class="keyword">const</span> uint8_t *addr);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga751b0453c8f398505141d8f6ba80940a">  206</a></span>&#160;uint8_t <a class="code" href="group__drivers__mrf24j40.html#ga751b0453c8f398505141d8f6ba80940a">mrf24j40_get_chan</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gae41cdb300aa8fa8c814e48daf9307145">  214</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gae41cdb300aa8fa8c814e48daf9307145">mrf24j40_set_chan</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, uint8_t chan);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga31df59ab4275cf91bd149211a71d93b1">  223</a></span>&#160;uint16_t <a class="code" href="group__drivers__mrf24j40.html#ga31df59ab4275cf91bd149211a71d93b1">mrf24j40_get_pan</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gab882597e281c5284096308c5a3304492">  231</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gab882597e281c5284096308c5a3304492">mrf24j40_set_pan</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, uint16_t pan);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
+<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga4a46456d0f6d2ad7e650339ae49a149f">  244</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga4a46456d0f6d2ad7e650339ae49a149f">mrf24j40_set_txpower</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, int16_t txpower);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga0da995a94f7f38f677f288c9be8f5331">  257</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga0da995a94f7f38f677f288c9be8f5331">mrf24j40_set_csma_max_retries</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, int8_t retries);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga67a57cb0f06873c41e43ef582911f514">  269</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga67a57cb0f06873c41e43ef582911f514">mrf24j40_set_csma_backoff_exp</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, uint8_t min, uint8_t max);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga858128e8ba01e9bb985463a9f007e05c">  277</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga858128e8ba01e9bb985463a9f007e05c">mrf24j40_set_cca_threshold</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, int8_t value);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00286"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga023db35ebc5374b8d88e684f74e79cfd">  286</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga023db35ebc5374b8d88e684f74e79cfd">mrf24j40_set_option</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, uint16_t option, <span class="keywordtype">bool</span> state);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gab5ee971408a8b2d3dbd0ecf5db44dab1">  294</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gab5ee971408a8b2d3dbd0ecf5db44dab1">mrf24j40_set_state</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, uint8_t state);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gad143fd43458223d4f9fc78fbe86c1405">  307</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gad143fd43458223d4f9fc78fbe86c1405">mrf24j40_set_turbo</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
+<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga2f3d1e5efaea54dc69419b4362227e93">  314</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga2f3d1e5efaea54dc69419b4362227e93">mrf24j40_sleep</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gac412f62517a91ed3b88d0fe4511b61b6">  321</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gac412f62517a91ed3b88d0fe4511b61b6">mrf24j40_wake_up</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
+<div class="line"><a name="l00332"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gaa6ab2d895608a3f7c89575394b8a76e7">  332</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gaa6ab2d895608a3f7c89575394b8a76e7">mrf24j40_reset_state_machine</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
+<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga93de08128de3421f1a65edf058316fbc">  342</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga93de08128de3421f1a65edf058316fbc">mrf24j40_software_reset</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
+<div class="line"><a name="l00350"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga80322d719b89cdc3317ef20d09e5b22b">  350</a></span>&#160;int8_t <a class="code" href="group__drivers__mrf24j40.html#ga80322d719b89cdc3317ef20d09e5b22b">mrf24j40_dbm_from_reg</a>(uint8_t value);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
+<div class="line"><a name="l00360"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga81d51122b1b4e529ed56ae7c48b116ae">  360</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga81d51122b1b4e529ed56ae7c48b116ae">mrf24j40_tx_prepare</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
+<div class="line"><a name="l00372"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga824897a444ed6b544edc8466f79b1326">  372</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="group__drivers__mrf24j40.html#ga824897a444ed6b544edc8466f79b1326">mrf24j40_tx_load</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, uint8_t *data, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                        <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
+<div class="line"><a name="l00380"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#gab13d481a9e61f055b65380022af04c69">  380</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#gab13d481a9e61f055b65380022af04c69">mrf24j40_tx_exec</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
+<div class="line"><a name="l00387"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga91e9155cbf0988b5bead4227af1f7d3e">  387</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mrf24j40.html#ga91e9155cbf0988b5bead4227af1f7d3e">mrf24j40_radio_irq_handler</a>(<span class="keywordtype">void</span> *dev);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00400"></a><span class="lineno"><a class="line" href="group__drivers__mrf24j40.html#ga0ef9392aa73c283a605baed196f0f69f">  400</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mrf24j40.html#ga0ef9392aa73c283a605baed196f0f69f">mrf24j40_init</a>(<a class="code" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structmrf24j40__params.html">mrf24j40_params_t</a> *params, <a class="code" href="structieee802154__dev.html">ieee802154_dev_t</a> *hal,</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                   <a class="code" href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a> cb, <span class="keywordtype">void</span> *ctx);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; </div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;}</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160; </div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MRF24J40_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_2ieee802154_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_2ieee802154_8h.html">ieee802154.h</a></div><div class="ttdoc">Definitions for netdev common IEEE 802.15.4 code.</div></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_8h.html">netdev.h</a></div><div class="ttdoc">Definitions low-level network driver interface.</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga023db35ebc5374b8d88e684f74e79cfd"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga023db35ebc5374b8d88e684f74e79cfd">mrf24j40_set_option</a></div><div class="ttdeci">void mrf24j40_set_option(mrf24j40_t *dev, uint16_t option, bool state)</div><div class="ttdoc">Enable or disable driver specific options.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga0da995a94f7f38f677f288c9be8f5331"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga0da995a94f7f38f677f288c9be8f5331">mrf24j40_set_csma_max_retries</a></div><div class="ttdeci">void mrf24j40_set_csma_max_retries(mrf24j40_t *dev, int8_t retries)</div><div class="ttdoc">Set the maximum number of channel access attempts per frame (CSMA)</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga0ef9392aa73c283a605baed196f0f69f"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga0ef9392aa73c283a605baed196f0f69f">mrf24j40_init</a></div><div class="ttdeci">int mrf24j40_init(mrf24j40_t *dev, const mrf24j40_params_t *params, ieee802154_dev_t *hal, gpio_cb_t cb, void *ctx)</div><div class="ttdoc">Initialize the given MRF24J40 device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga2f3d1e5efaea54dc69419b4362227e93"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga2f3d1e5efaea54dc69419b4362227e93">mrf24j40_sleep</a></div><div class="ttdeci">void mrf24j40_sleep(mrf24j40_t *dev)</div><div class="ttdoc">Put in sleep mode.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga31df59ab4275cf91bd149211a71d93b1"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga31df59ab4275cf91bd149211a71d93b1">mrf24j40_get_pan</a></div><div class="ttdeci">uint16_t mrf24j40_get_pan(mrf24j40_t *dev)</div><div class="ttdoc">Get the configured PAN ID of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga4a46456d0f6d2ad7e650339ae49a149f"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga4a46456d0f6d2ad7e650339ae49a149f">mrf24j40_set_txpower</a></div><div class="ttdeci">void mrf24j40_set_txpower(mrf24j40_t *dev, int16_t txpower)</div><div class="ttdoc">Set the transmission power of the given device [in dBm].</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga532f01019a7be05c7b04276ed3cdc0af"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga532f01019a7be05c7b04276ed3cdc0af">mrf24j40_set_addr_long</a></div><div class="ttdeci">void mrf24j40_set_addr_long(mrf24j40_t *dev, const uint8_t *addr)</div><div class="ttdoc">Set the long address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga67a57cb0f06873c41e43ef582911f514"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga67a57cb0f06873c41e43ef582911f514">mrf24j40_set_csma_backoff_exp</a></div><div class="ttdeci">void mrf24j40_set_csma_backoff_exp(mrf24j40_t *dev, uint8_t min, uint8_t max)</div><div class="ttdoc">Set the min and max backoff exponent for CSMA/CA.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga751b0453c8f398505141d8f6ba80940a"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga751b0453c8f398505141d8f6ba80940a">mrf24j40_get_chan</a></div><div class="ttdeci">uint8_t mrf24j40_get_chan(mrf24j40_t *dev)</div><div class="ttdoc">Get the configured channel number of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga80322d719b89cdc3317ef20d09e5b22b"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga80322d719b89cdc3317ef20d09e5b22b">mrf24j40_dbm_from_reg</a></div><div class="ttdeci">int8_t mrf24j40_dbm_from_reg(uint8_t value)</div><div class="ttdoc">Convert scalar from mrf24j40 RSSI to dBm.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga81d51122b1b4e529ed56ae7c48b116ae"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga81d51122b1b4e529ed56ae7c48b116ae">mrf24j40_tx_prepare</a></div><div class="ttdeci">void mrf24j40_tx_prepare(mrf24j40_t *dev)</div><div class="ttdoc">Prepare for sending of data.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga824897a444ed6b544edc8466f79b1326"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga824897a444ed6b544edc8466f79b1326">mrf24j40_tx_load</a></div><div class="ttdeci">size_t mrf24j40_tx_load(mrf24j40_t *dev, uint8_t *data, size_t len, size_t offset)</div><div class="ttdoc">Load chunks of data into the transmit buffer of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga858128e8ba01e9bb985463a9f007e05c"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga858128e8ba01e9bb985463a9f007e05c">mrf24j40_set_cca_threshold</a></div><div class="ttdeci">void mrf24j40_set_cca_threshold(mrf24j40_t *dev, int8_t value)</div><div class="ttdoc">Set the CCA threshold value.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga85a02a43d89b44cc45c213e5f511f900"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga85a02a43d89b44cc45c213e5f511f900">mrf24j40_params_t</a></div><div class="ttdeci">struct mrf24j40_params mrf24j40_params_t</div><div class="ttdoc">struct holding all params needed for device initialization</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga91e9155cbf0988b5bead4227af1f7d3e"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga91e9155cbf0988b5bead4227af1f7d3e">mrf24j40_radio_irq_handler</a></div><div class="ttdeci">void mrf24j40_radio_irq_handler(void *dev)</div><div class="ttdoc">IRQ Handler for the MRF24J40 device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_ga93de08128de3421f1a65edf058316fbc"><div class="ttname"><a href="group__drivers__mrf24j40.html#ga93de08128de3421f1a65edf058316fbc">mrf24j40_software_reset</a></div><div class="ttdeci">void mrf24j40_software_reset(mrf24j40_t *dev)</div><div class="ttdoc">Software Reset.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gaa6ab2d895608a3f7c89575394b8a76e7"><div class="ttname"><a href="group__drivers__mrf24j40.html#gaa6ab2d895608a3f7c89575394b8a76e7">mrf24j40_reset_state_machine</a></div><div class="ttdeci">void mrf24j40_reset_state_machine(mrf24j40_t *dev)</div><div class="ttdoc">Reset the internal state machine to TRX_OFF mode.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gaaead3f046c789ebeaa75d48145032bc2"><div class="ttname"><a href="group__drivers__mrf24j40.html#gaaead3f046c789ebeaa75d48145032bc2">mrf24j40_reset</a></div><div class="ttdeci">int mrf24j40_reset(mrf24j40_t *dev)</div><div class="ttdoc">Trigger a hardware reset and configure radio with default values.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gab13d481a9e61f055b65380022af04c69"><div class="ttname"><a href="group__drivers__mrf24j40.html#gab13d481a9e61f055b65380022af04c69">mrf24j40_tx_exec</a></div><div class="ttdeci">void mrf24j40_tx_exec(mrf24j40_t *dev)</div><div class="ttdoc">Trigger sending of data previously loaded into transmit buffer.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gab5ee971408a8b2d3dbd0ecf5db44dab1"><div class="ttname"><a href="group__drivers__mrf24j40.html#gab5ee971408a8b2d3dbd0ecf5db44dab1">mrf24j40_set_state</a></div><div class="ttdeci">void mrf24j40_set_state(mrf24j40_t *dev, uint8_t state)</div><div class="ttdoc">Set the state of the given device (trigger a state change)</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gab882597e281c5284096308c5a3304492"><div class="ttname"><a href="group__drivers__mrf24j40.html#gab882597e281c5284096308c5a3304492">mrf24j40_set_pan</a></div><div class="ttdeci">void mrf24j40_set_pan(mrf24j40_t *dev, uint16_t pan)</div><div class="ttdoc">Set the PAN ID of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gac412f62517a91ed3b88d0fe4511b61b6"><div class="ttname"><a href="group__drivers__mrf24j40.html#gac412f62517a91ed3b88d0fe4511b61b6">mrf24j40_wake_up</a></div><div class="ttdeci">void mrf24j40_wake_up(mrf24j40_t *dev)</div><div class="ttdoc">Wake up from sleep mode.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gad143fd43458223d4f9fc78fbe86c1405"><div class="ttname"><a href="group__drivers__mrf24j40.html#gad143fd43458223d4f9fc78fbe86c1405">mrf24j40_set_turbo</a></div><div class="ttdeci">void mrf24j40_set_turbo(mrf24j40_t *dev, bool enable)</div><div class="ttdoc">Enable or disable proprietary Turbo Mode.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gae41cdb300aa8fa8c814e48daf9307145"><div class="ttname"><a href="group__drivers__mrf24j40.html#gae41cdb300aa8fa8c814e48daf9307145">mrf24j40_set_chan</a></div><div class="ttdeci">void mrf24j40_set_chan(mrf24j40_t *dev, uint8_t chan)</div><div class="ttdoc">Set the channel number of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__mrf24j40_html_gaec173376dad8734c3dafd61812a43738"><div class="ttname"><a href="group__drivers__mrf24j40.html#gaec173376dad8734c3dafd61812a43738">mrf24j40_set_addr_short</a></div><div class="ttdeci">void mrf24j40_set_addr_short(mrf24j40_t *dev, uint16_t addr)</div><div class="ttdoc">Set the short address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga06ceaaf4824f1504972babf0775dba92"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a></div><div class="ttdeci">void(* gpio_cb_t)(void *arg)</div><div class="ttdoc">Signature of event callback functions triggered from interrupts.</div><div class="ttdef"><b>Definition:</b> gpio.h:147</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_gaf5fbaf43946646c588c9372e8906c99e"><div class="ttname"><a href="group__drivers__periph__spi.html#gaf5fbaf43946646c588c9372e8906c99e">spi_cs_t</a></div><div class="ttdeci">gpio_t spi_cs_t</div><div class="ttdoc">Chip select pin type overlaps with gpio_t so it can be casted to this.</div><div class="ttdef"><b>Definition:</b> spi.h:135</div></div>
+<div class="ttc" id="anettype_8h_html"><div class="ttname"><a href="nettype_8h.html">nettype.h</a></div><div class="ttdoc">Protocol type definitions.</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructieee802154__dev_html"><div class="ttname"><a href="structieee802154__dev.html">ieee802154_dev</a></div><div class="ttdoc">the IEEE802.15.4 device descriptor</div><div class="ttdef"><b>Definition:</b> radio.h:415</div></div>
+<div class="ttc" id="astructmrf24j40__params_html"><div class="ttname"><a href="structmrf24j40__params.html">mrf24j40_params</a></div><div class="ttdoc">struct holding all params needed for device initialization</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:155</div></div>
+<div class="ttc" id="astructmrf24j40__params_html_a64b3a95e750885910a06d8c7652445c8"><div class="ttname"><a href="structmrf24j40__params.html#a64b3a95e750885910a06d8c7652445c8">mrf24j40_params::spi</a></div><div class="ttdeci">spi_t spi</div><div class="ttdoc">SPI bus the device is connected to.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:156</div></div>
+<div class="ttc" id="astructmrf24j40__params_html_a7bf31ed518e5885748973a4855e52f7d"><div class="ttname"><a href="structmrf24j40__params.html#a7bf31ed518e5885748973a4855e52f7d">mrf24j40_params::cs_pin</a></div><div class="ttdeci">spi_cs_t cs_pin</div><div class="ttdoc">GPIO pin connected to chip select.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:158</div></div>
+<div class="ttc" id="astructmrf24j40__params_html_aafd68a29a6e4e5545ccc1c9d859fa5a0"><div class="ttname"><a href="structmrf24j40__params.html#aafd68a29a6e4e5545ccc1c9d859fa5a0">mrf24j40_params::spi_clk</a></div><div class="ttdeci">spi_clk_t spi_clk</div><div class="ttdoc">SPI speed to use.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:157</div></div>
+<div class="ttc" id="astructmrf24j40__params_html_adc443c0afb19f0767761aebed15f8ddd"><div class="ttname"><a href="structmrf24j40__params.html#adc443c0afb19f0767761aebed15f8ddd">mrf24j40_params::int_pin</a></div><div class="ttdeci">gpio_t int_pin</div><div class="ttdoc">GPIO pin connected to the interrupt pin.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:159</div></div>
+<div class="ttc" id="astructmrf24j40__params_html_af3d27be658ce5422e370256a717b9ce3"><div class="ttname"><a href="structmrf24j40__params.html#af3d27be658ce5422e370256a717b9ce3">mrf24j40_params::reset_pin</a></div><div class="ttdeci">gpio_t reset_pin</div><div class="ttdoc">GPIO pin connected to the reset pin.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:160</div></div>
+<div class="ttc" id="astructmrf24j40__t_html"><div class="ttname"><a href="structmrf24j40__t.html">mrf24j40_t</a></div><div class="ttdoc">Device descriptor for MRF24J40 radio devices.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:166</div></div>
+<div class="ttc" id="astructmrf24j40__t_html_a72478edfb14739d380e545c251a4be35"><div class="ttname"><a href="structmrf24j40__t.html#a72478edfb14739d380e545c251a4be35">mrf24j40_t::params</a></div><div class="ttdeci">const mrf24j40_params_t * params</div><div class="ttdoc">parameters for initialization</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:168</div></div>
+<div class="ttc" id="astructmrf24j40__t_html_ae0616dc69affc599b811b42afa02ec34"><div class="ttname"><a href="structmrf24j40__t.html#ae0616dc69affc599b811b42afa02ec34">mrf24j40_t::tx_pending</a></div><div class="ttdeci">bool tx_pending</div><div class="ttdoc">Whether a transmission is pending or not.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:171</div></div>
+<div class="ttc" id="astructmrf24j40__t_html_af0743350725c76c4206474a1aed426b6"><div class="ttname"><a href="structmrf24j40__t.html#af0743350725c76c4206474a1aed426b6">mrf24j40_t::fcf_low</a></div><div class="ttdeci">uint8_t fcf_low</div><div class="ttdoc">Low 8 FCF bits of the current TX frame.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:169</div></div>
+<div class="ttc" id="astructmrf24j40__t_html_affaccd70781367026305ce6ec34c752a"><div class="ttname"><a href="structmrf24j40__t.html#affaccd70781367026305ce6ec34c752a">mrf24j40_t::pending</a></div><div class="ttdeci">uint8_t pending</div><div class="ttdoc">Flags for pending tasks.</div><div class="ttdef"><b>Definition:</b> mrf24j40.h:170</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="mrf24j40_8h.html">mrf24j40.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/net/gnrc/rpl.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('rpl_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">rpl.h File Reference<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__network__layer.html">Network Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__transportlayer.html">Transport Layer</a> &raquo; <a class="el" href="group__net__gnrc.html">Generic (GNRC) network stack</a> &raquo; <a class="el" href="group__net__gnrc__rpl.html">RPL</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>RPL header.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>RPL header. </p>
+<p>Declaration of global variables and functions needed for core functionality of RPL.</p>
+<p>Header which includes all core RPL-functions.</p>
+<dl class="section author"><dt>Author</dt><dd>Eric Engel <a href="#" onclick="location.href='mai'+'lto:'+'eri'+'c.'+'eng'+'el'+'@fu'+'-b'+'erl'+'in'+'.de'; return false;">eric.<span style="display: none;">.nosp@m.</span>enge<span style="display: none;">.nosp@m.</span>l@fu-<span style="display: none;">.nosp@m.</span>berl<span style="display: none;">.nosp@m.</span>in.de</a> </dd>
+<dd>
+Fabian Brandt <a href="#" onclick="location.href='mai'+'lto:'+'fab'+'ia'+'nbr'+'@z'+'eda'+'t.'+'fu-'+'be'+'rli'+'n.'+'de'; return false;">fabia<span style="display: none;">.nosp@m.</span>nbr@<span style="display: none;">.nosp@m.</span>zedat<span style="display: none;">.nosp@m.</span>.fu-<span style="display: none;">.nosp@m.</span>berli<span style="display: none;">.nosp@m.</span>n.de</a> </dd>
+<dd>
+Martine Lenders <a href="#" onclick="location.href='mai'+'lto:'+'mle'+'nd'+'ers'+'@i'+'nf.'+'fu'+'-be'+'rl'+'in.'+'de'; return false;">mlend<span style="display: none;">.nosp@m.</span>ers@<span style="display: none;">.nosp@m.</span>inf.f<span style="display: none;">.nosp@m.</span>u-be<span style="display: none;">.nosp@m.</span>rlin.<span style="display: none;">.nosp@m.</span>de</a> </dd>
+<dd>
+Cenk Gündoğan <a href="#" onclick="location.href='mai'+'lto:'+'cen'+'k.'+'gue'+'nd'+'oga'+'n@'+'haw'+'-h'+'amb'+'ur'+'g.d'+'e'; return false;">cenk.<span style="display: none;">.nosp@m.</span>guen<span style="display: none;">.nosp@m.</span>dogan<span style="display: none;">.nosp@m.</span>@haw<span style="display: none;">.nosp@m.</span>-hamb<span style="display: none;">.nosp@m.</span>urg.<span style="display: none;">.nosp@m.</span>de</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="modules_8h_source.html">modules.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gnrc_8h_source.html">net/gnrc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gnrc_2ipv6_8h_source.html">net/gnrc/ipv6.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ipv6_2addr_8h_source.html">net/ipv6/addr.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="nettype_8h_source.html">net/gnrc/nettype.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="structs_8h_source.html">net/gnrc/rpl/structs.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="dodag_8h_source.html">net/gnrc/rpl/dodag.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="of__manager_8h_source.html">net/gnrc/rpl/of_manager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fib_8h_source.html">net/fib.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="trickle_8h_source.html">trickle.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for rpl.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="rpl_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gac589226f6b32ba9b6abd98e2e954d424"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gac589226f6b32ba9b6abd98e2e954d424">GNRC_RPL_STACK_SIZE</a>&#160;&#160;&#160;(<a class="el" href="native_2include_2cpu__conf_8h.html#a713ebddc00581f4d415095cdbfd8791f">THREAD_STACKSIZE_DEFAULT</a>)</td></tr>
+<tr class="memdesc:gac589226f6b32ba9b6abd98e2e954d424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default stack size to use for the RPL thread. <br /></td></tr>
+<tr class="separator:gac589226f6b32ba9b6abd98e2e954d424"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2f813145c63778748ddabdadc77e15a2"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga2f813145c63778748ddabdadc77e15a2">GNRC_RPL_PRIO</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__ipv6__conf.html#ga8f22df988032dbd4e6684e63bcdd90e1">GNRC_IPV6_PRIO</a> + 1)</td></tr>
+<tr class="memdesc:ga2f813145c63778748ddabdadc77e15a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default priority for the RPL thread. <br /></td></tr>
+<tr class="separator:ga2f813145c63778748ddabdadc77e15a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30886df75f9cae367d757737aa80b634"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga30886df75f9cae367d757737aa80b634">CONFIG_GNRC_RPL_MSG_QUEUE_SIZE_EXP</a>&#160;&#160;&#160;(3U)</td></tr>
+<tr class="memdesc:ga30886df75f9cae367d757737aa80b634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default message queue size to use for the RPL thread (as exponent of 2^n).  <a href="group__net__gnrc__rpl.html#ga30886df75f9cae367d757737aa80b634">More...</a><br /></td></tr>
+<tr class="separator:ga30886df75f9cae367d757737aa80b634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae42f5c42c85e1d38d25f8e65c5e79de0"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gae42f5c42c85e1d38d25f8e65c5e79de0">GNRC_RPL_MSG_QUEUE_SIZE</a>&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="group__net__gnrc__rpl.html#ga30886df75f9cae367d757737aa80b634">CONFIG_GNRC_RPL_MSG_QUEUE_SIZE_EXP</a>)</td></tr>
+<tr class="memdesc:gae42f5c42c85e1d38d25f8e65c5e79de0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message queue size to use for the RPL thread. <br /></td></tr>
+<tr class="separator:gae42f5c42c85e1d38d25f8e65c5e79de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab131f23d0ff798e550b74a3e06e7025"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gaab131f23d0ff798e550b74a3e06e7025">GNRC_RPL_ALL_NODES_ADDR</a>&#160;&#160;&#160;{{ 0xff, 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1a }}</td></tr>
+<tr class="memdesc:gaab131f23d0ff798e550b74a3e06e7025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static initializer for the all-RPL-nodes multicast IPv6 address (ff02::1a)  <a href="group__net__gnrc__rpl.html#gaab131f23d0ff798e550b74a3e06e7025">More...</a><br /></td></tr>
+<tr class="separator:gaab131f23d0ff798e550b74a3e06e7025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55fe88138b928d282d4da6c768ad688c"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga55fe88138b928d282d4da6c768ad688c">GNRC_RPL_MSG_TYPE_LIFETIME_UPDATE</a>&#160;&#160;&#160;(0x0900)</td></tr>
+<tr class="memdesc:ga55fe88138b928d282d4da6c768ad688c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message type for lifetime updates. <br /></td></tr>
+<tr class="separator:ga55fe88138b928d282d4da6c768ad688c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf9f5c0c1390aedcefc23d5b7c4a7cbe"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gacf9f5c0c1390aedcefc23d5b7c4a7cbe">GNRC_RPL_MSG_TYPE_TRICKLE_MSG</a>&#160;&#160;&#160;(0x0901)</td></tr>
+<tr class="memdesc:gacf9f5c0c1390aedcefc23d5b7c4a7cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message type for trickle. <br /></td></tr>
+<tr class="separator:gacf9f5c0c1390aedcefc23d5b7c4a7cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac457646f5893f4ff8f3ef1dda64180e2"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gac457646f5893f4ff8f3ef1dda64180e2">GNRC_RPL_MSG_TYPE_DAO_HANDLE</a>&#160;&#160;&#160;(0x0903)</td></tr>
+<tr class="memdesc:gac457646f5893f4ff8f3ef1dda64180e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message type for handling DAO sending. <br /></td></tr>
+<tr class="separator:gac457646f5893f4ff8f3ef1dda64180e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa3990a6b940768a1c26119d51697c5fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gaa3990a6b940768a1c26119d51697c5fb">GNRC_RPL_INFINITE_RANK</a>&#160;&#160;&#160;(0xFFFF)</td></tr>
+<tr class="memdesc:gaa3990a6b940768a1c26119d51697c5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Infinite rank.  <a href="group__net__gnrc__rpl.html#gaa3990a6b940768a1c26119d51697c5fb">More...</a><br /></td></tr>
+<tr class="separator:gaa3990a6b940768a1c26119d51697c5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0263f173175b3a0d0bc7f2405acbc7bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga0263f173175b3a0d0bc7f2405acbc7bf">CONFIG_GNRC_RPL_DEFAULT_MIN_HOP_RANK_INCREASE</a>&#160;&#160;&#160;(256)</td></tr>
+<tr class="memdesc:ga0263f173175b3a0d0bc7f2405acbc7bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default minimum hop rank increase.  <a href="group__net__gnrc__rpl.html#ga0263f173175b3a0d0bc7f2405acbc7bf">More...</a><br /></td></tr>
+<tr class="separator:ga0263f173175b3a0d0bc7f2405acbc7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab48376dcfdc94fab50032153aebfbfc7"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gab48376dcfdc94fab50032153aebfbfc7">CONFIG_GNRC_RPL_DEFAULT_MAX_RANK_INCREASE</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:gab48376dcfdc94fab50032153aebfbfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum rank increase. <br /></td></tr>
+<tr class="separator:gab48376dcfdc94fab50032153aebfbfc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab23c7e5badae5fb2c245b1e5061fc601"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gab23c7e5badae5fb2c245b1e5061fc601">GNRC_RPL_IMPLEMENTED_OFS_NUMOF</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:gab23c7e5badae5fb2c245b1e5061fc601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of implemented Objective Functions. <br /></td></tr>
+<tr class="separator:gab23c7e5badae5fb2c245b1e5061fc601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55f264f70357cdd22f653a18cd4054cd"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga55f264f70357cdd22f653a18cd4054cd">GNRC_RPL_DEFAULT_OCP</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:ga55f264f70357cdd22f653a18cd4054cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Objective Code Point (OF0) <br /></td></tr>
+<tr class="separator:ga55f264f70357cdd22f653a18cd4054cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18bfbc96d7a5a92ab4292f0e73e4dc0f"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga18bfbc96d7a5a92ab4292f0e73e4dc0f">CONFIG_GNRC_RPL_DEFAULT_INSTANCE</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:ga18bfbc96d7a5a92ab4292f0e73e4dc0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Instance ID. <br /></td></tr>
+<tr class="separator:ga18bfbc96d7a5a92ab4292f0e73e4dc0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8001203e341e5aae77d94e6c511aec5d"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga8001203e341e5aae77d94e6c511aec5d">GNRC_RPL_DEFAULT_PREFIX_LEN</a>&#160;&#160;&#160;(64)</td></tr>
+<tr class="memdesc:ga8001203e341e5aae77d94e6c511aec5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default prefix length for the DODAG id. <br /></td></tr>
+<tr class="separator:ga8001203e341e5aae77d94e6c511aec5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadc9cfc0adda754a94cc1b9e695d9b52e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gadc9cfc0adda754a94cc1b9e695d9b52e">GNRC_RPL_DEFAULT_PREFIX_LIFETIME</a>&#160;&#160;&#160;(0xFFFFFFFF)</td></tr>
+<tr class="memdesc:gadc9cfc0adda754a94cc1b9e695d9b52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default prefix valid and preferred time for the DODAG id.  <a href="group__net__gnrc__rpl.html#gadc9cfc0adda754a94cc1b9e695d9b52e">More...</a><br /></td></tr>
+<tr class="separator:gadc9cfc0adda754a94cc1b9e695d9b52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33436242b4bc3611eb97cd456ec2b6aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga33436242b4bc3611eb97cd456ec2b6aa">GNRC_RPL_GROUNDED</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:ga33436242b4bc3611eb97cd456ec2b6aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A DODAG can be grounded or floating.  <a href="group__net__gnrc__rpl.html#ga33436242b4bc3611eb97cd456ec2b6aa">More...</a><br /></td></tr>
+<tr class="separator:ga33436242b4bc3611eb97cd456ec2b6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad81939581c70ea4eca480d3440399ada"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gad81939581c70ea4eca480d3440399ada">CONFIG_GNRC_RPL_CLEANUP_TIME</a>&#160;&#160;&#160;(5 * <a class="el" href="group__sys__time__units.html#ga98c842b52ffe344288b6e38b12417baa">MS_PER_SEC</a>)</td></tr>
+<tr class="memdesc:gad81939581c70ea4eca480d3440399ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleanup interval in milliseconds. <br /></td></tr>
+<tr class="separator:gad81939581c70ea4eca480d3440399ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78497459be101d573fc8c4874ac07b15"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga78497459be101d573fc8c4874ac07b15">GNRC_RPL_ROOT_RANK</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__rpl.html#ga0263f173175b3a0d0bc7f2405acbc7bf">CONFIG_GNRC_RPL_DEFAULT_MIN_HOP_RANK_INCREASE</a>)</td></tr>
+<tr class="memdesc:ga78497459be101d573fc8c4874ac07b15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rank of the root node. <br /></td></tr>
+<tr class="separator:ga78497459be101d573fc8c4874ac07b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac38a20d931f54ecfbc8e333aaa793870"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gac38a20d931f54ecfbc8e333aaa793870">GNRC_RPL_ICMPV6_CODE_DIS</a>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="memdesc:gac38a20d931f54ecfbc8e333aaa793870"><td class="mdescLeft">&#160;</td><td class="mdescRight">DIS ICMPv6 code.  <a href="group__net__gnrc__rpl.html#gac38a20d931f54ecfbc8e333aaa793870">More...</a><br /></td></tr>
+<tr class="separator:gac38a20d931f54ecfbc8e333aaa793870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacdcf507b1b1b50ff914c7d7cbe1afa23"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gacdcf507b1b1b50ff914c7d7cbe1afa23">GNRC_RPL_ICMPV6_CODE_DIO</a>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="memdesc:gacdcf507b1b1b50ff914c7d7cbe1afa23"><td class="mdescLeft">&#160;</td><td class="mdescRight">DIO ICMPv6 code.  <a href="group__net__gnrc__rpl.html#gacdcf507b1b1b50ff914c7d7cbe1afa23">More...</a><br /></td></tr>
+<tr class="separator:gacdcf507b1b1b50ff914c7d7cbe1afa23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9145cd866ce8ccaf090338b049aeda9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga9145cd866ce8ccaf090338b049aeda9f">GNRC_RPL_ICMPV6_CODE_DAO</a>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="memdesc:ga9145cd866ce8ccaf090338b049aeda9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">DAO ICMPv6 code.  <a href="group__net__gnrc__rpl.html#ga9145cd866ce8ccaf090338b049aeda9f">More...</a><br /></td></tr>
+<tr class="separator:ga9145cd866ce8ccaf090338b049aeda9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafbd3cce755d91d785032c088991d4c85"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gafbd3cce755d91d785032c088991d4c85">GNRC_RPL_ICMPV6_CODE_DAO_ACK</a>&#160;&#160;&#160;(0x03)</td></tr>
+<tr class="memdesc:gafbd3cce755d91d785032c088991d4c85"><td class="mdescLeft">&#160;</td><td class="mdescRight">DAO ACK ICMPv6 code.  <a href="group__net__gnrc__rpl.html#gafbd3cce755d91d785032c088991d4c85">More...</a><br /></td></tr>
+<tr class="separator:gafbd3cce755d91d785032c088991d4c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3410f8f3091610a51a3dec46015383f2"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga3410f8f3091610a51a3dec46015383f2">GNRC_RPL_LIFETIME_UPDATE_STEP</a>&#160;&#160;&#160;(2)</td></tr>
+<tr class="memdesc:ga3410f8f3091610a51a3dec46015383f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update interval of the lifetime update function. <br /></td></tr>
+<tr class="separator:ga3410f8f3091610a51a3dec46015383f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1734a4a2444660a2bed5cce4ae301454"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga1734a4a2444660a2bed5cce4ae301454">DAGRANK</a>(rank,  mhri)&#160;&#160;&#160;(rank/mhri)</td></tr>
+<tr class="memdesc:ga1734a4a2444660a2bed5cce4ae301454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rank part of the DODAG.  <a href="group__net__gnrc__rpl.html#ga1734a4a2444660a2bed5cce4ae301454">More...</a><br /></td></tr>
+<tr class="separator:ga1734a4a2444660a2bed5cce4ae301454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3b1dbb50d9cf1b7a149ec76d546b81e4"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga3b1dbb50d9cf1b7a149ec76d546b81e4">CONFIG_GNRC_RPL_PARENT_TIMEOUT_DIS_RETRIES</a>&#160;&#160;&#160;(3)</td></tr>
+<tr class="memdesc:ga3b1dbb50d9cf1b7a149ec76d546b81e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of DIS retries before parent times out. <br /></td></tr>
+<tr class="separator:ga3b1dbb50d9cf1b7a149ec76d546b81e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafa7ea250e344e18e4c15bad6f5971df3"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gafa7ea250e344e18e4c15bad6f5971df3">CONFIG_GNRC_RPL_DEFAULT_NETIF</a>&#160;&#160;&#160;(<a class="el" href="group__core__sched.html#gab4fb52da047cf9af9626b9c408704384">KERNEL_PID_UNDEF</a>)</td></tr>
+<tr class="memdesc:gafa7ea250e344e18e4c15bad6f5971df3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default network interface for GNRC RPL. <br /></td></tr>
+<tr class="separator:gafa7ea250e344e18e4c15bad6f5971df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gae8ab2a9620466139008b48106a5bc657"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gae8ab2a9620466139008b48106a5bc657">gnrc_rpl_init</a> (<a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> if_pid)</td></tr>
+<tr class="memdesc:gae8ab2a9620466139008b48106a5bc657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the RPL thread.  <a href="group__net__gnrc__rpl.html#gae8ab2a9620466139008b48106a5bc657">More...</a><br /></td></tr>
+<tr class="separator:gae8ab2a9620466139008b48106a5bc657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga686477e33641c53a2b2e1c10cf02ad9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structs_8h.html#a2c0bd2531e36daf4b08b825dcc7e16ae">gnrc_rpl_instance_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga686477e33641c53a2b2e1c10cf02ad9f">gnrc_rpl_root_init</a> (uint8_t instance_id, const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dodag_id, bool gen_inst_id, bool local_inst_id)</td></tr>
+<tr class="memdesc:ga686477e33641c53a2b2e1c10cf02ad9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of a node as root.  <a href="group__net__gnrc__rpl.html#ga686477e33641c53a2b2e1c10cf02ad9f">More...</a><br /></td></tr>
+<tr class="separator:ga686477e33641c53a2b2e1c10cf02ad9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20e01086e56e643c8a486c72dc073bb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga20e01086e56e643c8a486c72dc073bb6">gnrc_rpl_send_DIO</a> (<a class="el" href="structs_8h.html#a2c0bd2531e36daf4b08b825dcc7e16ae">gnrc_rpl_instance_t</a> *instance, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *destination)</td></tr>
+<tr class="memdesc:ga20e01086e56e643c8a486c72dc073bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a DIO of the <code>instance</code> to the <code>destination</code>.  <a href="group__net__gnrc__rpl.html#ga20e01086e56e643c8a486c72dc073bb6">More...</a><br /></td></tr>
+<tr class="separator:ga20e01086e56e643c8a486c72dc073bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga092a485687d9981defcc1f59d33f2f91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga092a485687d9981defcc1f59d33f2f91">gnrc_rpl_send_DIS</a> (<a class="el" href="structs_8h.html#a2c0bd2531e36daf4b08b825dcc7e16ae">gnrc_rpl_instance_t</a> *instance, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *destination, <a class="el" href="structgnrc__rpl__internal__opt__t.html">gnrc_rpl_internal_opt_t</a> **options, size_t num_opts)</td></tr>
+<tr class="memdesc:ga092a485687d9981defcc1f59d33f2f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a DIS of the <code>instance</code> to the <code>destination</code>.  <a href="group__net__gnrc__rpl.html#ga092a485687d9981defcc1f59d33f2f91">More...</a><br /></td></tr>
+<tr class="separator:ga092a485687d9981defcc1f59d33f2f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d927bfae1b119ee51bdfe3fbcedc242"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga4d927bfae1b119ee51bdfe3fbcedc242">gnrc_rpl_send_DAO</a> (<a class="el" href="structs_8h.html#a2c0bd2531e36daf4b08b825dcc7e16ae">gnrc_rpl_instance_t</a> *instance, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *destination, uint8_t lifetime)</td></tr>
+<tr class="memdesc:ga4d927bfae1b119ee51bdfe3fbcedc242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a DAO of the <code>dodag</code> to the <code>destination</code>.  <a href="group__net__gnrc__rpl.html#ga4d927bfae1b119ee51bdfe3fbcedc242">More...</a><br /></td></tr>
+<tr class="separator:ga4d927bfae1b119ee51bdfe3fbcedc242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga292d3829b2489a2ff6fc0246b3e39438"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga292d3829b2489a2ff6fc0246b3e39438">gnrc_rpl_send_DAO_ACK</a> (<a class="el" href="structs_8h.html#a2c0bd2531e36daf4b08b825dcc7e16ae">gnrc_rpl_instance_t</a> *instance, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *destination, uint8_t seq)</td></tr>
+<tr class="memdesc:ga292d3829b2489a2ff6fc0246b3e39438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a DAO-ACK of the <code>instance</code> to the <code>destination</code>.  <a href="group__net__gnrc__rpl.html#ga292d3829b2489a2ff6fc0246b3e39438">More...</a><br /></td></tr>
+<tr class="separator:ga292d3829b2489a2ff6fc0246b3e39438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gace9db4af36afdc9b537bd5ec6be8d331"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gace9db4af36afdc9b537bd5ec6be8d331">gnrc_rpl_recv_DIS</a> (<a class="el" href="structgnrc__rpl__dis__t.html">gnrc_rpl_dis_t</a> *dis, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> iface, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *src, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dst, uint16_t len)</td></tr>
+<tr class="memdesc:gace9db4af36afdc9b537bd5ec6be8d331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a DIS.  <a href="group__net__gnrc__rpl.html#gace9db4af36afdc9b537bd5ec6be8d331">More...</a><br /></td></tr>
+<tr class="separator:gace9db4af36afdc9b537bd5ec6be8d331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e8eb704be961c5f4ad6229c198619d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga5e8eb704be961c5f4ad6229c198619d3">gnrc_rpl_recv_DIO</a> (<a class="el" href="structgnrc__rpl__dio__t.html">gnrc_rpl_dio_t</a> *dio, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> iface, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *src, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dst, uint16_t len)</td></tr>
+<tr class="memdesc:ga5e8eb704be961c5f4ad6229c198619d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a DIO.  <a href="group__net__gnrc__rpl.html#ga5e8eb704be961c5f4ad6229c198619d3">More...</a><br /></td></tr>
+<tr class="separator:ga5e8eb704be961c5f4ad6229c198619d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd174d2e4c4427d9fc8d5e92c45e0d4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gacd174d2e4c4427d9fc8d5e92c45e0d4f">gnrc_rpl_recv_DAO</a> (<a class="el" href="structgnrc__rpl__dao__t.html">gnrc_rpl_dao_t</a> *dao, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> iface, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *src, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dst, uint16_t len)</td></tr>
+<tr class="memdesc:gacd174d2e4c4427d9fc8d5e92c45e0d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a DAO.  <a href="group__net__gnrc__rpl.html#gacd174d2e4c4427d9fc8d5e92c45e0d4f">More...</a><br /></td></tr>
+<tr class="separator:gacd174d2e4c4427d9fc8d5e92c45e0d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga913b03caf1f99ef596891f695e65e7c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga913b03caf1f99ef596891f695e65e7c7">gnrc_rpl_recv_DAO_ACK</a> (<a class="el" href="structgnrc__rpl__dao__ack__t.html">gnrc_rpl_dao_ack_t</a> *dao_ack, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> iface, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *src, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dst, uint16_t len)</td></tr>
+<tr class="memdesc:ga913b03caf1f99ef596891f695e65e7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a DAO-ACK.  <a href="group__net__gnrc__rpl.html#ga913b03caf1f99ef596891f695e65e7c7">More...</a><br /></td></tr>
+<tr class="separator:ga913b03caf1f99ef596891f695e65e7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffbff2e5ea66ab4a467637a6a26658c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gaffbff2e5ea66ab4a467637a6a26658c0">gnrc_rpl_delay_dao</a> (<a class="el" href="structs_8h.html#aa420d1ff2b7cdc7269a1b6b2063282d1">gnrc_rpl_dodag_t</a> *dodag)</td></tr>
+<tr class="memdesc:gaffbff2e5ea66ab4a467637a6a26658c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay the DAO sending interval.  <a href="group__net__gnrc__rpl.html#gaffbff2e5ea66ab4a467637a6a26658c0">More...</a><br /></td></tr>
+<tr class="separator:gaffbff2e5ea66ab4a467637a6a26658c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf18fba60788c26da276472c958c16e0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gaf18fba60788c26da276472c958c16e0a">gnrc_rpl_long_delay_dao</a> (<a class="el" href="structs_8h.html#aa420d1ff2b7cdc7269a1b6b2063282d1">gnrc_rpl_dodag_t</a> *dodag)</td></tr>
+<tr class="memdesc:gaf18fba60788c26da276472c958c16e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Long delay the DAO sending interval.  <a href="group__net__gnrc__rpl.html#gaf18fba60788c26da276472c958c16e0a">More...</a><br /></td></tr>
+<tr class="separator:gaf18fba60788c26da276472c958c16e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f9515c05c707821027d53d2a4250b0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structs_8h.html#a2c0bd2531e36daf4b08b825dcc7e16ae">gnrc_rpl_instance_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga9f9515c05c707821027d53d2a4250b0a">gnrc_rpl_root_instance_init</a> (uint8_t instance_id, const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dodag_id, uint8_t mop)</td></tr>
+<tr class="memdesc:ga9f9515c05c707821027d53d2a4250b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new RPL instance and RPL DODAG.  <a href="group__net__gnrc__rpl.html#ga9f9515c05c707821027d53d2a4250b0a">More...</a><br /></td></tr>
+<tr class="separator:ga9f9515c05c707821027d53d2a4250b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3909531b56ab427812e660c394269859"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga3909531b56ab427812e660c394269859">gnrc_rpl_send</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> iface, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *src, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dst, <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dodag_id)</td></tr>
+<tr class="memdesc:ga3909531b56ab427812e660c394269859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a control message.  <a href="group__net__gnrc__rpl.html#ga3909531b56ab427812e660c394269859">More...</a><br /></td></tr>
+<tr class="separator:ga3909531b56ab427812e660c394269859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9330c1e9f5605bda0166370f4d13c42a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga9330c1e9f5605bda0166370f4d13c42a">gnrc_rpl_gen_instance_id</a> (bool local)</td></tr>
+<tr class="memdesc:ga9330c1e9f5605bda0166370f4d13c42a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a local or global instance id.  <a href="group__net__gnrc__rpl.html#ga9330c1e9f5605bda0166370f4d13c42a">More...</a><br /></td></tr>
+<tr class="separator:ga9330c1e9f5605bda0166370f4d13c42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabaa0fe93b6166d01473451680770a8cf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gabaa0fe93b6166d01473451680770a8cf">gnrc_rpl_config_pio</a> (<a class="el" href="structs_8h.html#aa420d1ff2b7cdc7269a1b6b2063282d1">gnrc_rpl_dodag_t</a> *dodag, bool status)</td></tr>
+<tr class="memdesc:gabaa0fe93b6166d01473451680770a8cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">(De-)Activate the transmission of Prefix Information Options within DIOs for a particular DODAG.  <a href="group__net__gnrc__rpl.html#gabaa0fe93b6166d01473451680770a8cf">More...</a><br /></td></tr>
+<tr class="separator:gabaa0fe93b6166d01473451680770a8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaecd5fc7f8788293f44e3ed341319b4cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gaecd5fc7f8788293f44e3ed341319b4cb">gnrc_rpl_configure_root</a> (<a class="el" href="structgnrc__netif__t.html">gnrc_netif_t</a> *netif, const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *dodag_id)</td></tr>
+<tr class="memdesc:gaecd5fc7f8788293f44e3ed341319b4cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to start a RPL root using the default configuration.  <a href="group__net__gnrc__rpl.html#gaecd5fc7f8788293f44e3ed341319b4cb">More...</a><br /></td></tr>
+<tr class="separator:gaecd5fc7f8788293f44e3ed341319b4cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga5012ba78fe6ad2d5f450a1ea8564139d"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga5012ba78fe6ad2d5f450a1ea8564139d">gnrc_rpl_pid</a></td></tr>
+<tr class="memdesc:ga5012ba78fe6ad2d5f450a1ea8564139d"><td class="mdescLeft">&#160;</td><td class="mdescRight">PID of the RPL thread. <br /></td></tr>
+<tr class="separator:ga5012ba78fe6ad2d5f450a1ea8564139d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabfe5c7e33ee8218627e42024cece9177"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gabfe5c7e33ee8218627e42024cece9177">ipv6_addr_all_rpl_nodes</a></td></tr>
+<tr class="separator:gabfe5c7e33ee8218627e42024cece9177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RPL Mode of Operations</h2></td></tr>
+<tr class="memitem:ga0571b1420b6921d46f271429409ab283"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_MOP_NO_DOWNWARD_ROUTES</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:ga0571b1420b6921d46f271429409ab283"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac9497c6f7d4023161f12b6ea39a2a64f"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_MOP_NON_STORING_MODE</b>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="separator:gac9497c6f7d4023161f12b6ea39a2a64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa08d46f360ecb72c664cf9f5b87c5ed8"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_MOP_STORING_MODE_NO_MC</b>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:gaa08d46f360ecb72c664cf9f5b87c5ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga63b4754a89628215a42e40e33b3477c0"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_MOP_STORING_MODE_MC</b>&#160;&#160;&#160;(0x03)</td></tr>
+<tr class="separator:ga63b4754a89628215a42e40e33b3477c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6df691fb5e6d1fc8a05d27bdccfd0878"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga6df691fb5e6d1fc8a05d27bdccfd0878">GNRC_RPL_DEFAULT_MOP</a>&#160;&#160;&#160;GNRC_RPL_MOP_STORING_MODE_NO_MC</td></tr>
+<tr class="memdesc:ga6df691fb5e6d1fc8a05d27bdccfd0878"><td class="mdescLeft">&#160;</td><td class="mdescRight">default MOP set on compile time <br /></td></tr>
+<tr class="separator:ga6df691fb5e6d1fc8a05d27bdccfd0878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Sequence counter handling</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpb376600c2a9a07c42a24ec63f58e299e"></a></p><dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc6550#section-7.2">Sequence Counter Operation </a> </dd></dl>
+</td></tr>
+<tr class="memitem:gab4e25b07abd0365020a16c57f8d5d2ac"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_MAX</b>&#160;&#160;&#160;(255)</td></tr>
+<tr class="separator:gab4e25b07abd0365020a16c57f8d5d2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb5e88743f430df3d6962c20d6ec92ec"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_LOWER_REGION</b>&#160;&#160;&#160;(127)</td></tr>
+<tr class="separator:gacb5e88743f430df3d6962c20d6ec92ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabbad5483400dde6e332328feb5d87fa9"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_SEQ_WINDOW</b>&#160;&#160;&#160;(16)</td></tr>
+<tr class="separator:gabbad5483400dde6e332328feb5d87fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac0c09c21b9eb726d20bca432da1c12fc"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_INIT</b>&#160;&#160;&#160;(GNRC_RPL_COUNTER_MAX - GNRC_RPL_COUNTER_SEQ_WINDOW + 1)</td></tr>
+<tr class="separator:gac0c09c21b9eb726d20bca432da1c12fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga551b4ed4f5495047c7692412c9a1238f"><td class="memItemLeft" align="right" valign="top">
+static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_INCREMENT</b> (uint8_t counter)</td></tr>
+<tr class="separator:ga551b4ed4f5495047c7692412c9a1238f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb4fc7253fffcc094412d6b7891389a9"><td class="memItemLeft" align="right" valign="top">
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_IS_INIT</b> (uint8_t counter)</td></tr>
+<tr class="separator:gacb4fc7253fffcc094412d6b7891389a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf872cbbf5f2bc8207456ce0a33a0418c"><td class="memItemLeft" align="right" valign="top">
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_GREATER_THAN_LOCAL</b> (uint8_t A, uint8_t B)</td></tr>
+<tr class="separator:gaf872cbbf5f2bc8207456ce0a33a0418c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0989261a65bf71e8a5ad3a817dfaeefc"><td class="memItemLeft" align="right" valign="top">
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_COUNTER_GREATER_THAN</b> (uint8_t A, uint8_t B)</td></tr>
+<tr class="separator:ga0989261a65bf71e8a5ad3a817dfaeefc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Trickle parameters</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpc694dbd129a116bca1d5be87775109e5"></a></p><dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc6550#section-8.3.1">Trickle Parameters </a> </dd></dl>
+</td></tr>
+<tr class="memitem:gaaf9e158d9e914b076dc6e7f31fe1e649"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_GNRC_RPL_DEFAULT_DIO_INTERVAL_DOUBLINGS</b>&#160;&#160;&#160;(20)</td></tr>
+<tr class="separator:gaaf9e158d9e914b076dc6e7f31fe1e649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa39bc2e3e7c66763612b83e0907fb4bb"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_GNRC_RPL_DEFAULT_DIO_INTERVAL_MIN</b>&#160;&#160;&#160;(3)</td></tr>
+<tr class="separator:gaa39bc2e3e7c66763612b83e0907fb4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab45c680800dc3072d90e43da9dce9544"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_GNRC_RPL_DEFAULT_DIO_REDUNDANCY_CONSTANT</b>&#160;&#160;&#160;(10)</td></tr>
+<tr class="separator:gab45c680800dc3072d90e43da9dce9544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Default parent and route entry lifetime</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp71a37588cf008b42edbed04cd82623e2"></a>default lifetime will be multiplied by the lifetime unit to obtain the resulting lifetime</p>
+<dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc6550#section-6.7.6">DODAG Configuration </a> </dd></dl>
+</td></tr>
+<tr class="memitem:ga749e5a9460e0b2eaf1362f532338a493"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_GNRC_RPL_DEFAULT_LIFETIME</b>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:ga749e5a9460e0b2eaf1362f532338a493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51c203c43fd76cfae85dffdbc455c018"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_GNRC_RPL_LIFETIME_UNIT</b>&#160;&#160;&#160;(60)</td></tr>
+<tr class="separator:ga51c203c43fd76cfae85dffdbc455c018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Parameters used for DAO handling</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp44c37c41277a79bd8e34796cea65df92"></a></p><dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc6550#section-17">RPL Constants and Variables </a> </dd></dl>
+</td></tr>
+<tr class="memitem:ga0ef0be81ef56ed2f77417ba58d08b807"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_GNRC_RPL_DAO_SEND_RETRIES</b>&#160;&#160;&#160;(4)</td></tr>
+<tr class="separator:ga0ef0be81ef56ed2f77417ba58d08b807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6eab92efcb94e82e4ee22789383ac7f"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_GNRC_RPL_DAO_ACK_DELAY</b>&#160;&#160;&#160;(3000UL)</td></tr>
+<tr class="separator:gae6eab92efcb94e82e4ee22789383ac7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37eae08747bd17fa2878ff90c1759a5d"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga37eae08747bd17fa2878ff90c1759a5d">CONFIG_GNRC_RPL_DAO_DELAY_LONG</a>&#160;&#160;&#160;(60000UL)</td></tr>
+<tr class="memdesc:ga37eae08747bd17fa2878ff90c1759a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Long delay for DAOs in milli seconds. <br /></td></tr>
+<tr class="separator:ga37eae08747bd17fa2878ff90c1759a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5b35883a1ee56fcc496479a7cad601d"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gab5b35883a1ee56fcc496479a7cad601d">CONFIG_GNRC_RPL_DAO_DELAY_DEFAULT</a>&#160;&#160;&#160;(1000UL)</td></tr>
+<tr class="memdesc:gab5b35883a1ee56fcc496479a7cad601d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default delay for DAOs in milli seconds. <br /></td></tr>
+<tr class="separator:gab5b35883a1ee56fcc496479a7cad601d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae253719f86407b22ad84ae3f4116a7a2"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#gae253719f86407b22ad84ae3f4116a7a2">CONFIG_GNRC_RPL_DAO_DELAY_JITTER</a>&#160;&#160;&#160;(1000UL)</td></tr>
+<tr class="memdesc:gae253719f86407b22ad84ae3f4116a7a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jitter for DAOs in milli seconds. <br /></td></tr>
+<tr class="separator:gae253719f86407b22ad84ae3f4116a7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Node Status</h2></td></tr>
+<tr class="memitem:ga3f21e070a7d4de8985315aada5aaffaa"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_NORMAL_NODE</b>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:ga3f21e070a7d4de8985315aada5aaffaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffa6ba6cbf94b47bdd3b13044cde98a7"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_ROOT_NODE</b>&#160;&#160;&#160;(1)</td></tr>
+<tr class="separator:gaffa6ba6cbf94b47bdd3b13044cde98a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaefe524b19fd621a09635178326eb1bd3"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_LEAF_NODE</b>&#160;&#160;&#160;(2)</td></tr>
+<tr class="separator:gaefe524b19fd621a09635178326eb1bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RPL Control Message Options</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpf897b6c10a505140580017406a4a9f7f"></a> </p><dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc6550#section-6.7">RPL Control Message Options </a> </dd></dl>
+</td></tr>
+<tr class="memitem:ga05090116417bbec3fcf25ebdb863b5ef"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_PAD1</b>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:ga05090116417bbec3fcf25ebdb863b5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga847e77bf9c63ad467987735b33452585"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_PADN</b>&#160;&#160;&#160;(1)</td></tr>
+<tr class="separator:ga847e77bf9c63ad467987735b33452585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9455ddb579289a0e43ba93e09941ec25"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_DAG_METRIC_CONTAINER</b>&#160;&#160;&#160;(2)</td></tr>
+<tr class="separator:ga9455ddb579289a0e43ba93e09941ec25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae81185c5faa23dbc66948141d4de09e3"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_ROUTE_INFO</b>&#160;&#160;&#160;(3)</td></tr>
+<tr class="separator:gae81185c5faa23dbc66948141d4de09e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac494712583251d01fb4378bf529b4fd1"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_DODAG_CONF</b>&#160;&#160;&#160;(4)</td></tr>
+<tr class="separator:gac494712583251d01fb4378bf529b4fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae3029e4a47cf68b07a46b3e64cead55"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_TARGET</b>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:gaae3029e4a47cf68b07a46b3e64cead55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9a0c6911425e9e3fe779562dbe90a13"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_TRANSIT</b>&#160;&#160;&#160;(6)</td></tr>
+<tr class="separator:gae9a0c6911425e9e3fe779562dbe90a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab7ccc24985f27c69184aea01f3bb67d"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_SOLICITED_INFO</b>&#160;&#160;&#160;(7)</td></tr>
+<tr class="separator:gaab7ccc24985f27c69184aea01f3bb67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ea0504553c71be293a65212eae3df10"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_PREFIX_INFO</b>&#160;&#160;&#160;(8)</td></tr>
+<tr class="separator:ga2ea0504553c71be293a65212eae3df10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea07451c120ad69eaa28ed30ef7ecb7b"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_OPT_TARGET_DESC</b>&#160;&#160;&#160;(9)</td></tr>
+<tr class="separator:gaea07451c120ad69eaa28ed30ef7ecb7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Global / Local instance id masks</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpdd3668a06932dce8bc792085a35a9f0e"></a></p><dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc6550#section-5.1">RFC 6550, section 5.1, RPL Instance ID </a> </dd></dl>
+</td></tr>
+<tr class="memitem:ga63de03e381b66c7a0dea9267f62959cc"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_INSTANCE_ID_MSB</b>&#160;&#160;&#160;(1 &lt;&lt; 7)</td></tr>
+<tr class="separator:ga63de03e381b66c7a0dea9267f62959cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5dca743793ebd33a5d4815fe1271478"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_GLOBAL_INSTANCE_MASK</b>&#160;&#160;&#160;(0x7F)</td></tr>
+<tr class="separator:gad5dca743793ebd33a5d4815fe1271478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga53b748809d87f00b153757d4461349cd"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_LOCAL_INSTANCE_MASK</b>&#160;&#160;&#160;(0x3F)</td></tr>
+<tr class="separator:ga53b748809d87f00b153757d4461349cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa86dedf8ecd4535bcf93625d73a45ebe"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_INSTANCE_D_FLAG_MASK</b>&#160;&#160;&#160;(1 &lt;&lt; 6)</td></tr>
+<tr class="separator:gaa86dedf8ecd4535bcf93625d73a45ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8d9eb973499a4be1cda615abb0fdf8f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__rpl.html#ga8d9eb973499a4be1cda615abb0fdf8f4">GNRC_RPL_DIS_SOLICITED_INFO_LENGTH</a>&#160;&#160;&#160;(19)</td></tr>
+<tr class="memdesc:ga8d9eb973499a4be1cda615abb0fdf8f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">DIS Solicited Information option (numbers)  <a href="group__net__gnrc__rpl.html#ga8d9eb973499a4be1cda615abb0fdf8f4">More...</a><br /></td></tr>
+<tr class="separator:ga8d9eb973499a4be1cda615abb0fdf8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga06fb545f33813bc532273128f38c07d2"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_DIS_SOLICITED_INFO_FLAG_V</b>&#160;&#160;&#160;(1 &lt;&lt; 7)</td></tr>
+<tr class="separator:ga06fb545f33813bc532273128f38c07d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6cdf58a53ade45bd2271f224b7cd17c"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_DIS_SOLICITED_INFO_FLAG_I</b>&#160;&#160;&#160;(1 &lt;&lt; 6)</td></tr>
+<tr class="separator:gae6cdf58a53ade45bd2271f224b7cd17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2987b1ce37594d7683b082c8429cfbbd"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GNRC_RPL_DIS_SOLICITED_INFO_FLAG_D</b>&#160;&#160;&#160;(1 &lt;&lt; 5)</td></tr>
+<tr class="separator:ga2987b1ce37594d7683b082c8429cfbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_7afc5d30923bebdd1513d1cc48150ca7.html">net</a></li><li class="navelem"><a class="el" href="dir_cf159672c4bc64dfd629cfa389a5bd8d.html">gnrc</a></li><li class="navelem"><a class="el" href="rpl_8h.html">rpl.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

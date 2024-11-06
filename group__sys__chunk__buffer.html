@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: chunked Ringbuffer</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__sys__chunk__buffer.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">chunked Ringbuffer<div class="ingroups"><a class="el" href="group__sys.html">System</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Implementation of a Ringbuffer to store chunks of data. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:chunked__ringbuffer_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="chunked__ringbuffer_8h.html">chunked_ringbuffer.h</a></td></tr>
+<tr class="memdesc:chunked__ringbuffer_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chunked Ringbuffer. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A chunked ringbuffer.  <a href="structchunk__ringbuf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gac83eacacced8653559d6e5c70566b9a4"><td class="memItemLeft" align="right" valign="top"><a id="gac83eacacced8653559d6e5c70566b9a4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#gac83eacacced8653559d6e5c70566b9a4">CONFIG_CHUNK_NUM_MAX</a>&#160;&#160;&#160;(4)</td></tr>
+<tr class="memdesc:gac83eacacced8653559d6e5c70566b9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of chunks that can be stored in a Chunked Ringbuffer. <br /></td></tr>
+<tr class="separator:gac83eacacced8653559d6e5c70566b9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga8716d8bf3a6d5344636596027bdeaeda"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#ga8716d8bf3a6d5344636596027bdeaeda">crb_foreach_callback_t</a>) (void *ctx, uint8_t *bytes, size_t len)</td></tr>
+<tr class="memdesc:ga8716d8bf3a6d5344636596027bdeaeda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for <a class="el" href="group__sys__chunk__buffer.html#gadbc4c9903ad5383ed418b95cbda243b6">crb_chunk_foreach</a>.  <a href="group__sys__chunk__buffer.html#ga8716d8bf3a6d5344636596027bdeaeda">More...</a><br /></td></tr>
+<tr class="separator:ga8716d8bf3a6d5344636596027bdeaeda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga730fe7ecaea764daade91e9aed603079"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#ga730fe7ecaea764daade91e9aed603079">crb_init</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, void *buffer, size_t len)</td></tr>
+<tr class="memdesc:ga730fe7ecaea764daade91e9aed603079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a Chunked Ringbuffer.  <a href="group__sys__chunk__buffer.html#ga730fe7ecaea764daade91e9aed603079">More...</a><br /></td></tr>
+<tr class="separator:ga730fe7ecaea764daade91e9aed603079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga74dafcd78d88413f472d5d121ec2c917"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#ga74dafcd78d88413f472d5d121ec2c917">crb_start_chunk</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb)</td></tr>
+<tr class="memdesc:ga74dafcd78d88413f472d5d121ec2c917"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a new chunk on the ringbuffer.  <a href="group__sys__chunk__buffer.html#ga74dafcd78d88413f472d5d121ec2c917">More...</a><br /></td></tr>
+<tr class="separator:ga74dafcd78d88413f472d5d121ec2c917"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5895a7cb734942de23dc193054e9eedc"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#ga5895a7cb734942de23dc193054e9eedc">crb_add_byte</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, uint8_t b)</td></tr>
+<tr class="memdesc:ga5895a7cb734942de23dc193054e9eedc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a byte into the current chunk.  <a href="group__sys__chunk__buffer.html#ga5895a7cb734942de23dc193054e9eedc">More...</a><br /></td></tr>
+<tr class="separator:ga5895a7cb734942de23dc193054e9eedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9970295a8f8e5be127e8cdf533c58eea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#ga9970295a8f8e5be127e8cdf533c58eea">crb_add_bytes</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, const void *data, size_t len)</td></tr>
+<tr class="memdesc:ga9970295a8f8e5be127e8cdf533c58eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a number of bytes into the current chunk.  <a href="group__sys__chunk__buffer.html#ga9970295a8f8e5be127e8cdf533c58eea">More...</a><br /></td></tr>
+<tr class="separator:ga9970295a8f8e5be127e8cdf533c58eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e704fb61c3dd8752cb7e7407f419e91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#ga0e704fb61c3dd8752cb7e7407f419e91">crb_end_chunk</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, bool valid)</td></tr>
+<tr class="memdesc:ga0e704fb61c3dd8752cb7e7407f419e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the current chunk.  <a href="group__sys__chunk__buffer.html#ga0e704fb61c3dd8752cb7e7407f419e91">More...</a><br /></td></tr>
+<tr class="separator:ga0e704fb61c3dd8752cb7e7407f419e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabfe625905db57c1bd3c09c053f02a8d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#gabfe625905db57c1bd3c09c053f02a8d5">crb_add_chunk</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, const void *data, size_t len)</td></tr>
+<tr class="memdesc:gabfe625905db57c1bd3c09c053f02a8d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a complete chunk to the Ringbuffer.  <a href="group__sys__chunk__buffer.html#gabfe625905db57c1bd3c09c053f02a8d5">More...</a><br /></td></tr>
+<tr class="separator:gabfe625905db57c1bd3c09c053f02a8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab65948834e1bd15502aba37f7041c6e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#gab65948834e1bd15502aba37f7041c6e7">crb_get_chunk_size</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, size_t *len)</td></tr>
+<tr class="memdesc:gab65948834e1bd15502aba37f7041c6e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the first valid chunk.  <a href="group__sys__chunk__buffer.html#gab65948834e1bd15502aba37f7041c6e7">More...</a><br /></td></tr>
+<tr class="separator:gab65948834e1bd15502aba37f7041c6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4976327b8fe874dc9c49e378777b2780"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#ga4976327b8fe874dc9c49e378777b2780">crb_peek_bytes</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, void *dst, size_t offset, size_t len)</td></tr>
+<tr class="memdesc:ga4976327b8fe874dc9c49e378777b2780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a number of bytes from the first valid chunk without consuming it.  <a href="group__sys__chunk__buffer.html#ga4976327b8fe874dc9c49e378777b2780">More...</a><br /></td></tr>
+<tr class="separator:ga4976327b8fe874dc9c49e378777b2780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9986c707254e1bbc2fa688005a93051"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#gad9986c707254e1bbc2fa688005a93051">crb_consume_chunk</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, void *dst, size_t len)</td></tr>
+<tr class="memdesc:gad9986c707254e1bbc2fa688005a93051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a chunk from the valid chunk array.  <a href="group__sys__chunk__buffer.html#gad9986c707254e1bbc2fa688005a93051">More...</a><br /></td></tr>
+<tr class="separator:gad9986c707254e1bbc2fa688005a93051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadbc4c9903ad5383ed418b95cbda243b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__chunk__buffer.html#gadbc4c9903ad5383ed418b95cbda243b6">crb_chunk_foreach</a> (<a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *rb, <a class="el" href="group__sys__chunk__buffer.html#ga8716d8bf3a6d5344636596027bdeaeda">crb_foreach_callback_t</a> func, void *ctx)</td></tr>
+<tr class="memdesc:gadbc4c9903ad5383ed418b95cbda243b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a callback for each byte in the first valid chunk The callback function may be called twice if the chunk is non-continuous.  <a href="group__sys__chunk__buffer.html#gadbc4c9903ad5383ed418b95cbda243b6">More...</a><br /></td></tr>
+<tr class="separator:gadbc4c9903ad5383ed418b95cbda243b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga8716d8bf3a6d5344636596027bdeaeda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8716d8bf3a6d5344636596027bdeaeda">&#9670;&nbsp;</a></span>crb_foreach_callback_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* crb_foreach_callback_t) (void *ctx, uint8_t *bytes, size_t len)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback function for <a class="el" href="group__sys__chunk__buffer.html#gadbc4c9903ad5383ed418b95cbda243b6">crb_chunk_foreach</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ctx</td><td>Callback context </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bytes</td><td>Chunk data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Length of data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga5895a7cb734942de23dc193054e9eedc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5895a7cb734942de23dc193054e9eedc">&#9670;&nbsp;</a></span>crb_add_byte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool crb_add_byte </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insert a byte into the current chunk. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is expected to be called in ISR context / with interrupts disabled.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>A new chunk has been started with <a class="el" href="group__sys__chunk__buffer.html#ga74dafcd78d88413f472d5d121ec2c917">crb_start_chunk</a></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>The byte to write</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If the byte could be written </dd>
+<dd>
+false If the ringbuffer is full </dd></dl>
+
+</div>
+</div>
+<a id="ga9970295a8f8e5be127e8cdf533c58eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9970295a8f8e5be127e8cdf533c58eea">&#9670;&nbsp;</a></span>crb_add_bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool crb_add_bytes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Insert a number of bytes into the current chunk. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is expected to be called in ISR context / with interrupts disabled.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>A new chunk has been started with <a class="el" href="group__sys__chunk__buffer.html#ga74dafcd78d88413f472d5d121ec2c917">crb_start_chunk</a></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>The data to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Size of data</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If the bytes could be written </dd>
+<dd>
+false If the ringbuffer is full </dd></dl>
+
+</div>
+</div>
+<a id="gabfe625905db57c1bd3c09c053f02a8d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabfe625905db57c1bd3c09c053f02a8d5">&#9670;&nbsp;</a></span>crb_add_chunk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool crb_add_chunk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a complete chunk to the Ringbuffer. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is expected to be called in ISR context / with interrupts disabled.</dd></dl>
+<p>This is a convenience function that combines <a class="el" href="group__sys__chunk__buffer.html#ga74dafcd78d88413f472d5d121ec2c917">crb_start_chunk</a>, <a class="el" href="group__sys__chunk__buffer.html#ga9970295a8f8e5be127e8cdf533c58eea">crb_add_bytes</a> and <a class="el" href="group__sys__chunk__buffer.html#ga0e704fb61c3dd8752cb7e7407f419e91">crb_end_chunk</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>The data to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Size of data</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If the chunk could be added to the valid chunk array </dd>
+<dd>
+false There was not enough space and the chunk was discarded </dd></dl>
+
+</div>
+</div>
+<a id="gadbc4c9903ad5383ed418b95cbda243b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadbc4c9903ad5383ed418b95cbda243b6">&#9670;&nbsp;</a></span>crb_chunk_foreach()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool crb_chunk_foreach </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__sys__chunk__buffer.html#ga8716d8bf3a6d5344636596027bdeaeda">crb_foreach_callback_t</a>&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ctx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Execute a callback for each byte in the first valid chunk The callback function may be called twice if the chunk is non-continuous. </p>
+<p>This function will not consume the chunk.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">func</td><td>The function to call for each byte </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ctx</td><td>Optional function argument</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If a valid chunk exits on which the function was executed </dd>
+<dd>
+false If no valid chunk exists </dd></dl>
+
+</div>
+</div>
+<a id="gad9986c707254e1bbc2fa688005a93051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad9986c707254e1bbc2fa688005a93051">&#9670;&nbsp;</a></span>crb_consume_chunk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool crb_consume_chunk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a chunk from the valid chunk array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Destination where the chunk contents should be copied to. May be NULL, then the chunk is just discarded. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Max number of bytes to read. If there are bytes left in the chunk beyond that, they will be discarded</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If a chunk was consumed </dd>
+<dd>
+false If no valid chunk did exist </dd></dl>
+
+</div>
+</div>
+<a id="ga0e704fb61c3dd8752cb7e7407f419e91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0e704fb61c3dd8752cb7e7407f419e91">&#9670;&nbsp;</a></span>crb_end_chunk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool crb_end_chunk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>valid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Close the current chunk. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is expected to be called in ISR context / with interrupts disabled.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">valid</td><td>True if the chunk is valid and should be stored False if the current chunk should be discarded</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If the chunk could be stored in the valid chunk array </dd>
+<dd>
+false If there is no more space in the valid chunk array </dd></dl>
+
+</div>
+</div>
+<a id="gab65948834e1bd15502aba37f7041c6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab65948834e1bd15502aba37f7041c6e7">&#9670;&nbsp;</a></span>crb_get_chunk_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool crb_get_chunk_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the size of the first valid chunk. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">len</td><td>Pointer to store the size of the first valid chunk</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If a valid chunk exists and <code>size</code> was written </dd>
+<dd>
+false If no valid chunk exists </dd></dl>
+
+</div>
+</div>
+<a id="ga730fe7ecaea764daade91e9aed603079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga730fe7ecaea764daade91e9aed603079">&#9670;&nbsp;</a></span>crb_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void crb_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a Chunked Ringbuffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">buffer</td><td>The Ringbuffer work area </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">len</td><td>Size of the Ringbuffer work area </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga4976327b8fe874dc9c49e378777b2780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4976327b8fe874dc9c49e378777b2780">&#9670;&nbsp;</a></span>crb_peek_bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool crb_peek_bytes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get a number of bytes from the first valid chunk without consuming it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Destination buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>Offset to the start of the chunk </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Number of bytes to read</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If the data could be read </dd>
+<dd>
+false If no valid chunk exists or the bytes could not be read </dd></dl>
+
+</div>
+</div>
+<a id="ga74dafcd78d88413f472d5d121ec2c917"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga74dafcd78d88413f472d5d121ec2c917">&#9670;&nbsp;</a></span>crb_start_chunk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool crb_start_chunk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchunk__ringbuf__t.html">chunk_ringbuf_t</a> *&#160;</td>
+          <td class="paramname"><em>rb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Start a new chunk on the ringbuffer. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is expected to be called in ISR context / with interrupts disabled.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rb</td><td>The Ringbuffer to work on</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true If a new chunk could be started </dd>
+<dd>
+false If the ringbuffer is full </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

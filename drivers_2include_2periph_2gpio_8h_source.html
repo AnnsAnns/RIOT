@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/periph/gpio.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('drivers_2include_2periph_2gpio_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">gpio.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="drivers_2include_2periph_2gpio_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2015 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#ifndef PERIPH_GPIO_H</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#define PERIPH_GPIO_H</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#include &lt;limits.h&gt;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#include &quot;periph_cpu.h&quot;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#include &quot;periph_conf.h&quot;</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#ifndef HAVE_GPIO_T</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">   92</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#ifndef GPIO_PIN</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">/* Default GPIO macro maps port-pin tuples to the pin value */</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gae29846b3ecd19a0b7c44ff80a37ae7c1">  100</a></span>&#160;<span class="preprocessor">#define GPIO_PIN(x,y)       ((gpio_t)((x &amp; 0) | y))</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#ifndef GPIO_UNDEF</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga3969ce1e494a72d3c2925b10ddeb4604">  107</a></span>&#160;<span class="preprocessor">#define GPIO_UNDEF          ((gpio_t)(UINT_MAX))</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#ifndef HAVE_GPIO_MODE_T</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga491a2cbfb4e94f2afcc0d5bdef2dc454">  119</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a3343e227f62c4c536efff81438a8e155">  120</a></span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a3343e227f62c4c536efff81438a8e155">GPIO_IN</a> ,               </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c">  121</a></span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c">GPIO_IN_PD</a>,             </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c">  122</a></span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c">GPIO_IN_PU</a>,             </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a1b59f059dea546f0248fb26232ee3531">  123</a></span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a1b59f059dea546f0248fb26232ee3531">GPIO_OUT</a>,               </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a4e49b8f9feef3b91e8d2842009151e2b">GPIO_OD</a>,                </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a6989d6b30554f7596c282eac49adc05d">GPIO_OD_PU</a>              </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a6989d6b30554f7596c282eac49adc05d">  128</a></span>&#160;} <a class="code" href="group__drivers__periph__gpio.html#ga491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#ifndef HAVE_GPIO_FLANK_T</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga0e8c3f46deb150e48acaa79fe26b2e86">  135</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">  136</a></span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = 0,       </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">  137</a></span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = 1,        </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = 2           </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">  139</a></span>&#160;} <a class="code" href="group__drivers__periph__gpio.html#ga0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">  147</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a>)(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#ifndef HAVE_GPIO_ISR_CTX_T</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="structgpio__isr__ctx__t.html">  153</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="structgpio__isr__ctx__t.html#a7581386370989f2c52cf14c45c48819a">  154</a></span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a> <a class="code" href="structgpio__isr__ctx__t.html#a7581386370989f2c52cf14c45c48819a">cb</a>;           </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="structgpio__isr__ctx__t.html#a252c225bfb2c339e43f85b9a8ca29f86">  155</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structgpio__isr__ctx__t.html#a252c225bfb2c339e43f85b9a8ca29f86">arg</a>;              </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;} <a class="code" href="structgpio__isr__ctx__t.html">gpio_isr_ctx_t</a>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gab7d8ecaeb639070a28027a8fd31a0955">  172</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__periph__gpio.html#gab7d8ecaeb639070a28027a8fd31a0955">gpio_init</a>(gpio_t pin, <a class="code" href="native_2include_2periph__cpu_8h.html#a491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a> mode);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">#if defined(MODULE_PERIPH_GPIO_IRQ) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga48ba4c318486db320a4bf6237b49d61c">  197</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__periph__gpio.html#ga48ba4c318486db320a4bf6237b49d61c">gpio_init_int</a>(gpio_t pin, <a class="code" href="native_2include_2periph__cpu_8h.html#a491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a> mode, <a class="code" href="atxmega_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a> flank,</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                  <a class="code" href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga9d444ec9ffaeaeb42aa0a04206ec27d2">  211</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__periph__gpio.html#ga9d444ec9ffaeaeb42aa0a04206ec27d2">gpio_irq_enable</a>(gpio_t pin);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga7d4416fc8ea83ba82d259ced2eea563f">  221</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__periph__gpio.html#ga7d4416fc8ea83ba82d259ced2eea563f">gpio_irq_disable</a>(gpio_t pin);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(MODULE_PERIPH_GPIO_IRQ) || defined(DOXYGEN) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gaa7f05feffb324e581e38aeecd4dc9edf">  233</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__periph__gpio.html#gaa7f05feffb324e581e38aeecd4dc9edf">gpio_read</a>(gpio_t pin);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga5a4136d2b41a16dee4b8539d1690ea42">  240</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__periph__gpio.html#ga5a4136d2b41a16dee4b8539d1690ea42">gpio_set</a>(gpio_t pin);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga127706eecc321da649b1d31691d0b546">  247</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__periph__gpio.html#ga127706eecc321da649b1d31691d0b546">gpio_clear</a>(gpio_t pin);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga016c2a4e5d611bc64034f70e922f5d52">  254</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__periph__gpio.html#ga016c2a4e5d611bc64034f70e922f5d52">gpio_toggle</a>(gpio_t pin);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga2f885dd3b2edc9514d2a2e11d41caab9">  262</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__periph__gpio.html#ga2f885dd3b2edc9514d2a2e11d41caab9">gpio_write</a>(gpio_t pin, <span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00270"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#gaf0160800f2524bb7981b1a9e0ea5b92b">  270</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__drivers__periph__gpio.html#gaf0160800f2524bb7981b1a9e0ea5b92b">gpio_is_equal</a>(gpio_t gpio1, gpio_t gpio2)</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;{</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordflow">return</span> (gpio1 == gpio2);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;}</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="group__drivers__periph__gpio.html#ga0c3767ed80df4ad880e5bb09520787ed">  280</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__drivers__periph__gpio.html#ga0c3767ed80df4ad880e5bb09520787ed">gpio_is_valid</a>(gpio_t gpio)</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;{</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordflow">return</span> (gpio != <a class="code" href="group__drivers__periph__gpio.html#ga3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a>);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;}</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* PERIPH_GPIO_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_a0e8c3f46deb150e48acaa79fe26b2e86"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a></div><div class="ttdeci">gpio_flank_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:180</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga016c2a4e5d611bc64034f70e922f5d52"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga016c2a4e5d611bc64034f70e922f5d52">gpio_toggle</a></div><div class="ttdeci">void gpio_toggle(gpio_t pin)</div><div class="ttdoc">Toggle the value of the given pin.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga06ceaaf4824f1504972babf0775dba92"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a></div><div class="ttdeci">void(* gpio_cb_t)(void *arg)</div><div class="ttdoc">Signature of event callback functions triggered from interrupts.</div><div class="ttdef"><b>Definition:</b> gpio.h:147</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga0c3767ed80df4ad880e5bb09520787ed"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga0c3767ed80df4ad880e5bb09520787ed">gpio_is_valid</a></div><div class="ttdeci">static int gpio_is_valid(gpio_t gpio)</div><div class="ttdoc">Test if a GPIO pin is a valid pin and not declared as undefined.</div><div class="ttdef"><b>Definition:</b> gpio.h:280</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga0e8c3f46deb150e48acaa79fe26b2e86"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a></div><div class="ttdeci">gpio_flank_t</div><div class="ttdoc">Definition of possible active flanks for external interrupt mode.</div><div class="ttdef"><b>Definition:</b> gpio.h:135</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga127706eecc321da649b1d31691d0b546"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga127706eecc321da649b1d31691d0b546">gpio_clear</a></div><div class="ttdeci">void gpio_clear(gpio_t pin)</div><div class="ttdoc">Set the given pin to LOW.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga2f885dd3b2edc9514d2a2e11d41caab9"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga2f885dd3b2edc9514d2a2e11d41caab9">gpio_write</a></div><div class="ttdeci">void gpio_write(gpio_t pin, bool value)</div><div class="ttdoc">Set the given pin to the given value.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga3969ce1e494a72d3c2925b10ddeb4604"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a></div><div class="ttdeci">#define GPIO_UNDEF</div><div class="ttdoc">GPIO pin not defined.</div><div class="ttdef"><b>Definition:</b> gpio.h:107</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga48ba4c318486db320a4bf6237b49d61c"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga48ba4c318486db320a4bf6237b49d61c">gpio_init_int</a></div><div class="ttdeci">int gpio_init_int(gpio_t pin, gpio_mode_t mode, gpio_flank_t flank, gpio_cb_t cb, void *arg)</div><div class="ttdoc">Initialize a GPIO pin for external interrupt usage.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga491a2cbfb4e94f2afcc0d5bdef2dc454"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a></div><div class="ttdeci">gpio_mode_t</div><div class="ttdoc">Available pin modes.</div><div class="ttdef"><b>Definition:</b> gpio.h:119</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga5a4136d2b41a16dee4b8539d1690ea42"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga5a4136d2b41a16dee4b8539d1690ea42">gpio_set</a></div><div class="ttdeci">void gpio_set(gpio_t pin)</div><div class="ttdoc">Set the given pin to HIGH.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga7d4416fc8ea83ba82d259ced2eea563f"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga7d4416fc8ea83ba82d259ced2eea563f">gpio_irq_disable</a></div><div class="ttdeci">void gpio_irq_disable(gpio_t pin)</div><div class="ttdoc">Disable the pin interrupt if configured as interrupt source.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga9d444ec9ffaeaeb42aa0a04206ec27d2"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga9d444ec9ffaeaeb42aa0a04206ec27d2">gpio_irq_enable</a></div><div class="ttdeci">void gpio_irq_enable(gpio_t pin)</div><div class="ttdoc">Enable pin interrupt if configured as interrupt source.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gaa7f05feffb324e581e38aeecd4dc9edf"><div class="ttname"><a href="group__drivers__periph__gpio.html#gaa7f05feffb324e581e38aeecd4dc9edf">gpio_read</a></div><div class="ttdeci">bool gpio_read(gpio_t pin)</div><div class="ttdoc">Get the current value of the given pin.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gab7d8ecaeb639070a28027a8fd31a0955"><div class="ttname"><a href="group__drivers__periph__gpio.html#gab7d8ecaeb639070a28027a8fd31a0955">gpio_init</a></div><div class="ttdeci">int gpio_init(gpio_t pin, gpio_mode_t mode)</div><div class="ttdoc">Initialize the given pin as general purpose input or output.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gadacfc0deb08affff1e88f9549c8e2823"><div class="ttname"><a href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a></div><div class="ttdeci">unsigned int gpio_t</div><div class="ttdoc">GPIO type identifier.</div><div class="ttdef"><b>Definition:</b> gpio.h:92</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gaf0160800f2524bb7981b1a9e0ea5b92b"><div class="ttname"><a href="group__drivers__periph__gpio.html#gaf0160800f2524bb7981b1a9e0ea5b92b">gpio_is_equal</a></div><div class="ttdeci">static int gpio_is_equal(gpio_t gpio1, gpio_t gpio2)</div><div class="ttdoc">Test if a GPIO pin is equal to another GPIO pin.</div><div class="ttdef"><b>Definition:</b> gpio.h:270</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a></div><div class="ttdeci">@ GPIO_FALLING</div><div class="ttdoc">emit interrupt on falling flank</div><div class="ttdef"><b>Definition:</b> gpio.h:136</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a></div><div class="ttdeci">@ GPIO_RISING</div><div class="ttdoc">emit interrupt on rising flank</div><div class="ttdef"><b>Definition:</b> gpio.h:137</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a></div><div class="ttdeci">@ GPIO_BOTH</div><div class="ttdoc">emit interrupt on both flanks</div><div class="ttdef"><b>Definition:</b> gpio.h:138</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a1b59f059dea546f0248fb26232ee3531"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a1b59f059dea546f0248fb26232ee3531">GPIO_OUT</a></div><div class="ttdeci">@ GPIO_OUT</div><div class="ttdoc">configure as output in push-pull mode</div><div class="ttdef"><b>Definition:</b> gpio.h:123</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a3343e227f62c4c536efff81438a8e155"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a3343e227f62c4c536efff81438a8e155">GPIO_IN</a></div><div class="ttdeci">@ GPIO_IN</div><div class="ttdoc">configure as input without pull resistor</div><div class="ttdef"><b>Definition:</b> gpio.h:120</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a4e49b8f9feef3b91e8d2842009151e2b"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a4e49b8f9feef3b91e8d2842009151e2b">GPIO_OD</a></div><div class="ttdeci">@ GPIO_OD</div><div class="ttdoc">configure as output in open-drain mode without pull resistor</div><div class="ttdef"><b>Definition:</b> gpio.h:124</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c">GPIO_IN_PU</a></div><div class="ttdeci">@ GPIO_IN_PU</div><div class="ttdoc">configure as input with pull-up resistor</div><div class="ttdef"><b>Definition:</b> gpio.h:122</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a6989d6b30554f7596c282eac49adc05d"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a6989d6b30554f7596c282eac49adc05d">GPIO_OD_PU</a></div><div class="ttdeci">@ GPIO_OD_PU</div><div class="ttdoc">configure as output in open-drain mode with pull resistor enabled</div><div class="ttdef"><b>Definition:</b> gpio.h:126</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c">GPIO_IN_PD</a></div><div class="ttdeci">@ GPIO_IN_PD</div><div class="ttdoc">configure as input with pull-down resistor</div><div class="ttdef"><b>Definition:</b> gpio.h:121</div></div>
+<div class="ttc" id="anative_2include_2periph__cpu_8h_html_a491a2cbfb4e94f2afcc0d5bdef2dc454"><div class="ttname"><a href="native_2include_2periph__cpu_8h.html#a491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a></div><div class="ttdeci">gpio_mode_t</div><div class="ttdoc">Available pin modes.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:82</div></div>
+<div class="ttc" id="astructgpio__isr__ctx__t_html"><div class="ttname"><a href="structgpio__isr__ctx__t.html">gpio_isr_ctx_t</a></div><div class="ttdoc">Default interrupt context for GPIO pins.</div><div class="ttdef"><b>Definition:</b> gpio.h:153</div></div>
+<div class="ttc" id="astructgpio__isr__ctx__t_html_a252c225bfb2c339e43f85b9a8ca29f86"><div class="ttname"><a href="structgpio__isr__ctx__t.html#a252c225bfb2c339e43f85b9a8ca29f86">gpio_isr_ctx_t::arg</a></div><div class="ttdeci">void * arg</div><div class="ttdoc">optional argument</div><div class="ttdef"><b>Definition:</b> gpio.h:155</div></div>
+<div class="ttc" id="astructgpio__isr__ctx__t_html_a7581386370989f2c52cf14c45c48819a"><div class="ttname"><a href="structgpio__isr__ctx__t.html#a7581386370989f2c52cf14c45c48819a">gpio_isr_ctx_t::cb</a></div><div class="ttdeci">gpio_cb_t cb</div><div class="ttdoc">interrupt callback</div><div class="ttdef"><b>Definition:</b> gpio.h:154</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="dir_579016b136bf24b6117626712e49e16b.html">periph</a></li><li class="navelem"><a class="el" href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

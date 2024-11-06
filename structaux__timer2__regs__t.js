@@ -1,0 +1,27 @@
+var structaux__timer2__regs__t =
+[
+    [ "__reserved1", "structaux__timer2__regs__t.html#ac996f538144bfcf6a598cddb59800228", null ],
+    [ "CH0CC", "structaux__timer2__regs__t.html#a186b95260ff49036d0a3e069f402d745", null ],
+    [ "CH0CCFG", "structaux__timer2__regs__t.html#a184b3ba91b88ad682496f69fa32da8dc", null ],
+    [ "CH0EVCFG", "structaux__timer2__regs__t.html#ab2d5600f61f7129ea37883a324f0f661", null ],
+    [ "CH0PCC", "structaux__timer2__regs__t.html#ace73b4db86e571ecf851f667cbd2b866", null ],
+    [ "CH1CC", "structaux__timer2__regs__t.html#a074fae056146606cd8052b52b52ceb6f", null ],
+    [ "CH1CCFG", "structaux__timer2__regs__t.html#a3f722f96de32cf9f8e77ff1b2883efab", null ],
+    [ "CH1EVCFG", "structaux__timer2__regs__t.html#a433aa8b1be2cc8302986efa2268972f5", null ],
+    [ "CH1PCC", "structaux__timer2__regs__t.html#ad178008bd7e7cb24ecf84a45904e57f9", null ],
+    [ "CH2CC", "structaux__timer2__regs__t.html#a2aaefdc6b9813bf5b262954ebb4fc6a1", null ],
+    [ "CH2CCFG", "structaux__timer2__regs__t.html#a83e22e55ff55bb63b31c2096d09c9e9f", null ],
+    [ "CH2EVCFG", "structaux__timer2__regs__t.html#a92e8e97d6f2ab9a2045ad23e6f953ae8", null ],
+    [ "CH2PCC", "structaux__timer2__regs__t.html#ab978c6d198033c3b7e7711e04f5847e3", null ],
+    [ "CH3CC", "structaux__timer2__regs__t.html#ac73d92e98c0cc0c056d5888dab533966", null ],
+    [ "CH3CCFG", "structaux__timer2__regs__t.html#aabf9804bee1e8f48f2541646246f5e4c", null ],
+    [ "CH3EVCFG", "structaux__timer2__regs__t.html#a02ca171e2b43069aa6a856e791ebccdc", null ],
+    [ "CH3PCC", "structaux__timer2__regs__t.html#a6fad180d23be634830bbb38bcc7b4828", null ],
+    [ "CNTR", "structaux__timer2__regs__t.html#adb2097a871e45faa438ef86e15cc67df", null ],
+    [ "CTL", "structaux__timer2__regs__t.html#aad1211f47df1d2382d02982552fc9413", null ],
+    [ "EVCTL", "structaux__timer2__regs__t.html#ab994092b524134420cf0c5b20c6f81fe", null ],
+    [ "PRECFG", "structaux__timer2__regs__t.html#a3a704ea481e7a7c04e8b77e4ef72bf1a", null ],
+    [ "PULSETRIG", "structaux__timer2__regs__t.html#afc0a1f7d76666a125bf0e1f5a7656b08", null ],
+    [ "SHDWTARGET", "structaux__timer2__regs__t.html#aa25bc2996bd6ec99bd37b4f66bb1709c", null ],
+    [ "TARGET", "structaux__timer2__regs__t.html#a8381dbf5f2054beb9f9d7105ca7b6a7c", null ]
+];

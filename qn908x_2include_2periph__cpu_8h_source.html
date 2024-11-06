@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/qn908x/include/periph_cpu.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('qn908x_2include_2periph__cpu_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">periph_cpu.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="qn908x_2include_2periph__cpu_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2020 iosabi</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef PERIPH_CPU_H</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define PERIPH_CPU_H</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;cpu.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define HAVE_GPIO_T</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">typedef</span> uint16_t <a class="code" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a3969ce1e494a72d3c2925b10ddeb4604">   42</a></span>&#160;<span class="preprocessor">#define GPIO_UNDEF          (0xffff)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae29846b3ecd19a0b7c44ff80a37ae7c1">   52</a></span>&#160;<span class="preprocessor">#define GPIO_PIN(x, y)      (((x) &lt;&lt; 12u) | (y))</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/* QN908x has a unique default Bluetooth address in the Flash Information Page</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"> * descriptor. This value is set in the factory and cannot be modified by</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"> * users. However, the actual Bluetooth address used by the stack may be</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> * different, this is just the default. */</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a0d3fc6a1a30b894ce55d50e7eac993b2">   61</a></span>&#160;<span class="preprocessor">#define CPUID_ADDR          (FSL_FEATURE_FLASH_ADDR_OF_VENDOR_BD_ADDR)</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a1943715eaeaa63e28b7b4e207f655fca">   66</a></span>&#160;<span class="preprocessor">#define CPUID_LEN           (6U)</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#aeb358111eba1eb3ba04b65fe1fad0749">   71</a></span>&#160;<span class="preprocessor">#define WDT_HAS_STOP        (1)</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a5265674ed64e5865196727196ef8265b">   84</a></span>&#160;<span class="preprocessor">#define NWDT_TIME_LOWER_LIMIT (1U)</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define NWDT_TIME_UPPER_LIMIT (268435U)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define WWDT_TIME_LOWER_LIMIT (1U)</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#define WWDT_TIME_UPPER_LIMIT (268435U)</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">   99</a></span>&#160;<span class="preprocessor">#define GPIO_MODE(open_drain, out_enabled, pull_mode) \</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">    ((open_drain) | ((out_enabled) &lt;&lt; 1) | ((pull_mode) &lt;&lt; 4))</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define HAVE_GPIO_MODE_T</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a3343e227f62c4c536efff81438a8e155">GPIO_IN</a>     = <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a>(0, 0, 0),       </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c">GPIO_IN_PD</a>  = <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a>(0, 0, 1),       </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c">GPIO_IN_PU</a>  = <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a>(0, 0, 2),       </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a1b59f059dea546f0248fb26232ee3531">GPIO_OUT</a>    = <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a>(0, 1, 0),       </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a4e49b8f9feef3b91e8d2842009151e2b">GPIO_OD</a>     = <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a>(1, 1, 0),       </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a6989d6b30554f7596c282eac49adc05d">GPIO_OD_PU</a>  = <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a>(1, 1, 2),       </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;} <a class="code" href="native_2include_2periph__cpu_8h.html#a491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ndef DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#define HAVE_GPIO_FLANK_T</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    GPIO_LOW        = 0,    </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    GPIO_HIGH       = 1,    </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a>     = 2,    </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a>    = 3,    </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a>       = 4,    </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;} <a class="code" href="atxmega_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ndef DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a84fe57ba52f8e237004a413b27ea4db8aeb6782d9dfedf3c6a78ffdb1624fa454">  139</a></span>&#160;    <a class="code" href="atmega1281_2include_2periph__cpu_8h.html#abc6126af1d45847bc59afa0aa3216b04aeb6782d9dfedf3c6a78ffdb1624fa454">PORT_A</a>  = 0,            </div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a84fe57ba52f8e237004a413b27ea4db8a16ada472d473fbd0207b99e9e4d68f4a">  140</a></span>&#160;    <a class="code" href="atmega1281_2include_2periph__cpu_8h.html#abc6126af1d45847bc59afa0aa3216b04a16ada472d473fbd0207b99e9e4d68f4a">PORT_B</a>  = 1,            </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="kinetis_2include_2periph__cpu_8h.html#a950bf8e3371138ceb9649d45e9a96340a4d49325393abe5e1e70765070a4049f6">GPIO_PORTS_NUMOF</a>        </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a84fe57ba52f8e237004a413b27ea4db8a4d49325393abe5e1e70765070a4049f6">  142</a></span>&#160;};</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#if DOXYGEN</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#adc9a97bf5a0e574a944b4f75b0999f34">  156</a></span>&#160;<span class="preprocessor">#define BOARD_HAS_ADC_PA06_CAP</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#define HAVE_ADC_RES_T</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020ad8993dbcb448737453754f2b371903ac">ADC_RES_6BIT</a> = 6u,         </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <a class="code" href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020a97a7b6a04d04ff2aa5215e7ff99b9639">ADC_RES_8BIT</a> = 8u,         </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <a class="code" href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020ae21291741a3a61209b20161449066b5a">ADC_RES_10BIT</a> = 10u,       </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <a class="code" href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020aed92ce547f7c8a6561c3a161066a5fe4">ADC_RES_12BIT</a> = 12u,       </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020ac0ae241188655074aac9911748e0bc59">ADC_RES_14BIT</a> = 14u,       </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <a class="code" href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020a272f6369b4ad8f3fa155ac13a2b5bfda">ADC_RES_16BIT</a> = 16u,       </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="comment">/* Extra modes supported by this CPU. */</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    ADC_RES_MAX = 22u,         </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    ADC_RES_UV = 23u,          </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;} <a class="code" href="group__drivers__periph__adc.html#gae4d48fdca21097fd8b34324f33ae4020">adc_res_t</a>;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ifndef DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324a">  192</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aabb2ff12dc29409282534af5931ae6b2e">  193</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aabb2ff12dc29409282534af5931ae6b2e">ADC_CLOCK_4M</a>,     </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6271ba979020bfbe30259b517855aaa7">  194</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6271ba979020bfbe30259b517855aaa7">ADC_CLOCK_2M</a>,     </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa397f9cb4c41a066c4a1ac1b1a76c5e7f">  195</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa397f9cb4c41a066c4a1ac1b1a76c5e7f">ADC_CLOCK_1M</a>,     </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa16a7dcbe9148ffbcc02d254a8697198b">  196</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa16a7dcbe9148ffbcc02d254a8697198b">ADC_CLOCK_500K</a>,   </div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aacf214361e6c5dad09c05dabdb7a3ca4a">  197</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aacf214361e6c5dad09c05dabdb7a3ca4a">ADC_CLOCK_250K</a>,   </div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa5e2b9b08f7ea18a0491271cbb8f6e6a7">  198</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa5e2b9b08f7ea18a0491271cbb8f6e6a7">ADC_CLOCK_125K</a>,   </div>
+<div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa49e531d72bd342708b2489642d97f7f2">  199</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa49e531d72bd342708b2489642d97f7f2">ADC_CLOCK_62K5</a>,   </div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6acd4f3b4cb61a5c8d2b21558f17f613">  200</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6acd4f3b4cb61a5c8d2b21558f17f613">ADC_CLOCK_31K25</a>,  </div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aaac1da961117d72d3806d235e3e58f884">  201</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aaac1da961117d72d3806d235e3e58f884">ADC_CLOCK_32K</a>,    </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324a">qn908x_adc_clock_t</a>;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#ifdef DOXYGEN</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae03968f461a0e5a772c574b13bf456b7">  209</a></span>&#160;<span class="preprocessor">#define QN908X_ADC_CLOCK</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ifdef DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83">  227</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00228"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a234761e1364685d0f539800f1740b4f0">  228</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a234761e1364685d0f539800f1740b4f0">ADC_CHANNEL_ADC0_ADC1</a> =  0u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a46da03b1e00d04486b4e1ac54b42df11">  229</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a46da03b1e00d04486b4e1ac54b42df11">ADC_CHANNEL_ADC2_ADC3</a> =  1u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a78f9d0122810029a5152109a34f6d159">  230</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a78f9d0122810029a5152109a34f6d159">ADC_CHANNEL_ADC4_ADC5</a> =  2u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83acd308b77afc64c07049b457391342f85">  231</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83acd308b77afc64c07049b457391342f85">ADC_CHANNEL_ADC6_ADC7</a> =  3u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3e9bedd83bc99c3cf388dbf0c1252f7b">  232</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3e9bedd83bc99c3cf388dbf0c1252f7b">ADC_CHANNEL_ADC0_VINN</a> =  4u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a33762cf1e5e094d678e02e9c08efde20">  233</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a33762cf1e5e094d678e02e9c08efde20">ADC_CHANNEL_ADC1_VINN</a> =  5u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a705c4018230791af45b930cec7dbfa39">  234</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a705c4018230791af45b930cec7dbfa39">ADC_CHANNEL_ADC2_VINN</a> =  6u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a303f19f4e4cfc50cd410f026f34b92f8">  235</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a303f19f4e4cfc50cd410f026f34b92f8">ADC_CHANNEL_ADC3_VINN</a> =  7u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a07f72a28307611cb60ea07040c1a612a">  236</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a07f72a28307611cb60ea07040c1a612a">ADC_CHANNEL_ADC4_VINN</a> =  8u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a0a8e19b03ad1eafde3bc4520e6290bb7">  237</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a0a8e19b03ad1eafde3bc4520e6290bb7">ADC_CHANNEL_ADC5_VINN</a> =  9u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a374a25b2d0422702d642269ce7acc126">  238</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a374a25b2d0422702d642269ce7acc126">ADC_CHANNEL_ADC6_VINN</a> = 10u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00239"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adb495d448e06e06dbce8730438e08bbf">  239</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adb495d448e06e06dbce8730438e08bbf">ADC_CHANNEL_ADC7_VINN</a> = 11u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a1ed27e96d73bc3032ec54d2738163cf4">  240</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a1ed27e96d73bc3032ec54d2738163cf4">ADC_CHANNEL_TEMP</a>      = 13u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adec41259cf2fb1202ca482acea0a46ed">  241</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adec41259cf2fb1202ca482acea0a46ed">ADC_CHANNEL_VCC4_VINN</a> = 14u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3bc37532ec67b866f474cfcb6b356872">  242</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3bc37532ec67b866f474cfcb6b356872">ADC_CHANNEL_VINN_VINN</a> = 15u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a96d6351d7924cdaf34236232407641b6">  243</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a96d6351d7924cdaf34236232407641b6">ADC_CHANNEL_VINN_VSS</a>  = 20u &lt;&lt; 9u,   </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83">qn908x_adc_channel_t</a>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941cae">  254</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea4482b9252474689fbce51a78f0b83017">  255</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea4482b9252474689fbce51a78f0b83017">ADC_VREF_1V2</a>  = 0x0000u, </div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caeae71285cc44a32aeeff00b4f9a4b84bb2">  256</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caeae71285cc44a32aeeff00b4f9a4b84bb2">ADC_VREF_VREF</a> = 0x4000u, </div>
+<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea0e643947958e711f34bf78ec3dd569be">  257</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea0e643947958e711f34bf78ec3dd569be">ADC_VREF_VEXT</a> = 0x8000u, </div>
+<div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea3e938c7d8b8982434e9ff3842bc92c28">  258</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea3e938c7d8b8982434e9ff3842bc92c28">ADC_VREF_VCC</a>  = 0xC000u, </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941cae">qn908x_adc_vref_t</a>;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a0eec9ae0c58babedd37c1ea59e8472cc">  267</a></span>&#160;<span class="preprocessor">#define ADC_VREF_GAIN_X15 (0x100u)</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ac478beb12ce9fd2efcefb70c28c08e38">  280</a></span>&#160;<span class="preprocessor">#define ADC_PGA_ENABLE (0x08u)</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">  289</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a7b8519eec1e1567de422522a0f81e470">  290</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a7b8519eec1e1567de422522a0f81e470">ADC_VINN_VREF</a>     = 0x30u, </div>
+<div class="line"><a name="l00291"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6ab9f4091fd43868ea922fae1d7940162e">  291</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6ab9f4091fd43868ea922fae1d7940162e">ADC_VINN_VREF_3_4</a> = 0x20u, </div>
+<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a36cdfa63a92b19ef0a36055c9db348ad">  292</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a36cdfa63a92b19ef0a36055c9db348ad">ADC_VINN_VREF_2</a>   = 0x10u, </div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a92882959d3d802af594615bfc271ffb9">  293</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a92882959d3d802af594615bfc271ffb9">ADC_VINN_AVSS</a>     = 0x00u, </div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">qn908x_adc_vinn_t</a>;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093">  307</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a313e50cb93381bfb00bf3aa81d837a5d">  308</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a313e50cb93381bfb00bf3aa81d837a5d">ADC_GAIN_X05</a> = 0x40u, </div>
+<div class="line"><a name="l00309"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a972b22ff9a6796ca5c8587184de7898f">  309</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a972b22ff9a6796ca5c8587184de7898f">ADC_GAIN_X1</a>  = 0x00u, </div>
+<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093afb4498214e9bd864b35685a507d1a564">  310</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093afb4498214e9bd864b35685a507d1a564">ADC_GAIN_X15</a> = 0xC0u, </div>
+<div class="line"><a name="l00311"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093ac25a1a3d61247b16eb8ad748482527d7">  311</a></span>&#160;    <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093ac25a1a3d61247b16eb8ad748482527d7">ADC_GAIN_X20</a> = 0x80u, </div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093">qn908x_adc_gain_t</a>;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#ab636ea834aed270181eda1dc92d10dad">  330</a></span>&#160;<span class="keyword">typedef</span> uint16_t <a class="code" href="cc2538_2include_2periph__cpu_8h.html#a5c8de6f67ee8f8a6cbcba95e60f201b7">adc_conf_t</a>;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
+<div class="line"><a name="l00336"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a4b87241cfc8f0eb706ef97888f30ed0d">  336</a></span>&#160;<span class="preprocessor">#define TIMER_CHANNEL_NUMOF (4)</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="preprocessor">#define TIMER_MAX_VALUE     (0xffffffff)</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#afd04a76b55e9fef358e904400cde4db7">  341</a></span>&#160;<span class="preprocessor">#define PERIPH_TIMER_PROVIDES_SET   1</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a1229320c595db94034f9fec9efcd46a3">  351</a></span>&#160;<span class="preprocessor">#define HAVE_I2C_SPEED_T</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a6e6a870f98abb8cffa95373b69fb8243">  352</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">  353</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a>       = 10000u,   </div>
+<div class="line"><a name="l00354"></a><span class="lineno"><a class="line" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">  354</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a>    = 100000u,  </div>
+<div class="line"><a name="l00355"></a><span class="lineno"><a class="line" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">  355</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a>      = 400000u,  </div>
+<div class="line"><a name="l00356"></a><span class="lineno"><a class="line" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">  356</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a> = 400000u,  </div>
+<div class="line"><a name="l00357"></a><span class="lineno"><a class="line" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">  357</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a>      = 400000u,  </div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;} <a class="code" href="atxmega_2include_2periph__cpu_8h.html#a6e6a870f98abb8cffa95373b69fb8243">i2c_speed_t</a>;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    I2C_Type *dev;          </div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    gpio_t pin_scl;         </div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    gpio_t pin_sda;         </div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    uint32_t speed;         </div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;} <a class="code" href="structi2c__conf__t.html">i2c_conf_t</a>;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="preprocessor">#define PERIPH_I2C_NEED_READ_REG</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="preprocessor">#define PERIPH_I2C_NEED_READ_REGS</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="preprocessor">#define PERIPH_I2C_NEED_WRITE_REG</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="preprocessor">#define PERIPH_I2C_NEED_WRITE_REGS</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="preprocessor">#define i2c_pin_sda(dev) i2c_config[dev].pin_sda</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="preprocessor">#define i2c_pin_scl(dev) i2c_config[dev].pin_scl</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#af3d9c2b9cf24ed0b13807d63f5e9b11f">  393</a></span>&#160;<span class="preprocessor">#define PERIPH_SPI_NEEDS_TRANSFER_BYTE</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="preprocessor">#define PERIPH_SPI_NEEDS_TRANSFER_REG</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">#define PERIPH_SPI_NEEDS_TRANSFER_REGS</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="preprocessor">#define SPI_HWCS(x)         (1u &lt;&lt; 15u | (x))</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160; </div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="preprocessor">#define SPI_HWCS_NUMOF 4</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160; </div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="preprocessor">#define SPI_MODE_SEL(pol, pha)          (SPI_CFG_CPOL(pol) | SPI_CFG_CPHA(pha))</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160; </div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="preprocessor">#define HAVE_SPI_MODE_T</span></div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cba152359b11fb4b43ed0c5485eb0ab0673">SPI_MODE_0</a>  = SPI_MODE_SEL(0, 0),   </div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cba7c1990cc15e9d69621be8e0e757e634c">SPI_MODE_1</a>  = SPI_MODE_SEL(0, 1),   </div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cba4d350945d895a4acdc45ae96b0b82fc3">SPI_MODE_2</a>  = SPI_MODE_SEL(1, 0),   </div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cbaf06ec36087996d6f328df39866ff5de6">SPI_MODE_3</a>  = SPI_MODE_SEL(1, 1)    </div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;} <a class="code" href="msp430_2include_2f2xx__g2xx_2periph__cpu_8h.html#ac4b206a51636d91c5cffcbcee458c3cb">spi_mode_t</a>;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;<span class="preprocessor">#define HAVE_SPI_CLK_T</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a>  =   100000u,    </div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a>  =   400000u,    </div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a>    =  1000000u,    </div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a>    =  5000000u,    </div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a>   = 10000000u     </div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;} <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a>;</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="preprocessor">#define spi_pin_mosi(bus) spi_config[bus].copi_pin</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="preprocessor">#define spi_pin_miso(bus) spi_config[bus].cipo_pin</span></div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="preprocessor">#define spi_pin_clk(bus)  spi_config[bus].clk_pin</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    SPI_Type *dev;                   </div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    gpio_t cipo_pin;                 </div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    gpio_t copi_pin;                 </div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    gpio_t clk_pin;                  </div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    gpio_t cs_pin[<a class="code" href="kinetis_2include_2periph__cpu_8h.html#ad200812f13922152c349607617703b5e">SPI_HWCS_NUMOF</a>];   </div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;} <a class="code" href="structspi__conf__t.html">spi_conf_t</a>;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160; </div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ifndef DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160; </div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    USART_Type *dev;    </div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    gpio_t rx_pin;      </div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    gpio_t tx_pin;      </div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;} <a class="code" href="structuart__conf__t.html">uart_conf_t</a>;</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160; </div>
+<div class="line"><a name="l00493"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">  493</a></span>&#160;<span class="preprocessor">#define UART_INVALID_MODE   (0x80)</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160; </div>
+<div class="line"><a name="l00502"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a6bcc37e31dd40c204b4ac6f6189e8878">  502</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d">  503</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d">UART_PARITY_NONE</a> = 0,                         </div>
+<div class="line"><a name="l00504"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8">  504</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8">UART_PARITY_EVEN</a> = 2,                         </div>
+<div class="line"><a name="l00505"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2">  505</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2">UART_PARITY_ODD</a> = 3,                          </div>
+<div class="line"><a name="l00506"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e">  506</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e">UART_PARITY_MARK</a> = 0x10 | <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">UART_INVALID_MODE</a>,  </div>
+<div class="line"><a name="l00507"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030">  507</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030">UART_PARITY_SPACE</a> = 0x20 | <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">UART_INVALID_MODE</a>, </div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a6bcc37e31dd40c204b4ac6f6189e8878">uart_parity_t</a>;</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="preprocessor">#define HAVE_UART_PARITY_T</span></div>
+<div class="line"><a name="l00518"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#adc68b8fd9ded3990f84129df23fee798">  518</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00519"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01">  519</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01">UART_DATA_BITS_5</a> = 0x10 | <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">UART_INVALID_MODE</a>, </div>
+<div class="line"><a name="l00520"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405">  520</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405">UART_DATA_BITS_6</a> = 0x20 | <a class="code" href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">UART_INVALID_MODE</a>, </div>
+<div class="line"><a name="l00521"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545">  521</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545">UART_DATA_BITS_7</a> = 0,                        </div>
+<div class="line"><a name="l00522"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">  522</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">UART_DATA_BITS_8</a> = 1,                        </div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;    <span class="comment">/* Note: There&#39;s a UART_DATA_BITS_9 possible in this hardware. */</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#adc68b8fd9ded3990f84129df23fee798">uart_data_bits_t</a>;</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="preprocessor">#define HAVE_UART_DATA_BITS_T</span></div>
+<div class="line"><a name="l00534"></a><span class="lineno"><a class="line" href="qn908x_2include_2periph__cpu_8h.html#a6da57a73bbdbf830b845d4116f8341d7">  534</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00535"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc">  535</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc">UART_STOP_BITS_1</a>    = 0,    </div>
+<div class="line"><a name="l00536"></a><span class="lineno"><a class="line" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3">  536</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3">UART_STOP_BITS_2</a>    = 1,    </div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;} <a class="code" href="qn908x_2include_2periph__cpu_8h.html#a6da57a73bbdbf830b845d4116f8341d7">uart_stop_bits_t</a>;</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;<span class="preprocessor">#define HAVE_UART_STOP_BITS_T</span></div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;}</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160; </div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* PERIPH_CPU_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatmega1281_2include_2periph__cpu_8h_html_abc6126af1d45847bc59afa0aa3216b04a16ada472d473fbd0207b99e9e4d68f4a"><div class="ttname"><a href="atmega1281_2include_2periph__cpu_8h.html#abc6126af1d45847bc59afa0aa3216b04a16ada472d473fbd0207b99e9e4d68f4a">PORT_B</a></div><div class="ttdeci">@ PORT_B</div><div class="ttdoc">port B</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:48</div></div>
+<div class="ttc" id="aatmega1281_2include_2periph__cpu_8h_html_abc6126af1d45847bc59afa0aa3216b04aeb6782d9dfedf3c6a78ffdb1624fa454"><div class="ttname"><a href="atmega1281_2include_2periph__cpu_8h.html#abc6126af1d45847bc59afa0aa3216b04aeb6782d9dfedf3c6a78ffdb1624fa454">PORT_A</a></div><div class="ttdeci">@ PORT_A</div><div class="ttdoc">port A</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:47</div></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_a0e8c3f46deb150e48acaa79fe26b2e86"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a></div><div class="ttdeci">gpio_flank_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:180</div></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_a201df5e2845212d28c89e2cf3fdaa642a1b59f059dea546f0248fb26232ee3531"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a1b59f059dea546f0248fb26232ee3531">GPIO_OUT</a></div><div class="ttdeci">@ GPIO_OUT</div><div class="ttdoc">select GPIO MASK as output</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:165</div></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_a201df5e2845212d28c89e2cf3fdaa642a3343e227f62c4c536efff81438a8e155"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a3343e227f62c4c536efff81438a8e155">GPIO_IN</a></div><div class="ttdeci">@ GPIO_IN</div><div class="ttdoc">select GPIO MASK as input</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:164</div></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_a6e6a870f98abb8cffa95373b69fb8243"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#a6e6a870f98abb8cffa95373b69fb8243">i2c_speed_t</a></div><div class="ttdeci">i2c_speed_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:276</div></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="acc2538_2include_2periph__cpu_8h_html_a5c8de6f67ee8f8a6cbcba95e60f201b7"><div class="ttname"><a href="cc2538_2include_2periph__cpu_8h.html#a5c8de6f67ee8f8a6cbcba95e60f201b7">adc_conf_t</a></div><div class="ttdeci">gpio_t adc_conf_t</div><div class="ttdoc">ADC configuration wrapper.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:337</div></div>
+<div class="ttc" id="agroup__drivers__periph__adc_html_gae4d48fdca21097fd8b34324f33ae4020"><div class="ttname"><a href="group__drivers__periph__adc.html#gae4d48fdca21097fd8b34324f33ae4020">adc_res_t</a></div><div class="ttdeci">adc_res_t</div><div class="ttdoc">Possible ADC resolution settings.</div><div class="ttdef"><b>Definition:</b> adc.h:93</div></div>
+<div class="ttc" id="agroup__drivers__periph__adc_html_ggae4d48fdca21097fd8b34324f33ae4020a272f6369b4ad8f3fa155ac13a2b5bfda"><div class="ttname"><a href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020a272f6369b4ad8f3fa155ac13a2b5bfda">ADC_RES_16BIT</a></div><div class="ttdeci">@ ADC_RES_16BIT</div><div class="ttdoc">ADC resolution: 16 bit.</div><div class="ttdef"><b>Definition:</b> adc.h:99</div></div>
+<div class="ttc" id="agroup__drivers__periph__adc_html_ggae4d48fdca21097fd8b34324f33ae4020a97a7b6a04d04ff2aa5215e7ff99b9639"><div class="ttname"><a href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020a97a7b6a04d04ff2aa5215e7ff99b9639">ADC_RES_8BIT</a></div><div class="ttdeci">@ ADC_RES_8BIT</div><div class="ttdoc">ADC resolution: 8 bit.</div><div class="ttdef"><b>Definition:</b> adc.h:95</div></div>
+<div class="ttc" id="agroup__drivers__periph__adc_html_ggae4d48fdca21097fd8b34324f33ae4020ac0ae241188655074aac9911748e0bc59"><div class="ttname"><a href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020ac0ae241188655074aac9911748e0bc59">ADC_RES_14BIT</a></div><div class="ttdeci">@ ADC_RES_14BIT</div><div class="ttdoc">ADC resolution: 14 bit.</div><div class="ttdef"><b>Definition:</b> adc.h:98</div></div>
+<div class="ttc" id="agroup__drivers__periph__adc_html_ggae4d48fdca21097fd8b34324f33ae4020ad8993dbcb448737453754f2b371903ac"><div class="ttname"><a href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020ad8993dbcb448737453754f2b371903ac">ADC_RES_6BIT</a></div><div class="ttdeci">@ ADC_RES_6BIT</div><div class="ttdoc">ADC resolution: 6 bit.</div><div class="ttdef"><b>Definition:</b> adc.h:94</div></div>
+<div class="ttc" id="agroup__drivers__periph__adc_html_ggae4d48fdca21097fd8b34324f33ae4020ae21291741a3a61209b20161449066b5a"><div class="ttname"><a href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020ae21291741a3a61209b20161449066b5a">ADC_RES_10BIT</a></div><div class="ttdeci">@ ADC_RES_10BIT</div><div class="ttdoc">ADC resolution: 10 bit.</div><div class="ttdef"><b>Definition:</b> adc.h:96</div></div>
+<div class="ttc" id="agroup__drivers__periph__adc_html_ggae4d48fdca21097fd8b34324f33ae4020aed92ce547f7c8a6561c3a161066a5fe4"><div class="ttname"><a href="group__drivers__periph__adc.html#ggae4d48fdca21097fd8b34324f33ae4020aed92ce547f7c8a6561c3a161066a5fe4">ADC_RES_12BIT</a></div><div class="ttdeci">@ ADC_RES_12BIT</div><div class="ttdoc">ADC resolution: 12 bit.</div><div class="ttdef"><b>Definition:</b> adc.h:97</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gadacfc0deb08affff1e88f9549c8e2823"><div class="ttname"><a href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a></div><div class="ttdeci">unsigned int gpio_t</div><div class="ttdoc">GPIO type identifier.</div><div class="ttdef"><b>Definition:</b> gpio.h:92</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a></div><div class="ttdeci">@ GPIO_FALLING</div><div class="ttdoc">emit interrupt on falling flank</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:93</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a></div><div class="ttdeci">@ GPIO_RISING</div><div class="ttdoc">emit interrupt on rising flank</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:94</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a></div><div class="ttdeci">@ GPIO_BOTH</div><div class="ttdoc">emit interrupt on both flanks</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:95</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a4e49b8f9feef3b91e8d2842009151e2b"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a4e49b8f9feef3b91e8d2842009151e2b">GPIO_OD</a></div><div class="ttdeci">@ GPIO_OD</div><div class="ttdoc">configure as output in open-drain mode without pull resistor</div><div class="ttdef"><b>Definition:</b> gpio.h:124</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a676755cb9c90de719e9fee3936a3a79c">GPIO_IN_PU</a></div><div class="ttdeci">@ GPIO_IN_PU</div><div class="ttdoc">configure as input with pull-up resistor</div><div class="ttdef"><b>Definition:</b> gpio.h:122</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a6989d6b30554f7596c282eac49adc05d"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a6989d6b30554f7596c282eac49adc05d">GPIO_OD_PU</a></div><div class="ttdeci">@ GPIO_OD_PU</div><div class="ttdoc">configure as output in open-drain mode with pull resistor enabled</div><div class="ttdef"><b>Definition:</b> gpio.h:126</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c"><div class="ttname"><a href="group__drivers__periph__gpio.html#gga491a2cbfb4e94f2afcc0d5bdef2dc454a8b6588cc82579f6044ec1867b964e11c">GPIO_IN_PD</a></div><div class="ttdeci">@ GPIO_IN_PD</div><div class="ttdoc">configure as input with pull-down resistor</div><div class="ttdef"><b>Definition:</b> gpio.h:121</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583"><div class="ttname"><a href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a></div><div class="ttdeci">@ I2C_SPEED_NORMAL</div><div class="ttdoc">normal mode: ~100 kbit/s</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:278</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e"><div class="ttname"><a href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a></div><div class="ttdeci">@ I2C_SPEED_FAST_PLUS</div><div class="ttdoc">fast plus mode: ~1000 kbit/s</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:280</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0"><div class="ttname"><a href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a></div><div class="ttdeci">@ I2C_SPEED_LOW</div><div class="ttdoc">low speed mode: ~10 kbit/s</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:277</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48"><div class="ttname"><a href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a></div><div class="ttdeci">@ I2C_SPEED_HIGH</div><div class="ttdoc">high speed mode: ~3400 kbit/s</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:282</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca"><div class="ttname"><a href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a></div><div class="ttdeci">@ I2C_SPEED_FAST</div><div class="ttdoc">fast mode: ~400 kbit/s</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:279</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggac4b206a51636d91c5cffcbcee458c3cba152359b11fb4b43ed0c5485eb0ab0673"><div class="ttname"><a href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cba152359b11fb4b43ed0c5485eb0ab0673">SPI_MODE_0</a></div><div class="ttdeci">@ SPI_MODE_0</div><div class="ttdoc">CPOL=0, CPHA=0.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:44</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggac4b206a51636d91c5cffcbcee458c3cba4d350945d895a4acdc45ae96b0b82fc3"><div class="ttname"><a href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cba4d350945d895a4acdc45ae96b0b82fc3">SPI_MODE_2</a></div><div class="ttdeci">@ SPI_MODE_2</div><div class="ttdoc">CPOL=1, CPHA=0.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:46</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggac4b206a51636d91c5cffcbcee458c3cba7c1990cc15e9d69621be8e0e757e634c"><div class="ttname"><a href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cba7c1990cc15e9d69621be8e0e757e634c">SPI_MODE_1</a></div><div class="ttdeci">@ SPI_MODE_1</div><div class="ttdoc">CPOL=0, CPHA=1.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:45</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggac4b206a51636d91c5cffcbcee458c3cbaf06ec36087996d6f328df39866ff5de6"><div class="ttname"><a href="group__drivers__periph__spi.html#ggac4b206a51636d91c5cffcbcee458c3cbaf06ec36087996d6f328df39866ff5de6">SPI_MODE_3</a></div><div class="ttdeci">@ SPI_MODE_3</div><div class="ttdoc">CPOL=1, CPHA=1.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:47</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d"><div class="ttname"><a href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a></div><div class="ttdeci">@ SPI_CLK_10MHZ</div><div class="ttdoc">drive the SPI bus with 10MHz</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:357</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58"><div class="ttname"><a href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a></div><div class="ttdeci">@ SPI_CLK_5MHZ</div><div class="ttdoc">drive the SPI bus with 5MHz</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:356</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3"><div class="ttname"><a href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a></div><div class="ttdeci">@ SPI_CLK_400KHZ</div><div class="ttdoc">drive the SPI bus with 400KHz</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:354</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111"><div class="ttname"><a href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a></div><div class="ttdeci">@ SPI_CLK_1MHZ</div><div class="ttdoc">drive the SPI bus with 1MHz</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:355</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27"><div class="ttname"><a href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a></div><div class="ttdeci">@ SPI_CLK_100KHZ</div><div class="ttdoc">drive the SPI bus with 100KHz</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:353</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030"><div class="ttname"><a href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030">UART_PARITY_SPACE</a></div><div class="ttdeci">@ UART_PARITY_SPACE</div><div class="ttdoc">space parity</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:507</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d"><div class="ttname"><a href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d">UART_PARITY_NONE</a></div><div class="ttdeci">@ UART_PARITY_NONE</div><div class="ttdoc">no parity</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:503</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8"><div class="ttname"><a href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8">UART_PARITY_EVEN</a></div><div class="ttdeci">@ UART_PARITY_EVEN</div><div class="ttdoc">even parity</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:504</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2"><div class="ttname"><a href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2">UART_PARITY_ODD</a></div><div class="ttdeci">@ UART_PARITY_ODD</div><div class="ttdoc">odd parity</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:505</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e"><div class="ttname"><a href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e">UART_PARITY_MARK</a></div><div class="ttdeci">@ UART_PARITY_MARK</div><div class="ttdoc">mark parity</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:506</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3"><div class="ttname"><a href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3">UART_STOP_BITS_2</a></div><div class="ttdeci">@ UART_STOP_BITS_2</div><div class="ttdoc">2 stop bits</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:536</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc"><div class="ttname"><a href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc">UART_STOP_BITS_1</a></div><div class="ttdeci">@ UART_STOP_BITS_1</div><div class="ttdoc">1 stop bit</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:535</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405"><div class="ttname"><a href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405">UART_DATA_BITS_6</a></div><div class="ttdeci">@ UART_DATA_BITS_6</div><div class="ttdoc">6 data bits</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:520</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01"><div class="ttname"><a href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01">UART_DATA_BITS_5</a></div><div class="ttdeci">@ UART_DATA_BITS_5</div><div class="ttdoc">5 data bits</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:519</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545"><div class="ttname"><a href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545">UART_DATA_BITS_7</a></div><div class="ttdeci">@ UART_DATA_BITS_7</div><div class="ttdoc">7 data bits</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:521</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db"><div class="ttname"><a href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">UART_DATA_BITS_8</a></div><div class="ttdeci">@ UART_DATA_BITS_8</div><div class="ttdoc">8 data bits</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:522</div></div>
+<div class="ttc" id="akinetis_2include_2periph__cpu_8h_html_a950bf8e3371138ceb9649d45e9a96340a4d49325393abe5e1e70765070a4049f6"><div class="ttname"><a href="kinetis_2include_2periph__cpu_8h.html#a950bf8e3371138ceb9649d45e9a96340a4d49325393abe5e1e70765070a4049f6">GPIO_PORTS_NUMOF</a></div><div class="ttdeci">@ GPIO_PORTS_NUMOF</div><div class="ttdoc">overall number of available ports</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:249</div></div>
+<div class="ttc" id="akinetis_2include_2periph__cpu_8h_html_ad200812f13922152c349607617703b5e"><div class="ttname"><a href="kinetis_2include_2periph__cpu_8h.html#ad200812f13922152c349607617703b5e">SPI_HWCS_NUMOF</a></div><div class="ttdeci">#define SPI_HWCS_NUMOF</div><div class="ttdoc">Kinetis CPUs have a maximum number of 5 hardware chip select lines.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:116</div></div>
+<div class="ttc" id="amsp430_2include_2f2xx__g2xx_2periph__cpu_8h_html_ac4b206a51636d91c5cffcbcee458c3cb"><div class="ttname"><a href="msp430_2include_2f2xx__g2xx_2periph__cpu_8h.html#ac4b206a51636d91c5cffcbcee458c3cb">spi_mode_t</a></div><div class="ttdeci">spi_mode_t</div><div class="ttdoc">Support SPI modes.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:43</div></div>
+<div class="ttc" id="anative_2include_2periph__cpu_8h_html_a491a2cbfb4e94f2afcc0d5bdef2dc454"><div class="ttname"><a href="native_2include_2periph__cpu_8h.html#a491a2cbfb4e94f2afcc0d5bdef2dc454">gpio_mode_t</a></div><div class="ttdeci">gpio_mode_t</div><div class="ttdoc">Available pin modes.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:82</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a092f1ec89efc2444ec80c3bf1792cf2b"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a></div><div class="ttdeci">#define GPIO_MODE(open_drain, out_enabled, pull_mode)</div><div class="ttdoc">Generate GPIO mode bitfields.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:99</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324a"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324a">qn908x_adc_clock_t</a></div><div class="ttdeci">qn908x_adc_clock_t</div><div class="ttdoc">ADC oversample clock configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:192</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aa16a7dcbe9148ffbcc02d254a8697198b"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa16a7dcbe9148ffbcc02d254a8697198b">ADC_CLOCK_500K</a></div><div class="ttdeci">@ ADC_CLOCK_500K</div><div class="ttdoc">500 KHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:196</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aa397f9cb4c41a066c4a1ac1b1a76c5e7f"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa397f9cb4c41a066c4a1ac1b1a76c5e7f">ADC_CLOCK_1M</a></div><div class="ttdeci">@ ADC_CLOCK_1M</div><div class="ttdoc">1 MHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:195</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aa49e531d72bd342708b2489642d97f7f2"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa49e531d72bd342708b2489642d97f7f2">ADC_CLOCK_62K5</a></div><div class="ttdeci">@ ADC_CLOCK_62K5</div><div class="ttdoc">62.5 KHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:199</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aa5e2b9b08f7ea18a0491271cbb8f6e6a7"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa5e2b9b08f7ea18a0491271cbb8f6e6a7">ADC_CLOCK_125K</a></div><div class="ttdeci">@ ADC_CLOCK_125K</div><div class="ttdoc">125 KHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:198</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aa6271ba979020bfbe30259b517855aaa7"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6271ba979020bfbe30259b517855aaa7">ADC_CLOCK_2M</a></div><div class="ttdeci">@ ADC_CLOCK_2M</div><div class="ttdoc">2 MHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:194</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aa6acd4f3b4cb61a5c8d2b21558f17f613"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6acd4f3b4cb61a5c8d2b21558f17f613">ADC_CLOCK_31K25</a></div><div class="ttdeci">@ ADC_CLOCK_31K25</div><div class="ttdoc">31.25 KHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:200</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aaac1da961117d72d3806d235e3e58f884"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aaac1da961117d72d3806d235e3e58f884">ADC_CLOCK_32K</a></div><div class="ttdeci">@ ADC_CLOCK_32K</div><div class="ttdoc">32 KHz or 32.768 KHz from the low speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:201</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aabb2ff12dc29409282534af5931ae6b2e"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aabb2ff12dc29409282534af5931ae6b2e">ADC_CLOCK_4M</a></div><div class="ttdeci">@ ADC_CLOCK_4M</div><div class="ttdoc">4 MHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:193</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a21464439451b8a8c40d23c258dca324aacf214361e6c5dad09c05dabdb7a3ca4a"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aacf214361e6c5dad09c05dabdb7a3ca4a">ADC_CLOCK_250K</a></div><div class="ttdeci">@ ADC_CLOCK_250K</div><div class="ttdoc">250 KHz from the high speed clock.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:197</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a3ef56804a626b9072d0578747d941cae"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941cae">qn908x_adc_vref_t</a></div><div class="ttdeci">qn908x_adc_vref_t</div><div class="ttdoc">ADC Vref configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:254</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a3ef56804a626b9072d0578747d941caea0e643947958e711f34bf78ec3dd569be"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea0e643947958e711f34bf78ec3dd569be">ADC_VREF_VEXT</a></div><div class="ttdeci">@ ADC_VREF_VEXT</div><div class="ttdoc">Vref := external ADC_VREFI with the driver.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:257</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a3ef56804a626b9072d0578747d941caea3e938c7d8b8982434e9ff3842bc92c28"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea3e938c7d8b8982434e9ff3842bc92c28">ADC_VREF_VCC</a></div><div class="ttdeci">@ ADC_VREF_VCC</div><div class="ttdoc">Vref := Vcc.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:258</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a3ef56804a626b9072d0578747d941caea4482b9252474689fbce51a78f0b83017"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea4482b9252474689fbce51a78f0b83017">ADC_VREF_1V2</a></div><div class="ttdeci">@ ADC_VREF_1V2</div><div class="ttdoc">Vref := internal 1.2V.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:255</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a3ef56804a626b9072d0578747d941caeae71285cc44a32aeeff00b4f9a4b84bb2"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caeae71285cc44a32aeeff00b4f9a4b84bb2">ADC_VREF_VREF</a></div><div class="ttdeci">@ ADC_VREF_VREF</div><div class="ttdoc">Vref := external ADC_VREFI pin.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:256</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a6bcc37e31dd40c204b4ac6f6189e8878"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a6bcc37e31dd40c204b4ac6f6189e8878">uart_parity_t</a></div><div class="ttdeci">uart_parity_t</div><div class="ttdoc">Definition of possible parity modes.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:502</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_a6da57a73bbdbf830b845d4116f8341d7"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#a6da57a73bbdbf830b845d4116f8341d7">uart_stop_bits_t</a></div><div class="ttdeci">uart_stop_bits_t</div><div class="ttdoc">Definition of possible stop bits lengths.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:534</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_aa068c642c84fcc4f2f9a6ec5b8e1d9b2"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">UART_INVALID_MODE</a></div><div class="ttdeci">#define UART_INVALID_MODE</div><div class="ttdoc">Invalid UART mode mask.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:493</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_aace28180461989db4b23d823b84db093"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093">qn908x_adc_gain_t</a></div><div class="ttdeci">qn908x_adc_gain_t</div><div class="ttdoc">ADC SD Gain configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:307</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_aace28180461989db4b23d823b84db093a313e50cb93381bfb00bf3aa81d837a5d"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a313e50cb93381bfb00bf3aa81d837a5d">ADC_GAIN_X05</a></div><div class="ttdeci">@ ADC_GAIN_X05</div><div class="ttdoc">Use gain := 0.5.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:308</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_aace28180461989db4b23d823b84db093a972b22ff9a6796ca5c8587184de7898f"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a972b22ff9a6796ca5c8587184de7898f">ADC_GAIN_X1</a></div><div class="ttdeci">@ ADC_GAIN_X1</div><div class="ttdoc">Use gain := 1.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:309</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_aace28180461989db4b23d823b84db093ac25a1a3d61247b16eb8ad748482527d7"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093ac25a1a3d61247b16eb8ad748482527d7">ADC_GAIN_X20</a></div><div class="ttdeci">@ ADC_GAIN_X20</div><div class="ttdoc">Use gain := 2.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:311</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_aace28180461989db4b23d823b84db093afb4498214e9bd864b35685a507d1a564"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093afb4498214e9bd864b35685a507d1a564">ADC_GAIN_X15</a></div><div class="ttdeci">@ ADC_GAIN_X15</div><div class="ttdoc">Use gain := 1.5.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:310</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ac72f8dbacd89a0bd6c33654409d938f6"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">qn908x_adc_vinn_t</a></div><div class="ttdeci">qn908x_adc_vinn_t</div><div class="ttdoc">ADC Vinn configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:289</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ac72f8dbacd89a0bd6c33654409d938f6a36cdfa63a92b19ef0a36055c9db348ad"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a36cdfa63a92b19ef0a36055c9db348ad">ADC_VINN_VREF_2</a></div><div class="ttdeci">@ ADC_VINN_VREF_2</div><div class="ttdoc">Use Vinn := 1/2 * Vref.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:292</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ac72f8dbacd89a0bd6c33654409d938f6a7b8519eec1e1567de422522a0f81e470"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a7b8519eec1e1567de422522a0f81e470">ADC_VINN_VREF</a></div><div class="ttdeci">@ ADC_VINN_VREF</div><div class="ttdoc">Use Vinn := Vref.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:290</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ac72f8dbacd89a0bd6c33654409d938f6a92882959d3d802af594615bfc271ffb9"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a92882959d3d802af594615bfc271ffb9">ADC_VINN_AVSS</a></div><div class="ttdeci">@ ADC_VINN_AVSS</div><div class="ttdoc">Use Vinn := Vss.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:293</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ac72f8dbacd89a0bd6c33654409d938f6ab9f4091fd43868ea922fae1d7940162e"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6ab9f4091fd43868ea922fae1d7940162e">ADC_VINN_VREF_3_4</a></div><div class="ttdeci">@ ADC_VINN_VREF_3_4</div><div class="ttdoc">Use Vinn := 3/4 * Vref.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:291</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_adc68b8fd9ded3990f84129df23fee798"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#adc68b8fd9ded3990f84129df23fee798">uart_data_bits_t</a></div><div class="ttdeci">uart_data_bits_t</div><div class="ttdoc">Definition of possible data bits lengths in a UART frame.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:518</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83">qn908x_adc_channel_t</a></div><div class="ttdeci">qn908x_adc_channel_t</div><div class="ttdoc">ADC channel pair configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:227</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a07f72a28307611cb60ea07040c1a612a"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a07f72a28307611cb60ea07040c1a612a">ADC_CHANNEL_ADC4_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC4_VINN</div><div class="ttdoc">Sample ADC4 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:236</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a0a8e19b03ad1eafde3bc4520e6290bb7"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a0a8e19b03ad1eafde3bc4520e6290bb7">ADC_CHANNEL_ADC5_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC5_VINN</div><div class="ttdoc">Sample ADC5 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:237</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a1ed27e96d73bc3032ec54d2738163cf4"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a1ed27e96d73bc3032ec54d2738163cf4">ADC_CHANNEL_TEMP</a></div><div class="ttdeci">@ ADC_CHANNEL_TEMP</div><div class="ttdoc">Sample internal temperature.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:240</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a234761e1364685d0f539800f1740b4f0"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a234761e1364685d0f539800f1740b4f0">ADC_CHANNEL_ADC0_ADC1</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC0_ADC1</div><div class="ttdoc">Sample ADC0 / ADC1.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:228</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a303f19f4e4cfc50cd410f026f34b92f8"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a303f19f4e4cfc50cd410f026f34b92f8">ADC_CHANNEL_ADC3_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC3_VINN</div><div class="ttdoc">Sample ADC3 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:235</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a33762cf1e5e094d678e02e9c08efde20"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a33762cf1e5e094d678e02e9c08efde20">ADC_CHANNEL_ADC1_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC1_VINN</div><div class="ttdoc">Sample ADC1 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:233</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a374a25b2d0422702d642269ce7acc126"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a374a25b2d0422702d642269ce7acc126">ADC_CHANNEL_ADC6_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC6_VINN</div><div class="ttdoc">Sample ADC6 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:238</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a3bc37532ec67b866f474cfcb6b356872"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3bc37532ec67b866f474cfcb6b356872">ADC_CHANNEL_VINN_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_VINN_VINN</div><div class="ttdoc">Sample Vinn / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:242</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a3e9bedd83bc99c3cf388dbf0c1252f7b"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3e9bedd83bc99c3cf388dbf0c1252f7b">ADC_CHANNEL_ADC0_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC0_VINN</div><div class="ttdoc">Sample ADC0 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:232</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a46da03b1e00d04486b4e1ac54b42df11"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a46da03b1e00d04486b4e1ac54b42df11">ADC_CHANNEL_ADC2_ADC3</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC2_ADC3</div><div class="ttdoc">Sample ADC2 / ADC3.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:229</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a705c4018230791af45b930cec7dbfa39"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a705c4018230791af45b930cec7dbfa39">ADC_CHANNEL_ADC2_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC2_VINN</div><div class="ttdoc">Sample ADC2 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:234</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a78f9d0122810029a5152109a34f6d159"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a78f9d0122810029a5152109a34f6d159">ADC_CHANNEL_ADC4_ADC5</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC4_ADC5</div><div class="ttdoc">Sample ADC4 / ADC5.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:230</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83a96d6351d7924cdaf34236232407641b6"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a96d6351d7924cdaf34236232407641b6">ADC_CHANNEL_VINN_VSS</a></div><div class="ttdeci">@ ADC_CHANNEL_VINN_VSS</div><div class="ttdoc">Sample Vinn / Vss.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:243</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83acd308b77afc64c07049b457391342f85"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83acd308b77afc64c07049b457391342f85">ADC_CHANNEL_ADC6_ADC7</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC6_ADC7</div><div class="ttdoc">Sample ADC6 / ADC7.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:231</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83adb495d448e06e06dbce8730438e08bbf"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adb495d448e06e06dbce8730438e08bbf">ADC_CHANNEL_ADC7_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_ADC7_VINN</div><div class="ttdoc">Sample ADC7 / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:239</div></div>
+<div class="ttc" id="aqn908x_2include_2periph__cpu_8h_html_ae4f11c2a2596f24bf17ef128da122b83adec41259cf2fb1202ca482acea0a46ed"><div class="ttname"><a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adec41259cf2fb1202ca482acea0a46ed">ADC_CHANNEL_VCC4_VINN</a></div><div class="ttdeci">@ ADC_CHANNEL_VCC4_VINN</div><div class="ttdoc">Sample 1/4 Vcc / Vinn.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:241</div></div>
+<div class="ttc" id="astructi2c__conf__t_html"><div class="ttname"><a href="structi2c__conf__t.html">i2c_conf_t</a></div><div class="ttdoc">I2C configuration structure.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:299</div></div>
+<div class="ttc" id="astructspi__conf__t_html"><div class="ttname"><a href="structspi__conf__t.html">spi_conf_t</a></div><div class="ttdoc">SPI device configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:337</div></div>
+<div class="ttc" id="astructuart__conf__t_html"><div class="ttname"><a href="structuart__conf__t.html">uart_conf_t</a></div><div class="ttdoc">UART device configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:218</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_157461c8b34e67414276dd466865c17a.html">qn908x</a></li><li class="navelem"><a class="el" href="dir_0cd03abdfb880e5ba643be3e9a7ce660.html">include</a></li><li class="navelem"><a class="el" href="qn908x_2include_2periph__cpu_8h.html">periph_cpu.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

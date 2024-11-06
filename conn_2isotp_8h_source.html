@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/can/conn/isotp.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('conn_2isotp_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">isotp.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="conn_2isotp_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a5891c0b1dbc064756a4b93acd7b575bb">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 OTA keys S.A.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef CAN_CONN_ISOTP_H</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define CAN_CONN_ISOTP_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sys_2include_2can_2can_8h.html">can/can.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="isotp_8h.html">can/isotp.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mbox_8h.html">mbox.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#if defined(MODULE_CONN_CAN_ISOTP_MULTI) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mutex_8h.html">mutex.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifndef CONN_CAN_ISOTP_MBOX_SIZE</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a48e2c48a070a1e03f198915449c40f06">   38</a></span>&#160;<span class="preprocessor">#define CONN_CAN_ISOTP_MBOX_SIZE (16)</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_master</a> <a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="structconn__can__isotp__slave.html">   58</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structconn__can__isotp__slave.html">conn_can_isotp_slave</a> {</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structconn__can__isotp__slave.html#a55d65730a8e65af48a10df0fc98809b4">   59</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structconn__can__isotp__slave.html">conn_can_isotp_slave</a> *<a class="code" href="structconn__can__isotp__slave.html#a55d65730a8e65af48a10df0fc98809b4">next</a>;     </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structconn__can__isotp__slave.html#ace111e34aead6d40c9e65686da83b8cc">   60</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_master</a> *<a class="code" href="structconn__can__isotp__slave.html#aa1e7801d1ee7d6d66cd1edfb2322d504">master</a>;  </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">struct </span><a class="code" href="structisotp.html">isotp</a> <a class="code" href="structisotp.html">isotp</a>;                    </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structconn__can__isotp__slave.html#a278164fe02a37650e5056563cb508200">   62</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structconn__can__isotp__slave.html#a278164fe02a37650e5056563cb508200">ifnum</a>;                             </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structconn__can__isotp__slave.html#a562037c22a168a032358ec25ffe3ce8e">   63</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structconn__can__isotp__slave.html#a562037c22a168a032358ec25ffe3ce8e">bound</a>;                             </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structconn__can__isotp__slave.html#a754bdd69d459a1322880b0e0408eefaf">   64</a></span>&#160;    <a class="code" href="structcan__rx__data.html">can_rx_data_t</a> *<a class="code" href="structconn__can__isotp__slave.html#a754bdd69d459a1322880b0e0408eefaf">rx</a>;                     </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a7865867e57576b5ddab8bfe1bd63af94">   65</a></span>&#160;} <a class="code" href="conn_2isotp_8h.html#a7865867e57576b5ddab8bfe1bd63af94">conn_can_isotp_slave_t</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html">   70</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_master</a> {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">/* slave fields */</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#a54f207609358c39a5a009b6478c651b5">   72</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structconn__can__isotp__slave.html">conn_can_isotp_slave</a> *<a class="code" href="structconn__can__isotp__master.html#a54f207609358c39a5a009b6478c651b5">next</a>;     </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#a2aaf5063d4682dcc2899817a6a118abf">   73</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_master</a> *<a class="code" href="structconn__can__isotp__master.html#a880e913044ca03639b423b923060f3ae">master</a>;  </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">struct </span><a class="code" href="structisotp.html">isotp</a> <a class="code" href="structisotp.html">isotp</a>;                    </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#a8c4c13b53682a2462a3f0757ae887e8a">   75</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structconn__can__isotp__master.html#a8c4c13b53682a2462a3f0757ae887e8a">ifnum</a>;                             </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#a0ef2ed94f787e8d1cfbf9ef597f916fa">   76</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structconn__can__isotp__master.html#a0ef2ed94f787e8d1cfbf9ef597f916fa">bound</a>;                             </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#ad24ac478c14b430a77414b163465abf1">   77</a></span>&#160;    <a class="code" href="structcan__rx__data.html">can_rx_data_t</a> *<a class="code" href="structconn__can__isotp__master.html#ad24ac478c14b430a77414b163465abf1">rx</a>;                     </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">/* slave fields end */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#ae319b926a90b8b62f75196a522a8433b">   79</a></span>&#160;    <a class="code" href="structmutex__t.html">mutex_t</a> <a class="code" href="structconn__can__isotp__master.html#ae319b926a90b8b62f75196a522a8433b">lock</a>;                          </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#a263bd998fde901b95e1a23083862c6c2">   80</a></span>&#160;    <a class="code" href="structmbox__t.html">mbox_t</a> <a class="code" href="structconn__can__isotp__master.html#a263bd998fde901b95e1a23083862c6c2">mbox</a>;                           </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structconn__can__isotp__master.html#a1470fae39d034e5372b2ee765c2cd0bf">   82</a></span>&#160;    <a class="code" href="structmsg__t.html">msg_t</a> <a class="code" href="structconn__can__isotp__master.html#a1470fae39d034e5372b2ee765c2cd0bf">mbox_queue</a>[<a class="code" href="conn_2isotp_8h.html#a48e2c48a070a1e03f198915449c40f06">CONN_CAN_ISOTP_MBOX_SIZE</a>];</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a763920d8ba0bc37cdbc15044521f57f9">   96</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="conn_2isotp_8h.html#a763920d8ba0bc37cdbc15044521f57f9">conn_can_isotp_init_slave</a>(<a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a> *master, <a class="code" href="structconn__can__isotp__slave.html">conn_can_isotp_slave_t</a> *slave)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;{</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    slave-&gt;<a class="code" href="structconn__can__isotp__slave.html#a55d65730a8e65af48a10df0fc98809b4">next</a> = NULL;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    slave-&gt;<a class="code" href="structconn__can__isotp__slave.html#aa1e7801d1ee7d6d66cd1edfb2322d504">master</a> = master;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    slave-&gt;<a class="code" href="structconn__can__isotp__slave.html#a754bdd69d459a1322880b0e0408eefaf">rx</a> = NULL;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#ifndef CONN_CAN_ISOTP_MBOX_SIZE</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#define CONN_CAN_ISOTP_MBOX_SIZE (16)</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>conn_can_isotp {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">struct </span><a class="code" href="structisotp.html">isotp</a> <a class="code" href="structisotp.html">isotp</a>; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">int</span> ifnum;          </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">int</span> bound;          </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="structmbox__t.html">mbox_t</a> mbox;        </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="structmsg__t.html">msg_t</a> mbox_queue[<a class="code" href="conn_2isotp_8h.html#a48e2c48a070a1e03f198915449c40f06">CONN_CAN_ISOTP_MBOX_SIZE</a>];</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;} <a class="code" href="conn_2isotp_8h.html#a5891c0b1dbc064756a4b93acd7b575bb">conn_can_isotp_t</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MODULE_CONN_CAN_ISOTP_MULTI */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a331b87a6f679cb650327f6b82e4b8f79">  134</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="conn_2isotp_8h.html#a331b87a6f679cb650327f6b82e4b8f79">conn_can_isotp_create</a>(<a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a> *conn, <span class="keyword">struct</span> <a class="code" href="structisotp__options.html">isotp_options</a> *options, <span class="keywordtype">int</span> ifnum);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a5e0dd8080c980188d07e89f99dec67bf">  145</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="conn_2isotp_8h.html#a5e0dd8080c980188d07e89f99dec67bf">conn_can_isotp_bind</a>(<a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a> *conn, <span class="keyword">struct</span> <a class="code" href="structisotp__fc__options.html">isotp_fc_options</a> *fc_options);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a2d939a4b76a23febb28297b9cf248ad1">  155</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="conn_2isotp_8h.html#a2d939a4b76a23febb28297b9cf248ad1">conn_can_isotp_close</a>(<a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a> *conn);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a1f331ddfcf93ceaa3707dc306affbe9e">  168</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="conn_2isotp_8h.html#a1f331ddfcf93ceaa3707dc306affbe9e">conn_can_isotp_recv</a>(<a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a> *conn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> size, uint32_t timeout);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#a788967d794eba48c6d54b05615d2805e">  182</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="conn_2isotp_8h.html#a788967d794eba48c6d54b05615d2805e">conn_can_isotp_send</a>(<a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a> *conn, <span class="keyword">const</span> <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> size, <span class="keywordtype">int</span> flags);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#if defined(MODULE_CONN_CAN_ISOTP_MULTI) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="conn_2isotp_8h.html#ad0e55c812b5889e42fb9b858724a13e3">  194</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="conn_2isotp_8h.html#ad0e55c812b5889e42fb9b858724a13e3">conn_can_isotp_select</a>(<a class="code" href="structconn__can__isotp__slave.html">conn_can_isotp_slave_t</a> **conn, <a class="code" href="structconn__can__isotp__master.html">conn_can_isotp_t</a> *master, uint32_t timeout);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;}</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CAN_CONN_ISOTP_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a1f331ddfcf93ceaa3707dc306affbe9e"><div class="ttname"><a href="conn_2isotp_8h.html#a1f331ddfcf93ceaa3707dc306affbe9e">conn_can_isotp_recv</a></div><div class="ttdeci">int conn_can_isotp_recv(conn_can_isotp_t *conn, void *buf, size_t size, uint32_t timeout)</div><div class="ttdoc">Receive isotp data.</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a2d939a4b76a23febb28297b9cf248ad1"><div class="ttname"><a href="conn_2isotp_8h.html#a2d939a4b76a23febb28297b9cf248ad1">conn_can_isotp_close</a></div><div class="ttdeci">int conn_can_isotp_close(conn_can_isotp_t *conn)</div><div class="ttdoc">Close can isotp connection socket.</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a331b87a6f679cb650327f6b82e4b8f79"><div class="ttname"><a href="conn_2isotp_8h.html#a331b87a6f679cb650327f6b82e4b8f79">conn_can_isotp_create</a></div><div class="ttdeci">int conn_can_isotp_create(conn_can_isotp_t *conn, struct isotp_options *options, int ifnum)</div><div class="ttdoc">Create can isotp connection socket.</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a48e2c48a070a1e03f198915449c40f06"><div class="ttname"><a href="conn_2isotp_8h.html#a48e2c48a070a1e03f198915449c40f06">CONN_CAN_ISOTP_MBOX_SIZE</a></div><div class="ttdeci">#define CONN_CAN_ISOTP_MBOX_SIZE</div><div class="ttdoc">Mailbox size of a conn_can_isotp_t.</div><div class="ttdef"><b>Definition:</b> isotp.h:38</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a5891c0b1dbc064756a4b93acd7b575bb"><div class="ttname"><a href="conn_2isotp_8h.html#a5891c0b1dbc064756a4b93acd7b575bb">conn_can_isotp_t</a></div><div class="ttdeci">struct conn_can_isotp_master conn_can_isotp_t</div><div class="ttdoc">ISO-TP connection.</div><div class="ttdef"><b>Definition:</b> isotp.h:50</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a5e0dd8080c980188d07e89f99dec67bf"><div class="ttname"><a href="conn_2isotp_8h.html#a5e0dd8080c980188d07e89f99dec67bf">conn_can_isotp_bind</a></div><div class="ttdeci">int conn_can_isotp_bind(conn_can_isotp_t *conn, struct isotp_fc_options *fc_options)</div><div class="ttdoc">Bind a can isotp connection.</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a763920d8ba0bc37cdbc15044521f57f9"><div class="ttname"><a href="conn_2isotp_8h.html#a763920d8ba0bc37cdbc15044521f57f9">conn_can_isotp_init_slave</a></div><div class="ttdeci">static void conn_can_isotp_init_slave(conn_can_isotp_t *master, conn_can_isotp_slave_t *slave)</div><div class="ttdoc">Initialize a slave connection.</div><div class="ttdef"><b>Definition:</b> isotp.h:96</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a7865867e57576b5ddab8bfe1bd63af94"><div class="ttname"><a href="conn_2isotp_8h.html#a7865867e57576b5ddab8bfe1bd63af94">conn_can_isotp_slave_t</a></div><div class="ttdeci">struct conn_can_isotp_slave conn_can_isotp_slave_t</div><div class="ttdoc">ISO-TP salve connection.</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_a788967d794eba48c6d54b05615d2805e"><div class="ttname"><a href="conn_2isotp_8h.html#a788967d794eba48c6d54b05615d2805e">conn_can_isotp_send</a></div><div class="ttdeci">int conn_can_isotp_send(conn_can_isotp_t *conn, const void *buf, size_t size, int flags)</div><div class="ttdoc">Generic can send.</div></div>
+<div class="ttc" id="aconn_2isotp_8h_html_ad0e55c812b5889e42fb9b858724a13e3"><div class="ttname"><a href="conn_2isotp_8h.html#ad0e55c812b5889e42fb9b858724a13e3">conn_can_isotp_select</a></div><div class="ttdeci">int conn_can_isotp_select(conn_can_isotp_slave_t **conn, conn_can_isotp_t *master, uint32_t timeout)</div><div class="ttdoc">Wait for reception from multiple connections.</div></div>
+<div class="ttc" id="aisotp_8h_html"><div class="ttname"><a href="isotp_8h.html">isotp.h</a></div><div class="ttdoc">ISO TP high level interface.</div></div>
+<div class="ttc" id="ambox_8h_html"><div class="ttname"><a href="mbox_8h.html">mbox.h</a></div><div class="ttdoc">Mailbox API.</div></div>
+<div class="ttc" id="amutex_8h_html"><div class="ttname"><a href="mutex_8h.html">mutex.h</a></div><div class="ttdoc">Mutex for thread synchronization.</div></div>
+<div class="ttc" id="astructcan__rx__data_html"><div class="ttname"><a href="structcan__rx__data.html">can_rx_data</a></div><div class="ttdoc">Received data structure.</div><div class="ttdef"><b>Definition:</b> common.h:122</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html"><div class="ttname"><a href="structconn__can__isotp__master.html">conn_can_isotp_master</a></div><div class="ttdoc">ISO-TP master connection.</div><div class="ttdef"><b>Definition:</b> isotp.h:70</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_a0ef2ed94f787e8d1cfbf9ef597f916fa"><div class="ttname"><a href="structconn__can__isotp__master.html#a0ef2ed94f787e8d1cfbf9ef597f916fa">conn_can_isotp_master::bound</a></div><div class="ttdeci">int bound</div><div class="ttdoc">1 if connection is bound</div><div class="ttdef"><b>Definition:</b> isotp.h:76</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_a1470fae39d034e5372b2ee765c2cd0bf"><div class="ttname"><a href="structconn__can__isotp__master.html#a1470fae39d034e5372b2ee765c2cd0bf">conn_can_isotp_master::mbox_queue</a></div><div class="ttdeci">msg_t mbox_queue[CONN_CAN_ISOTP_MBOX_SIZE]</div><div class="ttdoc">Connection list message queue.</div><div class="ttdef"><b>Definition:</b> isotp.h:82</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_a263bd998fde901b95e1a23083862c6c2"><div class="ttname"><a href="structconn__can__isotp__master.html#a263bd998fde901b95e1a23083862c6c2">conn_can_isotp_master::mbox</a></div><div class="ttdeci">mbox_t mbox</div><div class="ttdoc">mailbox for the connection list</div><div class="ttdef"><b>Definition:</b> isotp.h:80</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_a54f207609358c39a5a009b6478c651b5"><div class="ttname"><a href="structconn__can__isotp__master.html#a54f207609358c39a5a009b6478c651b5">conn_can_isotp_master::next</a></div><div class="ttdeci">struct conn_can_isotp_slave * next</div><div class="ttdoc">First slave in the list.</div><div class="ttdef"><b>Definition:</b> isotp.h:72</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_a880e913044ca03639b423b923060f3ae"><div class="ttname"><a href="structconn__can__isotp__master.html#a880e913044ca03639b423b923060f3ae">conn_can_isotp_master::master</a></div><div class="ttdeci">struct conn_can_isotp_master * master</div><div class="ttdoc">Master connection.</div><div class="ttdef"><b>Definition:</b> isotp.h:73</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_a8c4c13b53682a2462a3f0757ae887e8a"><div class="ttname"><a href="structconn__can__isotp__master.html#a8c4c13b53682a2462a3f0757ae887e8a">conn_can_isotp_master::ifnum</a></div><div class="ttdeci">int ifnum</div><div class="ttdoc">interface number</div><div class="ttdef"><b>Definition:</b> isotp.h:75</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_ad24ac478c14b430a77414b163465abf1"><div class="ttname"><a href="structconn__can__isotp__master.html#ad24ac478c14b430a77414b163465abf1">conn_can_isotp_master::rx</a></div><div class="ttdeci">can_rx_data_t * rx</div><div class="ttdoc">Buffered rx data.</div><div class="ttdef"><b>Definition:</b> isotp.h:77</div></div>
+<div class="ttc" id="astructconn__can__isotp__master_html_ae319b926a90b8b62f75196a522a8433b"><div class="ttname"><a href="structconn__can__isotp__master.html#ae319b926a90b8b62f75196a522a8433b">conn_can_isotp_master::lock</a></div><div class="ttdeci">mutex_t lock</div><div class="ttdoc">Master lock.</div><div class="ttdef"><b>Definition:</b> isotp.h:79</div></div>
+<div class="ttc" id="astructconn__can__isotp__slave_html"><div class="ttname"><a href="structconn__can__isotp__slave.html">conn_can_isotp_slave</a></div><div class="ttdoc">ISO-TP salve connection.</div><div class="ttdef"><b>Definition:</b> isotp.h:58</div></div>
+<div class="ttc" id="astructconn__can__isotp__slave_html_a278164fe02a37650e5056563cb508200"><div class="ttname"><a href="structconn__can__isotp__slave.html#a278164fe02a37650e5056563cb508200">conn_can_isotp_slave::ifnum</a></div><div class="ttdeci">int ifnum</div><div class="ttdoc">interface number</div><div class="ttdef"><b>Definition:</b> isotp.h:62</div></div>
+<div class="ttc" id="astructconn__can__isotp__slave_html_a55d65730a8e65af48a10df0fc98809b4"><div class="ttname"><a href="structconn__can__isotp__slave.html#a55d65730a8e65af48a10df0fc98809b4">conn_can_isotp_slave::next</a></div><div class="ttdeci">struct conn_can_isotp_slave * next</div><div class="ttdoc">Next slave in the list.</div><div class="ttdef"><b>Definition:</b> isotp.h:59</div></div>
+<div class="ttc" id="astructconn__can__isotp__slave_html_a562037c22a168a032358ec25ffe3ce8e"><div class="ttname"><a href="structconn__can__isotp__slave.html#a562037c22a168a032358ec25ffe3ce8e">conn_can_isotp_slave::bound</a></div><div class="ttdeci">int bound</div><div class="ttdoc">1 if connection is bound</div><div class="ttdef"><b>Definition:</b> isotp.h:63</div></div>
+<div class="ttc" id="astructconn__can__isotp__slave_html_a754bdd69d459a1322880b0e0408eefaf"><div class="ttname"><a href="structconn__can__isotp__slave.html#a754bdd69d459a1322880b0e0408eefaf">conn_can_isotp_slave::rx</a></div><div class="ttdeci">can_rx_data_t * rx</div><div class="ttdoc">Buffered rx data.</div><div class="ttdef"><b>Definition:</b> isotp.h:64</div></div>
+<div class="ttc" id="astructconn__can__isotp__slave_html_aa1e7801d1ee7d6d66cd1edfb2322d504"><div class="ttname"><a href="structconn__can__isotp__slave.html#aa1e7801d1ee7d6d66cd1edfb2322d504">conn_can_isotp_slave::master</a></div><div class="ttdeci">struct conn_can_isotp_master * master</div><div class="ttdoc">Master connection holding the mailbox.</div><div class="ttdef"><b>Definition:</b> isotp.h:60</div></div>
+<div class="ttc" id="astructisotp__fc__options_html"><div class="ttname"><a href="structisotp__fc__options.html">isotp_fc_options</a></div><div class="ttdoc">The isotp_fc_options struct.</div><div class="ttdef"><b>Definition:</b> isotp.h:60</div></div>
+<div class="ttc" id="astructisotp__options_html"><div class="ttname"><a href="structisotp__options.html">isotp_options</a></div><div class="ttdoc">The isotp_options struct.</div><div class="ttdef"><b>Definition:</b> isotp.h:78</div></div>
+<div class="ttc" id="astructisotp_html"><div class="ttname"><a href="structisotp.html">isotp</a></div><div class="ttdoc">The isotp struct.</div><div class="ttdef"><b>Definition:</b> isotp.h:106</div></div>
+<div class="ttc" id="astructmbox__t_html"><div class="ttname"><a href="structmbox__t.html">mbox_t</a></div><div class="ttdoc">Mailbox struct definition.</div><div class="ttdef"><b>Definition:</b> mbox.h:41</div></div>
+<div class="ttc" id="astructmsg__t_html"><div class="ttname"><a href="structmsg__t.html">msg_t</a></div><div class="ttdoc">Describes a message object which can be sent between threads.</div><div class="ttdef"><b>Definition:</b> msg.h:196</div></div>
+<div class="ttc" id="astructmutex__t_html"><div class="ttname"><a href="structmutex__t.html">mutex_t</a></div><div class="ttdoc">Mutex structure.</div><div class="ttdef"><b>Definition:</b> mutex.h:146</div></div>
+<div class="ttc" id="asys_2include_2can_2can_8h_html"><div class="ttname"><a href="sys_2include_2can_2can_8h.html">can.h</a></div><div class="ttdoc">Definitions high-level CAN interface.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_4b25e2506291d5bc344b96ce18ffc0e3.html">can</a></li><li class="navelem"><a class="el" href="dir_ca951388d73fabc7b5721f40f691f076.html">conn</a></li><li class="navelem"><a class="el" href="conn_2isotp_8h.html">isotp.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

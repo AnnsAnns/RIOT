@@ -1,0 +1,26 @@
+var ds1307__internal_8h =
+[
+    [ "DS1307_DOW_OFFSET", "ds1307__internal_8h.html#a92a7172be068740b565e126ce4309160", null ],
+    [ "DS1307_MON_OFFSET", "ds1307__internal_8h.html#a453e36a7a7ebc7314b23da45d96f2975", null ],
+    [ "DS1307_REG_DOM", "ds1307__internal_8h.html#a98ab0d27cac4971a07eee0433b2b2ed3", null ],
+    [ "DS1307_REG_DOM_MASK", "ds1307__internal_8h.html#a848ce30d3e0351ba74a65ddf11bf243c", null ],
+    [ "DS1307_REG_DOW", "ds1307__internal_8h.html#a299dfffcd2f7070ca4fb1fecd2ee8b60", null ],
+    [ "DS1307_REG_DOW_MASK", "ds1307__internal_8h.html#ad06c57d64b1bb9ed8f15f283821cf595", null ],
+    [ "DS1307_REG_HOUR", "ds1307__internal_8h.html#a287744f29c1140d06d855fb640e017bd", null ],
+    [ "DS1307_REG_HOUR_12H", "ds1307__internal_8h.html#a18f0dd7aac0394d2c4e4ebef1ea5e428", null ],
+    [ "DS1307_REG_HOUR_12H_MASK", "ds1307__internal_8h.html#ae97bd29f96795a73aadc87130cc72a63", null ],
+    [ "DS1307_REG_HOUR_24H_MASK", "ds1307__internal_8h.html#a48fd0154cc57e2c32cf034f5622dec97", null ],
+    [ "DS1307_REG_HOUR_PM", "ds1307__internal_8h.html#a670f3a669d727239365b7edeb689e935", null ],
+    [ "DS1307_REG_MIN", "ds1307__internal_8h.html#a93b075c88ca0a1b8913a14e7cd13873b", null ],
+    [ "DS1307_REG_MIN_MASK", "ds1307__internal_8h.html#aaeabec92aad3fe4c46dcef740a75ac47", null ],
+    [ "DS1307_REG_MON", "ds1307__internal_8h.html#a95a63d281eb6731b1d2df8d6757ac7c3", null ],
+    [ "DS1307_REG_MON_MASK", "ds1307__internal_8h.html#a108a10e30a34d23bfca850bd5781a7ba", null ],
+    [ "DS1307_REG_RAM_FIRST", "ds1307__internal_8h.html#a906ce21566f73dac47f225889f3dd164", null ],
+    [ "DS1307_REG_RAM_LAST", "ds1307__internal_8h.html#a0da0363df720e61c7d8da171b7a00e80", null ],
+    [ "DS1307_REG_SEC", "ds1307__internal_8h.html#ae6387456a4f32f6875f657e0ae01e441", null ],
+    [ "DS1307_REG_SEC_CH", "ds1307__internal_8h.html#aa4c57c09b61bccddb4d2192a670d96d9", null ],
+    [ "DS1307_REG_SEC_MASK", "ds1307__internal_8h.html#a9f0246e451628e17f6e36d8ee2cb5bdc", null ],
+    [ "DS1307_REG_SQW_CTL", "ds1307__internal_8h.html#aad17b31fc9ba66a8bed3f7c07b1e78c0", null ],
+    [ "DS1307_REG_YEAR", "ds1307__internal_8h.html#a56f5f0ab147a2a589b50886b4553bec9", null ],
+    [ "DS1307_YEAR_OFFSET", "ds1307__internal_8h.html#a0669eb0d5cd9dd34fdd66a4a5c050f21", null ]
+];

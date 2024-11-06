@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/mcp2515/mcp2515.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mcp2515_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mcp2515.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a> &raquo; <a class="el" href="group__drivers__can.html">CAN Drivers</a> &raquo; <a class="el" href="group__drivers__mcp2515.html">MCP2515</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Driver for the Microchip MCP2515 can controller.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Driver for the Microchip MCP2515 can controller. </p>
+<p>Definition of the MCP2515 CAN controller driver.</p>
+<dl class="section author"><dt>Author</dt><dd>Toon Stegen <a href="#" onclick="location.href='mai'+'lto:'+'too'+'n.'+'ste'+'ge'+'n@a'+'lt'+'ran'+'.c'+'om'; return false;">toon.<span style="display: none;">.nosp@m.</span>steg<span style="display: none;">.nosp@m.</span>en@al<span style="display: none;">.nosp@m.</span>tran<span style="display: none;">.nosp@m.</span>.com</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;<a class="el" href="mcp2515__defines_8h_source.html">mcp2515_defines.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="candev__mcp2515_8h_source.html">candev_mcp2515.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for mcp2515.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="mcp2515_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:a7adecda7b3467ea2137276f34f10a636"><td class="memItemLeft" align="right" valign="top"><a id="a7adecda7b3467ea2137276f34f10a636"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a7adecda7b3467ea2137276f34f10a636">MCP2515_WKUP_SRC_INTERNAL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a7adecda7b3467ea2137276f34f10a636"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wake up source. <br /></td></tr>
+<tr class="separator:a7adecda7b3467ea2137276f34f10a636"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3236324c492099ad85356ee284ce99e2"><td class="memItemLeft" align="right" valign="top"><a id="a3236324c492099ad85356ee284ce99e2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a3236324c492099ad85356ee284ce99e2">MCP2515_RECV_FILTER_EN</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a3236324c492099ad85356ee284ce99e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acceptance mode (enable/disable filtering) <br /></td></tr>
+<tr class="separator:a3236324c492099ad85356ee284ce99e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac854f0f88baa1462880f903cdb9e4490"><td class="memItemLeft" align="right" valign="top"><a id="ac854f0f88baa1462880f903cdb9e4490"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#ac854f0f88baa1462880f903cdb9e4490">mcp2515_mode</a> { <br />
+&#160;&#160;<b>MODE_NORMAL</b> = MCP2515_CANSTAT_OPMOD_NORMAL
+, <b>MODE_SLEEP</b> = MCP2515_CANSTAT_OPMOD_SLEEP
+, <b>MODE_LOOPBACK</b> = MCP2515_CANSTAT_OPMOD_LOOPBACK
+, <b>MODE_LISTEN_ONLY</b> = MCP2515_CANSTAT_OPMOD_LISTEN_ONLY
+, <br />
+&#160;&#160;<b>MODE_CONFIG</b> = MCP2515_CANSTAT_OPMOD_CONFIGURATION
+, <b>MODE_UNKNOWN</b> = -1
+<br />
+ }</td></tr>
+<tr class="memdesc:ac854f0f88baa1462880f903cdb9e4490"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCP2515 mode. <br /></td></tr>
+<tr class="separator:ac854f0f88baa1462880f903cdb9e4490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd8809dc06663fe1b2204a4fd86acbed"><td class="memItemLeft" align="right" valign="top"><a id="acd8809dc06663fe1b2204a4fd86acbed"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#acd8809dc06663fe1b2204a4fd86acbed">mcp2515_interrupt</a> { <br />
+&#160;&#160;<b>INT_RX0</b> = MCP2515_CANINTF_RX0IF
+, <b>INT_RX1</b> = MCP2515_CANINTF_RX1IF
+, <b>INT_TX0</b> = MCP2515_CANINTF_TX0IF
+, <b>INT_TX1</b> = MCP2515_CANINTF_TX1IF
+, <br />
+&#160;&#160;<b>INT_TX2</b> = MCP2515_CANINTF_TX2IF
+, <b>INT_ERROR</b> = MCP2515_CANINTF_ERRIF
+, <b>INT_WAKEUP</b> = MCP2515_CANINTF_WAKIF
+, <b>INT_MESSAGE_ERROR</b> = MCP2515_CANINTF_MERRF
+<br />
+ }</td></tr>
+<tr class="memdesc:acd8809dc06663fe1b2204a4fd86acbed"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCP2515 interrupt. <br /></td></tr>
+<tr class="separator:acd8809dc06663fe1b2204a4fd86acbed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19b33446811d6f7f4b9009a6d8d258ef"><td class="memItemLeft" align="right" valign="top"><a id="a19b33446811d6f7f4b9009a6d8d258ef"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a19b33446811d6f7f4b9009a6d8d258ef">mcp2515_error</a> { <br />
+&#160;&#160;<b>ERR_WARNING</b> = MCP2515_EFLG_EWARN
+, <b>ERR_RX_WARNING</b> = MCP2515_EFLG_RXWAR
+, <b>ERR_TX_WARNING</b> = MCP2515_EFLG_TXWAR
+, <b>ERR_RX_PASSIVE</b> = MCP2515_EFLG_RXEP
+, <br />
+&#160;&#160;<b>ERR_TX_PASSIVE</b> = MCP2515_EFLG_TXEP
+, <b>ERR_TX_BUS_OFF</b> = MCP2515_EFLG_TXBO
+, <b>ERR_RX_0_OVERFLOW</b> = MCP2515_EFLG_RX0OVR
+, <b>ERR_RX_1_OVERFLOW</b> = MCP2515_EFLG_RX1OVR
+<br />
+ }</td></tr>
+<tr class="memdesc:a19b33446811d6f7f4b9009a6d8d258ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCP2515 error. <br /></td></tr>
+<tr class="separator:a19b33446811d6f7f4b9009a6d8d258ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f12cc1191ab008ac641f2833918b87f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a8f12cc1191ab008ac641f2833918b87f">mcp2515_init</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, void(*irq_cb)(void *))</td></tr>
+<tr class="memdesc:a8f12cc1191ab008ac641f2833918b87f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize pins and SPI interface.  <a href="mcp2515_8h.html#a8f12cc1191ab008ac641f2833918b87f">More...</a><br /></td></tr>
+<tr class="separator:a8f12cc1191ab008ac641f2833918b87f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67986736c203f8786beab59f580477c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a67986736c203f8786beab59f580477c2">mcp2515_reset</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev)</td></tr>
+<tr class="memdesc:a67986736c203f8786beab59f580477c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset MCP2515 device with dedicated pin.  <a href="mcp2515_8h.html#a67986736c203f8786beab59f580477c2">More...</a><br /></td></tr>
+<tr class="separator:a67986736c203f8786beab59f580477c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ff9acda876e4f4bdebab995c3b8372"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#ab4ff9acda876e4f4bdebab995c3b8372">mcp2515_init_irqs</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev)</td></tr>
+<tr class="memdesc:ab4ff9acda876e4f4bdebab995c3b8372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize MCP2515 interrupts.  <a href="mcp2515_8h.html#ab4ff9acda876e4f4bdebab995c3b8372">More...</a><br /></td></tr>
+<tr class="separator:ab4ff9acda876e4f4bdebab995c3b8372"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b4603a4081edcd3c39df8d21db48457"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a5b4603a4081edcd3c39df8d21db48457">mcp2515_send</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, const struct <a class="el" href="structcan__frame.html">can_frame</a> *frame, int mailbox)</td></tr>
+<tr class="memdesc:a5b4603a4081edcd3c39df8d21db48457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send frame through the corresponding tx <code>mailbox</code>.  <a href="mcp2515_8h.html#a5b4603a4081edcd3c39df8d21db48457">More...</a><br /></td></tr>
+<tr class="separator:a5b4603a4081edcd3c39df8d21db48457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63ec70ae3f066fac8454163df4c802cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a63ec70ae3f066fac8454163df4c802cd">mcp2515_receive</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, struct <a class="el" href="structcan__frame.html">can_frame</a> *frame, int mailbox)</td></tr>
+<tr class="memdesc:a63ec70ae3f066fac8454163df4c802cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive frame from the corresponding rx <code>mailbox</code>.  <a href="mcp2515_8h.html#a63ec70ae3f066fac8454163df4c802cd">More...</a><br /></td></tr>
+<tr class="separator:a63ec70ae3f066fac8454163df4c802cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30efa001823ce3d31c333efe16f93933"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a30efa001823ce3d31c333efe16f93933">mcp2515_abort</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, int mailbox)</td></tr>
+<tr class="memdesc:a30efa001823ce3d31c333efe16f93933"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort communication.  <a href="mcp2515_8h.html#a30efa001823ce3d31c333efe16f93933">More...</a><br /></td></tr>
+<tr class="separator:a30efa001823ce3d31c333efe16f93933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7904253f9eaa227269dd21c2dd5c310d"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="mcp2515_8h.html#ac854f0f88baa1462880f903cdb9e4490">mcp2515_mode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a7904253f9eaa227269dd21c2dd5c310d">mcp2515_get_mode</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev)</td></tr>
+<tr class="memdesc:a7904253f9eaa227269dd21c2dd5c310d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get MCP2515 mode of operation.  <a href="mcp2515_8h.html#a7904253f9eaa227269dd21c2dd5c310d">More...</a><br /></td></tr>
+<tr class="separator:a7904253f9eaa227269dd21c2dd5c310d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa44c6245cc2a3e78ba593617a04dbe8a"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="mcp2515_8h.html#ac854f0f88baa1462880f903cdb9e4490">mcp2515_mode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#aa44c6245cc2a3e78ba593617a04dbe8a">mcp2515_set_mode</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, enum <a class="el" href="mcp2515_8h.html#ac854f0f88baa1462880f903cdb9e4490">mcp2515_mode</a> mode)</td></tr>
+<tr class="memdesc:aa44c6245cc2a3e78ba593617a04dbe8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set MCP2515 mode of operation.  <a href="mcp2515_8h.html#aa44c6245cc2a3e78ba593617a04dbe8a">More...</a><br /></td></tr>
+<tr class="separator:aa44c6245cc2a3e78ba593617a04dbe8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c7207e2764874287c88b2c6ace27459"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a9c7207e2764874287c88b2c6ace27459">mcp2515_wake_up</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev)</td></tr>
+<tr class="memdesc:a9c7207e2764874287c88b2c6ace27459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wake up MCP2515.  <a href="mcp2515_8h.html#a9c7207e2764874287c88b2c6ace27459">More...</a><br /></td></tr>
+<tr class="separator:a9c7207e2764874287c88b2c6ace27459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff919c2d30b0b9873af6d50670fab7c3"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="mcp2515_8h.html#acd8809dc06663fe1b2204a4fd86acbed">mcp2515_interrupt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#aff919c2d30b0b9873af6d50670fab7c3">mcp2515_get_irq</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev)</td></tr>
+<tr class="memdesc:aff919c2d30b0b9873af6d50670fab7c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get MCP2515 interrupt type.  <a href="mcp2515_8h.html#aff919c2d30b0b9873af6d50670fab7c3">More...</a><br /></td></tr>
+<tr class="separator:aff919c2d30b0b9873af6d50670fab7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc7fa413663fdbb6ddd7a028aa491ab1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#abc7fa413663fdbb6ddd7a028aa491ab1">mcp2515_clear_irq</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, enum <a class="el" href="mcp2515_8h.html#acd8809dc06663fe1b2204a4fd86acbed">mcp2515_interrupt</a> irq)</td></tr>
+<tr class="memdesc:abc7fa413663fdbb6ddd7a028aa491ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear MCP2515 interrupt.  <a href="mcp2515_8h.html#abc7fa413663fdbb6ddd7a028aa491ab1">More...</a><br /></td></tr>
+<tr class="separator:abc7fa413663fdbb6ddd7a028aa491ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1528f77438682cd01f98150604c356d8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a1528f77438682cd01f98150604c356d8">mcp2515_tx_err_occurred</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, int mailbox)</td></tr>
+<tr class="memdesc:a1528f77438682cd01f98150604c356d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get if an tx error occurred on MCP2515.  <a href="mcp2515_8h.html#a1528f77438682cd01f98150604c356d8">More...</a><br /></td></tr>
+<tr class="separator:a1528f77438682cd01f98150604c356d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0c243e377385d97fbd56bfd43179a9f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#ad0c243e377385d97fbd56bfd43179a9f">mcp2515_configure_bittiming</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev)</td></tr>
+<tr class="memdesc:ad0c243e377385d97fbd56bfd43179a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the bit timing of the MCP2515.  <a href="mcp2515_8h.html#ad0c243e377385d97fbd56bfd43179a9f">More...</a><br /></td></tr>
+<tr class="separator:ad0c243e377385d97fbd56bfd43179a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb48c7dd5ff740fb4fe771060805f37"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#aecb48c7dd5ff740fb4fe771060805f37">mcp2515_get_errors</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev)</td></tr>
+<tr class="memdesc:aecb48c7dd5ff740fb4fe771060805f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the error flags.  <a href="mcp2515_8h.html#aecb48c7dd5ff740fb4fe771060805f37">More...</a><br /></td></tr>
+<tr class="separator:aecb48c7dd5ff740fb4fe771060805f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4ae8fbb66ca250d827cbacc88824642"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#ad4ae8fbb66ca250d827cbacc88824642">mcp2515_set_filter</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, int filter_id, uint32_t filter)</td></tr>
+<tr class="memdesc:ad4ae8fbb66ca250d827cbacc88824642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the @ filter_id to the position in the mailbox.  <a href="mcp2515_8h.html#ad4ae8fbb66ca250d827cbacc88824642">More...</a><br /></td></tr>
+<tr class="separator:ad4ae8fbb66ca250d827cbacc88824642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63667ca3463cddf1b2c8a0c543a64c6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcp2515_8h.html#a63667ca3463cddf1b2c8a0c543a64c6a">mcp2515_set_mask</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, int mailbox, uint32_t mask)</td></tr>
+<tr class="memdesc:a63667ca3463cddf1b2c8a0c543a64c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the @ mask to the mailbox.  <a href="mcp2515_8h.html#a63667ca3463cddf1b2c8a0c543a64c6a">More...</a><br /></td></tr>
+<tr class="separator:a63667ca3463cddf1b2c8a0c543a64c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a30efa001823ce3d31c333efe16f93933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30efa001823ce3d31c333efe16f93933">&#9670;&nbsp;</a></span>mcp2515_abort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_abort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mailbox</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Abort communication. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mailbox</td><td>mailbox</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="abc7fa413663fdbb6ddd7a028aa491ab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc7fa413663fdbb6ddd7a028aa491ab1">&#9670;&nbsp;</a></span>mcp2515_clear_irq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_clear_irq </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="mcp2515_8h.html#acd8809dc06663fe1b2204a4fd86acbed">mcp2515_interrupt</a>&#160;</td>
+          <td class="paramname"><em>irq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear MCP2515 interrupt. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irq</td><td>interrupt to clear</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="ad0c243e377385d97fbd56bfd43179a9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0c243e377385d97fbd56bfd43179a9f">&#9670;&nbsp;</a></span>mcp2515_configure_bittiming()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_configure_bittiming </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure the bit timing of the MCP2515. </p>
+<p>The information about the bit timing should be contained in dev descriptor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="aecb48c7dd5ff740fb4fe771060805f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb48c7dd5ff740fb4fe771060805f37">&#9670;&nbsp;</a></span>mcp2515_get_errors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t mcp2515_get_errors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the error flags. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>EFLG error flags </dd></dl>
+
+</div>
+</div>
+<a id="aff919c2d30b0b9873af6d50670fab7c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff919c2d30b0b9873af6d50670fab7c3">&#9670;&nbsp;</a></span>mcp2515_get_irq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="mcp2515_8h.html#acd8809dc06663fe1b2204a4fd86acbed">mcp2515_interrupt</a> mcp2515_get_irq </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get MCP2515 interrupt type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>mcp2515_interrupt enum </dd></dl>
+
+</div>
+</div>
+<a id="a7904253f9eaa227269dd21c2dd5c310d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7904253f9eaa227269dd21c2dd5c310d">&#9670;&nbsp;</a></span>mcp2515_get_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="mcp2515_8h.html#ac854f0f88baa1462880f903cdb9e4490">mcp2515_mode</a> mcp2515_get_mode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get MCP2515 mode of operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>mcp2515_mode enum </dd></dl>
+
+</div>
+</div>
+<a id="a8f12cc1191ab008ac641f2833918b87f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f12cc1191ab008ac641f2833918b87f">&#9670;&nbsp;</a></span>mcp2515_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *)&#160;</td>
+          <td class="paramname"><em>irq_cb</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize pins and SPI interface. </p>
+<p>The device descriptor contains all information related to pins and SPI interface. This function initialize all corresponding fields and relies the <code>irq_cb</code> callback function to the pin interruption. The pin interruption should be configured in the device descriptor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irq_cb</td><td>callback function called when an interrupt is raised from the MCP2515. The MCP2515 makes the interruption through the interruption pin.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="ab4ff9acda876e4f4bdebab995c3b8372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4ff9acda876e4f4bdebab995c3b8372">&#9670;&nbsp;</a></span>mcp2515_init_irqs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_init_irqs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize MCP2515 interrupts. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a63ec70ae3f066fac8454163df4c802cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63ec70ae3f066fac8454163df4c802cd">&#9670;&nbsp;</a></span>mcp2515_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_receive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structcan__frame.html">can_frame</a> *&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mailbox</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Receive frame from the corresponding rx <code>mailbox</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">frame</td><td>the receive frame </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mailbox</td><td>rx mailbox</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a67986736c203f8786beab59f580477c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67986736c203f8786beab59f580477c2">&#9670;&nbsp;</a></span>mcp2515_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mcp2515_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset MCP2515 device with dedicated pin. </p>
+<p>The MCP2515 device is reset by toggling the rst pin.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5b4603a4081edcd3c39df8d21db48457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b4603a4081edcd3c39df8d21db48457">&#9670;&nbsp;</a></span>mcp2515_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structcan__frame.html">can_frame</a> *&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mailbox</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send frame through the corresponding tx <code>mailbox</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frame</td><td>the frame to send </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mailbox</td><td>tx mailbox</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="ad4ae8fbb66ca250d827cbacc88824642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ae8fbb66ca250d827cbacc88824642">&#9670;&nbsp;</a></span>mcp2515_set_filter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_set_filter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>filter_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>filter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the @ filter_id to the position in the mailbox. </p>
+<p><code>filter_id</code> corresponds to the position in the MCP2515 mailbox as follow:</p><ul>
+<li>[0; 1]: mailbox RXB0</li>
+<li>[2; 5]: mailbox RXB1</li>
+</ul>
+<p>The MCP2515 managed 6 acceptance filters in 2 rx mailboxes:</p><ul>
+<li>MB0 contains 2 acceptance filters in relation with 1 acceptance mask</li>
+<li>MB1 contains 4 acceptance filters in relation with 1 acceptance mask <pre class="fragment">    MB0          MB1
+  +------+    +------+
+</pre> mask 0 | RXM0 | | RXM1 | mask 1 +======+ +======+ filter 0 | RXF0 | | RXF2 | filter 2 +---&mdash;+ +---&mdash;+ filter 1 | RXF1 | | RXF3 | filter 3 +---&mdash;+ +---&mdash;+ | RXF4 | filter 4 +---&mdash;+ | RXF5 | filter 5 +---&mdash;+</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter_id</td><td>filter identifier in the MCP2515 mailbox </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter</td><td>acceptance filter can identifier</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a63667ca3463cddf1b2c8a0c543a64c6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63667ca3463cddf1b2c8a0c543a64c6a">&#9670;&nbsp;</a></span>mcp2515_set_mask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_set_mask </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mailbox</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>mask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the @ mask to the mailbox. </p>
+<p>The MCP2515 managed 6 acceptance filters in 2 rx mailboxes:</p><ul>
+<li>MB0 contains 2 acceptance filters in relation with 1 acceptance mask</li>
+<li>MB1 contains 4 acceptance filters in relation with 1 acceptance mask <pre class="fragment">    MB0          MB1
+  +------+    +------+
+</pre> mask 0 | RXM0 | | RXM1 | mask 1 +======+ +======+ filter 0 | RXF0 | | RXF2 | filter 2 +---&mdash;+ +---&mdash;+ filter 1 | RXF1 | | RXF3 | filter 3 +---&mdash;+ +---&mdash;+ | RXF4 | filter 4 +---&mdash;+ | RXF5 | filter 5 +---&mdash;+</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mailbox</td><td>rx mailbox </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mask</td><td>acceptance mask</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="aa44c6245cc2a3e78ba593617a04dbe8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa44c6245cc2a3e78ba593617a04dbe8a">&#9670;&nbsp;</a></span>mcp2515_set_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="mcp2515_8h.html#ac854f0f88baa1462880f903cdb9e4490">mcp2515_mode</a> mcp2515_set_mode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="mcp2515_8h.html#ac854f0f88baa1462880f903cdb9e4490">mcp2515_mode</a>&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set MCP2515 mode of operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>mode of operation to set</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The mode actually set </dd></dl>
+
+</div>
+</div>
+<a id="a1528f77438682cd01f98150604c356d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1528f77438682cd01f98150604c356d8">&#9670;&nbsp;</a></span>mcp2515_tx_err_occurred()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mcp2515_tx_err_occurred </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mailbox</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get if an tx error occurred on MCP2515. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mailbox</td><td>tx mailbox</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt;0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a9c7207e2764874287c88b2c6ace27459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c7207e2764874287c88b2c6ace27459">&#9670;&nbsp;</a></span>mcp2515_wake_up()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mcp2515_wake_up </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wake up MCP2515. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_a93c57c0804ff3711ff140a5182da88c.html">mcp2515</a></li><li class="navelem"><a class="el" href="mcp2515_8h.html">mcp2515.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

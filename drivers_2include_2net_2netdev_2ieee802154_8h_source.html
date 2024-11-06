@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/net/netdev/ieee802154.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('drivers_2include_2net_2netdev_2ieee802154_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ieee802154.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="drivers_2include_2net_2netdev_2ieee802154_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016-2019 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef NET_NETDEV_IEEE802154_H</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define NET_NETDEV_IEEE802154_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="eui__provider_8h.html">net/eui_provider.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sys_2include_2net_2ieee802154_8h.html">net/ieee802154.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_IEEE802154_SECURITY)</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ieee802154__security_8h.html">net/ieee802154_security.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nettype_8h.html">net/gnrc/nettype.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="netopt_8h.html">net/netopt.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_8h.html">net/netdev.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gac4c4442893459370f7d70c05e3c6021c">   46</a></span>&#160;<span class="preprocessor">#define NETDEV_IEEE802154_SEND_MASK         (0x0028)    </span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gaa3dab1e77dab41d437e0d0fe6dad316e">   47</a></span>&#160;<span class="preprocessor">#define NETDEV_IEEE802154_RAW               (0x0002)    </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gab1cf3ad8df0b67672f17cb4bb1952b33">   51</a></span>&#160;<span class="preprocessor">#define NETDEV_IEEE802154_SRC_MODE_LONG     (0x0004)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga8399058ad79fc00ed57458983d3a4c39">   55</a></span>&#160;<span class="preprocessor">#define NETDEV_IEEE802154_SECURITY_EN       (IEEE802154_FCF_SECURITY_EN)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gaad961df33373c4493127c6631a8b7245">   60</a></span>&#160;<span class="preprocessor">#define NETDEV_IEEE802154_ACK_REQ           (IEEE802154_FCF_ACK_REQ)</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga4bc9a65ea71449e2a520884c9de97188">   65</a></span>&#160;<span class="preprocessor">#define NETDEV_IEEE802154_FRAME_PEND        (IEEE802154_FCF_FRAME_PEND)</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga6273248982125bb84178f49cdfae0301">   74</a></span>&#160;<span class="preprocessor">#define NETDEV_RX_IEEE802154_INFO_FLAG_TIMESTAMP       (0x01)  </span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga3c394bd0168c30eab6bc77ff9925d883">   82</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a176a020b9356bb3f5bbb7b89839aa9a4">   83</a></span>&#160;    <a class="code" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a176a020b9356bb3f5bbb7b89839aa9a4">NETDEV_IEEE802154_CCA_MODE_1</a> = 1,   </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a0a45fdbe08f1e588287f2238aa061eb2">   84</a></span>&#160;    <a class="code" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a0a45fdbe08f1e588287f2238aa061eb2">NETDEV_IEEE802154_CCA_MODE_2</a>,       </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a8504785ddfac5e8e5bbce9b3ab4364c8">   85</a></span>&#160;    <a class="code" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a8504785ddfac5e8e5bbce9b3ab4364c8">NETDEV_IEEE802154_CCA_MODE_3</a>,       </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a0602dddb309a71c4cae8975a684e959e">   86</a></span>&#160;    <a class="code" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a0602dddb309a71c4cae8975a684e959e">NETDEV_IEEE802154_CCA_MODE_4</a>,       </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a61da09b94db7314e855b63a7d9e79092">   87</a></span>&#160;    <a class="code" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a61da09b94db7314e855b63a7d9e79092">NETDEV_IEEE802154_CCA_MODE_5</a>,       </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a1c9de82dc01dd31e5cbfb943fcb8b8a6">NETDEV_IEEE802154_CCA_MODE_6</a>,       </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;} <a class="code" href="group__drivers__netdev__ieee802154.html#ga3c394bd0168c30eab6bc77ff9925d883">netdev_ieee802154_cca_mode_t</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html">  100</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a6840d8f87cf087deb58b1ff7334ea622">  101</a></span>&#160;    <a class="code" href="structnetdev.html">netdev_t</a> <a class="code" href="structnetdev__ieee802154__t.html#a6840d8f87cf087deb58b1ff7334ea622">netdev</a>;                        </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#ifdef MODULE_GNRC</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="group__net__gnrc__nettype.html#ga2582fbb16a318806983c225a69460902">gnrc_nettype_t</a> proto;                   </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a2d809f49131c9d2e6f7f67370ada6dfe">  113</a></span>&#160;    uint16_t <a class="code" href="structnetdev__ieee802154__t.html#a2d809f49131c9d2e6f7f67370ada6dfe">pan</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a3a8b2b97d33e54cae8c5fb8decf49480">  118</a></span>&#160;    uint8_t short_addr[<a class="code" href="group__net__ieee802154__header.html#ga4ee6eb20f612c511e9afc455bc3433ad">IEEE802154_SHORT_ADDRESS_LEN</a>];</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a0b59bd3613a1db42dcdc0315a7092378">  123</a></span>&#160;    uint8_t long_addr[<a class="code" href="group__net__ieee802154__header.html#gab12d08a9821180028c12463a781e3e7a">IEEE802154_LONG_ADDRESS_LEN</a>];</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a203eea596910c7f3f446a63f3d02127f">  124</a></span>&#160;    uint8_t <a class="code" href="structnetdev__ieee802154__t.html#a203eea596910c7f3f446a63f3d02127f">seq</a>;                            </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a8b7b2c7732c22a9f3740555f6b3333c2">  125</a></span>&#160;    uint8_t <a class="code" href="structnetdev__ieee802154__t.html#a8b7b2c7732c22a9f3740555f6b3333c2">chan</a>;                           </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#acada8e0b7e154c4c7ee64e386abef5e5">  126</a></span>&#160;    uint8_t <a class="code" href="structnetdev__ieee802154__t.html#acada8e0b7e154c4c7ee64e386abef5e5">page</a>;                           </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a9696c92033a8f663bc2e11239924ec35">  127</a></span>&#160;    uint16_t <a class="code" href="structnetdev__ieee802154__t.html#a9696c92033a8f663bc2e11239924ec35">flags</a>;                         </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a82974310b4669e6530bea71cf598e9f4">  128</a></span>&#160;    int16_t <a class="code" href="structnetdev__ieee802154__t.html#a82974310b4669e6530bea71cf598e9f4">txpower</a>;                        </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_IEEE802154_SECURITY) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__t.html#a4baa86e1af9a6b97e54dcabd5d1a2187">  130</a></span>&#160;    <a class="code" href="structieee802154__sec__context.html">ieee802154_sec_context_t</a> <a class="code" href="structnetdev__ieee802154__t.html#a4baa86e1af9a6b97e54dcabd5d1a2187">sec_ctx</a>;       </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;} <a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__rx__info.html">  138</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structnetdev__ieee802154__rx__info.html">netdev_ieee802154_rx_info</a> {</div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__rx__info.html#ad2590612d2d95563ce63e324064e6cdc">  139</a></span>&#160;    int16_t <a class="code" href="structnetdev__ieee802154__rx__info.html#ad2590612d2d95563ce63e324064e6cdc">rssi</a>;           </div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__rx__info.html#acfdb67418f005c794e17caa86cdcbf6a">  140</a></span>&#160;    uint8_t <a class="code" href="structnetdev__ieee802154__rx__info.html#acfdb67418f005c794e17caa86cdcbf6a">lqi</a>;            </div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="structnetdev__ieee802154__rx__info.html#ab2ecc41015ed3442483cf2e1e8cc87e1">  141</a></span>&#160;    uint8_t <a class="code" href="structnetdev__ieee802154__rx__info.html#ab2ecc41015ed3442483cf2e1e8cc87e1">flags</a>;          </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NETDEV_IEEE802154_RX_TIMESTAMP)</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    uint64_t timestamp;     </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga0b8223bef9ea4a6db9bc641912dbc600">  145</a></span>&#160;} <a class="code" href="group__drivers__netdev__ieee802154.html#ga0b8223bef9ea4a6db9bc641912dbc600">netdev_ieee802154_rx_info_t</a>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga6a547f6c8305c55681f624d4fda82a66">  154</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__drivers__netdev__ieee802154.html#ga6a547f6c8305c55681f624d4fda82a66">netdev_ieee802154_rx_info_set_timestamp</a>(</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <a class="code" href="structnetdev__ieee802154__rx__info.html">netdev_ieee802154_rx_info_t</a> *dest,</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        uint64_t timestamp)</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;{</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    (void)dest;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    (void)timestamp;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NETDEV_IEEE802154_RX_TIMESTAMP)</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    dest-&gt;timestamp = timestamp;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    dest-&gt;<a class="code" href="structnetdev__ieee802154__rx__info.html#ab2ecc41015ed3442483cf2e1e8cc87e1">flags</a> |= <a class="code" href="group__drivers__netdev__ieee802154.html#ga6273248982125bb84178f49cdfae0301">NETDEV_RX_IEEE802154_INFO_FLAG_TIMESTAMP</a>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gad68efd69046291c4711bdb3e0091e0d6">  177</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__drivers__netdev__ieee802154.html#gad68efd69046291c4711bdb3e0091e0d6">netdev_ieee802154_rx_info_get_timestamp</a>(</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keyword">const</span> <a class="code" href="structnetdev__ieee802154__rx__info.html">netdev_ieee802154_rx_info_t</a> *info,</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        uint64_t *dest)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;{</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    (void)info;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    (void)dest;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NETDEV_IEEE802154_RX_TIMESTAMP)</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordflow">if</span> (info-&gt;<a class="code" href="structnetdev__ieee802154__rx__info.html#ab2ecc41015ed3442483cf2e1e8cc87e1">flags</a> &amp; <a class="code" href="group__drivers__netdev__ieee802154.html#ga6273248982125bb84178f49cdfae0301">NETDEV_RX_IEEE802154_INFO_FLAG_TIMESTAMP</a>) {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        *dest = info-&gt;timestamp;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;}</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gaddfee45b3aadecc4d06fc6dfbbfcad2f">  201</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__netdev__ieee802154.html#gaddfee45b3aadecc4d06fc6dfbbfcad2f">netdev_ieee802154_reset</a>(<a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a> *dev);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga807edbc4a910648061ced6c8c15c4198">  216</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__netdev__ieee802154.html#ga807edbc4a910648061ced6c8c15c4198">netdev_ieee802154_get</a>(<a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a> *dev, <a class="code" href="group__net__netopt.html#ga19e30424c1ab107c9c84dc0cb29d9906">netopt_t</a> opt, <span class="keywordtype">void</span> *value,</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                          <span class="keywordtype">size_t</span> max_len);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gaec403a7dcf6581e11b95b75220c40a35">  245</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__netdev__ieee802154.html#gaec403a7dcf6581e11b95b75220c40a35">netdev_ieee802154_set</a>(<a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a> *dev, <a class="code" href="group__net__netopt.html#ga19e30424c1ab107c9c84dc0cb29d9906">netopt_t</a> opt, <span class="keyword">const</span> <span class="keywordtype">void</span> *value,</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                          <span class="keywordtype">size_t</span> value_len);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00264"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#ga54625153bbd43002d0b64b1cd21aed2d">  264</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__netdev__ieee802154.html#ga54625153bbd43002d0b64b1cd21aed2d">netdev_ieee802154_dst_filter</a>(<a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a> *dev, <span class="keyword">const</span> uint8_t *mhr);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="group__drivers__netdev__ieee802154.html#gadfa9cb4f2fa824cfc4a15bdc50c166a3">  277</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__drivers__netdev__ieee802154.html#gadfa9cb4f2fa824cfc4a15bdc50c166a3">netdev_ieee802154_setup</a>(<a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a> *dev)</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;{</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="comment">/* generate EUI-64 and short address */</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="group__net__eui__provider.html#gaaeacb0ffb4c2a37e039a882bc4e61e4e">netdev_eui64_get</a>(&amp;dev-&gt;<a class="code" href="structnetdev__ieee802154__t.html#a6840d8f87cf087deb58b1ff7334ea622">netdev</a>, (<a class="code" href="unioneui64__t.html">eui64_t</a> *)&amp;dev-&gt;<a class="code" href="structnetdev__ieee802154__t.html#a0b59bd3613a1db42dcdc0315a7092378">long_addr</a>);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <a class="code" href="group__net__eui__provider.html#ga21bf789be9ce8be7fbb12d1698ead8de">eui_short_from_eui64</a>((<a class="code" href="unioneui64__t.html">eui64_t</a> *)&amp;dev-&gt;<a class="code" href="structnetdev__ieee802154__t.html#a0b59bd3613a1db42dcdc0315a7092378">long_addr</a>,</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                         (<a class="code" href="unionbe__uint16__t.html">network_uint16_t</a> *)&amp;dev-&gt;<a class="code" href="structnetdev__ieee802154__t.html#a3a8b2b97d33e54cae8c5fb8decf49480">short_addr</a>);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;}</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NET_NETDEV_IEEE802154_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_8h.html">netdev.h</a></div><div class="ttdoc">Definitions low-level network driver interface.</div></div>
+<div class="ttc" id="aeui__provider_8h_html"><div class="ttname"><a href="eui__provider_8h.html">eui_provider.h</a></div><div class="ttdoc">EUI-48 and EUI-64 address provider.</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_ga0b8223bef9ea4a6db9bc641912dbc600"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#ga0b8223bef9ea4a6db9bc641912dbc600">netdev_ieee802154_rx_info_t</a></div><div class="ttdeci">struct netdev_ieee802154_rx_info netdev_ieee802154_rx_info_t</div><div class="ttdoc">Received packet status information for IEEE 802.15.4 radios.</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_ga3c394bd0168c30eab6bc77ff9925d883"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#ga3c394bd0168c30eab6bc77ff9925d883">netdev_ieee802154_cca_mode_t</a></div><div class="ttdeci">netdev_ieee802154_cca_mode_t</div><div class="ttdoc">Option parameter to be used with NETOPT_CCA_MODE to set the mode of the clear channel assessment (CCA...</div><div class="ttdef"><b>Definition:</b> ieee802154.h:82</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_ga54625153bbd43002d0b64b1cd21aed2d"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#ga54625153bbd43002d0b64b1cd21aed2d">netdev_ieee802154_dst_filter</a></div><div class="ttdeci">int netdev_ieee802154_dst_filter(netdev_ieee802154_t *dev, const uint8_t *mhr)</div><div class="ttdoc">This function compares destination address and pan id with addresses and pan id of the device.</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_ga6273248982125bb84178f49cdfae0301"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#ga6273248982125bb84178f49cdfae0301">NETDEV_RX_IEEE802154_INFO_FLAG_TIMESTAMP</a></div><div class="ttdeci">#define NETDEV_RX_IEEE802154_INFO_FLAG_TIMESTAMP</div><div class="ttdoc">Timestamp valid.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:74</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_ga6a547f6c8305c55681f624d4fda82a66"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#ga6a547f6c8305c55681f624d4fda82a66">netdev_ieee802154_rx_info_set_timestamp</a></div><div class="ttdeci">static void netdev_ieee802154_rx_info_set_timestamp(netdev_ieee802154_rx_info_t *dest, uint64_t timestamp)</div><div class="ttdoc">Write the given timestamp to the given RX info struct.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:154</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_ga807edbc4a910648061ced6c8c15c4198"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#ga807edbc4a910648061ced6c8c15c4198">netdev_ieee802154_get</a></div><div class="ttdeci">int netdev_ieee802154_get(netdev_ieee802154_t *dev, netopt_t opt, void *value, size_t max_len)</div><div class="ttdoc">Fallback function for netdev IEEE 802.15.4 devices' _get function.</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gad68efd69046291c4711bdb3e0091e0d6"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gad68efd69046291c4711bdb3e0091e0d6">netdev_ieee802154_rx_info_get_timestamp</a></div><div class="ttdeci">static int netdev_ieee802154_rx_info_get_timestamp(const netdev_ieee802154_rx_info_t *info, uint64_t *dest)</div><div class="ttdoc">Get the timestamp to from the RX info.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:177</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gaddfee45b3aadecc4d06fc6dfbbfcad2f"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gaddfee45b3aadecc4d06fc6dfbbfcad2f">netdev_ieee802154_reset</a></div><div class="ttdeci">void netdev_ieee802154_reset(netdev_ieee802154_t *dev)</div><div class="ttdoc">Reset function for ieee802154 common fields.</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gadfa9cb4f2fa824cfc4a15bdc50c166a3"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gadfa9cb4f2fa824cfc4a15bdc50c166a3">netdev_ieee802154_setup</a></div><div class="ttdeci">static void netdev_ieee802154_setup(netdev_ieee802154_t *dev)</div><div class="ttdoc">Configure the hardware address of a IEEE 802.15.4 devices.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:277</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gaec403a7dcf6581e11b95b75220c40a35"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gaec403a7dcf6581e11b95b75220c40a35">netdev_ieee802154_set</a></div><div class="ttdeci">int netdev_ieee802154_set(netdev_ieee802154_t *dev, netopt_t opt, const void *value, size_t value_len)</div><div class="ttdoc">Fallback function for netdev IEEE 802.15.4 devices' _set function.</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gga3c394bd0168c30eab6bc77ff9925d883a0602dddb309a71c4cae8975a684e959e"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a0602dddb309a71c4cae8975a684e959e">NETDEV_IEEE802154_CCA_MODE_4</a></div><div class="ttdeci">@ NETDEV_IEEE802154_CCA_MODE_4</div><div class="ttdoc">ALOHA.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:86</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gga3c394bd0168c30eab6bc77ff9925d883a0a45fdbe08f1e588287f2238aa061eb2"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a0a45fdbe08f1e588287f2238aa061eb2">NETDEV_IEEE802154_CCA_MODE_2</a></div><div class="ttdeci">@ NETDEV_IEEE802154_CCA_MODE_2</div><div class="ttdoc">Carrier sense only.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:84</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gga3c394bd0168c30eab6bc77ff9925d883a176a020b9356bb3f5bbb7b89839aa9a4"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a176a020b9356bb3f5bbb7b89839aa9a4">NETDEV_IEEE802154_CCA_MODE_1</a></div><div class="ttdeci">@ NETDEV_IEEE802154_CCA_MODE_1</div><div class="ttdoc">Energy above threshold.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:83</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gga3c394bd0168c30eab6bc77ff9925d883a1c9de82dc01dd31e5cbfb943fcb8b8a6"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a1c9de82dc01dd31e5cbfb943fcb8b8a6">NETDEV_IEEE802154_CCA_MODE_6</a></div><div class="ttdeci">@ NETDEV_IEEE802154_CCA_MODE_6</div><div class="ttdoc">UWB preamble sense based on the packet with the multiplexed preamble.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:88</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gga3c394bd0168c30eab6bc77ff9925d883a61da09b94db7314e855b63a7d9e79092"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a61da09b94db7314e855b63a7d9e79092">NETDEV_IEEE802154_CCA_MODE_5</a></div><div class="ttdeci">@ NETDEV_IEEE802154_CCA_MODE_5</div><div class="ttdoc">UWB preamble sense based on the SHR of a frame.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:87</div></div>
+<div class="ttc" id="agroup__drivers__netdev__ieee802154_html_gga3c394bd0168c30eab6bc77ff9925d883a8504785ddfac5e8e5bbce9b3ab4364c8"><div class="ttname"><a href="group__drivers__netdev__ieee802154.html#gga3c394bd0168c30eab6bc77ff9925d883a8504785ddfac5e8e5bbce9b3ab4364c8">NETDEV_IEEE802154_CCA_MODE_3</a></div><div class="ttdeci">@ NETDEV_IEEE802154_CCA_MODE_3</div><div class="ttdoc">Carrier sense with energy above threshold.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:85</div></div>
+<div class="ttc" id="agroup__net__eui__provider_html_ga21bf789be9ce8be7fbb12d1698ead8de"><div class="ttname"><a href="group__net__eui__provider.html#ga21bf789be9ce8be7fbb12d1698ead8de">eui_short_from_eui64</a></div><div class="ttdeci">static void eui_short_from_eui64(eui64_t *addr_long, network_uint16_t *addr_short)</div><div class="ttdoc">Get a short unicast address from an EUI-64.</div><div class="ttdef"><b>Definition:</b> eui_provider.h:191</div></div>
+<div class="ttc" id="agroup__net__eui__provider_html_gaaeacb0ffb4c2a37e039a882bc4e61e4e"><div class="ttname"><a href="group__net__eui__provider.html#gaaeacb0ffb4c2a37e039a882bc4e61e4e">netdev_eui64_get</a></div><div class="ttdeci">void netdev_eui64_get(netdev_t *netdev, eui64_t *addr)</div><div class="ttdoc">Generates an EUI-64 address for the netdev interface.</div></div>
+<div class="ttc" id="agroup__net__gnrc__nettype_html_ga2582fbb16a318806983c225a69460902"><div class="ttname"><a href="group__net__gnrc__nettype.html#ga2582fbb16a318806983c225a69460902">gnrc_nettype_t</a></div><div class="ttdeci">gnrc_nettype_t</div><div class="ttdoc">Definition of protocol types in the network stack.</div><div class="ttdef"><b>Definition:</b> nettype.h:51</div></div>
+<div class="ttc" id="agroup__net__ieee802154__header_html_ga4ee6eb20f612c511e9afc455bc3433ad"><div class="ttname"><a href="group__net__ieee802154__header.html#ga4ee6eb20f612c511e9afc455bc3433ad">IEEE802154_SHORT_ADDRESS_LEN</a></div><div class="ttdeci">#define IEEE802154_SHORT_ADDRESS_LEN</div><div class="ttdoc">IEEE 802.15.4 address lengths.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:44</div></div>
+<div class="ttc" id="agroup__net__ieee802154__header_html_gab12d08a9821180028c12463a781e3e7a"><div class="ttname"><a href="group__net__ieee802154__header.html#gab12d08a9821180028c12463a781e3e7a">IEEE802154_LONG_ADDRESS_LEN</a></div><div class="ttdeci">#define IEEE802154_LONG_ADDRESS_LEN</div><div class="ttdoc">long address (EUI-64)</div><div class="ttdef"><b>Definition:</b> ieee802154.h:45</div></div>
+<div class="ttc" id="agroup__net__netopt_html_ga19e30424c1ab107c9c84dc0cb29d9906"><div class="ttname"><a href="group__net__netopt.html#ga19e30424c1ab107c9c84dc0cb29d9906">netopt_t</a></div><div class="ttdeci">netopt_t</div><div class="ttdoc">Global list of configuration options available throughout the network stack, e.g.</div><div class="ttdef"><b>Definition:</b> netopt.h:45</div></div>
+<div class="ttc" id="aieee802154__security_8h_html"><div class="ttname"><a href="ieee802154__security_8h.html">ieee802154_security.h</a></div><div class="ttdoc">IEEE 802.15.4 security interface.</div></div>
+<div class="ttc" id="anetopt_8h_html"><div class="ttname"><a href="netopt_8h.html">netopt.h</a></div><div class="ttdoc">Definition of global configuration options.</div></div>
+<div class="ttc" id="anettype_8h_html"><div class="ttname"><a href="nettype_8h.html">nettype.h</a></div><div class="ttdoc">Protocol type definitions.</div></div>
+<div class="ttc" id="astructieee802154__sec__context_html"><div class="ttname"><a href="structieee802154__sec__context.html">ieee802154_sec_context</a></div><div class="ttdoc">Struct to hold IEEE 802.15.4 security information.</div><div class="ttdef"><b>Definition:</b> ieee802154_security.h:238</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__rx__info_html"><div class="ttname"><a href="structnetdev__ieee802154__rx__info.html">netdev_ieee802154_rx_info</a></div><div class="ttdoc">Received packet status information for IEEE 802.15.4 radios.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:138</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__rx__info_html_ab2ecc41015ed3442483cf2e1e8cc87e1"><div class="ttname"><a href="structnetdev__ieee802154__rx__info.html#ab2ecc41015ed3442483cf2e1e8cc87e1">netdev_ieee802154_rx_info::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdoc">Flags e.g.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:141</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__rx__info_html_acfdb67418f005c794e17caa86cdcbf6a"><div class="ttname"><a href="structnetdev__ieee802154__rx__info.html#acfdb67418f005c794e17caa86cdcbf6a">netdev_ieee802154_rx_info::lqi</a></div><div class="ttdeci">uint8_t lqi</div><div class="ttdoc">LQI of a received frame.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:140</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__rx__info_html_ad2590612d2d95563ce63e324064e6cdc"><div class="ttname"><a href="structnetdev__ieee802154__rx__info.html#ad2590612d2d95563ce63e324064e6cdc">netdev_ieee802154_rx_info::rssi</a></div><div class="ttdeci">int16_t rssi</div><div class="ttdoc">RSSI of a received frame in dBm.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:139</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html"><div class="ttname"><a href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a></div><div class="ttdoc">Extended structure to hold IEEE 802.15.4 driver state.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:100</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a0b59bd3613a1db42dcdc0315a7092378"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a0b59bd3613a1db42dcdc0315a7092378">netdev_ieee802154_t::long_addr</a></div><div class="ttdeci">uint8_t long_addr[IEEE802154_LONG_ADDRESS_LEN]</div><div class="ttdoc">Long address in network byte order.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:123</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a203eea596910c7f3f446a63f3d02127f"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a203eea596910c7f3f446a63f3d02127f">netdev_ieee802154_t::seq</a></div><div class="ttdeci">uint8_t seq</div><div class="ttdoc">sequence number</div><div class="ttdef"><b>Definition:</b> ieee802154.h:124</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a2d809f49131c9d2e6f7f67370ada6dfe"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a2d809f49131c9d2e6f7f67370ada6dfe">netdev_ieee802154_t::pan</a></div><div class="ttdeci">uint16_t pan</div><div class="ttdoc">IEEE 802.15.4 specific fields.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:113</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a3a8b2b97d33e54cae8c5fb8decf49480"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a3a8b2b97d33e54cae8c5fb8decf49480">netdev_ieee802154_t::short_addr</a></div><div class="ttdeci">uint8_t short_addr[IEEE802154_SHORT_ADDRESS_LEN]</div><div class="ttdoc">Short address in network byte order.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:118</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a4baa86e1af9a6b97e54dcabd5d1a2187"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a4baa86e1af9a6b97e54dcabd5d1a2187">netdev_ieee802154_t::sec_ctx</a></div><div class="ttdeci">ieee802154_sec_context_t sec_ctx</div><div class="ttdoc">security context</div><div class="ttdef"><b>Definition:</b> ieee802154.h:130</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a6840d8f87cf087deb58b1ff7334ea622"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a6840d8f87cf087deb58b1ff7334ea622">netdev_ieee802154_t::netdev</a></div><div class="ttdeci">netdev_t netdev</div><div class="ttdoc">netdev_t base class</div><div class="ttdef"><b>Definition:</b> ieee802154.h:101</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a82974310b4669e6530bea71cf598e9f4"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a82974310b4669e6530bea71cf598e9f4">netdev_ieee802154_t::txpower</a></div><div class="ttdeci">int16_t txpower</div><div class="ttdoc">tx power in dBm</div><div class="ttdef"><b>Definition:</b> ieee802154.h:128</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a8b7b2c7732c22a9f3740555f6b3333c2"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a8b7b2c7732c22a9f3740555f6b3333c2">netdev_ieee802154_t::chan</a></div><div class="ttdeci">uint8_t chan</div><div class="ttdoc">channel</div><div class="ttdef"><b>Definition:</b> ieee802154.h:125</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_a9696c92033a8f663bc2e11239924ec35"><div class="ttname"><a href="structnetdev__ieee802154__t.html#a9696c92033a8f663bc2e11239924ec35">netdev_ieee802154_t::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdoc">flags as defined above</div><div class="ttdef"><b>Definition:</b> ieee802154.h:127</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html_acada8e0b7e154c4c7ee64e386abef5e5"><div class="ttname"><a href="structnetdev__ieee802154__t.html#acada8e0b7e154c4c7ee64e386abef5e5">netdev_ieee802154_t::page</a></div><div class="ttdeci">uint8_t page</div><div class="ttdoc">channel page</div><div class="ttdef"><b>Definition:</b> ieee802154.h:126</div></div>
+<div class="ttc" id="astructnetdev_html"><div class="ttname"><a href="structnetdev.html">netdev</a></div><div class="ttdoc">Structure to hold driver state.</div><div class="ttdef"><b>Definition:</b> netdev.h:363</div></div>
+<div class="ttc" id="asys_2include_2net_2ieee802154_8h_html"><div class="ttname"><a href="sys_2include_2net_2ieee802154_8h.html">ieee802154.h</a></div><div class="ttdoc">IEEE 802.15.4 header definitions.</div></div>
+<div class="ttc" id="aunionbe__uint16__t_html"><div class="ttname"><a href="unionbe__uint16__t.html">be_uint16_t</a></div><div class="ttdoc">A 16 bit integer in big endian aka network byte order.</div><div class="ttdef"><b>Definition:</b> byteorder.h:74</div></div>
+<div class="ttc" id="aunioneui64__t_html"><div class="ttname"><a href="unioneui64__t.html">eui64_t</a></div><div class="ttdoc">Data type to represent an EUI-64.</div><div class="ttdef"><b>Definition:</b> eui64.h:55</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="dir_d6e93f12c7f1457c860477bf55655de9.html">net</a></li><li class="navelem"><a class="el" href="dir_950d8b7004f37cc29c51f3043e5ab2f7.html">netdev</a></li><li class="navelem"><a class="el" href="drivers_2include_2net_2netdev_2ieee802154_8h.html">ieee802154.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: AIP31068 I2C LCD controller</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__drivers__aip31068.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">AIP31068 I2C LCD controller<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__display.html">Display Device Drivers</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Device driver for AIP31068. </p>
+<dl class="section author"><dt>Author</dt><dd>Hendrik van Essen <a href="#" onclick="location.href='mai'+'lto:'+'hen'+'dr'+'ik.'+'ve'+'@fu'+'-b'+'erl'+'in'+'.de'; return false;">hendr<span style="display: none;">.nosp@m.</span>ik.v<span style="display: none;">.nosp@m.</span>e@fu-<span style="display: none;">.nosp@m.</span>berl<span style="display: none;">.nosp@m.</span>in.de</a> </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:aip31068__internal_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aip31068__internal_8h.html">aip31068_internal.h</a></td></tr>
+<tr class="memdesc:aip31068__internal_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal definitions for the AIP31068 I2C LCD controller. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aip31068__params_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aip31068__params_8h.html">aip31068_params.h</a></td></tr>
+<tr class="memdesc:aip31068__params_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default configuration for the AIP31068 I2C LCD controller. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aip31068__regs_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aip31068__regs_8h.html">aip31068_regs.h</a></td></tr>
+<tr class="memdesc:aip31068__regs_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register definitions for the AIP31068 I2C LCD controller. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aip31068_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aip31068_8h.html">aip31068.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaip31068__params__t.html">aip31068_params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIP31068 device initialization parameters.  <a href="structaip31068__params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaip31068__t.html">aip31068_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">AIP31068 PWM device data structure type.  <a href="structaip31068__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga38a9a645f2c3dd1d4fe5663acafb2d2d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga38a9a645f2c3dd1d4fe5663acafb2d2d">aip31068_custom_symbol_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2da0fa34b54aadb1f893241ae76f56878aa">CUSTOM_SYMBOL_1</a> = 0
+, <a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2da8da09651195e8550fc88f8a2423540ef">CUSTOM_SYMBOL_2</a> = 1
+, <a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2da0f48cbf3d059b4a1cddfb05f7535d9ff">CUSTOM_SYMBOL_3</a> = 2
+, <a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2daf362fe5faad465f3bee21e36bbe06f11">CUSTOM_SYMBOL_4</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2dabbc12304246584cbad0193b955869170">CUSTOM_SYMBOL_5</a> = 4
+, <a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2daa77391beded17ade291904341c129cf5">CUSTOM_SYMBOL_6</a> = 5
+, <a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2dab4e31f69f26db6476050a64c8fa9995d">CUSTOM_SYMBOL_7</a> = 6
+, <a class="el" href="group__drivers__aip31068.html#gga38a9a645f2c3dd1d4fe5663acafb2d2daf5350ca38b9da4338bd39f27fd4cddcc">CUSTOM_SYMBOL_8</a> = 7
+<br />
+ }</td></tr>
+<tr class="memdesc:ga38a9a645f2c3dd1d4fe5663acafb2d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keys for custom symbols.  <a href="group__drivers__aip31068.html#ga38a9a645f2c3dd1d4fe5663acafb2d2d">More...</a><br /></td></tr>
+<tr class="separator:ga38a9a645f2c3dd1d4fe5663acafb2d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b7e22ce7418fb1edced6e3ff64ec9dc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga1b7e22ce7418fb1edced6e3ff64ec9dc">aip31068_text_insertion_mode_t</a> { <a class="el" href="group__drivers__aip31068.html#gga1b7e22ce7418fb1edced6e3ff64ec9dca55b57dce74f14a62104ae66e62789eb3">LEFT_TO_RIGHT</a>
+, <a class="el" href="group__drivers__aip31068.html#gga1b7e22ce7418fb1edced6e3ff64ec9dca054986f32cd1cb5ade35758f8947c42c">RIGHT_TO_LEFT</a>
+ }</td></tr>
+<tr class="memdesc:ga1b7e22ce7418fb1edced6e3ff64ec9dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the direction of the text insertion.  <a href="group__drivers__aip31068.html#ga1b7e22ce7418fb1edced6e3ff64ec9dc">More...</a><br /></td></tr>
+<tr class="separator:ga1b7e22ce7418fb1edced6e3ff64ec9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66a355bf58387e7af2e5b662834f5d5f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga66a355bf58387e7af2e5b662834f5d5f">aip31068_font_size_t</a> { <a class="el" href="group__drivers__aip31068.html#gga66a355bf58387e7af2e5b662834f5d5fa8bbb594c52709c80cb1e8980eb2ad5cc">FONT_SIZE_5x8</a>
+, <a class="el" href="group__drivers__aip31068.html#gga66a355bf58387e7af2e5b662834f5d5fa1d29a047ab0f908cced6c9b45b4da729">FONT_SIZE_5x10</a>
+ }</td></tr>
+<tr class="memdesc:ga66a355bf58387e7af2e5b662834f5d5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of a character of the display in dots/pixels.  <a href="group__drivers__aip31068.html#ga66a355bf58387e7af2e5b662834f5d5f">More...</a><br /></td></tr>
+<tr class="separator:ga66a355bf58387e7af2e5b662834f5d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a6afd8a2289f5454fb3fb8addb7359b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga5a6afd8a2289f5454fb3fb8addb7359b">aip31068_bit_mode_t</a> { <a class="el" href="group__drivers__aip31068.html#gga5a6afd8a2289f5454fb3fb8addb7359ba4dc30b5bd93007b86ff3259973f19912">BITMODE_4_BIT</a>
+, <a class="el" href="group__drivers__aip31068.html#gga5a6afd8a2289f5454fb3fb8addb7359ba309104fd174e512617989dedc8577b2f">BITMODE_8_BIT</a>
+ }</td></tr>
+<tr class="memdesc:ga5a6afd8a2289f5454fb3fb8addb7359b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit mode for the display.  <a href="group__drivers__aip31068.html#ga5a6afd8a2289f5454fb3fb8addb7359b">More...</a><br /></td></tr>
+<tr class="separator:ga5a6afd8a2289f5454fb3fb8addb7359b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga0bb284a2553013d7eac25ff27516f684"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga0bb284a2553013d7eac25ff27516f684">aip31068_init</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, const <a class="el" href="structaip31068__params__t.html">aip31068_params_t</a> *params)</td></tr>
+<tr class="memdesc:ga0bb284a2553013d7eac25ff27516f684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization.  <a href="group__drivers__aip31068.html#ga0bb284a2553013d7eac25ff27516f684">More...</a><br /></td></tr>
+<tr class="separator:ga0bb284a2553013d7eac25ff27516f684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga86506273b2d25ff8e90bfac1b33e621e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga86506273b2d25ff8e90bfac1b33e621e">aip31068_turn_on</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:ga86506273b2d25ff8e90bfac1b33e621e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn on the display.  <a href="group__drivers__aip31068.html#ga86506273b2d25ff8e90bfac1b33e621e">More...</a><br /></td></tr>
+<tr class="separator:ga86506273b2d25ff8e90bfac1b33e621e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0cdd250880324a0200fbe5ba7e456982"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga0cdd250880324a0200fbe5ba7e456982">aip31068_turn_off</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:ga0cdd250880324a0200fbe5ba7e456982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn off the display.  <a href="group__drivers__aip31068.html#ga0cdd250880324a0200fbe5ba7e456982">More...</a><br /></td></tr>
+<tr class="separator:ga0cdd250880324a0200fbe5ba7e456982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga07cb5e97b06e4e45dfc8e341a7720db3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga07cb5e97b06e4e45dfc8e341a7720db3">aip31068_clear</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:ga07cb5e97b06e4e45dfc8e341a7720db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the display and set the cursor to position (0, 0).  <a href="group__drivers__aip31068.html#ga07cb5e97b06e4e45dfc8e341a7720db3">More...</a><br /></td></tr>
+<tr class="separator:ga07cb5e97b06e4e45dfc8e341a7720db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe3c19848fa599295cd5e1c77ec6df09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#gafe3c19848fa599295cd5e1c77ec6df09">aip31068_return_home</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:gafe3c19848fa599295cd5e1c77ec6df09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset cursor position to (0, 0) and scroll display to original position.  <a href="group__drivers__aip31068.html#gafe3c19848fa599295cd5e1c77ec6df09">More...</a><br /></td></tr>
+<tr class="separator:gafe3c19848fa599295cd5e1c77ec6df09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9255df345ad27b872a6435e3c0a743cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga9255df345ad27b872a6435e3c0a743cd">aip31068_set_auto_scroll_enabled</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, bool enabled)</td></tr>
+<tr class="memdesc:ga9255df345ad27b872a6435e3c0a743cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable automated scrolling.  <a href="group__drivers__aip31068.html#ga9255df345ad27b872a6435e3c0a743cd">More...</a><br /></td></tr>
+<tr class="separator:ga9255df345ad27b872a6435e3c0a743cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb74f1516812023cbbf9af5ccfd07d71"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#gaeb74f1516812023cbbf9af5ccfd07d71">aip31068_set_cursor_blinking_enabled</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, bool enabled)</td></tr>
+<tr class="memdesc:gaeb74f1516812023cbbf9af5ccfd07d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable cursor blinking.  <a href="group__drivers__aip31068.html#gaeb74f1516812023cbbf9af5ccfd07d71">More...</a><br /></td></tr>
+<tr class="separator:gaeb74f1516812023cbbf9af5ccfd07d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37378419792495a2e281578159966eb5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga37378419792495a2e281578159966eb5">aip31068_set_cursor_visible</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, bool visible)</td></tr>
+<tr class="memdesc:ga37378419792495a2e281578159966eb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show or hide the cursor.  <a href="group__drivers__aip31068.html#ga37378419792495a2e281578159966eb5">More...</a><br /></td></tr>
+<tr class="separator:ga37378419792495a2e281578159966eb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga935403417623e4e5188656723c4f0614"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga935403417623e4e5188656723c4f0614">aip31068_set_cursor_position</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, uint8_t row, uint8_t col)</td></tr>
+<tr class="memdesc:ga935403417623e4e5188656723c4f0614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the cursor to a given position.  <a href="group__drivers__aip31068.html#ga935403417623e4e5188656723c4f0614">More...</a><br /></td></tr>
+<tr class="separator:ga935403417623e4e5188656723c4f0614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd2ef2b92b13f975751df9f6423dd648"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#gafd2ef2b92b13f975751df9f6423dd648">aip31068_set_text_insertion_mode</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, <a class="el" href="group__drivers__aip31068.html#ga1b7e22ce7418fb1edced6e3ff64ec9dc">aip31068_text_insertion_mode_t</a> mode)</td></tr>
+<tr class="memdesc:gafd2ef2b92b13f975751df9f6423dd648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the direction from which the text is inserted, starting from the cursor.  <a href="group__drivers__aip31068.html#gafd2ef2b92b13f975751df9f6423dd648">More...</a><br /></td></tr>
+<tr class="separator:gafd2ef2b92b13f975751df9f6423dd648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga31dd56fef68593d8c1a6093837d20ab0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga31dd56fef68593d8c1a6093837d20ab0">aip31068_move_cursor_left</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:ga31dd56fef68593d8c1a6093837d20ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the cursor one unit to the left.  <a href="group__drivers__aip31068.html#ga31dd56fef68593d8c1a6093837d20ab0">More...</a><br /></td></tr>
+<tr class="separator:ga31dd56fef68593d8c1a6093837d20ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c8a4d7aea4c069127c23129e6a6e53f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga1c8a4d7aea4c069127c23129e6a6e53f">aip31068_move_cursor_right</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:ga1c8a4d7aea4c069127c23129e6a6e53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the cursor one unit to the right.  <a href="group__drivers__aip31068.html#ga1c8a4d7aea4c069127c23129e6a6e53f">More...</a><br /></td></tr>
+<tr class="separator:ga1c8a4d7aea4c069127c23129e6a6e53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaddb890810b78d0eb228943d2d917b836"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#gaddb890810b78d0eb228943d2d917b836">aip31068_scroll_display_left</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:gaddb890810b78d0eb228943d2d917b836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scroll the entire display content (all lines) one unit to the left.  <a href="group__drivers__aip31068.html#gaddb890810b78d0eb228943d2d917b836">More...</a><br /></td></tr>
+<tr class="separator:gaddb890810b78d0eb228943d2d917b836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac84265fffcf6e20ec2b5f7141408be19"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#gac84265fffcf6e20ec2b5f7141408be19">aip31068_scroll_display_right</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev)</td></tr>
+<tr class="memdesc:gac84265fffcf6e20ec2b5f7141408be19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scroll the entire display content (all lines) one unit to the right.  <a href="group__drivers__aip31068.html#gac84265fffcf6e20ec2b5f7141408be19">More...</a><br /></td></tr>
+<tr class="separator:gac84265fffcf6e20ec2b5f7141408be19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad87a20c27db3686950f3a0e6c1c4eb5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#gad87a20c27db3686950f3a0e6c1c4eb5f">aip31068_set_custom_symbol</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, <a class="el" href="group__drivers__aip31068.html#ga38a9a645f2c3dd1d4fe5663acafb2d2d">aip31068_custom_symbol_t</a> customSymbol, const uint8_t charmap[])</td></tr>
+<tr class="memdesc:gad87a20c27db3686950f3a0e6c1c4eb5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a custom symbol.  <a href="group__drivers__aip31068.html#gad87a20c27db3686950f3a0e6c1c4eb5f">More...</a><br /></td></tr>
+<tr class="separator:gad87a20c27db3686950f3a0e6c1c4eb5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1da86a97530229fe1c78c44fbc21351b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga1da86a97530229fe1c78c44fbc21351b">aip31068_print_custom_symbol</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, <a class="el" href="group__drivers__aip31068.html#ga38a9a645f2c3dd1d4fe5663acafb2d2d">aip31068_custom_symbol_t</a> customSymbol)</td></tr>
+<tr class="memdesc:ga1da86a97530229fe1c78c44fbc21351b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a custom symbol by key reference.  <a href="group__drivers__aip31068.html#ga1da86a97530229fe1c78c44fbc21351b">More...</a><br /></td></tr>
+<tr class="separator:ga1da86a97530229fe1c78c44fbc21351b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32f5d0935aa9158dad27a0041094b8d5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga32f5d0935aa9158dad27a0041094b8d5">aip31068_print</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, const char *data)</td></tr>
+<tr class="memdesc:ga32f5d0935aa9158dad27a0041094b8d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a string.  <a href="group__drivers__aip31068.html#ga32f5d0935aa9158dad27a0041094b8d5">More...</a><br /></td></tr>
+<tr class="separator:ga32f5d0935aa9158dad27a0041094b8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga57682bb6db9de72ad7671a6e11c57431"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__aip31068.html#ga57682bb6db9de72ad7671a6e11c57431">aip31068_print_char</a> (<a class="el" href="structaip31068__t.html">aip31068_t</a> *dev, char c)</td></tr>
+<tr class="memdesc:ga57682bb6db9de72ad7671a6e11c57431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a single character.  <a href="group__drivers__aip31068.html#ga57682bb6db9de72ad7671a6e11c57431">More...</a><br /></td></tr>
+<tr class="separator:ga57682bb6db9de72ad7671a6e11c57431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga5a6afd8a2289f5454fb3fb8addb7359b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a6afd8a2289f5454fb3fb8addb7359b">&#9670;&nbsp;</a></span>aip31068_bit_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__aip31068.html#ga5a6afd8a2289f5454fb3fb8addb7359b">aip31068_bit_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bit mode for the display. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga5a6afd8a2289f5454fb3fb8addb7359ba4dc30b5bd93007b86ff3259973f19912"></a>BITMODE_4_BIT&#160;</td><td class="fielddoc"><p>Use 4 bit mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5a6afd8a2289f5454fb3fb8addb7359ba309104fd174e512617989dedc8577b2f"></a>BITMODE_8_BIT&#160;</td><td class="fielddoc"><p>Use 8 bit mode. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga38a9a645f2c3dd1d4fe5663acafb2d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga38a9a645f2c3dd1d4fe5663acafb2d2d">&#9670;&nbsp;</a></span>aip31068_custom_symbol_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__aip31068.html#ga38a9a645f2c3dd1d4fe5663acafb2d2d">aip31068_custom_symbol_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Keys for custom symbols. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2da0fa34b54aadb1f893241ae76f56878aa"></a>CUSTOM_SYMBOL_1&#160;</td><td class="fielddoc"><p>1st custom symbol </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2da8da09651195e8550fc88f8a2423540ef"></a>CUSTOM_SYMBOL_2&#160;</td><td class="fielddoc"><p>2nd custom symbol </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2da0f48cbf3d059b4a1cddfb05f7535d9ff"></a>CUSTOM_SYMBOL_3&#160;</td><td class="fielddoc"><p>3rd custom symbol </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2daf362fe5faad465f3bee21e36bbe06f11"></a>CUSTOM_SYMBOL_4&#160;</td><td class="fielddoc"><p>4th custom symbol </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2dabbc12304246584cbad0193b955869170"></a>CUSTOM_SYMBOL_5&#160;</td><td class="fielddoc"><p>5th custom symbol </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2daa77391beded17ade291904341c129cf5"></a>CUSTOM_SYMBOL_6&#160;</td><td class="fielddoc"><p>6th custom symbol </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2dab4e31f69f26db6476050a64c8fa9995d"></a>CUSTOM_SYMBOL_7&#160;</td><td class="fielddoc"><p>7th custom symbol </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga38a9a645f2c3dd1d4fe5663acafb2d2daf5350ca38b9da4338bd39f27fd4cddcc"></a>CUSTOM_SYMBOL_8&#160;</td><td class="fielddoc"><p>8th custom symbol </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga66a355bf58387e7af2e5b662834f5d5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga66a355bf58387e7af2e5b662834f5d5f">&#9670;&nbsp;</a></span>aip31068_font_size_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__aip31068.html#ga66a355bf58387e7af2e5b662834f5d5f">aip31068_font_size_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Size of a character of the display in dots/pixels. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga66a355bf58387e7af2e5b662834f5d5fa8bbb594c52709c80cb1e8980eb2ad5cc"></a>FONT_SIZE_5x8&#160;</td><td class="fielddoc"><p>Single character has 5x8 pixels. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga66a355bf58387e7af2e5b662834f5d5fa1d29a047ab0f908cced6c9b45b4da729"></a>FONT_SIZE_5x10&#160;</td><td class="fielddoc"><p>Single character has 5x10 pixels. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga1b7e22ce7418fb1edced6e3ff64ec9dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b7e22ce7418fb1edced6e3ff64ec9dc">&#9670;&nbsp;</a></span>aip31068_text_insertion_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__aip31068.html#ga1b7e22ce7418fb1edced6e3ff64ec9dc">aip31068_text_insertion_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines the direction of the text insertion. </p>
+<p>Starting from the cursor, either increment the column of the cursor position after insertion (LEFT_TO_RIGHT), or decrement the current column of the cursor position after insertion (RIGHT_TO_LEFT). </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1b7e22ce7418fb1edced6e3ff64ec9dca55b57dce74f14a62104ae66e62789eb3"></a>LEFT_TO_RIGHT&#160;</td><td class="fielddoc"><p>Insert text from left to right. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1b7e22ce7418fb1edced6e3ff64ec9dca054986f32cd1cb5ade35758f8947c42c"></a>RIGHT_TO_LEFT&#160;</td><td class="fielddoc"><p>Insert text from right to left. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga07cb5e97b06e4e45dfc8e341a7720db3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga07cb5e97b06e4e45dfc8e341a7720db3">&#9670;&nbsp;</a></span>aip31068_clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear the display and set the cursor to position (0, 0). </p>
+<dl class="section note"><dt>Note</dt><dd>: Also changes to setTextInsertionMode(LEFT_TO_RIGHT)</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0bb284a2553013d7eac25ff27516f684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0bb284a2553013d7eac25ff27516f684">&#9670;&nbsp;</a></span>aip31068_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structaip31068__params__t.html">aip31068_params_t</a> *&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Parameters for device initialization</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga31dd56fef68593d8c1a6093837d20ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga31dd56fef68593d8c1a6093837d20ab0">&#9670;&nbsp;</a></span>aip31068_move_cursor_left()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_move_cursor_left </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move the cursor one unit to the left. </p>
+<p>When the cursor passes the 40th character of the first line and a second line is available, the cursor will move to the second line.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1c8a4d7aea4c069127c23129e6a6e53f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1c8a4d7aea4c069127c23129e6a6e53f">&#9670;&nbsp;</a></span>aip31068_move_cursor_right()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_move_cursor_right </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move the cursor one unit to the right. </p>
+<p>When the cursor passes the 40th character of the first line and a second line is available, the cursor will move to the second line.</p>
+<dl class="section note"><dt>Note</dt><dd>: The cursor respects the setting for the insertion mode and is set to (1, 0) for LEFT_TO_RIGHT and to (1, COL_MAX) for RIGHT_TO_LEFT.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga32f5d0935aa9158dad27a0041094b8d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga32f5d0935aa9158dad27a0041094b8d5">&#9670;&nbsp;</a></span>aip31068_print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_print </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>String to be printed (null-terminated)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga57682bb6db9de72ad7671a6e11c57431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga57682bb6db9de72ad7671a6e11c57431">&#9670;&nbsp;</a></span>aip31068_print_char()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_print_char </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print a single character. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Character to be printed</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1da86a97530229fe1c78c44fbc21351b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1da86a97530229fe1c78c44fbc21351b">&#9670;&nbsp;</a></span>aip31068_print_custom_symbol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_print_custom_symbol </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__aip31068.html#ga38a9a645f2c3dd1d4fe5663acafb2d2d">aip31068_custom_symbol_t</a>&#160;</td>
+          <td class="paramname"><em>customSymbol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print a custom symbol by key reference. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">customSymbol</td><td>Key of the custom symbol to be printed</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gafe3c19848fa599295cd5e1c77ec6df09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe3c19848fa599295cd5e1c77ec6df09">&#9670;&nbsp;</a></span>aip31068_return_home()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_return_home </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset cursor position to (0, 0) and scroll display to original position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaddb890810b78d0eb228943d2d917b836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaddb890810b78d0eb228943d2d917b836">&#9670;&nbsp;</a></span>aip31068_scroll_display_left()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_scroll_display_left </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scroll the entire display content (all lines) one unit to the left. </p>
+<dl class="section note"><dt>Note</dt><dd>: The cursor respects the setting for the insertion mode and is set to (1, 0) for LEFT_TO_RIGHT and to (1, COL_MAX) for RIGHT_TO_LEFT.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac84265fffcf6e20ec2b5f7141408be19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac84265fffcf6e20ec2b5f7141408be19">&#9670;&nbsp;</a></span>aip31068_scroll_display_right()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_scroll_display_right </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scroll the entire display content (all lines) one unit to the right. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9255df345ad27b872a6435e3c0a743cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9255df345ad27b872a6435e3c0a743cd">&#9670;&nbsp;</a></span>aip31068_set_auto_scroll_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_set_auto_scroll_enabled </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable automated scrolling. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">enabled</td><td>Enable or disable</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaeb74f1516812023cbbf9af5ccfd07d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeb74f1516812023cbbf9af5ccfd07d71">&#9670;&nbsp;</a></span>aip31068_set_cursor_blinking_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_set_cursor_blinking_enabled </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable cursor blinking. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">enabled</td><td>Enable or disable</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga935403417623e4e5188656723c4f0614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga935403417623e4e5188656723c4f0614">&#9670;&nbsp;</a></span>aip31068_set_cursor_position()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_set_cursor_position </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>col</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move the cursor to a given position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">row</td><td>Row of the new cursor position (starting at 0) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">col</td><td>Column of the new cursor position (starting at 0)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga37378419792495a2e281578159966eb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga37378419792495a2e281578159966eb5">&#9670;&nbsp;</a></span>aip31068_set_cursor_visible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_set_cursor_visible </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>visible</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Show or hide the cursor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">visible</td><td>Show or hide</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad87a20c27db3686950f3a0e6c1c4eb5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad87a20c27db3686950f3a0e6c1c4eb5f">&#9670;&nbsp;</a></span>aip31068_set_custom_symbol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_set_custom_symbol </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__aip31068.html#ga38a9a645f2c3dd1d4fe5663acafb2d2d">aip31068_custom_symbol_t</a>&#160;</td>
+          <td class="paramname"><em>customSymbol</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>charmap</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a custom symbol. </p>
+<p>Useful link: <a href="https://maxpromer.github.io/LCD-Character-Creator/">https://maxpromer.github.io/LCD-Character-Creator/</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">customSymbol</td><td>Key to which a custom symbol should be assigned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">charmap</td><td>Bitmap definition of the custom symbol</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>: The size of charmap depends on how the AIP31068 was initialized. 8 bytes for FONT_SIZE_5x8 and 10 bytes for FONT_SIZE_5x10.</dd></dl>
+<p>This function resets the cursor position. Therefore this function should be called before printing any characters to the display.</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gafd2ef2b92b13f975751df9f6423dd648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd2ef2b92b13f975751df9f6423dd648">&#9670;&nbsp;</a></span>aip31068_set_text_insertion_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_set_text_insertion_mode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__aip31068.html#ga1b7e22ce7418fb1edced6e3ff64ec9dc">aip31068_text_insertion_mode_t</a>&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the direction from which the text is inserted, starting from the cursor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Insertion mode</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0cdd250880324a0200fbe5ba7e456982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0cdd250880324a0200fbe5ba7e456982">&#9670;&nbsp;</a></span>aip31068_turn_off()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_turn_off </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Turn off the display. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga86506273b2d25ff8e90bfac1b33e621e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga86506273b2d25ff8e90bfac1b33e621e">&#9670;&nbsp;</a></span>aip31068_turn_on()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aip31068_turn_on </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structaip31068__t.html">aip31068_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Turn on the display. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the AIP31068</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-1</td><td>if acquiring of I2C bus fails </td></tr>
+    <tr><td class="paramname">-EIO</td><td>When slave device doesn't ACK the byte </td></tr>
+    <tr><td class="paramname">-ENXIO</td><td>When no devices respond on the address sent on the bus </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>When timeout occurs before device's response </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>When an invalid argument is given </td></tr>
+    <tr><td class="paramname">-EOPNOTSUPP</td><td>When MCU driver doesn't support the flag operation </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>When a lost bus arbitration occurs </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

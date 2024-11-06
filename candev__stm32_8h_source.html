@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/stm32/include/candev_stm32.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('candev__stm32_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">candev_stm32.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="candev__stm32_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a61345f5fff169e11c88d5166bb7632a1">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 OTA keys S.A.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for more</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifndef CANDEV_STM32_H</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define CANDEV_STM32_H</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="candev_8h.html">can/candev.h</a>&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#if defined(CAN3)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define CANDEV_STM32_CHAN_NUMOF 3</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#elif defined(CAN2)</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define CANDEV_STM32_CHAN_NUMOF 2</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#elif defined(CAN1) || defined(CAN) || DOXYGEN</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a4c8474a5490ed15f8133c1cedfe17cb6">   46</a></span>&#160;<span class="preprocessor">#define CANDEV_STM32_CHAN_NUMOF 1</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#error &quot;CAN STM32: CPU not supported&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#if defined(CPU_FAM_STM32F1)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define ISR_CAN1_TX     isr_usb_hp_can1_tx</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#define ISR_CAN1_RX0    isr_usb_lp_can1_rx0</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#define ISR_CAN1_RX1    isr_can1_rx1</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define ISR_CAN1_SCE    isr_can1_sce</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#define ISR_CAN1_TX     isr_can1_tx</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#define ISR_CAN1_RX0    isr_can1_rx0</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#define ISR_CAN1_RX1    isr_can1_rx1</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#define ISR_CAN1_SCE    isr_can1_sce</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define ISR_CAN2_TX     isr_can2_tx</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#define ISR_CAN2_RX0    isr_can2_rx0</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#define ISR_CAN2_RX1    isr_can2_rx1</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#define ISR_CAN2_SCE    isr_can2_sce</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define ISR_CAN3_TX     isr_can3_tx</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#define ISR_CAN3_RX0    isr_can3_rx0</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#define ISR_CAN3_RX1    isr_can3_rx1</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define ISR_CAN3_SCE    isr_can3_sce</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#if CANDEV_STM32_CHAN_NUMOF &gt; 1 || DOXYGEN</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#acaa52dd7db1eec97409982b778c7d67c">   78</a></span>&#160;<span class="preprocessor">#define CAN_STM32_NB_FILTER     28</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define CAN_STM32_NB_FILTER     14</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#ifndef CANDEV_STM32_DEFAULT_BITRATE</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#ad104e520d797b99991489571fd4568c5">   85</a></span>&#160;<span class="preprocessor">#define CANDEV_STM32_DEFAULT_BITRATE 500000U</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#ifndef CANDEV_STM32_DEFAULT_SPT</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a38f519577a2801f5444c46bffc84c231">   90</a></span>&#160;<span class="preprocessor">#define CANDEV_STM32_DEFAULT_SPT     875</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a0029bc47a548349299ba999dbac18c63">   95</a></span>&#160;    CAN_TypeDef *<a class="code" href="structcan__conf__t.html#a0029bc47a548349299ba999dbac18c63">can</a>;           </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a6fce13ffd733622fef6fdfb54eb0137a">   96</a></span>&#160;    uint32_t <a class="code" href="structcan__conf__t.html#a6fce13ffd733622fef6fdfb54eb0137a">rcc_mask</a>;          </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    gpio_t rx_pin;              </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    gpio_t tx_pin;              </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#ifndef CPU_FAM_STM32F1</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#aaab6cfeb65ae273d72ad2922e95c1860">  100</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structcan__conf__t.html#aaab6cfeb65ae273d72ad2922e95c1860">af</a>;               </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#aad7ca267e3e5d473715fc13ec520baae">  102</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structcan__conf__t.html#aad7ca267e3e5d473715fc13ec520baae">en_deep_sleep_wake_up</a>; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#if CANDEV_STM32_CHAN_NUMOF &gt; 1 || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#aa62a749060567bcae75a1702c4c41b47">  104</a></span>&#160;    CAN_TypeDef *<a class="code" href="structcan__conf__t.html#aa62a749060567bcae75a1702c4c41b47">can_master</a>;    </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#abda0caee3b8355d60d08176564753bc5">  105</a></span>&#160;    uint32_t <a class="code" href="structcan__conf__t.html#abda0caee3b8355d60d08176564753bc5">master_rcc_mask</a>;   </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a0f2c99588fc7e604761341dfc5a38d70">  109</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a0f2c99588fc7e604761341dfc5a38d70">first_filter</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a00621c15494d0372aaa81aff08d718e6">  112</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a00621c15494d0372aaa81aff08d718e6">nb_filters</a>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#if defined(CPU_FAM_STM32F0)</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    uint8_t irqn;                       </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a94bcf504ca27ba72325036a2f3703639">  117</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a94bcf504ca27ba72325036a2f3703639">tx_irqn</a>;                    </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a69c5be9b806fbb77759a83252d9142bc">  118</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a69c5be9b806fbb77759a83252d9142bc">rx0_irqn</a>;                   </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a8b6908a6a74e73445ee6eca3a1770071">  119</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a8b6908a6a74e73445ee6eca3a1770071">rx1_irqn</a>;                   </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a20d36d8c14e9f927bb5cb8a42756f9f2">  120</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a20d36d8c14e9f927bb5cb8a42756f9f2">sce_irqn</a>;                   </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#ae686d564bfc9d4d14a7358f9c030645b">  122</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#ae686d564bfc9d4d14a7358f9c030645b">ttcm</a> : 1;                   </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a9449342ff9d0d92f931df126ece84b2f">  123</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a9449342ff9d0d92f931df126ece84b2f">abom</a> : 1;                   </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a9f42eb2445ab0c50a1fc11a379dff94c">  124</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a9f42eb2445ab0c50a1fc11a379dff94c">awum</a> : 1;                   </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a0c1cbc2aa2f15fc1aeb2c1a839ef9ab3">  125</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a0c1cbc2aa2f15fc1aeb2c1a839ef9ab3">nart</a> : 1;                   </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#ad90d93a6ca1aa6c9b23edc98f5248e96">  126</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#ad90d93a6ca1aa6c9b23edc98f5248e96">rflm</a> : 1;                   </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#a65ebc2e476aa43ae43ae3c44a1a092e6">  127</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#a65ebc2e476aa43ae43ae3c44a1a092e6">txfp</a> : 1;                   </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="structcan__conf__t.html#af204116b27c00c9297bb20c14a4b7e54">  128</a></span>&#160;    uint8_t <a class="code" href="structcan__conf__t.html#af204116b27c00c9297bb20c14a4b7e54">lbkm</a> : 1;                   </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="structcandev__stm32__rx__fifo.html#aa44d440b236981175eb325724195f30d">  129</a></span>&#160;    uint8_t silm : 1;                   </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;} <a class="code" href="group__drivers__candev__linux.html#ga43415495c4b8b546c6b6939527e1f29d">can_conf_t</a>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a1f144ca1575a4ebb59b99cd6273b5389">  132</a></span>&#160;<span class="preprocessor">#define HAVE_CAN_CONF_T</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a5a350e82d1341e48c0bb77593eeaf0b9">  135</a></span>&#160;<span class="preprocessor">#define CAN_STM32_TX_MAILBOXES 3</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#ad28b8d8721f5e57030c3ceb7b1a484e4">  137</a></span>&#160;<span class="preprocessor">#define CAN_STM32_RX_MAILBOXES 2</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#ifndef CAN_STM32_RX_MAIL_FIFO</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a83c1d7313cd0e75ae55898cf2cbb69c1">  141</a></span>&#160;<span class="preprocessor">#define CAN_STM32_RX_MAIL_FIFO 12</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcan.html">can</a> <a class="code" href="structcan.html">can_t</a>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#af157b88f267810575b5f71a48691e548">  147</a></span>&#160;<span class="preprocessor">#define HAVE_CAN_T</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="structcandev__stm32__rx__fifo.html">  150</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcandev__stm32__rx__fifo.html">candev_stm32_rx_fifo</a> {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keyword">struct </span><a class="code" href="structcan__frame.html">can_frame</a> <a class="code" href="structcandev__stm32__rx__fifo.html#aa44d440b236981175eb325724195f30d">frame</a>[<a class="code" href="candev__stm32_8h.html#a83c1d7313cd0e75ae55898cf2cbb69c1">CAN_STM32_RX_MAIL_FIFO</a>]; </div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="structcandev__stm32__rx__fifo.html#a448f2d6e4e9d3524946cecff9abce66e">  152</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structcandev__stm32__rx__fifo.html#a448f2d6e4e9d3524946cecff9abce66e">write_idx</a>;                                  </div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="structcandev__stm32__rx__fifo.html#a9030bfa996e248a2b541cad97e84b753">  153</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structcandev__stm32__rx__fifo.html#a9030bfa996e248a2b541cad97e84b753">read_idx</a>;                                   </div>
+<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="structcandev__stm32__rx__fifo.html#af0ceafb0769027e66b620d071fe0038e">  154</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structcandev__stm32__rx__fifo.html#af0ceafb0769027e66b620d071fe0038e">is_full</a>;                                    </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a90f75897a8dc56c6a43d76ae50cdd90a">  155</a></span>&#160;} <a class="code" href="candev__stm32_8h.html#a90f75897a8dc56c6a43d76ae50cdd90a">candev_stm32_rx_fifo_t</a>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structcandev__stm32__isr.html">  158</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcandev__stm32__isr.html">candev_stm32_isr</a> {</div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="structcandev__stm32__isr.html#a9e997658aab6c94b24cc85a1541f755b">  159</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structcandev__stm32__isr.html#a9e997658aab6c94b24cc85a1541f755b">isr_tx</a> : 3;     </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="structcandev__stm32__isr.html#a699f142b500c360e8e39e52255b3e820">  160</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structcandev__stm32__isr.html#a699f142b500c360e8e39e52255b3e820">isr_rx</a> : 2;     </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="structcandev__stm32__isr.html#ab06ddcbe05374d962bb92eb503aa2939">  161</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structcandev__stm32__isr.html#ab06ddcbe05374d962bb92eb503aa2939">isr_wkup</a> : 1;   </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#aa24457d6fa1a8cc976a551d8b201e927">  162</a></span>&#160;} <a class="code" href="candev__stm32_8h.html#aa24457d6fa1a8cc976a551d8b201e927">candev_stm32_isr_t</a>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="keyword">struct </span><a class="code" href="structcan.html">can</a> {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <a class="code" href="structcandev.html">candev_t</a> <a class="code" href="structcan.html#a85b10fb35e23e87ee7b6243894d07f8a">candev</a>;                    </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="structcan.html#a7cfeb7401dcd71b2eda8532edd36c8af">  167</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structcan__conf__t.html">can_conf_t</a> *<a class="code" href="structcan.html#a7cfeb7401dcd71b2eda8532edd36c8af">conf</a>;    </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="structcan.html#a76a2d8cf476fc3e17f9174c51754e5fb">  168</a></span>&#160;    gpio_t <a class="code" href="structcan.html#a76a2d8cf476fc3e17f9174c51754e5fb">rx_pin</a>;                      </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="structcan.html#a9229d4e0a30fb6adfbd75af4e7b2d237">  169</a></span>&#160;    gpio_t <a class="code" href="structcan.html#a9229d4e0a30fb6adfbd75af4e7b2d237">tx_pin</a>;                      </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="structcan.html#aafa77df536ce8151811e7c59cc1e1871">  170</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structcan.html#aafa77df536ce8151811e7c59cc1e1871">af</a>;                       </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="structcan.html#a1b316a4220fb242b76de916b8fb19c45">  172</a></span>&#160;    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structcan__frame.html">can_frame</a> *<a class="code" href="structcan.html#a1b316a4220fb242b76de916b8fb19c45">tx_mailbox</a>[<a class="code" href="candev__stm32_8h.html#a5a350e82d1341e48c0bb77593eeaf0b9">CAN_STM32_TX_MAILBOXES</a>];</div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="structcan.html#a3f6ce109c1c5647dde9c670fc954e639">  173</a></span>&#160;    <a class="code" href="structcandev__stm32__rx__fifo.html">candev_stm32_rx_fifo_t</a> <a class="code" href="structcan.html#a3f6ce109c1c5647dde9c670fc954e639">rx_fifo</a>;     </div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="structcan.html#a5ac58679913a20a72978123034d7aedf">  174</a></span>&#160;    <a class="code" href="structcandev__stm32__isr.html">candev_stm32_isr_t</a> <a class="code" href="structcan.html#a5ac58679913a20a72978123034d7aedf">isr_flags</a>;       </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;};</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#ifndef CPU_FAM_STM32F1</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="candev__stm32_8h.html#a849a6ced7cb0b22ca736735e3d1335fd">  186</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="candev__stm32_8h.html#a849a6ced7cb0b22ca736735e3d1335fd">candev_stm32_set_pins</a>(<a class="code" href="structcan.html">can_t</a> *dev, gpio_t tx_pin, gpio_t rx_pin,</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                           <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> af);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="keywordtype">void</span> <a class="code" href="candev__stm32_8h.html#a849a6ced7cb0b22ca736735e3d1335fd">candev_stm32_set_pins</a>(<a class="code" href="structcan.html">can_t</a> *dev, gpio_t tx_pin, gpio_t rx_pin);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;}</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CANDEV_STM32_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acandev_8h_html"><div class="ttname"><a href="candev_8h.html">candev.h</a></div><div class="ttdoc">Definitions for low-level CAN driver interface.</div></div>
+<div class="ttc" id="acandev__stm32_8h_html_a5a350e82d1341e48c0bb77593eeaf0b9"><div class="ttname"><a href="candev__stm32_8h.html#a5a350e82d1341e48c0bb77593eeaf0b9">CAN_STM32_TX_MAILBOXES</a></div><div class="ttdeci">#define CAN_STM32_TX_MAILBOXES</div><div class="ttdoc">The number of transmit mailboxes.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:135</div></div>
+<div class="ttc" id="acandev__stm32_8h_html_a83c1d7313cd0e75ae55898cf2cbb69c1"><div class="ttname"><a href="candev__stm32_8h.html#a83c1d7313cd0e75ae55898cf2cbb69c1">CAN_STM32_RX_MAIL_FIFO</a></div><div class="ttdeci">#define CAN_STM32_RX_MAIL_FIFO</div><div class="ttdoc">This is the maximum number of frame the driver can receive simultaneously.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:141</div></div>
+<div class="ttc" id="acandev__stm32_8h_html_a849a6ced7cb0b22ca736735e3d1335fd"><div class="ttname"><a href="candev__stm32_8h.html#a849a6ced7cb0b22ca736735e3d1335fd">candev_stm32_set_pins</a></div><div class="ttdeci">void candev_stm32_set_pins(can_t *dev, gpio_t tx_pin, gpio_t rx_pin, gpio_af_t af)</div><div class="ttdoc">Set the pins of an stm32 CAN device.</div></div>
+<div class="ttc" id="acandev__stm32_8h_html_a90f75897a8dc56c6a43d76ae50cdd90a"><div class="ttname"><a href="candev__stm32_8h.html#a90f75897a8dc56c6a43d76ae50cdd90a">candev_stm32_rx_fifo_t</a></div><div class="ttdeci">struct candev_stm32_rx_fifo candev_stm32_rx_fifo_t</div><div class="ttdoc">This structure holds anything related to the receive part.</div></div>
+<div class="ttc" id="acandev__stm32_8h_html_aa24457d6fa1a8cc976a551d8b201e927"><div class="ttname"><a href="candev__stm32_8h.html#aa24457d6fa1a8cc976a551d8b201e927">candev_stm32_isr_t</a></div><div class="ttdeci">struct candev_stm32_isr candev_stm32_isr_t</div><div class="ttdoc">Internal interrupt flags.</div></div>
+<div class="ttc" id="agd32v_2include_2periph__cpu_8h_html_a06ed6aad7d9b996fee989c31338138cd"><div class="ttname"><a href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a></div><div class="ttdeci">gpio_af_t</div><div class="ttdoc">Override alternative GPIO mode options.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:166</div></div>
+<div class="ttc" id="agroup__drivers__candev__linux_html_ga43415495c4b8b546c6b6939527e1f29d"><div class="ttname"><a href="group__drivers__candev__linux.html#ga43415495c4b8b546c6b6939527e1f29d">can_conf_t</a></div><div class="ttdeci">struct candev_conf can_conf_t</div><div class="ttdoc">Linux candev configuration.</div></div>
+<div class="ttc" id="astructcan__conf__t_html"><div class="ttname"><a href="structcan__conf__t.html">can_conf_t</a></div><div class="ttdoc">ESP CAN device configuration.</div><div class="ttdef"><b>Definition:</b> can_esp.h:88</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a0029bc47a548349299ba999dbac18c63"><div class="ttname"><a href="structcan__conf__t.html#a0029bc47a548349299ba999dbac18c63">can_conf_t::can</a></div><div class="ttdeci">CAN_TypeDef * can</div><div class="ttdoc">CAN device.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:95</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a00621c15494d0372aaa81aff08d718e6"><div class="ttname"><a href="structcan__conf__t.html#a00621c15494d0372aaa81aff08d718e6">can_conf_t::nb_filters</a></div><div class="ttdeci">uint8_t nb_filters</div><div class="ttdoc">Number of filters to use.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:112</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a0c1cbc2aa2f15fc1aeb2c1a839ef9ab3"><div class="ttname"><a href="structcan__conf__t.html#a0c1cbc2aa2f15fc1aeb2c1a839ef9ab3">can_conf_t::nart</a></div><div class="ttdeci">uint8_t nart</div><div class="ttdoc">No automatic retransmission.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:125</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a0f2c99588fc7e604761341dfc5a38d70"><div class="ttname"><a href="structcan__conf__t.html#a0f2c99588fc7e604761341dfc5a38d70">can_conf_t::first_filter</a></div><div class="ttdeci">uint8_t first_filter</div><div class="ttdoc">First filter in the bank.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:109</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a20d36d8c14e9f927bb5cb8a42756f9f2"><div class="ttname"><a href="structcan__conf__t.html#a20d36d8c14e9f927bb5cb8a42756f9f2">can_conf_t::sce_irqn</a></div><div class="ttdeci">uint8_t sce_irqn</div><div class="ttdoc">SCE IRQ channel.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:120</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a65ebc2e476aa43ae43ae3c44a1a092e6"><div class="ttname"><a href="structcan__conf__t.html#a65ebc2e476aa43ae43ae3c44a1a092e6">can_conf_t::txfp</a></div><div class="ttdeci">uint8_t txfp</div><div class="ttdoc">Transmit FIFO priority.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:127</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a69c5be9b806fbb77759a83252d9142bc"><div class="ttname"><a href="structcan__conf__t.html#a69c5be9b806fbb77759a83252d9142bc">can_conf_t::rx0_irqn</a></div><div class="ttdeci">uint8_t rx0_irqn</div><div class="ttdoc">RX0 IRQ channel.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:118</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a6fce13ffd733622fef6fdfb54eb0137a"><div class="ttname"><a href="structcan__conf__t.html#a6fce13ffd733622fef6fdfb54eb0137a">can_conf_t::rcc_mask</a></div><div class="ttdeci">uint32_t rcc_mask</div><div class="ttdoc">RCC mask to enable clock.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:96</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a8b6908a6a74e73445ee6eca3a1770071"><div class="ttname"><a href="structcan__conf__t.html#a8b6908a6a74e73445ee6eca3a1770071">can_conf_t::rx1_irqn</a></div><div class="ttdeci">uint8_t rx1_irqn</div><div class="ttdoc">RX1 IRQ channel.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:119</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a9449342ff9d0d92f931df126ece84b2f"><div class="ttname"><a href="structcan__conf__t.html#a9449342ff9d0d92f931df126ece84b2f">can_conf_t::abom</a></div><div class="ttdeci">uint8_t abom</div><div class="ttdoc">Automatic bus-off management.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:123</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a94bcf504ca27ba72325036a2f3703639"><div class="ttname"><a href="structcan__conf__t.html#a94bcf504ca27ba72325036a2f3703639">can_conf_t::tx_irqn</a></div><div class="ttdeci">uint8_t tx_irqn</div><div class="ttdoc">TX IRQ channel.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:117</div></div>
+<div class="ttc" id="astructcan__conf__t_html_a9f42eb2445ab0c50a1fc11a379dff94c"><div class="ttname"><a href="structcan__conf__t.html#a9f42eb2445ab0c50a1fc11a379dff94c">can_conf_t::awum</a></div><div class="ttdeci">uint8_t awum</div><div class="ttdoc">Automatic wakeup mode.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:124</div></div>
+<div class="ttc" id="astructcan__conf__t_html_aa62a749060567bcae75a1702c4c41b47"><div class="ttname"><a href="structcan__conf__t.html#aa62a749060567bcae75a1702c4c41b47">can_conf_t::can_master</a></div><div class="ttdeci">CAN_TypeDef * can_master</div><div class="ttdoc">Master CAN device.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:104</div></div>
+<div class="ttc" id="astructcan__conf__t_html_aaab6cfeb65ae273d72ad2922e95c1860"><div class="ttname"><a href="structcan__conf__t.html#aaab6cfeb65ae273d72ad2922e95c1860">can_conf_t::af</a></div><div class="ttdeci">gpio_af_t af</div><div class="ttdoc">Alternate pin function to use.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:100</div></div>
+<div class="ttc" id="astructcan__conf__t_html_aad7ca267e3e5d473715fc13ec520baae"><div class="ttname"><a href="structcan__conf__t.html#aad7ca267e3e5d473715fc13ec520baae">can_conf_t::en_deep_sleep_wake_up</a></div><div class="ttdeci">bool en_deep_sleep_wake_up</div><div class="ttdoc">Enable deep-sleep wake-up interrupt.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:102</div></div>
+<div class="ttc" id="astructcan__conf__t_html_abda0caee3b8355d60d08176564753bc5"><div class="ttname"><a href="structcan__conf__t.html#abda0caee3b8355d60d08176564753bc5">can_conf_t::master_rcc_mask</a></div><div class="ttdeci">uint32_t master_rcc_mask</div><div class="ttdoc">Master device RCC mask.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:105</div></div>
+<div class="ttc" id="astructcan__conf__t_html_ad90d93a6ca1aa6c9b23edc98f5248e96"><div class="ttname"><a href="structcan__conf__t.html#ad90d93a6ca1aa6c9b23edc98f5248e96">can_conf_t::rflm</a></div><div class="ttdeci">uint8_t rflm</div><div class="ttdoc">Receive FIFO locked mode.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:126</div></div>
+<div class="ttc" id="astructcan__conf__t_html_ae686d564bfc9d4d14a7358f9c030645b"><div class="ttname"><a href="structcan__conf__t.html#ae686d564bfc9d4d14a7358f9c030645b">can_conf_t::ttcm</a></div><div class="ttdeci">uint8_t ttcm</div><div class="ttdoc">Time triggered communication mode.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:122</div></div>
+<div class="ttc" id="astructcan__conf__t_html_af204116b27c00c9297bb20c14a4b7e54"><div class="ttname"><a href="structcan__conf__t.html#af204116b27c00c9297bb20c14a4b7e54">can_conf_t::lbkm</a></div><div class="ttdeci">uint8_t lbkm</div><div class="ttdoc">Loopback mode.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:128</div></div>
+<div class="ttc" id="astructcan__frame_html"><div class="ttname"><a href="structcan__frame.html">can_frame</a></div><div class="ttdoc">Controller Area Network frame.</div><div class="ttdef"><b>Definition:</b> can.h:88</div></div>
+<div class="ttc" id="astructcan_html"><div class="ttname"><a href="structcan.html">can</a></div><div class="ttdoc">Low level device structure for ESP32 CAN (extension of candev_t)</div><div class="ttdef"><b>Definition:</b> can_esp.h:64</div></div>
+<div class="ttc" id="astructcan_html_a1b316a4220fb242b76de916b8fb19c45"><div class="ttname"><a href="structcan.html#a1b316a4220fb242b76de916b8fb19c45">can::tx_mailbox</a></div><div class="ttdeci">const struct can_frame * tx_mailbox[CAN_STM32_TX_MAILBOXES]</div><div class="ttdoc">Tx mailboxes.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:172</div></div>
+<div class="ttc" id="astructcan_html_a3f6ce109c1c5647dde9c670fc954e639"><div class="ttname"><a href="structcan.html#a3f6ce109c1c5647dde9c670fc954e639">can::rx_fifo</a></div><div class="ttdeci">candev_stm32_rx_fifo_t rx_fifo</div><div class="ttdoc">Rx FIFOs.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:173</div></div>
+<div class="ttc" id="astructcan_html_a5ac58679913a20a72978123034d7aedf"><div class="ttname"><a href="structcan.html#a5ac58679913a20a72978123034d7aedf">can::isr_flags</a></div><div class="ttdeci">candev_stm32_isr_t isr_flags</div><div class="ttdoc">ISR flags.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:174</div></div>
+<div class="ttc" id="astructcan_html_a76a2d8cf476fc3e17f9174c51754e5fb"><div class="ttname"><a href="structcan.html#a76a2d8cf476fc3e17f9174c51754e5fb">can::rx_pin</a></div><div class="ttdeci">gpio_t rx_pin</div><div class="ttdoc">RX pin.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:168</div></div>
+<div class="ttc" id="astructcan_html_a7cfeb7401dcd71b2eda8532edd36c8af"><div class="ttname"><a href="structcan.html#a7cfeb7401dcd71b2eda8532edd36c8af">can::conf</a></div><div class="ttdeci">const can_conf_t * conf</div><div class="ttdoc">Configuration.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:167</div></div>
+<div class="ttc" id="astructcan_html_a85b10fb35e23e87ee7b6243894d07f8a"><div class="ttname"><a href="structcan.html#a85b10fb35e23e87ee7b6243894d07f8a">can::candev</a></div><div class="ttdeci">candev_t candev</div><div class="ttdoc">candev base structure</div><div class="ttdef"><b>Definition:</b> can_esp.h:65</div></div>
+<div class="ttc" id="astructcan_html_a9229d4e0a30fb6adfbd75af4e7b2d237"><div class="ttname"><a href="structcan.html#a9229d4e0a30fb6adfbd75af4e7b2d237">can::tx_pin</a></div><div class="ttdeci">gpio_t tx_pin</div><div class="ttdoc">TX pin.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:169</div></div>
+<div class="ttc" id="astructcan_html_aafa77df536ce8151811e7c59cc1e1871"><div class="ttname"><a href="structcan.html#aafa77df536ce8151811e7c59cc1e1871">can::af</a></div><div class="ttdeci">gpio_af_t af</div><div class="ttdoc">Alternate pin function to use.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:170</div></div>
+<div class="ttc" id="astructcandev__stm32__isr_html"><div class="ttname"><a href="structcandev__stm32__isr.html">candev_stm32_isr</a></div><div class="ttdoc">Internal interrupt flags.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:158</div></div>
+<div class="ttc" id="astructcandev__stm32__isr_html_a699f142b500c360e8e39e52255b3e820"><div class="ttname"><a href="structcandev__stm32__isr.html#a699f142b500c360e8e39e52255b3e820">candev_stm32_isr::isr_rx</a></div><div class="ttdeci">int isr_rx</div><div class="ttdoc">Rx FIFO interrupt.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:160</div></div>
+<div class="ttc" id="astructcandev__stm32__isr_html_a9e997658aab6c94b24cc85a1541f755b"><div class="ttname"><a href="structcandev__stm32__isr.html#a9e997658aab6c94b24cc85a1541f755b">candev_stm32_isr::isr_tx</a></div><div class="ttdeci">int isr_tx</div><div class="ttdoc">Tx mailboxes interrupt.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:159</div></div>
+<div class="ttc" id="astructcandev__stm32__isr_html_ab06ddcbe05374d962bb92eb503aa2939"><div class="ttname"><a href="structcandev__stm32__isr.html#ab06ddcbe05374d962bb92eb503aa2939">candev_stm32_isr::isr_wkup</a></div><div class="ttdeci">int isr_wkup</div><div class="ttdoc">Wake up interrupt.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:161</div></div>
+<div class="ttc" id="astructcandev__stm32__rx__fifo_html"><div class="ttname"><a href="structcandev__stm32__rx__fifo.html">candev_stm32_rx_fifo</a></div><div class="ttdoc">This structure holds anything related to the receive part.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:150</div></div>
+<div class="ttc" id="astructcandev__stm32__rx__fifo_html_a448f2d6e4e9d3524946cecff9abce66e"><div class="ttname"><a href="structcandev__stm32__rx__fifo.html#a448f2d6e4e9d3524946cecff9abce66e">candev_stm32_rx_fifo::write_idx</a></div><div class="ttdeci">int write_idx</div><div class="ttdoc">Write index in the receive FIFO.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:152</div></div>
+<div class="ttc" id="astructcandev__stm32__rx__fifo_html_a9030bfa996e248a2b541cad97e84b753"><div class="ttname"><a href="structcandev__stm32__rx__fifo.html#a9030bfa996e248a2b541cad97e84b753">candev_stm32_rx_fifo::read_idx</a></div><div class="ttdeci">int read_idx</div><div class="ttdoc">Read index in the receive FIFO.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:153</div></div>
+<div class="ttc" id="astructcandev__stm32__rx__fifo_html_aa44d440b236981175eb325724195f30d"><div class="ttname"><a href="structcandev__stm32__rx__fifo.html#aa44d440b236981175eb325724195f30d">candev_stm32_rx_fifo::frame</a></div><div class="ttdeci">struct can_frame frame[CAN_STM32_RX_MAIL_FIFO]</div><div class="ttdoc">Receive FIFO.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:151</div></div>
+<div class="ttc" id="astructcandev__stm32__rx__fifo_html_af0ceafb0769027e66b620d071fe0038e"><div class="ttname"><a href="structcandev__stm32__rx__fifo.html#af0ceafb0769027e66b620d071fe0038e">candev_stm32_rx_fifo::is_full</a></div><div class="ttdeci">int is_full</div><div class="ttdoc">Flag set when the FIFO is full.</div><div class="ttdef"><b>Definition:</b> candev_stm32.h:154</div></div>
+<div class="ttc" id="astructcandev_html"><div class="ttname"><a href="structcandev.html">candev</a></div><div class="ttdoc">Structure to hold driver state.</div><div class="ttdef"><b>Definition:</b> candev.h:77</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_8fb93018175f1eef8ccffa491ecd65e5.html">stm32</a></li><li class="navelem"><a class="el" href="dir_2c7c57a0102e8392aaea30c0e4d338a5.html">include</a></li><li class="navelem"><a class="el" href="candev__stm32_8h.html">candev_stm32.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

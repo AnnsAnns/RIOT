@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/bme680.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('bme680_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">bme680.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="bme680_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#gade8a38f516220fbc37fc4dd6ed93d0a5">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019 Mesotic SAS</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2020 Gunar Schorcht</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#ifndef BME680_H</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define BME680_H</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#ifdef MODULE_BME680_FP</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#define BME680_FLOAT_POINT_COMPENSATION</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="bme680__hal_8h.html">bme680_hal.h</a>&quot;</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#include &quot;bme680_internal.h&quot;</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#gacf1d007453e0feb254751de87dac01f2">  128</a></span>&#160;<span class="preprocessor">#define BME680_I2C_ADDR_1   (0x76)</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#gabc96421c046cc9ff80b5ba5b6d46ede6">  133</a></span>&#160;<span class="preprocessor">#define BME680_I2C_ADDR_2   (0x77)</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#gaf6ed7c0d8e8c6ac8be6a904d45809bfc">  139</a></span>&#160;<span class="preprocessor">#define BME680_SENSOR(d)    (*((struct bme680_dev *)d))</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbab9c9639d48348a5a40a6583b54fadfa4">  145</a></span>&#160;    <a class="code" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbab9c9639d48348a5a40a6583b54fadfa4">BME680_NULL_PTR</a>     = -1,   </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fba3794e85730746dab9afcad6ee9d6d63a">  146</a></span>&#160;    <a class="code" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fba3794e85730746dab9afcad6ee9d6d63a">BME680_COM_FAILED</a>   = -2,   </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbacdd611e7ad7ba603857c81adc81eb696">  147</a></span>&#160;    <a class="code" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbacdd611e7ad7ba603857c81adc81eb696">BME680_NO_DEV</a>       = -3,   </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbac9e47b7dd656b02ed94f337c8827f850">  148</a></span>&#160;    <a class="code" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbac9e47b7dd656b02ed94f337c8827f850">BME680_INVALID</a>      = -4,   </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fba0999a9d79eb6908503ca3609c931e250">  149</a></span>&#160;    <a class="code" href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fba0999a9d79eb6908503ca3609c931e250">BME680_NO_NEW_DATA</a>  = -5,   </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;};</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#ifdef DOXYGEN</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="structbme680__field__data.html">  156</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structbme680__field__data.html">bme680_field_data</a> {</div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structbme680__field__data.html#af52b43f86807c1f1ef7526bbb9584c5b">  157</a></span>&#160;    uint8_t <a class="code" href="structbme680__field__data.html#af52b43f86807c1f1ef7526bbb9584c5b">status</a>;     </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="structbme680__field__data.html#ae96ceedb9e36dc0671ac533e88160f5b">  161</a></span>&#160;    uint8_t <a class="code" href="structbme680__field__data.html#ae96ceedb9e36dc0671ac533e88160f5b">gas_index</a>;  </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="structbme680__field__data.html#add2cb9f6b7d736908aa9f75904122d3c">  162</a></span>&#160;    uint8_t <a class="code" href="structbme680__field__data.html#add2cb9f6b7d736908aa9f75904122d3c">meas_index</a>; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#ifndef MODULE_BME680_FP</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="structbme680__field__data.html#a8954536ec56e28e4bc79ed7bf1bc5176">  164</a></span>&#160;    int16_t <a class="code" href="structbme680__field__data.html#a8954536ec56e28e4bc79ed7bf1bc5176">temperature</a>;        </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="structbme680__field__data.html#af92dbc060536ac0cd546a1f402fcecb4">  165</a></span>&#160;    uint32_t <a class="code" href="structbme680__field__data.html#af92dbc060536ac0cd546a1f402fcecb4">pressure</a>;          </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="structbme680__field__data.html#ac84103cb41a2fab9614a61b467e5410e">  166</a></span>&#160;    uint32_t <a class="code" href="structbme680__field__data.html#ac84103cb41a2fab9614a61b467e5410e">humidity</a>;          </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="structbme680__field__data.html#a6ce58ca03356c0df2e4b02bac6c4ce26">  167</a></span>&#160;    uint32_t <a class="code" href="structbme680__field__data.html#a6ce58ca03356c0df2e4b02bac6c4ce26">gas_resistance</a>;    </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#else </span><span class="comment">/* MODULE_BME680_FP */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structbme680__field__data.html#a8954536ec56e28e4bc79ed7bf1bc5176">temperature</a>;          </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structbme680__field__data.html#af92dbc060536ac0cd546a1f402fcecb4">pressure</a>;             </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structbme680__field__data.html#ac84103cb41a2fab9614a61b467e5410e">humidity</a>;             </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structbme680__field__data.html#a6ce58ca03356c0df2e4b02bac6c4ce26">gas_resistance</a>;       </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MODULE_BME680_FP */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;};</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structbme680__field__data.html">bme680_field_data</a> <a class="code" href="structbme680__field__data.html">bme680_field_data_t</a>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>bme680_dev <a class="code" href="group__drivers__bme680.html#gade8a38f516220fbc37fc4dd6ed93d0a5">bme680_dev_t</a>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="structbme680__intf__i2c__t.html">  192</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="structbme680__intf__i2c__t.html#ac7ade62c38582f2c5d1fd5d5e1504d68">  193</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structbme680__intf__i2c__t.html#ac7ade62c38582f2c5d1fd5d5e1504d68">dev</a>;                    </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="structbme680__intf__i2c__t.html#a96e9d1d7898376d0b9fa09d4b744d429">  194</a></span>&#160;    uint8_t <a class="code" href="structbme680__intf__i2c__t.html#a96e9d1d7898376d0b9fa09d4b744d429">addr</a>;                 </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;} <a class="code" href="structbme680__intf__i2c__t.html">bme680_intf_i2c_t</a>;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="structbme680__intf__spi__t.html">  200</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="structbme680__intf__spi__t.html#a3dbd5bcb404356bdfe488f6842a0aa5b">  201</a></span>&#160;    spi_t <a class="code" href="structbme680__intf__spi__t.html#a3dbd5bcb404356bdfe488f6842a0aa5b">dev</a>;                  </div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="structbme680__intf__spi__t.html#a0a8468e9f99aecafb5231f6d396d6028">  202</a></span>&#160;    gpio_t <a class="code" href="structbme680__intf__spi__t.html#a0a8468e9f99aecafb5231f6d396d6028">nss_pin</a>;             </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;} <a class="code" href="structbme680__intf__spi__t.html">bme680_intf_spi_t</a>;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno"><a class="line" href="unionbme680__intf__t.html">  208</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="unionbme680__intf__t.html#aed3861c022c0b09893553671e7ceef65">  209</a></span>&#160;    <a class="code" href="structbme680__intf__i2c__t.html">bme680_intf_i2c_t</a> <a class="code" href="unionbme680__intf__t.html#aed3861c022c0b09893553671e7ceef65">i2c</a>;        </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="unionbme680__intf__t.html#a191646bfe62fa21086afab52c9b708d4">  210</a></span>&#160;    <a class="code" href="structbme680__intf__spi__t.html">bme680_intf_spi_t</a> <a class="code" href="unionbme680__intf__t.html#a191646bfe62fa21086afab52c9b708d4">spi</a>;        </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;} <a class="code" href="unionbme680__intf__t.html">bme680_intf_t</a>;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="structbme680__params__t.html">  216</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a1d81e435a7397c3539ee4a1d039a4b42">  217</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#a1d81e435a7397c3539ee4a1d039a4b42">ifsel</a>;              </div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#ac6cf07d2d3d41b86cf1244c97d4abbe9">  218</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#ac6cf07d2d3d41b86cf1244c97d4abbe9">temp_os</a>;            </div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a7562033333693c1968d03f9e045096ab">  219</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#a7562033333693c1968d03f9e045096ab">hum_os</a>;             </div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a566c8bb9d71cd7905253bd6667e5a5c6">  220</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#a566c8bb9d71cd7905253bd6667e5a5c6">pres_os</a>;            </div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#acad3a72809351be264e9845d55307e29">  221</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#acad3a72809351be264e9845d55307e29">filter</a>;             </div>
+<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a46cc09e8dafdf4183785108c7033059b">  222</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#a46cc09e8dafdf4183785108c7033059b">gas_measure</a>;        </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a85b4430b763fe76ce5c2332fab34d8ef">  223</a></span>&#160;    uint16_t <a class="code" href="structbme680__params__t.html#a85b4430b763fe76ce5c2332fab34d8ef">heater_dur</a>;        </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a85f309236aae2d6b82a1350eed41fcff">  224</a></span>&#160;    uint16_t <a class="code" href="structbme680__params__t.html#a85f309236aae2d6b82a1350eed41fcff">heater_temp</a>;       </div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a85dc7dedcb18bfcb3fc40688a2bc5247">  225</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#a85dc7dedcb18bfcb3fc40688a2bc5247">power_mode</a>;         </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#ac80c5ddcef65b2151006ae8f1d234892">  226</a></span>&#160;    uint8_t <a class="code" href="structbme680__params__t.html#ac80c5ddcef65b2151006ae8f1d234892">settings</a>;           </div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="structbme680__params__t.html#a4181b6faa59d934d7e867f8304938ae4">  227</a></span>&#160;    <a class="code" href="unionbme680__intf__t.html">bme680_intf_t</a> <a class="code" href="structbme680__params__t.html#a4181b6faa59d934d7e867f8304938ae4">intf</a>;         </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;} <a class="code" href="structbme680__params__t.html">bme680_params_t</a>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="structbme680__t.html">  233</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keyword">struct </span>bme680_dev sensor; </div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="structbme680__t.html#ab6e0befcb7afc468063cba0f87b5dee8">  235</a></span>&#160;    <a class="code" href="unionbme680__intf__t.html">bme680_intf_t</a> <a class="code" href="structbme680__t.html#ab6e0befcb7afc468063cba0f87b5dee8">intf</a>;       </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;} <a class="code" href="structbme680__t.html">bme680_t</a>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="keyword">extern</span> <a class="code" href="structbme680__t.html">bme680_t</a> *<a class="code" href="group__drivers__bme680.html#ga6cb2d0f34a1857c5ecdf683d0a0f2662">bme680_devs</a>[];</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="group__drivers__bme680.html#ga4cc95617516b48b745b7326ad6de9940">bme680_devs_numof</a>;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ga0390f9d902a32fc4ed3fa188493a28df">  257</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__bme680.html#ga0390f9d902a32fc4ed3fa188493a28df">bme680_init</a>(<a class="code" href="structbme680__t.html">bme680_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structbme680__params__t.html">bme680_params_t</a> *params);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ga5eddf06b725e8f8944b8f20ebf6e1a6a">  272</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__bme680.html#ga5eddf06b725e8f8944b8f20ebf6e1a6a">bme680_force_measurement</a>(<a class="code" href="structbme680__t.html">bme680_t</a> *dev);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
+<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ga7e612954b35a0836a0fe0df22707e8d2">  287</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__bme680.html#ga7e612954b35a0836a0fe0df22707e8d2">bme680_get_duration</a>(<a class="code" href="structbme680__t.html">bme680_t</a>* dev);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#gae98f4c5bbee96672a75c07170f391c98">  304</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__bme680.html#gae98f4c5bbee96672a75c07170f391c98">bme680_get_data</a>(<a class="code" href="structbme680__t.html">bme680_t</a>* dev, <a class="code" href="structbme680__field__data.html">bme680_field_data_t</a> *data);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00318"></a><span class="lineno"><a class="line" href="group__drivers__bme680.html#ga9c4a863be8d955566d79102494c88b2c">  318</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__bme680.html#ga9c4a863be8d955566d79102494c88b2c">bme680_set_ambient_temp</a>(<a class="code" href="structbme680__t.html">bme680_t</a>* dev, int8_t temp);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;}</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BME680_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="abme680__hal_8h_html"><div class="ttname"><a href="bme680__hal_8h.html">bme680_hal.h</a></div><div class="ttdoc">Abstraction layer for RIOT adaption.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ga0390f9d902a32fc4ed3fa188493a28df"><div class="ttname"><a href="group__drivers__bme680.html#ga0390f9d902a32fc4ed3fa188493a28df">bme680_init</a></div><div class="ttdeci">int bme680_init(bme680_t *dev, const bme680_params_t *params)</div><div class="ttdoc">Initialize the BME680 sensor.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ga4cc95617516b48b745b7326ad6de9940"><div class="ttname"><a href="group__drivers__bme680.html#ga4cc95617516b48b745b7326ad6de9940">bme680_devs_numof</a></div><div class="ttdeci">unsigned int bme680_devs_numof</div><div class="ttdoc">Number of initialized BME680 sensor devices in bme680_devs.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ga5eddf06b725e8f8944b8f20ebf6e1a6a"><div class="ttname"><a href="group__drivers__bme680.html#ga5eddf06b725e8f8944b8f20ebf6e1a6a">bme680_force_measurement</a></div><div class="ttdeci">int bme680_force_measurement(bme680_t *dev)</div><div class="ttdoc">Force a single TPHG measurement cycle.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ga6cb2d0f34a1857c5ecdf683d0a0f2662"><div class="ttname"><a href="group__drivers__bme680.html#ga6cb2d0f34a1857c5ecdf683d0a0f2662">bme680_devs</a></div><div class="ttdeci">bme680_t * bme680_devs[]</div><div class="ttdoc">References to BME680 sensor devices used by the HAL functions.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ga7e612954b35a0836a0fe0df22707e8d2"><div class="ttname"><a href="group__drivers__bme680.html#ga7e612954b35a0836a0fe0df22707e8d2">bme680_get_duration</a></div><div class="ttdeci">int bme680_get_duration(bme680_t *dev)</div><div class="ttdoc">Duration one THPG measurement cycle.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ga9c4a863be8d955566d79102494c88b2c"><div class="ttname"><a href="group__drivers__bme680.html#ga9c4a863be8d955566d79102494c88b2c">bme680_set_ambient_temp</a></div><div class="ttdeci">int bme680_set_ambient_temp(bme680_t *dev, int8_t temp)</div><div class="ttdoc">Set the ambient temperature.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_gade8a38f516220fbc37fc4dd6ed93d0a5"><div class="ttname"><a href="group__drivers__bme680.html#gade8a38f516220fbc37fc4dd6ed93d0a5">bme680_dev_t</a></div><div class="ttdeci">struct bme680_dev bme680_dev_t</div><div class="ttdoc">Shortcut type definition for BME680 sensor device structure.</div><div class="ttdef"><b>Definition:</b> bme680.h:187</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_gae98f4c5bbee96672a75c07170f391c98"><div class="ttname"><a href="group__drivers__bme680.html#gae98f4c5bbee96672a75c07170f391c98">bme680_get_data</a></div><div class="ttdeci">int bme680_get_data(bme680_t *dev, bme680_field_data_t *data)</div><div class="ttdoc">Get results of a TPHG measurement.</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ggaf77d65ab56b38a820b1efc0bcafbd4fba0999a9d79eb6908503ca3609c931e250"><div class="ttname"><a href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fba0999a9d79eb6908503ca3609c931e250">BME680_NO_NEW_DATA</a></div><div class="ttdeci">@ BME680_NO_NEW_DATA</div><div class="ttdoc">No new data.</div><div class="ttdef"><b>Definition:</b> bme680.h:149</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ggaf77d65ab56b38a820b1efc0bcafbd4fba3794e85730746dab9afcad6ee9d6d63a"><div class="ttname"><a href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fba3794e85730746dab9afcad6ee9d6d63a">BME680_COM_FAILED</a></div><div class="ttdeci">@ BME680_COM_FAILED</div><div class="ttdoc">Communication with the device failed.</div><div class="ttdef"><b>Definition:</b> bme680.h:146</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ggaf77d65ab56b38a820b1efc0bcafbd4fbab9c9639d48348a5a40a6583b54fadfa4"><div class="ttname"><a href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbab9c9639d48348a5a40a6583b54fadfa4">BME680_NULL_PTR</a></div><div class="ttdeci">@ BME680_NULL_PTR</div><div class="ttdoc">NULL pointer check failed.</div><div class="ttdef"><b>Definition:</b> bme680.h:145</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ggaf77d65ab56b38a820b1efc0bcafbd4fbac9e47b7dd656b02ed94f337c8827f850"><div class="ttname"><a href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbac9e47b7dd656b02ed94f337c8827f850">BME680_INVALID</a></div><div class="ttdeci">@ BME680_INVALID</div><div class="ttdoc">Invalid value or length.</div><div class="ttdef"><b>Definition:</b> bme680.h:148</div></div>
+<div class="ttc" id="agroup__drivers__bme680_html_ggaf77d65ab56b38a820b1efc0bcafbd4fbacdd611e7ad7ba603857c81adc81eb696"><div class="ttname"><a href="group__drivers__bme680.html#ggaf77d65ab56b38a820b1efc0bcafbd4fbacdd611e7ad7ba603857c81adc81eb696">BME680_NO_DEV</a></div><div class="ttdeci">@ BME680_NO_DEV</div><div class="ttdoc">Device doesn't exist.</div><div class="ttdef"><b>Definition:</b> bme680.h:147</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructbme680__field__data_html"><div class="ttname"><a href="structbme680__field__data.html">bme680_field_data</a></div><div class="ttdoc">BME680 sensor field data.</div><div class="ttdef"><b>Definition:</b> bme680.h:156</div></div>
+<div class="ttc" id="astructbme680__field__data_html_a6ce58ca03356c0df2e4b02bac6c4ce26"><div class="ttname"><a href="structbme680__field__data.html#a6ce58ca03356c0df2e4b02bac6c4ce26">bme680_field_data::gas_resistance</a></div><div class="ttdeci">uint32_t gas_resistance</div><div class="ttdoc">Gas resistance in ohms.</div><div class="ttdef"><b>Definition:</b> bme680.h:167</div></div>
+<div class="ttc" id="astructbme680__field__data_html_a8954536ec56e28e4bc79ed7bf1bc5176"><div class="ttname"><a href="structbme680__field__data.html#a8954536ec56e28e4bc79ed7bf1bc5176">bme680_field_data::temperature</a></div><div class="ttdeci">int16_t temperature</div><div class="ttdoc">Temperature in degree Celsius x 100.</div><div class="ttdef"><b>Definition:</b> bme680.h:164</div></div>
+<div class="ttc" id="astructbme680__field__data_html_ac84103cb41a2fab9614a61b467e5410e"><div class="ttname"><a href="structbme680__field__data.html#ac84103cb41a2fab9614a61b467e5410e">bme680_field_data::humidity</a></div><div class="ttdeci">uint32_t humidity</div><div class="ttdoc">Relative humidity in percent x 1000.</div><div class="ttdef"><b>Definition:</b> bme680.h:166</div></div>
+<div class="ttc" id="astructbme680__field__data_html_add2cb9f6b7d736908aa9f75904122d3c"><div class="ttname"><a href="structbme680__field__data.html#add2cb9f6b7d736908aa9f75904122d3c">bme680_field_data::meas_index</a></div><div class="ttdeci">uint8_t meas_index</div><div class="ttdoc">Measurement index.</div><div class="ttdef"><b>Definition:</b> bme680.h:162</div></div>
+<div class="ttc" id="astructbme680__field__data_html_ae96ceedb9e36dc0671ac533e88160f5b"><div class="ttname"><a href="structbme680__field__data.html#ae96ceedb9e36dc0671ac533e88160f5b">bme680_field_data::gas_index</a></div><div class="ttdeci">uint8_t gas_index</div><div class="ttdoc">Index of used heater profile.</div><div class="ttdef"><b>Definition:</b> bme680.h:161</div></div>
+<div class="ttc" id="astructbme680__field__data_html_af52b43f86807c1f1ef7526bbb9584c5b"><div class="ttname"><a href="structbme680__field__data.html#af52b43f86807c1f1ef7526bbb9584c5b">bme680_field_data::status</a></div><div class="ttdeci">uint8_t status</div><div class="ttdoc">Status for new data, gas measurement valid and heater stable.</div><div class="ttdef"><b>Definition:</b> bme680.h:157</div></div>
+<div class="ttc" id="astructbme680__field__data_html_af92dbc060536ac0cd546a1f402fcecb4"><div class="ttname"><a href="structbme680__field__data.html#af92dbc060536ac0cd546a1f402fcecb4">bme680_field_data::pressure</a></div><div class="ttdeci">uint32_t pressure</div><div class="ttdoc">Pressure in Pascal.</div><div class="ttdef"><b>Definition:</b> bme680.h:165</div></div>
+<div class="ttc" id="astructbme680__intf__i2c__t_html"><div class="ttname"><a href="structbme680__intf__i2c__t.html">bme680_intf_i2c_t</a></div><div class="ttdoc">BME680 I2C parameters.</div><div class="ttdef"><b>Definition:</b> bme680.h:192</div></div>
+<div class="ttc" id="astructbme680__intf__i2c__t_html_a96e9d1d7898376d0b9fa09d4b744d429"><div class="ttname"><a href="structbme680__intf__i2c__t.html#a96e9d1d7898376d0b9fa09d4b744d429">bme680_intf_i2c_t::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdoc">I2C address.</div><div class="ttdef"><b>Definition:</b> bme680.h:194</div></div>
+<div class="ttc" id="astructbme680__intf__i2c__t_html_ac7ade62c38582f2c5d1fd5d5e1504d68"><div class="ttname"><a href="structbme680__intf__i2c__t.html#ac7ade62c38582f2c5d1fd5d5e1504d68">bme680_intf_i2c_t::dev</a></div><div class="ttdeci">i2c_t dev</div><div class="ttdoc">I2C device which is used.</div><div class="ttdef"><b>Definition:</b> bme680.h:193</div></div>
+<div class="ttc" id="astructbme680__intf__spi__t_html"><div class="ttname"><a href="structbme680__intf__spi__t.html">bme680_intf_spi_t</a></div><div class="ttdoc">BME680 SPI parameters.</div><div class="ttdef"><b>Definition:</b> bme680.h:200</div></div>
+<div class="ttc" id="astructbme680__intf__spi__t_html_a0a8468e9f99aecafb5231f6d396d6028"><div class="ttname"><a href="structbme680__intf__spi__t.html#a0a8468e9f99aecafb5231f6d396d6028">bme680_intf_spi_t::nss_pin</a></div><div class="ttdeci">gpio_t nss_pin</div><div class="ttdoc">Chip Select pin.</div><div class="ttdef"><b>Definition:</b> bme680.h:202</div></div>
+<div class="ttc" id="astructbme680__intf__spi__t_html_a3dbd5bcb404356bdfe488f6842a0aa5b"><div class="ttname"><a href="structbme680__intf__spi__t.html#a3dbd5bcb404356bdfe488f6842a0aa5b">bme680_intf_spi_t::dev</a></div><div class="ttdeci">spi_t dev</div><div class="ttdoc">SPI device which is used.</div><div class="ttdef"><b>Definition:</b> bme680.h:201</div></div>
+<div class="ttc" id="astructbme680__params__t_html"><div class="ttname"><a href="structbme680__params__t.html">bme680_params_t</a></div><div class="ttdoc">BME680 device initialization parameters.</div><div class="ttdef"><b>Definition:</b> bme680.h:216</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a1d81e435a7397c3539ee4a1d039a4b42"><div class="ttname"><a href="structbme680__params__t.html#a1d81e435a7397c3539ee4a1d039a4b42">bme680_params_t::ifsel</a></div><div class="ttdeci">uint8_t ifsel</div><div class="ttdoc">Interface selection.</div><div class="ttdef"><b>Definition:</b> bme680.h:217</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a4181b6faa59d934d7e867f8304938ae4"><div class="ttname"><a href="structbme680__params__t.html#a4181b6faa59d934d7e867f8304938ae4">bme680_params_t::intf</a></div><div class="ttdeci">bme680_intf_t intf</div><div class="ttdoc">Hardware interface parameters.</div><div class="ttdef"><b>Definition:</b> bme680.h:227</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a46cc09e8dafdf4183785108c7033059b"><div class="ttname"><a href="structbme680__params__t.html#a46cc09e8dafdf4183785108c7033059b">bme680_params_t::gas_measure</a></div><div class="ttdeci">uint8_t gas_measure</div><div class="ttdoc">Enable gas measurement.</div><div class="ttdef"><b>Definition:</b> bme680.h:222</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a566c8bb9d71cd7905253bd6667e5a5c6"><div class="ttname"><a href="structbme680__params__t.html#a566c8bb9d71cd7905253bd6667e5a5c6">bme680_params_t::pres_os</a></div><div class="ttdeci">uint8_t pres_os</div><div class="ttdoc">Pressure oversampling.</div><div class="ttdef"><b>Definition:</b> bme680.h:220</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a7562033333693c1968d03f9e045096ab"><div class="ttname"><a href="structbme680__params__t.html#a7562033333693c1968d03f9e045096ab">bme680_params_t::hum_os</a></div><div class="ttdeci">uint8_t hum_os</div><div class="ttdoc">Humidity oversampling.</div><div class="ttdef"><b>Definition:</b> bme680.h:219</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a85b4430b763fe76ce5c2332fab34d8ef"><div class="ttname"><a href="structbme680__params__t.html#a85b4430b763fe76ce5c2332fab34d8ef">bme680_params_t::heater_dur</a></div><div class="ttdeci">uint16_t heater_dur</div><div class="ttdoc">Heater duration in ms.</div><div class="ttdef"><b>Definition:</b> bme680.h:223</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a85dc7dedcb18bfcb3fc40688a2bc5247"><div class="ttname"><a href="structbme680__params__t.html#a85dc7dedcb18bfcb3fc40688a2bc5247">bme680_params_t::power_mode</a></div><div class="ttdeci">uint8_t power_mode</div><div class="ttdoc">Power mode (sleep or forced)</div><div class="ttdef"><b>Definition:</b> bme680.h:225</div></div>
+<div class="ttc" id="astructbme680__params__t_html_a85f309236aae2d6b82a1350eed41fcff"><div class="ttname"><a href="structbme680__params__t.html#a85f309236aae2d6b82a1350eed41fcff">bme680_params_t::heater_temp</a></div><div class="ttdeci">uint16_t heater_temp</div><div class="ttdoc">Heater temperature in °C.</div><div class="ttdef"><b>Definition:</b> bme680.h:224</div></div>
+<div class="ttc" id="astructbme680__params__t_html_ac6cf07d2d3d41b86cf1244c97d4abbe9"><div class="ttname"><a href="structbme680__params__t.html#ac6cf07d2d3d41b86cf1244c97d4abbe9">bme680_params_t::temp_os</a></div><div class="ttdeci">uint8_t temp_os</div><div class="ttdoc">Temperature oversampling.</div><div class="ttdef"><b>Definition:</b> bme680.h:218</div></div>
+<div class="ttc" id="astructbme680__params__t_html_ac80c5ddcef65b2151006ae8f1d234892"><div class="ttname"><a href="structbme680__params__t.html#ac80c5ddcef65b2151006ae8f1d234892">bme680_params_t::settings</a></div><div class="ttdeci">uint8_t settings</div><div class="ttdoc">Settings used.</div><div class="ttdef"><b>Definition:</b> bme680.h:226</div></div>
+<div class="ttc" id="astructbme680__params__t_html_acad3a72809351be264e9845d55307e29"><div class="ttname"><a href="structbme680__params__t.html#acad3a72809351be264e9845d55307e29">bme680_params_t::filter</a></div><div class="ttdeci">uint8_t filter</div><div class="ttdoc">IIR filter coefficient.</div><div class="ttdef"><b>Definition:</b> bme680.h:221</div></div>
+<div class="ttc" id="astructbme680__t_html"><div class="ttname"><a href="structbme680__t.html">bme680_t</a></div><div class="ttdoc">BME680 device descriptor.</div><div class="ttdef"><b>Definition:</b> bme680.h:233</div></div>
+<div class="ttc" id="astructbme680__t_html_ab6e0befcb7afc468063cba0f87b5dee8"><div class="ttname"><a href="structbme680__t.html#ab6e0befcb7afc468063cba0f87b5dee8">bme680_t::intf</a></div><div class="ttdeci">bme680_intf_t intf</div><div class="ttdoc">Device interface.</div><div class="ttdef"><b>Definition:</b> bme680.h:235</div></div>
+<div class="ttc" id="aunionbme680__intf__t_html"><div class="ttname"><a href="unionbme680__intf__t.html">bme680_intf_t</a></div><div class="ttdoc">BME680 Hardware interface parameters union.</div><div class="ttdef"><b>Definition:</b> bme680.h:208</div></div>
+<div class="ttc" id="aunionbme680__intf__t_html_a191646bfe62fa21086afab52c9b708d4"><div class="ttname"><a href="unionbme680__intf__t.html#a191646bfe62fa21086afab52c9b708d4">bme680_intf_t::spi</a></div><div class="ttdeci">bme680_intf_spi_t spi</div><div class="ttdoc">SPI specific interface parameters.</div><div class="ttdef"><b>Definition:</b> bme680.h:210</div></div>
+<div class="ttc" id="aunionbme680__intf__t_html_aed3861c022c0b09893553671e7ceef65"><div class="ttname"><a href="unionbme680__intf__t.html#aed3861c022c0b09893553671e7ceef65">bme680_intf_t::i2c</a></div><div class="ttdeci">bme680_intf_i2c_t i2c</div><div class="ttdoc">I2C specific interface parameters.</div><div class="ttdef"><b>Definition:</b> bme680.h:209</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="bme680_8h.html">bme680.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

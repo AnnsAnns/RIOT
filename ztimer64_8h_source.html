@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/ztimer64.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ztimer64_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ztimer64.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ztimer64_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga428da0199c8afea15acc6c30af24e88a">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2021 Inria</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2021 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *               2021 Kaspar Schleiser &lt;kaspar@schleiser.de&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#ifndef ZTIMER64_H</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define ZTIMER64_H</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="irq_8h.html">irq.h</a>&quot;</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mutex_8h.html">mutex.h</a>&quot;</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#include &quot;msg.h&quot;</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ztimer_8h.html">ztimer.h</a>&quot;</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structztimer64__base.html">ztimer64_base</a> <a class="code" href="structztimer64__base.html">ztimer64_base_t</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structztimer64__clock.html">ztimer64_clock</a> <a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structztimer64__base.html">   90</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structztimer64__base.html">ztimer64_base</a> {</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structztimer64__base.html#a5be0e824cab65543a29b1fdf322f3157">   91</a></span>&#160;    <a class="code" href="structztimer64__base.html">ztimer64_base_t</a> *<a class="code" href="structztimer64__base.html#a5be0e824cab65543a29b1fdf322f3157">next</a>;          </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="structztimer64__base.html#aa3dce4cfeaa331d1a7216d4c8aa27794">   92</a></span>&#160;    uint64_t <a class="code" href="structztimer64__base.html#aa3dce4cfeaa331d1a7216d4c8aa27794">target</a>;                </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structztimer64__t.html">  101</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structztimer64__t.html#a4a25691418b1b79ae7819f63ee6671be">  102</a></span>&#160;    <a class="code" href="structztimer64__base.html">ztimer64_base_t</a> <a class="code" href="structztimer64__t.html#a4a25691418b1b79ae7819f63ee6671be">base</a>;               </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structztimer64__t.html#aa1b7bd76d74a05a7f9229a5c35a7c87e">  103</a></span>&#160;    void (*callback)(<span class="keywordtype">void</span> *arg);        </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structztimer64__t.html#a640a7d44c089f46b3ab123c5748e0d59">  104</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structztimer64__t.html#a640a7d44c089f46b3ab123c5748e0d59">arg</a>;                          </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;} <a class="code" href="structztimer64__t.html">ztimer64_t</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structztimer64__clock.html">  110</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structztimer64__clock.html">ztimer64_clock</a> {</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structztimer64__clock.html#ad719bf750ec0786d78236ade3fe5cb5f">  111</a></span>&#160;    <a class="code" href="structztimer64__base.html">ztimer64_base_t</a> *<a class="code" href="structztimer64__clock.html#ad719bf750ec0786d78236ade3fe5cb5f">first</a>;         </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structztimer64__clock.html#aead8cc349bb33e2fc8ab3e02bfd60337">  112</a></span>&#160;    <a class="code" href="structztimer__clock.html">ztimer_clock_t</a> *<a class="code" href="structztimer64__clock.html#aead8cc349bb33e2fc8ab3e02bfd60337">base_clock</a>;     </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="structztimer64__clock.html#a406fc5a5dd03d24a88abbe02008c105b">  113</a></span>&#160;    <a class="code" href="structztimer__t.html">ztimer_t</a> <a class="code" href="structztimer64__clock.html#a406fc5a5dd03d24a88abbe02008c105b">base_timer</a>;            </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structztimer64__clock.html#ab4d0384ea80d40b25f79d85cf19b8557">  114</a></span>&#160;    uint64_t <a class="code" href="structztimer64__clock.html#ab4d0384ea80d40b25f79d85cf19b8557">checkpoint</a>;            </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structztimer64__clock.html#ab780e6c961e84fdcd252b1c14d2ae092">  115</a></span>&#160;    uint16_t <a class="code" href="structztimer64__clock.html#ab780e6c961e84fdcd252b1c14d2ae092">adjust_set</a>;            </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structztimer64__clock.html#a6527ec3ca4197e9aefe41dbfa3c5c9c1">  116</a></span>&#160;    uint16_t <a class="code" href="structztimer64__clock.html#a6527ec3ca4197e9aefe41dbfa3c5c9c1">adjust_sleep</a>;          </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#if MODULE_PM_LAYERED || DOXYGEN</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="structztimer64__clock.html#a8139d56212ae4edf3f798172bbc68ad7">  119</a></span>&#160;    uint8_t <a class="code" href="structztimer64__clock.html#a8139d56212ae4edf3f798172bbc68ad7">block_pm_mode</a>;          </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;};</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga620ac7277ccde1f21a78fa3b70f8dfcf">  130</a></span>&#160;uint64_t <a class="code" href="group__sys__ztimer64.html#ga620ac7277ccde1f21a78fa3b70f8dfcf">ztimer64_now</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">  140</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock,</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                                                uint64_t offset)</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;{</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">unsigned</span> state = <a class="code" href="group__core__irq.html#ga7cb620d77da293d98ccc1715d6cb9a02">irq_disable</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    uint64_t result = <a class="code" href="group__sys__ztimer64.html#ga620ac7277ccde1f21a78fa3b70f8dfcf">ztimer64_now</a>(clock) + offset;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="group__core__irq.html#ga066129c367d18a871d0155d85148fd3e">irq_restore</a>(state);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gaa9f4911ef27bfddbbb44243714d774fb">  163</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#gaa9f4911ef27bfddbbb44243714d774fb">ztimer64_set_at</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer,</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                     uint64_t target);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga87b08fe883badce9337e9602190bf054">  179</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga87b08fe883badce9337e9602190bf054">ztimer64_set</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer,</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                                uint64_t offset)</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;{</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="group__sys__ztimer64.html#gaa9f4911ef27bfddbbb44243714d774fb">ztimer64_set_at</a>(clock, timer,</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, offset));</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;}</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga2177b5593c18643bbd2ff30de4ed4620">  194</a></span>&#160;<span class="keywordtype">unsigned</span> <a class="code" href="group__sys__ztimer64.html#ga2177b5593c18643bbd2ff30de4ed4620">ztimer64_is_set</a>(<span class="keyword">const</span> <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga3333be06edbf7e1a8388058035b1da51">  207</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga3333be06edbf7e1a8388058035b1da51">ztimer64_remove</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gae116fad9c3b25b9a16588439b91266ad">  223</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#gae116fad9c3b25b9a16588439b91266ad">ztimer64_set_msg_at</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer,</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                         uint64_t target,</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                         <a class="code" href="structmsg__t.html">msg_t</a> *msg, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> target_pid);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga64d04d679dff7c117109c80086a0e70e">  242</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga64d04d679dff7c117109c80086a0e70e">ztimer64_set_msg</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer,</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                                    uint64_t offset,</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                                    <a class="code" href="structmsg__t.html">msg_t</a> *msg, <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> target_pid)</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;{</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="group__sys__ztimer64.html#gae116fad9c3b25b9a16588439b91266ad">ztimer64_set_msg_at</a>(clock, timer,</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                        <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, offset),</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                        msg, target_pid);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;}</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gaad2d699f7881c484651ba6a5ce2c03a0">  268</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__sys__ztimer64.html#gaad2d699f7881c484651ba6a5ce2c03a0">ztimer64_msg_receive_until</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structmsg__t.html">msg_t</a> *msg,</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                               uint64_t target);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga76a3062ce65e9a9f3a19700f71ecb0a5">  288</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__sys__ztimer64.html#ga76a3062ce65e9a9f3a19700f71ecb0a5">ztimer64_msg_receive_timeout</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock,</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                                               <a class="code" href="structmsg__t.html">msg_t</a> *msg,</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                                               uint64_t timeout)</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;{</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__ztimer64.html#gaad2d699f7881c484651ba6a5ce2c03a0">ztimer64_msg_receive_until</a>(clock, msg,</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                                      <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, timeout));</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;}</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga83c37dbd894d60ac4a5424fa71850530">  296</a></span>&#160;<span class="preprocessor">#define MSG_ZTIMER64 0xc83f   </span></div>
+<div class="line"><a name="l00318"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga8fbc89cf1754dcb53feb5a1db042e090">  318</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga8fbc89cf1754dcb53feb5a1db042e090">ztimer64_periodic_wakeup</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, uint64_t *last_wakeup,</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                              uint64_t period);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
+<div class="line"><a name="l00327"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga4efd1bbe6819b641c49aa6c0367e289b">  327</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga4efd1bbe6819b641c49aa6c0367e289b">ztimer64_sleep_until</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, uint64_t target);</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gaac757c41341971b2b09c5e2ec6aebb4e">  335</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#gaac757c41341971b2b09c5e2ec6aebb4e">ztimer64_sleep</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, uint64_t duration)</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;{</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <a class="code" href="group__sys__ztimer64.html#ga4efd1bbe6819b641c49aa6c0367e289b">ztimer64_sleep_until</a>(clock, <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, duration));</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;}</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
+<div class="line"><a name="l00348"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gaed7b712e83c2159cfe31d96cea054641">  348</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#gaed7b712e83c2159cfe31d96cea054641">ztimer64_spin_until</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, uint64_t target)</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;{</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="group__sys__ztimer64.html#ga620ac7277ccde1f21a78fa3b70f8dfcf">ztimer64_now</a>(clock) &lt;= target) {}</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;}</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00364"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga0a3ef706a76680957efba00b881f87f1">  364</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga0a3ef706a76680957efba00b881f87f1">ztimer64_set_wakeup_at</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer,</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                            uint64_t target,</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                            <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid);</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga2bca591fcf1d1b1bd8d9909ad90b582f">  379</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga2bca591fcf1d1b1bd8d9909ad90b582f">ztimer64_set_wakeup</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock,</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                                       <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer, uint64_t offset,</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                                       <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;{</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <a class="code" href="group__sys__ztimer64.html#ga0a3ef706a76680957efba00b881f87f1">ztimer64_set_wakeup_at</a>(clock, timer,</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                           <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, offset), pid);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;}</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160; </div>
+<div class="line"><a name="l00397"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga9f5c3be3d2f5f0b4683786ef38d9307b">  397</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga9f5c3be3d2f5f0b4683786ef38d9307b">ztimer64_set_timeout_flag_at</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer,</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                                  uint64_t target);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
+<div class="line"><a name="l00410"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga3b40cc6cefd8fc220519d4c306f79157">  410</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga3b40cc6cefd8fc220519d4c306f79157">ztimer64_set_timeout_flag</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock,</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                                             <a class="code" href="structztimer64__t.html">ztimer64_t</a> *timer,</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                                             uint64_t timeout)</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;{</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <a class="code" href="group__sys__ztimer64.html#ga9f5c3be3d2f5f0b4683786ef38d9307b">ztimer64_set_timeout_flag_at</a>(clock, timer,</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                                 <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, timeout));</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;}</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160; </div>
+<div class="line"><a name="l00428"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga462c0009a38ce5e0f8069ba7d30ad96a">  428</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__sys__ztimer64.html#ga462c0009a38ce5e0f8069ba7d30ad96a">ztimer64_mutex_lock_until</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structmutex__t.html">mutex_t</a> *mutex,</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                              uint64_t target);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
+<div class="line"><a name="l00441"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga7ecbcf7731ee8dc3cbb5b36e60468178">  441</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__sys__ztimer64.html#ga7ecbcf7731ee8dc3cbb5b36e60468178">ztimer64_mutex_lock_timeout</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock,</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                                              <a class="code" href="structmutex__t.html">mutex_t</a> *mutex,</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                                              uint64_t timeout)</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;{</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__ztimer64.html#ga462c0009a38ce5e0f8069ba7d30ad96a">ztimer64_mutex_lock_until</a>(clock, mutex,</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;                                     <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, timeout));</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;}</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
+<div class="line"><a name="l00459"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gaf9a884d307ac738e8d0980a74007fb50">  459</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__sys__ztimer64.html#gaf9a884d307ac738e8d0980a74007fb50">ztimer64_rmutex_lock_until</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structrmutex__t.html">rmutex_t</a> *rmutex,</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                               uint64_t target);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
+<div class="line"><a name="l00472"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gac115b8099a7be028ad30f44718c50ea5">  472</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__sys__ztimer64.html#gac115b8099a7be028ad30f44718c50ea5">ztimer64_rmutex_lock_timeout</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock,</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;                                               <a class="code" href="structrmutex__t.html">rmutex_t</a> *rmutex,</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                                               uint64_t timeout)</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;{</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__ztimer64.html#gaf9a884d307ac738e8d0980a74007fb50">ztimer64_rmutex_lock_until</a>(clock, rmutex,</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;                                      <a class="code" href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a>(clock, timeout));</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;}</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160; </div>
+<div class="line"><a name="l00487"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga5af6c1df6ece5ed5b3a62fc03f7fece4">  487</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga5af6c1df6ece5ed5b3a62fc03f7fece4">ztimer64_update_head_offset</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock);</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160; </div>
+<div class="line"><a name="l00492"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga001a08f2ce6b26aeab6411cfa95787a9">  492</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga001a08f2ce6b26aeab6411cfa95787a9">ztimer64_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160; </div>
+<div class="line"><a name="l00499"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#ga1fbec3365c03bf865e09d2f6f08a87a6">  499</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__sys__ztimer64.html#ga1fbec3365c03bf865e09d2f6f08a87a6">ztimer64_clock_init</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, <a class="code" href="structztimer__clock.html">ztimer_clock_t</a> *base_clock);</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160; </div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">/* default ztimer virtual devices */</span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="keyword">extern</span> <a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *<span class="keyword">const</span> <a class="code" href="group__sys__ztimer64.html#gad159bd3a05bfc169bd8cd2b2b91f11e4">ZTIMER64_USEC</a>;</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160; </div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="keyword">extern</span> <a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *<span class="keyword">const</span> <a class="code" href="group__sys__ztimer64.html#gae19218cf73b4f2ee4b90e2b97bd25871">ZTIMER64_MSEC</a>;</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160; </div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="keyword">extern</span> <a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *<span class="keyword">const</span> <a class="code" href="group__sys__ztimer64.html#gaec9f72ee7e500fa4fbeb9d15cc3b0cec">ZTIMER64_SEC</a>;</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160; </div>
+<div class="line"><a name="l00528"></a><span class="lineno"><a class="line" href="group__sys__ztimer64.html#gadcac20d33b75da36269c546ea6bf70eb">  528</a></span>&#160;int64_t <a class="code" href="group__sys__ztimer64.html#gadcac20d33b75da36269c546ea6bf70eb">ztimer64_overhead</a>(<a class="code" href="structztimer64__clock.html">ztimer64_clock_t</a> *clock, uint64_t base);</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160; </div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;}</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160; </div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ZTIMER64_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__core__irq_html_ga066129c367d18a871d0155d85148fd3e"><div class="ttname"><a href="group__core__irq.html#ga066129c367d18a871d0155d85148fd3e">irq_restore</a></div><div class="ttdeci">MAYBE_INLINE void irq_restore(unsigned state)</div><div class="ttdoc">This function restores the IRQ disable bit in the status register to the value contained within passe...</div></div>
+<div class="ttc" id="agroup__core__irq_html_ga7cb620d77da293d98ccc1715d6cb9a02"><div class="ttname"><a href="group__core__irq.html#ga7cb620d77da293d98ccc1715d6cb9a02">irq_disable</a></div><div class="ttdeci">MAYBE_INLINE unsigned irq_disable(void)</div><div class="ttdoc">This function sets the IRQ disable bit in the status register.</div></div>
+<div class="ttc" id="agroup__core__sched_html_ga8375139300d7cbf23bd8bd89ddddbe84"><div class="ttname"><a href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a></div><div class="ttdeci">int16_t kernel_pid_t</div><div class="ttdoc">Unique process identifier.</div><div class="ttdef"><b>Definition:</b> sched.h:139</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga001a08f2ce6b26aeab6411cfa95787a9"><div class="ttname"><a href="group__sys__ztimer64.html#ga001a08f2ce6b26aeab6411cfa95787a9">ztimer64_init</a></div><div class="ttdeci">void ztimer64_init(void)</div><div class="ttdoc">Initialize the board-specific default ztimer configuration.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga0a3ef706a76680957efba00b881f87f1"><div class="ttname"><a href="group__sys__ztimer64.html#ga0a3ef706a76680957efba00b881f87f1">ztimer64_set_wakeup_at</a></div><div class="ttdeci">void ztimer64_set_wakeup_at(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t target, kernel_pid_t pid)</div><div class="ttdoc">Set a timer that wakes up a thread (absolute version)</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga1fbec3365c03bf865e09d2f6f08a87a6"><div class="ttname"><a href="group__sys__ztimer64.html#ga1fbec3365c03bf865e09d2f6f08a87a6">ztimer64_clock_init</a></div><div class="ttdeci">void ztimer64_clock_init(ztimer64_clock_t *clock, ztimer_clock_t *base_clock)</div><div class="ttdoc">Initialize clock to be run from base_clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga2177b5593c18643bbd2ff30de4ed4620"><div class="ttname"><a href="group__sys__ztimer64.html#ga2177b5593c18643bbd2ff30de4ed4620">ztimer64_is_set</a></div><div class="ttdeci">unsigned ztimer64_is_set(const ztimer64_t *timer)</div><div class="ttdoc">Check if a timer is currently active.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga2bca591fcf1d1b1bd8d9909ad90b582f"><div class="ttname"><a href="group__sys__ztimer64.html#ga2bca591fcf1d1b1bd8d9909ad90b582f">ztimer64_set_wakeup</a></div><div class="ttdeci">static void ztimer64_set_wakeup(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t offset, kernel_pid_t pid)</div><div class="ttdoc">Set a timer that wakes up a thread (relative version)</div><div class="ttdef"><b>Definition:</b> ztimer64.h:379</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga3333be06edbf7e1a8388058035b1da51"><div class="ttname"><a href="group__sys__ztimer64.html#ga3333be06edbf7e1a8388058035b1da51">ztimer64_remove</a></div><div class="ttdeci">void ztimer64_remove(ztimer64_clock_t *clock, ztimer64_t *timer)</div><div class="ttdoc">Remove a timer from a clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga3b40cc6cefd8fc220519d4c306f79157"><div class="ttname"><a href="group__sys__ztimer64.html#ga3b40cc6cefd8fc220519d4c306f79157">ztimer64_set_timeout_flag</a></div><div class="ttdeci">static void ztimer64_set_timeout_flag(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t timeout)</div><div class="ttdoc">Set timeout thread flag after timeout.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:410</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga462c0009a38ce5e0f8069ba7d30ad96a"><div class="ttname"><a href="group__sys__ztimer64.html#ga462c0009a38ce5e0f8069ba7d30ad96a">ztimer64_mutex_lock_until</a></div><div class="ttdeci">int ztimer64_mutex_lock_until(ztimer64_clock_t *clock, mutex_t *mutex, uint64_t target)</div><div class="ttdoc">Try to lock the given mutex, but give up at target time.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga4efd1bbe6819b641c49aa6c0367e289b"><div class="ttname"><a href="group__sys__ztimer64.html#ga4efd1bbe6819b641c49aa6c0367e289b">ztimer64_sleep_until</a></div><div class="ttdeci">void ztimer64_sleep_until(ztimer64_clock_t *clock, uint64_t target)</div><div class="ttdoc">Put the calling thread to sleep until the specified time.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga5af6c1df6ece5ed5b3a62fc03f7fece4"><div class="ttname"><a href="group__sys__ztimer64.html#ga5af6c1df6ece5ed5b3a62fc03f7fece4">ztimer64_update_head_offset</a></div><div class="ttdeci">void ztimer64_update_head_offset(ztimer64_clock_t *clock)</div><div class="ttdoc">Update ztimer clock head list offset.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga620ac7277ccde1f21a78fa3b70f8dfcf"><div class="ttname"><a href="group__sys__ztimer64.html#ga620ac7277ccde1f21a78fa3b70f8dfcf">ztimer64_now</a></div><div class="ttdeci">uint64_t ztimer64_now(ztimer64_clock_t *clock)</div><div class="ttdoc">Get the current time from a clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga64d04d679dff7c117109c80086a0e70e"><div class="ttname"><a href="group__sys__ztimer64.html#ga64d04d679dff7c117109c80086a0e70e">ztimer64_set_msg</a></div><div class="ttdeci">static void ztimer64_set_msg(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t offset, msg_t *msg, kernel_pid_t target_pid)</div><div class="ttdoc">Post a message after a delay (relative version)</div><div class="ttdef"><b>Definition:</b> ztimer64.h:242</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga76a3062ce65e9a9f3a19700f71ecb0a5"><div class="ttname"><a href="group__sys__ztimer64.html#ga76a3062ce65e9a9f3a19700f71ecb0a5">ztimer64_msg_receive_timeout</a></div><div class="ttdeci">static int ztimer64_msg_receive_timeout(ztimer64_clock_t *clock, msg_t *msg, uint64_t timeout)</div><div class="ttdoc">receive a message (blocking, with relative timeout)</div><div class="ttdef"><b>Definition:</b> ztimer64.h:288</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga7ecbcf7731ee8dc3cbb5b36e60468178"><div class="ttname"><a href="group__sys__ztimer64.html#ga7ecbcf7731ee8dc3cbb5b36e60468178">ztimer64_mutex_lock_timeout</a></div><div class="ttdeci">static int ztimer64_mutex_lock_timeout(ztimer64_clock_t *clock, mutex_t *mutex, uint64_t timeout)</div><div class="ttdoc">Try to lock the given mutex, but give up after timeout.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:441</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga87b08fe883badce9337e9602190bf054"><div class="ttname"><a href="group__sys__ztimer64.html#ga87b08fe883badce9337e9602190bf054">ztimer64_set</a></div><div class="ttdeci">static void ztimer64_set(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t offset)</div><div class="ttdoc">Set a timer on a clock (relative version)</div><div class="ttdef"><b>Definition:</b> ztimer64.h:179</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga8fbc89cf1754dcb53feb5a1db042e090"><div class="ttname"><a href="group__sys__ztimer64.html#ga8fbc89cf1754dcb53feb5a1db042e090">ztimer64_periodic_wakeup</a></div><div class="ttdeci">void ztimer64_periodic_wakeup(ztimer64_clock_t *clock, uint64_t *last_wakeup, uint64_t period)</div><div class="ttdoc">Suspend the calling thread until the time (last_wakeup + period)</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_ga9f5c3be3d2f5f0b4683786ef38d9307b"><div class="ttname"><a href="group__sys__ztimer64.html#ga9f5c3be3d2f5f0b4683786ef38d9307b">ztimer64_set_timeout_flag_at</a></div><div class="ttdeci">void ztimer64_set_timeout_flag_at(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t target)</div><div class="ttdoc">Set timeout thread flag at target time.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gaa60e84488651941e347c30ef180df68b"><div class="ttname"><a href="group__sys__ztimer64.html#gaa60e84488651941e347c30ef180df68b">ztimer64_offset2absolute</a></div><div class="ttdeci">static uint64_t ztimer64_offset2absolute(ztimer64_clock_t *clock, uint64_t offset)</div><div class="ttdoc">Get absolute target time for a clock given offset.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:140</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gaa9f4911ef27bfddbbb44243714d774fb"><div class="ttname"><a href="group__sys__ztimer64.html#gaa9f4911ef27bfddbbb44243714d774fb">ztimer64_set_at</a></div><div class="ttdeci">void ztimer64_set_at(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t target)</div><div class="ttdoc">Set a timer on a clock (absolute version)</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gaac757c41341971b2b09c5e2ec6aebb4e"><div class="ttname"><a href="group__sys__ztimer64.html#gaac757c41341971b2b09c5e2ec6aebb4e">ztimer64_sleep</a></div><div class="ttdeci">static void ztimer64_sleep(ztimer64_clock_t *clock, uint64_t duration)</div><div class="ttdoc">Put the calling thread to sleep for the specified number of ticks.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:335</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gaad2d699f7881c484651ba6a5ce2c03a0"><div class="ttname"><a href="group__sys__ztimer64.html#gaad2d699f7881c484651ba6a5ce2c03a0">ztimer64_msg_receive_until</a></div><div class="ttdeci">int ztimer64_msg_receive_until(ztimer64_clock_t *clock, msg_t *msg, uint64_t target)</div><div class="ttdoc">receive a message (blocking, with absolute timeout)</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gac115b8099a7be028ad30f44718c50ea5"><div class="ttname"><a href="group__sys__ztimer64.html#gac115b8099a7be028ad30f44718c50ea5">ztimer64_rmutex_lock_timeout</a></div><div class="ttdeci">static int ztimer64_rmutex_lock_timeout(ztimer64_clock_t *clock, rmutex_t *rmutex, uint64_t timeout)</div><div class="ttdoc">Try to lock the given rmutex, but give up after timeout.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:472</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gad159bd3a05bfc169bd8cd2b2b91f11e4"><div class="ttname"><a href="group__sys__ztimer64.html#gad159bd3a05bfc169bd8cd2b2b91f11e4">ZTIMER64_USEC</a></div><div class="ttdeci">ztimer64_clock_t *const ZTIMER64_USEC</div><div class="ttdoc">Default ztimer microsecond clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gadcac20d33b75da36269c546ea6bf70eb"><div class="ttname"><a href="group__sys__ztimer64.html#gadcac20d33b75da36269c546ea6bf70eb">ztimer64_overhead</a></div><div class="ttdeci">int64_t ztimer64_overhead(ztimer64_clock_t *clock, uint64_t base)</div><div class="ttdoc">Measure ztimer64 overhead.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gae116fad9c3b25b9a16588439b91266ad"><div class="ttname"><a href="group__sys__ztimer64.html#gae116fad9c3b25b9a16588439b91266ad">ztimer64_set_msg_at</a></div><div class="ttdeci">void ztimer64_set_msg_at(ztimer64_clock_t *clock, ztimer64_t *timer, uint64_t target, msg_t *msg, kernel_pid_t target_pid)</div><div class="ttdoc">Post a message at a specified time.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gae19218cf73b4f2ee4b90e2b97bd25871"><div class="ttname"><a href="group__sys__ztimer64.html#gae19218cf73b4f2ee4b90e2b97bd25871">ZTIMER64_MSEC</a></div><div class="ttdeci">ztimer64_clock_t *const ZTIMER64_MSEC</div><div class="ttdoc">Default ztimer millisecond clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gaec9f72ee7e500fa4fbeb9d15cc3b0cec"><div class="ttname"><a href="group__sys__ztimer64.html#gaec9f72ee7e500fa4fbeb9d15cc3b0cec">ZTIMER64_SEC</a></div><div class="ttdeci">ztimer64_clock_t *const ZTIMER64_SEC</div><div class="ttdoc">Default ztimer second clock.</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gaed7b712e83c2159cfe31d96cea054641"><div class="ttname"><a href="group__sys__ztimer64.html#gaed7b712e83c2159cfe31d96cea054641">ztimer64_spin_until</a></div><div class="ttdeci">static void ztimer64_spin_until(ztimer64_clock_t *clock, uint64_t target)</div><div class="ttdoc">Busy-wait until specified target time.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:348</div></div>
+<div class="ttc" id="agroup__sys__ztimer64_html_gaf9a884d307ac738e8d0980a74007fb50"><div class="ttname"><a href="group__sys__ztimer64.html#gaf9a884d307ac738e8d0980a74007fb50">ztimer64_rmutex_lock_until</a></div><div class="ttdeci">int ztimer64_rmutex_lock_until(ztimer64_clock_t *clock, rmutex_t *rmutex, uint64_t target)</div><div class="ttdoc">Try to lock the given rmutex, but give up at time.</div></div>
+<div class="ttc" id="airq_8h_html"><div class="ttname"><a href="irq_8h.html">irq.h</a></div><div class="ttdoc">IRQ driver interface.</div></div>
+<div class="ttc" id="amutex_8h_html"><div class="ttname"><a href="mutex_8h.html">mutex.h</a></div><div class="ttdoc">Mutex for thread synchronization.</div></div>
+<div class="ttc" id="astructmsg__t_html"><div class="ttname"><a href="structmsg__t.html">msg_t</a></div><div class="ttdoc">Describes a message object which can be sent between threads.</div><div class="ttdef"><b>Definition:</b> msg.h:196</div></div>
+<div class="ttc" id="astructmutex__t_html"><div class="ttname"><a href="structmutex__t.html">mutex_t</a></div><div class="ttdoc">Mutex structure.</div><div class="ttdef"><b>Definition:</b> mutex.h:146</div></div>
+<div class="ttc" id="astructrmutex__t_html"><div class="ttname"><a href="structrmutex__t.html">rmutex_t</a></div><div class="ttdoc">Mutex structure.</div><div class="ttdef"><b>Definition:</b> rmutex.h:38</div></div>
+<div class="ttc" id="astructztimer64__base_html"><div class="ttname"><a href="structztimer64__base.html">ztimer64_base</a></div><div class="ttdoc">Minimum information for each timer.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:90</div></div>
+<div class="ttc" id="astructztimer64__base_html_a5be0e824cab65543a29b1fdf322f3157"><div class="ttname"><a href="structztimer64__base.html#a5be0e824cab65543a29b1fdf322f3157">ztimer64_base::next</a></div><div class="ttdeci">ztimer64_base_t * next</div><div class="ttdoc">next timer in list</div><div class="ttdef"><b>Definition:</b> ztimer64.h:91</div></div>
+<div class="ttc" id="astructztimer64__base_html_aa3dce4cfeaa331d1a7216d4c8aa27794"><div class="ttname"><a href="structztimer64__base.html#aa3dce4cfeaa331d1a7216d4c8aa27794">ztimer64_base::target</a></div><div class="ttdeci">uint64_t target</div><div class="ttdoc">absolute target time</div><div class="ttdef"><b>Definition:</b> ztimer64.h:92</div></div>
+<div class="ttc" id="astructztimer64__clock_html"><div class="ttname"><a href="structztimer64__clock.html">ztimer64_clock</a></div><div class="ttdoc">ztimer64 clock structure</div><div class="ttdef"><b>Definition:</b> ztimer64.h:110</div></div>
+<div class="ttc" id="astructztimer64__clock_html_a406fc5a5dd03d24a88abbe02008c105b"><div class="ttname"><a href="structztimer64__clock.html#a406fc5a5dd03d24a88abbe02008c105b">ztimer64_clock::base_timer</a></div><div class="ttdeci">ztimer_t base_timer</div><div class="ttdoc">32bit backend timer</div><div class="ttdef"><b>Definition:</b> ztimer64.h:113</div></div>
+<div class="ttc" id="astructztimer64__clock_html_a6527ec3ca4197e9aefe41dbfa3c5c9c1"><div class="ttname"><a href="structztimer64__clock.html#a6527ec3ca4197e9aefe41dbfa3c5c9c1">ztimer64_clock::adjust_sleep</a></div><div class="ttdeci">uint16_t adjust_sleep</div><div class="ttdoc">will be subtracted on every sleep(), in addition to adjust_set</div><div class="ttdef"><b>Definition:</b> ztimer64.h:116</div></div>
+<div class="ttc" id="astructztimer64__clock_html_a8139d56212ae4edf3f798172bbc68ad7"><div class="ttname"><a href="structztimer64__clock.html#a8139d56212ae4edf3f798172bbc68ad7">ztimer64_clock::block_pm_mode</a></div><div class="ttdeci">uint8_t block_pm_mode</div><div class="ttdoc">min.</div><div class="ttdef"><b>Definition:</b> ztimer64.h:119</div></div>
+<div class="ttc" id="astructztimer64__clock_html_ab4d0384ea80d40b25f79d85cf19b8557"><div class="ttname"><a href="structztimer64__clock.html#ab4d0384ea80d40b25f79d85cf19b8557">ztimer64_clock::checkpoint</a></div><div class="ttdeci">uint64_t checkpoint</div><div class="ttdoc">lower timer checkpoint offset</div><div class="ttdef"><b>Definition:</b> ztimer64.h:114</div></div>
+<div class="ttc" id="astructztimer64__clock_html_ab780e6c961e84fdcd252b1c14d2ae092"><div class="ttname"><a href="structztimer64__clock.html#ab780e6c961e84fdcd252b1c14d2ae092">ztimer64_clock::adjust_set</a></div><div class="ttdeci">uint16_t adjust_set</div><div class="ttdoc">will be subtracted on every set()</div><div class="ttdef"><b>Definition:</b> ztimer64.h:115</div></div>
+<div class="ttc" id="astructztimer64__clock_html_ad719bf750ec0786d78236ade3fe5cb5f"><div class="ttname"><a href="structztimer64__clock.html#ad719bf750ec0786d78236ade3fe5cb5f">ztimer64_clock::first</a></div><div class="ttdeci">ztimer64_base_t * first</div><div class="ttdoc">list of active timers</div><div class="ttdef"><b>Definition:</b> ztimer64.h:111</div></div>
+<div class="ttc" id="astructztimer64__clock_html_aead8cc349bb33e2fc8ab3e02bfd60337"><div class="ttname"><a href="structztimer64__clock.html#aead8cc349bb33e2fc8ab3e02bfd60337">ztimer64_clock::base_clock</a></div><div class="ttdeci">ztimer_clock_t * base_clock</div><div class="ttdoc">32bit clock backend</div><div class="ttdef"><b>Definition:</b> ztimer64.h:112</div></div>
+<div class="ttc" id="astructztimer64__t_html"><div class="ttname"><a href="structztimer64__t.html">ztimer64_t</a></div><div class="ttdoc">ztimer64 structure</div><div class="ttdef"><b>Definition:</b> ztimer64.h:101</div></div>
+<div class="ttc" id="astructztimer64__t_html_a4a25691418b1b79ae7819f63ee6671be"><div class="ttname"><a href="structztimer64__t.html#a4a25691418b1b79ae7819f63ee6671be">ztimer64_t::base</a></div><div class="ttdeci">ztimer64_base_t base</div><div class="ttdoc">clock list entry</div><div class="ttdef"><b>Definition:</b> ztimer64.h:102</div></div>
+<div class="ttc" id="astructztimer64__t_html_a640a7d44c089f46b3ab123c5748e0d59"><div class="ttname"><a href="structztimer64__t.html#a640a7d44c089f46b3ab123c5748e0d59">ztimer64_t::arg</a></div><div class="ttdeci">void * arg</div><div class="ttdoc">timer callback argument</div><div class="ttdef"><b>Definition:</b> ztimer64.h:104</div></div>
+<div class="ttc" id="astructztimer__clock_html"><div class="ttname"><a href="structztimer__clock.html">ztimer_clock</a></div><div class="ttdoc">ztimer device structure</div><div class="ttdef"><b>Definition:</b> ztimer.h:369</div></div>
+<div class="ttc" id="astructztimer__t_html"><div class="ttname"><a href="structztimer__t.html">ztimer_t</a></div><div class="ttdoc">ztimer structure</div><div class="ttdef"><b>Definition:</b> ztimer.h:318</div></div>
+<div class="ttc" id="aztimer_8h_html"><div class="ttname"><a href="ztimer_8h.html">ztimer.h</a></div><div class="ttdoc">ztimer API</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="ztimer64_8h.html">ztimer64.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

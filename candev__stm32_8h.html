@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/stm32/include/candev_stm32.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('candev__stm32_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">candev_stm32.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__stm32.html">STM32</a> &#124; <a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a> &raquo; <a class="el" href="group__drivers__can.html">CAN Drivers</a> &raquo; <a class="el" href="group__candev__stm32.html">STM32 CAN controller</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>bxCAN specific definitions  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>bxCAN specific definitions </p>
+<dl class="section author"><dt>Author</dt><dd>Vincent Dupont <a href="#" onclick="location.href='mai'+'lto:'+'vin'+'ce'+'nt@'+'ot'+'ake'+'ys'+'.co'+'m'; return false;">vince<span style="display: none;">.nosp@m.</span>nt@o<span style="display: none;">.nosp@m.</span>takey<span style="display: none;">.nosp@m.</span>s.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;<a class="el" href="candev_8h_source.html">can/candev.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for candev_stm32.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="candev__stm32_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcan__conf__t.html">can_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESP CAN device configuration.  <a href="structcan__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcandev__stm32__rx__fifo.html">candev_stm32_rx_fifo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure holds anything related to the receive part.  <a href="structcandev__stm32__rx__fifo.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcandev__stm32__isr.html">candev_stm32_isr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal interrupt flags.  <a href="structcandev__stm32__isr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcan.html">can</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low level device structure for ESP32 CAN (extension of candev_t)  <a href="structcan.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a4c8474a5490ed15f8133c1cedfe17cb6"><td class="memItemLeft" align="right" valign="top"><a id="a4c8474a5490ed15f8133c1cedfe17cb6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a4c8474a5490ed15f8133c1cedfe17cb6">CANDEV_STM32_CHAN_NUMOF</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a4c8474a5490ed15f8133c1cedfe17cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of channels in the device (up to 3) <br /></td></tr>
+<tr class="separator:a4c8474a5490ed15f8133c1cedfe17cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa52dd7db1eec97409982b778c7d67c"><td class="memItemLeft" align="right" valign="top"><a id="acaa52dd7db1eec97409982b778c7d67c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#acaa52dd7db1eec97409982b778c7d67c">CAN_STM32_NB_FILTER</a>&#160;&#160;&#160;28</td></tr>
+<tr class="memdesc:acaa52dd7db1eec97409982b778c7d67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of filters: 28 for dual channel, 14 for single channel. <br /></td></tr>
+<tr class="separator:acaa52dd7db1eec97409982b778c7d67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad104e520d797b99991489571fd4568c5"><td class="memItemLeft" align="right" valign="top"><a id="ad104e520d797b99991489571fd4568c5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#ad104e520d797b99991489571fd4568c5">CANDEV_STM32_DEFAULT_BITRATE</a>&#160;&#160;&#160;500000U</td></tr>
+<tr class="memdesc:ad104e520d797b99991489571fd4568c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bitrate. <br /></td></tr>
+<tr class="separator:ad104e520d797b99991489571fd4568c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f519577a2801f5444c46bffc84c231"><td class="memItemLeft" align="right" valign="top"><a id="a38f519577a2801f5444c46bffc84c231"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a38f519577a2801f5444c46bffc84c231">CANDEV_STM32_DEFAULT_SPT</a>&#160;&#160;&#160;875</td></tr>
+<tr class="memdesc:a38f519577a2801f5444c46bffc84c231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default sampling-point. <br /></td></tr>
+<tr class="separator:a38f519577a2801f5444c46bffc84c231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f144ca1575a4ebb59b99cd6273b5389"><td class="memItemLeft" align="right" valign="top"><a id="a1f144ca1575a4ebb59b99cd6273b5389"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a1f144ca1575a4ebb59b99cd6273b5389">HAVE_CAN_CONF_T</a></td></tr>
+<tr class="memdesc:a1f144ca1575a4ebb59b99cd6273b5389"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structcan__conf__t.html" title="ESP CAN device configuration.">can_conf_t</a> is re-defined <br /></td></tr>
+<tr class="separator:a1f144ca1575a4ebb59b99cd6273b5389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a350e82d1341e48c0bb77593eeaf0b9"><td class="memItemLeft" align="right" valign="top"><a id="a5a350e82d1341e48c0bb77593eeaf0b9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a5a350e82d1341e48c0bb77593eeaf0b9">CAN_STM32_TX_MAILBOXES</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:a5a350e82d1341e48c0bb77593eeaf0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of transmit mailboxes. <br /></td></tr>
+<tr class="separator:a5a350e82d1341e48c0bb77593eeaf0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad28b8d8721f5e57030c3ceb7b1a484e4"><td class="memItemLeft" align="right" valign="top"><a id="ad28b8d8721f5e57030c3ceb7b1a484e4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#ad28b8d8721f5e57030c3ceb7b1a484e4">CAN_STM32_RX_MAILBOXES</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:ad28b8d8721f5e57030c3ceb7b1a484e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of receive FIFO. <br /></td></tr>
+<tr class="separator:ad28b8d8721f5e57030c3ceb7b1a484e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83c1d7313cd0e75ae55898cf2cbb69c1"><td class="memItemLeft" align="right" valign="top"><a id="a83c1d7313cd0e75ae55898cf2cbb69c1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a83c1d7313cd0e75ae55898cf2cbb69c1">CAN_STM32_RX_MAIL_FIFO</a>&#160;&#160;&#160;12</td></tr>
+<tr class="memdesc:a83c1d7313cd0e75ae55898cf2cbb69c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the maximum number of frame the driver can receive simultaneously. <br /></td></tr>
+<tr class="separator:a83c1d7313cd0e75ae55898cf2cbb69c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af157b88f267810575b5f71a48691e548"><td class="memItemLeft" align="right" valign="top"><a id="af157b88f267810575b5f71a48691e548"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#af157b88f267810575b5f71a48691e548">HAVE_CAN_T</a></td></tr>
+<tr class="memdesc:af157b88f267810575b5f71a48691e548"><td class="mdescLeft">&#160;</td><td class="mdescRight">can_t is re-defined <br /></td></tr>
+<tr class="separator:af157b88f267810575b5f71a48691e548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a61345f5fff169e11c88d5166bb7632a1"><td class="memItemLeft" align="right" valign="top"><a id="a61345f5fff169e11c88d5166bb7632a1"></a>
+typedef struct <a class="el" href="structcan.html">can</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a61345f5fff169e11c88d5166bb7632a1">can_t</a></td></tr>
+<tr class="memdesc:a61345f5fff169e11c88d5166bb7632a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">bxCAN candev descriptor <br /></td></tr>
+<tr class="separator:a61345f5fff169e11c88d5166bb7632a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90f75897a8dc56c6a43d76ae50cdd90a"><td class="memItemLeft" align="right" valign="top"><a id="a90f75897a8dc56c6a43d76ae50cdd90a"></a>
+typedef struct <a class="el" href="structcandev__stm32__rx__fifo.html">candev_stm32_rx_fifo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a90f75897a8dc56c6a43d76ae50cdd90a">candev_stm32_rx_fifo_t</a></td></tr>
+<tr class="memdesc:a90f75897a8dc56c6a43d76ae50cdd90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This structure holds anything related to the receive part. <br /></td></tr>
+<tr class="separator:a90f75897a8dc56c6a43d76ae50cdd90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa24457d6fa1a8cc976a551d8b201e927"><td class="memItemLeft" align="right" valign="top"><a id="aa24457d6fa1a8cc976a551d8b201e927"></a>
+typedef struct <a class="el" href="structcandev__stm32__isr.html">candev_stm32_isr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#aa24457d6fa1a8cc976a551d8b201e927">candev_stm32_isr_t</a></td></tr>
+<tr class="memdesc:aa24457d6fa1a8cc976a551d8b201e927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal interrupt flags. <br /></td></tr>
+<tr class="separator:aa24457d6fa1a8cc976a551d8b201e927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a849a6ced7cb0b22ca736735e3d1335fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candev__stm32_8h.html#a849a6ced7cb0b22ca736735e3d1335fd">candev_stm32_set_pins</a> (<a class="el" href="group__cpu__esp32__esp__can.html#ga61345f5fff169e11c88d5166bb7632a1">can_t</a> *dev, <a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a> tx_pin, <a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a> rx_pin, <a class="el" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> af)</td></tr>
+<tr class="memdesc:a849a6ced7cb0b22ca736735e3d1335fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pins of an stm32 CAN device.  <a href="candev__stm32_8h.html#a849a6ced7cb0b22ca736735e3d1335fd">More...</a><br /></td></tr>
+<tr class="separator:a849a6ced7cb0b22ca736735e3d1335fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">ISR functions</h2></td></tr>
+<tr class="memitem:aa64fb540fe11b652fa2558c4dd28f483"><td class="memItemLeft" align="right" valign="top"><a id="aa64fb540fe11b652fa2558c4dd28f483"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN1_TX</b>&#160;&#160;&#160;isr_can1_tx</td></tr>
+<tr class="separator:aa64fb540fe11b652fa2558c4dd28f483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27db138284a4eb052d17a0812c1cf9d6"><td class="memItemLeft" align="right" valign="top"><a id="a27db138284a4eb052d17a0812c1cf9d6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN1_RX0</b>&#160;&#160;&#160;isr_can1_rx0</td></tr>
+<tr class="separator:a27db138284a4eb052d17a0812c1cf9d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70fb0af5306e9228275d26d8e6a27632"><td class="memItemLeft" align="right" valign="top"><a id="a70fb0af5306e9228275d26d8e6a27632"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN1_RX1</b>&#160;&#160;&#160;isr_can1_rx1</td></tr>
+<tr class="separator:a70fb0af5306e9228275d26d8e6a27632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf52ef1036572f15f605d7b1fb3be479"><td class="memItemLeft" align="right" valign="top"><a id="aaf52ef1036572f15f605d7b1fb3be479"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN1_SCE</b>&#160;&#160;&#160;isr_can1_sce</td></tr>
+<tr class="separator:aaf52ef1036572f15f605d7b1fb3be479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab61ddf72e81c307e29db213e313781f5"><td class="memItemLeft" align="right" valign="top"><a id="ab61ddf72e81c307e29db213e313781f5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN2_TX</b>&#160;&#160;&#160;isr_can2_tx</td></tr>
+<tr class="separator:ab61ddf72e81c307e29db213e313781f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88db2de80159cb77002dfabec497d753"><td class="memItemLeft" align="right" valign="top"><a id="a88db2de80159cb77002dfabec497d753"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN2_RX0</b>&#160;&#160;&#160;isr_can2_rx0</td></tr>
+<tr class="separator:a88db2de80159cb77002dfabec497d753"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea749f6b0a1926c5d68fad02f65e8f2"><td class="memItemLeft" align="right" valign="top"><a id="a3ea749f6b0a1926c5d68fad02f65e8f2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN2_RX1</b>&#160;&#160;&#160;isr_can2_rx1</td></tr>
+<tr class="separator:a3ea749f6b0a1926c5d68fad02f65e8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa07f4f0abccacd73dfc55c948dbd0702"><td class="memItemLeft" align="right" valign="top"><a id="aa07f4f0abccacd73dfc55c948dbd0702"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN2_SCE</b>&#160;&#160;&#160;isr_can2_sce</td></tr>
+<tr class="separator:aa07f4f0abccacd73dfc55c948dbd0702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a889e81e4693082cdf72d9a42fd4612ad"><td class="memItemLeft" align="right" valign="top"><a id="a889e81e4693082cdf72d9a42fd4612ad"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN3_TX</b>&#160;&#160;&#160;isr_can3_tx</td></tr>
+<tr class="separator:a889e81e4693082cdf72d9a42fd4612ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d81fe50d320df748f2dbfe036a392ca"><td class="memItemLeft" align="right" valign="top"><a id="a7d81fe50d320df748f2dbfe036a392ca"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN3_RX0</b>&#160;&#160;&#160;isr_can3_rx0</td></tr>
+<tr class="separator:a7d81fe50d320df748f2dbfe036a392ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdca491eda8e93fb92229cf291457023"><td class="memItemLeft" align="right" valign="top"><a id="acdca491eda8e93fb92229cf291457023"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN3_RX1</b>&#160;&#160;&#160;isr_can3_rx1</td></tr>
+<tr class="separator:acdca491eda8e93fb92229cf291457023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a700e35cb316a09aac0f85bc0d7ca6d5a"><td class="memItemLeft" align="right" valign="top"><a id="a700e35cb316a09aac0f85bc0d7ca6d5a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ISR_CAN3_SCE</b>&#160;&#160;&#160;isr_can3_sce</td></tr>
+<tr class="separator:a700e35cb316a09aac0f85bc0d7ca6d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a849a6ced7cb0b22ca736735e3d1335fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a849a6ced7cb0b22ca736735e3d1335fd">&#9670;&nbsp;</a></span>candev_stm32_set_pins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void candev_stm32_set_pins </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__cpu__esp32__esp__can.html#ga61345f5fff169e11c88d5166bb7632a1">can_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>&#160;</td>
+          <td class="paramname"><em>tx_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>&#160;</td>
+          <td class="paramname"><em>rx_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a>&#160;</td>
+          <td class="paramname"><em>af</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the pins of an stm32 CAN device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>the device to set pins </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tx_pin</td><td>tx pin </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rx_pin</td><td>rx pin </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">af</td><td>alternate function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_8fb93018175f1eef8ccffa491ecd65e5.html">stm32</a></li><li class="navelem"><a class="el" href="dir_2c7c57a0102e8392aaea30c0e4d338a5.html">include</a></li><li class="navelem"><a class="el" href="candev__stm32_8h.html">candev_stm32.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

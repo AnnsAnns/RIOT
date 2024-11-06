@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/dynamixel/include/dynamixel_protocol.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('dynamixel__protocol_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">dynamixel_protocol.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__actuators.html">Actuator Device Drivers</a> &raquo; <a class="el" href="group__drivers__dynamixel.html">Dynamixel driver</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Dynamixel protocol definitions.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Dynamixel protocol definitions. </p>
+<dl class="section author"><dt>Author</dt><dd>Loïc Dauphin <a href="#" onclick="location.href='mai'+'lto:'+'loi'+'c.'+'dau'+'ph'+'in@'+'in'+'ria'+'.f'+'r'; return false;">loic.<span style="display: none;">.nosp@m.</span>daup<span style="display: none;">.nosp@m.</span>hin@i<span style="display: none;">.nosp@m.</span>nria<span style="display: none;">.nosp@m.</span>.fr</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for dynamixel_protocol.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="dynamixel__protocol_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:aae27e320290c59a8f3a57dd6de929d3c"><td class="memItemLeft" align="right" valign="top"><a id="aae27e320290c59a8f3a57dd6de929d3c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DXL_HEADER</b>&#160;&#160;&#160;((uint8_t[]){0xFF,0xFF,0xFD})</td></tr>
+<tr class="separator:aae27e320290c59a8f3a57dd6de929d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e9837429584e27e0519a7ee322478ff"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynamixel__protocol_8h.html#a0e9837429584e27e0519a7ee322478ff">xl320_baudrate_t</a> { <a class="el" href="dynamixel__protocol_8h.html#a0e9837429584e27e0519a7ee322478ffab9b4105b424b804b0ee614b30c34bca3">XL320_B_9600</a> = 0
+, <a class="el" href="dynamixel__protocol_8h.html#a0e9837429584e27e0519a7ee322478ffa5945d95068a6a6e7f0e2a915d463d73d">XL320_B_57600</a> = 1
+, <a class="el" href="dynamixel__protocol_8h.html#a0e9837429584e27e0519a7ee322478ffac876defaa15909695fe22537d99605b0">XL320_B_115200</a> = 2
+, <a class="el" href="dynamixel__protocol_8h.html#a0e9837429584e27e0519a7ee322478ffa3f4473cd51cd2b2137317184f86a3328">XL320_B_1000000</a> = 3
+ }</td></tr>
+<tr class="separator:a0e9837429584e27e0519a7ee322478ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30dde007c590bd78ea7d614e6b80b5f9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9">xl320_register8_t</a> { <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9af131e6f0e25793547c3872fafcfe57a6">XL320_VERSION</a> = 2
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a62ce3131f77aa71d53225bec2de3b326">XL320_ID</a> = 3
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9af9b521182bd014e4faf48cc815f9e773">XL320_BAUD_RATE</a> = 4
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a78e33f1e4c2ad69a0909e3e23961d6ed">XL320_RETURN_DELAY_TIME</a> = 5
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9aa022f7e66329a142a252e18c2b242be2">XL320_CONTROL_MODE</a> = 11
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a16702a2234113d820c43295a496513c6">XL320_LIMIT_TEMPERATURE</a> = 12
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a2ac0681a1cb40e3b05fdc4656773004e">XL320_LOWER_LIMIT_VOLTAGE</a> = 13
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a9ce3057c616833ec952b20934cdea3d4">XL320_UPPER_LIMIT_VOLTAGE</a> = 14
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a7167e76f0d143dd978e6f33f75ad274d">XL320_RETURN_LEVEL</a> = 17
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a462962bb9d68cf8266a677efa65515bf">XL320_ALARM_SHUTDOWN</a> = 18
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9ae88593aff8f8a238540b204c02ebb510">XL320_TORQUE_ENABLE</a> = 24
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9aaf6d2bef35f8dd89b49ebef96b61a55b">XL320_LED</a> = 25
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9ac99aba71d2ce434290b07ed3bd854811">XL320_D_GAIN</a> = 27
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a0ef0a176a246e5f5c8d5a0b497c00990">XL320_I_GAIN</a> = 28
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9afbd4f9cf2702e31307efb4e81b34617c">XL320_P_GAIN</a> = 29
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a3655850d4889cf171c358c103d1f92aa">XL320_PRESENT_VOLTAGE</a> = 45
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9ae4665e845311d789364dea1bd45ab12a">XL320_PRESENT_TEMPERATURE</a> = 46
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9a127ffd85cd90e43671a2844b0171e355">XL320_REGISTERED_INST</a> = 47
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9ad6d272a50e4a16d7863b1c588b30d3fb">XL320_MOVING</a> = 49
+, <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9adbb5d16e02af793aba41ecf784b497bc">XL320_ERROR</a> = 50
+<br />
+ }</td></tr>
+<tr class="separator:a30dde007c590bd78ea7d614e6b80b5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8747d35dc72e998ee392ca628c1b9b28"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28">xl320_register16_t</a> { <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28ad3ef6715dc0bc3fe2a2d9e38ba87251f">XL320_MODEL_NUMBER</a> = 0
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28a45859c1f892e50eb6ec6cac1fcea93f4">XL320_CW_ANGLE_LIMIT</a> = 6
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28af04f527da595649b01a0e10385560674">XL320_CCW_ANGLE_LIMIT</a> = 8
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28ab23e4a8985ff89a2b4782657fe4dfc7f">XL320_MAX_TORQUE</a> = 15
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28a195365649131dfc9ef7956a0036f95ec">XL320_GOAL_POSITION</a> = 30
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28a189e798b85adb0d0d779faa80afe03e6">XL320_GOAL_VELOCITY</a> = 32
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28a252909316c8b26c1a0d7379a91493720">XL320_GOAL_TORQUE</a> = 35
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28ab5e23395ea5a8b72a93c4379517c98eb">XL320_PRESENT_POSITION</a> = 37
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28a0c072081ebdd29b07fbb057fde23dc7a">XL320_PRESENT_SPEED</a> = 39
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28a161e3f4db90f509233d618b935ef11e1">XL320_PRESENT_LOAD</a> = 41
+, <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28a7a47a00b89567c37dba992405dd6c780">XL320_PUNCH</a> = 51
+<br />
+ }</td></tr>
+<tr class="separator:a8747d35dc72e998ee392ca628c1b9b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86cbf35eedf9cebfbcd49f14bb3b669c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669c">dynamixel_intruction_t</a> { <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669cadbaf3bd55f96813b60f468b7f20b1edf">DXL_INST_PING</a> = 0x01
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669ca3dd0a75e6506558b908053e0f5c4bc59">DXL_INST_READ</a> = 0x02
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669ca1599e3b143a9ca0f66c316749bed1ecc">DXL_INST_WRITE</a> = 0x03
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669ca555111d0909eb04a7d296c41d75d36a3">DXL_INST_REG_WRITE</a> = 0x04
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669cac8a0d17ba6cf6ce816ad6f79687995ab">DXL_INST_ACTION</a> = 0x05
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669caa511da467c0d6a00a7915ce4820e48c5">DXL_INST_FACTORY_RESET</a> = 0x06
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669ca55c9996c9d850e44fad0130dae385fc4">DXL_INST_REBOOT</a> = 0x08
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669ca1b3b655a49fd8c00cea26dfcf7d9815f">DXL_INST_STATUS</a> = 0x55
+, <br />
+&#160;&#160;<a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669ca9cbef1b4baf5fdc1bb46310784b0c6e6">DXL_INST_SYNC_READ</a> = 0x82
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669ca1faa6cb6faed16f5182bddad5a81d411">DXL_INST_SYNC_WRITE</a> = 0x83
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669cace299f4ca7484af52c935a260991e36b">DXL_INST_BULK_READ</a> = 0x92
+, <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669cab931efdee748a61d8527b8f7c94f0677">DXL_INST_BULK_WRITE</a> = 0x93
+<br />
+ }</td></tr>
+<tr class="separator:a86cbf35eedf9cebfbcd49f14bb3b669c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a86cbf35eedf9cebfbcd49f14bb3b669c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86cbf35eedf9cebfbcd49f14bb3b669c">&#9670;&nbsp;</a></span>dynamixel_intruction_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="dynamixel__protocol_8h.html#a86cbf35eedf9cebfbcd49f14bb3b669c">dynamixel_intruction_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669cadbaf3bd55f96813b60f468b7f20b1edf"></a>DXL_INST_PING&#160;</td><td class="fielddoc"><p>checks if ID is associated to a Device </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669ca3dd0a75e6506558b908053e0f5c4bc59"></a>DXL_INST_READ&#160;</td><td class="fielddoc"><p>read data from the Device </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669ca1599e3b143a9ca0f66c316749bed1ecc"></a>DXL_INST_WRITE&#160;</td><td class="fielddoc"><p>write data on the Device </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669ca555111d0909eb04a7d296c41d75d36a3"></a>DXL_INST_REG_WRITE&#160;</td><td class="fielddoc"><p>registers the write instruction to a standby status </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669cac8a0d17ba6cf6ce816ad6f79687995ab"></a>DXL_INST_ACTION&#160;</td><td class="fielddoc"><p>executes the write instruction previously registered </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669caa511da467c0d6a00a7915ce4820e48c5"></a>DXL_INST_FACTORY_RESET&#160;</td><td class="fielddoc"><p>resets the Control Table to its initial factory default settings </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669ca55c9996c9d850e44fad0130dae385fc4"></a>DXL_INST_REBOOT&#160;</td><td class="fielddoc"><p>reboot the Device </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669ca1b3b655a49fd8c00cea26dfcf7d9815f"></a>DXL_INST_STATUS&#160;</td><td class="fielddoc"><p>Return Instruction for the Instruction Packet. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669ca9cbef1b4baf5fdc1bb46310784b0c6e6"></a>DXL_INST_SYNC_READ&#160;</td><td class="fielddoc"><p>(Multiple devices) read data with same Address and length at once </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669ca1faa6cb6faed16f5182bddad5a81d411"></a>DXL_INST_SYNC_WRITE&#160;</td><td class="fielddoc"><p>(Multiple devices) write data on the same Address and length at once </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669cace299f4ca7484af52c935a260991e36b"></a>DXL_INST_BULK_READ&#160;</td><td class="fielddoc"><p>(Multiple devices) read data from different Addresses and lengths at once </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a86cbf35eedf9cebfbcd49f14bb3b669cab931efdee748a61d8527b8f7c94f0677"></a>DXL_INST_BULK_WRITE&#160;</td><td class="fielddoc"><p>(Multiple devices) write data on different Addresses and lengths at once </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0e9837429584e27e0519a7ee322478ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e9837429584e27e0519a7ee322478ff">&#9670;&nbsp;</a></span>xl320_baudrate_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="dynamixel__protocol_8h.html#a0e9837429584e27e0519a7ee322478ff">xl320_baudrate_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0e9837429584e27e0519a7ee322478ffab9b4105b424b804b0ee614b30c34bca3"></a>XL320_B_9600&#160;</td><td class="fielddoc"><p>XL320 available baudrate : 9600. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0e9837429584e27e0519a7ee322478ffa5945d95068a6a6e7f0e2a915d463d73d"></a>XL320_B_57600&#160;</td><td class="fielddoc"><p>XL320 available baudrate : 57600. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0e9837429584e27e0519a7ee322478ffac876defaa15909695fe22537d99605b0"></a>XL320_B_115200&#160;</td><td class="fielddoc"><p>XL320 available baudrate : 115200. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0e9837429584e27e0519a7ee322478ffa3f4473cd51cd2b2137317184f86a3328"></a>XL320_B_1000000&#160;</td><td class="fielddoc"><p>XL320 available baudrate : 1000000. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a8747d35dc72e998ee392ca628c1b9b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8747d35dc72e998ee392ca628c1b9b28">&#9670;&nbsp;</a></span>xl320_register16_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="dynamixel__protocol_8h.html#a8747d35dc72e998ee392ca628c1b9b28">xl320_register16_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28ad3ef6715dc0bc3fe2a2d9e38ba87251f"></a>XL320_MODEL_NUMBER&#160;</td><td class="fielddoc"><p>Model number [R] (default=350) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28a45859c1f892e50eb6ec6cac1fcea93f4"></a>XL320_CW_ANGLE_LIMIT&#160;</td><td class="fielddoc"><p>clockwise Angle Limit [RW] (default=0 ; min=0 ; max=1023) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28af04f527da595649b01a0e10385560674"></a>XL320_CCW_ANGLE_LIMIT&#160;</td><td class="fielddoc"><p>counterclockwise Angle Limit [RW] (default=1023 ; min=0 ; max=1023) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28ab23e4a8985ff89a2b4782657fe4dfc7f"></a>XL320_MAX_TORQUE&#160;</td><td class="fielddoc"><p>Lowest byte of Max. </p>
+<p>Torque [RW] (default=1023 ; min=0 ; max=1023) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28a195365649131dfc9ef7956a0036f95ec"></a>XL320_GOAL_POSITION&#160;</td><td class="fielddoc"><p>Goal Position [RW] (min=0 ; max=1023) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28a189e798b85adb0d0d779faa80afe03e6"></a>XL320_GOAL_VELOCITY&#160;</td><td class="fielddoc"><p>Goal Speed [RW] (min=0 ; max=2047) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28a252909316c8b26c1a0d7379a91493720"></a>XL320_GOAL_TORQUE&#160;</td><td class="fielddoc"><p>Goal Torque [RW] (min=0 ; max=1023) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28ab5e23395ea5a8b72a93c4379517c98eb"></a>XL320_PRESENT_POSITION&#160;</td><td class="fielddoc"><p>Current Position [R]. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28a0c072081ebdd29b07fbb057fde23dc7a"></a>XL320_PRESENT_SPEED&#160;</td><td class="fielddoc"><p>Current Speed [R]. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28a161e3f4db90f509233d618b935ef11e1"></a>XL320_PRESENT_LOAD&#160;</td><td class="fielddoc"><p>Current Load [R]. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8747d35dc72e998ee392ca628c1b9b28a7a47a00b89567c37dba992405dd6c780"></a>XL320_PUNCH&#160;</td><td class="fielddoc"><p>Punch [RW] (default=32 ; min=0 ; max=1023) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a30dde007c590bd78ea7d614e6b80b5f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30dde007c590bd78ea7d614e6b80b5f9">&#9670;&nbsp;</a></span>xl320_register8_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="dynamixel__protocol_8h.html#a30dde007c590bd78ea7d614e6b80b5f9">xl320_register8_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9af131e6f0e25793547c3872fafcfe57a6"></a>XL320_VERSION&#160;</td><td class="fielddoc"><p>Information on the version of firmware [R]. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a62ce3131f77aa71d53225bec2de3b326"></a>XL320_ID&#160;</td><td class="fielddoc"><p>ID of Dynamixel [RW] (default=1 ; min=0 ; max=252) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9af9b521182bd014e4faf48cc815f9e773"></a>XL320_BAUD_RATE&#160;</td><td class="fielddoc"><p>Baud Rate of Dynamixel [RW] (default=3 ; min=0 ; max=3) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a78e33f1e4c2ad69a0909e3e23961d6ed"></a>XL320_RETURN_DELAY_TIME&#160;</td><td class="fielddoc"><p>Return Delay Time [RW] (default=250 ; min=0 ; max=254) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9aa022f7e66329a142a252e18c2b242be2"></a>XL320_CONTROL_MODE&#160;</td><td class="fielddoc"><p>Control Mode [RW] (default=2 ; min=1 ; max=2) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a16702a2234113d820c43295a496513c6"></a>XL320_LIMIT_TEMPERATURE&#160;</td><td class="fielddoc"><p>Internal Limit Temperature [RW] (default=65 ; min=0 ; max=150) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a2ac0681a1cb40e3b05fdc4656773004e"></a>XL320_LOWER_LIMIT_VOLTAGE&#160;</td><td class="fielddoc"><p>Lowest Limit Voltage [RW] (default=60 ; min=50 ; max=250) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a9ce3057c616833ec952b20934cdea3d4"></a>XL320_UPPER_LIMIT_VOLTAGE&#160;</td><td class="fielddoc"><p>Upper Limit Voltage [RW] (default=90 ; min=50 ; max=250) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a7167e76f0d143dd978e6f33f75ad274d"></a>XL320_RETURN_LEVEL&#160;</td><td class="fielddoc"><p>Return Level [RW] (default=2 ; min=0 ; max=2) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a462962bb9d68cf8266a677efa65515bf"></a>XL320_ALARM_SHUTDOWN&#160;</td><td class="fielddoc"><p>Shutdown for Alarm [RW] (default=3 ; min=0 ; max=7) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9ae88593aff8f8a238540b204c02ebb510"></a>XL320_TORQUE_ENABLE&#160;</td><td class="fielddoc"><p>Torque On/Off [RW] (default=0 ; min=0 ; max=1) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9aaf6d2bef35f8dd89b49ebef96b61a55b"></a>XL320_LED&#160;</td><td class="fielddoc"><p>LED On/Off [RW] (default=0 ; min=0 ; max=7) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9ac99aba71d2ce434290b07ed3bd854811"></a>XL320_D_GAIN&#160;</td><td class="fielddoc"><p>D Gain [RW] (default=0 ; min=0 ; max=254) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a0ef0a176a246e5f5c8d5a0b497c00990"></a>XL320_I_GAIN&#160;</td><td class="fielddoc"><p>I Gain [RW] (default=0 ; min=0 ; max=254) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9afbd4f9cf2702e31307efb4e81b34617c"></a>XL320_P_GAIN&#160;</td><td class="fielddoc"><p>P Gain [RW] (default=32 ; min=0 ; max=254) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a3655850d4889cf171c358c103d1f92aa"></a>XL320_PRESENT_VOLTAGE&#160;</td><td class="fielddoc"><p>Current Voltage [R]. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9ae4665e845311d789364dea1bd45ab12a"></a>XL320_PRESENT_TEMPERATURE&#160;</td><td class="fielddoc"><p>Present temperature [R]. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9a127ffd85cd90e43671a2844b0171e355"></a>XL320_REGISTERED_INST&#160;</td><td class="fielddoc"><p>Registered Instruction [R] (default=0) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9ad6d272a50e4a16d7863b1c588b30d3fb"></a>XL320_MOVING&#160;</td><td class="fielddoc"><p>Moving [R] (default=0) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30dde007c590bd78ea7d614e6b80b5f9adbb5d16e02af793aba41ecf784b497bc"></a>XL320_ERROR&#160;</td><td class="fielddoc"><p>Hardware error status [R] (default=0) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_c8b509de06ef339f2304db9ec1af5759.html">dynamixel</a></li><li class="navelem"><a class="el" href="dir_5bafdddcad79afad7aea5ba64273e073.html">include</a></li><li class="navelem"><a class="el" href="dynamixel__protocol_8h.html">dynamixel_protocol.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

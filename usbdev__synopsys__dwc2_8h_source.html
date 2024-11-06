@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/usbdev_synopsys_dwc2.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('usbdev__synopsys__dwc2_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">usbdev_synopsys_dwc2.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="usbdev__synopsys__dwc2_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019 Koen Zandberg</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2022 Gunar Schorcht</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef USBDEV_SYNOPSYS_DWC2_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define USBDEV_SYNOPSYS_DWC2_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#a6ae6fef7b8a1b9e61a3d32a9a757eceb">   36</a></span>&#160;<span class="preprocessor">#define USBDEV_CPU_SET_ADDR_AFTER_STATUS    0</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7d">   47</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7da995d0c59cba6c54b429dab6f1267cb3c">   48</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7da995d0c59cba6c54b429dab6f1267cb3c">DWC2_USB_OTG_FS</a> = 0,   </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7dae0d908e494bec002f81d95f3a7e6a248">   49</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7dae0d908e494bec002f81d95f3a7e6a248">DWC2_USB_OTG_HS</a> = 1,   </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <a class="code" href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7d">dwc2_usb_otg_fshs_type_t</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dba6f784dcf83058d9ffc1560ac30422a82">   56</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dba6f784dcf83058d9ffc1560ac30422a82">DWC2_USB_OTG_DSPD_HS</a> = 0,           </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dbaa57a5af1696cba674fdfcc8e9e32550f">   57</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dbaa57a5af1696cba674fdfcc8e9e32550f">DWC2_USB_OTG_DSPD_FS_PHY_HS</a> = 1,    </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dba7d9064123c0201905da60252efba50ba">   58</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dba7d9064123c0201905da60252efba50ba">DWC2_USB_OTG_DSPD_LS</a> = 2,           </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dbaa1b8e2a77adbf63c1f9fc5be5a766c2e">   59</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dbaa1b8e2a77adbf63c1f9fc5be5a766c2e">DWC2_USB_OTG_DSPD_FS</a> = 3,           </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690e">   71</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ead2eb1f5bbf3cc7402030d1cd05a82932">   72</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ead2eb1f5bbf3cc7402030d1cd05a82932">DWC2_USB_OTG_PHY_BUILTIN</a>,   </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ea4990a0ecd039c7b6aa586e2c7304adb8">   73</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ea4990a0ecd039c7b6aa586e2c7304adb8">DWC2_USB_OTG_PHY_ULPI</a>,      </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ea62452e90242f9b4870c9b84839343fdb">   74</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ea62452e90242f9b4870c9b84839343fdb">DWC2_USB_OTG_PHY_UTMI</a>,      </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;} <a class="code" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690e">dwc2_usb_otg_fshs_phy_t</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html">   80</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a2f0314bcf385c06453f9d23dada70b13">   81</a></span>&#160;    uintptr_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a2f0314bcf385c06453f9d23dada70b13">periph</a>;               </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a5f81f7652b5990d7310984588df8999e">   82</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7d">dwc2_usb_otg_fshs_type_t</a> <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a5f81f7652b5990d7310984588df8999e">type</a>;  </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a82a210ddd3eaf3ad87deeaa2ef0dec47">   83</a></span>&#160;    <a class="code" href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690e">dwc2_usb_otg_fshs_phy_t</a> <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a82a210ddd3eaf3ad87deeaa2ef0dec47">phy</a>;    </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#if defined(MODULE_PERIPH_USBDEV_HS_ULPI) || DOXYGEN</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#af6b653c3ff7bf2bf584da766612534ac">   85</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#af6b653c3ff7bf2bf584da766612534ac">ulpi_clk</a>;                </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a165ea1aae13e5a00cd2fa249c4204c52">   86</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a165ea1aae13e5a00cd2fa249c4204c52">ulpi_d0</a>;                 </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#ade22ee75138093b91bb3de9f890da217">   87</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#ade22ee75138093b91bb3de9f890da217">ulpi_d1</a>;                 </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#ac13b4d85ef4a349f2e05f5ad883a8c0e">   88</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#ac13b4d85ef4a349f2e05f5ad883a8c0e">ulpi_d2</a>;                 </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a951908e77840264a3fb3f5354e008f2a">   89</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a951908e77840264a3fb3f5354e008f2a">ulpi_d3</a>;                 </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a0a914c32f5e1410c4e383476f6de2db5">   90</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a0a914c32f5e1410c4e383476f6de2db5">ulpi_d4</a>;                 </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a0dca36c12e6598a5d3641f8a49333d50">   91</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a0dca36c12e6598a5d3641f8a49333d50">ulpi_d5</a>;                 </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a5e1db9c4f349c7f742cc40fc7dc63ffa">   92</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a5e1db9c4f349c7f742cc40fc7dc63ffa">ulpi_d6</a>;                 </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#adebb13b80060e32ae94b639e5e4ee4be">   93</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#adebb13b80060e32ae94b639e5e4ee4be">ulpi_d7</a>;                 </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a2872bd214354db44d6b4480434d05c78">   94</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a2872bd214354db44d6b4480434d05c78">ulpi_dir</a>;                </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#ae1309d59ac0261d453ea80880df77393">   95</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#ae1309d59ac0261d453ea80880df77393">ulpi_stp</a>;                </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a7744d6c4a2b83dc70eeb5039f2986f79">   96</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a7744d6c4a2b83dc70eeb5039f2986f79">ulpi_nxt</a>;                </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#aab9086283fe0e1874182d0e2271da9bb">   97</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#aab9086283fe0e1874182d0e2271da9bb">ulpi_af</a>;              </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#if defined(CPU_STM32) || DOXYGEN</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a69e87ba9b511182de3e0c1228b6d90dd">  100</a></span>&#160;    uint32_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a69e87ba9b511182de3e0c1228b6d90dd">rcc_mask</a>;              </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#aa9af56b86af17ee480bdf4702ece6707">  101</a></span>&#160;    uint8_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#aa9af56b86af17ee480bdf4702ece6707">irqn</a>;                   </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a0c6b6869e5776e120c5137ac0321d8b9">  102</a></span>&#160;    uint8_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a0c6b6869e5776e120c5137ac0321d8b9">ahb</a>;                    </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a44903db5b067b00faca88551d4b82164">  103</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a44903db5b067b00faca88551d4b82164">dm</a>;                      </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a08b83a81062a40cb37de180c8feadb2e">  104</a></span>&#160;    gpio_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a08b83a81062a40cb37de180c8feadb2e">dp</a>;                      </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a00db60a114c988eb1101247b15ee8edd">  105</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a00db60a114c988eb1101247b15ee8edd">af</a>;                   </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#if defined(MODULE_PERIPH_USBDEV_HS_UTMI) || DOXYGEN</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="structdwc2__usb__otg__fshs__config__t.html#a9ec891359e845715dbeeeb8be1aba75b">  107</a></span>&#160;    uint32_t <a class="code" href="structdwc2__usb__otg__fshs__config__t.html#a9ec891359e845715dbeeeb8be1aba75b">phy_tune</a>;              </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(MODULE_PERIPH_USBDEV_HS_UTMI) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(CPU_STM32) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#if defined(CPU_GD32V)</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    uint32_t rcu_mask;              </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    uint8_t irqn;                   </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    uint8_t bus;                    </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;} <a class="code" href="structdwc2__usb__otg__fshs__config__t.html">dwc2_usb_otg_fshs_config_t</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* USBDEV_SYNOPSYS_DWC2_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agd32v_2include_2periph__cpu_8h_html_a06ed6aad7d9b996fee989c31338138cd"><div class="ttname"><a href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a></div><div class="ttdeci">gpio_af_t</div><div class="ttdoc">Override alternative GPIO mode options.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:166</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html">dwc2_usb_otg_fshs_config_t</a></div><div class="ttdoc">USB OTG configuration.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:80</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a00db60a114c988eb1101247b15ee8edd"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a00db60a114c988eb1101247b15ee8edd">dwc2_usb_otg_fshs_config_t::af</a></div><div class="ttdeci">gpio_af_t af</div><div class="ttdoc">Alternative function.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:105</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a08b83a81062a40cb37de180c8feadb2e"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a08b83a81062a40cb37de180c8feadb2e">dwc2_usb_otg_fshs_config_t::dp</a></div><div class="ttdeci">gpio_t dp</div><div class="ttdoc">Data+ gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:104</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a0a914c32f5e1410c4e383476f6de2db5"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a0a914c32f5e1410c4e383476f6de2db5">dwc2_usb_otg_fshs_config_t::ulpi_d4</a></div><div class="ttdeci">gpio_t ulpi_d4</div><div class="ttdoc">ULPI D4 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:90</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a0c6b6869e5776e120c5137ac0321d8b9"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a0c6b6869e5776e120c5137ac0321d8b9">dwc2_usb_otg_fshs_config_t::ahb</a></div><div class="ttdeci">uint8_t ahb</div><div class="ttdoc">AHB bus.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:102</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a0dca36c12e6598a5d3641f8a49333d50"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a0dca36c12e6598a5d3641f8a49333d50">dwc2_usb_otg_fshs_config_t::ulpi_d5</a></div><div class="ttdeci">gpio_t ulpi_d5</div><div class="ttdoc">ULPI D5 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:91</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a165ea1aae13e5a00cd2fa249c4204c52"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a165ea1aae13e5a00cd2fa249c4204c52">dwc2_usb_otg_fshs_config_t::ulpi_d0</a></div><div class="ttdeci">gpio_t ulpi_d0</div><div class="ttdoc">ULPI D0 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:86</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a2872bd214354db44d6b4480434d05c78"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a2872bd214354db44d6b4480434d05c78">dwc2_usb_otg_fshs_config_t::ulpi_dir</a></div><div class="ttdeci">gpio_t ulpi_dir</div><div class="ttdoc">ULPI DIR gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:94</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a2f0314bcf385c06453f9d23dada70b13"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a2f0314bcf385c06453f9d23dada70b13">dwc2_usb_otg_fshs_config_t::periph</a></div><div class="ttdeci">uintptr_t periph</div><div class="ttdoc">USB peripheral base address.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:81</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a44903db5b067b00faca88551d4b82164"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a44903db5b067b00faca88551d4b82164">dwc2_usb_otg_fshs_config_t::dm</a></div><div class="ttdeci">gpio_t dm</div><div class="ttdoc">Data- gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:103</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a5e1db9c4f349c7f742cc40fc7dc63ffa"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a5e1db9c4f349c7f742cc40fc7dc63ffa">dwc2_usb_otg_fshs_config_t::ulpi_d6</a></div><div class="ttdeci">gpio_t ulpi_d6</div><div class="ttdoc">ULPI D6 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:92</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a5f81f7652b5990d7310984588df8999e"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a5f81f7652b5990d7310984588df8999e">dwc2_usb_otg_fshs_config_t::type</a></div><div class="ttdeci">dwc2_usb_otg_fshs_type_t type</div><div class="ttdoc">FS or HS type.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:82</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a69e87ba9b511182de3e0c1228b6d90dd"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a69e87ba9b511182de3e0c1228b6d90dd">dwc2_usb_otg_fshs_config_t::rcc_mask</a></div><div class="ttdeci">uint32_t rcc_mask</div><div class="ttdoc">bit in clock enable register</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:100</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a7744d6c4a2b83dc70eeb5039f2986f79"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a7744d6c4a2b83dc70eeb5039f2986f79">dwc2_usb_otg_fshs_config_t::ulpi_nxt</a></div><div class="ttdeci">gpio_t ulpi_nxt</div><div class="ttdoc">ULPI NXT gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:96</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a82a210ddd3eaf3ad87deeaa2ef0dec47"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a82a210ddd3eaf3ad87deeaa2ef0dec47">dwc2_usb_otg_fshs_config_t::phy</a></div><div class="ttdeci">dwc2_usb_otg_fshs_phy_t phy</div><div class="ttdoc">on-chip FS, ULPI HS or UTMI HS PHY</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:83</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a951908e77840264a3fb3f5354e008f2a"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a951908e77840264a3fb3f5354e008f2a">dwc2_usb_otg_fshs_config_t::ulpi_d3</a></div><div class="ttdeci">gpio_t ulpi_d3</div><div class="ttdoc">ULPI D3 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:89</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_a9ec891359e845715dbeeeb8be1aba75b"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#a9ec891359e845715dbeeeb8be1aba75b">dwc2_usb_otg_fshs_config_t::phy_tune</a></div><div class="ttdeci">uint32_t phy_tune</div><div class="ttdoc">USB HS PHY controller tuning register value (STM32-specific), see USBPHYC_TUNE register in STM32 Refe...</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:107</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_aa9af56b86af17ee480bdf4702ece6707"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#aa9af56b86af17ee480bdf4702ece6707">dwc2_usb_otg_fshs_config_t::irqn</a></div><div class="ttdeci">uint8_t irqn</div><div class="ttdoc">IRQ channel.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:101</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_aab9086283fe0e1874182d0e2271da9bb"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#aab9086283fe0e1874182d0e2271da9bb">dwc2_usb_otg_fshs_config_t::ulpi_af</a></div><div class="ttdeci">gpio_af_t ulpi_af</div><div class="ttdoc">Alternative function for ULPI.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:97</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_ac13b4d85ef4a349f2e05f5ad883a8c0e"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#ac13b4d85ef4a349f2e05f5ad883a8c0e">dwc2_usb_otg_fshs_config_t::ulpi_d2</a></div><div class="ttdeci">gpio_t ulpi_d2</div><div class="ttdoc">ULPI D2 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:88</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_ade22ee75138093b91bb3de9f890da217"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#ade22ee75138093b91bb3de9f890da217">dwc2_usb_otg_fshs_config_t::ulpi_d1</a></div><div class="ttdeci">gpio_t ulpi_d1</div><div class="ttdoc">ULPI D1 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:87</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_adebb13b80060e32ae94b639e5e4ee4be"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#adebb13b80060e32ae94b639e5e4ee4be">dwc2_usb_otg_fshs_config_t::ulpi_d7</a></div><div class="ttdeci">gpio_t ulpi_d7</div><div class="ttdoc">ULPI D7 gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:93</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_ae1309d59ac0261d453ea80880df77393"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#ae1309d59ac0261d453ea80880df77393">dwc2_usb_otg_fshs_config_t::ulpi_stp</a></div><div class="ttdeci">gpio_t ulpi_stp</div><div class="ttdoc">ULPI STP gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:95</div></div>
+<div class="ttc" id="astructdwc2__usb__otg__fshs__config__t_html_af6b653c3ff7bf2bf584da766612534ac"><div class="ttname"><a href="structdwc2__usb__otg__fshs__config__t.html#af6b653c3ff7bf2bf584da766612534ac">dwc2_usb_otg_fshs_config_t::ulpi_clk</a></div><div class="ttdeci">gpio_t ulpi_clk</div><div class="ttdoc">ULPI CLK gpio.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:85</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_a94436ee0faeeaaf728bd0880667d690e"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690e">dwc2_usb_otg_fshs_phy_t</a></div><div class="ttdeci">dwc2_usb_otg_fshs_phy_t</div><div class="ttdoc">Type of USB OTG peripheral PHY.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:71</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_a94436ee0faeeaaf728bd0880667d690ea4990a0ecd039c7b6aa586e2c7304adb8"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ea4990a0ecd039c7b6aa586e2c7304adb8">DWC2_USB_OTG_PHY_ULPI</a></div><div class="ttdeci">@ DWC2_USB_OTG_PHY_ULPI</div><div class="ttdoc">ULPI for external HS PHY.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:73</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_a94436ee0faeeaaf728bd0880667d690ea62452e90242f9b4870c9b84839343fdb"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ea62452e90242f9b4870c9b84839343fdb">DWC2_USB_OTG_PHY_UTMI</a></div><div class="ttdeci">@ DWC2_USB_OTG_PHY_UTMI</div><div class="ttdoc">UTMI for internal HS PHY.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:74</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_a94436ee0faeeaaf728bd0880667d690ead2eb1f5bbf3cc7402030d1cd05a82932"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#a94436ee0faeeaaf728bd0880667d690ead2eb1f5bbf3cc7402030d1cd05a82932">DWC2_USB_OTG_PHY_BUILTIN</a></div><div class="ttdeci">@ DWC2_USB_OTG_PHY_BUILTIN</div><div class="ttdoc">on-chip FS PHY</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:72</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_ae80a0d22f4afbcca8ed3a82f768038dba6f784dcf83058d9ffc1560ac30422a82"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dba6f784dcf83058d9ffc1560ac30422a82">DWC2_USB_OTG_DSPD_HS</a></div><div class="ttdeci">@ DWC2_USB_OTG_DSPD_HS</div><div class="ttdoc">High speed.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:56</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_ae80a0d22f4afbcca8ed3a82f768038dba7d9064123c0201905da60252efba50ba"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dba7d9064123c0201905da60252efba50ba">DWC2_USB_OTG_DSPD_LS</a></div><div class="ttdeci">@ DWC2_USB_OTG_DSPD_LS</div><div class="ttdoc">Low speed.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:58</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_ae80a0d22f4afbcca8ed3a82f768038dbaa1b8e2a77adbf63c1f9fc5be5a766c2e"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dbaa1b8e2a77adbf63c1f9fc5be5a766c2e">DWC2_USB_OTG_DSPD_FS</a></div><div class="ttdeci">@ DWC2_USB_OTG_DSPD_FS</div><div class="ttdoc">Full speed.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:59</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_ae80a0d22f4afbcca8ed3a82f768038dbaa57a5af1696cba674fdfcc8e9e32550f"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#ae80a0d22f4afbcca8ed3a82f768038dbaa57a5af1696cba674fdfcc8e9e32550f">DWC2_USB_OTG_DSPD_FS_PHY_HS</a></div><div class="ttdeci">@ DWC2_USB_OTG_DSPD_FS_PHY_HS</div><div class="ttdoc">Full speed on HS PHY.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:57</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_aeeef682094b432a6d71252c6e2321e7d"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7d">dwc2_usb_otg_fshs_type_t</a></div><div class="ttdeci">dwc2_usb_otg_fshs_type_t</div><div class="ttdoc">USB OTG peripheral type.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:47</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_aeeef682094b432a6d71252c6e2321e7da995d0c59cba6c54b429dab6f1267cb3c"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7da995d0c59cba6c54b429dab6f1267cb3c">DWC2_USB_OTG_FS</a></div><div class="ttdeci">@ DWC2_USB_OTG_FS</div><div class="ttdoc">Full speed peripheral.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:48</div></div>
+<div class="ttc" id="ausbdev__synopsys__dwc2_8h_html_aeeef682094b432a6d71252c6e2321e7dae0d908e494bec002f81d95f3a7e6a248"><div class="ttname"><a href="usbdev__synopsys__dwc2_8h.html#aeeef682094b432a6d71252c6e2321e7dae0d908e494bec002f81d95f3a7e6a248">DWC2_USB_OTG_HS</a></div><div class="ttdeci">@ DWC2_USB_OTG_HS</div><div class="ttdoc">High speed peripheral.</div><div class="ttdef"><b>Definition:</b> usbdev_synopsys_dwc2.h:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="usbdev__synopsys__dwc2_8h.html">usbdev_synopsys_dwc2.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

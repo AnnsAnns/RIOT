@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/ata8520e.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ata8520e_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ata8520e.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ata8520e_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2017 Inria</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for more</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef ATA8520E_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define ATA8520E_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="inttypes_8h.html">inttypes.h</a>&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mutex_8h.html">mutex.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga8aa15f26c7279bf92836db259b8dfaad">   42</a></span>&#160;<span class="preprocessor">#define SIGFOX_PAC_LENGTH    (16U)  </span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gac0716571e3788b96fc42af4dbb7058fe">   43</a></span>&#160;<span class="preprocessor">#define SIGFOX_ID_LENGTH     (8U)   </span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga3e49a910965de1873601e0e1195fb22d">   44</a></span>&#160;<span class="preprocessor">#define SIGFOX_MAX_TX_LENGTH (12U)  </span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga152cdc3bc961483876a263b3e2d09aba">   45</a></span>&#160;<span class="preprocessor">#define SIGFOX_RX_LENGTH     (8U)   </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba50a6e020c9d141c84a1ab84dd31a28f6">   52</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba50a6e020c9d141c84a1ab84dd31a28f6">ATA8520E_OK</a> = 0,                </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66bac871f126fd5531403db8057fec3b8c39">   53</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66bac871f126fd5531403db8057fec3b8c39">ATA8520E_ERR_SPI</a>,               </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba8b92b97978b30d08c02fdac87330981f">   54</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba8b92b97978b30d08c02fdac87330981f">ATA8520E_ERR_GPIO_INT</a>,          </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba9fe4924d80cababd7114d4ac57e3d6ac">   55</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba9fe4924d80cababd7114d4ac57e3d6ac">ATA8520E_ERR_GPIO_RESET</a>,        </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba8946f9e27a1d484b9a3dabcea365c373">   56</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba8946f9e27a1d484b9a3dabcea365c373">ATA8520E_ERR_GPIO_POWER</a>,        </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba68a90c2060002d34b96f61485752d8b9">   57</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba68a90c2060002d34b96f61485752d8b9">ATA8520E_ERR_EVENT_TIMEOUT</a>,     </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923ae2e7972366614ae78e0b57d2d7669271">   64</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923ae2e7972366614ae78e0b57d2d7669271">ATA8520E_STATE_IDLE</a>,            </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923aecbe731dd9e15b99affc5ebc54dabf45">   65</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923aecbe731dd9e15b99affc5ebc54dabf45">ATA8520E_STATE_INIT</a>,            </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923a979a7e831c6b3841c280a11e17078ec0">   66</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923a979a7e831c6b3841c280a11e17078ec0">ATA8520E_STATE_TX</a>,              </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923a3ad5ee35854155f8f8af819f03485069">   67</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923a3ad5ee35854155f8f8af819f03485069">ATA8520E_STATE_RX</a>,              </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga9905263a49a3747bb3d7979dbb035ff4">   73</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a8d314567e26e448f8dafe4bc6d97d64a">   74</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a8d314567e26e448f8dafe4bc6d97d64a">ATA8520E_SSM</a>,                   </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a922f82cb815a29a5edf0620e99c9a8ff">   75</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a922f82cb815a29a5edf0620e99c9a8ff">ATA8520E_ATMEL</a>,                 </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a0423cf29d00a0c7f8834bc3099f8b69d">ATA8520E_SIGFOX</a>                 </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a0423cf29d00a0c7f8834bc3099f8b69d">   77</a></span>&#160;} <a class="code" href="group__drivers__ata8520e.html#ga9905263a49a3747bb3d7979dbb035ff4">ata8520e_status_type_t</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga9d67a0b34f854252dbac515a54ecb747">   84</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a411c69516db3e2000f919548b61cfaf4">   85</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a411c69516db3e2000f919548b61cfaf4">ATA8520E_ATMEL_OK</a>,                      </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a2366ae9fbd3752de162e2bced37f67bc">   86</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a2366ae9fbd3752de162e2bced37f67bc">ATA8520E_ATMEL_COMMAND_ERROR</a>,           </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a5130941db66e3248c37fac5151104deb">   87</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a5130941db66e3248c37fac5151104deb">ATA8520E_ATMEL_GENERIC_ERROR</a>,           </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a232edbd7e3e045fc2cbcf2c022d82944">   88</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a232edbd7e3e045fc2cbcf2c022d82944">ATA8520E_ATMEL_FREQUENCY_ERROR</a>,         </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a9b05c3e2c11d9c0ddf326989f13059cf">   89</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a9b05c3e2c11d9c0ddf326989f13059cf">ATA8520E_ATMEL_USAGE_ERROR</a>,             </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a0fb945b692dd799b08fb35625af5e015">   90</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a0fb945b692dd799b08fb35625af5e015">ATA8520E_ATMEL_OPENING_ERROR</a>,           </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a947f762e6579ef682e33a9d747801623">   91</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a947f762e6579ef682e33a9d747801623">ATA8520E_ATMEL_CLOSING_ERROR</a>,           </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747ae8d5a876397b0a6818ebc27eef2c5f29">ATA8520E_ATMEL_SEND_ERROR</a>               </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747ae8d5a876397b0a6818ebc27eef2c5f29">   93</a></span>&#160;} <a class="code" href="group__drivers__ata8520e.html#ga9d67a0b34f854252dbac515a54ecb747">ata8520e_atmel_status_t</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gafe9e9ddace8cf7974ae94c0fc452dbce">  100</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea048eed848f84616305ea4a8a2554ae1e">  101</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea048eed848f84616305ea4a8a2554ae1e">ATA8520E_SIGFOX_OK</a>,                      </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea936d4efe215c47095d2b1aa7a867ae03">  102</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea936d4efe215c47095d2b1aa7a867ae03">ATA8520E_SIGFOX_MANUFACTURER_ERROR</a>,      </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea0dad24a345971d56c37bf50d3cec38ef">  103</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea0dad24a345971d56c37bf50d3cec38ef">ATA8520E_SIGFOX_ID_OR_KEY_ERROR</a>,         </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceacf224b9311f86e93f67f55384ef1950c">  104</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceacf224b9311f86e93f67f55384ef1950c">ATA8520E_SIGFOX_STATE_MACHINE_ERROR</a>,     </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceabb8889a7005e8edeb858091daee28d61">  105</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceabb8889a7005e8edeb858091daee28d61">ATA8520E_SIGFOX_FRAME_SIZE_ERROR</a>,        </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea01f4a0d4990d4b4363d6645ccf5361ea">  106</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea01f4a0d4990d4b4363d6645ccf5361ea">ATA8520E_SIGFOX_MANUFACTURER_SEND_ERROR</a>, </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceaba92df0799ddaa90efca78688bdb6178">  107</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceaba92df0799ddaa90efca78688bdb6178">ATA8520E_SIGFOX_GET_VOLTAGE_TEMP_ERROR</a>,  </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea5851b5a19a838309e38e4d7633c7bb8d">  108</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea5851b5a19a838309e38e4d7633c7bb8d">ATA8520E_SIGFOX_CLOSE_ERROR</a>,             </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceace561411a6625af4364d6706bccd8790">  109</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceace561411a6625af4364d6706bccd8790">ATA8520E_SIGFOX_API_ERROR</a>,               </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea424d2c9013c705bf209b04df5920fa64">  110</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea424d2c9013c705bf209b04df5920fa64">ATA8520E_SIGFOX_GET_PN9_ERROR</a>,           </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea0726137b0c8684429923d85247cc2842">  111</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea0726137b0c8684429923d85247cc2842">ATA8520E_SIGFOX_GET_FREQUENCY_ERROR</a>,     </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea91a0c87675b083f1d01685cb4a83a5d7">  112</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea91a0c87675b083f1d01685cb4a83a5d7">ATA8520E_SIGFOX_BUILDING_FRAME_ERROR</a>,    </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea8191c49e41f3a0eba9f11a62c91e3451">  113</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea8191c49e41f3a0eba9f11a62c91e3451">ATA8520E_SIGFOX_DELAY_ROUTINE_ERROR</a>,     </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea2a7228fb22023b55148416237d1f88ea">  114</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea2a7228fb22023b55148416237d1f88ea">ATA8520E_SIGFOX_CALLBACK_ERROR</a>,          </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea8a0f8b84db6cc602f43b697df8f451f5">  115</a></span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea8a0f8b84db6cc602f43b697df8f451f5">ATA8520E_SIGFOX_TIMING_ERROR</a>,            </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea19aa530c62226ebb87f327147b386096">ATA8520E_SIGFOX_FREQUENCY_ERROR</a>          </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea19aa530c62226ebb87f327147b386096">  117</a></span>&#160;} <a class="code" href="group__drivers__ata8520e.html#gafe9e9ddace8cf7974ae94c0fc452dbce">ata8520e_sigfox_status_t</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="structata8520e__params__t.html">  122</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="structata8520e__params__t.html#a465a617c9653f53917fc52fc84d4a3f1">  123</a></span>&#160;    spi_t <a class="code" href="structata8520e__params__t.html#a465a617c9653f53917fc52fc84d4a3f1">spi</a>;                              </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structata8520e__params__t.html#a0a6a7527066e5ea4599114fb9bb16d15">  124</a></span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> <a class="code" href="structata8520e__params__t.html#a0a6a7527066e5ea4599114fb9bb16d15">spi_clk</a>;                      </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structata8520e__params__t.html#aa89d81acdf3225c856b09adf2d524455">  125</a></span>&#160;    gpio_t <a class="code" href="structata8520e__params__t.html#aa89d81acdf3225c856b09adf2d524455">cs_pin</a>;                          </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="structata8520e__params__t.html#aed095b28a28d21e5056dd3f415cde0a2">  126</a></span>&#160;    gpio_t <a class="code" href="structata8520e__params__t.html#aed095b28a28d21e5056dd3f415cde0a2">int_pin</a>;                         </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="structata8520e__params__t.html#a3ea733c83aaabeaf216fdcf97c086114">  127</a></span>&#160;    gpio_t <a class="code" href="structata8520e__params__t.html#a3ea733c83aaabeaf216fdcf97c086114">power_pin</a>;                       </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="structata8520e__params__t.html#a25a4323efa961ce3fae721b88e8d7c9a">  128</a></span>&#160;    gpio_t <a class="code" href="structata8520e__params__t.html#a25a4323efa961ce3fae721b88e8d7c9a">reset_pin</a>;                       </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;} <a class="code" href="structata8520e__params__t.html">ata8520e_params_t</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="structata8520e__t.html">  134</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="structata8520e__t.html#aaf3dbacb60c451902fc9f7fb9d559d1c">  135</a></span>&#160;    <a class="code" href="structata8520e__params__t.html">ata8520e_params_t</a> <a class="code" href="structata8520e__t.html#aaf3dbacb60c451902fc9f7fb9d559d1c">params</a>;               </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="structata8520e__t.html#a54d5126b48e1de7cce6ae1ac879b73fc">  136</a></span>&#160;    uint8_t <a class="code" href="structata8520e__t.html#a54d5126b48e1de7cce6ae1ac879b73fc">internal_state</a>;                 </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="structata8520e__t.html#a6a7dc61f04eb65a7075d4ff8b738bebb">  137</a></span>&#160;    uint8_t <a class="code" href="structata8520e__t.html#a6a7dc61f04eb65a7075d4ff8b738bebb">event_received</a>;                 </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="structata8520e__t.html#a03822c12c8101691c50830c0330d16e8">  138</a></span>&#160;    <a class="code" href="structmutex__t.html">mutex_t</a> <a class="code" href="structata8520e__t.html#a03822c12c8101691c50830c0330d16e8">event_lock</a>;                     </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;} <a class="code" href="structata8520e__t.html">ata8520e_t</a>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga284ac3227d2103c7ac675780d220d4ac">  156</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ata8520e.html#ga284ac3227d2103c7ac675780d220d4ac">ata8520e_init</a>(<a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structata8520e__params__t.html">ata8520e_params_t</a> *params);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gac2ae3c22fca11ffb1ec713b625499d7f">  163</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__ata8520e.html#gac2ae3c22fca11ffb1ec713b625499d7f">ata8520e_system_reset</a>(<span class="keyword">const</span> <a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga04282dd379888941dbe81355b6174c2a">  172</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__ata8520e.html#ga04282dd379888941dbe81355b6174c2a">ata8520e_read_atmel_version</a>(<span class="keyword">const</span> <a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, uint8_t *version);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gaa0a6a7ec91b51f3ffa1ca52b8137225d">  181</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__ata8520e.html#gaa0a6a7ec91b51f3ffa1ca52b8137225d">ata8520e_read_sigfox_version</a>(<span class="keyword">const</span> <a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, <span class="keywordtype">char</span> *version);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga9e733136c4af233aff37c5f672666af1">  190</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__ata8520e.html#ga9e733136c4af233aff37c5f672666af1">ata8520e_read_pac</a>(<span class="keyword">const</span> <a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, <span class="keywordtype">char</span> *pac);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga57e2f583f33e988788d35a5ee3f18edc">  199</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__ata8520e.html#ga57e2f583f33e988788d35a5ee3f18edc">ata8520e_read_id</a>(<span class="keyword">const</span> <a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, <span class="keywordtype">char</span> *<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga15cf41cbb94ca225fafe68b0c24d680f">  211</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ata8520e.html#ga15cf41cbb94ca225fafe68b0c24d680f">ata8520e_send_frame</a>(<a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, uint8_t *payload, uint8_t payload_len);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#gafc0ef2cced703df73b02fa7c5aa73fb6">  224</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ata8520e.html#gafc0ef2cced703df73b02fa7c5aa73fb6">ata8520e_send_receive_frame</a>(<a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, uint8_t *payload,</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                                uint8_t payload_len, uint8_t *rx_payload);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="group__drivers__ata8520e.html#ga628a92e62c6e48822218d95a718a2e72">  236</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ata8520e.html#ga628a92e62c6e48822218d95a718a2e72">ata8520e_send_bit</a>(<a class="code" href="structata8520e__t.html">ata8520e_t</a> *dev, <span class="keywordtype">bool</span> bit);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;}</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ATA8520E_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga04282dd379888941dbe81355b6174c2a"><div class="ttname"><a href="group__drivers__ata8520e.html#ga04282dd379888941dbe81355b6174c2a">ata8520e_read_atmel_version</a></div><div class="ttdeci">void ata8520e_read_atmel_version(const ata8520e_t *dev, uint8_t *version)</div><div class="ttdoc">Return the Atmel version of the device.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga15cf41cbb94ca225fafe68b0c24d680f"><div class="ttname"><a href="group__drivers__ata8520e.html#ga15cf41cbb94ca225fafe68b0c24d680f">ata8520e_send_frame</a></div><div class="ttdeci">int ata8520e_send_frame(ata8520e_t *dev, uint8_t *payload, uint8_t payload_len)</div><div class="ttdoc">Send a frame.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga284ac3227d2103c7ac675780d220d4ac"><div class="ttname"><a href="group__drivers__ata8520e.html#ga284ac3227d2103c7ac675780d220d4ac">ata8520e_init</a></div><div class="ttdeci">int ata8520e_init(ata8520e_t *dev, const ata8520e_params_t *params)</div><div class="ttdoc">Initialize the device.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga57e2f583f33e988788d35a5ee3f18edc"><div class="ttname"><a href="group__drivers__ata8520e.html#ga57e2f583f33e988788d35a5ee3f18edc">ata8520e_read_id</a></div><div class="ttdeci">void ata8520e_read_id(const ata8520e_t *dev, char *id)</div><div class="ttdoc">Return the ID of the device.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga628a92e62c6e48822218d95a718a2e72"><div class="ttname"><a href="group__drivers__ata8520e.html#ga628a92e62c6e48822218d95a718a2e72">ata8520e_send_bit</a></div><div class="ttdeci">int ata8520e_send_bit(ata8520e_t *dev, bool bit)</div><div class="ttdoc">Send a bit.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga9905263a49a3747bb3d7979dbb035ff4"><div class="ttname"><a href="group__drivers__ata8520e.html#ga9905263a49a3747bb3d7979dbb035ff4">ata8520e_status_type_t</a></div><div class="ttdeci">ata8520e_status_type_t</div><div class="ttdoc">device module status</div><div class="ttdef"><b>Definition:</b> ata8520e.h:73</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga9d67a0b34f854252dbac515a54ecb747"><div class="ttname"><a href="group__drivers__ata8520e.html#ga9d67a0b34f854252dbac515a54ecb747">ata8520e_atmel_status_t</a></div><div class="ttdeci">ata8520e_atmel_status_t</div><div class="ttdoc">Sigfox statuses.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:84</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ga9e733136c4af233aff37c5f672666af1"><div class="ttname"><a href="group__drivers__ata8520e.html#ga9e733136c4af233aff37c5f672666af1">ata8520e_read_pac</a></div><div class="ttdeci">void ata8520e_read_pac(const ata8520e_t *dev, char *pac)</div><div class="ttdoc">Return the porting authorization code (PAC) available in the device.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gaa0a6a7ec91b51f3ffa1ca52b8137225d"><div class="ttname"><a href="group__drivers__ata8520e.html#gaa0a6a7ec91b51f3ffa1ca52b8137225d">ata8520e_read_sigfox_version</a></div><div class="ttdeci">void ata8520e_read_sigfox_version(const ata8520e_t *dev, char *version)</div><div class="ttdoc">Return the Atmel version of the device.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gac2ae3c22fca11ffb1ec713b625499d7f"><div class="ttname"><a href="group__drivers__ata8520e.html#gac2ae3c22fca11ffb1ec713b625499d7f">ata8520e_system_reset</a></div><div class="ttdeci">void ata8520e_system_reset(const ata8520e_t *dev)</div><div class="ttdoc">Perform a complete reset of the device.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gafc0ef2cced703df73b02fa7c5aa73fb6"><div class="ttname"><a href="group__drivers__ata8520e.html#gafc0ef2cced703df73b02fa7c5aa73fb6">ata8520e_send_receive_frame</a></div><div class="ttdeci">int ata8520e_send_receive_frame(ata8520e_t *dev, uint8_t *payload, uint8_t payload_len, uint8_t *rx_payload)</div><div class="ttdoc">Send a frame and wait for a RX packet.</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gafe9e9ddace8cf7974ae94c0fc452dbce"><div class="ttname"><a href="group__drivers__ata8520e.html#gafe9e9ddace8cf7974ae94c0fc452dbce">ata8520e_sigfox_status_t</a></div><div class="ttdeci">ata8520e_sigfox_status_t</div><div class="ttdoc">Sigfox statuses.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:100</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga14061dd054afd472999a4f4f6cdf3923a3ad5ee35854155f8f8af819f03485069"><div class="ttname"><a href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923a3ad5ee35854155f8f8af819f03485069">ATA8520E_STATE_RX</a></div><div class="ttdeci">@ ATA8520E_STATE_RX</div><div class="ttdoc">Device is in RX mode, just after TX.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:67</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga14061dd054afd472999a4f4f6cdf3923a979a7e831c6b3841c280a11e17078ec0"><div class="ttname"><a href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923a979a7e831c6b3841c280a11e17078ec0">ATA8520E_STATE_TX</a></div><div class="ttdeci">@ ATA8520E_STATE_TX</div><div class="ttdoc">Device is in TX mode.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:66</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga14061dd054afd472999a4f4f6cdf3923ae2e7972366614ae78e0b57d2d7669271"><div class="ttname"><a href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923ae2e7972366614ae78e0b57d2d7669271">ATA8520E_STATE_IDLE</a></div><div class="ttdeci">@ ATA8520E_STATE_IDLE</div><div class="ttdoc">Device is in idle state.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:64</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga14061dd054afd472999a4f4f6cdf3923aecbe731dd9e15b99affc5ebc54dabf45"><div class="ttname"><a href="group__drivers__ata8520e.html#gga14061dd054afd472999a4f4f6cdf3923aecbe731dd9e15b99affc5ebc54dabf45">ATA8520E_STATE_INIT</a></div><div class="ttdeci">@ ATA8520E_STATE_INIT</div><div class="ttdoc">Device is in initialization phase.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:65</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9905263a49a3747bb3d7979dbb035ff4a0423cf29d00a0c7f8834bc3099f8b69d"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a0423cf29d00a0c7f8834bc3099f8b69d">ATA8520E_SIGFOX</a></div><div class="ttdeci">@ ATA8520E_SIGFOX</div><div class="ttdoc">Sigfox status.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:76</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9905263a49a3747bb3d7979dbb035ff4a8d314567e26e448f8dafe4bc6d97d64a"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a8d314567e26e448f8dafe4bc6d97d64a">ATA8520E_SSM</a></div><div class="ttdeci">@ ATA8520E_SSM</div><div class="ttdoc">SoC System Management status.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:74</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9905263a49a3747bb3d7979dbb035ff4a922f82cb815a29a5edf0620e99c9a8ff"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9905263a49a3747bb3d7979dbb035ff4a922f82cb815a29a5edf0620e99c9a8ff">ATA8520E_ATMEL</a></div><div class="ttdeci">@ ATA8520E_ATMEL</div><div class="ttdoc">Atmel status.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:75</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747a0fb945b692dd799b08fb35625af5e015"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a0fb945b692dd799b08fb35625af5e015">ATA8520E_ATMEL_OPENING_ERROR</a></div><div class="ttdeci">@ ATA8520E_ATMEL_OPENING_ERROR</div><div class="ttdoc">Opening error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:90</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747a232edbd7e3e045fc2cbcf2c022d82944"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a232edbd7e3e045fc2cbcf2c022d82944">ATA8520E_ATMEL_FREQUENCY_ERROR</a></div><div class="ttdeci">@ ATA8520E_ATMEL_FREQUENCY_ERROR</div><div class="ttdoc">Frequency error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:88</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747a2366ae9fbd3752de162e2bced37f67bc"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a2366ae9fbd3752de162e2bced37f67bc">ATA8520E_ATMEL_COMMAND_ERROR</a></div><div class="ttdeci">@ ATA8520E_ATMEL_COMMAND_ERROR</div><div class="ttdoc">Command error / not supported.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:86</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747a411c69516db3e2000f919548b61cfaf4"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a411c69516db3e2000f919548b61cfaf4">ATA8520E_ATMEL_OK</a></div><div class="ttdeci">@ ATA8520E_ATMEL_OK</div><div class="ttdoc">No error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:85</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747a5130941db66e3248c37fac5151104deb"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a5130941db66e3248c37fac5151104deb">ATA8520E_ATMEL_GENERIC_ERROR</a></div><div class="ttdeci">@ ATA8520E_ATMEL_GENERIC_ERROR</div><div class="ttdoc">Generic error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:87</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747a947f762e6579ef682e33a9d747801623"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a947f762e6579ef682e33a9d747801623">ATA8520E_ATMEL_CLOSING_ERROR</a></div><div class="ttdeci">@ ATA8520E_ATMEL_CLOSING_ERROR</div><div class="ttdoc">Closing error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:91</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747a9b05c3e2c11d9c0ddf326989f13059cf"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747a9b05c3e2c11d9c0ddf326989f13059cf">ATA8520E_ATMEL_USAGE_ERROR</a></div><div class="ttdeci">@ ATA8520E_ATMEL_USAGE_ERROR</div><div class="ttdoc">Usage error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:89</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_gga9d67a0b34f854252dbac515a54ecb747ae8d5a876397b0a6818ebc27eef2c5f29"><div class="ttname"><a href="group__drivers__ata8520e.html#gga9d67a0b34f854252dbac515a54ecb747ae8d5a876397b0a6818ebc27eef2c5f29">ATA8520E_ATMEL_SEND_ERROR</a></div><div class="ttdeci">@ ATA8520E_ATMEL_SEND_ERROR</div><div class="ttdoc">Send error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:92</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggaaa1faf9307efabe7471b4443de4ba66ba50a6e020c9d141c84a1ab84dd31a28f6"><div class="ttname"><a href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba50a6e020c9d141c84a1ab84dd31a28f6">ATA8520E_OK</a></div><div class="ttdeci">@ ATA8520E_OK</div><div class="ttdoc">Everything is fine.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:52</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggaaa1faf9307efabe7471b4443de4ba66ba68a90c2060002d34b96f61485752d8b9"><div class="ttname"><a href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba68a90c2060002d34b96f61485752d8b9">ATA8520E_ERR_EVENT_TIMEOUT</a></div><div class="ttdeci">@ ATA8520E_ERR_EVENT_TIMEOUT</div><div class="ttdoc">An expected event never happened.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:57</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggaaa1faf9307efabe7471b4443de4ba66ba8946f9e27a1d484b9a3dabcea365c373"><div class="ttname"><a href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba8946f9e27a1d484b9a3dabcea365c373">ATA8520E_ERR_GPIO_POWER</a></div><div class="ttdeci">@ ATA8520E_ERR_GPIO_POWER</div><div class="ttdoc">An error occurred with power pin.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:56</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggaaa1faf9307efabe7471b4443de4ba66ba8b92b97978b30d08c02fdac87330981f"><div class="ttname"><a href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba8b92b97978b30d08c02fdac87330981f">ATA8520E_ERR_GPIO_INT</a></div><div class="ttdeci">@ ATA8520E_ERR_GPIO_INT</div><div class="ttdoc">An error occurred with interrupt pin.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:54</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggaaa1faf9307efabe7471b4443de4ba66ba9fe4924d80cababd7114d4ac57e3d6ac"><div class="ttname"><a href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66ba9fe4924d80cababd7114d4ac57e3d6ac">ATA8520E_ERR_GPIO_RESET</a></div><div class="ttdeci">@ ATA8520E_ERR_GPIO_RESET</div><div class="ttdoc">An error occurred with reset pin.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:55</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggaaa1faf9307efabe7471b4443de4ba66bac871f126fd5531403db8057fec3b8c39"><div class="ttname"><a href="group__drivers__ata8520e.html#ggaaa1faf9307efabe7471b4443de4ba66bac871f126fd5531403db8057fec3b8c39">ATA8520E_ERR_SPI</a></div><div class="ttdeci">@ ATA8520E_ERR_SPI</div><div class="ttdoc">An error occurred with SPI.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:53</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea01f4a0d4990d4b4363d6645ccf5361ea"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea01f4a0d4990d4b4363d6645ccf5361ea">ATA8520E_SIGFOX_MANUFACTURER_SEND_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_MANUFACTURER_SEND_ERROR</div><div class="ttdoc">Manufacturer send error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:106</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea048eed848f84616305ea4a8a2554ae1e"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea048eed848f84616305ea4a8a2554ae1e">ATA8520E_SIGFOX_OK</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_OK</div><div class="ttdoc">No error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:101</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea0726137b0c8684429923d85247cc2842"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea0726137b0c8684429923d85247cc2842">ATA8520E_SIGFOX_GET_FREQUENCY_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_GET_FREQUENCY_ERROR</div><div class="ttdoc">Error getting frequency.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:111</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea0dad24a345971d56c37bf50d3cec38ef"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea0dad24a345971d56c37bf50d3cec38ef">ATA8520E_SIGFOX_ID_OR_KEY_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_ID_OR_KEY_ERROR</div><div class="ttdoc">ID or key error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:103</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea19aa530c62226ebb87f327147b386096"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea19aa530c62226ebb87f327147b386096">ATA8520E_SIGFOX_FREQUENCY_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_FREQUENCY_ERROR</div><div class="ttdoc">Frequency error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:116</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea2a7228fb22023b55148416237d1f88ea"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea2a7228fb22023b55148416237d1f88ea">ATA8520E_SIGFOX_CALLBACK_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_CALLBACK_ERROR</div><div class="ttdoc">Callback causes error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:114</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea424d2c9013c705bf209b04df5920fa64"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea424d2c9013c705bf209b04df5920fa64">ATA8520E_SIGFOX_GET_PN9_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_GET_PN9_ERROR</div><div class="ttdoc">Error getting PN9.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:110</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea5851b5a19a838309e38e4d7633c7bb8d"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea5851b5a19a838309e38e4d7633c7bb8d">ATA8520E_SIGFOX_CLOSE_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_CLOSE_ERROR</div><div class="ttdoc">Close issues encountered.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:108</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea8191c49e41f3a0eba9f11a62c91e3451"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea8191c49e41f3a0eba9f11a62c91e3451">ATA8520E_SIGFOX_DELAY_ROUTINE_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_DELAY_ROUTINE_ERROR</div><div class="ttdoc">Error in delay routine.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:113</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea8a0f8b84db6cc602f43b697df8f451f5"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea8a0f8b84db6cc602f43b697df8f451f5">ATA8520E_SIGFOX_TIMING_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_TIMING_ERROR</div><div class="ttdoc">Timing error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:115</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea91a0c87675b083f1d01685cb4a83a5d7"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea91a0c87675b083f1d01685cb4a83a5d7">ATA8520E_SIGFOX_BUILDING_FRAME_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_BUILDING_FRAME_ERROR</div><div class="ttdoc">Error building frame.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:112</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbcea936d4efe215c47095d2b1aa7a867ae03"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbcea936d4efe215c47095d2b1aa7a867ae03">ATA8520E_SIGFOX_MANUFACTURER_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_MANUFACTURER_ERROR</div><div class="ttdoc">Manufacturer error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:102</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbceaba92df0799ddaa90efca78688bdb6178"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceaba92df0799ddaa90efca78688bdb6178">ATA8520E_SIGFOX_GET_VOLTAGE_TEMP_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_GET_VOLTAGE_TEMP_ERROR</div><div class="ttdoc">Get voltage/temperature error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:107</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbceabb8889a7005e8edeb858091daee28d61"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceabb8889a7005e8edeb858091daee28d61">ATA8520E_SIGFOX_FRAME_SIZE_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_FRAME_SIZE_ERROR</div><div class="ttdoc">Frame size error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:105</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbceace561411a6625af4364d6706bccd8790"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceace561411a6625af4364d6706bccd8790">ATA8520E_SIGFOX_API_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_API_ERROR</div><div class="ttdoc">API error indication.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:109</div></div>
+<div class="ttc" id="agroup__drivers__ata8520e_html_ggafe9e9ddace8cf7974ae94c0fc452dbceacf224b9311f86e93f67f55384ef1950c"><div class="ttname"><a href="group__drivers__ata8520e.html#ggafe9e9ddace8cf7974ae94c0fc452dbceacf224b9311f86e93f67f55384ef1950c">ATA8520E_SIGFOX_STATE_MACHINE_ERROR</a></div><div class="ttdeci">@ ATA8520E_SIGFOX_STATE_MACHINE_ERROR</div><div class="ttdoc">State machine error.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:104</div></div>
+<div class="ttc" id="ainttypes_8h_html"><div class="ttname"><a href="inttypes_8h.html">inttypes.h</a></div><div class="ttdoc">Adds include for missing inttype definitions.</div></div>
+<div class="ttc" id="amutex_8h_html"><div class="ttname"><a href="mutex_8h.html">mutex.h</a></div><div class="ttdoc">Mutex for thread synchronization.</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructata8520e__params__t_html"><div class="ttname"><a href="structata8520e__params__t.html">ata8520e_params_t</a></div><div class="ttdoc">Initialization parameters.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:122</div></div>
+<div class="ttc" id="astructata8520e__params__t_html_a0a6a7527066e5ea4599114fb9bb16d15"><div class="ttname"><a href="structata8520e__params__t.html#a0a6a7527066e5ea4599114fb9bb16d15">ata8520e_params_t::spi_clk</a></div><div class="ttdeci">spi_clk_t spi_clk</div><div class="ttdoc">SPI clock speed.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:124</div></div>
+<div class="ttc" id="astructata8520e__params__t_html_a25a4323efa961ce3fae721b88e8d7c9a"><div class="ttname"><a href="structata8520e__params__t.html#a25a4323efa961ce3fae721b88e8d7c9a">ata8520e_params_t::reset_pin</a></div><div class="ttdeci">gpio_t reset_pin</div><div class="ttdoc">Reset pin.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:128</div></div>
+<div class="ttc" id="astructata8520e__params__t_html_a3ea733c83aaabeaf216fdcf97c086114"><div class="ttname"><a href="structata8520e__params__t.html#a3ea733c83aaabeaf216fdcf97c086114">ata8520e_params_t::power_pin</a></div><div class="ttdeci">gpio_t power_pin</div><div class="ttdoc">Power pin.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:127</div></div>
+<div class="ttc" id="astructata8520e__params__t_html_a465a617c9653f53917fc52fc84d4a3f1"><div class="ttname"><a href="structata8520e__params__t.html#a465a617c9653f53917fc52fc84d4a3f1">ata8520e_params_t::spi</a></div><div class="ttdeci">spi_t spi</div><div class="ttdoc">SPI device.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:123</div></div>
+<div class="ttc" id="astructata8520e__params__t_html_aa89d81acdf3225c856b09adf2d524455"><div class="ttname"><a href="structata8520e__params__t.html#aa89d81acdf3225c856b09adf2d524455">ata8520e_params_t::cs_pin</a></div><div class="ttdeci">gpio_t cs_pin</div><div class="ttdoc">Chip select pin.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:125</div></div>
+<div class="ttc" id="astructata8520e__params__t_html_aed095b28a28d21e5056dd3f415cde0a2"><div class="ttname"><a href="structata8520e__params__t.html#aed095b28a28d21e5056dd3f415cde0a2">ata8520e_params_t::int_pin</a></div><div class="ttdeci">gpio_t int_pin</div><div class="ttdoc">IRQ pin.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:126</div></div>
+<div class="ttc" id="astructata8520e__t_html"><div class="ttname"><a href="structata8520e__t.html">ata8520e_t</a></div><div class="ttdoc">device descriptor</div><div class="ttdef"><b>Definition:</b> ata8520e.h:134</div></div>
+<div class="ttc" id="astructata8520e__t_html_a03822c12c8101691c50830c0330d16e8"><div class="ttname"><a href="structata8520e__t.html#a03822c12c8101691c50830c0330d16e8">ata8520e_t::event_lock</a></div><div class="ttdeci">mutex_t event_lock</div><div class="ttdoc">mutex for waiting for event</div><div class="ttdef"><b>Definition:</b> ata8520e.h:138</div></div>
+<div class="ttc" id="astructata8520e__t_html_a54d5126b48e1de7cce6ae1ac879b73fc"><div class="ttname"><a href="structata8520e__t.html#a54d5126b48e1de7cce6ae1ac879b73fc">ata8520e_t::internal_state</a></div><div class="ttdeci">uint8_t internal_state</div><div class="ttdoc">current state of the device</div><div class="ttdef"><b>Definition:</b> ata8520e.h:136</div></div>
+<div class="ttc" id="astructata8520e__t_html_a6a7dc61f04eb65a7075d4ff8b738bebb"><div class="ttname"><a href="structata8520e__t.html#a6a7dc61f04eb65a7075d4ff8b738bebb">ata8520e_t::event_received</a></div><div class="ttdeci">uint8_t event_received</div><div class="ttdoc">check if an event was received</div><div class="ttdef"><b>Definition:</b> ata8520e.h:137</div></div>
+<div class="ttc" id="astructata8520e__t_html_aaf3dbacb60c451902fc9f7fb9d559d1c"><div class="ttname"><a href="structata8520e__t.html#aaf3dbacb60c451902fc9f7fb9d559d1c">ata8520e_t::params</a></div><div class="ttdeci">ata8520e_params_t params</div><div class="ttdoc">Device parameters.</div><div class="ttdef"><b>Definition:</b> ata8520e.h:135</div></div>
+<div class="ttc" id="astructmutex__t_html"><div class="ttname"><a href="structmutex__t.html">mutex_t</a></div><div class="ttdoc">Mutex structure.</div><div class="ttdef"><b>Definition:</b> mutex.h:146</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="ata8520e_8h.html">ata8520e.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/periph/uart.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('drivers_2include_2periph_2uart_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">uart.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__periph.html">Peripheral Driver Interface</a> &raquo; <a class="el" href="group__drivers__periph__uart.html">UART</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Low-level UART peripheral driver interface definition.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Low-level UART peripheral driver interface definition. </p>
+<dl class="section author"><dt>Author</dt><dd>Hauke Petersen <a href="#" onclick="location.href='mai'+'lto:'+'hau'+'ke'+'.pe'+'te'+'rse'+'n@'+'fu-'+'be'+'rli'+'n.'+'de'; return false;">hauke<span style="display: none;">.nosp@m.</span>.pet<span style="display: none;">.nosp@m.</span>ersen<span style="display: none;">.nosp@m.</span>@fu-<span style="display: none;">.nosp@m.</span>berli<span style="display: none;">.nosp@m.</span>n.de</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;<a class="el" href="errno_8h_source.html">errno.h</a>&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;periph_cpu.h&quot;</code><br />
+<code>#include &quot;periph_conf.h&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for uart.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="drivers_2include_2periph_2uart_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__isr__ctx__t.html">uart_isr_ctx_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt context for a UART device.  <a href="structuart__isr__ctx__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga3afd539e8cdb4be585a568781b6659bf"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga3afd539e8cdb4be585a568781b6659bf">CONFIG_UART_DMA_THRESHOLD_BYTES</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memdesc:ga3afd539e8cdb4be585a568781b6659bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Threshold under which polling transfers are used instead of DMA TODO: determine at run-time based on baudrate. <br /></td></tr>
+<tr class="separator:ga3afd539e8cdb4be585a568781b6659bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3604c25a8762ee60bf570df4a3150f5c"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga3604c25a8762ee60bf570df4a3150f5c">UART_UNDEF</a>&#160;&#160;&#160;(UINT_FAST8_MAX)</td></tr>
+<tr class="memdesc:ga3604c25a8762ee60bf570df4a3150f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default UART undefined value. <br /></td></tr>
+<tr class="separator:ga3604c25a8762ee60bf570df4a3150f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafc5afd63560d27731d2517b3005f3294"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gafc5afd63560d27731d2517b3005f3294">UART_DEV</a>(x)&#160;&#160;&#160;(x)</td></tr>
+<tr class="memdesc:gafc5afd63560d27731d2517b3005f3294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default UART device access macro. <br /></td></tr>
+<tr class="separator:gafc5afd63560d27731d2517b3005f3294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga83a92464bff5eb42f085e06e553d52b1"><td class="memItemLeft" align="right" valign="top">
+typedef uint_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a></td></tr>
+<tr class="memdesc:ga83a92464bff5eb42f085e06e553d52b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define default UART type identifier. <br /></td></tr>
+<tr class="separator:ga83a92464bff5eb42f085e06e553d52b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac4baa58903938817c0b1690a41463df0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gac4baa58903938817c0b1690a41463df0">uart_rx_cb_t</a>) (void *arg, uint8_t data)</td></tr>
+<tr class="memdesc:gac4baa58903938817c0b1690a41463df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signature for receive interrupt callback.  <a href="group__drivers__periph__uart.html#gac4baa58903938817c0b1690a41463df0">More...</a><br /></td></tr>
+<tr class="separator:gac4baa58903938817c0b1690a41463df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga133475b65de1acf5b4a2c61062ad454d"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga133475b65de1acf5b4a2c61062ad454d">uart_rxstart_cb_t</a>) (void *arg)</td></tr>
+<tr class="memdesc:ga133475b65de1acf5b4a2c61062ad454d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signature for receive start condition interrupt callback.  <a href="group__drivers__periph__uart.html#ga133475b65de1acf5b4a2c61062ad454d">More...</a><br /></td></tr>
+<tr class="separator:ga133475b65de1acf5b4a2c61062ad454d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gabe4eb8a7f480877e96248c1c2b2b96a4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#ggabe4eb8a7f480877e96248c1c2b2b96a4a525187963c0aaa465f2a35b30b894d07">UART_OK</a> = 0
+, <a class="el" href="group__drivers__periph__uart.html#ggabe4eb8a7f480877e96248c1c2b2b96a4a63d9c59561054598701f1217e03a2525">UART_NODEV</a> = -ENODEV
+, <a class="el" href="group__drivers__periph__uart.html#ggabe4eb8a7f480877e96248c1c2b2b96a4a3f800cbd6c1f44ed8afd089e07d4edaa">UART_NOBAUD</a> = -ENOTSUP
+, <a class="el" href="group__drivers__periph__uart.html#ggabe4eb8a7f480877e96248c1c2b2b96a4a941021a8f99c1bb1ffbcb511ff4ce3f2">UART_NOMODE</a> = -ENOTSUP
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#ggabe4eb8a7f480877e96248c1c2b2b96a4a6608baae54141f9335c1c735c5bca620">UART_INTERR</a> = -EIO
+<br />
+ }</td></tr>
+<tr class="memdesc:gabe4eb8a7f480877e96248c1c2b2b96a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible UART return values.  <a href="group__drivers__periph__uart.html#gabe4eb8a7f480877e96248c1c2b2b96a4">More...</a><br /></td></tr>
+<tr class="separator:gabe4eb8a7f480877e96248c1c2b2b96a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6bcc37e31dd40c204b4ac6f6189e8878"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga6bcc37e31dd40c204b4ac6f6189e8878">uart_parity_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d">UART_PARITY_NONE</a> = 0
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8">UART_PARITY_EVEN</a> = 2
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2">UART_PARITY_ODD</a> = 3
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e">UART_PARITY_MARK</a> = 0x10 | UART_INVALID_MODE
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030">UART_PARITY_SPACE</a> = 0x20 | UART_INVALID_MODE
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d">UART_PARITY_NONE</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8">UART_PARITY_EVEN</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2">UART_PARITY_ODD</a>
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e">UART_PARITY_MARK</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030">UART_PARITY_SPACE</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga6bcc37e31dd40c204b4ac6f6189e8878"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of possible parity modes.  <a href="group__drivers__periph__uart.html#ga6bcc37e31dd40c204b4ac6f6189e8878">More...</a><br /></td></tr>
+<tr class="separator:ga6bcc37e31dd40c204b4ac6f6189e8878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadc68b8fd9ded3990f84129df23fee798"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gadc68b8fd9ded3990f84129df23fee798">uart_data_bits_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01">UART_DATA_BITS_5</a> = 0x10 | UART_INVALID_MODE
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405">UART_DATA_BITS_6</a> = 0x20 | UART_INVALID_MODE
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545">UART_DATA_BITS_7</a> = 0
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">UART_DATA_BITS_8</a> = 1
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01">UART_DATA_BITS_5</a>
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405">UART_DATA_BITS_6</a>
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545">UART_DATA_BITS_7</a>
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">UART_DATA_BITS_8</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:gadc68b8fd9ded3990f84129df23fee798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of possible data bits lengths in a UART frame.  <a href="group__drivers__periph__uart.html#gadc68b8fd9ded3990f84129df23fee798">More...</a><br /></td></tr>
+<tr class="separator:gadc68b8fd9ded3990f84129df23fee798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6da57a73bbdbf830b845d4116f8341d7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga6da57a73bbdbf830b845d4116f8341d7">uart_stop_bits_t</a> { <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc">UART_STOP_BITS_1</a> = 0
+, <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3">UART_STOP_BITS_2</a> = 1
+, <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc">UART_STOP_BITS_1</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3">UART_STOP_BITS_2</a>
+ }</td></tr>
+<tr class="memdesc:ga6da57a73bbdbf830b845d4116f8341d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of possible stop bits lengths in a UART frame.  <a href="group__drivers__periph__uart.html#ga6da57a73bbdbf830b845d4116f8341d7">More...</a><br /></td></tr>
+<tr class="separator:ga6da57a73bbdbf830b845d4116f8341d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga340343f063bf9df778019304f21b3f27"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga340343f063bf9df778019304f21b3f27">uart_init</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart, uint32_t baud, <a class="el" href="group__drivers__periph__uart.html#gac4baa58903938817c0b1690a41463df0">uart_rx_cb_t</a> rx_cb, void *arg)</td></tr>
+<tr class="memdesc:ga340343f063bf9df778019304f21b3f27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a given UART device.  <a href="group__drivers__periph__uart.html#ga340343f063bf9df778019304f21b3f27">More...</a><br /></td></tr>
+<tr class="separator:ga340343f063bf9df778019304f21b3f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f9f17e1bd5cbbb69b709c60bbf326ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga0f9f17e1bd5cbbb69b709c60bbf326ed">uart_deinit_pins</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga0f9f17e1bd5cbbb69b709c60bbf326ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the pins of the given UART back to plain GPIO functionality.  <a href="group__drivers__periph__uart.html#ga0f9f17e1bd5cbbb69b709c60bbf326ed">More...</a><br /></td></tr>
+<tr class="separator:ga0f9f17e1bd5cbbb69b709c60bbf326ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3c6f029dbd157caa21bfc63da6d8c29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gac3c6f029dbd157caa21bfc63da6d8c29">uart_init_pins</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:gac3c6f029dbd157caa21bfc63da6d8c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the used UART pins, i.e.  <a href="group__drivers__periph__uart.html#gac3c6f029dbd157caa21bfc63da6d8c29">More...</a><br /></td></tr>
+<tr class="separator:gac3c6f029dbd157caa21bfc63da6d8c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadc2ab2a012aee7b2ddeb279415da2967"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gadc2ab2a012aee7b2ddeb279415da2967">uart_pin_rx</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:gadc2ab2a012aee7b2ddeb279415da2967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the RX pin of the given UART.  <a href="group__drivers__periph__uart.html#gadc2ab2a012aee7b2ddeb279415da2967">More...</a><br /></td></tr>
+<tr class="separator:gadc2ab2a012aee7b2ddeb279415da2967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa2eda994244471f3e2306d5f60fc635d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gaa2eda994244471f3e2306d5f60fc635d">uart_pin_tx</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:gaa2eda994244471f3e2306d5f60fc635d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TX pin of the given UART.  <a href="group__drivers__periph__uart.html#gaa2eda994244471f3e2306d5f60fc635d">More...</a><br /></td></tr>
+<tr class="separator:gaa2eda994244471f3e2306d5f60fc635d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa37089530a2be054566096c5ca87cfe9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gaa37089530a2be054566096c5ca87cfe9">uart_pin_cts</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:gaa37089530a2be054566096c5ca87cfe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the CTS pin of the given UART.  <a href="group__drivers__periph__uart.html#gaa37089530a2be054566096c5ca87cfe9">More...</a><br /></td></tr>
+<tr class="separator:gaa37089530a2be054566096c5ca87cfe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad41da0380887bc30c5fce4eaf3b815f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gad41da0380887bc30c5fce4eaf3b815f1">uart_pin_rts</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:gad41da0380887bc30c5fce4eaf3b815f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the RTS pin of the given UART.  <a href="group__drivers__periph__uart.html#gad41da0380887bc30c5fce4eaf3b815f1">More...</a><br /></td></tr>
+<tr class="separator:gad41da0380887bc30c5fce4eaf3b815f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f2e50dd0d37815835675a9ed1150465"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga0f2e50dd0d37815835675a9ed1150465">uart_rxstart_irq_configure</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart, <a class="el" href="group__drivers__periph__uart.html#ga133475b65de1acf5b4a2c61062ad454d">uart_rxstart_cb_t</a> cb, void *arg)</td></tr>
+<tr class="memdesc:ga0f2e50dd0d37815835675a9ed1150465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the function that will be called when a start condition is detected.  <a href="group__drivers__periph__uart.html#ga0f2e50dd0d37815835675a9ed1150465">More...</a><br /></td></tr>
+<tr class="separator:ga0f2e50dd0d37815835675a9ed1150465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac924ab55ba0f4c05a9496a66c056ed60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gac924ab55ba0f4c05a9496a66c056ed60">uart_rxstart_irq_enable</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:gac924ab55ba0f4c05a9496a66c056ed60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the RX start interrupt.  <a href="group__drivers__periph__uart.html#gac924ab55ba0f4c05a9496a66c056ed60">More...</a><br /></td></tr>
+<tr class="separator:gac924ab55ba0f4c05a9496a66c056ed60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga60f57a8f4476ebcb6f84b8600665b946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga60f57a8f4476ebcb6f84b8600665b946">uart_rxstart_irq_disable</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga60f57a8f4476ebcb6f84b8600665b946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the RX start interrupt.  <a href="group__drivers__periph__uart.html#ga60f57a8f4476ebcb6f84b8600665b946">More...</a><br /></td></tr>
+<tr class="separator:ga60f57a8f4476ebcb6f84b8600665b946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1f68d525505cb43f136cf18dc5f67110"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga1f68d525505cb43f136cf18dc5f67110">uart_collision_detect_enable</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga1f68d525505cb43f136cf18dc5f67110"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables collision detection check of the UART.  <a href="group__drivers__periph__uart.html#ga1f68d525505cb43f136cf18dc5f67110">More...</a><br /></td></tr>
+<tr class="separator:ga1f68d525505cb43f136cf18dc5f67110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2c87ca4e43366cc84285e25a2f20008"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gae2c87ca4e43366cc84285e25a2f20008">uart_collision_detect_disable</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:gae2c87ca4e43366cc84285e25a2f20008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables collision detection check of the UART.  <a href="group__drivers__periph__uart.html#gae2c87ca4e43366cc84285e25a2f20008">More...</a><br /></td></tr>
+<tr class="separator:gae2c87ca4e43366cc84285e25a2f20008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b3fcb8a55875f2c5c4f723be310ed0a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga9b3fcb8a55875f2c5c4f723be310ed0a">uart_collision_detected</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga9b3fcb8a55875f2c5c4f723be310ed0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables collision detection check of the UART.  <a href="group__drivers__periph__uart.html#ga9b3fcb8a55875f2c5c4f723be310ed0a">More...</a><br /></td></tr>
+<tr class="separator:ga9b3fcb8a55875f2c5c4f723be310ed0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae280e80d4c18f72bc0bb67cff3d0ced9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gae280e80d4c18f72bc0bb67cff3d0ced9">uart_mode</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#adc68b8fd9ded3990f84129df23fee798">uart_data_bits_t</a> data_bits, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a6bcc37e31dd40c204b4ac6f6189e8878">uart_parity_t</a> parity, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a6da57a73bbdbf830b845d4116f8341d7">uart_stop_bits_t</a> stop_bits)</td></tr>
+<tr class="memdesc:gae280e80d4c18f72bc0bb67cff3d0ced9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup parity, data and stop bits for a given UART device.  <a href="group__drivers__periph__uart.html#gae280e80d4c18f72bc0bb67cff3d0ced9">More...</a><br /></td></tr>
+<tr class="separator:gae280e80d4c18f72bc0bb67cff3d0ced9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2360fb0e880c387cfc02dd0cbd1c113"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#gae2360fb0e880c387cfc02dd0cbd1c113">uart_write</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart, const uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:gae2360fb0e880c387cfc02dd0cbd1c113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data from the given buffer to the specified UART device.  <a href="group__drivers__periph__uart.html#gae2360fb0e880c387cfc02dd0cbd1c113">More...</a><br /></td></tr>
+<tr class="separator:gae2360fb0e880c387cfc02dd0cbd1c113"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga97ca086aeee451fcad48db4518ba325a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga97ca086aeee451fcad48db4518ba325a">uart_poweron</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga97ca086aeee451fcad48db4518ba325a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power on the given UART device.  <a href="group__drivers__periph__uart.html#ga97ca086aeee451fcad48db4518ba325a">More...</a><br /></td></tr>
+<tr class="separator:ga97ca086aeee451fcad48db4518ba325a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga066a6312f829046f201ff41ecc6960ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga066a6312f829046f201ff41ecc6960ea">uart_poweroff</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga066a6312f829046f201ff41ecc6960ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power off the given UART device.  <a href="group__drivers__periph__uart.html#ga066a6312f829046f201ff41ecc6960ea">More...</a><br /></td></tr>
+<tr class="separator:ga066a6312f829046f201ff41ecc6960ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0256858e49537ce0dfbf14e8c0275d35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga0256858e49537ce0dfbf14e8c0275d35">uart_enable_tx</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga0256858e49537ce0dfbf14e8c0275d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the TX line one the given UART.  <a href="group__drivers__periph__uart.html#ga0256858e49537ce0dfbf14e8c0275d35">More...</a><br /></td></tr>
+<tr class="separator:ga0256858e49537ce0dfbf14e8c0275d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga522bdce35dd52dc502ca671b00105c92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__periph__uart.html#ga522bdce35dd52dc502ca671b00105c92">uart_disable_tx</a> (<a class="el" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> uart)</td></tr>
+<tr class="memdesc:ga522bdce35dd52dc502ca671b00105c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the TX line one the given UART.  <a href="group__drivers__periph__uart.html#ga522bdce35dd52dc502ca671b00105c92">More...</a><br /></td></tr>
+<tr class="separator:ga522bdce35dd52dc502ca671b00105c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="dir_579016b136bf24b6117626712e49e16b.html">periph</a></li><li class="navelem"><a class="el" href="drivers_2include_2periph_2uart_8h.html">uart.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

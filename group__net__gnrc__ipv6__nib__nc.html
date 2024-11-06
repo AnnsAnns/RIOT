@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: Neighbor Cache</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__net__gnrc__ipv6__nib__nc.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Neighbor Cache<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__network__layer.html">Network Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__transportlayer.html">Transport Layer</a> &raquo; <a class="el" href="group__net__gnrc.html">Generic (GNRC) network stack</a> &raquo; <a class="el" href="group__net__gnrc__ipv6.html">IPv6</a> &raquo; <a class="el" href="group__net__gnrc__ipv6__nib.html">Neighbor Information Base for IPv6</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Neighbor cache component of neighbor information base. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:nc_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nc_8h.html">nc.h</a></td></tr>
+<tr class="memdesc:nc_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neighbor cache definitions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neighbor cache entry view on NIB.  <a href="structgnrc__ipv6__nib__nc__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga6188cc2cbf7feeb82989a4c853e38985"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga6188cc2cbf7feeb82989a4c853e38985">gnrc_ipv6_nib_nc_get_nud_state</a> (const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *entry)</td></tr>
+<tr class="memdesc:ga6188cc2cbf7feeb82989a4c853e38985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets neighbor unreachability state from entry.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga6188cc2cbf7feeb82989a4c853e38985">More...</a><br /></td></tr>
+<tr class="separator:ga6188cc2cbf7feeb82989a4c853e38985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b736fbad6de7d0ab229f512d8bbafaf"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga6b736fbad6de7d0ab229f512d8bbafaf">gnrc_ipv6_nib_nc_is_router</a> (const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *entry)</td></tr>
+<tr class="memdesc:ga6b736fbad6de7d0ab229f512d8bbafaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets router flag of a neighbor.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga6b736fbad6de7d0ab229f512d8bbafaf">More...</a><br /></td></tr>
+<tr class="separator:ga6b736fbad6de7d0ab229f512d8bbafaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf7c21a6d5871d33ad3ad0e00e7dcdc8"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gabf7c21a6d5871d33ad3ad0e00e7dcdc8">gnrc_ipv6_nib_nc_get_iface</a> (const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *entry)</td></tr>
+<tr class="memdesc:gabf7c21a6d5871d33ad3ad0e00e7dcdc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets interface from entry.  <a href="group__net__gnrc__ipv6__nib__nc.html#gabf7c21a6d5871d33ad3ad0e00e7dcdc8">More...</a><br /></td></tr>
+<tr class="separator:gabf7c21a6d5871d33ad3ad0e00e7dcdc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c538adc4ae433669dde716756052625"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga7c538adc4ae433669dde716756052625">gnrc_ipv6_nib_nc_get_ar_state</a> (const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *entry)</td></tr>
+<tr class="memdesc:ga7c538adc4ae433669dde716756052625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets address registration state of an entry.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga7c538adc4ae433669dde716756052625">More...</a><br /></td></tr>
+<tr class="separator:ga7c538adc4ae433669dde716756052625"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f52c47b235e8beea711dcab1209f12f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga8f52c47b235e8beea711dcab1209f12f">gnrc_ipv6_nib_nc_set</a> (const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *ipv6, unsigned iface, const uint8_t *l2addr, size_t l2addr_len)</td></tr>
+<tr class="memdesc:ga8f52c47b235e8beea711dcab1209f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an unmanaged neighbor entry to NIB.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga8f52c47b235e8beea711dcab1209f12f">More...</a><br /></td></tr>
+<tr class="separator:ga8f52c47b235e8beea711dcab1209f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga45b48f71642da75476d0f2a1bf19e3ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga45b48f71642da75476d0f2a1bf19e3ca">gnrc_ipv6_nib_nc_del</a> (const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *ipv6, unsigned iface)</td></tr>
+<tr class="memdesc:ga45b48f71642da75476d0f2a1bf19e3ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes neighbor with address <code>ipv6</code> from NIB.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga45b48f71642da75476d0f2a1bf19e3ca">More...</a><br /></td></tr>
+<tr class="separator:ga45b48f71642da75476d0f2a1bf19e3ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2da52726a6d928c05d638c0e19b04455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga2da52726a6d928c05d638c0e19b04455">gnrc_ipv6_nib_nc_mark_reachable</a> (const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *ipv6)</td></tr>
+<tr class="memdesc:ga2da52726a6d928c05d638c0e19b04455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark neighbor with address <code>ipv6</code> as reachable.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga2da52726a6d928c05d638c0e19b04455">More...</a><br /></td></tr>
+<tr class="separator:ga2da52726a6d928c05d638c0e19b04455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga70e8d4deff69a7c8a8376b182228ec38"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga70e8d4deff69a7c8a8376b182228ec38">gnrc_ipv6_nib_nc_iter</a> (unsigned iface, void **state, <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *nce)</td></tr>
+<tr class="memdesc:ga70e8d4deff69a7c8a8376b182228ec38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over all neighbor cache entries in the NIB.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga70e8d4deff69a7c8a8376b182228ec38">More...</a><br /></td></tr>
+<tr class="separator:ga70e8d4deff69a7c8a8376b182228ec38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ea3c3b5a6ab9762dd4866aef4425846"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga2ea3c3b5a6ab9762dd4866aef4425846">gnrc_ipv6_nib_nc_print</a> (<a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *nce)</td></tr>
+<tr class="memdesc:ga2ea3c3b5a6ab9762dd4866aef4425846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a neighbor cache entry.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga2ea3c3b5a6ab9762dd4866aef4425846">More...</a><br /></td></tr>
+<tr class="separator:ga2ea3c3b5a6ab9762dd4866aef4425846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Info values</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpb4fb2cdba43958fe543dff8bed9f9c7f"></a>Values for <a class="el" href="structgnrc__ipv6__nib__nc__t.html#abc71027402de854d5647a377fef739f6" title="Neighbor information as defined in info values.">gnrc_ipv6_nib_nc_t::info</a> <a class="anchor" id="net_gnrc_ipv6_nib_nc_info"></a></p>
+</td></tr>
+<tr class="memitem:ga1a94c04654f11933f11ab95fbc35a74f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga1a94c04654f11933f11ab95fbc35a74f">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_MASK</a>&#160;&#160;&#160;(0x0007)</td></tr>
+<tr class="memdesc:ga1a94c04654f11933f11ab95fbc35a74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask for neighbor unreachability detection (NUD) states.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga1a94c04654f11933f11ab95fbc35a74f">More...</a><br /></td></tr>
+<tr class="separator:ga1a94c04654f11933f11ab95fbc35a74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5e78df4f8638ca4bffb12ba56d5f120"><td class="memItemLeft" align="right" valign="top"><a id="gad5e78df4f8638ca4bffb12ba56d5f120"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gad5e78df4f8638ca4bffb12ba56d5f120">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_UNMANAGED</a>&#160;&#160;&#160;(0x0000)</td></tr>
+<tr class="memdesc:gad5e78df4f8638ca4bffb12ba56d5f120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not managed by NUD. <br /></td></tr>
+<tr class="separator:gad5e78df4f8638ca4bffb12ba56d5f120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadbeaa7647b8f49fef2f38003b2a3ba76"><td class="memItemLeft" align="right" valign="top"><a id="gadbeaa7647b8f49fef2f38003b2a3ba76"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gadbeaa7647b8f49fef2f38003b2a3ba76">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_UNREACHABLE</a>&#160;&#160;&#160;(0x0001)</td></tr>
+<tr class="memdesc:gadbeaa7647b8f49fef2f38003b2a3ba76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry is not reachable. <br /></td></tr>
+<tr class="separator:gadbeaa7647b8f49fef2f38003b2a3ba76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac07ebbc885dd0a794916b409f28c82a8"><td class="memItemLeft" align="right" valign="top"><a id="gac07ebbc885dd0a794916b409f28c82a8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gac07ebbc885dd0a794916b409f28c82a8">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_INCOMPLETE</a>&#160;&#160;&#160;(0x0002)</td></tr>
+<tr class="memdesc:gac07ebbc885dd0a794916b409f28c82a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address resolution is currently performed. <br /></td></tr>
+<tr class="separator:gac07ebbc885dd0a794916b409f28c82a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga104f632397e0f344f23b90a45c11e66a"><td class="memItemLeft" align="right" valign="top"><a id="ga104f632397e0f344f23b90a45c11e66a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga104f632397e0f344f23b90a45c11e66a">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_STALE</a>&#160;&#160;&#160;(0x0003)</td></tr>
+<tr class="memdesc:ga104f632397e0f344f23b90a45c11e66a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address might not be reachable. <br /></td></tr>
+<tr class="separator:ga104f632397e0f344f23b90a45c11e66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga29dd0f9f4253ecf3846e232a244eb37c"><td class="memItemLeft" align="right" valign="top"><a id="ga29dd0f9f4253ecf3846e232a244eb37c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga29dd0f9f4253ecf3846e232a244eb37c">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_DELAY</a>&#160;&#160;&#160;(0x0004)</td></tr>
+<tr class="memdesc:ga29dd0f9f4253ecf3846e232a244eb37c"><td class="mdescLeft">&#160;</td><td class="mdescRight">NUD will be performed in a moment. <br /></td></tr>
+<tr class="separator:ga29dd0f9f4253ecf3846e232a244eb37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab4ac9d18850823d9a2bf8be7bc44bc6"><td class="memItemLeft" align="right" valign="top"><a id="gaab4ac9d18850823d9a2bf8be7bc44bc6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gaab4ac9d18850823d9a2bf8be7bc44bc6">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_PROBE</a>&#160;&#160;&#160;(0x0005)</td></tr>
+<tr class="memdesc:gaab4ac9d18850823d9a2bf8be7bc44bc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">NUD is performed. <br /></td></tr>
+<tr class="separator:gaab4ac9d18850823d9a2bf8be7bc44bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d45fbed7fcd274f1cd8b6abf44babed"><td class="memItemLeft" align="right" valign="top"><a id="ga9d45fbed7fcd274f1cd8b6abf44babed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga9d45fbed7fcd274f1cd8b6abf44babed">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_REACHABLE</a>&#160;&#160;&#160;(0x0006)</td></tr>
+<tr class="memdesc:ga9d45fbed7fcd274f1cd8b6abf44babed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry is reachable. <br /></td></tr>
+<tr class="separator:ga9d45fbed7fcd274f1cd8b6abf44babed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf3d5b34136f96de6b0991b0c4d39ce35"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gaf3d5b34136f96de6b0991b0c4d39ce35">GNRC_IPV6_NIB_NC_INFO_IS_ROUTER</a>&#160;&#160;&#160;(0x0008)</td></tr>
+<tr class="memdesc:gaf3d5b34136f96de6b0991b0c4d39ce35"><td class="mdescLeft">&#160;</td><td class="mdescRight">gnrc_ipv6_nib_t::next_hop is router  <a href="group__net__gnrc__ipv6__nib__nc.html#gaf3d5b34136f96de6b0991b0c4d39ce35">More...</a><br /></td></tr>
+<tr class="separator:gaf3d5b34136f96de6b0991b0c4d39ce35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5cea420dbb157b8fb9cd92e7ddb9121"><td class="memItemLeft" align="right" valign="top"><a id="gaa5cea420dbb157b8fb9cd92e7ddb9121"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gaa5cea420dbb157b8fb9cd92e7ddb9121">GNRC_IPV6_NIB_NC_INFO_IFACE_MASK</a>&#160;&#160;&#160;(0x01f0)</td></tr>
+<tr class="memdesc:gaa5cea420dbb157b8fb9cd92e7ddb9121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask for interface identifier. <br /></td></tr>
+<tr class="separator:gaa5cea420dbb157b8fb9cd92e7ddb9121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c654620782d14068e441910f1faaadc"><td class="memItemLeft" align="right" valign="top"><a id="ga6c654620782d14068e441910f1faaadc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga6c654620782d14068e441910f1faaadc">GNRC_IPV6_NIB_NC_INFO_IFACE_POS</a>&#160;&#160;&#160;(4)</td></tr>
+<tr class="memdesc:ga6c654620782d14068e441910f1faaadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shift position of interface identifier. <br /></td></tr>
+<tr class="separator:ga6c654620782d14068e441910f1faaadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga730bc581094def8730e078c361d80e4c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga730bc581094def8730e078c361d80e4c">GNRC_IPV6_NIB_NC_INFO_AR_STATE_MASK</a>&#160;&#160;&#160;(0x0600)</td></tr>
+<tr class="memdesc:ga730bc581094def8730e078c361d80e4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask for 6LoWPAN address registration (6Lo-AR) states.  <a href="group__net__gnrc__ipv6__nib__nc.html#ga730bc581094def8730e078c361d80e4c">More...</a><br /></td></tr>
+<tr class="separator:ga730bc581094def8730e078c361d80e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga53c52a1fd86fde917d57a0bb56a8a217"><td class="memItemLeft" align="right" valign="top"><a id="ga53c52a1fd86fde917d57a0bb56a8a217"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga53c52a1fd86fde917d57a0bb56a8a217">GNRC_IPV6_NIB_NC_INFO_AR_STATE_POS</a>&#160;&#160;&#160;(9)</td></tr>
+<tr class="memdesc:ga53c52a1fd86fde917d57a0bb56a8a217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shift position of address registration states. <br /></td></tr>
+<tr class="separator:ga53c52a1fd86fde917d57a0bb56a8a217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad3ca422a376aefc4db7c8423feb5598f"><td class="memItemLeft" align="right" valign="top"><a id="gad3ca422a376aefc4db7c8423feb5598f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gad3ca422a376aefc4db7c8423feb5598f">GNRC_IPV6_NIB_NC_INFO_AR_STATE_GC</a>&#160;&#160;&#160;(0x0000)</td></tr>
+<tr class="memdesc:gad3ca422a376aefc4db7c8423feb5598f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not managed by 6Lo-AR (address can be removed when memory is low. <br /></td></tr>
+<tr class="separator:gad3ca422a376aefc4db7c8423feb5598f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad489269ebfe9f01644561c4dd9e310da"><td class="memItemLeft" align="right" valign="top"><a id="gad489269ebfe9f01644561c4dd9e310da"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gad489269ebfe9f01644561c4dd9e310da">GNRC_IPV6_NIB_NC_INFO_AR_STATE_TENTATIVE</a>&#160;&#160;&#160;(0x0200)</td></tr>
+<tr class="memdesc:gad489269ebfe9f01644561c4dd9e310da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address registration still pending at upstream router. <br /></td></tr>
+<tr class="separator:gad489269ebfe9f01644561c4dd9e310da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga138fb26b81e0b456de56759581a173e3"><td class="memItemLeft" align="right" valign="top"><a id="ga138fb26b81e0b456de56759581a173e3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga138fb26b81e0b456de56759581a173e3">GNRC_IPV6_NIB_NC_INFO_AR_STATE_REGISTERED</a>&#160;&#160;&#160;(0x0400)</td></tr>
+<tr class="memdesc:ga138fb26b81e0b456de56759581a173e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address is registered. <br /></td></tr>
+<tr class="separator:ga138fb26b81e0b456de56759581a173e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4732d74074fbd56dfb0351c63407c607"><td class="memItemLeft" align="right" valign="top"><a id="ga4732d74074fbd56dfb0351c63407c607"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga4732d74074fbd56dfb0351c63407c607">GNRC_IPV6_NIB_NC_INFO_AR_STATE_MANUAL</a>&#160;&#160;&#160;(0x0600)</td></tr>
+<tr class="memdesc:ga4732d74074fbd56dfb0351c63407c607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address was added manually. <br /></td></tr>
+<tr class="separator:ga4732d74074fbd56dfb0351c63407c607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga730bc581094def8730e078c361d80e4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga730bc581094def8730e078c361d80e4c">&#9670;&nbsp;</a></span>GNRC_IPV6_NIB_NC_INFO_AR_STATE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GNRC_IPV6_NIB_NC_INFO_AR_STATE_MASK&#160;&#160;&#160;(0x0600)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mask for 6LoWPAN address registration (6Lo-AR) states. </p>
+<dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc6775#section-3.5">RFC 6775, section 3.5</a> </dd></dl>
+
+</div>
+</div>
+<a id="gaf3d5b34136f96de6b0991b0c4d39ce35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf3d5b34136f96de6b0991b0c4d39ce35">&#9670;&nbsp;</a></span>GNRC_IPV6_NIB_NC_INFO_IS_ROUTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GNRC_IPV6_NIB_NC_INFO_IS_ROUTER&#160;&#160;&#160;(0x0008)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gnrc_ipv6_nib_t::next_hop is router </p>
+<p>This flag indicates that gnrc_ipv6_nib_t::next_hop is a router, but it does not necessarily indicate that it is in the default router list! A neighbor that has this flag unset however <b>must not</b> appear in the default router list.</p>
+<dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc4861#page-91">RFC 4861, Appendix D</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga1a94c04654f11933f11ab95fbc35a74f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1a94c04654f11933f11ab95fbc35a74f">&#9670;&nbsp;</a></span>GNRC_IPV6_NIB_NC_INFO_NUD_STATE_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GNRC_IPV6_NIB_NC_INFO_NUD_STATE_MASK&#160;&#160;&#160;(0x0007)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mask for neighbor unreachability detection (NUD) states. </p>
+<dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/rfc4861#section-7.3.2">RFC 4861, section 7.3.2</a> </dd>
+<dd>
+<a href="https://tools.ietf.org/html/rfc7048">RFC 7048</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga45b48f71642da75476d0f2a1bf19e3ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga45b48f71642da75476d0f2a1bf19e3ca">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_del()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gnrc_ipv6_nib_nc_del </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *&#160;</td>
+          <td class="paramname"><em>ipv6</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>iface</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes neighbor with address <code>ipv6</code> from NIB. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>ipv6 != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ipv6</td><td>The neighbor's IPv6 address. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iface</td><td>The interface to the neighbor.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>If the <code>ipv6</code> can't be found for a neighbor in the NIB nothing happens. </p>
+
+</div>
+</div>
+<a id="ga7c538adc4ae433669dde716756052625"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c538adc4ae433669dde716756052625">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_get_ar_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsigned gnrc_ipv6_nib_nc_get_ar_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *&#160;</td>
+          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets address registration state of an entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">entry</td><td>A neighbor cache entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The address registration state of <code>entry</code>. </dd></dl>
+
+</div>
+</div>
+<a id="gabf7c21a6d5871d33ad3ad0e00e7dcdc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf7c21a6d5871d33ad3ad0e00e7dcdc8">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_get_iface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsigned gnrc_ipv6_nib_nc_get_iface </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *&#160;</td>
+          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets interface from entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">entry</td><td>A neighbor cache entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The interface identifier of <code>entry</code>. </dd>
+<dd>
+0 if no interface is identified for <code>entry</code>. </dd></dl>
+
+</div>
+</div>
+<a id="ga6188cc2cbf7feeb82989a4c853e38985"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6188cc2cbf7feeb82989a4c853e38985">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_get_nud_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsigned gnrc_ipv6_nib_nc_get_nud_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *&#160;</td>
+          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets neighbor unreachability state from entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">entry</td><td>A neighbor cache entry.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The neighbor unreachability state of <code>entry</code>. </dd></dl>
+
+</div>
+</div>
+<a id="ga6b736fbad6de7d0ab229f512d8bbafaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6b736fbad6de7d0ab229f512d8bbafaf">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_is_router()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool gnrc_ipv6_nib_nc_is_router </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *&#160;</td>
+          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets router flag of a neighbor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">entry</td><td>A neighbor cache entry.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if <code>entry</code> is a router. </dd>
+<dd>
+false, if <code>entry</code> is not a router. </dd></dl>
+
+</div>
+</div>
+<a id="ga70e8d4deff69a7c8a8376b182228ec38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga70e8d4deff69a7c8a8376b182228ec38">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_iter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool gnrc_ipv6_nib_nc_iter </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>iface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *&#160;</td>
+          <td class="paramname"><em>nce</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Iterates over all neighbor cache entries in the NIB. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>(state != NULL) &amp;&amp; (nce != NULL)</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">iface</td><td>Restrict iteration to entries on this interface. 0 for any interface. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>Iteration state of the neighbor cache. Must point to a NULL pointer to start iteration. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">nce</td><td>The next neighbor cache entry.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Usage example:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="nc_8h.html">net/gnrc/ipv6/nib/nc.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>) {</div>
+<div class="line">    <span class="keywordtype">void</span> *state = NULL;</div>
+<div class="line">    <a class="code" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> nce;</div>
+<div class="line"> </div>
+<div class="line">    puts(<span class="stringliteral">&quot;My neighbors:&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">while</span> (<a class="code" href="group__net__gnrc__ipv6__nib__nc.html#ga70e8d4deff69a7c8a8376b182228ec38">gnrc_ipv6_nib_nc_iter</a>(0, &amp;state, &amp;nce)) {</div>
+<div class="line">        <a class="code" href="group__net__gnrc__ipv6__nib__nc.html#ga2ea3c3b5a6ab9762dd4866aef4425846">gnrc_ipv6_nib_nc_print</a>(&amp;nce);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__net__gnrc__ipv6__nib__nc_html_ga2ea3c3b5a6ab9762dd4866aef4425846"><div class="ttname"><a href="group__net__gnrc__ipv6__nib__nc.html#ga2ea3c3b5a6ab9762dd4866aef4425846">gnrc_ipv6_nib_nc_print</a></div><div class="ttdeci">void gnrc_ipv6_nib_nc_print(gnrc_ipv6_nib_nc_t *nce)</div><div class="ttdoc">Prints a neighbor cache entry.</div></div>
+<div class="ttc" id="agroup__net__gnrc__ipv6__nib__nc_html_ga70e8d4deff69a7c8a8376b182228ec38"><div class="ttname"><a href="group__net__gnrc__ipv6__nib__nc.html#ga70e8d4deff69a7c8a8376b182228ec38">gnrc_ipv6_nib_nc_iter</a></div><div class="ttdeci">bool gnrc_ipv6_nib_nc_iter(unsigned iface, void **state, gnrc_ipv6_nib_nc_t *nce)</div><div class="ttdoc">Iterates over all neighbor cache entries in the NIB.</div></div>
+<div class="ttc" id="anc_8h_html"><div class="ttname"><a href="nc_8h.html">nc.h</a></div><div class="ttdoc">Neighbor cache definitions.</div></div>
+<div class="ttc" id="astructgnrc__ipv6__nib__nc__t_html"><div class="ttname"><a href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a></div><div class="ttdoc">Neighbor cache entry view on NIB.</div><div class="ttdef"><b>Definition:</b> nc.h:142</div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The list may change during iteration.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if iteration can be continued. </dd>
+<dd>
+false, if <code>nce</code> is the last neighbor cache entry in the NIB. </dd></dl>
+
+</div>
+</div>
+<a id="ga2da52726a6d928c05d638c0e19b04455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2da52726a6d928c05d638c0e19b04455">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_mark_reachable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gnrc_ipv6_nib_nc_mark_reachable </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *&#160;</td>
+          <td class="paramname"><em>ipv6</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark neighbor with address <code>ipv6</code> as reachable. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>ipv6 != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ipv6</td><td>A neighbor's IPv6 address. Must not be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function shall be called if an upper layer gets reachability confirmation via its own means (e.g. a TCP connection build-up or confirmation). Unmanaged neighbor cache entries (i.e. entries created using <a class="el" href="group__net__gnrc__ipv6__nib__nc.html#ga8f52c47b235e8beea711dcab1209f12f">gnrc_ipv6_nib_nc_set()</a>) or entries whose next-hop are not yet in the neighbor cache are ignored.</p>
+<p>Entries in state <a class="el" href="group__net__gnrc__ipv6__nib__nc.html#gad5e78df4f8638ca4bffb12ba56d5f120">GNRC_IPV6_NIB_NC_INFO_NUD_STATE_UNMANAGED</a> are not affected by this, since they are assumed to always be reachable and kept out of the NUD state-machine </p>
+
+</div>
+</div>
+<a id="ga2ea3c3b5a6ab9762dd4866aef4425846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2ea3c3b5a6ab9762dd4866aef4425846">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gnrc_ipv6_nib_nc_print </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgnrc__ipv6__nib__nc__t.html">gnrc_ipv6_nib_nc_t</a> *&#160;</td>
+          <td class="paramname"><em>nce</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a neighbor cache entry. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>nce != NULL</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nce</td><td>A neighbor cache entry. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga8f52c47b235e8beea711dcab1209f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8f52c47b235e8beea711dcab1209f12f">&#9670;&nbsp;</a></span>gnrc_ipv6_nib_nc_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gnrc_ipv6_nib_nc_set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="unionipv6__addr__t.html">ipv6_addr_t</a> *&#160;</td>
+          <td class="paramname"><em>ipv6</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>iface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>l2addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>l2addr_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds an unmanaged neighbor entry to NIB. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>ipv6 != NULL</code> </dd>
+<dd>
+<code>l2addr_len &lt;= CONFIG_GNRC_IPV6_NIB_L2ADDR_MAX_LEN</code> </dd>
+<dd>
+<code>(iface &gt; KERNEL_PID_UNDEF) &amp;&amp; (iface &lt;= KERNEL_PID_LAST)</code></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ipv6</td><td>The neighbor's IPv6 address. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iface</td><td>The interface to the neighbor. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">l2addr</td><td>The neighbor's L2 address. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">l2addr_len</td><td>Length of <code>l2addr</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>A neighbor cache entry created this way is marked as persistent. Also, a non-persistent neighbor or destination cache entry already in the NIB might be removed to make room for the new entry. If an entry pointing to the same IPv6 address as <code>ipv6</code> exists already it will be overwritten and marked as unmanaged.</p>
+<p>If <a class="el" href="group__net__gnrc__ipv6__nib__conf.html#ga76a973340653df11c95840ca3a70d90e">CONFIG_GNRC_IPV6_NIB_ARSM</a> == 0 <code>l2addr</code> and <code>l2addr_len</code> won't be set and <code>ipv6</code> must be a link-local address.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 on success. </dd>
+<dd>
+-ENOMEM, if no space is left in neighbor cache. </dd>
+<dd>
+-EINVAL, if <code>ipv6</code> is invalid (i.e. <a class="el" href="group__net__gnrc__ipv6__nib__conf.html#ga76a973340653df11c95840ca3a70d90e">CONFIG_GNRC_IPV6_NIB_ARSM</a> == 0 and <code>ipv6</code> is not link-local). </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

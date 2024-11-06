@@ -1,0 +1,26 @@
+var native_2include_2board_8h =
+[
+    [ "FS_NATIVE_DIR", "native_2include_2board_8h.html#acbd4409d933fe12f5cb1c50b9392cd79", null ],
+    [ "LED0_OFF", "native_2include_2board_8h.html#aef2e39b9fd343d0e437fac0463f3e02d", null ],
+    [ "LED0_ON", "native_2include_2board_8h.html#a1e48dc02333bfc2e6ad3e5bd466eecd4", null ],
+    [ "LED0_TOGGLE", "native_2include_2board_8h.html#aebc6389533d9fc8dcbe4d2129a4d5a45", null ],
+    [ "LED1_OFF", "native_2include_2board_8h.html#a343fd2d3ce61b84f88ddfaea32c67c58", null ],
+    [ "LED1_ON", "native_2include_2board_8h.html#aadd4c7ae0cd4e9bbb17f7055dd51fe08", null ],
+    [ "LED1_TOGGLE", "native_2include_2board_8h.html#a267fdbba1d750146b73da35c1731fd17", null ],
+    [ "MTD_0", "native_2include_2board_8h.html#a0f992c379bd87e59320727deb561bbbd", null ],
+    [ "MTD_NATIVE_FILENAME", "native_2include_2board_8h.html#a748987a6519577053c49c4864387f44e", null ],
+    [ "MTD_PAGE_SIZE", "native_2include_2board_8h.html#a007d877a87554f487951df9b85ce2e43", null ],
+    [ "MTD_SECTOR_NUM", "native_2include_2board_8h.html#ad705e833ee529564058b2cee2df2d209", null ],
+    [ "MTD_SECTOR_SIZE", "native_2include_2board_8h.html#a5eb93363d1b7be24d928af6ce72544ee", null ],
+    [ "MTD_WRITE_SIZE", "native_2include_2board_8h.html#ad6914255280b9628706eaf14697b96de", null ],
+    [ "SPIFFS_CACHE", "native_2include_2board_8h.html#af23e950a724dcece1082fa62106fcbd0", null ],
+    [ "SPIFFS_HAL_CALLBACK_EXTRA", "native_2include_2board_8h.html#a5344be1b6fbd49daec8866db48adcd8a", null ],
+    [ "SPIFFS_READ_ONLY", "native_2include_2board_8h.html#a71836a4b19e137303a1cf15800f658e3", null ],
+    [ "SPIFFS_SINGLETON", "native_2include_2board_8h.html#a76aad051735d4001dec8d09f1be4dcb0", null ],
+    [ "_native_LED_GREEN_OFF", "native_2include_2board_8h.html#a21a3b2f0b0e46acdec0cf399aa2983e4", null ],
+    [ "_native_LED_GREEN_ON", "native_2include_2board_8h.html#a253dcdb4c384da2758a7a1799c75ac03", null ],
+    [ "_native_LED_GREEN_TOGGLE", "native_2include_2board_8h.html#ad43b4e21fc2a61055ae0df6bf1634f1b", null ],
+    [ "_native_LED_RED_OFF", "native_2include_2board_8h.html#a796f18c0c29f714a8e16c9131b2a0743", null ],
+    [ "_native_LED_RED_ON", "native_2include_2board_8h.html#aa8b01cde22d222982a65fdf3fb763c0c", null ],
+    [ "_native_LED_RED_TOGGLE", "native_2include_2board_8h.html#aeae1b806f665c4116c7ea7fe3e70a2ce", null ]
+];

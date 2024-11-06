@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/byteorder.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('byteorder_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a>  </div>
+  <div class="headertitle">
+<div class="title">byteorder.h File Reference<div class="ingroups"><a class="el" href="group__sys.html">System</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Functions to work with different byte orders.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Functions to work with different byte orders. </p>
+<dl class="section author"><dt>Author</dt><dd>René Kijewski <a href="#" onclick="location.href='mai'+'lto:'+'ren'+'e.'+'kij'+'ew'+'ski'+'@f'+'u-b'+'er'+'lin'+'.d'+'e'; return false;">rene.<span style="display: none;">.nosp@m.</span>kije<span style="display: none;">.nosp@m.</span>wski@<span style="display: none;">.nosp@m.</span>fu-b<span style="display: none;">.nosp@m.</span>erlin<span style="display: none;">.nosp@m.</span>.de</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="endian_8h_source.html">endian.h</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="unaligned_8h_source.html">unaligned.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for byteorder.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="byteorder_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionle__uint16__t.html">le_uint16_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 16 bit integer in little endian.  <a href="unionle__uint16__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionle__uint32__t.html">le_uint32_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 32 bit integer in little endian.  <a href="unionle__uint32__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionle__uint64__t.html">le_uint64_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 64 bit integer in little endian.  <a href="unionle__uint64__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionbe__uint16__t.html">be_uint16_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 16 bit integer in big endian aka network byte order.  <a href="unionbe__uint16__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionbe__uint32__t.html">be_uint32_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 32 bit integer in big endian aka network byte order.  <a href="unionbe__uint32__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionbe__uint64__t.html">be_uint64_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 64 bit integer in big endian aka network byte order.  <a href="unionbe__uint64__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a639ad79c8926cb896d5a8f12b14d49e3"><td class="memItemLeft" align="right" valign="top"><a id="a639ad79c8926cb896d5a8f12b14d49e3"></a>
+typedef <a class="el" href="unionbe__uint16__t.html">be_uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a639ad79c8926cb896d5a8f12b14d49e3">network_uint16_t</a></td></tr>
+<tr class="memdesc:a639ad79c8926cb896d5a8f12b14d49e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 16 bit integer in network byte order. <br /></td></tr>
+<tr class="separator:a639ad79c8926cb896d5a8f12b14d49e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a041efbda03b04a2f6866cf12dde1efea"><td class="memItemLeft" align="right" valign="top"><a id="a041efbda03b04a2f6866cf12dde1efea"></a>
+typedef <a class="el" href="unionbe__uint32__t.html">be_uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a041efbda03b04a2f6866cf12dde1efea">network_uint32_t</a></td></tr>
+<tr class="memdesc:a041efbda03b04a2f6866cf12dde1efea"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 32 bit integer in network byte order. <br /></td></tr>
+<tr class="separator:a041efbda03b04a2f6866cf12dde1efea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad85448169c2299064ee17b507fba692f"><td class="memItemLeft" align="right" valign="top"><a id="ad85448169c2299064ee17b507fba692f"></a>
+typedef <a class="el" href="unionbe__uint64__t.html">be_uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#ad85448169c2299064ee17b507fba692f">network_uint64_t</a></td></tr>
+<tr class="memdesc:ad85448169c2299064ee17b507fba692f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 64 bit integer in network byte order. <br /></td></tr>
+<tr class="separator:ad85448169c2299064ee17b507fba692f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e7a201f64e149e6e8c0e7bb0b7ffb8"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a10e7a201f64e149e6e8c0e7bb0b7ffb8">byteorder_ltohs</a> (<a class="el" href="unionle__uint16__t.html">le_uint16_t</a> v)</td></tr>
+<tr class="memdesc:a10e7a201f64e149e6e8c0e7bb0b7ffb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from little endian to host byte order, 16 bit.  <a href="byteorder_8h.html#a10e7a201f64e149e6e8c0e7bb0b7ffb8">More...</a><br /></td></tr>
+<tr class="separator:a10e7a201f64e149e6e8c0e7bb0b7ffb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c68b9425c6a4dcf2c8a95e4a0b4aed4"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a5c68b9425c6a4dcf2c8a95e4a0b4aed4">byteorder_ltohl</a> (<a class="el" href="unionle__uint32__t.html">le_uint32_t</a> v)</td></tr>
+<tr class="memdesc:a5c68b9425c6a4dcf2c8a95e4a0b4aed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from little endian to host byte order, 32 bit.  <a href="byteorder_8h.html#a5c68b9425c6a4dcf2c8a95e4a0b4aed4">More...</a><br /></td></tr>
+<tr class="separator:a5c68b9425c6a4dcf2c8a95e4a0b4aed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cbba72c3b743ba9726f283097696b2e"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a1cbba72c3b743ba9726f283097696b2e">byteorder_ltohll</a> (<a class="el" href="unionle__uint64__t.html">le_uint64_t</a> v)</td></tr>
+<tr class="memdesc:a1cbba72c3b743ba9726f283097696b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from little endian to host byte order, 64 bit.  <a href="byteorder_8h.html#a1cbba72c3b743ba9726f283097696b2e">More...</a><br /></td></tr>
+<tr class="separator:a1cbba72c3b743ba9726f283097696b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88b4f812dd46338cf67ed3444bb12e68"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionbe__uint16__t.html">be_uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a88b4f812dd46338cf67ed3444bb12e68">byteorder_ltobs</a> (<a class="el" href="unionle__uint16__t.html">le_uint16_t</a> v)</td></tr>
+<tr class="memdesc:a88b4f812dd46338cf67ed3444bb12e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from little endian to big endian, 16 bit.  <a href="byteorder_8h.html#a88b4f812dd46338cf67ed3444bb12e68">More...</a><br /></td></tr>
+<tr class="separator:a88b4f812dd46338cf67ed3444bb12e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5b94ec0317462fd54266d2f2b8ed5e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionbe__uint32__t.html">be_uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a3c5b94ec0317462fd54266d2f2b8ed5e">byteorder_ltobl</a> (<a class="el" href="unionle__uint32__t.html">le_uint32_t</a> v)</td></tr>
+<tr class="memdesc:a3c5b94ec0317462fd54266d2f2b8ed5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from little endian to big endian, 32 bit.  <a href="byteorder_8h.html#a3c5b94ec0317462fd54266d2f2b8ed5e">More...</a><br /></td></tr>
+<tr class="separator:a3c5b94ec0317462fd54266d2f2b8ed5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35f5bbf9fa42e3e2a21e379af41bc5a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionbe__uint64__t.html">be_uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#ac35f5bbf9fa42e3e2a21e379af41bc5a">byteorder_ltobll</a> (<a class="el" href="unionle__uint64__t.html">le_uint64_t</a> v)</td></tr>
+<tr class="memdesc:ac35f5bbf9fa42e3e2a21e379af41bc5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from little endian to big endian, 64 bit.  <a href="byteorder_8h.html#ac35f5bbf9fa42e3e2a21e379af41bc5a">More...</a><br /></td></tr>
+<tr class="separator:ac35f5bbf9fa42e3e2a21e379af41bc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5bf6dfbca0857abd3b59ba4f3156132"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionle__uint16__t.html">le_uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#ab5bf6dfbca0857abd3b59ba4f3156132">byteorder_btols</a> (<a class="el" href="unionbe__uint16__t.html">be_uint16_t</a> v)</td></tr>
+<tr class="memdesc:ab5bf6dfbca0857abd3b59ba4f3156132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from big endian to little endian, 16 bit.  <a href="byteorder_8h.html#ab5bf6dfbca0857abd3b59ba4f3156132">More...</a><br /></td></tr>
+<tr class="separator:ab5bf6dfbca0857abd3b59ba4f3156132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab267ddcf30bb6cbacddb4ba5d4b43797"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionle__uint32__t.html">le_uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#ab267ddcf30bb6cbacddb4ba5d4b43797">byteorder_btoll</a> (<a class="el" href="unionbe__uint32__t.html">be_uint32_t</a> v)</td></tr>
+<tr class="memdesc:ab267ddcf30bb6cbacddb4ba5d4b43797"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from big endian to little endian, 32 bit.  <a href="byteorder_8h.html#ab267ddcf30bb6cbacddb4ba5d4b43797">More...</a><br /></td></tr>
+<tr class="separator:ab267ddcf30bb6cbacddb4ba5d4b43797"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e18a877d504245eee1c8dd53f77ee9d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionle__uint64__t.html">le_uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a1e18a877d504245eee1c8dd53f77ee9d">byteorder_btolll</a> (<a class="el" href="unionbe__uint64__t.html">be_uint64_t</a> v)</td></tr>
+<tr class="memdesc:a1e18a877d504245eee1c8dd53f77ee9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from big endian to little endian, 64 bit.  <a href="byteorder_8h.html#a1e18a877d504245eee1c8dd53f77ee9d">More...</a><br /></td></tr>
+<tr class="separator:a1e18a877d504245eee1c8dd53f77ee9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb054dabca1f000fcfbec921c1f9794d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionle__uint16__t.html">le_uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#abb054dabca1f000fcfbec921c1f9794d">byteorder_htols</a> (uint16_t v)</td></tr>
+<tr class="memdesc:abb054dabca1f000fcfbec921c1f9794d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to little endian, 16 bit.  <a href="byteorder_8h.html#abb054dabca1f000fcfbec921c1f9794d">More...</a><br /></td></tr>
+<tr class="separator:abb054dabca1f000fcfbec921c1f9794d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae75da9da94889f5129be0a896120609b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionle__uint32__t.html">le_uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#ae75da9da94889f5129be0a896120609b">byteorder_htoll</a> (uint32_t v)</td></tr>
+<tr class="memdesc:ae75da9da94889f5129be0a896120609b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to little endian, 32 bit.  <a href="byteorder_8h.html#ae75da9da94889f5129be0a896120609b">More...</a><br /></td></tr>
+<tr class="separator:ae75da9da94889f5129be0a896120609b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab4d3176d80af956dc3fb4db742f47f5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="unionle__uint64__t.html">le_uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#aab4d3176d80af956dc3fb4db742f47f5">byteorder_htolll</a> (uint64_t v)</td></tr>
+<tr class="memdesc:aab4d3176d80af956dc3fb4db742f47f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to little endian, 64 bit.  <a href="byteorder_8h.html#aab4d3176d80af956dc3fb4db742f47f5">More...</a><br /></td></tr>
+<tr class="separator:aab4d3176d80af956dc3fb4db742f47f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b9fe4af075f2d9f3acca84ad167f003"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="byteorder_8h.html#a639ad79c8926cb896d5a8f12b14d49e3">network_uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a6b9fe4af075f2d9f3acca84ad167f003">byteorder_htons</a> (uint16_t v)</td></tr>
+<tr class="memdesc:a6b9fe4af075f2d9f3acca84ad167f003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to network byte order, 16 bit.  <a href="byteorder_8h.html#a6b9fe4af075f2d9f3acca84ad167f003">More...</a><br /></td></tr>
+<tr class="separator:a6b9fe4af075f2d9f3acca84ad167f003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af70d2bbc1772b810c5f63929e56e747c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="byteorder_8h.html#a041efbda03b04a2f6866cf12dde1efea">network_uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#af70d2bbc1772b810c5f63929e56e747c">byteorder_htonl</a> (uint32_t v)</td></tr>
+<tr class="memdesc:af70d2bbc1772b810c5f63929e56e747c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to network byte order, 32 bit.  <a href="byteorder_8h.html#af70d2bbc1772b810c5f63929e56e747c">More...</a><br /></td></tr>
+<tr class="separator:af70d2bbc1772b810c5f63929e56e747c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442cb27fcc61f6238990ecc034325d7c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="byteorder_8h.html#ad85448169c2299064ee17b507fba692f">network_uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a442cb27fcc61f6238990ecc034325d7c">byteorder_htonll</a> (uint64_t v)</td></tr>
+<tr class="memdesc:a442cb27fcc61f6238990ecc034325d7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to network byte order, 64 bit.  <a href="byteorder_8h.html#a442cb27fcc61f6238990ecc034325d7c">More...</a><br /></td></tr>
+<tr class="separator:a442cb27fcc61f6238990ecc034325d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6508aa369528da61f75cb1a7df0c72"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a8b6508aa369528da61f75cb1a7df0c72">byteorder_ntohs</a> (<a class="el" href="byteorder_8h.html#a639ad79c8926cb896d5a8f12b14d49e3">network_uint16_t</a> v)</td></tr>
+<tr class="memdesc:a8b6508aa369528da61f75cb1a7df0c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from network byte order to host byte order, 16 bit.  <a href="byteorder_8h.html#a8b6508aa369528da61f75cb1a7df0c72">More...</a><br /></td></tr>
+<tr class="separator:a8b6508aa369528da61f75cb1a7df0c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c6db4b53f00e68904e390a521f7df52"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a0c6db4b53f00e68904e390a521f7df52">byteorder_ntohl</a> (<a class="el" href="byteorder_8h.html#a041efbda03b04a2f6866cf12dde1efea">network_uint32_t</a> v)</td></tr>
+<tr class="memdesc:a0c6db4b53f00e68904e390a521f7df52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from network byte order to host byte order, 32 bit.  <a href="byteorder_8h.html#a0c6db4b53f00e68904e390a521f7df52">More...</a><br /></td></tr>
+<tr class="separator:a0c6db4b53f00e68904e390a521f7df52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46fa24d5956766847e01e776e512b6d6"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a46fa24d5956766847e01e776e512b6d6">byteorder_ntohll</a> (<a class="el" href="byteorder_8h.html#ad85448169c2299064ee17b507fba692f">network_uint64_t</a> v)</td></tr>
+<tr class="memdesc:a46fa24d5956766847e01e776e512b6d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from network byte order to host byte order, 64 bit.  <a href="byteorder_8h.html#a46fa24d5956766847e01e776e512b6d6">More...</a><br /></td></tr>
+<tr class="separator:a46fa24d5956766847e01e776e512b6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba8648afeb93361bad221f23f0008009"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#aba8648afeb93361bad221f23f0008009">byteorder_swaps</a> (uint16_t v)</td></tr>
+<tr class="memdesc:aba8648afeb93361bad221f23f0008009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap byte order, 16 bit.  <a href="byteorder_8h.html#aba8648afeb93361bad221f23f0008009">More...</a><br /></td></tr>
+<tr class="separator:aba8648afeb93361bad221f23f0008009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac786fe42f31cea28921553bd040d8f38"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#ac786fe42f31cea28921553bd040d8f38">byteorder_swapl</a> (uint32_t v)</td></tr>
+<tr class="memdesc:ac786fe42f31cea28921553bd040d8f38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap byte order, 32 bit.  <a href="byteorder_8h.html#ac786fe42f31cea28921553bd040d8f38">More...</a><br /></td></tr>
+<tr class="separator:ac786fe42f31cea28921553bd040d8f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3529983ea215f5922c4264ce32ac445c"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a3529983ea215f5922c4264ce32ac445c">byteorder_swapll</a> (uint64_t v)</td></tr>
+<tr class="memdesc:a3529983ea215f5922c4264ce32ac445c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap byte order, 64 bit.  <a href="byteorder_8h.html#a3529983ea215f5922c4264ce32ac445c">More...</a><br /></td></tr>
+<tr class="separator:a3529983ea215f5922c4264ce32ac445c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99640389c7624713b15fbd84277581a5"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a99640389c7624713b15fbd84277581a5">byteorder_bebuftohs</a> (const uint8_t *buf)</td></tr>
+<tr class="memdesc:a99640389c7624713b15fbd84277581a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a big endian encoded unsigned integer from a buffer into host byte order encoded variable, 16-bit.  <a href="byteorder_8h.html#a99640389c7624713b15fbd84277581a5">More...</a><br /></td></tr>
+<tr class="separator:a99640389c7624713b15fbd84277581a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af145e6ff52831471118dd2dd810d5bce"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#af145e6ff52831471118dd2dd810d5bce">byteorder_bebuftohl</a> (const uint8_t *buf)</td></tr>
+<tr class="memdesc:af145e6ff52831471118dd2dd810d5bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a big endian encoded unsigned integer from a buffer into host byte order encoded variable, 32-bit.  <a href="byteorder_8h.html#af145e6ff52831471118dd2dd810d5bce">More...</a><br /></td></tr>
+<tr class="separator:af145e6ff52831471118dd2dd810d5bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f8e11552440418103ab77e54a00d03"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a54f8e11552440418103ab77e54a00d03">byteorder_bebuftohll</a> (const uint8_t *buf)</td></tr>
+<tr class="memdesc:a54f8e11552440418103ab77e54a00d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a big endian encoded unsigned integer from a buffer into host byte order encoded variable, 64-bit.  <a href="byteorder_8h.html#a54f8e11552440418103ab77e54a00d03">More...</a><br /></td></tr>
+<tr class="separator:a54f8e11552440418103ab77e54a00d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7b9cb1a075f7e7d7e1f9059b9b2d1a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a0f7b9cb1a075f7e7d7e1f9059b9b2d1a">byteorder_htobebufs</a> (uint8_t *buf, uint16_t val)</td></tr>
+<tr class="memdesc:a0f7b9cb1a075f7e7d7e1f9059b9b2d1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a host byte order encoded unsigned integer as big endian encoded value into a buffer, 16-bit.  <a href="byteorder_8h.html#a0f7b9cb1a075f7e7d7e1f9059b9b2d1a">More...</a><br /></td></tr>
+<tr class="separator:a0f7b9cb1a075f7e7d7e1f9059b9b2d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb6a6a58307ba5b4b7655ddb260025fd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#abb6a6a58307ba5b4b7655ddb260025fd">byteorder_htobebufl</a> (uint8_t *buf, uint32_t val)</td></tr>
+<tr class="memdesc:abb6a6a58307ba5b4b7655ddb260025fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a host byte order encoded unsigned integer as big endian encoded value into a buffer, 32-bit.  <a href="byteorder_8h.html#abb6a6a58307ba5b4b7655ddb260025fd">More...</a><br /></td></tr>
+<tr class="separator:abb6a6a58307ba5b4b7655ddb260025fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6890beec4c9d18b3795d9673e73f93b9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a6890beec4c9d18b3795d9673e73f93b9">byteorder_htobebufll</a> (uint8_t *buf, uint64_t val)</td></tr>
+<tr class="memdesc:a6890beec4c9d18b3795d9673e73f93b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a host byte order encoded unsigned integer as big endian encoded value into a buffer, 64-bit.  <a href="byteorder_8h.html#a6890beec4c9d18b3795d9673e73f93b9">More...</a><br /></td></tr>
+<tr class="separator:a6890beec4c9d18b3795d9673e73f93b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc7adb63ff7355740923d4321f4e98b3"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#afc7adb63ff7355740923d4321f4e98b3">htons</a> (uint16_t v)</td></tr>
+<tr class="memdesc:afc7adb63ff7355740923d4321f4e98b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to network byte order, 16 bit.  <a href="byteorder_8h.html#afc7adb63ff7355740923d4321f4e98b3">More...</a><br /></td></tr>
+<tr class="separator:afc7adb63ff7355740923d4321f4e98b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c502d56f59415c4d6a909d62c602892"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a8c502d56f59415c4d6a909d62c602892">htonl</a> (uint32_t v)</td></tr>
+<tr class="memdesc:a8c502d56f59415c4d6a909d62c602892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to network byte order, 32 bit.  <a href="byteorder_8h.html#a8c502d56f59415c4d6a909d62c602892">More...</a><br /></td></tr>
+<tr class="separator:a8c502d56f59415c4d6a909d62c602892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e307076dea862802ba0e49b98e60c47"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a6e307076dea862802ba0e49b98e60c47">htonll</a> (uint64_t v)</td></tr>
+<tr class="memdesc:a6e307076dea862802ba0e49b98e60c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from host byte order to network byte order, 64 bit.  <a href="byteorder_8h.html#a6e307076dea862802ba0e49b98e60c47">More...</a><br /></td></tr>
+<tr class="separator:a6e307076dea862802ba0e49b98e60c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3c8704fcb8b1476dedea6c3a817de7"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a0e3c8704fcb8b1476dedea6c3a817de7">ntohs</a> (uint16_t v)</td></tr>
+<tr class="memdesc:a0e3c8704fcb8b1476dedea6c3a817de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from network byte order to host byte order, 16 bit.  <a href="byteorder_8h.html#a0e3c8704fcb8b1476dedea6c3a817de7">More...</a><br /></td></tr>
+<tr class="separator:a0e3c8704fcb8b1476dedea6c3a817de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea3165e59b8ae93892fdcdfbd6b7cd8d"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#aea3165e59b8ae93892fdcdfbd6b7cd8d">ntohl</a> (uint32_t v)</td></tr>
+<tr class="memdesc:aea3165e59b8ae93892fdcdfbd6b7cd8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from network byte order to host byte order, 32 bit.  <a href="byteorder_8h.html#aea3165e59b8ae93892fdcdfbd6b7cd8d">More...</a><br /></td></tr>
+<tr class="separator:aea3165e59b8ae93892fdcdfbd6b7cd8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0481689eb39bbc425a2110f48b7861c0"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="byteorder_8h.html#a0481689eb39bbc425a2110f48b7861c0">ntohll</a> (uint64_t v)</td></tr>
+<tr class="memdesc:a0481689eb39bbc425a2110f48b7861c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from network byte order to host byte order, 64 bit.  <a href="byteorder_8h.html#a0481689eb39bbc425a2110f48b7861c0">More...</a><br /></td></tr>
+<tr class="separator:a0481689eb39bbc425a2110f48b7861c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbd03153d1050518fa4bce46b650f6ac"><td class="memItemLeft" align="right" valign="top"><a id="acbd03153d1050518fa4bce46b650f6ac"></a>
+static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>byteorder_lebuftohs</b> (const uint8_t *buf)</td></tr>
+<tr class="separator:acbd03153d1050518fa4bce46b650f6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0f5066875148f44516f637277b5197"><td class="memItemLeft" align="right" valign="top"><a id="a8f0f5066875148f44516f637277b5197"></a>
+static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>byteorder_lebuftohl</b> (const uint8_t *buf)</td></tr>
+<tr class="separator:a8f0f5066875148f44516f637277b5197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cfa84fd5d9f97d41519825e0228e6a9"><td class="memItemLeft" align="right" valign="top"><a id="a6cfa84fd5d9f97d41519825e0228e6a9"></a>
+static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>byteorder_lebuftohll</b> (const uint8_t *buf)</td></tr>
+<tr class="separator:a6cfa84fd5d9f97d41519825e0228e6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b4350d71e2fcd79c60eddb1d51d4b6"><td class="memItemLeft" align="right" valign="top"><a id="a61b4350d71e2fcd79c60eddb1d51d4b6"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>byteorder_htolebufs</b> (uint8_t *buf, uint16_t val)</td></tr>
+<tr class="separator:a61b4350d71e2fcd79c60eddb1d51d4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d693db0e562b6474a07496c6a3d543b"><td class="memItemLeft" align="right" valign="top"><a id="a4d693db0e562b6474a07496c6a3d543b"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>byteorder_htolebufl</b> (uint8_t *buf, uint32_t val)</td></tr>
+<tr class="separator:a4d693db0e562b6474a07496c6a3d543b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accbd8a340fe80a6128453368a8b39f16"><td class="memItemLeft" align="right" valign="top"><a id="accbd8a340fe80a6128453368a8b39f16"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>byteorder_htolebufll</b> (uint8_t *buf, uint64_t val)</td></tr>
+<tr class="separator:accbd8a340fe80a6128453368a8b39f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af145e6ff52831471118dd2dd810d5bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af145e6ff52831471118dd2dd810d5bce">&#9670;&nbsp;</a></span>byteorder_bebuftohl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t byteorder_bebuftohl </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read a big endian encoded unsigned integer from a buffer into host byte order encoded variable, 32-bit. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is agnostic to the alignment of the target value in the given buffer</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>position in a buffer holding the target value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>32-bit unsigned integer in host byte order </dd></dl>
+
+</div>
+</div>
+<a id="a54f8e11552440418103ab77e54a00d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54f8e11552440418103ab77e54a00d03">&#9670;&nbsp;</a></span>byteorder_bebuftohll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint64_t byteorder_bebuftohll </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read a big endian encoded unsigned integer from a buffer into host byte order encoded variable, 64-bit. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is agnostic to the alignment of the target value in the given buffer</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>position in a buffer holding the target value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>64-bit unsigned integer in host byte order </dd></dl>
+
+</div>
+</div>
+<a id="a99640389c7624713b15fbd84277581a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99640389c7624713b15fbd84277581a5">&#9670;&nbsp;</a></span>byteorder_bebuftohs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint16_t byteorder_bebuftohs </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read a big endian encoded unsigned integer from a buffer into host byte order encoded variable, 16-bit. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is agnostic to the alignment of the target value in the given buffer</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>position in a buffer holding the target value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>16-bit unsigned integer in host byte order </dd></dl>
+
+</div>
+</div>
+<a id="ab267ddcf30bb6cbacddb4ba5d4b43797"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab267ddcf30bb6cbacddb4ba5d4b43797">&#9670;&nbsp;</a></span>byteorder_btoll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionle__uint32__t.html">le_uint32_t</a> byteorder_btoll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionbe__uint32__t.html">be_uint32_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from big endian to little endian, 32 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in big endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to little endian. </dd></dl>
+
+</div>
+</div>
+<a id="a1e18a877d504245eee1c8dd53f77ee9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e18a877d504245eee1c8dd53f77ee9d">&#9670;&nbsp;</a></span>byteorder_btolll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionle__uint64__t.html">le_uint64_t</a> byteorder_btolll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionbe__uint64__t.html">be_uint64_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from big endian to little endian, 64 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in big endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to little endian. </dd></dl>
+
+</div>
+</div>
+<a id="ab5bf6dfbca0857abd3b59ba4f3156132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5bf6dfbca0857abd3b59ba4f3156132">&#9670;&nbsp;</a></span>byteorder_btols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionle__uint16__t.html">le_uint16_t</a> byteorder_btols </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionbe__uint16__t.html">be_uint16_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from big endian to little endian, 16 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in big endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to little endian. </dd></dl>
+
+</div>
+</div>
+<a id="abb6a6a58307ba5b4b7655ddb260025fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb6a6a58307ba5b4b7655ddb260025fd">&#9670;&nbsp;</a></span>byteorder_htobebufl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void byteorder_htobebufl </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a host byte order encoded unsigned integer as big endian encoded value into a buffer, 32-bit. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is alignment agnostic and works with any given memory location of the buffer</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>target buffer, must be able to accept 4 bytes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value written to the buffer, in host byte order </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6890beec4c9d18b3795d9673e73f93b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6890beec4c9d18b3795d9673e73f93b9">&#9670;&nbsp;</a></span>byteorder_htobebufll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void byteorder_htobebufll </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a host byte order encoded unsigned integer as big endian encoded value into a buffer, 64-bit. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is alignment agnostic and works with any given memory location of the buffer</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>target buffer, must be able to accept 8 bytes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value written to the buffer, in host byte order </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0f7b9cb1a075f7e7d7e1f9059b9b2d1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7b9cb1a075f7e7d7e1f9059b9b2d1a">&#9670;&nbsp;</a></span>byteorder_htobebufs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void byteorder_htobebufs </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a host byte order encoded unsigned integer as big endian encoded value into a buffer, 16-bit. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is alignment agnostic and works with any given memory location of the buffer</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>target buffer, must be able to accept 2 bytes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value written to the buffer, in host byte order </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae75da9da94889f5129be0a896120609b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae75da9da94889f5129be0a896120609b">&#9670;&nbsp;</a></span>byteorder_htoll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionle__uint32__t.html">le_uint32_t</a> byteorder_htoll </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to little endian, 32 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to little endian. </dd></dl>
+
+</div>
+</div>
+<a id="aab4d3176d80af956dc3fb4db742f47f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab4d3176d80af956dc3fb4db742f47f5">&#9670;&nbsp;</a></span>byteorder_htolll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionle__uint64__t.html">le_uint64_t</a> byteorder_htolll </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to little endian, 64 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to little endian. </dd></dl>
+
+</div>
+</div>
+<a id="abb054dabca1f000fcfbec921c1f9794d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb054dabca1f000fcfbec921c1f9794d">&#9670;&nbsp;</a></span>byteorder_htols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionle__uint16__t.html">le_uint16_t</a> byteorder_htols </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to little endian, 16 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to little endian. </dd></dl>
+
+</div>
+</div>
+<a id="af70d2bbc1772b810c5f63929e56e747c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af70d2bbc1772b810c5f63929e56e747c">&#9670;&nbsp;</a></span>byteorder_htonl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="byteorder_8h.html#a041efbda03b04a2f6866cf12dde1efea">network_uint32_t</a> byteorder_htonl </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to network byte order, 32 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to network byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a442cb27fcc61f6238990ecc034325d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a442cb27fcc61f6238990ecc034325d7c">&#9670;&nbsp;</a></span>byteorder_htonll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="byteorder_8h.html#ad85448169c2299064ee17b507fba692f">network_uint64_t</a> byteorder_htonll </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to network byte order, 64 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to network byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a6b9fe4af075f2d9f3acca84ad167f003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b9fe4af075f2d9f3acca84ad167f003">&#9670;&nbsp;</a></span>byteorder_htons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="byteorder_8h.html#a639ad79c8926cb896d5a8f12b14d49e3">network_uint16_t</a> byteorder_htons </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to network byte order, 16 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to network byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a3c5b94ec0317462fd54266d2f2b8ed5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c5b94ec0317462fd54266d2f2b8ed5e">&#9670;&nbsp;</a></span>byteorder_ltobl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionbe__uint32__t.html">be_uint32_t</a> byteorder_ltobl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionle__uint32__t.html">le_uint32_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from little endian to big endian, 32 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in little endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to big endian. </dd></dl>
+
+</div>
+</div>
+<a id="ac35f5bbf9fa42e3e2a21e379af41bc5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac35f5bbf9fa42e3e2a21e379af41bc5a">&#9670;&nbsp;</a></span>byteorder_ltobll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionbe__uint64__t.html">be_uint64_t</a> byteorder_ltobll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionle__uint64__t.html">le_uint64_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from little endian to big endian, 64 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in little endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to big endian. </dd></dl>
+
+</div>
+</div>
+<a id="a88b4f812dd46338cf67ed3444bb12e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88b4f812dd46338cf67ed3444bb12e68">&#9670;&nbsp;</a></span>byteorder_ltobs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="unionbe__uint16__t.html">be_uint16_t</a> byteorder_ltobs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionle__uint16__t.html">le_uint16_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from little endian to big endian, 16 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in little endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to big endian. </dd></dl>
+
+</div>
+</div>
+<a id="a5c68b9425c6a4dcf2c8a95e4a0b4aed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c68b9425c6a4dcf2c8a95e4a0b4aed4">&#9670;&nbsp;</a></span>byteorder_ltohl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t byteorder_ltohl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionle__uint32__t.html">le_uint32_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from little endian to host byte order, 32 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in little endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to host byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a1cbba72c3b743ba9726f283097696b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cbba72c3b743ba9726f283097696b2e">&#9670;&nbsp;</a></span>byteorder_ltohll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint64_t byteorder_ltohll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionle__uint64__t.html">le_uint64_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from little endian to host byte order, 64 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in little endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to host byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a10e7a201f64e149e6e8c0e7bb0b7ffb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10e7a201f64e149e6e8c0e7bb0b7ffb8">&#9670;&nbsp;</a></span>byteorder_ltohs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint16_t byteorder_ltohs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionle__uint16__t.html">le_uint16_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from little endian to host byte order, 16 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in little endian. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to host byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a0c6db4b53f00e68904e390a521f7df52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c6db4b53f00e68904e390a521f7df52">&#9670;&nbsp;</a></span>byteorder_ntohl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t byteorder_ntohl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="byteorder_8h.html#a041efbda03b04a2f6866cf12dde1efea">network_uint32_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from network byte order to host byte order, 32 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in network byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to host byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a46fa24d5956766847e01e776e512b6d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46fa24d5956766847e01e776e512b6d6">&#9670;&nbsp;</a></span>byteorder_ntohll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint64_t byteorder_ntohll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="byteorder_8h.html#ad85448169c2299064ee17b507fba692f">network_uint64_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from network byte order to host byte order, 64 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in network byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to host byte order. </dd></dl>
+
+</div>
+</div>
+<a id="a8b6508aa369528da61f75cb1a7df0c72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6508aa369528da61f75cb1a7df0c72">&#9670;&nbsp;</a></span>byteorder_ntohs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint16_t byteorder_ntohs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="byteorder_8h.html#a639ad79c8926cb896d5a8f12b14d49e3">network_uint16_t</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from network byte order to host byte order, 16 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer in network byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>v</code> converted to host byte order. </dd></dl>
+
+</div>
+</div>
+<a id="ac786fe42f31cea28921553bd040d8f38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac786fe42f31cea28921553bd040d8f38">&#9670;&nbsp;</a></span>byteorder_swapl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t byteorder_swapl </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Swap byte order, 32 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to swap. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The swapped integer. </dd></dl>
+
+</div>
+</div>
+<a id="a3529983ea215f5922c4264ce32ac445c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3529983ea215f5922c4264ce32ac445c">&#9670;&nbsp;</a></span>byteorder_swapll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint64_t byteorder_swapll </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Swap byte order, 64 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to swap. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The swapped integer. </dd></dl>
+
+</div>
+</div>
+<a id="aba8648afeb93361bad221f23f0008009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba8648afeb93361bad221f23f0008009">&#9670;&nbsp;</a></span>byteorder_swaps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint16_t byteorder_swaps </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Swap byte order, 16 bit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to swap. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The swapped integer. </dd></dl>
+
+</div>
+</div>
+<a id="a8c502d56f59415c4d6a909d62c602892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c502d56f59415c4d6a909d62c602892">&#9670;&nbsp;</a></span>htonl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t htonl </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to network byte order, 32 bit. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="byteorder_8h.html#af70d2bbc1772b810c5f63929e56e747c" title="Convert from host byte order to network byte order, 32 bit.">byteorder_htonl()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Converted integer. </dd></dl>
+
+</div>
+</div>
+<a id="a6e307076dea862802ba0e49b98e60c47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e307076dea862802ba0e49b98e60c47">&#9670;&nbsp;</a></span>htonll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint64_t htonll </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to network byte order, 64 bit. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="byteorder_8h.html#a442cb27fcc61f6238990ecc034325d7c" title="Convert from host byte order to network byte order, 64 bit.">byteorder_htonll()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Converted integer. </dd></dl>
+
+</div>
+</div>
+<a id="afc7adb63ff7355740923d4321f4e98b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc7adb63ff7355740923d4321f4e98b3">&#9670;&nbsp;</a></span>htons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint16_t htons </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from host byte order to network byte order, 16 bit. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="byteorder_8h.html#a6b9fe4af075f2d9f3acca84ad167f003" title="Convert from host byte order to network byte order, 16 bit.">byteorder_htons()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Converted integer. </dd></dl>
+
+</div>
+</div>
+<a id="aea3165e59b8ae93892fdcdfbd6b7cd8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea3165e59b8ae93892fdcdfbd6b7cd8d">&#9670;&nbsp;</a></span>ntohl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t ntohl </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from network byte order to host byte order, 32 bit. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="byteorder_8h.html#a0c6db4b53f00e68904e390a521f7df52" title="Convert from network byte order to host byte order, 32 bit.">byteorder_ntohl()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Converted integer. </dd></dl>
+
+</div>
+</div>
+<a id="a0481689eb39bbc425a2110f48b7861c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0481689eb39bbc425a2110f48b7861c0">&#9670;&nbsp;</a></span>ntohll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint64_t ntohll </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from network byte order to host byte order, 64 bit. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="byteorder_8h.html#a46fa24d5956766847e01e776e512b6d6" title="Convert from network byte order to host byte order, 64 bit.">byteorder_ntohll()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Converted integer. </dd></dl>
+
+</div>
+</div>
+<a id="a0e3c8704fcb8b1476dedea6c3a817de7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3c8704fcb8b1476dedea6c3a817de7">&#9670;&nbsp;</a></span>ntohs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint16_t ntohs </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert from network byte order to host byte order, 16 bit. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="byteorder_8h.html#a8b6508aa369528da61f75cb1a7df0c72" title="Convert from network byte order to host byte order, 16 bit.">byteorder_ntohs()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>The integer to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Converted integer. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="byteorder_8h.html">byteorder.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

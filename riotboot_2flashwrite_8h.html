@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/riotboot/flashwrite.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('riotboot_2flashwrite_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">flashwrite.h File Reference<div class="ingroups"><a class="el" href="group__sys.html">System</a> &raquo; <a class="el" href="group__sys__riotboot__flashwrite.html">riotboot flash writer</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>riotboot flash writing module  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>riotboot flash writing module </p>
+<p>This module provides an API to reliably write a firmware image to flash.</p>
+<p>The API is similar to stream hashing functions:</p>
+<ol type="1">
+<li>initialize state structure using <a class="el" href="riotboot_2flashwrite_8h.html#a43c19f2a98b8671fb9785aad3ba63eea" title="Initialize firmware update (riotboot version)">riotboot_flashwrite_init()</a></li>
+<li>put some data using <a class="el" href="riotboot_2flashwrite_8h.html#af8f53f0bca4123772b1221bed52abcca" title="Feed bytes into the firmware writer.">riotboot_flashwrite_putbytes()</a></li>
+<li>repeat 2. until all data has been received</li>
+<li>finish update using <a class="el" href="riotboot_2flashwrite_8h.html#af394e6c45f029eaa246c756383be8378" title="Finish a firmware update (riotboot version)">riotboot_flashwrite_finish()</a></li>
+</ol>
+<p>The module will <em>not</em> automatically reboot after an image has been successfully written.</p>
+<p>Under the hood, the module tries to abstract page sizes for writing the image to flash. Verification of the image is left to the caller. If the data is not correctly written, riotboot_put_bytes() will return -1.</p>
+<p>The module makes sure that at no point in time an invalid image is bootable. The algorithm for that makes use of the bootloader verifying checksum and works as follows:</p>
+<ol type="1">
+<li>erase first block (making its checksum invalid)</li>
+<li>write image starting at second block</li>
+<li>write first block</li>
+</ol>
+<p>When using raw mode is used with this module, the need to buffer a full flashpage page is removed, instead it must buffer two times the FLASHPAGE_WRITE_BLOCK_SIZE. One is used to buffer the current write block, the other buffers the first chunk (offset zero, page zero). This first chunk is written when finalizing the flash operation. The minimal size for RIOTBOOT_FLASHPAGE_BUFFER_SIZE is 4, at least the riotboot magic number must fit into this and FLASHPAGE_SIZE must be a multiple of RIOTBOOT_FLASHPAGE_BUFFER_SIZE</p>
+<dl class="section author"><dt>Author</dt><dd>Kaspar Schleiser <a href="#" onclick="location.href='mai'+'lto:'+'kas'+'pa'+'r@s'+'ch'+'lei'+'se'+'r.d'+'e'; return false;">kaspa<span style="display: none;">.nosp@m.</span>r@sc<span style="display: none;">.nosp@m.</span>hleis<span style="display: none;">.nosp@m.</span>er.d<span style="display: none;">.nosp@m.</span>e</a> </dd>
+<dd>
+Koen Zandberg <a href="#" onclick="location.href='mai'+'lto:'+'koe'+'n@'+'ber'+'gz'+'and'+'.n'+'et'; return false;">koen@<span style="display: none;">.nosp@m.</span>berg<span style="display: none;">.nosp@m.</span>zand.<span style="display: none;">.nosp@m.</span>net</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;<a class="el" href="slot_8h_source.html">riotboot/slot.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="flashpage_8h_source.html">periph/flashpage.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for flashwrite.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="riotboot_2flashwrite_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">firmware update state structure  <a href="structriotboot__flashwrite__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a8f83a7cf1592f33f1a7b750c143d4066"><td class="memItemLeft" align="right" valign="top"><a id="a8f83a7cf1592f33f1a7b750c143d4066"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a8f83a7cf1592f33f1a7b750c143d4066">CONFIG_RIOTBOOT_FLASHWRITE_RAW</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a8f83a7cf1592f33f1a7b750c143d4066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable/disable raw writes to flash. <br /></td></tr>
+<tr class="separator:a8f83a7cf1592f33f1a7b750c143d4066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adae4b7a7ac8d24061cbefe0ba5cb8ca0"><td class="memItemLeft" align="right" valign="top"><a id="adae4b7a7ac8d24061cbefe0ba5cb8ca0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#adae4b7a7ac8d24061cbefe0ba5cb8ca0">RIOTBOOT_FLASHPAGE_BUFFER_SIZE</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:adae4b7a7ac8d24061cbefe0ba5cb8ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intermediate buffer size for firmware image data. <br /></td></tr>
+<tr class="separator:adae4b7a7ac8d24061cbefe0ba5cb8ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40670f263dfb5f832db72fd94986f6cd"><td class="memItemLeft" align="right" valign="top"><a id="a40670f263dfb5f832db72fd94986f6cd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a40670f263dfb5f832db72fd94986f6cd">RIOTBOOT_FLASHPAGE_BUFFER_ATTRS</a>&#160;&#160;&#160;    __attribute__((aligned(<a class="el" href="group__drivers__periph__flashpage.html#ga72c89204ecbd5efc8d52d3bd73003a28">FLASHPAGE_WRITE_BLOCK_ALIGNMENT</a>)))</td></tr>
+<tr class="memdesc:a40670f263dfb5f832db72fd94986f6cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extra attributes required for the firmware intermediate buffer. <br /></td></tr>
+<tr class="separator:a40670f263dfb5f832db72fd94986f6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb9a6a59c19a2431a3820ce863b5defc"><td class="memItemLeft" align="right" valign="top"><a id="acb9a6a59c19a2431a3820ce863b5defc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#acb9a6a59c19a2431a3820ce863b5defc">RIOTBOOT_FLASHWRITE_SKIPLEN</a>&#160;&#160;&#160;sizeof(<a class="el" href="riotboot_2hdr_8h.html#a62edf563d94d69db0f0cdc2c774c231b">RIOTBOOT_MAGIC</a>)</td></tr>
+<tr class="memdesc:acb9a6a59c19a2431a3820ce863b5defc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of bytes to skip at initial write of first page. <br /></td></tr>
+<tr class="separator:acb9a6a59c19a2431a3820ce863b5defc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a8f63924bc9bf572db48bb24336b3e8c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a8f63924bc9bf572db48bb24336b3e8c2">riotboot_flashwrite_init_raw</a> (<a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *state, int target_slot, size_t offset)</td></tr>
+<tr class="memdesc:a8f63924bc9bf572db48bb24336b3e8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize firmware update (raw version)  <a href="riotboot_2flashwrite_8h.html#a8f63924bc9bf572db48bb24336b3e8c2">More...</a><br /></td></tr>
+<tr class="separator:a8f63924bc9bf572db48bb24336b3e8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43c19f2a98b8671fb9785aad3ba63eea"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a43c19f2a98b8671fb9785aad3ba63eea">riotboot_flashwrite_init</a> (<a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *state, int target_slot)</td></tr>
+<tr class="memdesc:a43c19f2a98b8671fb9785aad3ba63eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize firmware update (riotboot version)  <a href="riotboot_2flashwrite_8h.html#a43c19f2a98b8671fb9785aad3ba63eea">More...</a><br /></td></tr>
+<tr class="separator:a43c19f2a98b8671fb9785aad3ba63eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8f53f0bca4123772b1221bed52abcca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#af8f53f0bca4123772b1221bed52abcca">riotboot_flashwrite_putbytes</a> (<a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *state, const uint8_t *bytes, size_t len, bool more)</td></tr>
+<tr class="memdesc:af8f53f0bca4123772b1221bed52abcca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Feed bytes into the firmware writer.  <a href="riotboot_2flashwrite_8h.html#af8f53f0bca4123772b1221bed52abcca">More...</a><br /></td></tr>
+<tr class="separator:af8f53f0bca4123772b1221bed52abcca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa17dbc4def667816d0d4c299af20b7d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#aa17dbc4def667816d0d4c299af20b7d1">riotboot_flashwrite_flush</a> (<a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *state)</td></tr>
+<tr class="memdesc:aa17dbc4def667816d0d4c299af20b7d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Force flush the buffer onto the flash.  <a href="riotboot_2flashwrite_8h.html#aa17dbc4def667816d0d4c299af20b7d1">More...</a><br /></td></tr>
+<tr class="separator:aa17dbc4def667816d0d4c299af20b7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9520d64ff40abc05ded901c9527560a2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a9520d64ff40abc05ded901c9527560a2">riotboot_flashwrite_finish_raw</a> (<a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *state, const uint8_t *bytes, size_t len)</td></tr>
+<tr class="memdesc:a9520d64ff40abc05ded901c9527560a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finish a firmware update (raw version)  <a href="riotboot_2flashwrite_8h.html#a9520d64ff40abc05ded901c9527560a2">More...</a><br /></td></tr>
+<tr class="separator:a9520d64ff40abc05ded901c9527560a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af394e6c45f029eaa246c756383be8378"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#af394e6c45f029eaa246c756383be8378">riotboot_flashwrite_finish</a> (<a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *state)</td></tr>
+<tr class="memdesc:af394e6c45f029eaa246c756383be8378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finish a firmware update (riotboot version)  <a href="riotboot_2flashwrite_8h.html#af394e6c45f029eaa246c756383be8378">More...</a><br /></td></tr>
+<tr class="separator:af394e6c45f029eaa246c756383be8378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a578dbcf0ee88c27a9f98900c0333eb5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a578dbcf0ee88c27a9f98900c0333eb5d">riotboot_flashwrite_invalidate</a> (int slot)</td></tr>
+<tr class="memdesc:a578dbcf0ee88c27a9f98900c0333eb5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate a slot header (riotboot version)  <a href="riotboot_2flashwrite_8h.html#a578dbcf0ee88c27a9f98900c0333eb5d">More...</a><br /></td></tr>
+<tr class="separator:a578dbcf0ee88c27a9f98900c0333eb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae976fc115297a4b1b2b5b47bab27726e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#ae976fc115297a4b1b2b5b47bab27726e">riotboot_flashwrite_invalidate_latest</a> (void)</td></tr>
+<tr class="memdesc:ae976fc115297a4b1b2b5b47bab27726e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate the latest firmware version (riotboot version)  <a href="riotboot_2flashwrite_8h.html#ae976fc115297a4b1b2b5b47bab27726e">More...</a><br /></td></tr>
+<tr class="separator:ae976fc115297a4b1b2b5b47bab27726e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68b26d35167bd543d9f2fc1156290db8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a68b26d35167bd543d9f2fc1156290db8">riotboot_flashwrite_slotsize</a> (const <a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *state)</td></tr>
+<tr class="memdesc:a68b26d35167bd543d9f2fc1156290db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a slot's size.  <a href="riotboot_2flashwrite_8h.html#a68b26d35167bd543d9f2fc1156290db8">More...</a><br /></td></tr>
+<tr class="separator:a68b26d35167bd543d9f2fc1156290db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56dfacc4a69c91d00803807521b3d775"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="riotboot_2flashwrite_8h.html#a56dfacc4a69c91d00803807521b3d775">riotboot_flashwrite_verify_sha256</a> (const uint8_t *sha256_digest, size_t img_size, int target_slot)</td></tr>
+<tr class="memdesc:a56dfacc4a69c91d00803807521b3d775"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify the digest of an image.  <a href="riotboot_2flashwrite_8h.html#a56dfacc4a69c91d00803807521b3d775">More...</a><br /></td></tr>
+<tr class="separator:a56dfacc4a69c91d00803807521b3d775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af394e6c45f029eaa246c756383be8378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af394e6c45f029eaa246c756383be8378">&#9670;&nbsp;</a></span>riotboot_flashwrite_finish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int riotboot_flashwrite_finish </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finish a firmware update (riotboot version) </p>
+<p>This function finishes a firmware update by re-writing the first header so it includes riotboot's magic number ("RIOT").</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>ptr to previously used state structure</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a9520d64ff40abc05ded901c9527560a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9520d64ff40abc05ded901c9527560a2">&#9670;&nbsp;</a></span>riotboot_flashwrite_finish_raw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riotboot_flashwrite_finish_raw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finish a firmware update (raw version) </p>
+<p>This function finishes a firmware update by re-writing the first header</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>ptr to previously used state structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bytes</td><td>data to re-write in the first page </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>size of data in bytes (must be &lt;=FLASHPAGE_SIZE)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aa17dbc4def667816d0d4c299af20b7d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa17dbc4def667816d0d4c299af20b7d1">&#9670;&nbsp;</a></span>riotboot_flashwrite_flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riotboot_flashwrite_flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Force flush the buffer onto the flash. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>ptr to previously used update state</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a43c19f2a98b8671fb9785aad3ba63eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43c19f2a98b8671fb9785aad3ba63eea">&#9670;&nbsp;</a></span>riotboot_flashwrite_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int riotboot_flashwrite_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>target_slot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize firmware update (riotboot version) </p>
+<p>This function initializes a firmware update, skipping riotboot's magic number ("RIOT") by calling <a class="el" href="riotboot_2flashwrite_8h.html#a8f63924bc9bf572db48bb24336b3e8c2">riotboot_flashwrite_init_raw()</a> with an offset of RIOTBOOT_FLASHWRITE_SKIPLEN (4). This ensures that riotboot will ignore the slot until the magic number has been restored, e.g., through <a class="el" href="riotboot_2flashwrite_8h.html#af394e6c45f029eaa246c756383be8378">riotboot_flashwrite_finish()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>ptr to preallocated state structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_slot</td><td>slot to write update into</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a8f63924bc9bf572db48bb24336b3e8c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f63924bc9bf572db48bb24336b3e8c2">&#9670;&nbsp;</a></span>riotboot_flashwrite_init_raw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riotboot_flashwrite_init_raw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>target_slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize firmware update (raw version) </p>
+<p>Allows setting the initial offset to <code>offset</code>, which would mean that the first bytes passed in via <a class="el" href="riotboot_2flashwrite_8h.html#af8f53f0bca4123772b1221bed52abcca">riotboot_flashwrite_putbytes()</a> will be written to (slot_start + offset).</p>
+<dl class="section note"><dt>Note</dt><dd>offset <em>should</em> be &lt;= FLASHPAGE_SIZE, otherwise the results are undefined.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>ptr to preallocated state structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_slot</td><td>slot to write update into </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>Bytes offset to start write at</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a578dbcf0ee88c27a9f98900c0333eb5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a578dbcf0ee88c27a9f98900c0333eb5d">&#9670;&nbsp;</a></span>riotboot_flashwrite_invalidate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riotboot_flashwrite_invalidate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate a slot header (riotboot version) </p>
+<p>This function invalidates the target slot.</p>
+<dl class="section note"><dt>Note</dt><dd>If this function is called with only one valid slot, the invalidation will fail in order to keep one valid image to run after reboot</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Target slot to invalidate</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ae976fc115297a4b1b2b5b47bab27726e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae976fc115297a4b1b2b5b47bab27726e">&#9670;&nbsp;</a></span>riotboot_flashwrite_invalidate_latest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riotboot_flashwrite_invalidate_latest </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate the latest firmware version (riotboot version) </p>
+<p>This function invalidates the slot having the most recent firmware revision</p>
+<dl class="section note"><dt>Note</dt><dd>This function requires two valid images to succeed</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="af8f53f0bca4123772b1221bed52abcca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8f53f0bca4123772b1221bed52abcca">&#9670;&nbsp;</a></span>riotboot_flashwrite_putbytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riotboot_flashwrite_putbytes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>more</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Feed bytes into the firmware writer. </p>
+<dl class="section note"><dt>Note</dt><dd>If the update has been initialized via <a class="el" href="riotboot_2flashwrite_8h.html#a43c19f2a98b8671fb9785aad3ba63eea">riotboot_flashwrite_init()</a>, make sure to skip the first RIOTBOOT_FLASHWRITE_SKIPLEN bytes.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>ptr to previously used update state </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bytes</td><td>ptr to data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>len of data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">more</td><td>whether more data is coming</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, &lt;0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a68b26d35167bd543d9f2fc1156290db8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68b26d35167bd543d9f2fc1156290db8">&#9670;&nbsp;</a></span>riotboot_flashwrite_slotsize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t riotboot_flashwrite_slotsize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriotboot__flashwrite__t.html">riotboot_flashwrite_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get a slot's size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>ptr to state struct</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the size of the slot that <code>state</code> is configured to update to </dd></dl>
+
+</div>
+</div>
+<a id="a56dfacc4a69c91d00803807521b3d775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56dfacc4a69c91d00803807521b3d775">&#9670;&nbsp;</a></span>riotboot_flashwrite_verify_sha256()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int riotboot_flashwrite_verify_sha256 </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>sha256_digest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>img_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>target_slot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verify the digest of an image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sha256_digest</td><td>content of the image digest </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">img_size</td><td>the size of the image </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_slot</td><td>the image slot number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 when image is too small </dd>
+<dd>
+0 if the digest is valid </dd>
+<dd>
+1 if the digest is invalid </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_888ca071a6937418a6d0da1bfc0974d7.html">riotboot</a></li><li class="navelem"><a class="el" href="riotboot_2flashwrite_8h.html">flashwrite.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

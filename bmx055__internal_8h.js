@@ -1,0 +1,28 @@
+var bmx055__internal_8h =
+[
+    [ "BIT_ACC_RANGE_16G", "bmx055__internal_8h.html#a241b05095e6dc594789296c421b08548", null ],
+    [ "BIT_ACC_RANGE_2G", "bmx055__internal_8h.html#ae07ed5bbe151f9c29fd7e1d6b1b247d2", null ],
+    [ "BIT_ACC_RANGE_4G", "bmx055__internal_8h.html#a18a6427174a597807907c4a768c29528", null ],
+    [ "BIT_ACC_RANGE_8G", "bmx055__internal_8h.html#a8d0d2cd687edcd35ae26d8369e643357", null ],
+    [ "BIT_MAG_DATARDY", "bmx055__internal_8h.html#a4c04d0db2b785c1d37ce027b1132b9a2", null ],
+    [ "BIT_MAG_PWRCTRL_VAL", "bmx055__internal_8h.html#aac698b1a250904e1b160beefa8ba45c8", null ],
+    [ "REG_ACC_CHIPID", "bmx055__internal_8h.html#aa34b51ce67972e75ced2fa428460ebc8", null ],
+    [ "REG_ACC_CHIPID_VAL", "bmx055__internal_8h.html#a6c88f5a1f0a294159ea760183887343d", null ],
+    [ "REG_ACC_DATA", "bmx055__internal_8h.html#ac8f08974d7181407ec32a78d7fd01534", null ],
+    [ "REG_ACC_RANGE", "bmx055__internal_8h.html#ac579b0f5d5306c8c71f976ca859bfc7a", null ],
+    [ "REG_ACC_SHDW", "bmx055__internal_8h.html#a0a924c7d6bad4c3631099b03a397cbb1", null ],
+    [ "REG_ACC_SHDW_ENABLE", "bmx055__internal_8h.html#ac242f5a8900a10d1549cf0234c40d0ad", null ],
+    [ "REG_GYRO_CHIPID", "bmx055__internal_8h.html#a021574b57051737c89e5bb5c3bd0a015", null ],
+    [ "REG_GYRO_CHIPID_VAL", "bmx055__internal_8h.html#aa0a5a91d0e9e045a40eaf5f2d411c021", null ],
+    [ "REG_GYRO_DATA", "bmx055__internal_8h.html#a4c6a4fd4308605f38b9dd4bab4262562", null ],
+    [ "REG_GYRO_PWRMD", "bmx055__internal_8h.html#a97afe2b5b1022ae9ee1e707d9230c28a", null ],
+    [ "REG_GYRO_PWRMD_NORM", "bmx055__internal_8h.html#a6b644f691f7b40c35e46ab5699ff631d", null ],
+    [ "REG_GYRO_SCALE", "bmx055__internal_8h.html#a8aba0d0c3023f81c360dc00367170e92", null ],
+    [ "REG_GYRO_SHDW", "bmx055__internal_8h.html#a14b65dac93b279c26b71043b080b0ce5", null ],
+    [ "REG_GYRO_SHDW_EN", "bmx055__internal_8h.html#aa835085a019ff1eb3e41e2fdb655f109", null ],
+    [ "REG_MAG_CHIPID", "bmx055__internal_8h.html#a3e438b93fb41e9f52165b6739f9dcb06", null ],
+    [ "REG_MAG_CHIPID_VAL", "bmx055__internal_8h.html#aa93a60ea7c7ab2c0edd3d2b1ac0c862c", null ],
+    [ "REG_MAG_DATA", "bmx055__internal_8h.html#a0bc02e5da7bebf8de656b826583cfcd8", null ],
+    [ "REG_MAG_OPMODE", "bmx055__internal_8h.html#abac52eb585486d713d2a595289e75cf1", null ],
+    [ "REG_MAG_PWRCTRL", "bmx055__internal_8h.html#a174848afce99118b1047dfd7076f238d", null ]
+];

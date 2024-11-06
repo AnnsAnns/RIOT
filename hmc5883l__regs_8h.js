@@ -1,0 +1,28 @@
+var hmc5883l__regs_8h =
+[
+    [ "HMC5883L_I2C_ADDRESS", "hmc5883l__regs_8h.html#a5eeac876e73c63dda6d41dd981097f01", null ],
+    [ "HMC5883L_ID", "hmc5883l__regs_8h.html#a879a0af9a6291eba7816f00b4d4f30c4", null ],
+    [ "HMC5883L_ID_LEN", "hmc5883l__regs_8h.html#a87475b8688cde6059a1d427bf2ad6bf6", null ],
+    [ "HMC5883L_REG_CFG_A", "hmc5883l__regs_8h.html#a34d1e87d7debe068801d76a62485c044", null ],
+    [ "HMC5883L_REG_CFG_A_DO", "hmc5883l__regs_8h.html#a9377f55dcae63573beff0da6264f58ab", null ],
+    [ "HMC5883L_REG_CFG_A_MA", "hmc5883l__regs_8h.html#af7ac2f3bc7b2f2ee891e946d1d3edd84", null ],
+    [ "HMC5883L_REG_CFG_A_MS", "hmc5883l__regs_8h.html#a3c3b48a3db7e2c76c05787249d4ee8e9", null ],
+    [ "HMC5883L_REG_CFG_B", "hmc5883l__regs_8h.html#a74ec3810b4b351b5d7cef0ad942a7ca2", null ],
+    [ "HMC5883L_REG_CFG_B_GN", "hmc5883l__regs_8h.html#abadcd17e1727d60011bda3c81d09e0d4", null ],
+    [ "HMC5883L_REG_CFG_B_GN_S", "hmc5883l__regs_8h.html#aece0f2d895de9b94d8fb44d7709356c8", null ],
+    [ "HMC5883L_REG_ID_A", "hmc5883l__regs_8h.html#ae87ca1bae4f7dd4e361faf5da8d389be", null ],
+    [ "HMC5883L_REG_ID_B", "hmc5883l__regs_8h.html#a8e0b42397ac1dbf90f236f89b148cf3f", null ],
+    [ "HMC5883L_REG_ID_C", "hmc5883l__regs_8h.html#a4940077ab141f112884c12792bdc0c61", null ],
+    [ "HMC5883L_REG_MODE", "hmc5883l__regs_8h.html#aea03b03a7eaf2aa0f7c28f1fd688993f", null ],
+    [ "HMC5883L_REG_MODE_HS", "hmc5883l__regs_8h.html#ac804a980db1bd581ab97472ab6d78dbd", null ],
+    [ "HMC5883L_REG_MODE_MD", "hmc5883l__regs_8h.html#a108aaf964e79844c502c14259c1c8089", null ],
+    [ "HMC5883L_REG_OUT_X_LSB", "hmc5883l__regs_8h.html#a42f04fc2f6a7f3082c480d86d328207c", null ],
+    [ "HMC5883L_REG_OUT_X_MSB", "hmc5883l__regs_8h.html#abb56c06766dce716a4ddaff2b561a178", null ],
+    [ "HMC5883L_REG_OUT_Y_LSB", "hmc5883l__regs_8h.html#ab7937ec0ae89d92a12b7c88cd4116075", null ],
+    [ "HMC5883L_REG_OUT_Y_MSB", "hmc5883l__regs_8h.html#ae548ed1ece3a614d64422c9427f3e493", null ],
+    [ "HMC5883L_REG_OUT_Z_LSB", "hmc5883l__regs_8h.html#a6540f7e10e6710afa316eb9dd70836d4", null ],
+    [ "HMC5883L_REG_OUT_Z_MSB", "hmc5883l__regs_8h.html#af4ad7887b962f778770dd34fd0be7a4b", null ],
+    [ "HMC5883L_REG_STATUS", "hmc5883l__regs_8h.html#a1fb3ec04979b9637e2bbc6dff001e13e", null ],
+    [ "HMC5883L_REG_STATUS_LOCK", "hmc5883l__regs_8h.html#a46d9f7c6534c6aa3d2443128aebf4e1e", null ],
+    [ "HMC5883L_REG_STATUS_RDY", "hmc5883l__regs_8h.html#abb016ea07e532ccbc1b238d5b8e3babf", null ]
+];

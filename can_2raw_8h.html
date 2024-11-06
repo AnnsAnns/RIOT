@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/can/raw.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('can_2raw_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">raw.h File Reference<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__link__layer.html">Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__transportlayer.html">Transport Layer</a> &raquo; <a class="el" href="group__sys__can.html">CAN (Controller Area Network)</a> &raquo; <a class="el" href="group__sys__can__dll.html">Data Link Layer</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definitions high-level RAW CAN interface.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Definitions high-level RAW CAN interface. </p>
+<p>This file defines the high-level CAN interface to send and receive RAW CAN frame.</p>
+<dl class="section author"><dt>Author</dt><dd>Vincent Dupont <a href="#" onclick="location.href='mai'+'lto:'+'vin'+'ce'+'nt@'+'ot'+'ake'+'ys'+'.co'+'m'; return false;">vince<span style="display: none;">.nosp@m.</span>nt@o<span style="display: none;">.nosp@m.</span>takey<span style="display: none;">.nosp@m.</span>s.co<span style="display: none;">.nosp@m.</span>m</a> </dd>
+<dd>
+Toon Stegen <a href="#" onclick="location.href='mai'+'lto:'+'too'+'n.'+'ste'+'ge'+'n@a'+'lt'+'ran'+'.c'+'om'; return false;">toon.<span style="display: none;">.nosp@m.</span>steg<span style="display: none;">.nosp@m.</span>en@al<span style="display: none;">.nosp@m.</span>tran<span style="display: none;">.nosp@m.</span>.com</a> </dd>
+<dd>
+Aurelien Gonce <a href="#" onclick="location.href='mai'+'lto:'+'aur'+'el'+'ien'+'.g'+'onc'+'e@'+'alt'+'ra'+'n.c'+'om'; return false;">aurel<span style="display: none;">.nosp@m.</span>ien.<span style="display: none;">.nosp@m.</span>gonce<span style="display: none;">.nosp@m.</span>@alt<span style="display: none;">.nosp@m.</span>ran.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;<a class="el" href="sched_8h_source.html">sched.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sys_2include_2can_2can_8h_source.html">can/can.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sys_2include_2can_2common_8h_source.html">can/common.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sys_2include_2can_2device_8h_source.html">can/device.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for raw.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="can_2raw_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:a80db4a1d59e06b6faf2861f510bd6b4b"><td class="memItemLeft" align="right" valign="top"><a id="a80db4a1d59e06b6faf2861f510bd6b4b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a80db4a1d59e06b6faf2861f510bd6b4b">RAW_CAN_DEV_UNDEF</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="memdesc:a80db4a1d59e06b6faf2861f510bd6b4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default value for undefined interface number. <br /></td></tr>
+<tr class="separator:a80db4a1d59e06b6faf2861f510bd6b4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae3f1d79d9f7bbaa48730c4ad0eaf40b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#aae3f1d79d9f7bbaa48730c4ad0eaf40b">raw_can_send</a> (int ifnum, const struct <a class="el" href="structcan__frame.html">can_frame</a> *frame, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</td></tr>
+<tr class="memdesc:aae3f1d79d9f7bbaa48730c4ad0eaf40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a CAN frame.  <a href="can_2raw_8h.html#aae3f1d79d9f7bbaa48730c4ad0eaf40b">More...</a><br /></td></tr>
+<tr class="separator:aae3f1d79d9f7bbaa48730c4ad0eaf40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb2a2b098c0f7fd801833223fb84463f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#abb2a2b098c0f7fd801833223fb84463f">raw_can_abort</a> (int ifnum, int handle)</td></tr>
+<tr class="memdesc:abb2a2b098c0f7fd801833223fb84463f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort a CAN frame.  <a href="can_2raw_8h.html#abb2a2b098c0f7fd801833223fb84463f">More...</a><br /></td></tr>
+<tr class="separator:abb2a2b098c0f7fd801833223fb84463f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6976820a959e1ce4066325eaeb601f5e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a6976820a959e1ce4066325eaeb601f5e">raw_can_subscribe_rx</a> (int ifnum, struct <a class="el" href="structcan__filter.html">can_filter</a> *filter, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid, void *param)</td></tr>
+<tr class="memdesc:a6976820a959e1ce4066325eaeb601f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe to a CAN filter.  <a href="can_2raw_8h.html#a6976820a959e1ce4066325eaeb601f5e">More...</a><br /></td></tr>
+<tr class="separator:a6976820a959e1ce4066325eaeb601f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b4c3c079d7f8ece6edbf6366247cbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a95b4c3c079d7f8ece6edbf6366247cbe">raw_can_unsubscribe_rx</a> (int ifnum, struct <a class="el" href="structcan__filter.html">can_filter</a> *filter, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid, void *param)</td></tr>
+<tr class="memdesc:a95b4c3c079d7f8ece6edbf6366247cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribe from reception for the given CAN <code>filter</code> on <code>pid</code> thread.  <a href="can_2raw_8h.html#a95b4c3c079d7f8ece6edbf6366247cbe">More...</a><br /></td></tr>
+<tr class="separator:a95b4c3c079d7f8ece6edbf6366247cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce80a6e1649d26d214b9a9c2a935b3b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a0ce80a6e1649d26d214b9a9c2a935b3b">raw_can_free_frame</a> (<a class="el" href="group__sys__can__common.html#ga6cc31454463413d954343367ac66f5de">can_rx_data_t</a> *frame)</td></tr>
+<tr class="memdesc:a0ce80a6e1649d26d214b9a9c2a935b3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a received frame.  <a href="can_2raw_8h.html#a0ce80a6e1649d26d214b9a9c2a935b3b">More...</a><br /></td></tr>
+<tr class="separator:a0ce80a6e1649d26d214b9a9c2a935b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520701350d11c1d9e8c554b59546aa40"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a520701350d11c1d9e8c554b59546aa40">raw_can_get_can_opt</a> (int ifnum, <a class="el" href="structcan__opt__t.html">can_opt_t</a> *opt)</td></tr>
+<tr class="memdesc:a520701350d11c1d9e8c554b59546aa40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a CAN option <code>opt</code> from interface <code>ifnum</code>.  <a href="can_2raw_8h.html#a520701350d11c1d9e8c554b59546aa40">More...</a><br /></td></tr>
+<tr class="separator:a520701350d11c1d9e8c554b59546aa40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa80e815f6c527ce91acf8ef12b1dbd1d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#aa80e815f6c527ce91acf8ef12b1dbd1d">raw_can_set_can_opt</a> (int ifnum, <a class="el" href="structcan__opt__t.html">can_opt_t</a> *opt)</td></tr>
+<tr class="memdesc:aa80e815f6c527ce91acf8ef12b1dbd1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a CAN option <code>opt</code> to interface <code>ifnum</code>.  <a href="can_2raw_8h.html#aa80e815f6c527ce91acf8ef12b1dbd1d">More...</a><br /></td></tr>
+<tr class="separator:aa80e815f6c527ce91acf8ef12b1dbd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfcd6f841d6551a99754a70aada7cd31"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#acfcd6f841d6551a99754a70aada7cd31">raw_can_send_mbox</a> (int ifnum, const struct <a class="el" href="structcan__frame.html">can_frame</a> *frame, <a class="el" href="structmbox__t.html">mbox_t</a> *mbox)</td></tr>
+<tr class="memdesc:acfcd6f841d6551a99754a70aada7cd31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a CAN frame.  <a href="can_2raw_8h.html#acfcd6f841d6551a99754a70aada7cd31">More...</a><br /></td></tr>
+<tr class="separator:acfcd6f841d6551a99754a70aada7cd31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3102874946d59cac0089b54550f4e0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#ac3102874946d59cac0089b54550f4e0a">raw_can_subscribe_rx_mbox</a> (int ifnum, struct <a class="el" href="structcan__filter.html">can_filter</a> *filter, <a class="el" href="structmbox__t.html">mbox_t</a> *mbox, void *param)</td></tr>
+<tr class="memdesc:ac3102874946d59cac0089b54550f4e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribe to a CAN filter.  <a href="can_2raw_8h.html#ac3102874946d59cac0089b54550f4e0a">More...</a><br /></td></tr>
+<tr class="separator:ac3102874946d59cac0089b54550f4e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b268407b5f8b5122fc858b2e6b1acd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a72b268407b5f8b5122fc858b2e6b1acd">raw_can_unsubscribe_rx_mbox</a> (int ifnum, struct <a class="el" href="structcan__filter.html">can_filter</a> *filter, <a class="el" href="structmbox__t.html">mbox_t</a> *mbox, void *param)</td></tr>
+<tr class="memdesc:a72b268407b5f8b5122fc858b2e6b1acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribe from reception for the given CAN <code>filter</code> and <code>mbox</code>.  <a href="can_2raw_8h.html#a72b268407b5f8b5122fc858b2e6b1acd">More...</a><br /></td></tr>
+<tr class="separator:a72b268407b5f8b5122fc858b2e6b1acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1ce9fa07135b6a4a436c00d1bbb8a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a1e1ce9fa07135b6a4a436c00d1bbb8a6">raw_can_power_down</a> (int ifnum)</td></tr>
+<tr class="memdesc:a1e1ce9fa07135b6a4a436c00d1bbb8a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power down a given interface.  <a href="can_2raw_8h.html#a1e1ce9fa07135b6a4a436c00d1bbb8a6">More...</a><br /></td></tr>
+<tr class="separator:a1e1ce9fa07135b6a4a436c00d1bbb8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a309ec958c13f661919850de2dd5b5dff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a309ec958c13f661919850de2dd5b5dff">raw_can_power_up</a> (int ifnum)</td></tr>
+<tr class="memdesc:a309ec958c13f661919850de2dd5b5dff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power up a given interface.  <a href="can_2raw_8h.html#a309ec958c13f661919850de2dd5b5dff">More...</a><br /></td></tr>
+<tr class="separator:a309ec958c13f661919850de2dd5b5dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1df06bb2dc8475fcbc9117c481252c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a1e1df06bb2dc8475fcbc9117c481252c">raw_can_get_ifnum_by_name</a> (const char *name)</td></tr>
+<tr class="memdesc:a1e1df06bb2dc8475fcbc9117c481252c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the interface number of a given interface.  <a href="can_2raw_8h.html#a1e1df06bb2dc8475fcbc9117c481252c">More...</a><br /></td></tr>
+<tr class="separator:a1e1df06bb2dc8475fcbc9117c481252c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89385c7b250d6963f4fd6d949326f43c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#a89385c7b250d6963f4fd6d949326f43c">raw_can_get_name_by_ifnum</a> (int ifnum)</td></tr>
+<tr class="memdesc:a89385c7b250d6963f4fd6d949326f43c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the interface name of a given interface number.  <a href="can_2raw_8h.html#a89385c7b250d6963f4fd6d949326f43c">More...</a><br /></td></tr>
+<tr class="separator:a89385c7b250d6963f4fd6d949326f43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9083f339c580b00298d477485a2fd6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="sys_2include_2can_2device_8h.html#a685a5f7fdedefc0c58eb023bf1d49595">candev_dev_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#ae9083f339c580b00298d477485a2fd6c">raw_can_get_dev_by_ifnum</a> (int ifnum)</td></tr>
+<tr class="memdesc:ae9083f339c580b00298d477485a2fd6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the candev descriptor from a given interface number.  <a href="can_2raw_8h.html#ae9083f339c580b00298d477485a2fd6c">More...</a><br /></td></tr>
+<tr class="separator:ae9083f339c580b00298d477485a2fd6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb510eb64baf4114cf97ad01d7ad570e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#aeb510eb64baf4114cf97ad01d7ad570e">raw_can_set_bitrate</a> (int ifnum, uint32_t bitrate, uint32_t sample_point)</td></tr>
+<tr class="memdesc:aeb510eb64baf4114cf97ad01d7ad570e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the given bitrate/sample_point to the given ifnum.  <a href="can_2raw_8h.html#aeb510eb64baf4114cf97ad01d7ad570e">More...</a><br /></td></tr>
+<tr class="separator:aeb510eb64baf4114cf97ad01d7ad570e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae454200f023604e8ed8366bd520476eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="can_2raw_8h.html#ae454200f023604e8ed8366bd520476eb">raw_can_set_trx</a> (int ifnum, <a class="el" href="group__drivers__can__trx.html#gab557f49a8a0d48ad84459cd0565fefee">can_trx_t</a> *trx)</td></tr>
+<tr class="memdesc:ae454200f023604e8ed8366bd520476eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a transceiver for a given interface.  <a href="can_2raw_8h.html#ae454200f023604e8ed8366bd520476eb">More...</a><br /></td></tr>
+<tr class="separator:ae454200f023604e8ed8366bd520476eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="abb2a2b098c0f7fd801833223fb84463f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb2a2b098c0f7fd801833223fb84463f">&#9670;&nbsp;</a></span>raw_can_abort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_abort </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Abort a CAN frame. </p>
+<p>Abort the frame identified by <code>handle</code> in the interface <code>ifnum</code> If no tx confirmation is received, this function must be called by the upper layer to ensure the driver frees its tx mailbox. The driver is not responsible of tx timeouts.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number used to send the frame </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>the handle of the frame to abort, it must be the value returned by raw_can_send </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error (-ENODEV) </dd></dl>
+
+</div>
+</div>
+<a id="a0ce80a6e1649d26d214b9a9c2a935b3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ce80a6e1649d26d214b9a9c2a935b3b">&#9670;&nbsp;</a></span>raw_can_free_frame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_free_frame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__sys__can__common.html#ga6cc31454463413d954343367ac66f5de">can_rx_data_t</a> *&#160;</td>
+          <td class="paramname"><em>frame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free a received frame. </p>
+<p>This function must be called by the user when a received frame is not needed anymore.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">frame</td><td>the frame to free, it must be a pointer to a frame received by the stack</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a520701350d11c1d9e8c554b59546aa40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a520701350d11c1d9e8c554b59546aa40">&#9670;&nbsp;</a></span>raw_can_get_can_opt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_get_can_opt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcan__opt__t.html">can_opt_t</a> *&#160;</td>
+          <td class="paramname"><em>opt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get a CAN option <code>opt</code> from interface <code>ifnum</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">opt</td><td>the option to get</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="ae9083f339c580b00298d477485a2fd6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9083f339c580b00298d477485a2fd6c">&#9670;&nbsp;</a></span>raw_can_get_dev_by_ifnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="sys_2include_2can_2device_8h.html#a685a5f7fdedefc0c58eb023bf1d49595">candev_dev_t</a>* raw_can_get_dev_by_ifnum </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the candev descriptor from a given interface number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>interface number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to a candev descriptor, NULL if no interface is registered with this number </dd></dl>
+
+</div>
+</div>
+<a id="a1e1df06bb2dc8475fcbc9117c481252c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e1df06bb2dc8475fcbc9117c481252c">&#9670;&nbsp;</a></span>raw_can_get_ifnum_by_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_get_ifnum_by_name </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the interface number of a given interface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>interface name</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the interface number, RAW_CAN_DEV_UNDEF if not defined </dd></dl>
+
+</div>
+</div>
+<a id="a89385c7b250d6963f4fd6d949326f43c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89385c7b250d6963f4fd6d949326f43c">&#9670;&nbsp;</a></span>raw_can_get_name_by_ifnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* raw_can_get_name_by_ifnum </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the interface name of a given interface number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>interface number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the interface name, NULL if no interface registered with this number </dd></dl>
+
+</div>
+</div>
+<a id="a1e1ce9fa07135b6a4a436c00d1bbb8a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e1ce9fa07135b6a4a436c00d1bbb8a6">&#9670;&nbsp;</a></span>raw_can_power_down()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_power_down </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Power down a given interface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number to power down</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a309ec958c13f661919850de2dd5b5dff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a309ec958c13f661919850de2dd5b5dff">&#9670;&nbsp;</a></span>raw_can_power_up()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_power_up </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Power up a given interface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number to power up</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="aae3f1d79d9f7bbaa48730c4ad0eaf40b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae3f1d79d9f7bbaa48730c4ad0eaf40b">&#9670;&nbsp;</a></span>raw_can_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_send </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structcan__frame.html">can_frame</a> *&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a CAN frame. </p>
+<p>Send a CAN <code>frame</code> through the <code>ifnum</code> interface. The result is sent to the <code>pid</code> thread via IPC.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number to send to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frame</td><td>the frame to send </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pid</td><td>the user thread id to whom the result msg will be sent it can be THREAD_PID_UNDEF if no feedback is expected</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a positive handle identifying the sent frame on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="acfcd6f841d6551a99754a70aada7cd31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfcd6f841d6551a99754a70aada7cd31">&#9670;&nbsp;</a></span>raw_can_send_mbox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_send_mbox </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structcan__frame.html">can_frame</a> *&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmbox__t.html">mbox_t</a> *&#160;</td>
+          <td class="paramname"><em>mbox</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a CAN frame. </p>
+<p>Send a CAN <code>frame</code> through the <code>ifnum</code> interface. The result is sent to the <code>mbox</code> thread via mailbox IPC.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number to send to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frame</td><td>the frame to send </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mbox</td><td>the user mbox to whom the result msg will be sent it can be NULL if no feedback is expected</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a positive handle identifying the sent frame on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="aeb510eb64baf4114cf97ad01d7ad570e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb510eb64baf4114cf97ad01d7ad570e">&#9670;&nbsp;</a></span>raw_can_set_bitrate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_set_bitrate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>bitrate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>sample_point</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the given bitrate/sample_point to the given ifnum. </p>
+<p>Set the given <code>bitrate</code> and <code>sample_point</code> to the given <code>ifnum</code>. This is a helper function which calculates the right bittiming from <code>bitrate</code> and <code>sample_point</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bitrate</td><td>the bitrate in bits/s </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sample_point</td><td>the sample point in tenth of percent (875 = 87.5%) if not set, the default value of 87.5% is used </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+1 if the bitrate/sample_point couple can not be reached precisely but the bitrate is set </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="aa80e815f6c527ce91acf8ef12b1dbd1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa80e815f6c527ce91acf8ef12b1dbd1d">&#9670;&nbsp;</a></span>raw_can_set_can_opt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_set_can_opt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcan__opt__t.html">can_opt_t</a> *&#160;</td>
+          <td class="paramname"><em>opt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a CAN option <code>opt</code> to interface <code>ifnum</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">opt</td><td>the option to set</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="ae454200f023604e8ed8366bd520476eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae454200f023604e8ed8366bd520476eb">&#9670;&nbsp;</a></span>raw_can_set_trx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_set_trx </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__can__trx.html#gab557f49a8a0d48ad84459cd0565fefee">can_trx_t</a> *&#160;</td>
+          <td class="paramname"><em>trx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a transceiver for a given interface. </p>
+<p>The interface must be powered down before changing the transceiver.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">trx</td><td>the transceiver to set</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error (-EBUSY if device is not powered down) </dd></dl>
+
+</div>
+</div>
+<a id="a6976820a959e1ce4066325eaeb601f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6976820a959e1ce4066325eaeb601f5e">&#9670;&nbsp;</a></span>raw_can_subscribe_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_subscribe_rx </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structcan__filter.html">can_filter</a> *&#160;</td>
+          <td class="paramname"><em>filter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Subscribe to a CAN filter. </p>
+<p>This function must be called if a user thread <code>pid</code> wants to receive the CAN frame matching <code>filter</code> on the interface <code>ifnum</code>. The user thread will then receive msg via IPC on reception of frame matching <code>filters</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number to listen </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter</td><td>the list of filter to receive </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pid</td><td>the thread id of the user </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>optional user parameter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the <code>ifnum</code> on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="ac3102874946d59cac0089b54550f4e0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3102874946d59cac0089b54550f4e0a">&#9670;&nbsp;</a></span>raw_can_subscribe_rx_mbox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_subscribe_rx_mbox </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structcan__filter.html">can_filter</a> *&#160;</td>
+          <td class="paramname"><em>filter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmbox__t.html">mbox_t</a> *&#160;</td>
+          <td class="paramname"><em>mbox</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Subscribe to a CAN filter. </p>
+<p>This function must be called if a user thread waiting on <code>mbox</code> wants to receive the CAN frame matching <code>filter</code> on the interface <code>ifnum</code>. The user thread will then receive msg via mailbox IPC on reception of frame matching <code>filters</code>.</p>
+<p>Currently only single frame ID (i.e. filters-&gt;can_mask = 0xFFFFFFFF) are supported.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number to listen </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter</td><td>the list of filter to receive </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mbox</td><td>the mbox of the user </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>optional user parameter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the <code>ifnum</code> on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a95b4c3c079d7f8ece6edbf6366247cbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95b4c3c079d7f8ece6edbf6366247cbe">&#9670;&nbsp;</a></span>raw_can_unsubscribe_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_unsubscribe_rx </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structcan__filter.html">can_filter</a> *&#160;</td>
+          <td class="paramname"><em>filter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unsubscribe from reception for the given CAN <code>filter</code> on <code>pid</code> thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter</td><td>the filter to remove </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pid</td><td>the thread id of the user </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>optional user parameter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+<a id="a72b268407b5f8b5122fc858b2e6b1acd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b268407b5f8b5122fc858b2e6b1acd">&#9670;&nbsp;</a></span>raw_can_unsubscribe_rx_mbox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int raw_can_unsubscribe_rx_mbox </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ifnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structcan__filter.html">can_filter</a> *&#160;</td>
+          <td class="paramname"><em>filter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmbox__t.html">mbox_t</a> *&#160;</td>
+          <td class="paramname"><em>mbox</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unsubscribe from reception for the given CAN <code>filter</code> and <code>mbox</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ifnum</td><td>the interface number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter</td><td>the filter to remove </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mbox</td><td>the mbox of the user </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>optional user parameter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+&lt; 0 on error </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_4b25e2506291d5bc344b96ce18ffc0e3.html">can</a></li><li class="navelem"><a class="el" href="can_2raw_8h.html">raw.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

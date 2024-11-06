@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/usb/usbus/cdc/acm.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('acm_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">acm.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="acm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#gab8aee4067d283fc8bc170ba8cef552cc">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2018 Mesotic SAS</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef USB_USBUS_CDC_ACM_H</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define USB_USBUS_CDC_ACM_H</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cdc_8h.html">usb/cdc.h</a>&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="usbus_8h.html">usb/usbus.h</a>&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="tsrb_8h.html">tsrb.h</a>&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#ifdef CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE_EXP</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#define CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE (1&lt;&lt;CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE_EXP)</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#ifndef CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm__conf.html#gacc219af636ddad9714491cffbd6f16ff">   66</a></span>&#160;<span class="preprocessor">#define CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE (128)</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#if IS_ACTIVE(CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE_8)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#define CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE     (8)</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE_16)</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#define CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE    (16)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE_32)</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#define CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE    (32)</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#elif IS_ACTIVE(CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE_64)</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE    (64)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#ifndef CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm__conf.html#ga1fd49c9a31bc6bf316c7bac99e43a2be">   83</a></span>&#160;<span class="preprocessor">#define CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE    (64)</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#gae7f21779d32ca20abb3229f0b4205d7b">   90</a></span>&#160;<span class="preprocessor">#define USBUS_CDC_ACM_INT_EP_SIZE      (8)</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga8924c0facae3b4603b05ed48d23b4d5d">   95</a></span>&#160;<span class="preprocessor">#define USBUS_CDC_ACM_EP_IN_REQUIRED_NUMOF   2</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga91c0f6ddeb4bd6c2edd04ac86a0e41fa">  100</a></span>&#160;<span class="preprocessor">#define USBUS_CDC_ACM_EP_OUT_REQUIRED_NUMOF  1</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga00305af294a84012971732d7b3b62e6c">  105</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#gga00305af294a84012971732d7b3b62e6caef971697e617d5edf32a11522ad7475c">  109</a></span>&#160;    <a class="code" href="group__usbus__cdc__acm.html#gga00305af294a84012971732d7b3b62e6caef971697e617d5edf32a11522ad7475c">USBUS_CDC_ACM_LINE_STATE_DISCONNECTED</a>,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="group__usbus__cdc__acm.html#gga00305af294a84012971732d7b3b62e6caf6bd32f72d3f98b0bbd3af056925b8fe">USBUS_CDC_ACM_LINE_STATE_DTE</a></div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#gga00305af294a84012971732d7b3b62e6caf6bd32f72d3f98b0bbd3af056925b8fe">  115</a></span>&#160;} <a class="code" href="group__usbus__cdc__acm.html#ga00305af294a84012971732d7b3b62e6c">usbus_cdcacm_line_state_t</a>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device</a> <a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device_t</a>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga3a713164e3ee50a7f3e2dae079392dad">  131</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__usbus__cdc__acm.html#ga3a713164e3ee50a7f3e2dae079392dad">usbus_cdcacm_cb_t</a>)(<a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device_t</a> *cdcacm,</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                                  uint8_t *data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga858955682a87febb014609ecd5ac6995">  148</a></span>&#160;<span class="keyword">typedef</span> int (*<a class="code" href="group__usbus__cdc__acm.html#ga858955682a87febb014609ecd5ac6995">usbus_cdcacm_coding_cb_t</a>)(<a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device_t</a> *cdcacm,</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                                        uint32_t baud, uint8_t bits,</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                                        uint8_t parity, uint8_t stop);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html">  155</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device</a> {</div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a5d2f1be1e062541c0a29226e5c45d79a">  156</a></span>&#160;    <a class="code" href="structusbus__handler.html">usbus_handler_t</a> <a class="code" href="structusbus__cdcacm__device.html#a5d2f1be1e062541c0a29226e5c45d79a">handler_ctrl</a>;       </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a683707f5252e294e386b5052e87fde5a">  157</a></span>&#160;    <a class="code" href="structusbus__interface.html">usbus_interface_t</a> <a class="code" href="structusbus__cdcacm__device.html#a683707f5252e294e386b5052e87fde5a">iface_ctrl</a>;       </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a74a395bfb8aa686681af4cb6e77c06ff">  158</a></span>&#160;    <a class="code" href="structusbus__interface.html">usbus_interface_t</a> <a class="code" href="structusbus__cdcacm__device.html#a74a395bfb8aa686681af4cb6e77c06ff">iface_data</a>;       </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#ae781de715c62a43a6f9dc63a4703b3d8">  159</a></span>&#160;    <a class="code" href="structusbus__descr__gen.html">usbus_descr_gen_t</a> <a class="code" href="structusbus__cdcacm__device.html#ae781de715c62a43a6f9dc63a4703b3d8">cdcacm_descr</a>;     </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#ab3eec9c09f4ec61ae6017afc025a0736">  160</a></span>&#160;    <a class="code" href="group__usbus__cdc__acm.html#ga3a713164e3ee50a7f3e2dae079392dad">usbus_cdcacm_cb_t</a> <a class="code" href="structusbus__cdcacm__device.html#ab3eec9c09f4ec61ae6017afc025a0736">cb</a>;               </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a03324158e60f4a258a392fce7972a48a">  161</a></span>&#160;    <a class="code" href="group__usbus__cdc__acm.html#ga858955682a87febb014609ecd5ac6995">usbus_cdcacm_coding_cb_t</a> <a class="code" href="structusbus__cdcacm__device.html#a03324158e60f4a258a392fce7972a48a">coding_cb</a>; </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a4bcbf1a49c007718a12445ff5af772e7">  162</a></span>&#160;    <a class="code" href="structtsrb.html">tsrb_t</a> <a class="code" href="structusbus__cdcacm__device.html#a4bcbf1a49c007718a12445ff5af772e7">tsrb</a>;                        </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a5a077271cfecc9d4e5d6c41cc6a78d6b">  163</a></span>&#160;    <a class="code" href="structusbus.html">usbus_t</a> *<a class="code" href="structusbus__cdcacm__device.html#a5a077271cfecc9d4e5d6c41cc6a78d6b">usbus</a>;                     </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a6fe7a4cea510b95b5525b9942a3470fb">  164</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structusbus__cdcacm__device.html#a6fe7a4cea510b95b5525b9942a3470fb">occupied</a>;                    </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a5bb3ee009a5d7c03830d0bb4832f1d98">  165</a></span>&#160;    <a class="code" href="group__usbus__cdc__acm.html#ga00305af294a84012971732d7b3b62e6c">usbus_cdcacm_line_state_t</a> <a class="code" href="structusbus__cdcacm__device.html#a5bb3ee009a5d7c03830d0bb4832f1d98">state</a>;    </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a5a200af6adf36fe13c7d4eeec6cf58a2">  166</a></span>&#160;    <a class="code" href="structevent.html">event_t</a> <a class="code" href="structusbus__cdcacm__device.html#a5a200af6adf36fe13c7d4eeec6cf58a2">flush</a>;                      </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#a67998acaf619a4a32d1c7e849de0e683">  167</a></span>&#160;    <a class="code" href="structusb__req__cdcacm__coding__t.html">usb_req_cdcacm_coding_t</a> <a class="code" href="structusbus__cdcacm__device.html#a67998acaf619a4a32d1c7e849de0e683">coding</a>;     </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#aa4ae7e4cda995efd884c49be38d55a9c">  172</a></span>&#160;    <a class="code" href="group__drivers__periph__usbdev.html#gaa9322e0f092c580129915333bab9a8f2">usbdev_ep_buf_t</a> <a class="code" href="structusbus__cdcacm__device.html#aa4ae7e4cda995efd884c49be38d55a9c">out_buf</a>[<a class="code" href="group__usbus__cdc__acm__conf.html#ga1fd49c9a31bc6bf316c7bac99e43a2be">CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE</a>];</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="structusbus__cdcacm__device.html#aed72a916d24ccd78c10f539e51acb416">  177</a></span>&#160;    <a class="code" href="group__drivers__periph__usbdev.html#gaa9322e0f092c580129915333bab9a8f2">usbdev_ep_buf_t</a> <a class="code" href="structusbus__cdcacm__device.html#aed72a916d24ccd78c10f539e51acb416">in_buf</a>[<a class="code" href="group__usbus__cdc__acm__conf.html#gacc219af636ddad9714491cffbd6f16ff">CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE</a>];</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;};</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga46f04a6cc7362504d6319f1fcadca400">  190</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__usbus__cdc__acm.html#ga46f04a6cc7362504d6319f1fcadca400">usbus_cdc_acm_init</a>(<a class="code" href="structusbus.html">usbus_t</a> *<a class="code" href="structusbus.html">usbus</a>, <a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device_t</a> *cdcacm,</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                        <a class="code" href="group__usbus__cdc__acm.html#ga3a713164e3ee50a7f3e2dae079392dad">usbus_cdcacm_cb_t</a> cb,</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                        <a class="code" href="group__usbus__cdc__acm.html#ga858955682a87febb014609ecd5ac6995">usbus_cdcacm_coding_cb_t</a> coding_cb,</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                        uint8_t *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga552c2de35ff35a8e8536da7c72723eca">  204</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="group__usbus__cdc__acm.html#ga552c2de35ff35a8e8536da7c72723eca">usbus_cdc_acm_submit</a>(<a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device_t</a> *cdcacm,</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                           <span class="keyword">const</span> uint8_t *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga6b66598e22c5bc551a5c61896d74b6e9">  212</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__usbus__cdc__acm.html#ga6b66598e22c5bc551a5c61896d74b6e9">usbus_cdc_acm_flush</a>(<a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device_t</a> *cdcacm);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="group__usbus__cdc__acm.html#ga4f5f0c11b1fe815398cbd03dd6c76eaf">  222</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__usbus__cdc__acm.html#ga4f5f0c11b1fe815398cbd03dd6c76eaf">usbus_cdc_acm_set_coding_cb</a>(<a class="code" href="structusbus__cdcacm__device.html">usbus_cdcacm_device_t</a> *cdcacm,</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                                 <a class="code" href="group__usbus__cdc__acm.html#ga858955682a87febb014609ecd5ac6995">usbus_cdcacm_coding_cb_t</a> coding_cb);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* USB_USBUS_CDC_ACM_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acdc_8h_html"><div class="ttname"><a href="cdc_8h.html">cdc.h</a></div><div class="ttdoc">Definition for USB CDC interfaces.</div></div>
+<div class="ttc" id="agroup__drivers__periph__usbdev_html_gaa9322e0f092c580129915333bab9a8f2"><div class="ttname"><a href="group__drivers__periph__usbdev.html#gaa9322e0f092c580129915333bab9a8f2">usbdev_ep_buf_t</a></div><div class="ttdeci">#define usbdev_ep_buf_t</div><div class="ttdoc">Instantiation type for usbdev endpoint buffers.</div><div class="ttdef"><b>Definition:</b> usbdev.h:126</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm__conf_html_ga1fd49c9a31bc6bf316c7bac99e43a2be"><div class="ttname"><a href="group__usbus__cdc__acm__conf.html#ga1fd49c9a31bc6bf316c7bac99e43a2be">CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE</a></div><div class="ttdeci">#define CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE</div><div class="ttdoc">USB CDC ACM bulk endpoint size.</div><div class="ttdef"><b>Definition:</b> acm.h:83</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm__conf_html_gacc219af636ddad9714491cffbd6f16ff"><div class="ttname"><a href="group__usbus__cdc__acm__conf.html#gacc219af636ddad9714491cffbd6f16ff">CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE</a></div><div class="ttdeci">#define CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE</div><div class="ttdoc">Buffer size for STDIN and STDOUT data to and from USB when using the USBUS_CDC_ACM_STDIO module.</div><div class="ttdef"><b>Definition:</b> acm.h:66</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_ga00305af294a84012971732d7b3b62e6c"><div class="ttname"><a href="group__usbus__cdc__acm.html#ga00305af294a84012971732d7b3b62e6c">usbus_cdcacm_line_state_t</a></div><div class="ttdeci">usbus_cdcacm_line_state_t</div><div class="ttdoc">CDC ACM line state as reported by the host computer.</div><div class="ttdef"><b>Definition:</b> acm.h:105</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_ga3a713164e3ee50a7f3e2dae079392dad"><div class="ttname"><a href="group__usbus__cdc__acm.html#ga3a713164e3ee50a7f3e2dae079392dad">usbus_cdcacm_cb_t</a></div><div class="ttdeci">void(* usbus_cdcacm_cb_t)(usbus_cdcacm_device_t *cdcacm, uint8_t *data, size_t len)</div><div class="ttdoc">CDC ACM data callback.</div><div class="ttdef"><b>Definition:</b> acm.h:131</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_ga46f04a6cc7362504d6319f1fcadca400"><div class="ttname"><a href="group__usbus__cdc__acm.html#ga46f04a6cc7362504d6319f1fcadca400">usbus_cdc_acm_init</a></div><div class="ttdeci">void usbus_cdc_acm_init(usbus_t *usbus, usbus_cdcacm_device_t *cdcacm, usbus_cdcacm_cb_t cb, usbus_cdcacm_coding_cb_t coding_cb, uint8_t *buf, size_t len)</div><div class="ttdoc">Initialize an USBUS CDC ACM interface.</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_ga4f5f0c11b1fe815398cbd03dd6c76eaf"><div class="ttname"><a href="group__usbus__cdc__acm.html#ga4f5f0c11b1fe815398cbd03dd6c76eaf">usbus_cdc_acm_set_coding_cb</a></div><div class="ttdeci">void usbus_cdc_acm_set_coding_cb(usbus_cdcacm_device_t *cdcacm, usbus_cdcacm_coding_cb_t coding_cb)</div><div class="ttdoc">Set the callback for control settings.</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_ga552c2de35ff35a8e8536da7c72723eca"><div class="ttname"><a href="group__usbus__cdc__acm.html#ga552c2de35ff35a8e8536da7c72723eca">usbus_cdc_acm_submit</a></div><div class="ttdeci">size_t usbus_cdc_acm_submit(usbus_cdcacm_device_t *cdcacm, const uint8_t *buf, size_t len)</div><div class="ttdoc">Submit bytes to the CDC ACM handler.</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_ga6b66598e22c5bc551a5c61896d74b6e9"><div class="ttname"><a href="group__usbus__cdc__acm.html#ga6b66598e22c5bc551a5c61896d74b6e9">usbus_cdc_acm_flush</a></div><div class="ttdeci">void usbus_cdc_acm_flush(usbus_cdcacm_device_t *cdcacm)</div><div class="ttdoc">Flush the buffer to the USB host.</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_ga858955682a87febb014609ecd5ac6995"><div class="ttname"><a href="group__usbus__cdc__acm.html#ga858955682a87febb014609ecd5ac6995">usbus_cdcacm_coding_cb_t</a></div><div class="ttdeci">int(* usbus_cdcacm_coding_cb_t)(usbus_cdcacm_device_t *cdcacm, uint32_t baud, uint8_t bits, uint8_t parity, uint8_t stop)</div><div class="ttdoc">CDC ACM line coding callback.</div><div class="ttdef"><b>Definition:</b> acm.h:148</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_gga00305af294a84012971732d7b3b62e6caef971697e617d5edf32a11522ad7475c"><div class="ttname"><a href="group__usbus__cdc__acm.html#gga00305af294a84012971732d7b3b62e6caef971697e617d5edf32a11522ad7475c">USBUS_CDC_ACM_LINE_STATE_DISCONNECTED</a></div><div class="ttdeci">@ USBUS_CDC_ACM_LINE_STATE_DISCONNECTED</div><div class="ttdoc">No DTE connected.</div><div class="ttdef"><b>Definition:</b> acm.h:109</div></div>
+<div class="ttc" id="agroup__usbus__cdc__acm_html_gga00305af294a84012971732d7b3b62e6caf6bd32f72d3f98b0bbd3af056925b8fe"><div class="ttname"><a href="group__usbus__cdc__acm.html#gga00305af294a84012971732d7b3b62e6caf6bd32f72d3f98b0bbd3af056925b8fe">USBUS_CDC_ACM_LINE_STATE_DTE</a></div><div class="ttdeci">@ USBUS_CDC_ACM_LINE_STATE_DTE</div><div class="ttdoc">DTE (e.g.</div><div class="ttdef"><b>Definition:</b> acm.h:114</div></div>
+<div class="ttc" id="astructevent_html"><div class="ttname"><a href="structevent.html">event</a></div><div class="ttdoc">event structure</div><div class="ttdef"><b>Definition:</b> event.h:148</div></div>
+<div class="ttc" id="astructtsrb_html"><div class="ttname"><a href="structtsrb.html">tsrb</a></div><div class="ttdoc">thread-safe ringbuffer struct</div><div class="ttdef"><b>Definition:</b> tsrb.h:39</div></div>
+<div class="ttc" id="astructusb__req__cdcacm__coding__t_html"><div class="ttname"><a href="structusb__req__cdcacm__coding__t.html">usb_req_cdcacm_coding_t</a></div><div class="ttdoc">USB CDC ACM line coding setup content.</div><div class="ttdef"><b>Definition:</b> cdc.h:282</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html"><div class="ttname"><a href="structusbus__cdcacm__device.html">usbus_cdcacm_device</a></div><div class="ttdoc">USBUS CDC ACM context struct.</div><div class="ttdef"><b>Definition:</b> acm.h:155</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a03324158e60f4a258a392fce7972a48a"><div class="ttname"><a href="structusbus__cdcacm__device.html#a03324158e60f4a258a392fce7972a48a">usbus_cdcacm_device::coding_cb</a></div><div class="ttdeci">usbus_cdcacm_coding_cb_t coding_cb</div><div class="ttdoc">Callback for ACM coding changes.</div><div class="ttdef"><b>Definition:</b> acm.h:161</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a4bcbf1a49c007718a12445ff5af772e7"><div class="ttname"><a href="structusbus__cdcacm__device.html#a4bcbf1a49c007718a12445ff5af772e7">usbus_cdcacm_device::tsrb</a></div><div class="ttdeci">tsrb_t tsrb</div><div class="ttdoc">TSRB for data to the host</div><div class="ttdef"><b>Definition:</b> acm.h:162</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a5a077271cfecc9d4e5d6c41cc6a78d6b"><div class="ttname"><a href="structusbus__cdcacm__device.html#a5a077271cfecc9d4e5d6c41cc6a78d6b">usbus_cdcacm_device::usbus</a></div><div class="ttdeci">usbus_t * usbus</div><div class="ttdoc">USBUS reference</div><div class="ttdef"><b>Definition:</b> acm.h:163</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a5a200af6adf36fe13c7d4eeec6cf58a2"><div class="ttname"><a href="structusbus__cdcacm__device.html#a5a200af6adf36fe13c7d4eeec6cf58a2">usbus_cdcacm_device::flush</a></div><div class="ttdeci">event_t flush</div><div class="ttdoc">device2host forced flush event</div><div class="ttdef"><b>Definition:</b> acm.h:166</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a5bb3ee009a5d7c03830d0bb4832f1d98"><div class="ttname"><a href="structusbus__cdcacm__device.html#a5bb3ee009a5d7c03830d0bb4832f1d98">usbus_cdcacm_device::state</a></div><div class="ttdeci">usbus_cdcacm_line_state_t state</div><div class="ttdoc">Current line state</div><div class="ttdef"><b>Definition:</b> acm.h:165</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a5d2f1be1e062541c0a29226e5c45d79a"><div class="ttname"><a href="structusbus__cdcacm__device.html#a5d2f1be1e062541c0a29226e5c45d79a">usbus_cdcacm_device::handler_ctrl</a></div><div class="ttdeci">usbus_handler_t handler_ctrl</div><div class="ttdoc">control handler</div><div class="ttdef"><b>Definition:</b> acm.h:156</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a67998acaf619a4a32d1c7e849de0e683"><div class="ttname"><a href="structusbus__cdcacm__device.html#a67998acaf619a4a32d1c7e849de0e683">usbus_cdcacm_device::coding</a></div><div class="ttdeci">usb_req_cdcacm_coding_t coding</div><div class="ttdoc">Current coding configuration</div><div class="ttdef"><b>Definition:</b> acm.h:167</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a683707f5252e294e386b5052e87fde5a"><div class="ttname"><a href="structusbus__cdcacm__device.html#a683707f5252e294e386b5052e87fde5a">usbus_cdcacm_device::iface_ctrl</a></div><div class="ttdeci">usbus_interface_t iface_ctrl</div><div class="ttdoc">CDC control interface</div><div class="ttdef"><b>Definition:</b> acm.h:157</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a6fe7a4cea510b95b5525b9942a3470fb"><div class="ttname"><a href="structusbus__cdcacm__device.html#a6fe7a4cea510b95b5525b9942a3470fb">usbus_cdcacm_device::occupied</a></div><div class="ttdeci">size_t occupied</div><div class="ttdoc">Number of bytes for the host</div><div class="ttdef"><b>Definition:</b> acm.h:164</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_a74a395bfb8aa686681af4cb6e77c06ff"><div class="ttname"><a href="structusbus__cdcacm__device.html#a74a395bfb8aa686681af4cb6e77c06ff">usbus_cdcacm_device::iface_data</a></div><div class="ttdeci">usbus_interface_t iface_data</div><div class="ttdoc">CDC data interface</div><div class="ttdef"><b>Definition:</b> acm.h:158</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_aa4ae7e4cda995efd884c49be38d55a9c"><div class="ttname"><a href="structusbus__cdcacm__device.html#aa4ae7e4cda995efd884c49be38d55a9c">usbus_cdcacm_device::out_buf</a></div><div class="ttdeci">usbdev_ep_buf_t out_buf[CONFIG_USBUS_CDC_ACM_BULK_EP_SIZE]</div><div class="ttdoc">Host to device data buffer.</div><div class="ttdef"><b>Definition:</b> acm.h:172</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_ab3eec9c09f4ec61ae6017afc025a0736"><div class="ttname"><a href="structusbus__cdcacm__device.html#ab3eec9c09f4ec61ae6017afc025a0736">usbus_cdcacm_device::cb</a></div><div class="ttdeci">usbus_cdcacm_cb_t cb</div><div class="ttdoc">Callback for data handlers</div><div class="ttdef"><b>Definition:</b> acm.h:160</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_ae781de715c62a43a6f9dc63a4703b3d8"><div class="ttname"><a href="structusbus__cdcacm__device.html#ae781de715c62a43a6f9dc63a4703b3d8">usbus_cdcacm_device::cdcacm_descr</a></div><div class="ttdeci">usbus_descr_gen_t cdcacm_descr</div><div class="ttdoc">CDC descriptor generator</div><div class="ttdef"><b>Definition:</b> acm.h:159</div></div>
+<div class="ttc" id="astructusbus__cdcacm__device_html_aed72a916d24ccd78c10f539e51acb416"><div class="ttname"><a href="structusbus__cdcacm__device.html#aed72a916d24ccd78c10f539e51acb416">usbus_cdcacm_device::in_buf</a></div><div class="ttdeci">usbdev_ep_buf_t in_buf[CONFIG_USBUS_CDC_ACM_STDIO_BUF_SIZE]</div><div class="ttdoc">Device to host data buffer.</div><div class="ttdef"><b>Definition:</b> acm.h:177</div></div>
+<div class="ttc" id="astructusbus__descr__gen_html"><div class="ttname"><a href="structusbus__descr__gen.html">usbus_descr_gen</a></div><div class="ttdoc">USBUS descriptor generator.</div><div class="ttdef"><b>Definition:</b> usbus.h:298</div></div>
+<div class="ttc" id="astructusbus__handler_html"><div class="ttname"><a href="structusbus__handler.html">usbus_handler</a></div><div class="ttdoc">USBUS handler struct.</div><div class="ttdef"><b>Definition:</b> usbus.h:436</div></div>
+<div class="ttc" id="astructusbus__interface_html"><div class="ttname"><a href="structusbus__interface.html">usbus_interface</a></div><div class="ttdoc">USBUS interface.</div><div class="ttdef"><b>Definition:</b> usbus.h:353</div></div>
+<div class="ttc" id="astructusbus_html"><div class="ttname"><a href="structusbus.html">usbus</a></div><div class="ttdoc">USBUS context struct.</div><div class="ttdef"><b>Definition:</b> usbus.h:448</div></div>
+<div class="ttc" id="atsrb_8h_html"><div class="ttname"><a href="tsrb_8h.html">tsrb.h</a></div><div class="ttdoc">Thread-safe ringbuffer interface definition.</div></div>
+<div class="ttc" id="ausbus_8h_html"><div class="ttname"><a href="usbus_8h.html">usbus.h</a></div><div class="ttdoc">USBUS basic interface.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_eb9793bc0cf8fa4de3ce4b7ae00045c5.html">usb</a></li><li class="navelem"><a class="el" href="dir_29b9f09949a565fa71a57daea60cabf4.html">usbus</a></li><li class="navelem"><a class="el" href="dir_a07d698d1fa649c019a7482f960ff898.html">cdc</a></li><li class="navelem"><a class="el" href="acm_8h.html">acm.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

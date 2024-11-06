@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/mpu9x50.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mpu9x50_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mpu9x50.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mpu9x50_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2015 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2019 HAW Hamburg</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifndef MPU9X50_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define MPU9X50_H</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define MPU9X50_MIN_SAMPLE_RATE     (4)</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define MPU9X50_MAX_SAMPLE_RATE     (1000)</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define MPU9X50_DEFAULT_SAMPLE_RATE (50)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define MPU9X50_MIN_COMP_SMPL_RATE  (1)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#define MPU9X50_MAX_COMP_SMPL_RATE  (100)</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">   49</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    MPU9X50_SENSOR_PWR_OFF = 0x00,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    MPU9X50_SENSOR_PWR_ON = 0x01,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;} <a class="code" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gaa33b55a1da021be7ac505b95c945b196">   57</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    MPU9X50_HW_ADDR_HEX_68 = 0x68,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    MPU9X50_HW_ADDR_HEX_69 = 0x69,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;} <a class="code" href="group__drivers__mpu9x50.html#gaa33b55a1da021be7ac505b95c945b196">mpu9x50_hw_addr_t</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga791ecdc8c40b49b10a42a551e371c259">   65</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    MPU9X50_COMP_ADDR_HEX_0C = 0x0C,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    MPU9X50_COMP_ADDR_HEX_0D = 0x0D,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    MPU9X50_COMP_ADDR_HEX_0E = 0x0E,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    MPU9X50_COMP_ADDR_HEX_0F = 0x0F,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;} <a class="code" href="group__drivers__mpu9x50.html#ga791ecdc8c40b49b10a42a551e371c259">mpu9x50_comp_addr_t</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gaf97b0c21b42c2b49f1c7348e41a80117">   75</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    MPU9X50_GYRO_FSR_250DPS = 0x00,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    MPU9X50_GYRO_FSR_500DPS = 0x01,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    MPU9X50_GYRO_FSR_1000DPS = 0x02,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    MPU9X50_GYRO_FSR_2000DPS = 0x03,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <a class="code" href="group__drivers__mpu9x50.html#gaf97b0c21b42c2b49f1c7348e41a80117">mpu9x50_gyro_ranges_t</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gabb200df8ddcb0b52bd45f9ca19972340">   85</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    MPU9X50_ACCEL_FSR_2G = 0x00,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    MPU9X50_ACCEL_FSR_4G = 0x01,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    MPU9X50_ACCEL_FSR_8G = 0x02,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    MPU9X50_ACCEL_FSR_16G = 0x03,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;} <a class="code" href="group__drivers__mpu9x50.html#gabb200df8ddcb0b52bd45f9ca19972340">mpu9x50_accel_ranges_t</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga088c0e913c8290a394f7bd5f8c4c33c0">   95</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    MPU9X50_FILTER_188HZ = 0x01,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    MPU9X50_FILTER_98HZ = 0x02,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    MPU9X50_FILTER_42HZ = 0x03,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    MPU9X50_FILTER_20HZ = 0x04,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    MPU9X50_FILTER_10HZ = 0x05,</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    MPU9X50_FILTER_5HZ = 0x06,</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;} <a class="code" href="group__drivers__mpu9x50.html#ga088c0e913c8290a394f7bd5f8c4c33c0">mpu9x50_lpf_t</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="structmpu9x50__results__t.html">  107</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structmpu9x50__results__t.html#ac9fcf277ba488ef4a0eb53a2ac859648">  108</a></span>&#160;    int16_t <a class="code" href="structmpu9x50__results__t.html#ac9fcf277ba488ef4a0eb53a2ac859648">x_axis</a>;             </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structmpu9x50__results__t.html#accb9d4d3079e1352ccaf8cd3e8e35ef3">  109</a></span>&#160;    int16_t <a class="code" href="structmpu9x50__results__t.html#accb9d4d3079e1352ccaf8cd3e8e35ef3">y_axis</a>;             </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structmpu9x50__results__t.html#aabb6dae6140f09d81263f19ffdc0f64a">  110</a></span>&#160;    int16_t <a class="code" href="structmpu9x50__results__t.html#aabb6dae6140f09d81263f19ffdc0f64a">z_axis</a>;             </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;} <a class="code" href="structmpu9x50__results__t.html">mpu9x50_results_t</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html">  116</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#a8ce400fbc884a1a3f4cb3915bbf85399">  117</a></span>&#160;    <a class="code" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a> <a class="code" href="structmpu9x50__status__t.html#a8ce400fbc884a1a3f4cb3915bbf85399">accel_pwr</a>;            </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#ab74c3cfa4f78026eed76706006fbaf12">  118</a></span>&#160;    <a class="code" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a> <a class="code" href="structmpu9x50__status__t.html#ab74c3cfa4f78026eed76706006fbaf12">gyro_pwr</a>;             </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#aab47752059a4d07b3ce81c88079e13e9">  119</a></span>&#160;    <a class="code" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a> <a class="code" href="structmpu9x50__status__t.html#aab47752059a4d07b3ce81c88079e13e9">compass_pwr</a>;          </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#a809147ffcc683011952c93a9a35e7c2a">  120</a></span>&#160;    <a class="code" href="group__drivers__mpu9x50.html#gaf97b0c21b42c2b49f1c7348e41a80117">mpu9x50_gyro_ranges_t</a> <a class="code" href="structmpu9x50__status__t.html#a809147ffcc683011952c93a9a35e7c2a">gyro_fsr</a>;     </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#a4e579d8e0fb812337745b8abdbbdb88d">  121</a></span>&#160;    <a class="code" href="group__drivers__mpu9x50.html#gabb200df8ddcb0b52bd45f9ca19972340">mpu9x50_accel_ranges_t</a> <a class="code" href="structmpu9x50__status__t.html#a4e579d8e0fb812337745b8abdbbdb88d">accel_fsr</a>;   </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#a6c80b7897ff56f595e066003e6ca8a28">  122</a></span>&#160;    uint16_t <a class="code" href="structmpu9x50__status__t.html#a6c80b7897ff56f595e066003e6ca8a28">sample_rate</a>;               </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#af2eb31b8c39d2e9266996c00e54fa6f9">  123</a></span>&#160;    uint8_t <a class="code" href="structmpu9x50__status__t.html#af2eb31b8c39d2e9266996c00e54fa6f9">compass_sample_rate</a>;        </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#a38437bee01600c73e15022dd0d2c94c9">  124</a></span>&#160;    uint8_t <a class="code" href="structmpu9x50__status__t.html#a38437bee01600c73e15022dd0d2c94c9">compass_x_adj</a>;              </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#a7e1e8a558cd77ca5f2ae617d849b2846">  125</a></span>&#160;    uint8_t <a class="code" href="structmpu9x50__status__t.html#a7e1e8a558cd77ca5f2ae617d849b2846">compass_y_adj</a>;              </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="structmpu9x50__status__t.html#a67161c9b522ee780630d339039105f3a">  126</a></span>&#160;    uint8_t <a class="code" href="structmpu9x50__status__t.html#a67161c9b522ee780630d339039105f3a">compass_z_adj</a>;              </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;} <a class="code" href="structmpu9x50__status__t.html">mpu9x50_status_t</a>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="structmpu9x50__params__t.html">  132</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="structmpu9x50__params__t.html#a11c89b9b849d682b24bd830f2540a41c">  133</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structmpu9x50__params__t.html#a11c89b9b849d682b24bd830f2540a41c">i2c</a>;                  </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="structmpu9x50__params__t.html#a560965c509a5fb0760e1f710b4dcf8fe">  134</a></span>&#160;    uint8_t <a class="code" href="structmpu9x50__params__t.html#a560965c509a5fb0760e1f710b4dcf8fe">addr</a>;               </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="structmpu9x50__params__t.html#a26a04f23b5ebbb979b3cbe636bf84c88">  135</a></span>&#160;    uint8_t <a class="code" href="structmpu9x50__params__t.html#a26a04f23b5ebbb979b3cbe636bf84c88">comp_addr</a>;          </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="structmpu9x50__params__t.html#a54d4e8659910d9597edcb44f8d2037bf">  136</a></span>&#160;    uint16_t <a class="code" href="structmpu9x50__params__t.html#a54d4e8659910d9597edcb44f8d2037bf">sample_rate</a>;       </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;} <a class="code" href="structmpu9x50__params__t.html">mpu9x50_params_t</a>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="structmpu9x50__t.html">  142</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="structmpu9x50__t.html#a5d52df4e2ea32e4f90377dbb6a4b0150">  143</a></span>&#160;    <a class="code" href="structmpu9x50__params__t.html">mpu9x50_params_t</a> <a class="code" href="structmpu9x50__t.html#a5d52df4e2ea32e4f90377dbb6a4b0150">params</a>;    </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="structmpu9x50__t.html#a9045444fecac3b2c993588c752231130">  144</a></span>&#160;    <a class="code" href="structmpu9x50__status__t.html">mpu9x50_status_t</a> <a class="code" href="structmpu9x50__t.html#a9045444fecac3b2c993588c752231130">conf</a>;      </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;} <a class="code" href="structmpu9x50__t.html">mpu9x50_t</a>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gaed936dfffa5d6ee03e38fceefa6ec68e">  156</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#gaed936dfffa5d6ee03e38fceefa6ec68e">mpu9x50_init</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structmpu9x50__params__t.html">mpu9x50_params_t</a> *params);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gaf8ee619de4c4af22ca1a6535ab6f784c">  167</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#gaf8ee619de4c4af22ca1a6535ab6f784c">mpu9x50_set_accel_power</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a> pwr_conf);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gaa878ebfb0f18ab1e8477bfdc4abcde06">  178</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#gaa878ebfb0f18ab1e8477bfdc4abcde06">mpu9x50_set_gyro_power</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a> pwr_conf);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga489174498faac44447fc0e19fcc8cf32">  189</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#ga489174498faac44447fc0e19fcc8cf32">mpu9x50_set_compass_power</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a> pwr_conf);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gafdaa40ce2894b84253d984f4cb5afc58">  204</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#gafdaa40ce2894b84253d984f4cb5afc58">mpu9x50_read_gyro</a>(<span class="keyword">const</span> <a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="structmpu9x50__results__t.html">mpu9x50_results_t</a> *output);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga79f3b90c7b5216320181242058f6ad33">  219</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#ga79f3b90c7b5216320181242058f6ad33">mpu9x50_read_accel</a>(<span class="keyword">const</span> <a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="structmpu9x50__results__t.html">mpu9x50_results_t</a> *output);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga6af64b79bb20cc53276b0a47941febd6">  233</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#ga6af64b79bb20cc53276b0a47941febd6">mpu9x50_read_compass</a>(<span class="keyword">const</span> <a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="structmpu9x50__results__t.html">mpu9x50_results_t</a> *output);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga0087dd46cbf9b321041fbae1da39acd2">  248</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#ga0087dd46cbf9b321041fbae1da39acd2">mpu9x50_read_temperature</a>(<span class="keyword">const</span> <a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, int32_t *output);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gaf79df296358adaed594f358080a2c8dd">  260</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#gaf79df296358adaed594f358080a2c8dd">mpu9x50_set_gyro_fsr</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="group__drivers__mpu9x50.html#gaf97b0c21b42c2b49f1c7348e41a80117">mpu9x50_gyro_ranges_t</a> fsr);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gaeb40825259d5b052bc2aafbb193c08a1">  272</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#gaeb40825259d5b052bc2aafbb193c08a1">mpu9x50_set_accel_fsr</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, <a class="code" href="group__drivers__mpu9x50.html#gabb200df8ddcb0b52bd45f9ca19972340">mpu9x50_accel_ranges_t</a> fsr);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#ga6f0b546156158dbd0c26aca131ccb0e7">  288</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#ga6f0b546156158dbd0c26aca131ccb0e7">mpu9x50_set_sample_rate</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, uint16_t rate);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="group__drivers__mpu9x50.html#gac766b89809941f5fa0482a75749e1747">  305</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mpu9x50.html#gac766b89809941f5fa0482a75749e1747">mpu9x50_set_compass_sample_rate</a>(<a class="code" href="structmpu9x50__t.html">mpu9x50_t</a> *dev, uint8_t rate);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MPU9X50_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga0087dd46cbf9b321041fbae1da39acd2"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga0087dd46cbf9b321041fbae1da39acd2">mpu9x50_read_temperature</a></div><div class="ttdeci">int mpu9x50_read_temperature(const mpu9x50_t *dev, int32_t *output)</div><div class="ttdoc">Read temperature value from the given MPU9X50 device, returned in m°C.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga088c0e913c8290a394f7bd5f8c4c33c0"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga088c0e913c8290a394f7bd5f8c4c33c0">mpu9x50_lpf_t</a></div><div class="ttdeci">mpu9x50_lpf_t</div><div class="ttdoc">Possible low pass filter values.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:95</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga489174498faac44447fc0e19fcc8cf32"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga489174498faac44447fc0e19fcc8cf32">mpu9x50_set_compass_power</a></div><div class="ttdeci">int mpu9x50_set_compass_power(mpu9x50_t *dev, mpu9x50_pwr_t pwr_conf)</div><div class="ttdoc">Enable or disable compass power.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga6af64b79bb20cc53276b0a47941febd6"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga6af64b79bb20cc53276b0a47941febd6">mpu9x50_read_compass</a></div><div class="ttdeci">int mpu9x50_read_compass(const mpu9x50_t *dev, mpu9x50_results_t *output)</div><div class="ttdoc">Read magnetic field values from the given MPU9X50 device, returned in mikroT.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga6f0b546156158dbd0c26aca131ccb0e7"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga6f0b546156158dbd0c26aca131ccb0e7">mpu9x50_set_sample_rate</a></div><div class="ttdeci">int mpu9x50_set_sample_rate(mpu9x50_t *dev, uint16_t rate)</div><div class="ttdoc">Set the rate at which the gyroscope and accelerometer data is sampled.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga71e89fb32d35dc52401a3deaceef1798"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga71e89fb32d35dc52401a3deaceef1798">mpu9x50_pwr_t</a></div><div class="ttdeci">mpu9x50_pwr_t</div><div class="ttdoc">Power enum values.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:49</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga791ecdc8c40b49b10a42a551e371c259"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga791ecdc8c40b49b10a42a551e371c259">mpu9x50_comp_addr_t</a></div><div class="ttdeci">mpu9x50_comp_addr_t</div><div class="ttdoc">Possible compass addresses (wiring specific)</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:65</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_ga79f3b90c7b5216320181242058f6ad33"><div class="ttname"><a href="group__drivers__mpu9x50.html#ga79f3b90c7b5216320181242058f6ad33">mpu9x50_read_accel</a></div><div class="ttdeci">int mpu9x50_read_accel(const mpu9x50_t *dev, mpu9x50_results_t *output)</div><div class="ttdoc">Read acceleration values from the given MPU9X50 device, returned in mG.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gaa33b55a1da021be7ac505b95c945b196"><div class="ttname"><a href="group__drivers__mpu9x50.html#gaa33b55a1da021be7ac505b95c945b196">mpu9x50_hw_addr_t</a></div><div class="ttdeci">mpu9x50_hw_addr_t</div><div class="ttdoc">Possible MPU-9X50 hardware addresses (wiring specific)</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:57</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gaa878ebfb0f18ab1e8477bfdc4abcde06"><div class="ttname"><a href="group__drivers__mpu9x50.html#gaa878ebfb0f18ab1e8477bfdc4abcde06">mpu9x50_set_gyro_power</a></div><div class="ttdeci">int mpu9x50_set_gyro_power(mpu9x50_t *dev, mpu9x50_pwr_t pwr_conf)</div><div class="ttdoc">Enable or disable gyroscope power.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gabb200df8ddcb0b52bd45f9ca19972340"><div class="ttname"><a href="group__drivers__mpu9x50.html#gabb200df8ddcb0b52bd45f9ca19972340">mpu9x50_accel_ranges_t</a></div><div class="ttdeci">mpu9x50_accel_ranges_t</div><div class="ttdoc">Possible full scale ranges for the accelerometer.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:85</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gac766b89809941f5fa0482a75749e1747"><div class="ttname"><a href="group__drivers__mpu9x50.html#gac766b89809941f5fa0482a75749e1747">mpu9x50_set_compass_sample_rate</a></div><div class="ttdeci">int mpu9x50_set_compass_sample_rate(mpu9x50_t *dev, uint8_t rate)</div><div class="ttdoc">Set the rate at which the compass data is sampled.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gaeb40825259d5b052bc2aafbb193c08a1"><div class="ttname"><a href="group__drivers__mpu9x50.html#gaeb40825259d5b052bc2aafbb193c08a1">mpu9x50_set_accel_fsr</a></div><div class="ttdeci">int mpu9x50_set_accel_fsr(mpu9x50_t *dev, mpu9x50_accel_ranges_t fsr)</div><div class="ttdoc">Set the full-scale range for raw accelerometer data.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gaed936dfffa5d6ee03e38fceefa6ec68e"><div class="ttname"><a href="group__drivers__mpu9x50.html#gaed936dfffa5d6ee03e38fceefa6ec68e">mpu9x50_init</a></div><div class="ttdeci">int mpu9x50_init(mpu9x50_t *dev, const mpu9x50_params_t *params)</div><div class="ttdoc">Initialize the given MPU9X50 device.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gaf79df296358adaed594f358080a2c8dd"><div class="ttname"><a href="group__drivers__mpu9x50.html#gaf79df296358adaed594f358080a2c8dd">mpu9x50_set_gyro_fsr</a></div><div class="ttdeci">int mpu9x50_set_gyro_fsr(mpu9x50_t *dev, mpu9x50_gyro_ranges_t fsr)</div><div class="ttdoc">Set the full-scale range for raw gyroscope data.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gaf8ee619de4c4af22ca1a6535ab6f784c"><div class="ttname"><a href="group__drivers__mpu9x50.html#gaf8ee619de4c4af22ca1a6535ab6f784c">mpu9x50_set_accel_power</a></div><div class="ttdeci">int mpu9x50_set_accel_power(mpu9x50_t *dev, mpu9x50_pwr_t pwr_conf)</div><div class="ttdoc">Enable or disable accelerometer power.</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gaf97b0c21b42c2b49f1c7348e41a80117"><div class="ttname"><a href="group__drivers__mpu9x50.html#gaf97b0c21b42c2b49f1c7348e41a80117">mpu9x50_gyro_ranges_t</a></div><div class="ttdeci">mpu9x50_gyro_ranges_t</div><div class="ttdoc">Possible full scale ranges for the gyroscope.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:75</div></div>
+<div class="ttc" id="agroup__drivers__mpu9x50_html_gafdaa40ce2894b84253d984f4cb5afc58"><div class="ttname"><a href="group__drivers__mpu9x50.html#gafdaa40ce2894b84253d984f4cb5afc58">mpu9x50_read_gyro</a></div><div class="ttdeci">int mpu9x50_read_gyro(const mpu9x50_t *dev, mpu9x50_results_t *output)</div><div class="ttdoc">Read angular speed values from the given MPU9X50 device, returned in dps.</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructmpu9x50__params__t_html"><div class="ttname"><a href="structmpu9x50__params__t.html">mpu9x50_params_t</a></div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:132</div></div>
+<div class="ttc" id="astructmpu9x50__params__t_html_a11c89b9b849d682b24bd830f2540a41c"><div class="ttname"><a href="structmpu9x50__params__t.html#a11c89b9b849d682b24bd830f2540a41c">mpu9x50_params_t::i2c</a></div><div class="ttdeci">i2c_t i2c</div><div class="ttdoc">I2C device which is used.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:133</div></div>
+<div class="ttc" id="astructmpu9x50__params__t_html_a26a04f23b5ebbb979b3cbe636bf84c88"><div class="ttname"><a href="structmpu9x50__params__t.html#a26a04f23b5ebbb979b3cbe636bf84c88">mpu9x50_params_t::comp_addr</a></div><div class="ttdeci">uint8_t comp_addr</div><div class="ttdoc">Address of the MPU-9X50s compass.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:135</div></div>
+<div class="ttc" id="astructmpu9x50__params__t_html_a54d4e8659910d9597edcb44f8d2037bf"><div class="ttname"><a href="structmpu9x50__params__t.html#a54d4e8659910d9597edcb44f8d2037bf">mpu9x50_params_t::sample_rate</a></div><div class="ttdeci">uint16_t sample_rate</div><div class="ttdoc">Sample rate.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:136</div></div>
+<div class="ttc" id="astructmpu9x50__params__t_html_a560965c509a5fb0760e1f710b4dcf8fe"><div class="ttname"><a href="structmpu9x50__params__t.html#a560965c509a5fb0760e1f710b4dcf8fe">mpu9x50_params_t::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdoc">Hardware address of the MPU-9X50.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:134</div></div>
+<div class="ttc" id="astructmpu9x50__results__t_html"><div class="ttname"><a href="structmpu9x50__results__t.html">mpu9x50_results_t</a></div><div class="ttdoc">MPU-9X50 result vector struct.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:107</div></div>
+<div class="ttc" id="astructmpu9x50__results__t_html_aabb6dae6140f09d81263f19ffdc0f64a"><div class="ttname"><a href="structmpu9x50__results__t.html#aabb6dae6140f09d81263f19ffdc0f64a">mpu9x50_results_t::z_axis</a></div><div class="ttdeci">int16_t z_axis</div><div class="ttdoc">Z-Axis measurement result.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:110</div></div>
+<div class="ttc" id="astructmpu9x50__results__t_html_ac9fcf277ba488ef4a0eb53a2ac859648"><div class="ttname"><a href="structmpu9x50__results__t.html#ac9fcf277ba488ef4a0eb53a2ac859648">mpu9x50_results_t::x_axis</a></div><div class="ttdeci">int16_t x_axis</div><div class="ttdoc">X-Axis measurement result.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:108</div></div>
+<div class="ttc" id="astructmpu9x50__results__t_html_accb9d4d3079e1352ccaf8cd3e8e35ef3"><div class="ttname"><a href="structmpu9x50__results__t.html#accb9d4d3079e1352ccaf8cd3e8e35ef3">mpu9x50_results_t::y_axis</a></div><div class="ttdeci">int16_t y_axis</div><div class="ttdoc">Y-Axis measurement result.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:109</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html"><div class="ttname"><a href="structmpu9x50__status__t.html">mpu9x50_status_t</a></div><div class="ttdoc">Configuration struct for the MPU-9X50 sensor.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:116</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_a38437bee01600c73e15022dd0d2c94c9"><div class="ttname"><a href="structmpu9x50__status__t.html#a38437bee01600c73e15022dd0d2c94c9">mpu9x50_status_t::compass_x_adj</a></div><div class="ttdeci">uint8_t compass_x_adj</div><div class="ttdoc">Compass X-Axis sensitivity adjustment value.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:124</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_a4e579d8e0fb812337745b8abdbbdb88d"><div class="ttname"><a href="structmpu9x50__status__t.html#a4e579d8e0fb812337745b8abdbbdb88d">mpu9x50_status_t::accel_fsr</a></div><div class="ttdeci">mpu9x50_accel_ranges_t accel_fsr</div><div class="ttdoc">Configured accel full-scale range.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:121</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_a67161c9b522ee780630d339039105f3a"><div class="ttname"><a href="structmpu9x50__status__t.html#a67161c9b522ee780630d339039105f3a">mpu9x50_status_t::compass_z_adj</a></div><div class="ttdeci">uint8_t compass_z_adj</div><div class="ttdoc">Compass Z-Axis sensitivity adjustment value.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:126</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_a6c80b7897ff56f595e066003e6ca8a28"><div class="ttname"><a href="structmpu9x50__status__t.html#a6c80b7897ff56f595e066003e6ca8a28">mpu9x50_status_t::sample_rate</a></div><div class="ttdeci">uint16_t sample_rate</div><div class="ttdoc">Configured sample rate for accel and gyro.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:122</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_a7e1e8a558cd77ca5f2ae617d849b2846"><div class="ttname"><a href="structmpu9x50__status__t.html#a7e1e8a558cd77ca5f2ae617d849b2846">mpu9x50_status_t::compass_y_adj</a></div><div class="ttdeci">uint8_t compass_y_adj</div><div class="ttdoc">Compass Y-Axis sensitivity adjustment value.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:125</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_a809147ffcc683011952c93a9a35e7c2a"><div class="ttname"><a href="structmpu9x50__status__t.html#a809147ffcc683011952c93a9a35e7c2a">mpu9x50_status_t::gyro_fsr</a></div><div class="ttdeci">mpu9x50_gyro_ranges_t gyro_fsr</div><div class="ttdoc">Configured gyro full-scale range.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:120</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_a8ce400fbc884a1a3f4cb3915bbf85399"><div class="ttname"><a href="structmpu9x50__status__t.html#a8ce400fbc884a1a3f4cb3915bbf85399">mpu9x50_status_t::accel_pwr</a></div><div class="ttdeci">mpu9x50_pwr_t accel_pwr</div><div class="ttdoc">Accel power status (on/off)</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:117</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_aab47752059a4d07b3ce81c88079e13e9"><div class="ttname"><a href="structmpu9x50__status__t.html#aab47752059a4d07b3ce81c88079e13e9">mpu9x50_status_t::compass_pwr</a></div><div class="ttdeci">mpu9x50_pwr_t compass_pwr</div><div class="ttdoc">Compass power status (on/off)</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:119</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_ab74c3cfa4f78026eed76706006fbaf12"><div class="ttname"><a href="structmpu9x50__status__t.html#ab74c3cfa4f78026eed76706006fbaf12">mpu9x50_status_t::gyro_pwr</a></div><div class="ttdeci">mpu9x50_pwr_t gyro_pwr</div><div class="ttdoc">Gyro power status (on/off)</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:118</div></div>
+<div class="ttc" id="astructmpu9x50__status__t_html_af2eb31b8c39d2e9266996c00e54fa6f9"><div class="ttname"><a href="structmpu9x50__status__t.html#af2eb31b8c39d2e9266996c00e54fa6f9">mpu9x50_status_t::compass_sample_rate</a></div><div class="ttdeci">uint8_t compass_sample_rate</div><div class="ttdoc">Configured compass sample rate.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:123</div></div>
+<div class="ttc" id="astructmpu9x50__t_html"><div class="ttname"><a href="structmpu9x50__t.html">mpu9x50_t</a></div><div class="ttdoc">Device descriptor for the MPU9X50 sensor.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:142</div></div>
+<div class="ttc" id="astructmpu9x50__t_html_a5d52df4e2ea32e4f90377dbb6a4b0150"><div class="ttname"><a href="structmpu9x50__t.html#a5d52df4e2ea32e4f90377dbb6a4b0150">mpu9x50_t::params</a></div><div class="ttdeci">mpu9x50_params_t params</div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:143</div></div>
+<div class="ttc" id="astructmpu9x50__t_html_a9045444fecac3b2c993588c752231130"><div class="ttname"><a href="structmpu9x50__t.html#a9045444fecac3b2c993588c752231130">mpu9x50_t::conf</a></div><div class="ttdeci">mpu9x50_status_t conf</div><div class="ttdoc">Device configuration.</div><div class="ttdef"><b>Definition:</b> mpu9x50.h:144</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="mpu9x50_8h.html">mpu9x50.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

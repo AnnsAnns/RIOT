@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/esp32/include/irq_arch.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('esp32_2include_2irq__arch_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">irq_arch.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="esp32_2include_2irq__arch_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2018 Gunar Schorcht</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef IRQ_ARCH_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define IRQ_ARCH_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="irq__arch__common_8h.html">irq_arch_common.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a1f551974e1460aefc7e6455f975a348e">   39</a></span>&#160;<span class="preprocessor">#define CPU_INUM_RMT             1  </span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a7fb227628ba613ab548c8e1733467d76">   40</a></span>&#160;<span class="preprocessor">#define CPU_INUM_GPIO            2  </span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#ad63ec5a1ca7a20b5a0eaf73e7dd3bcc2">   41</a></span>&#160;<span class="preprocessor">#define CPU_INUM_CAN             3  </span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a0315bb405df60769a04a700af21c1eca">   42</a></span>&#160;<span class="preprocessor">#define CPU_INUM_UART            4  </span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#ab0ee0b98f364b8b2323b4588019bc14a">   43</a></span>&#160;<span class="preprocessor">#define CPU_INUM_USB             8  </span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a72fe87cf4a85ac4bfed3c276578ef273">   44</a></span>&#160;<span class="preprocessor">#define CPU_INUM_RTT             9  </span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a12f51b899d29547486265757d086dde3">   45</a></span>&#160;<span class="preprocessor">#define CPU_INUM_SERIAL_JTAG    10  </span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a8385ac08f7f1af17ea56a0ccaea56129">   46</a></span>&#160;<span class="preprocessor">#define CPU_INUM_I2C            12  </span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a422253af92716f32abf0f5d09379d790">   47</a></span>&#160;<span class="preprocessor">#define CPU_INUM_WDT            13  </span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#aa93de4df8865fc134301e98a138dacbf">   48</a></span>&#160;<span class="preprocessor">#define CPU_INUM_SOFTWARE       17  </span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a3d8ef43163d22ba5560495e10a33f7b4">   49</a></span>&#160;<span class="preprocessor">#define CPU_INUM_ETH            18  </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a16662fdacff1483358e42b1660712216">   50</a></span>&#160;<span class="preprocessor">#define CPU_INUM_LCD            18  </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#ad13c90d5717441eeecb6403de859aae9">   51</a></span>&#160;<span class="preprocessor">#define CPU_INUM_TIMER          19  </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#ac609584072c0eb6c80acda4b8371e8f0">   52</a></span>&#160;<span class="preprocessor">#define CPU_INUM_FRC2           20  </span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a6713392fe72918e3d3b2c9993b1dff38">   53</a></span>&#160;<span class="preprocessor">#define CPU_INUM_SYSTIMER       20  </span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#af0b1e4173f69c2021483e771c159cb57">   54</a></span>&#160;<span class="preprocessor">#define CPU_INUM_BLE            21  </span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#aae2c65e7108e929ce17442cf18f70a80">   55</a></span>&#160;<span class="preprocessor">#define CPU_INUM_SDMMC          23  </span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#a6eee55a9dcbec1cf8757aff76f81bb3a">   56</a></span>&#160;<span class="preprocessor">#define CPU_INUM_CACHEERR       25  </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="esp32_2include_2irq__arch_8h.html#acfd4fa611e4097fd2490f33771682c5c">   62</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="esp32_2include_2irq__arch_8h.html#acfd4fa611e4097fd2490f33771682c5c">esp_irq_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IRQ_ARCH_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aesp32_2include_2irq__arch_8h_html_acfd4fa611e4097fd2490f33771682c5c"><div class="ttname"><a href="esp32_2include_2irq__arch_8h.html#acfd4fa611e4097fd2490f33771682c5c">esp_irq_init</a></div><div class="ttdeci">void esp_irq_init(void)</div><div class="ttdoc">Initialize architecture specific interrupt handling.</div></div>
+<div class="ttc" id="airq__arch__common_8h_html"><div class="ttname"><a href="irq__arch__common_8h.html">irq_arch_common.h</a></div><div class="ttdoc">Implementation of the kernels irq interface.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_e6b21d86e7d1e166bef83c560415fa91.html">esp32</a></li><li class="navelem"><a class="el" href="dir_0a5788328d3e98738e96d147d1e9ce4a.html">include</a></li><li class="navelem"><a class="el" href="esp32_2include_2irq__arch_8h.html">irq_arch.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

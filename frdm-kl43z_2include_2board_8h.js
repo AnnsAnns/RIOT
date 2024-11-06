@@ -1,0 +1,26 @@
+var frdm_kl43z_2include_2board_8h =
+[
+    [ "KINETIS_FOPT", "group__boards__frdm-kl43z.html#ga8e5e6952196a716e7ba8a9aa0734785d", null ],
+    [ "LED0_MASK", "group__boards__frdm-kl43z.html#gabfabde35a3e8b7ab50146a5e223bfead", null ],
+    [ "LED0_OFF", "group__boards__frdm-kl43z.html#gaef2e39b9fd343d0e437fac0463f3e02d", null ],
+    [ "LED0_ON", "group__boards__frdm-kl43z.html#ga1e48dc02333bfc2e6ad3e5bd466eecd4", null ],
+    [ "LED0_PIN", "group__boards__frdm-kl43z.html#ga3fc522fda449d6edde717d6a857429cf", null ],
+    [ "LED0_TOGGLE", "group__boards__frdm-kl43z.html#gaebc6389533d9fc8dcbe4d2129a4d5a45", null ],
+    [ "LED1_MASK", "group__boards__frdm-kl43z.html#ga669ed6e073140d069b30442bf4c08842", null ],
+    [ "LED1_OFF", "group__boards__frdm-kl43z.html#ga343fd2d3ce61b84f88ddfaea32c67c58", null ],
+    [ "LED1_ON", "group__boards__frdm-kl43z.html#gaadd4c7ae0cd4e9bbb17f7055dd51fe08", null ],
+    [ "LED1_PIN", "group__boards__frdm-kl43z.html#ga318aa17e5d40e2132d2c7f6269ce7f51", null ],
+    [ "LED1_TOGGLE", "group__boards__frdm-kl43z.html#ga267fdbba1d750146b73da35c1731fd17", null ],
+    [ "MAG3110_PARAM_ADDR", "group__boards__frdm-kl43z.html#ga2917c5952f13de9c5666f26fb7bde648", null ],
+    [ "MAG3110_PARAM_I2C", "group__boards__frdm-kl43z.html#ga846ecd57404d37b1caf5332eb2c8c446", null ],
+    [ "MMA8X5X_PARAM_ADDR", "group__boards__frdm-kl43z.html#ga704a3a7b5b9b5aa680a1dafe7157c02c", null ],
+    [ "MMA8X5X_PARAM_I2C", "group__boards__frdm-kl43z.html#ga564cf142e7fae24c8c4384231d514918", null ],
+    [ "MMA8X5X_PARAM_TYPE", "group__boards__frdm-kl43z.html#ga55e51c2536cce092718faf9cf20f7f83", null ],
+    [ "XTIMER_BACKOFF", "group__boards__frdm-kl43z.html#ga370b9e9a079c4cb4f54fd947b67b9f41", null ],
+    [ "XTIMER_CHAN", "group__boards__frdm-kl43z.html#ga8b747b85d4d5f2e1be910cdbc72a01de", null ],
+    [ "XTIMER_DEV", "group__boards__frdm-kl43z.html#ga5e48bb301c732e044b08f336fb851d5e", null ],
+    [ "XTIMER_HZ", "group__boards__frdm-kl43z.html#gaf68fde6b7d5b362834e6a8d382c6c0d7", null ],
+    [ "XTIMER_ISR_BACKOFF", "group__boards__frdm-kl43z.html#gaa1be564fc21297d7c1c8be267cbd36f6", null ],
+    [ "XTIMER_OVERHEAD", "group__boards__frdm-kl43z.html#ga6692048ab318695696ecf54dc4cc04be", null ],
+    [ "XTIMER_WIDTH", "group__boards__frdm-kl43z.html#gafea1be2406d45b8fbb1dca1a318ac2dc", null ]
+];

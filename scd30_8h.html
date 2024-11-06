@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/scd30.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('scd30_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">scd30.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__sensors.html">Sensor Device Drivers</a> &raquo; <a class="el" href="group__drivers__scd30.html">SCD30 CO2, temperature and humidity sensor</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Device driver interface for the SCD30 sensor.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Device driver interface for the SCD30 sensor. </p>
+<dl class="section author"><dt>Author</dt><dd>Nishchay Agrawal <a href="#" onclick="location.href='mai'+'lto:'+'f20'+'16'+'088'+'@p'+'ila'+'ni'+'.bi'+'ts'+'-pi'+'la'+'ni.'+'ac'+'.in'; return false;">f2016<span style="display: none;">.nosp@m.</span>088@<span style="display: none;">.nosp@m.</span>pilan<span style="display: none;">.nosp@m.</span>i.bi<span style="display: none;">.nosp@m.</span>ts-pi<span style="display: none;">.nosp@m.</span>lani<span style="display: none;">.nosp@m.</span>.ac.i<span style="display: none;">.nosp@m.</span>n</a> </dd>
+<dd>
+Puhang Ding <a href="#" onclick="location.href='mai'+'lto:'+'cza'+'rs'+'ir@'+'gm'+'ail'+'.c'+'om'; return false;">czars<span style="display: none;">.nosp@m.</span>ir@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a> </dd>
+<dd>
+Jan Schlichter <a href="#" onclick="location.href='mai'+'lto:'+'sch'+'li'+'cht'+'er'+'@ib'+'r.'+'cs.'+'tu'+'-bs'+'.d'+'e'; return false;">schli<span style="display: none;">.nosp@m.</span>chte<span style="display: none;">.nosp@m.</span>r@ibr<span style="display: none;">.nosp@m.</span>.cs.<span style="display: none;">.nosp@m.</span>tu-bs<span style="display: none;">.nosp@m.</span>.de</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;<a class="el" href="i2c_8h_source.html">periph/i2c.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="drivers_2include_2saul_8h_source.html">saul.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="xtimer_8h_source.html">xtimer.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for scd30.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="scd30_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscd30__measurement__t.html">scd30_measurement_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measurement from SCD30 sensor.  <a href="structscd30__measurement__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscd30__params__t.html">scd30_params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device initialization parameters.  <a href="structscd30__params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscd30__t.html">scd30_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device descriptor for the SCD30 sensor.  <a href="structscd30__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ae5f6fd6716946768c933e48c622d40b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#ae5f6fd6716946768c933e48c622d40b9">SCD30_VERSION</a>&#160;&#160;&#160;0xD100</td></tr>
+<tr class="memdesc:ae5f6fd6716946768c933e48c622d40b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCD30 Configuration parameter commands.  <a href="scd30_8h.html#ae5f6fd6716946768c933e48c622d40b9">More...</a><br /></td></tr>
+<tr class="separator:ae5f6fd6716946768c933e48c622d40b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ccf693f669ed556c42aaff3601615b"><td class="memItemLeft" align="right" valign="top"><a id="a69ccf693f669ed556c42aaff3601615b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a69ccf693f669ed556c42aaff3601615b">SCD30_STATUS</a>&#160;&#160;&#160;0x0202</td></tr>
+<tr class="memdesc:a69ccf693f669ed556c42aaff3601615b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data ready status from scd30 device. <br /></td></tr>
+<tr class="separator:a69ccf693f669ed556c42aaff3601615b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad21de3d606c40d8e68aa57d0894d2e90"><td class="memItemLeft" align="right" valign="top"><a id="ad21de3d606c40d8e68aa57d0894d2e90"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#ad21de3d606c40d8e68aa57d0894d2e90">SCD30_DATA</a>&#160;&#160;&#160;0x0300</td></tr>
+<tr class="memdesc:ad21de3d606c40d8e68aa57d0894d2e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data from scd30 device. <br /></td></tr>
+<tr class="separator:ad21de3d606c40d8e68aa57d0894d2e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d1fe6e615d9a8fd16788b1a62e34361"><td class="memItemLeft" align="right" valign="top"><a id="a4d1fe6e615d9a8fd16788b1a62e34361"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a4d1fe6e615d9a8fd16788b1a62e34361">SCD30_START</a>&#160;&#160;&#160;0x0010</td></tr>
+<tr class="memdesc:a4d1fe6e615d9a8fd16788b1a62e34361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start measuring data from scd30 device. <br /></td></tr>
+<tr class="separator:a4d1fe6e615d9a8fd16788b1a62e34361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5169bc2f34cb6c872c23a2bb583e9a4"><td class="memItemLeft" align="right" valign="top"><a id="ac5169bc2f34cb6c872c23a2bb583e9a4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#ac5169bc2f34cb6c872c23a2bb583e9a4">SCD30_STOP</a>&#160;&#160;&#160;0x0104</td></tr>
+<tr class="memdesc:ac5169bc2f34cb6c872c23a2bb583e9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop measuring data from scd30 device. <br /></td></tr>
+<tr class="separator:ac5169bc2f34cb6c872c23a2bb583e9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1e601857516494d960a0879a74a71c"><td class="memItemLeft" align="right" valign="top"><a id="aaf1e601857516494d960a0879a74a71c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#aaf1e601857516494d960a0879a74a71c">SCD30_SOFT_RESET</a>&#160;&#160;&#160;0xD304</td></tr>
+<tr class="memdesc:aaf1e601857516494d960a0879a74a71c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Soft reset scd30 device. <br /></td></tr>
+<tr class="separator:aaf1e601857516494d960a0879a74a71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fccfca109f3bc7074ce35b9ef46f66d"><td class="memItemLeft" align="right" valign="top"><a id="a0fccfca109f3bc7074ce35b9ef46f66d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a0fccfca109f3bc7074ce35b9ef46f66d">SCD30_INTERVAL</a>&#160;&#160;&#160;0x4600</td></tr>
+<tr class="memdesc:a0fccfca109f3bc7074ce35b9ef46f66d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set measurement interval (2-1800 seconds) <br /></td></tr>
+<tr class="separator:a0fccfca109f3bc7074ce35b9ef46f66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8db3410fb8c9058f8766ad168ffd1300"><td class="memItemLeft" align="right" valign="top"><a id="a8db3410fb8c9058f8766ad168ffd1300"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a8db3410fb8c9058f8766ad168ffd1300">SCD30_ASC</a>&#160;&#160;&#160;0x5306</td></tr>
+<tr class="memdesc:a8db3410fb8c9058f8766ad168ffd1300"><td class="mdescLeft">&#160;</td><td class="mdescRight">De-Activate Automatic Self-Calibration. <br /></td></tr>
+<tr class="separator:a8db3410fb8c9058f8766ad168ffd1300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469a35e2e57d2e1d238a2306a6ee754a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a469a35e2e57d2e1d238a2306a6ee754a">SCD30_FRC</a>&#160;&#160;&#160;0x5204</td></tr>
+<tr class="memdesc:a469a35e2e57d2e1d238a2306a6ee754a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forced Recalibration.  <a href="scd30_8h.html#a469a35e2e57d2e1d238a2306a6ee754a">More...</a><br /></td></tr>
+<tr class="separator:a469a35e2e57d2e1d238a2306a6ee754a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df04f7d9b61fc21d0acc0a848a682bc"><td class="memItemLeft" align="right" valign="top"><a id="a6df04f7d9b61fc21d0acc0a848a682bc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a6df04f7d9b61fc21d0acc0a848a682bc">SCD30_T_OFFSET</a>&#160;&#160;&#160;0x5403</td></tr>
+<tr class="memdesc:a6df04f7d9b61fc21d0acc0a848a682bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set temperature Offset in 0.01 Celsius. <br /></td></tr>
+<tr class="separator:a6df04f7d9b61fc21d0acc0a848a682bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab53e3f57d93bc5c35b7a006be4a91a23"><td class="memItemLeft" align="right" valign="top"><a id="ab53e3f57d93bc5c35b7a006be4a91a23"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#ab53e3f57d93bc5c35b7a006be4a91a23">SCD30_A_OFFSET</a>&#160;&#160;&#160;0x5102</td></tr>
+<tr class="memdesc:ab53e3f57d93bc5c35b7a006be4a91a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altitude Compensation in meters above sea level. <br /></td></tr>
+<tr class="separator:ab53e3f57d93bc5c35b7a006be4a91a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a8f2dfec7e99562dbe5d785467bb71bbb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>SCD30_OK</b> = 0
+, <a class="el" href="scd30_8h.html#a8f2dfec7e99562dbe5d785467bb71bbbad997a61d019696d1f59c934d50defb83">SCD30_COM_FAILED</a> = -1
+, <a class="el" href="scd30_8h.html#a8f2dfec7e99562dbe5d785467bb71bbbad08012ba60cfa3471d209145277ee6df">SCD30_INVALID_VALUE</a> = -2
+, <a class="el" href="scd30_8h.html#a8f2dfec7e99562dbe5d785467bb71bbba1063fc7212d18f1f31b06478778c50a2">SCD30_CRC_ERROR</a> = -3
+, <br />
+&#160;&#160;<a class="el" href="scd30_8h.html#a8f2dfec7e99562dbe5d785467bb71bbbabebb7ed116e6ed6787819ce0c0aa9f75">SCD30_NO_NEW_DATA</a> = -4
+<br />
+ }</td></tr>
+<tr class="memdesc:a8f2dfec7e99562dbe5d785467bb71bbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status and error codes for return values.  <a href="scd30_8h.html#a8f2dfec7e99562dbe5d785467bb71bbb">More...</a><br /></td></tr>
+<tr class="separator:a8f2dfec7e99562dbe5d785467bb71bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab522e3ceb2ac325bcf1367f1144ad271"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#ab522e3ceb2ac325bcf1367f1144ad271">scd30_init</a> (<a class="el" href="structscd30__t.html">scd30_t</a> *dev, const <a class="el" href="structscd30__params__t.html">scd30_params_t</a> *params)</td></tr>
+<tr class="memdesc:ab522e3ceb2ac325bcf1367f1144ad271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize SCD30.  <a href="scd30_8h.html#ab522e3ceb2ac325bcf1367f1144ad271">More...</a><br /></td></tr>
+<tr class="separator:ab522e3ceb2ac325bcf1367f1144ad271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4b382472c90a369addd8c9a1a167cd0"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#ac4b382472c90a369addd8c9a1a167cd0">scd30_set_param</a> (const <a class="el" href="structscd30__t.html">scd30_t</a> *dev, uint16_t param, uint16_t val)</td></tr>
+<tr class="memdesc:ac4b382472c90a369addd8c9a1a167cd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a configuration parameter of device.  <a href="scd30_8h.html#ac4b382472c90a369addd8c9a1a167cd0">More...</a><br /></td></tr>
+<tr class="separator:ac4b382472c90a369addd8c9a1a167cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c1f620e73fddcb3f5156a038d2dabd0"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a3c1f620e73fddcb3f5156a038d2dabd0">scd30_get_param</a> (<a class="el" href="structscd30__t.html">scd30_t</a> *dev, uint16_t param, uint16_t *val)</td></tr>
+<tr class="memdesc:a3c1f620e73fddcb3f5156a038d2dabd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get value set for a configuration parameter on the device.  <a href="scd30_8h.html#a3c1f620e73fddcb3f5156a038d2dabd0">More...</a><br /></td></tr>
+<tr class="separator:a3c1f620e73fddcb3f5156a038d2dabd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b57a7808aa4901001cdefdf2a1293e"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#ae7b57a7808aa4901001cdefdf2a1293e">scd30_read_triggered</a> (<a class="el" href="structscd30__t.html">scd30_t</a> *dev, <a class="el" href="structscd30__measurement__t.html">scd30_measurement_t</a> *result)</td></tr>
+<tr class="memdesc:ae7b57a7808aa4901001cdefdf2a1293e"><td class="mdescLeft">&#160;</td><td class="mdescRight">read CO2 concentration, temperature and relative humidity once  <a href="scd30_8h.html#ae7b57a7808aa4901001cdefdf2a1293e">More...</a><br /></td></tr>
+<tr class="separator:ae7b57a7808aa4901001cdefdf2a1293e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a138bc747c604caeecf619704490ca966"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a138bc747c604caeecf619704490ca966">scd30_read_periodic</a> (<a class="el" href="structscd30__t.html">scd30_t</a> *dev, <a class="el" href="structscd30__measurement__t.html">scd30_measurement_t</a> *result)</td></tr>
+<tr class="memdesc:a138bc747c604caeecf619704490ca966"><td class="mdescLeft">&#160;</td><td class="mdescRight">read co2 concentration, temperature and relative humidity when continuous measurements are being taken  <a href="scd30_8h.html#a138bc747c604caeecf619704490ca966">More...</a><br /></td></tr>
+<tr class="separator:a138bc747c604caeecf619704490ca966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a742cb2248006e6f6f6ef0197d32c9237"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a742cb2248006e6f6f6ef0197d32c9237">scd30_start_periodic_measurement</a> (<a class="el" href="structscd30__t.html">scd30_t</a> *dev, uint16_t *interval, uint16_t *apc)</td></tr>
+<tr class="memdesc:a742cb2248006e6f6f6ef0197d32c9237"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes Continuous Measurements.  <a href="scd30_8h.html#a742cb2248006e6f6f6ef0197d32c9237">More...</a><br /></td></tr>
+<tr class="separator:a742cb2248006e6f6f6ef0197d32c9237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a74cb53bb30bdef8dfae9e7ab82c5fd"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a8a74cb53bb30bdef8dfae9e7ab82c5fd">scd30_stop_measurements</a> (const <a class="el" href="structscd30__t.html">scd30_t</a> *dev)</td></tr>
+<tr class="memdesc:a8a74cb53bb30bdef8dfae9e7ab82c5fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop Continuous measurements.  <a href="scd30_8h.html#a8a74cb53bb30bdef8dfae9e7ab82c5fd">More...</a><br /></td></tr>
+<tr class="separator:a8a74cb53bb30bdef8dfae9e7ab82c5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a552ce05a238e587ec1546c078b8d9"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scd30_8h.html#a35a552ce05a238e587ec1546c078b8d9">scd30_reset</a> (<a class="el" href="structscd30__t.html">scd30_t</a> *dev)</td></tr>
+<tr class="memdesc:a35a552ce05a238e587ec1546c078b8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Soft reset sensor.  <a href="scd30_8h.html#a35a552ce05a238e587ec1546c078b8d9">More...</a><br /></td></tr>
+<tr class="separator:a35a552ce05a238e587ec1546c078b8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a469a35e2e57d2e1d238a2306a6ee754a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469a35e2e57d2e1d238a2306a6ee754a">&#9670;&nbsp;</a></span>SCD30_FRC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SCD30_FRC&#160;&#160;&#160;0x5204</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forced Recalibration. </p>
+<p>400-2000ppm </p>
+
+</div>
+</div>
+<a id="ae5f6fd6716946768c933e48c622d40b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5f6fd6716946768c933e48c622d40b9">&#9670;&nbsp;</a></span>SCD30_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SCD30_VERSION&#160;&#160;&#160;0xD100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SCD30 Configuration parameter commands. </p>
+<p>Get scd30 version </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a8f2dfec7e99562dbe5d785467bb71bbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f2dfec7e99562dbe5d785467bb71bbb">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Status and error codes for return values. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8f2dfec7e99562dbe5d785467bb71bbbad997a61d019696d1f59c934d50defb83"></a>SCD30_COM_FAILED&#160;</td><td class="fielddoc"><p>Communication with device failed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8f2dfec7e99562dbe5d785467bb71bbbad08012ba60cfa3471d209145277ee6df"></a>SCD30_INVALID_VALUE&#160;</td><td class="fielddoc"><p>Device doesn't exist. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8f2dfec7e99562dbe5d785467bb71bbba1063fc7212d18f1f31b06478778c50a2"></a>SCD30_CRC_ERROR&#160;</td><td class="fielddoc"><p>Invalid value or length. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8f2dfec7e99562dbe5d785467bb71bbbabebb7ed116e6ed6787819ce0c0aa9f75"></a>SCD30_NO_NEW_DATA&#160;</td><td class="fielddoc"><p>No new data. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a3c1f620e73fddcb3f5156a038d2dabd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c1f620e73fddcb3f5156a038d2dabd0">&#9670;&nbsp;</a></span>scd30_get_param()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t scd30_get_param </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get value set for a configuration parameter on the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 device </td></tr>
+    <tr><td class="paramname">param</td><td>param to be set/operation to be performed param codes mentioned in scd30_internal </td></tr>
+    <tr><td class="paramname">val</td><td>Pointer to the value to be set for that parameter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK on success </dd></dl>
+
+</div>
+</div>
+<a id="ab522e3ceb2ac325bcf1367f1144ad271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab522e3ceb2ac325bcf1367f1144ad271">&#9670;&nbsp;</a></span>scd30_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t scd30_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structscd30__params__t.html">scd30_params_t</a> *&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize SCD30. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 device </td></tr>
+    <tr><td class="paramname">params</td><td>scd30 device params</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK if device started </dd></dl>
+
+</div>
+</div>
+<a id="a138bc747c604caeecf619704490ca966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a138bc747c604caeecf619704490ca966">&#9670;&nbsp;</a></span>scd30_read_periodic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t scd30_read_periodic </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structscd30__measurement__t.html">scd30_measurement_t</a> *&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>read co2 concentration, temperature and relative humidity when continuous measurements are being taken </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 device </td></tr>
+    <tr><td class="paramname">result</td><td>struct to store result</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK on success </dd></dl>
+
+</div>
+</div>
+<a id="ae7b57a7808aa4901001cdefdf2a1293e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b57a7808aa4901001cdefdf2a1293e">&#9670;&nbsp;</a></span>scd30_read_triggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t scd30_read_triggered </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structscd30__measurement__t.html">scd30_measurement_t</a> *&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>read CO2 concentration, temperature and relative humidity once </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 device </td></tr>
+    <tr><td class="paramname">result</td><td>Values are stored in this struct</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK on success </dd></dl>
+
+</div>
+</div>
+<a id="a35a552ce05a238e587ec1546c078b8d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35a552ce05a238e587ec1546c078b8d9">&#9670;&nbsp;</a></span>scd30_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t scd30_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Soft reset sensor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 dev device</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK if soft reset successful </dd></dl>
+
+</div>
+</div>
+<a id="ac4b382472c90a369addd8c9a1a167cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4b382472c90a369addd8c9a1a167cd0">&#9670;&nbsp;</a></span>scd30_set_param()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t scd30_set_param </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a configuration parameter of device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 device </td></tr>
+    <tr><td class="paramname">param</td><td>param to be set/operation to be performed param codes mentioned in scd30_internal </td></tr>
+    <tr><td class="paramname">val</td><td>value to be set for that parameter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK on success </dd></dl>
+
+</div>
+</div>
+<a id="a742cb2248006e6f6f6ef0197d32c9237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a742cb2248006e6f6f6ef0197d32c9237">&#9670;&nbsp;</a></span>scd30_start_periodic_measurement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int scd30_start_periodic_measurement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>interval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>apc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes Continuous Measurements. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 device </td></tr>
+    <tr><td class="paramname">interval</td><td>Interval at which new measurements have to be taken in seconds (between 2 and 1800 seconds, both inclusive) </td></tr>
+    <tr><td class="paramname">apc</td><td>Average Pressure Compensation 0 to disable pressure compensation 700-1400 mBar for valid pressure compensation</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK if device started </dd></dl>
+
+</div>
+</div>
+<a id="a8a74cb53bb30bdef8dfae9e7ab82c5fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a74cb53bb30bdef8dfae9e7ab82c5fd">&#9670;&nbsp;</a></span>scd30_stop_measurements()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t scd30_stop_measurements </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structscd30__t.html">scd30_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop Continuous measurements. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>scd30 dev device</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SCD30_OK if measurement stopped </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="scd30_8h.html">scd30.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

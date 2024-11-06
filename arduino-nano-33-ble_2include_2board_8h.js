@@ -1,0 +1,28 @@
+var arduino_nano_33_ble_2include_2board_8h =
+[
+    [ "LED0_MASK", "arduino-nano-33-ble_2include_2board_8h.html#abfabde35a3e8b7ab50146a5e223bfead", null ],
+    [ "LED0_OFF", "arduino-nano-33-ble_2include_2board_8h.html#aef2e39b9fd343d0e437fac0463f3e02d", null ],
+    [ "LED0_ON", "arduino-nano-33-ble_2include_2board_8h.html#a1e48dc02333bfc2e6ad3e5bd466eecd4", null ],
+    [ "LED0_PIN", "arduino-nano-33-ble_2include_2board_8h.html#a3fc522fda449d6edde717d6a857429cf", null ],
+    [ "LED0_TOGGLE", "arduino-nano-33-ble_2include_2board_8h.html#aebc6389533d9fc8dcbe4d2129a4d5a45", null ],
+    [ "LED1_MASK", "arduino-nano-33-ble_2include_2board_8h.html#a669ed6e073140d069b30442bf4c08842", null ],
+    [ "LED1_OFF", "arduino-nano-33-ble_2include_2board_8h.html#a343fd2d3ce61b84f88ddfaea32c67c58", null ],
+    [ "LED1_ON", "arduino-nano-33-ble_2include_2board_8h.html#aadd4c7ae0cd4e9bbb17f7055dd51fe08", null ],
+    [ "LED1_PIN", "arduino-nano-33-ble_2include_2board_8h.html#a318aa17e5d40e2132d2c7f6269ce7f51", null ],
+    [ "LED1_TOGGLE", "arduino-nano-33-ble_2include_2board_8h.html#a267fdbba1d750146b73da35c1731fd17", null ],
+    [ "LED2_MASK", "arduino-nano-33-ble_2include_2board_8h.html#a40f0f4b5ae7ea50d341105ddc740101e", null ],
+    [ "LED2_OFF", "arduino-nano-33-ble_2include_2board_8h.html#ac6468b1df4dfabcca0bb142044d6f976", null ],
+    [ "LED2_ON", "arduino-nano-33-ble_2include_2board_8h.html#ab55f588eb2c5177d3f7806e60d379fba", null ],
+    [ "LED2_PIN", "arduino-nano-33-ble_2include_2board_8h.html#af6f84078113b55354d20585131b386f7", null ],
+    [ "LED2_TOGGLE", "arduino-nano-33-ble_2include_2board_8h.html#acd16785845ce7004334b91a98707f8eb", null ],
+    [ "LED3_MASK", "arduino-nano-33-ble_2include_2board_8h.html#a0bbbbf8e41ce9726178b09d7c68dd3fb", null ],
+    [ "LED3_OFF", "arduino-nano-33-ble_2include_2board_8h.html#a0a18a6978d9c62c42afc3917d2f258b8", null ],
+    [ "LED3_ON", "arduino-nano-33-ble_2include_2board_8h.html#ac69b87cb5151087202d5a354c87eb492", null ],
+    [ "LED3_PIN", "arduino-nano-33-ble_2include_2board_8h.html#a4cb3ff938bcabb01494ce529ae55a542", null ],
+    [ "LED3_TOGGLE", "arduino-nano-33-ble_2include_2board_8h.html#a0702de219624c9cb1bdb4ea9b25ee62d", null ],
+    [ "LED4_MASK", "arduino-nano-33-ble_2include_2board_8h.html#ae4afff5c022eb85161421fe18b0a857d", null ],
+    [ "LED4_OFF", "arduino-nano-33-ble_2include_2board_8h.html#a48d3711a619866c5ca8fe8135968c25f", null ],
+    [ "LED4_ON", "arduino-nano-33-ble_2include_2board_8h.html#a109660ec7c41cf167d83833c660f7c14", null ],
+    [ "LED4_PIN", "arduino-nano-33-ble_2include_2board_8h.html#aae684bb3d2f940637ccbc2adeb0e134d", null ],
+    [ "LED4_TOGGLE", "arduino-nano-33-ble_2include_2board_8h.html#a91a29c04e6b07e38d2beec0db1148140", null ]
+];

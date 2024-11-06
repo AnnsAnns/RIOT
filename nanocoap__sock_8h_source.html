@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/net/nanocoap_sock.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('nanocoap__sock_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">nanocoap_sock.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="nanocoap__sock_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2017 Kaspar Schleiser &lt;kaspar@schleiser.de&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2018 Inria</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *               2018 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#ifndef NET_NANOCOAP_SOCK_H</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#define NET_NANOCOAP_SOCK_H</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="random_8h.html">random.h</a>&quot;</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nanocoap_8h.html">net/nanocoap.h</a>&quot;</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sock_2udp_8h.html">net/sock/udp.h</a>&quot;</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="util_8h.html">net/sock/util.h</a>&quot;</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NANOCOAP_DTLS)</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="credman_8h.html">net/credman.h</a>&quot;</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sock_2dtls_8h.html">net/sock/dtls.h</a>&quot;</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#ifndef CONFIG_NANOCOAP_SOCK_DTLS_TAG</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga1e6615cea509ba15c236888dc1d080a3">  162</a></span>&#160;<span class="preprocessor">#define CONFIG_NANOCOAP_SOCK_DTLS_TAG           (0xc0ab)</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">#ifndef CONFIG_NANOCOAP_SERVER_BUF_SIZE</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga1288882055b3987361fa829c8fc5a774">  170</a></span>&#160;<span class="preprocessor">#define CONFIG_NANOCOAP_SERVER_BUF_SIZE         ((1 &lt;&lt; (CONFIG_NANOCOAP_BLOCKSIZE_DEFAULT + 3)) \</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">                                                 + CONFIG_NANOCOAP_URI_MAX + 16)</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#ifndef CONFIG_NANOCOAP_SERVER_STACK_SIZE</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga293861b7a3fe8f22fa889dc1760362bb">  178</a></span>&#160;<span class="preprocessor">#define CONFIG_NANOCOAP_SERVER_STACK_SIZE       THREAD_STACKSIZE_DEFAULT</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="preprocessor">#ifndef CONFIG_NANOCOAP_SOCK_BLOCK_TOKEN</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaedbd07b2745e261ec745b46a6549c34d">  190</a></span>&#160;<span class="preprocessor">#define CONFIG_NANOCOAP_SOCK_BLOCK_TOKEN        (0)</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gae3e4fc820564121c86199921270c0275">  196</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275a2ebef91b4b721d48214df2d32ec4cae7">  197</a></span>&#160;    <a class="code" href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275a2ebef91b4b721d48214df2d32ec4cae7">COAP_SOCKET_TYPE_UDP</a>,                   </div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275ac0403908f2afb92fa49f3e70e6640b38">  198</a></span>&#160;    <a class="code" href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275ac0403908f2afb92fa49f3e70e6640b38">COAP_SOCKET_TYPE_DTLS</a>,                  </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;} <a class="code" href="group__net__nanosock.html#gae3e4fc820564121c86199921270c0275">nanocoap_socket_type_t</a>;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="structnanocoap__sock__t.html">  204</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="structnanocoap__sock__t.html#a8984cbdd1dd5867852b30bcb99b4db50">  205</a></span>&#160;    <a class="code" href="structsock__udp.html">sock_udp_t</a> <a class="code" href="structnanocoap__sock__t.html#a8984cbdd1dd5867852b30bcb99b4db50">udp</a>;                         </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NANOCOAP_DTLS) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="structnanocoap__sock__t.html#a7dcf43408ce39a1c4609d2976e3d7393">  207</a></span>&#160;    <a class="code" href="structsock__dtls.html">sock_dtls_t</a> <a class="code" href="structnanocoap__sock__t.html#a7dcf43408ce39a1c4609d2976e3d7393">dtls</a>;                       </div>
+<div class="line"><a name="l00208"></a><span class="lineno"><a class="line" href="structnanocoap__sock__t.html#a5f86ce087787763588a72d0be3f295df">  208</a></span>&#160;    <a class="code" href="structsock__dtls__session.html">sock_dtls_session_t</a> <a class="code" href="structnanocoap__sock__t.html#a5f86ce087787763588a72d0be3f295df">dtls_session</a>;       </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="structnanocoap__sock__t.html#a9f022fa1dd974871f86cb332418411ef">  211</a></span>&#160;    <a class="code" href="group__net__nanosock.html#gae3e4fc820564121c86199921270c0275">nanocoap_socket_type_t</a> <a class="code" href="structnanocoap__sock__t.html#a9f022fa1dd974871f86cb332418411ef">type</a>;            </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="structnanocoap__sock__t.html#a45f9a264e077cc4e78da35cf1085f67e">  213</a></span>&#160;    uint16_t <a class="code" href="structnanocoap__sock__t.html#a45f9a264e077cc4e78da35cf1085f67e">msg_id</a>;                        </div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;} <a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a>;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="structcoap__block__request__t.html">  219</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="structcoap__block__request__t.html#a4193eba74955097c2812f0c6a924d8bb">  220</a></span>&#160;    <a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *<a class="code" href="structcoap__block__request__t.html#a4193eba74955097c2812f0c6a924d8bb">sock</a>;          </div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="structcoap__block__request__t.html#a8ec96bc1b7020b9212ad0a25ba5eff0c">  221</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="structcoap__block__request__t.html#a8ec96bc1b7020b9212ad0a25ba5eff0c">path</a>;               </div>
+<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="structcoap__block__request__t.html#a52453bcad400a3914a4f17f53408c926">  222</a></span>&#160;    uint32_t <a class="code" href="structcoap__block__request__t.html#a52453bcad400a3914a4f17f53408c926">blknum</a>;                </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="structcoap__block__request__t.html#a96b962bf9f43eb8b3e109c03ec8a8782">  223</a></span>&#160;    <a class="code" href="group__net__coap.html#gaf99712dec26d13b1649cc55043580645">coap_method_t</a> <a class="code" href="structcoap__block__request__t.html#a96b962bf9f43eb8b3e109c03ec8a8782">method</a>;           </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="structcoap__block__request__t.html#af177f584453577472fb8fb63c807af4b">  224</a></span>&#160;    uint8_t <a class="code" href="structcoap__block__request__t.html#af177f584453577472fb8fb63c807af4b">blksize</a>;                </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;} <a class="code" href="structcoap__block__request__t.html">coap_block_request_t</a>;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="structnanocoap__server__response__ctx__t.html">  230</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="structnanocoap__server__response__ctx__t.html#ae2fe6849bdad573dbea06e0e4865fb7c">  231</a></span>&#160;    <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> <a class="code" href="structnanocoap__server__response__ctx__t.html#ae2fe6849bdad573dbea06e0e4865fb7c">remote</a>;           </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#if defined(MODULE_SOCK_AUX_LOCAL) || DOXYGEN</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="structnanocoap__server__response__ctx__t.html#a2439a7d29a62642a2c6887449a3f22eb">  233</a></span>&#160;    <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> <a class="code" href="structnanocoap__server__response__ctx__t.html#a2439a7d29a62642a2c6887449a3f22eb">local</a>;            </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="structnanocoap__server__response__ctx__t.html#a21d86bef5088fb78ba3f46e85349a255">  235</a></span>&#160;    uint8_t token[COAP_TOKEN_LENGTH_MAX];   </div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="structnanocoap__server__response__ctx__t.html#a9b15f777eba019cb37e64ccef8f48482">  236</a></span>&#160;    uint8_t <a class="code" href="structnanocoap__server__response__ctx__t.html#a9b15f777eba019cb37e64ccef8f48482">tkl</a>;                    </div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="structnanocoap__server__response__ctx__t.html#af3dcedd6bd12ef09349e25d443fa5fdb">  237</a></span>&#160;    uint8_t <a class="code" href="structnanocoap__server__response__ctx__t.html#af3dcedd6bd12ef09349e25d443fa5fdb">no_response</a>;            </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;} <a class="code" href="structnanocoap__server__response__ctx__t.html">nanocoap_server_response_ctx_t</a>;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga216bac65275f63cab23c846306c605a0">  253</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__net__nanosock.html#ga216bac65275f63cab23c846306c605a0">nanocoap_server_prepare_separate</a>(<a class="code" href="structnanocoap__server__response__ctx__t.html">nanocoap_server_response_ctx_t</a> *ctx,</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                                      <a class="code" href="structcoap__pkt__t.html">coap_pkt_t</a> *pkt, <span class="keyword">const</span> <a class="code" href="struct__coap__request__ctx.html">coap_request_ctx_t</a> *req);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaabc7cae6d9a18f2a2360d592542d67a7">  273</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#gaabc7cae6d9a18f2a2360d592542d67a7">nanocoap_server_send_separate</a>(<span class="keyword">const</span> <a class="code" href="structnanocoap__server__response__ctx__t.html">nanocoap_server_response_ctx_t</a> *ctx,</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                                  <span class="keywordtype">unsigned</span> code, <span class="keywordtype">unsigned</span> type,</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">void</span> *payload, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaa327f4e1e000925a6e1d06b5009d05cf">  284</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__net__nanosock.html#gaa327f4e1e000925a6e1d06b5009d05cf">nanocoap_sock_next_msg_id</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock)</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;{</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="keywordflow">return</span> sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a45f9a264e077cc4e78da35cf1085f67e">msg_id</a>++;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;}</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaa8dc99f3f6c9b49ce8a4da7f15260766">  301</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#gaa8dc99f3f6c9b49ce8a4da7f15260766">nanocoap_server</a>(<a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *local, uint8_t *buf, <span class="keywordtype">size_t</span> bufsize);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga67689e162bf20649cca78957f4869dba">  313</a></span>&#160;<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> <a class="code" href="group__net__nanosock.html#ga67689e162bf20649cca78957f4869dba">nanocoap_server_start</a>(<span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *local);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00325"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gacec46e67451d121c6aa3c188b7734363">  325</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#gacec46e67451d121c6aa3c188b7734363">nanocoap_sock_connect</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock,</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                                        <span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *local,</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                                        <span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *remote)</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;{</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NANOCOAP_DTLS)</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a9f022fa1dd974871f86cb332418411ef">type</a> = <a class="code" href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275a2ebef91b4b721d48214df2d32ec4cae7">COAP_SOCKET_TYPE_UDP</a>;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a45f9a264e077cc4e78da35cf1085f67e">msg_id</a> = <a class="code" href="group__sys__random.html#gac710f60d1f67206e14efacadd388e37f">random_uint32</a>();</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__sock__udp.html#ga20fa4b890dff1c97a63075090e6f9d7d">sock_udp_create</a>(&amp;sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a8984cbdd1dd5867852b30bcb99b4db50">udp</a>, local, remote, 0);</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;}</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NANOCOAP_DTLS) || DOXYGEN</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga9027d8c301d6587c4b82e7332ae46b55">  350</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#ga9027d8c301d6587c4b82e7332ae46b55">nanocoap_sock_dtls_connect</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *local,</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                               <span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *remote, <a class="code" href="group__net__credman.html#ga89fc115fe10d879da7faf1c0d0f901a7">credman_tag_t</a> tag);</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga282ddfd4238b746dd20d4cfe4df4c244">  363</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#ga282ddfd4238b746dd20d4cfe4df4c244">nanocoap_sock_url_connect</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *url, <a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
+<div class="line"><a name="l00370"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gae9376e608769729b1668ccc349447082">  370</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__net__nanosock.html#gae9376e608769729b1668ccc349447082">nanocoap_sock_close</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock)</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;{</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_NANOCOAP_DTLS)</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keywordflow">if</span> (sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a9f022fa1dd974871f86cb332418411ef">type</a> == <a class="code" href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275ac0403908f2afb92fa49f3e70e6640b38">COAP_SOCKET_TYPE_DTLS</a>) {</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <a class="code" href="group__net__sock__dtls.html#ga5e2688dd03fe5d365ec81c4f82ff03ed">sock_dtls_session_destroy</a>(&amp;sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a7dcf43408ce39a1c4609d2976e3d7393">dtls</a>, &amp;sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a5f86ce087787763588a72d0be3f295df">dtls_session</a>);</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <a class="code" href="group__net__sock__dtls.html#ga47fde8af808ceed2db7fefbb05bbd04c">sock_dtls_close</a>(&amp;sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a7dcf43408ce39a1c4609d2976e3d7393">dtls</a>);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <a class="code" href="group__net__sock__udp.html#ga9bab7d0998b2c49e66bab0f03367298a">sock_udp_close</a>(&amp;sock-&gt;<a class="code" href="structnanocoap__sock__t.html#a8984cbdd1dd5867852b30bcb99b4db50">udp</a>);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;}</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gab66959ad47fd44afa1ebdf9d44d0b394">  392</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#gab66959ad47fd44afa1ebdf9d44d0b394">nanocoap_sock_get</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path, <span class="keywordtype">void</span> *buf,</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                          <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00406"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga136631ddd8ef9ed9ac4561a453489269">  406</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga136631ddd8ef9ed9ac4561a453489269">nanocoap_sock_get_non</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                              <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00422"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga25e146569f51b488e140eac77710d67f">  422</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga25e146569f51b488e140eac77710d67f">nanocoap_sock_put</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                          <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                          <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160; </div>
+<div class="line"><a name="l00441"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga0ce8f6d164e274035ec452cadfa6f014">  441</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga0ce8f6d164e274035ec452cadfa6f014">nanocoap_sock_put_non</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                              <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                              <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
+<div class="line"><a name="l00457"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gacb63bde357408c45b01de0d9995aa5df">  457</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#gacb63bde357408c45b01de0d9995aa5df">nanocoap_sock_put_url</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *url,</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;                              <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                              <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160; </div>
+<div class="line"><a name="l00474"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaa3cc19122ffcf70a4a59653118808e7a">  474</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#gaa3cc19122ffcf70a4a59653118808e7a">nanocoap_sock_post</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;                           <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160; </div>
+<div class="line"><a name="l00493"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaab1cde1ee8660b189691bc7ea76e5d8c">  493</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#gaab1cde1ee8660b189691bc7ea76e5d8c">nanocoap_sock_post_non</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;                               <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;                               <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160; </div>
+<div class="line"><a name="l00509"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga3512df1cdfdf348901e4fa92508305e2">  509</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga3512df1cdfdf348901e4fa92508305e2">nanocoap_sock_post_url</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *url,</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;                               <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;                               <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160; </div>
+<div class="line"><a name="l00527"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga88034d74b68f56ff5c84514cba774ead">  527</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga88034d74b68f56ff5c84514cba774ead">nanocoap_sock_fetch</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;                            <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;                            <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160; </div>
+<div class="line"><a name="l00547"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga94a4c60055d1958fe3ecb3f2ff3b5056">  547</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga94a4c60055d1958fe3ecb3f2ff3b5056">nanocoap_sock_fetch_non</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;                                <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;                                <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160; </div>
+<div class="line"><a name="l00564"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga9ea49916951bb8110cc65d35a4ffe2d1">  564</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga9ea49916951bb8110cc65d35a4ffe2d1">nanocoap_sock_fetch_url</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *url,</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;                                <span class="keyword">const</span> <span class="keywordtype">void</span> *request, <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                                <span class="keywordtype">void</span> *response, <span class="keywordtype">size_t</span> len_max);</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160; </div>
+<div class="line"><a name="l00577"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga18c380fe1dfea851fed1bd068684d094">  577</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga18c380fe1dfea851fed1bd068684d094">nanocoap_sock_delete</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160; </div>
+<div class="line"><a name="l00587"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga370193392b90544d127a797db8c5c2b1">  587</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga370193392b90544d127a797db8c5c2b1">nanocoap_sock_delete_url</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *url);</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160; </div>
+<div class="line"><a name="l00605"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gad565b9d312a92f25384a76cf0805b6d9">  605</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#gad565b9d312a92f25384a76cf0805b6d9">nanocoap_sock_get_blockwise</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                                <a class="code" href="group__net__coap.html#ga0fcf4cd975c851efc10c4388ee6236e9">coap_blksize_t</a> blksize,</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                                <a class="code" href="group__net__nanocoap.html#gac1c99e4c6b4acff707d856ba0b18d590">coap_blockwise_cb_t</a> callback, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160; </div>
+<div class="line"><a name="l00624"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga402626952d9a947953122441c4245b80">  624</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#ga402626952d9a947953122441c4245b80">nanocoap_sock_get_slice</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                            <a class="code" href="group__net__coap.html#ga0fcf4cd975c851efc10c4388ee6236e9">coap_blksize_t</a> blksize, <span class="keywordtype">size_t</span> offset,</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                            <span class="keywordtype">void</span> *dst, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160; </div>
+<div class="line"><a name="l00645"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gabcffa1a45484915af70db2a5be4990a8">  645</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#gabcffa1a45484915af70db2a5be4990a8">nanocoap_get_blockwise_url</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *url,</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                               <a class="code" href="group__net__coap.html#ga0fcf4cd975c851efc10c4388ee6236e9">coap_blksize_t</a> blksize,</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                               <a class="code" href="group__net__nanocoap.html#gac1c99e4c6b4acff707d856ba0b18d590">coap_blockwise_cb_t</a> callback, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160; </div>
+<div class="line"><a name="l00668"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gab75c570cd55959d508767fd7f556eaf6">  668</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#gab75c570cd55959d508767fd7f556eaf6">nanocoap_get_blockwise_url_to_buf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *url,</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;                                          <a class="code" href="group__net__coap.html#ga0fcf4cd975c851efc10c4388ee6236e9">coap_blksize_t</a> blksize,</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;                                          <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160; </div>
+<div class="line"><a name="l00691"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaee41fbae256f3f0d28a825228a4da56d">  691</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#gaee41fbae256f3f0d28a825228a4da56d">nanocoap_get_blockwise_to_buf</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;                                      <a class="code" href="group__net__coap.html#ga0fcf4cd975c851efc10c4388ee6236e9">coap_blksize_t</a> blksize,</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;                                      <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160; </div>
+<div class="line"><a name="l00707"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga829870b2ff3a51a4a908f86ad98303c2">  707</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga829870b2ff3a51a4a908f86ad98303c2">nanocoap_sock_request</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <a class="code" href="structcoap__pkt__t.html">coap_pkt_t</a> *pkt, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160; </div>
+<div class="line"><a name="l00732"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gab306582328424179525af3296bd3618d">  732</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#gab306582328424179525af3296bd3618d">nanocoap_sock_request_cb</a>(<a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock, <a class="code" href="structcoap__pkt__t.html">coap_pkt_t</a> *pkt,</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;                                 <a class="code" href="group__net__nanocoap.html#gac302c0f9ec8053b64b9b46a4dbee9092">coap_request_cb_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160; </div>
+<div class="line"><a name="l00748"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#ga48c6a342b8f4c32719eb6602756783d8">  748</a></span>&#160;ssize_t <a class="code" href="group__net__nanosock.html#ga48c6a342b8f4c32719eb6602756783d8">nanocoap_request</a>(<a class="code" href="structcoap__pkt__t.html">coap_pkt_t</a> *pkt, <span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *local,</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;                         <span class="keyword">const</span> <a class="code" href="struct__sock__tl__ep.html">sock_udp_ep_t</a> *remote, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160; </div>
+<div class="line"><a name="l00763"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gab53f88387e3ed79d8288ac7beaf7873a">  763</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#gab53f88387e3ed79d8288ac7beaf7873a">nanocoap_block_request_connect_url</a>(<a class="code" href="structcoap__block__request__t.html">coap_block_request_t</a> *ctx,</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                                                     <a class="code" href="structnanocoap__sock__t.html">nanocoap_sock_t</a> *sock,</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;                                                     <span class="keyword">const</span> <span class="keywordtype">char</span> *url,</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;                                                     <a class="code" href="group__net__coap.html#gaf99712dec26d13b1649cc55043580645">coap_method_t</a> method,</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;                                                     <a class="code" href="group__net__coap.html#ga0fcf4cd975c851efc10c4388ee6236e9">coap_blksize_t</a> blksize)</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;{</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    ctx-&gt;<a class="code" href="structcoap__block__request__t.html#a4193eba74955097c2812f0c6a924d8bb">sock</a> = sock;</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    ctx-&gt;<a class="code" href="structcoap__block__request__t.html#a8ec96bc1b7020b9212ad0a25ba5eff0c">path</a> = <a class="code" href="group__net__sock__util.html#ga05a9d44db342155c49680284d1699f29">sock_urlpath</a>(url);</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;    ctx-&gt;<a class="code" href="structcoap__block__request__t.html#a52453bcad400a3914a4f17f53408c926">blknum</a> = 0;</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;    ctx-&gt;<a class="code" href="structcoap__block__request__t.html#a96b962bf9f43eb8b3e109c03ec8a8782">method</a> = method;</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;    ctx-&gt;<a class="code" href="structcoap__block__request__t.html#af177f584453577472fb8fb63c807af4b">blksize</a> = blksize;</div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__net__nanosock.html#ga282ddfd4238b746dd20d4cfe4df4c244">nanocoap_sock_url_connect</a>(url, ctx-&gt;<a class="code" href="structcoap__block__request__t.html#a4193eba74955097c2812f0c6a924d8bb">sock</a>);</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;}</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160; </div>
+<div class="line"><a name="l00797"></a><span class="lineno"><a class="line" href="group__net__nanosock.html#gaa9282335cdd7d0bb39bcd4d48fab1517">  797</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__net__nanosock.html#gaa9282335cdd7d0bb39bcd4d48fab1517">nanocoap_sock_block_request</a>(<a class="code" href="structcoap__block__request__t.html">coap_block_request_t</a> *ctx,</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;                                <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len, <span class="keywordtype">bool</span> more,</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;                                <a class="code" href="group__net__nanocoap.html#gac302c0f9ec8053b64b9b46a4dbee9092">coap_request_cb_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;}</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NET_NANOCOAP_SOCK_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acredman_8h_html"><div class="ttname"><a href="credman_8h.html">credman.h</a></div><div class="ttdoc">(D)TLS credentials management module definitions</div></div>
+<div class="ttc" id="agroup__core__sched_html_ga8375139300d7cbf23bd8bd89ddddbe84"><div class="ttname"><a href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a></div><div class="ttdeci">int16_t kernel_pid_t</div><div class="ttdoc">Unique process identifier.</div><div class="ttdef"><b>Definition:</b> sched.h:139</div></div>
+<div class="ttc" id="agroup__net__coap_html_ga0fcf4cd975c851efc10c4388ee6236e9"><div class="ttname"><a href="group__net__coap.html#ga0fcf4cd975c851efc10c4388ee6236e9">coap_blksize_t</a></div><div class="ttdeci">coap_blksize_t</div><div class="ttdoc">Coap block-wise-transfer size SZX.</div><div class="ttdef"><b>Definition:</b> coap.h:618</div></div>
+<div class="ttc" id="agroup__net__coap_html_gaf99712dec26d13b1649cc55043580645"><div class="ttname"><a href="group__net__coap.html#gaf99712dec26d13b1649cc55043580645">coap_method_t</a></div><div class="ttdeci">coap_method_t</div><div class="ttdoc">CoAP method codes used in request.</div><div class="ttdef"><b>Definition:</b> coap.h:171</div></div>
+<div class="ttc" id="agroup__net__credman_html_ga89fc115fe10d879da7faf1c0d0f901a7"><div class="ttname"><a href="group__net__credman.html#ga89fc115fe10d879da7faf1c0d0f901a7">credman_tag_t</a></div><div class="ttdeci">uint16_t credman_tag_t</div><div class="ttdoc">Tag of the credential.</div><div class="ttdef"><b>Definition:</b> credman.h:96</div></div>
+<div class="ttc" id="agroup__net__nanocoap_html_gac1c99e4c6b4acff707d856ba0b18d590"><div class="ttname"><a href="group__net__nanocoap.html#gac1c99e4c6b4acff707d856ba0b18d590">coap_blockwise_cb_t</a></div><div class="ttdeci">int(* coap_blockwise_cb_t)(void *arg, size_t offset, uint8_t *buf, size_t len, int more)</div><div class="ttdoc">Coap blockwise request callback descriptor.</div><div class="ttdef"><b>Definition:</b> nanocoap.h:287</div></div>
+<div class="ttc" id="agroup__net__nanocoap_html_gac302c0f9ec8053b64b9b46a4dbee9092"><div class="ttname"><a href="group__net__nanocoap.html#gac302c0f9ec8053b64b9b46a4dbee9092">coap_request_cb_t</a></div><div class="ttdeci">int(* coap_request_cb_t)(void *arg, coap_pkt_t *pkt)</div><div class="ttdoc">Coap request callback descriptor.</div><div class="ttdef"><b>Definition:</b> nanocoap.h:299</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga0ce8f6d164e274035ec452cadfa6f014"><div class="ttname"><a href="group__net__nanosock.html#ga0ce8f6d164e274035ec452cadfa6f014">nanocoap_sock_put_non</a></div><div class="ttdeci">ssize_t nanocoap_sock_put_non(nanocoap_sock_t *sock, const char *path, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple non-confirmable PUT.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga136631ddd8ef9ed9ac4561a453489269"><div class="ttname"><a href="group__net__nanosock.html#ga136631ddd8ef9ed9ac4561a453489269">nanocoap_sock_get_non</a></div><div class="ttdeci">ssize_t nanocoap_sock_get_non(nanocoap_sock_t *sock, const char *path, void *response, size_t len_max)</div><div class="ttdoc">Simple non-confirmable GET.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga18c380fe1dfea851fed1bd068684d094"><div class="ttname"><a href="group__net__nanosock.html#ga18c380fe1dfea851fed1bd068684d094">nanocoap_sock_delete</a></div><div class="ttdeci">ssize_t nanocoap_sock_delete(nanocoap_sock_t *sock, const char *path)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) DELETE.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga216bac65275f63cab23c846306c605a0"><div class="ttname"><a href="group__net__nanosock.html#ga216bac65275f63cab23c846306c605a0">nanocoap_server_prepare_separate</a></div><div class="ttdeci">void nanocoap_server_prepare_separate(nanocoap_server_response_ctx_t *ctx, coap_pkt_t *pkt, const coap_request_ctx_t *req)</div><div class="ttdoc">Prepare the context for a separate response.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga25e146569f51b488e140eac77710d67f"><div class="ttname"><a href="group__net__nanosock.html#ga25e146569f51b488e140eac77710d67f">nanocoap_sock_put</a></div><div class="ttdeci">ssize_t nanocoap_sock_put(nanocoap_sock_t *sock, const char *path, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) PUT.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga282ddfd4238b746dd20d4cfe4df4c244"><div class="ttname"><a href="group__net__nanosock.html#ga282ddfd4238b746dd20d4cfe4df4c244">nanocoap_sock_url_connect</a></div><div class="ttdeci">int nanocoap_sock_url_connect(const char *url, nanocoap_sock_t *sock)</div><div class="ttdoc">Create a CoAP client socket by URL.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga3512df1cdfdf348901e4fa92508305e2"><div class="ttname"><a href="group__net__nanosock.html#ga3512df1cdfdf348901e4fa92508305e2">nanocoap_sock_post_url</a></div><div class="ttdeci">ssize_t nanocoap_sock_post_url(const char *url, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) POST to URL.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga370193392b90544d127a797db8c5c2b1"><div class="ttname"><a href="group__net__nanosock.html#ga370193392b90544d127a797db8c5c2b1">nanocoap_sock_delete_url</a></div><div class="ttdeci">ssize_t nanocoap_sock_delete_url(const char *url)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) DELETE for URL.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga402626952d9a947953122441c4245b80"><div class="ttname"><a href="group__net__nanosock.html#ga402626952d9a947953122441c4245b80">nanocoap_sock_get_slice</a></div><div class="ttdeci">int nanocoap_sock_get_slice(nanocoap_sock_t *sock, const char *path, coap_blksize_t blksize, size_t offset, void *dst, size_t len)</div><div class="ttdoc">Performs a blockwise coap get request to the specified url, store the response in a buffer.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga48c6a342b8f4c32719eb6602756783d8"><div class="ttname"><a href="group__net__nanosock.html#ga48c6a342b8f4c32719eb6602756783d8">nanocoap_request</a></div><div class="ttdeci">ssize_t nanocoap_request(coap_pkt_t *pkt, const sock_udp_ep_t *local, const sock_udp_ep_t *remote, size_t len)</div><div class="ttdoc">Simple synchronous CoAP request.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga67689e162bf20649cca78957f4869dba"><div class="ttname"><a href="group__net__nanosock.html#ga67689e162bf20649cca78957f4869dba">nanocoap_server_start</a></div><div class="ttdeci">kernel_pid_t nanocoap_server_start(const sock_udp_ep_t *local)</div><div class="ttdoc">Create and start the nanoCoAP server thread.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga829870b2ff3a51a4a908f86ad98303c2"><div class="ttname"><a href="group__net__nanosock.html#ga829870b2ff3a51a4a908f86ad98303c2">nanocoap_sock_request</a></div><div class="ttdeci">ssize_t nanocoap_sock_request(nanocoap_sock_t *sock, coap_pkt_t *pkt, size_t len)</div><div class="ttdoc">Simple synchronous CoAP request.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga88034d74b68f56ff5c84514cba774ead"><div class="ttname"><a href="group__net__nanosock.html#ga88034d74b68f56ff5c84514cba774ead">nanocoap_sock_fetch</a></div><div class="ttdeci">ssize_t nanocoap_sock_fetch(nanocoap_sock_t *sock, const char *path, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) FETCH (RFC 8132)</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga9027d8c301d6587c4b82e7332ae46b55"><div class="ttname"><a href="group__net__nanosock.html#ga9027d8c301d6587c4b82e7332ae46b55">nanocoap_sock_dtls_connect</a></div><div class="ttdeci">int nanocoap_sock_dtls_connect(nanocoap_sock_t *sock, sock_udp_ep_t *local, const sock_udp_ep_t *remote, credman_tag_t tag)</div><div class="ttdoc">Create a DTLS secured CoAP client socket.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga94a4c60055d1958fe3ecb3f2ff3b5056"><div class="ttname"><a href="group__net__nanosock.html#ga94a4c60055d1958fe3ecb3f2ff3b5056">nanocoap_sock_fetch_non</a></div><div class="ttdeci">ssize_t nanocoap_sock_fetch_non(nanocoap_sock_t *sock, const char *path, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple non-confirmable FETCH (RFC 8132)</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ga9ea49916951bb8110cc65d35a4ffe2d1"><div class="ttname"><a href="group__net__nanosock.html#ga9ea49916951bb8110cc65d35a4ffe2d1">nanocoap_sock_fetch_url</a></div><div class="ttdeci">ssize_t nanocoap_sock_fetch_url(const char *url, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) FETCH to URL (RFC 8132)</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gaa327f4e1e000925a6e1d06b5009d05cf"><div class="ttname"><a href="group__net__nanosock.html#gaa327f4e1e000925a6e1d06b5009d05cf">nanocoap_sock_next_msg_id</a></div><div class="ttdeci">static uint16_t nanocoap_sock_next_msg_id(nanocoap_sock_t *sock)</div><div class="ttdoc">Get next consecutive message ID for use when building a new CoAP request.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:284</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gaa3cc19122ffcf70a4a59653118808e7a"><div class="ttname"><a href="group__net__nanosock.html#gaa3cc19122ffcf70a4a59653118808e7a">nanocoap_sock_post</a></div><div class="ttdeci">ssize_t nanocoap_sock_post(nanocoap_sock_t *sock, const char *path, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) POST.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gaa8dc99f3f6c9b49ce8a4da7f15260766"><div class="ttname"><a href="group__net__nanosock.html#gaa8dc99f3f6c9b49ce8a4da7f15260766">nanocoap_server</a></div><div class="ttdeci">int nanocoap_server(sock_udp_ep_t *local, uint8_t *buf, size_t bufsize)</div><div class="ttdoc">Start a nanocoap server instance.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gaa9282335cdd7d0bb39bcd4d48fab1517"><div class="ttname"><a href="group__net__nanosock.html#gaa9282335cdd7d0bb39bcd4d48fab1517">nanocoap_sock_block_request</a></div><div class="ttdeci">int nanocoap_sock_block_request(coap_block_request_t *ctx, const void *data, size_t len, bool more, coap_request_cb_t cb, void *arg)</div><div class="ttdoc">Do a block-wise request, send a single block.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gaab1cde1ee8660b189691bc7ea76e5d8c"><div class="ttname"><a href="group__net__nanosock.html#gaab1cde1ee8660b189691bc7ea76e5d8c">nanocoap_sock_post_non</a></div><div class="ttdeci">ssize_t nanocoap_sock_post_non(nanocoap_sock_t *sock, const char *path, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple non-confirmable POST.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gaabc7cae6d9a18f2a2360d592542d67a7"><div class="ttname"><a href="group__net__nanosock.html#gaabc7cae6d9a18f2a2360d592542d67a7">nanocoap_server_send_separate</a></div><div class="ttdeci">int nanocoap_server_send_separate(const nanocoap_server_response_ctx_t *ctx, unsigned code, unsigned type, const void *payload, size_t len)</div><div class="ttdoc">Send a separate response to a CoAP request.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gab306582328424179525af3296bd3618d"><div class="ttname"><a href="group__net__nanosock.html#gab306582328424179525af3296bd3618d">nanocoap_sock_request_cb</a></div><div class="ttdeci">ssize_t nanocoap_sock_request_cb(nanocoap_sock_t *sock, coap_pkt_t *pkt, coap_request_cb_t cb, void *arg)</div><div class="ttdoc">Simple synchronous CoAP request with callback.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gab53f88387e3ed79d8288ac7beaf7873a"><div class="ttname"><a href="group__net__nanosock.html#gab53f88387e3ed79d8288ac7beaf7873a">nanocoap_block_request_connect_url</a></div><div class="ttdeci">static int nanocoap_block_request_connect_url(coap_block_request_t *ctx, nanocoap_sock_t *sock, const char *url, coap_method_t method, coap_blksize_t blksize)</div><div class="ttdoc">Initialize block request context by URL and connect a socket.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:763</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gab66959ad47fd44afa1ebdf9d44d0b394"><div class="ttname"><a href="group__net__nanosock.html#gab66959ad47fd44afa1ebdf9d44d0b394">nanocoap_sock_get</a></div><div class="ttdeci">ssize_t nanocoap_sock_get(nanocoap_sock_t *sock, const char *path, void *buf, size_t len)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) GET.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gab75c570cd55959d508767fd7f556eaf6"><div class="ttname"><a href="group__net__nanosock.html#gab75c570cd55959d508767fd7f556eaf6">nanocoap_get_blockwise_url_to_buf</a></div><div class="ttdeci">ssize_t nanocoap_get_blockwise_url_to_buf(const char *url, coap_blksize_t blksize, void *buf, size_t len)</div><div class="ttdoc">Performs a blockwise coap get request to the specified url, store the response in a buffer.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gabcffa1a45484915af70db2a5be4990a8"><div class="ttname"><a href="group__net__nanosock.html#gabcffa1a45484915af70db2a5be4990a8">nanocoap_get_blockwise_url</a></div><div class="ttdeci">int nanocoap_get_blockwise_url(const char *url, coap_blksize_t blksize, coap_blockwise_cb_t callback, void *arg)</div><div class="ttdoc">Performs a blockwise coap get request to the specified url.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gacb63bde357408c45b01de0d9995aa5df"><div class="ttname"><a href="group__net__nanosock.html#gacb63bde357408c45b01de0d9995aa5df">nanocoap_sock_put_url</a></div><div class="ttdeci">ssize_t nanocoap_sock_put_url(const char *url, const void *request, size_t len, void *response, size_t len_max)</div><div class="ttdoc">Simple synchronous CoAP (confirmable) PUT to URL.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gacec46e67451d121c6aa3c188b7734363"><div class="ttname"><a href="group__net__nanosock.html#gacec46e67451d121c6aa3c188b7734363">nanocoap_sock_connect</a></div><div class="ttdeci">static int nanocoap_sock_connect(nanocoap_sock_t *sock, const sock_udp_ep_t *local, const sock_udp_ep_t *remote)</div><div class="ttdoc">Create a CoAP client socket.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:325</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gad565b9d312a92f25384a76cf0805b6d9"><div class="ttname"><a href="group__net__nanosock.html#gad565b9d312a92f25384a76cf0805b6d9">nanocoap_sock_get_blockwise</a></div><div class="ttdeci">int nanocoap_sock_get_blockwise(nanocoap_sock_t *sock, const char *path, coap_blksize_t blksize, coap_blockwise_cb_t callback, void *arg)</div><div class="ttdoc">Performs a blockwise coap get request on a socket.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gae3e4fc820564121c86199921270c0275"><div class="ttname"><a href="group__net__nanosock.html#gae3e4fc820564121c86199921270c0275">nanocoap_socket_type_t</a></div><div class="ttdeci">nanocoap_socket_type_t</div><div class="ttdoc">NanoCoAP socket types.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:196</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gae9376e608769729b1668ccc349447082"><div class="ttname"><a href="group__net__nanosock.html#gae9376e608769729b1668ccc349447082">nanocoap_sock_close</a></div><div class="ttdeci">static void nanocoap_sock_close(nanocoap_sock_t *sock)</div><div class="ttdoc">Close a CoAP client socket.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:370</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_gaee41fbae256f3f0d28a825228a4da56d"><div class="ttname"><a href="group__net__nanosock.html#gaee41fbae256f3f0d28a825228a4da56d">nanocoap_get_blockwise_to_buf</a></div><div class="ttdeci">ssize_t nanocoap_get_blockwise_to_buf(nanocoap_sock_t *sock, const char *path, coap_blksize_t blksize, void *buf, size_t len)</div><div class="ttdoc">Performs a blockwise CoAP GET request, store the response in a buffer.</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ggae3e4fc820564121c86199921270c0275a2ebef91b4b721d48214df2d32ec4cae7"><div class="ttname"><a href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275a2ebef91b4b721d48214df2d32ec4cae7">COAP_SOCKET_TYPE_UDP</a></div><div class="ttdeci">@ COAP_SOCKET_TYPE_UDP</div><div class="ttdoc">transport is plain UDP</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:197</div></div>
+<div class="ttc" id="agroup__net__nanosock_html_ggae3e4fc820564121c86199921270c0275ac0403908f2afb92fa49f3e70e6640b38"><div class="ttname"><a href="group__net__nanosock.html#ggae3e4fc820564121c86199921270c0275ac0403908f2afb92fa49f3e70e6640b38">COAP_SOCKET_TYPE_DTLS</a></div><div class="ttdeci">@ COAP_SOCKET_TYPE_DTLS</div><div class="ttdoc">transport is DTLS</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:198</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga47fde8af808ceed2db7fefbb05bbd04c"><div class="ttname"><a href="group__net__sock__dtls.html#ga47fde8af808ceed2db7fefbb05bbd04c">sock_dtls_close</a></div><div class="ttdeci">void sock_dtls_close(sock_dtls_t *sock)</div><div class="ttdoc">Closes a DTLS sock.</div></div>
+<div class="ttc" id="agroup__net__sock__dtls_html_ga5e2688dd03fe5d365ec81c4f82ff03ed"><div class="ttname"><a href="group__net__sock__dtls.html#ga5e2688dd03fe5d365ec81c4f82ff03ed">sock_dtls_session_destroy</a></div><div class="ttdeci">void sock_dtls_session_destroy(sock_dtls_t *sock, sock_dtls_session_t *remote)</div><div class="ttdoc">Destroys an existing DTLS session.</div></div>
+<div class="ttc" id="agroup__net__sock__udp_html_ga20fa4b890dff1c97a63075090e6f9d7d"><div class="ttname"><a href="group__net__sock__udp.html#ga20fa4b890dff1c97a63075090e6f9d7d">sock_udp_create</a></div><div class="ttdeci">int sock_udp_create(sock_udp_t *sock, const sock_udp_ep_t *local, const sock_udp_ep_t *remote, uint16_t flags)</div><div class="ttdoc">Creates a new UDP sock object.</div></div>
+<div class="ttc" id="agroup__net__sock__udp_html_ga9bab7d0998b2c49e66bab0f03367298a"><div class="ttname"><a href="group__net__sock__udp.html#ga9bab7d0998b2c49e66bab0f03367298a">sock_udp_close</a></div><div class="ttdeci">void sock_udp_close(sock_udp_t *sock)</div><div class="ttdoc">Closes a UDP sock object.</div></div>
+<div class="ttc" id="agroup__net__sock__util_html_ga05a9d44db342155c49680284d1699f29"><div class="ttname"><a href="group__net__sock__util.html#ga05a9d44db342155c49680284d1699f29">sock_urlpath</a></div><div class="ttdeci">const char * sock_urlpath(const char *url)</div><div class="ttdoc">Returns a pointer to the path component in url.</div></div>
+<div class="ttc" id="agroup__sys__random_html_gac710f60d1f67206e14efacadd388e37f"><div class="ttname"><a href="group__sys__random.html#gac710f60d1f67206e14efacadd388e37f">random_uint32</a></div><div class="ttdeci">uint32_t random_uint32(void)</div><div class="ttdoc">generates a random number on [0,0xffffffff]-interval</div></div>
+<div class="ttc" id="ananocoap_8h_html"><div class="ttname"><a href="nanocoap_8h.html">nanocoap.h</a></div><div class="ttdoc">nanocoap API</div></div>
+<div class="ttc" id="arandom_8h_html"><div class="ttname"><a href="random_8h.html">random.h</a></div><div class="ttdoc">Common interface to the software PRNG.</div></div>
+<div class="ttc" id="asock_2dtls_8h_html"><div class="ttname"><a href="sock_2dtls_8h.html">dtls.h</a></div><div class="ttdoc">DTLS sock definitions.</div></div>
+<div class="ttc" id="asock_2udp_8h_html"><div class="ttname"><a href="sock_2udp_8h.html">udp.h</a></div><div class="ttdoc">UDP sock definitions.</div></div>
+<div class="ttc" id="astruct__coap__request__ctx_html"><div class="ttname"><a href="struct__coap__request__ctx.html">_coap_request_ctx</a></div><div class="ttdoc">CoAP resource request handler context.</div><div class="ttdef"><b>Definition:</b> nanocoap.h:338</div></div>
+<div class="ttc" id="astruct__sock__tl__ep_html"><div class="ttname"><a href="struct__sock__tl__ep.html">_sock_tl_ep</a></div><div class="ttdoc">Common IP-based transport layer end point.</div><div class="ttdef"><b>Definition:</b> sock.h:215</div></div>
+<div class="ttc" id="astructcoap__block__request__t_html"><div class="ttname"><a href="structcoap__block__request__t.html">coap_block_request_t</a></div><div class="ttdoc">Blockwise request helper struct.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:219</div></div>
+<div class="ttc" id="astructcoap__block__request__t_html_a4193eba74955097c2812f0c6a924d8bb"><div class="ttname"><a href="structcoap__block__request__t.html#a4193eba74955097c2812f0c6a924d8bb">coap_block_request_t::sock</a></div><div class="ttdeci">nanocoap_sock_t * sock</div><div class="ttdoc">socket used for the request</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:220</div></div>
+<div class="ttc" id="astructcoap__block__request__t_html_a52453bcad400a3914a4f17f53408c926"><div class="ttname"><a href="structcoap__block__request__t.html#a52453bcad400a3914a4f17f53408c926">coap_block_request_t::blknum</a></div><div class="ttdeci">uint32_t blknum</div><div class="ttdoc">current block number</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:222</div></div>
+<div class="ttc" id="astructcoap__block__request__t_html_a8ec96bc1b7020b9212ad0a25ba5eff0c"><div class="ttname"><a href="structcoap__block__request__t.html#a8ec96bc1b7020b9212ad0a25ba5eff0c">coap_block_request_t::path</a></div><div class="ttdeci">const char * path</div><div class="ttdoc">path on the server</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:221</div></div>
+<div class="ttc" id="astructcoap__block__request__t_html_a96b962bf9f43eb8b3e109c03ec8a8782"><div class="ttname"><a href="structcoap__block__request__t.html#a96b962bf9f43eb8b3e109c03ec8a8782">coap_block_request_t::method</a></div><div class="ttdeci">coap_method_t method</div><div class="ttdoc">request method (GET, POST, PUT)</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:223</div></div>
+<div class="ttc" id="astructcoap__block__request__t_html_af177f584453577472fb8fb63c807af4b"><div class="ttname"><a href="structcoap__block__request__t.html#af177f584453577472fb8fb63c807af4b">coap_block_request_t::blksize</a></div><div class="ttdeci">uint8_t blksize</div><div class="ttdoc">CoAP blocksize exponent</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:224</div></div>
+<div class="ttc" id="astructcoap__pkt__t_html"><div class="ttname"><a href="structcoap__pkt__t.html">coap_pkt_t</a></div><div class="ttdoc">CoAP PDU parsing context structure.</div><div class="ttdef"><b>Definition:</b> nanocoap.h:232</div></div>
+<div class="ttc" id="astructnanocoap__server__response__ctx__t_html"><div class="ttname"><a href="structnanocoap__server__response__ctx__t.html">nanocoap_server_response_ctx_t</a></div><div class="ttdoc">Context from CoAP request for separate response.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:230</div></div>
+<div class="ttc" id="astructnanocoap__server__response__ctx__t_html_a2439a7d29a62642a2c6887449a3f22eb"><div class="ttname"><a href="structnanocoap__server__response__ctx__t.html#a2439a7d29a62642a2c6887449a3f22eb">nanocoap_server_response_ctx_t::local</a></div><div class="ttdeci">sock_udp_ep_t local</div><div class="ttdoc">local from which to send response</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:233</div></div>
+<div class="ttc" id="astructnanocoap__server__response__ctx__t_html_a9b15f777eba019cb37e64ccef8f48482"><div class="ttname"><a href="structnanocoap__server__response__ctx__t.html#a9b15f777eba019cb37e64ccef8f48482">nanocoap_server_response_ctx_t::tkl</a></div><div class="ttdeci">uint8_t tkl</div><div class="ttdoc">request token length</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:236</div></div>
+<div class="ttc" id="astructnanocoap__server__response__ctx__t_html_ae2fe6849bdad573dbea06e0e4865fb7c"><div class="ttname"><a href="structnanocoap__server__response__ctx__t.html#ae2fe6849bdad573dbea06e0e4865fb7c">nanocoap_server_response_ctx_t::remote</a></div><div class="ttdeci">sock_udp_ep_t remote</div><div class="ttdoc">remote to send response to</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:231</div></div>
+<div class="ttc" id="astructnanocoap__server__response__ctx__t_html_af3dcedd6bd12ef09349e25d443fa5fdb"><div class="ttname"><a href="structnanocoap__server__response__ctx__t.html#af3dcedd6bd12ef09349e25d443fa5fdb">nanocoap_server_response_ctx_t::no_response</a></div><div class="ttdeci">uint8_t no_response</div><div class="ttdoc">no-response bitmap</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:237</div></div>
+<div class="ttc" id="astructnanocoap__sock__t_html"><div class="ttname"><a href="structnanocoap__sock__t.html">nanocoap_sock_t</a></div><div class="ttdoc">NanoCoAP socket struct.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:204</div></div>
+<div class="ttc" id="astructnanocoap__sock__t_html_a45f9a264e077cc4e78da35cf1085f67e"><div class="ttname"><a href="structnanocoap__sock__t.html#a45f9a264e077cc4e78da35cf1085f67e">nanocoap_sock_t::msg_id</a></div><div class="ttdeci">uint16_t msg_id</div><div class="ttdoc">next CoAP message ID</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:213</div></div>
+<div class="ttc" id="astructnanocoap__sock__t_html_a5f86ce087787763588a72d0be3f295df"><div class="ttname"><a href="structnanocoap__sock__t.html#a5f86ce087787763588a72d0be3f295df">nanocoap_sock_t::dtls_session</a></div><div class="ttdeci">sock_dtls_session_t dtls_session</div><div class="ttdoc">Session object for the stored socket.</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:208</div></div>
+<div class="ttc" id="astructnanocoap__sock__t_html_a7dcf43408ce39a1c4609d2976e3d7393"><div class="ttname"><a href="structnanocoap__sock__t.html#a7dcf43408ce39a1c4609d2976e3d7393">nanocoap_sock_t::dtls</a></div><div class="ttdeci">sock_dtls_t dtls</div><div class="ttdoc">DTLS socket</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:207</div></div>
+<div class="ttc" id="astructnanocoap__sock__t_html_a8984cbdd1dd5867852b30bcb99b4db50"><div class="ttname"><a href="structnanocoap__sock__t.html#a8984cbdd1dd5867852b30bcb99b4db50">nanocoap_sock_t::udp</a></div><div class="ttdeci">sock_udp_t udp</div><div class="ttdoc">UDP socket</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:205</div></div>
+<div class="ttc" id="astructnanocoap__sock__t_html_a9f022fa1dd974871f86cb332418411ef"><div class="ttname"><a href="structnanocoap__sock__t.html#a9f022fa1dd974871f86cb332418411ef">nanocoap_sock_t::type</a></div><div class="ttdeci">nanocoap_socket_type_t type</div><div class="ttdoc">Socket type (UDP, DTLS)</div><div class="ttdef"><b>Definition:</b> nanocoap_sock.h:211</div></div>
+<div class="ttc" id="astructsock__dtls__session_html"><div class="ttname"><a href="structsock__dtls__session.html">sock_dtls_session</a></div><div class="ttdoc">Information about remote client connected to the server.</div><div class="ttdef"><b>Definition:</b> sock_dtls_types.h:89</div></div>
+<div class="ttc" id="astructsock__dtls_html"><div class="ttname"><a href="structsock__dtls.html">sock_dtls</a></div><div class="ttdoc">Information about DTLS sock.</div><div class="ttdef"><b>Definition:</b> sock_dtls_types.h:41</div></div>
+<div class="ttc" id="astructsock__udp_html"><div class="ttname"><a href="structsock__udp.html">sock_udp</a></div><div class="ttdoc">UDP sock type.</div><div class="ttdef"><b>Definition:</b> sock_types.h:128</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">sock utility function definitions</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_7afc5d30923bebdd1513d1cc48150ca7.html">net</a></li><li class="navelem"><a class="el" href="nanocoap__sock_8h.html">nanocoap_sock.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

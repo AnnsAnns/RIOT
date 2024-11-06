@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/hd44780/include/hd44780_internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('hd44780__internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">hd44780_internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__display.html">Display Device Drivers</a> &raquo; <a class="el" href="group__drivers__hd44780.html">HD44780 LCD driver</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Internal config and parameters for the HD44780 display.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internal config and parameters for the HD44780 display. </p>
+<dl class="section author"><dt>Author</dt><dd>Sebastian Meiling <a href="#" onclick="location.href='mai'+'lto:'+'s@m'+'ln'+'g.n'+'et'; return false;">s@mln<span style="display: none;">.nosp@m.</span>g.ne<span style="display: none;">.nosp@m.</span>t</a> </dd></dl>
+</div>
+<p><a href="hd44780__internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">HD44780 LCD commands</h2></td></tr>
+<tr class="memitem:ac9bede8e7015dd687b9589351297bd0a"><td class="memItemLeft" align="right" valign="top"><a id="ac9bede8e7015dd687b9589351297bd0a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_CLEARDISPLAY</b>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="separator:ac9bede8e7015dd687b9589351297bd0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9cc630d64e479bf00e0afa7e44da8c9"><td class="memItemLeft" align="right" valign="top"><a id="af9cc630d64e479bf00e0afa7e44da8c9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_RETURNHOME</b>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:af9cc630d64e479bf00e0afa7e44da8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b34e184cf86f72b1efba96646ebeaa8"><td class="memItemLeft" align="right" valign="top"><a id="a0b34e184cf86f72b1efba96646ebeaa8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_ENTRYMODESET</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:a0b34e184cf86f72b1efba96646ebeaa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa326ed35a5adfb75eab970196cfac8d5"><td class="memItemLeft" align="right" valign="top"><a id="aa326ed35a5adfb75eab970196cfac8d5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_DISPLAYCONTROL</b>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="separator:aa326ed35a5adfb75eab970196cfac8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd9f9803f821ae827a5a8e8b93ee314"><td class="memItemLeft" align="right" valign="top"><a id="a8bd9f9803f821ae827a5a8e8b93ee314"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_CURSORSHIFT</b>&#160;&#160;&#160;(0x10)</td></tr>
+<tr class="separator:a8bd9f9803f821ae827a5a8e8b93ee314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c7d52c0f470a09da401ca3da15467a0"><td class="memItemLeft" align="right" valign="top"><a id="a0c7d52c0f470a09da401ca3da15467a0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_FUNCTIONSET</b>&#160;&#160;&#160;(0x20)</td></tr>
+<tr class="separator:a0c7d52c0f470a09da401ca3da15467a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793f6e25b5772fff082d713b48137173"><td class="memItemLeft" align="right" valign="top"><a id="a793f6e25b5772fff082d713b48137173"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_SETCGRAMADDR</b>&#160;&#160;&#160;(0x40)</td></tr>
+<tr class="separator:a793f6e25b5772fff082d713b48137173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82f9b95bb4005eccdc7225be1b303635"><td class="memItemLeft" align="right" valign="top"><a id="a82f9b95bb4005eccdc7225be1b303635"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_SETDDRAMADDR</b>&#160;&#160;&#160;(0x80)</td></tr>
+<tr class="separator:a82f9b95bb4005eccdc7225be1b303635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">HD44780 LCD entry modes flags</h2></td></tr>
+<tr class="memitem:a634f1afd89b15036c07c58d37bc5c924"><td class="memItemLeft" align="right" valign="top"><a id="a634f1afd89b15036c07c58d37bc5c924"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_ENTRYRIGHT</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a634f1afd89b15036c07c58d37bc5c924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c5556cfd3031a2c4d8e5daa226a3a3"><td class="memItemLeft" align="right" valign="top"><a id="a93c5556cfd3031a2c4d8e5daa226a3a3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_ENTRYLEFT</b>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:a93c5556cfd3031a2c4d8e5daa226a3a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2079dbb3edd37a1aaf3c05b96adccd00"><td class="memItemLeft" align="right" valign="top"><a id="a2079dbb3edd37a1aaf3c05b96adccd00"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_ENTRYSHIFTINCREMENT</b>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="separator:a2079dbb3edd37a1aaf3c05b96adccd00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbf078f0483ddd576240cb2dd00544db"><td class="memItemLeft" align="right" valign="top"><a id="abbf078f0483ddd576240cb2dd00544db"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_ENTRYSHIFTDECREMENT</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:abbf078f0483ddd576240cb2dd00544db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">HD44780 LCD control flags</h2></td></tr>
+<tr class="memitem:a2868caa07dfbdf29bd49ad677ea496fc"><td class="memItemLeft" align="right" valign="top"><a id="a2868caa07dfbdf29bd49ad677ea496fc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_DISPLAYON</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:a2868caa07dfbdf29bd49ad677ea496fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31baacd1b9590623d23ce7e372015a90"><td class="memItemLeft" align="right" valign="top"><a id="a31baacd1b9590623d23ce7e372015a90"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_DISPLAYOFF</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a31baacd1b9590623d23ce7e372015a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a191c28cb84306a6c9b1774b967c33df1"><td class="memItemLeft" align="right" valign="top"><a id="a191c28cb84306a6c9b1774b967c33df1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_CURSORON</b>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:a191c28cb84306a6c9b1774b967c33df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea49ff184845434d6336630cd914655"><td class="memItemLeft" align="right" valign="top"><a id="a1ea49ff184845434d6336630cd914655"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_CURSOROFF</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a1ea49ff184845434d6336630cd914655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada0c4d2feed778f95700c65c5bcde139"><td class="memItemLeft" align="right" valign="top"><a id="ada0c4d2feed778f95700c65c5bcde139"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_BLINKON</b>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="separator:ada0c4d2feed778f95700c65c5bcde139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e94f91265bb59ff936ef3cfccfa8388"><td class="memItemLeft" align="right" valign="top"><a id="a6e94f91265bb59ff936ef3cfccfa8388"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_BLINKOFF</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a6e94f91265bb59ff936ef3cfccfa8388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">HD44780 display and cursor shift flags</h2></td></tr>
+<tr class="memitem:aa06d432bfed4cabc5287ee6d8f421996"><td class="memItemLeft" align="right" valign="top"><a id="aa06d432bfed4cabc5287ee6d8f421996"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_DISPLAYMOVE</b>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="separator:aa06d432bfed4cabc5287ee6d8f421996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67e687ab614753f4ec7b83e1aad559d"><td class="memItemLeft" align="right" valign="top"><a id="ad67e687ab614753f4ec7b83e1aad559d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_CURSORMOVE</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:ad67e687ab614753f4ec7b83e1aad559d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95fbfef9afaf73ba9b7f1bf54b237303"><td class="memItemLeft" align="right" valign="top"><a id="a95fbfef9afaf73ba9b7f1bf54b237303"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_MOVERIGHT</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:a95fbfef9afaf73ba9b7f1bf54b237303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08774e032f23b5332dac053eea82b893"><td class="memItemLeft" align="right" valign="top"><a id="a08774e032f23b5332dac053eea82b893"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_MOVELEFT</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a08774e032f23b5332dac053eea82b893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">HD44780 LCD functional flags</h2></td></tr>
+<tr class="memitem:a3aab95c447f375473e814b11d388bb97"><td class="memItemLeft" align="right" valign="top"><a id="a3aab95c447f375473e814b11d388bb97"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_8BITMODE</b>&#160;&#160;&#160;(0x10)</td></tr>
+<tr class="separator:a3aab95c447f375473e814b11d388bb97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5884fad4fe43e649ae83b45add4bb1b4"><td class="memItemLeft" align="right" valign="top"><a id="a5884fad4fe43e649ae83b45add4bb1b4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_4BITMODE</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a5884fad4fe43e649ae83b45add4bb1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeefe1e5de3dbd9e05e88085a5c8e9ca5"><td class="memItemLeft" align="right" valign="top"><a id="aeefe1e5de3dbd9e05e88085a5c8e9ca5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_2LINE</b>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="separator:aeefe1e5de3dbd9e05e88085a5c8e9ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b7d5815e59447c6f7094c0c0d3f92e4"><td class="memItemLeft" align="right" valign="top"><a id="a3b7d5815e59447c6f7094c0c0d3f92e4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_1LINE</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a3b7d5815e59447c6f7094c0c0d3f92e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac306c9987fe8264d959ddd52525dcb15"><td class="memItemLeft" align="right" valign="top"><a id="ac306c9987fe8264d959ddd52525dcb15"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_5x10DOTS</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:ac306c9987fe8264d959ddd52525dcb15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71466c22665ecf9e516e139bff4407f8"><td class="memItemLeft" align="right" valign="top"><a id="a71466c22665ecf9e516e139bff4407f8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_5x8DOTS</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a71466c22665ecf9e516e139bff4407f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">HD44780 LCD timings</h2></td></tr>
+<tr class="memitem:a1a230da8784998111e8a260c1df2a749"><td class="memItemLeft" align="right" valign="top"><a id="a1a230da8784998111e8a260c1df2a749"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_CMD_WAIT</b>&#160;&#160;&#160;(2000U)</td></tr>
+<tr class="separator:a1a230da8784998111e8a260c1df2a749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f4ec55842add7147d0256737ee26ae"><td class="memItemLeft" align="right" valign="top"><a id="a02f4ec55842add7147d0256737ee26ae"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_INIT_WAIT_XXL</b>&#160;&#160;&#160;(50000U)</td></tr>
+<tr class="separator:a02f4ec55842add7147d0256737ee26ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a178bbd433d7f6b2ea7b6f0c63e1d2250"><td class="memItemLeft" align="right" valign="top"><a id="a178bbd433d7f6b2ea7b6f0c63e1d2250"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_INIT_WAIT_LONG</b>&#160;&#160;&#160;(4500U)</td></tr>
+<tr class="separator:a178bbd433d7f6b2ea7b6f0c63e1d2250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabcf0d97f3632f0fa8aa3b164ec5662e"><td class="memItemLeft" align="right" valign="top"><a id="aabcf0d97f3632f0fa8aa3b164ec5662e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_INIT_WAIT_SHORT</b>&#160;&#160;&#160;(150U)</td></tr>
+<tr class="separator:aabcf0d97f3632f0fa8aa3b164ec5662e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2d6e7e07af45b5436e838872bab8b2b"><td class="memItemLeft" align="right" valign="top"><a id="ab2d6e7e07af45b5436e838872bab8b2b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_PULSE_WAIT_SHORT</b>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="separator:ab2d6e7e07af45b5436e838872bab8b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ab509ff6e03ae7b623041892f5829a"><td class="memItemLeft" align="right" valign="top"><a id="a38ab509ff6e03ae7b623041892f5829a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HD44780_PULSE_WAIT_LONG</b>&#160;&#160;&#160;(100U)</td></tr>
+<tr class="separator:a38ab509ff6e03ae7b623041892f5829a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_10301e9089ebcfe27e0f885208699848.html">hd44780</a></li><li class="navelem"><a class="el" href="dir_fa9f7679755d9e15df58bfa76d5e3385.html">include</a></li><li class="navelem"><a class="el" href="hd44780__internal_8h.html">hd44780_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

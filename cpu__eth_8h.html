@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/stm32/include/periph/cpu_eth.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('cpu__eth_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a>  </div>
+  <div class="headertitle">
+<div class="title">cpu_eth.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__stm32.html">STM32</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Ethernet CPU specific definitions for the STM32 family.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Ethernet CPU specific definitions for the STM32 family. </p>
+<dl class="section author"><dt>Author</dt><dd>Hauke Petersen <a href="#" onclick="location.href='mai'+'lto:'+'hau'+'ke'+'.pe'+'te'+'rse'+'n@'+'fu-'+'be'+'rli'+'n.'+'de'; return false;">hauke<span style="display: none;">.nosp@m.</span>.pet<span style="display: none;">.nosp@m.</span>ersen<span style="display: none;">.nosp@m.</span>@fu-<span style="display: none;">.nosp@m.</span>berli<span style="display: none;">.nosp@m.</span>n.de</a> </dd>
+<dd>
+Vincent Dupont <a href="#" onclick="location.href='mai'+'lto:'+'vin'+'ce'+'nt@'+'ot'+'ake'+'ys'+'.co'+'m'; return false;">vince<span style="display: none;">.nosp@m.</span>nt@o<span style="display: none;">.nosp@m.</span>takey<span style="display: none;">.nosp@m.</span>s.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="cpu__gpio_8h_source.html">periph/cpu_gpio.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for cpu_eth.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="cpu__eth_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structeth__conf__t.html">eth_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ethernet Peripheral configuration.  <a href="structeth__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structeth__dma__desc.html">eth_dma_desc</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layout of enhanced RX/TX DMA descriptor.  <a href="structeth__dma__desc.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Flags in the status word of the Ethernet enhanced RX DMA descriptor</h2></td></tr>
+<tr class="memitem:a26d698f2df60541f02fb5b57bfffef3e"><td class="memItemLeft" align="right" valign="top"><a id="a26d698f2df60541f02fb5b57bfffef3e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a26d698f2df60541f02fb5b57bfffef3e">RX_DESC_STAT_LS</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a0e80e65237843fa1ff15c68cd78066f8">BIT8</a>)</td></tr>
+<tr class="memdesc:a26d698f2df60541f02fb5b57bfffef3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, descriptor is the last of a frame. <br /></td></tr>
+<tr class="separator:a26d698f2df60541f02fb5b57bfffef3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2cc4debf21ff38ebae05da67bef19a"><td class="memItemLeft" align="right" valign="top"><a id="aca2cc4debf21ff38ebae05da67bef19a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#aca2cc4debf21ff38ebae05da67bef19a">RX_DESC_STAT_FS</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a3aa20ab5eb33383fa31b0e94f4401cdf">BIT9</a>)</td></tr>
+<tr class="memdesc:aca2cc4debf21ff38ebae05da67bef19a"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, descriptor is the first of a frame. <br /></td></tr>
+<tr class="separator:aca2cc4debf21ff38ebae05da67bef19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6979e0af077ec53dc866257b6146e0c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a6979e0af077ec53dc866257b6146e0c3">RX_DESC_STAT_FL</a>&#160;&#160;&#160;(0x3FFF0000) /* bits 16-29 */</td></tr>
+<tr class="memdesc:a6979e0af077ec53dc866257b6146e0c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frame length.  <a href="cpu__eth_8h.html#a6979e0af077ec53dc866257b6146e0c3">More...</a><br /></td></tr>
+<tr class="separator:a6979e0af077ec53dc866257b6146e0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afab9ba1bb80e8ad26a2e6c3eb0ba9286"><td class="memItemLeft" align="right" valign="top"><a id="afab9ba1bb80e8ad26a2e6c3eb0ba9286"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#afab9ba1bb80e8ad26a2e6c3eb0ba9286">RX_DESC_STAT_DE</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a41e750b67eb36c8da10328c565b90dd5">BIT14</a>)</td></tr>
+<tr class="memdesc:afab9ba1bb80e8ad26a2e6c3eb0ba9286"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, a frame too large to fit buffers given by descriptors was received. <br /></td></tr>
+<tr class="separator:afab9ba1bb80e8ad26a2e6c3eb0ba9286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8167dbccea5d00ea5a15a9edb70087c"><td class="memItemLeft" align="right" valign="top"><a id="af8167dbccea5d00ea5a15a9edb70087c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#af8167dbccea5d00ea5a15a9edb70087c">RX_DESC_STAT_ES</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a41e750b67eb36c8da10328c565b90dd5">BIT14</a>)</td></tr>
+<tr class="memdesc:af8167dbccea5d00ea5a15a9edb70087c"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, an error occurred during RX. <br /></td></tr>
+<tr class="separator:af8167dbccea5d00ea5a15a9edb70087c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a109d04635781d36964fed5ceb73ef71d"><td class="memItemLeft" align="right" valign="top"><a id="a109d04635781d36964fed5ceb73ef71d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a109d04635781d36964fed5ceb73ef71d">RX_DESC_STAT_OWN</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#adfb09898dca36071e32cb1fbeec479e5">BIT31</a>)</td></tr>
+<tr class="memdesc:a109d04635781d36964fed5ceb73ef71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, descriptor is owned by DMA, otherwise by CPU. <br /></td></tr>
+<tr class="separator:a109d04635781d36964fed5ceb73ef71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Flags in the control word of the Ethernet enhanced RX DMA descriptor</h2></td></tr>
+<tr class="memitem:aba5397200f097ea6148c5c4be163f419"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#aba5397200f097ea6148c5c4be163f419">RX_DESC_CTRL_RCH</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a41e750b67eb36c8da10328c565b90dd5">BIT14</a>)</td></tr>
+<tr class="memdesc:aba5397200f097ea6148c5c4be163f419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if RDES3 points to the next DMA descriptor (1), or to a second buffer (0)  <a href="cpu__eth_8h.html#aba5397200f097ea6148c5c4be163f419">More...</a><br /></td></tr>
+<tr class="separator:aba5397200f097ea6148c5c4be163f419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Flags in the status word of the Ethernet enhanced TX DMA descriptor</h2></td></tr>
+<tr class="memitem:ab9f198976498426b8ec4a52052d4c8bb"><td class="memItemLeft" align="right" valign="top"><a id="ab9f198976498426b8ec4a52052d4c8bb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#ab9f198976498426b8ec4a52052d4c8bb">TX_DESC_STAT_UF</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a601923eba46784638244c1ebf2622a2a">BIT1</a>)</td></tr>
+<tr class="memdesc:ab9f198976498426b8ec4a52052d4c8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, an underflow occurred while sending. <br /></td></tr>
+<tr class="separator:ab9f198976498426b8ec4a52052d4c8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0256c441005b515da6349b142df70b8"><td class="memItemLeft" align="right" valign="top"><a id="ae0256c441005b515da6349b142df70b8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#ae0256c441005b515da6349b142df70b8">TX_DESC_STAT_EC</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a0e80e65237843fa1ff15c68cd78066f8">BIT8</a>)</td></tr>
+<tr class="memdesc:ae0256c441005b515da6349b142df70b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, TX was aborted due to excessive collisions (half-duplex only) <br /></td></tr>
+<tr class="separator:ae0256c441005b515da6349b142df70b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388287f19ba51da485fd1775f4eaa54a"><td class="memItemLeft" align="right" valign="top"><a id="a388287f19ba51da485fd1775f4eaa54a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a388287f19ba51da485fd1775f4eaa54a">TX_DESC_STAT_NC</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a8c0f01fdf020d0f7467449b181fe95cb">BIT10</a>)</td></tr>
+<tr class="memdesc:a388287f19ba51da485fd1775f4eaa54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, no carrier was detected (TX aborted) <br /></td></tr>
+<tr class="separator:a388287f19ba51da485fd1775f4eaa54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2820611ad351b70f6d0696521df31775"><td class="memItemLeft" align="right" valign="top"><a id="a2820611ad351b70f6d0696521df31775"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a2820611ad351b70f6d0696521df31775">TX_DESC_STAT_ES</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#ae40f5db1c57c98c6db42f15e0a56f03a">BIT15</a>)</td></tr>
+<tr class="memdesc:a2820611ad351b70f6d0696521df31775"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, one or more error occurred. <br /></td></tr>
+<tr class="separator:a2820611ad351b70f6d0696521df31775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7671074613069a2900c6356f282a5159"><td class="memItemLeft" align="right" valign="top"><a id="a7671074613069a2900c6356f282a5159"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a7671074613069a2900c6356f282a5159">TX_DESC_STAT_TTSS</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a27fe52b845a36280f50414ab4a00f74f">BIT17</a>)</td></tr>
+<tr class="memdesc:a7671074613069a2900c6356f282a5159"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, the descriptor contains a valid PTP timestamp. <br /></td></tr>
+<tr class="separator:a7671074613069a2900c6356f282a5159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fa97dc5c52642f23a809c9fe6966865"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a6fa97dc5c52642f23a809c9fe6966865">TX_DESC_STAT_TCH</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a83aaba3456aa46dfefe199fe6264d8dc">BIT20</a>)</td></tr>
+<tr class="memdesc:a6fa97dc5c52642f23a809c9fe6966865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if TDES3 points to the next DMA descriptor (1), or to a second buffer (0)  <a href="cpu__eth_8h.html#a6fa97dc5c52642f23a809c9fe6966865">More...</a><br /></td></tr>
+<tr class="separator:a6fa97dc5c52642f23a809c9fe6966865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3efcfd7f7404fc5f40356d39e4da9279"><td class="memItemLeft" align="right" valign="top"><a id="a3efcfd7f7404fc5f40356d39e4da9279"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a3efcfd7f7404fc5f40356d39e4da9279">TX_DESC_STAT_TER</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a1a5b4d4ca137f11bcb2e9c381f2ea6c5">BIT21</a>)</td></tr>
+<tr class="memdesc:a3efcfd7f7404fc5f40356d39e4da9279"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, DMA will return to first descriptor in ring afterwards. <br /></td></tr>
+<tr class="separator:a3efcfd7f7404fc5f40356d39e4da9279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1fae188ed07da6a08c407aa500a1d39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#af1fae188ed07da6a08c407aa500a1d39">TX_DESC_STAT_CIC</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#afdaa01ee37bdcd01ea44dbab6a30fd0d">BIT22</a> | <a class="el" href="bitarithm_8h.html#ada7be80971d1875e5c4774edd3ecd97d">BIT23</a>)</td></tr>
+<tr class="memdesc:af1fae188ed07da6a08c407aa500a1d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checksum insertion control.  <a href="cpu__eth_8h.html#af1fae188ed07da6a08c407aa500a1d39">More...</a><br /></td></tr>
+<tr class="separator:af1fae188ed07da6a08c407aa500a1d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a750e3e1c3ec455ebaa4879b6843b1b1a"><td class="memItemLeft" align="right" valign="top"><a id="a750e3e1c3ec455ebaa4879b6843b1b1a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a750e3e1c3ec455ebaa4879b6843b1b1a">TX_DESC_STAT_TTSE</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a3017291241a7269c1582154a3d3b1f09">BIT25</a>)</td></tr>
+<tr class="memdesc:a750e3e1c3ec455ebaa4879b6843b1b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, an PTP timestamp is added to the descriptor after TX completed. <br /></td></tr>
+<tr class="separator:a750e3e1c3ec455ebaa4879b6843b1b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a089136f4b25dd0d294961ad8bd2681b9"><td class="memItemLeft" align="right" valign="top"><a id="a089136f4b25dd0d294961ad8bd2681b9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a089136f4b25dd0d294961ad8bd2681b9">TX_DESC_STAT_FS</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a4361544977e96fb8eb8387ff0feaf6b6">BIT28</a>)</td></tr>
+<tr class="memdesc:a089136f4b25dd0d294961ad8bd2681b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, buffer contains first segment of frame to transmit. <br /></td></tr>
+<tr class="separator:a089136f4b25dd0d294961ad8bd2681b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49bb430b1a4f9cb3d3b56e8c3ead1846"><td class="memItemLeft" align="right" valign="top"><a id="a49bb430b1a4f9cb3d3b56e8c3ead1846"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a49bb430b1a4f9cb3d3b56e8c3ead1846">TX_DESC_STAT_LS</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#adb368e517e545da53d8aace5923649e1">BIT29</a>)</td></tr>
+<tr class="memdesc:a49bb430b1a4f9cb3d3b56e8c3ead1846"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, buffer contains last segment of frame to transmit. <br /></td></tr>
+<tr class="separator:a49bb430b1a4f9cb3d3b56e8c3ead1846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e995b7a8d0360a885f00cb1c388f327"><td class="memItemLeft" align="right" valign="top"><a id="a1e995b7a8d0360a885f00cb1c388f327"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a1e995b7a8d0360a885f00cb1c388f327">TX_DESC_STAT_IC</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a70105c4a8c864754c8ba9e9b0e5da52a">BIT30</a>)</td></tr>
+<tr class="memdesc:a1e995b7a8d0360a885f00cb1c388f327"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, trigger IRQ on completion. <br /></td></tr>
+<tr class="separator:a1e995b7a8d0360a885f00cb1c388f327"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff72faf1bfcec3840383fd4f738009ea"><td class="memItemLeft" align="right" valign="top"><a id="aff72faf1bfcec3840383fd4f738009ea"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#aff72faf1bfcec3840383fd4f738009ea">TX_DESC_STAT_OWN</a>&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#adfb09898dca36071e32cb1fbeec479e5">BIT31</a>)</td></tr>
+<tr class="memdesc:aff72faf1bfcec3840383fd4f738009ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, descriptor is owned by DMA, otherwise by CPU. <br /></td></tr>
+<tr class="separator:aff72faf1bfcec3840383fd4f738009ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b9e3c9f333c9b4742f186047e08ff60"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#a5b9e3c9f333c9b4742f186047e08ff60">eth_mode_t</a> { <a class="el" href="cpu__eth_8h.html#a5b9e3c9f333c9b4742f186047e08ff60a2f46f00772e7ce5eac6b4060f1544c22">MII</a> = 18
+, <a class="el" href="cpu__eth_8h.html#a5b9e3c9f333c9b4742f186047e08ff60a7b5ea37286451bcd8cddacbf1f8ee123">RMII</a> = 9
+, <a class="el" href="cpu__eth_8h.html#a5b9e3c9f333c9b4742f186047e08ff60a050bdf6fe3e32b8a526ceb467ea73631">SMI</a> = 2
+ }</td></tr>
+<tr class="memdesc:a5b9e3c9f333c9b4742f186047e08ff60"><td class="mdescLeft">&#160;</td><td class="mdescRight">STM32 Ethernet configuration mode.  <a href="cpu__eth_8h.html#a5b9e3c9f333c9b4742f186047e08ff60">More...</a><br /></td></tr>
+<tr class="separator:a5b9e3c9f333c9b4742f186047e08ff60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3e107b20b19c9f50cfc33a1e7cd2ea9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structeth__dma__desc.html">eth_dma_desc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cpu__eth_8h.html#ac3e107b20b19c9f50cfc33a1e7cd2ea9">edma_desc_t</a></td></tr>
+<tr class="memdesc:ac3e107b20b19c9f50cfc33a1e7cd2ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layout of enhanced RX/TX DMA descriptor.  <a href="cpu__eth_8h.html#ac3e107b20b19c9f50cfc33a1e7cd2ea9">More...</a><br /></td></tr>
+<tr class="separator:ac3e107b20b19c9f50cfc33a1e7cd2ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aba5397200f097ea6148c5c4be163f419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba5397200f097ea6148c5c4be163f419">&#9670;&nbsp;</a></span>RX_DESC_CTRL_RCH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RX_DESC_CTRL_RCH&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a41e750b67eb36c8da10328c565b90dd5">BIT14</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates if RDES3 points to the next DMA descriptor (1), or to a second buffer (0) </p>
+<p>If the bit is set, RDES3 (<a class="el" href="structeth__dma__desc.html#ae3b4fc712170b58c3130365b103bbad7">edma_desc_t::desc_next</a>) will point to the next DMA descriptor rather than to a second frame-segment buffer. This is always set by the driver </p>
+
+</div>
+</div>
+<a id="a6979e0af077ec53dc866257b6146e0c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6979e0af077ec53dc866257b6146e0c3">&#9670;&nbsp;</a></span>RX_DESC_STAT_FL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RX_DESC_STAT_FL&#160;&#160;&#160;(0x3FFF0000) /* bits 16-29 */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frame length. </p>
+<p>The length of the frame in host memory order including CRC. Only valid if <a class="el" href="cpu__eth_8h.html#a26d698f2df60541f02fb5b57bfffef3e">RX_DESC_STAT_LS</a> is set and <a class="el" href="cpu__eth_8h.html#afab9ba1bb80e8ad26a2e6c3eb0ba9286">RX_DESC_STAT_DE</a> is not set. </p>
+
+</div>
+</div>
+<a id="af1fae188ed07da6a08c407aa500a1d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1fae188ed07da6a08c407aa500a1d39">&#9670;&nbsp;</a></span>TX_DESC_STAT_CIC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TX_DESC_STAT_CIC&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#afdaa01ee37bdcd01ea44dbab6a30fd0d">BIT22</a> | <a class="el" href="bitarithm_8h.html#ada7be80971d1875e5c4774edd3ecd97d">BIT23</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checksum insertion control. </p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Value   </th><th class="markdownTableHeadLeft">Meaning    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>0b00</code>   </td><td class="markdownTableBodyLeft">Checksum insertion disabled    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>0b01</code>   </td><td class="markdownTableBodyLeft">Calculate and insert checksum in IPv4 header    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>0b10</code>   </td><td class="markdownTableBodyLeft">Calculate and insert IPv4 checksum, insert pre-calculated payload checksum    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">`0b11   </td><td class="markdownTableBodyLeft">Calculated and insert both IPv4 and payload checksum   </td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6fa97dc5c52642f23a809c9fe6966865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fa97dc5c52642f23a809c9fe6966865">&#9670;&nbsp;</a></span>TX_DESC_STAT_TCH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TX_DESC_STAT_TCH&#160;&#160;&#160;(<a class="el" href="bitarithm_8h.html#a83aaba3456aa46dfefe199fe6264d8dc">BIT20</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indicates if TDES3 points to the next DMA descriptor (1), or to a second buffer (0) </p>
+<p>If the bit is set, TDES3 (<a class="el" href="structeth__dma__desc.html#ae3b4fc712170b58c3130365b103bbad7">edma_desc_t::desc_next</a>) will point to the next DMA descriptor rather than to a second frame-segment buffer. This is always set by the driver </p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ac3e107b20b19c9f50cfc33a1e7cd2ea9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3e107b20b19c9f50cfc33a1e7cd2ea9">&#9670;&nbsp;</a></span>edma_desc_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structeth__dma__desc.html">eth_dma_desc</a> <a class="el" href="cpu__eth_8h.html#ac3e107b20b19c9f50cfc33a1e7cd2ea9">edma_desc_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Layout of enhanced RX/TX DMA descriptor. </p>
+<dl class="section note"><dt>Note</dt><dd>Don't confuse this with the normal RX/TX descriptor format. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The content of the status and control bits is different for RX and TX DMA descriptors </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a5b9e3c9f333c9b4742f186047e08ff60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b9e3c9f333c9b4742f186047e08ff60">&#9670;&nbsp;</a></span>eth_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="cpu__eth_8h.html#a5b9e3c9f333c9b4742f186047e08ff60">eth_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STM32 Ethernet configuration mode. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5b9e3c9f333c9b4742f186047e08ff60a2f46f00772e7ce5eac6b4060f1544c22"></a>MII&#160;</td><td class="fielddoc"><p>Configuration for MII. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5b9e3c9f333c9b4742f186047e08ff60a7b5ea37286451bcd8cddacbf1f8ee123"></a>RMII&#160;</td><td class="fielddoc"><p>Configuration for RMII. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5b9e3c9f333c9b4742f186047e08ff60a050bdf6fe3e32b8a526ceb467ea73631"></a>SMI&#160;</td><td class="fielddoc"><p>Configuration for SMI. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_8fb93018175f1eef8ccffa491ecd65e5.html">stm32</a></li><li class="navelem"><a class="el" href="dir_2c7c57a0102e8392aaea30c0e4d338a5.html">include</a></li><li class="navelem"><a class="el" href="dir_2467268495d90d0a752e11c9806aa072.html">periph</a></li><li class="navelem"><a class="el" href="cpu__eth_8h.html">cpu_eth.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

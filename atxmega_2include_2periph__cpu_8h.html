@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/atxmega/include/periph_cpu.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('atxmega_2include_2periph__cpu_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
+  <div class="headertitle">
+<div class="title">periph_cpu.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__atxmega.html">Atmel ATxmega MCU</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>CPU specific definitions for internal peripheral handling.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>CPU specific definitions for internal peripheral handling. </p>
+<dl class="section author"><dt>Author</dt><dd>Gerson Fernando Budke <a href="#" onclick="location.href='mai'+'lto:'+'nan'+'do'+'jve'+'@g'+'mai'+'l.'+'com'; return false;">nando<span style="display: none;">.nosp@m.</span>jve@<span style="display: none;">.nosp@m.</span>gmail<span style="display: none;">.nosp@m.</span>.com</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;avr/io.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for periph_cpu.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="atxmega_2include_2periph__cpu_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__conf__t.html">uart_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART device configuration.  <a href="structuart__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtimer__conf__t.html">timer_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> device configuration.  <a href="structtimer__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structi2c__conf__t.html">i2c_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C configuration structure.  <a href="structi2c__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspi__conf__t.html">spi_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI device configuration.  <a href="structspi__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a6a7f4e712f95fabcb6be7cdc9a318ad8"><td class="memItemLeft" align="right" valign="top"><a id="a6a7f4e712f95fabcb6be7cdc9a318ad8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a6a7f4e712f95fabcb6be7cdc9a318ad8">PWR_RED_REG</a>(reg,  dev)&#160;&#160;&#160;((reg &lt;&lt; 8) | dev)</td></tr>
+<tr class="memdesc:a6a7f4e712f95fabcb6be7cdc9a318ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a CPU specific Power Reduction index macro. <br /></td></tr>
+<tr class="separator:a6a7f4e712f95fabcb6be7cdc9a318ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3969ce1e494a72d3c2925b10ddeb4604"><td class="memItemLeft" align="right" valign="top"><a id="a3969ce1e494a72d3c2925b10ddeb4604"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a>&#160;&#160;&#160;(0xffff)</td></tr>
+<tr class="memdesc:a3969ce1e494a72d3c2925b10ddeb4604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of a fitting UNDEF value. <br /></td></tr>
+<tr class="separator:a3969ce1e494a72d3c2925b10ddeb4604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a095e56a7fdaf2a5d0b3f0416c20cfece"><td class="memItemLeft" align="right" valign="top"><a id="a095e56a7fdaf2a5d0b3f0416c20cfece"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a095e56a7fdaf2a5d0b3f0416c20cfece">UART_MAX_NUMOF</a>&#160;&#160;&#160;(7)</td></tr>
+<tr class="memdesc:a095e56a7fdaf2a5d0b3f0416c20cfece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max number of available UARTs. <br /></td></tr>
+<tr class="separator:a095e56a7fdaf2a5d0b3f0416c20cfece"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d6c77df27eaeba19a369cec7754bb30"><td class="memItemLeft" align="right" valign="top"><a id="a7d6c77df27eaeba19a369cec7754bb30"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a7d6c77df27eaeba19a369cec7754bb30">UART_TXBUF_SIZE</a>&#160;&#160;&#160;(64)</td></tr>
+<tr class="memdesc:a7d6c77df27eaeba19a369cec7754bb30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the UART TX buffer for non-blocking mode. <br /></td></tr>
+<tr class="separator:a7d6c77df27eaeba19a369cec7754bb30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ab2d9a703d8dd787cac34b25446b765"><td class="memItemLeft" align="right" valign="top"><a id="a0ab2d9a703d8dd787cac34b25446b765"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a0ab2d9a703d8dd787cac34b25446b765">TIMER_CH_MAX_NUMOF</a>&#160;&#160;&#160;(4)</td></tr>
+<tr class="memdesc:a0ab2d9a703d8dd787cac34b25446b765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max number of available timer channels. <br /></td></tr>
+<tr class="separator:a0ab2d9a703d8dd787cac34b25446b765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd04a76b55e9fef358e904400cde4db7"><td class="memItemLeft" align="right" valign="top"><a id="afd04a76b55e9fef358e904400cde4db7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#afd04a76b55e9fef358e904400cde4db7">PERIPH_TIMER_PROVIDES_SET</a></td></tr>
+<tr class="memdesc:afd04a76b55e9fef358e904400cde4db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A low-level <a class="el" href="group__drivers__periph__timer.html#gaccff2ca33cca64411015f808369cb919" title="Set a given timer channel for the given timer device.">timer_set()</a> implementation is provided. <br /></td></tr>
+<tr class="separator:afd04a76b55e9fef358e904400cde4db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a84dd39eddad92f5ea43b0368b47ed1d8"><td class="memItemLeft" align="right" valign="top"><a id="a84dd39eddad92f5ea43b0368b47ed1d8"></a>
+typedef uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a84dd39eddad92f5ea43b0368b47ed1d8">pwr_reduction_t</a></td></tr>
+<tr class="memdesc:a84dd39eddad92f5ea43b0368b47ed1d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power Reduction Peripheral Mask. <br /></td></tr>
+<tr class="separator:a84dd39eddad92f5ea43b0368b47ed1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a16af7b253440dadd46a80a4b9fddba4d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4daeb6782d9dfedf3c6a78ffdb1624fa454">PORT_A</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da16ada472d473fbd0207b99e9e4d68f4a">PORT_B</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da627cc690c37f97527dd2f07aa22092d9">PORT_C</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4daf7242fe75227a46a190645663f91ce69">PORT_D</a>
+, <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4dabad63f022d1fa37a66f87dc31a78f6a9">PORT_E</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4daa3760b302740c7d09c93ec7a634f837c">PORT_F</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da48afb424254d52e7d97a7c1428f5aafa">PORT_G</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da31d1ae08c10668d936d1c2c6426c1c47">PORT_H</a>
+, <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da3eea70262d530701087c2a3a09c475fe">PORT_J</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da23bae6dc45cdca7c90be62437df0f454">PORT_K</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da9e83da163100e922da1c8065b5cf43c2">PORT_L</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4dab944189326f5bef270cabd531a023766">PORT_M</a>
+, <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4daef6d6fac4ce97e1efa95afc1c3e9177b">PORT_N</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da1a9a09148fb7bcfb9c01d102ae49c3b4">PORT_P</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4da949e8cdb80df02562cb0f2e02f87eaea">PORT_Q</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4dab94b63ec7d4ff26c379cb895421bb2e8">PORT_R</a>
+, <br />
+&#160;&#160;<b>PORT_MAX</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a16af7b253440dadd46a80a4b9fddba4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available ports on the ATxmega family.  <a href="atxmega_2include_2periph__cpu_8h.html#a16af7b253440dadd46a80a4b9fddba4d">More...</a><br /></td></tr>
+<tr class="separator:a16af7b253440dadd46a80a4b9fddba4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba01db17f4a2bfbc3db60dc172972a25"><td class="memItemLeft" align="right" valign="top"><a id="aba01db17f4a2bfbc3db60dc172972a25"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>PWR_GENERAL_POWER</b>
+, <b>PWR_PORT_A</b>
+, <b>PWR_PORT_B</b>
+, <b>PWR_PORT_C</b>
+, <br />
+&#160;&#160;<b>PWR_PORT_D</b>
+, <b>PWR_PORT_E</b>
+, <b>PWR_PORT_F</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:aba01db17f4a2bfbc3db60dc172972a25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a CPU specific Power Reduction index macro. <br /></td></tr>
+<tr class="separator:aba01db17f4a2bfbc3db60dc172972a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66e6b1d10289945ae9284d769f136e59"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a66e6b1d10289945ae9284d769f136e59">timer_type_t</a> { <br />
+&#160;&#160;<b>TC_TYPE_0</b> = 0
+, <b>TC_TYPE_1</b> = 1
+, <b>TC_TYPE_2</b> = 2
+, <b>TC_TYPE_4</b> = 4
+, <br />
+&#160;&#160;<b>TC_TYPE_5</b> = 5
+<br />
+ }</td></tr>
+<tr class="memdesc:a66e6b1d10289945ae9284d769f136e59"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> Type.  <a href="atxmega_2include_2periph__cpu_8h.html#a66e6b1d10289945ae9284d769f136e59">More...</a><br /></td></tr>
+<tr class="separator:a66e6b1d10289945ae9284d769f136e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Length of the CPU_ID in octets</h2></td></tr>
+<tr class="memitem:a1943715eaeaa63e28b7b4e207f655fca"><td class="memItemLeft" align="right" valign="top"><a id="a1943715eaeaa63e28b7b4e207f655fca"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CPUID_LEN</b>&#160;&#160;&#160;(11U)</td></tr>
+<tr class="separator:a1943715eaeaa63e28b7b4e207f655fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Power management configuration</h2></td></tr>
+<tr class="memitem:a3d1931627629f3c43bd898da0be6075b"><td class="memItemLeft" align="right" valign="top"><a id="a3d1931627629f3c43bd898da0be6075b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PM_NUM_MODES</b>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:a3d1931627629f3c43bd898da0be6075b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9550eb755cff78dfb0734082771ba2b1"><td class="memItemLeft" align="right" valign="top"><a id="a9550eb755cff78dfb0734082771ba2b1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a9550eb755cff78dfb0734082771ba2b1">AVR8_PM_SLEEP_MODE_0</a>&#160;&#160;&#160;SLEEP_MODE_PWR_DOWN</td></tr>
+<tr class="memdesc:a9550eb755cff78dfb0734082771ba2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power Down. <br /></td></tr>
+<tr class="separator:a9550eb755cff78dfb0734082771ba2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a204a7395a5499658eefffdc902d775d3"><td class="memItemLeft" align="right" valign="top"><a id="a204a7395a5499658eefffdc902d775d3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a204a7395a5499658eefffdc902d775d3">AVR8_PM_SLEEP_MODE_1</a>&#160;&#160;&#160;SLEEP_MODE_PWR_SAVE</td></tr>
+<tr class="memdesc:a204a7395a5499658eefffdc902d775d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power Save. <br /></td></tr>
+<tr class="separator:a204a7395a5499658eefffdc902d775d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab055cc95d36bfb4fa94c15502d3e02ee"><td class="memItemLeft" align="right" valign="top"><a id="ab055cc95d36bfb4fa94c15502d3e02ee"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#ab055cc95d36bfb4fa94c15502d3e02ee">AVR8_PM_SLEEP_MODE_2</a>&#160;&#160;&#160;SLEEP_MODE_STANDBY</td></tr>
+<tr class="memdesc:ab055cc95d36bfb4fa94c15502d3e02ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standby. <br /></td></tr>
+<tr class="separator:ab055cc95d36bfb4fa94c15502d3e02ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b4af6b28e8049719b14007b2c44dfb"><td class="memItemLeft" align="right" valign="top"><a id="af3b4af6b28e8049719b14007b2c44dfb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#af3b4af6b28e8049719b14007b2c44dfb">AVR8_PM_SLEEP_MODE_3</a>&#160;&#160;&#160;SLEEP_MODE_EXT_STANDBY</td></tr>
+<tr class="memdesc:af3b4af6b28e8049719b14007b2c44dfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extended Standby. <br /></td></tr>
+<tr class="separator:af3b4af6b28e8049719b14007b2c44dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acef8eae72b40a6ffa10eb76367bc7b63"><td class="memItemLeft" align="right" valign="top"><a id="acef8eae72b40a6ffa10eb76367bc7b63"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#acef8eae72b40a6ffa10eb76367bc7b63">GPIO_EXT_INT_NUMOF</a>&#160;&#160;&#160;(2 * PORT_MAX)</td></tr>
+<tr class="memdesc:acef8eae72b40a6ffa10eb76367bc7b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the number of GPIO interrupts vectors for ATxmega CPU. <br /></td></tr>
+<tr class="separator:acef8eae72b40a6ffa10eb76367bc7b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a759f553fbddd2915b49e50c967661fb1"><td class="memItemLeft" align="right" valign="top"><a id="a759f553fbddd2915b49e50c967661fb1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a759f553fbddd2915b49e50c967661fb1">HAVE_GPIO_T</a></td></tr>
+<tr class="memdesc:a759f553fbddd2915b49e50c967661fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override GPIO type. <br /></td></tr>
+<tr class="separator:a759f553fbddd2915b49e50c967661fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340fb45a8ca27fb692ea5172513130bb"><td class="memItemLeft" align="right" valign="top"><a id="a340fb45a8ca27fb692ea5172513130bb"></a>
+typedef uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>gpio_t</b></td></tr>
+<tr class="separator:a340fb45a8ca27fb692ea5172513130bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8d64e6e2aff9d844c6ce6614697b4f5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#af8d64e6e2aff9d844c6ce6614697b4f5">ATXMEGA_GPIO_PIN</a>(x,  y)&#160;&#160;&#160;(((x &amp; 0x0f) &lt;&lt; 8) | (y &amp; 0xff))</td></tr>
+<tr class="memdesc:af8d64e6e2aff9d844c6ce6614697b4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a CPU specific GPIO pin generator macro.  <a href="atxmega_2include_2periph__cpu_8h.html#af8d64e6e2aff9d844c6ce6614697b4f5">More...</a><br /></td></tr>
+<tr class="separator:af8d64e6e2aff9d844c6ce6614697b4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29846b3ecd19a0b7c44ff80a37ae7c1"><td class="memItemLeft" align="right" valign="top"><a id="ae29846b3ecd19a0b7c44ff80a37ae7c1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GPIO_PIN</b>(x,  y)&#160;&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#af8d64e6e2aff9d844c6ce6614697b4f5">ATXMEGA_GPIO_PIN</a>(x, (1U &lt;&lt; (y &amp; 0x07)))</td></tr>
+<tr class="separator:ae29846b3ecd19a0b7c44ff80a37ae7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a266796b5a896ca8127d9555e0fa5ed51"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a266796b5a896ca8127d9555e0fa5ed51">HAVE_GPIO_MODE_T</a></td></tr>
+<tr class="memdesc:a266796b5a896ca8127d9555e0fa5ed51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available pin modes.  <a href="atxmega_2include_2periph__cpu_8h.html#a266796b5a896ca8127d9555e0fa5ed51">More...</a><br /></td></tr>
+<tr class="separator:a266796b5a896ca8127d9555e0fa5ed51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201df5e2845212d28c89e2cf3fdaa642"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642">GPIO_MODE</a> { <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642ab63bf361ba2d515be181e8836c24913e">GPIO_SLEW_RATE</a> = (1 &lt;&lt; 7)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642ab72871a7a1a507564b4866858a90ff32">GPIO_INVERTED</a> = (1 &lt;&lt; 6)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a73de15535a5a5517cdf8b7720652c494">GPIO_OPC_TOTEN</a> = (0 &lt;&lt; 3)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a93004776b8a24ab97dfbe55e81fd882f">GPIO_OPC_BSKPR</a> = (1 &lt;&lt; 3)
+, <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642acafd272234294bb978177d11bf185847">GPIO_OPC_PD</a> = (2 &lt;&lt; 3)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a44bd944f6de50d43b68e3e8525b2039b">GPIO_OPC_PU</a> = (3 &lt;&lt; 3)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a948d8b64c01fa774ada1b3c5be31580f">GPIO_OPC_WRD_OR</a> = (4 &lt;&lt; 3)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a82fb8061127adfd1e90442d0e3772898">GPIO_OPC_WRD_AND</a> = (5 &lt;&lt; 3)
+, <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a8b034128b0bbec8156540207c239d6cc">GPIO_OPC_WRD_OR_PULL</a> = (6 &lt;&lt; 3)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a537dc3134500ee45f695b5270e270c6a">GPIO_OPC_WRD_AND_PULL</a> = (7 &lt;&lt; 3)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642ae8bd62cf000e751ffdce5a9de1c0dcc0">GPIO_ANALOG</a> = (1 &lt;&lt; 1)
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a3343e227f62c4c536efff81438a8e155">GPIO_IN</a> = (0 &lt;&lt; 0)
+, <br />
+&#160;&#160;<a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642a1b59f059dea546f0248fb26232ee3531">GPIO_OUT</a> = (1 &lt;&lt; 0)
+, <b>GPIO_IN_PU</b> = GPIO_IN | GPIO_OPC_PU
+, <b>GPIO_IN_PD</b> = GPIO_IN | GPIO_OPC_PD
+, <b>GPIO_OD</b> = GPIO_OUT | GPIO_OPC_WRD_OR
+, <br />
+&#160;&#160;<b>GPIO_OD_PU</b> = GPIO_OUT | GPIO_OPC_WRD_OR_PULL
+<br />
+ }</td></tr>
+<tr class="separator:a201df5e2845212d28c89e2cf3fdaa642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a422cb903dd82492db9410a90efacf729"><td class="memItemLeft" align="right" valign="top"><a id="a422cb903dd82492db9410a90efacf729"></a>
+typedef enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642">GPIO_MODE</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gpio_mode_t</b></td></tr>
+<tr class="separator:a422cb903dd82492db9410a90efacf729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03000d4ca3380cfec50959c0434c6337"><td class="memItemLeft" align="right" valign="top"><a id="a03000d4ca3380cfec50959c0434c6337"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a03000d4ca3380cfec50959c0434c6337">HAVE_GPIO_FLANK_T</a></td></tr>
+<tr class="memdesc:a03000d4ca3380cfec50959c0434c6337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of possible active flanks for external interrupt mode. <br /></td></tr>
+<tr class="separator:a03000d4ca3380cfec50959c0434c6337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e8c3f46deb150e48acaa79fe26b2e86"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a4f2388ac8e1f57263037c3ff4b3a7b39">GPIO_ISC_BOTH</a> = (0 &lt;&lt; 4)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86aa66eac98d2fbcbacb1b23ddbd12fcd54">GPIO_ISC_RISING</a> = (1 &lt;&lt; 4)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a22848bc017239d7e836ca1413df283c5">GPIO_ISC_FALLING</a> = (2 &lt;&lt; 4)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a42b7fa195b4013eaf4be4c50883b9350">GPIO_ISC_LOW_LEVEL</a> = (3 &lt;&lt; 4)
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6cac6d4846100fdf6d4d9affdb336e4d">GPIO_INT_DISABLED_ALL</a> = (1 &lt;&lt; 3)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a2625cbb8746c5e09a2c83b5b49a2e0ab">GPIO_INT0_VCT</a> = (0 &lt;&lt; 2)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a400889a65566bc4d027e54ea9f767191">GPIO_INT1_VCT</a> = (1 &lt;&lt; 2)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6fafbe2898ba18deab0ad13f6cecce98">GPIO_LVL_OFF</a> = (0 &lt;&lt; 0)
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a66164b69c11c5d7a9eacb0478a339661">GPIO_LVL_LOW</a> = (1 &lt;&lt; 0)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86ac7b0a93bb4c7b95c479f6bd86963b5f4">GPIO_LVL_MID</a> = (2 &lt;&lt; 0)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a979c7d9eac057c54c96dbe96853bc24c">GPIO_LVL_HIGH</a> = (3 &lt;&lt; 0)
+, <b>GPIO_FALLING</b> = GPIO_ISC_FALLING | GPIO_LVL_LOW
+, <br />
+&#160;&#160;<b>GPIO_RISING</b> = GPIO_ISC_RISING | GPIO_LVL_LOW
+, <b>GPIO_BOTH</b> = GPIO_ISC_BOTH | GPIO_LVL_LOW
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = 0xff
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = 0x00
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = 0xab
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = GPIOEVENT_EVENT_FALLING_EDGE
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = GPIOEVENT_EVENT_RISING_EDGE
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = GPIO_FALLING | GPIO_RISING
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a0227e43a6201c3330b2e6e9f71b74d6f">GPIO_LEVEL_LOW</a> = 0x1
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5a87f4701da8987969657f9ffb2563e0">GPIO_LEVEL_HIGH</a> = 0x2
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = 0x4
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = 0x8
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = 0xc
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = 0
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = 1
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = 2
+<br />
+ }</td></tr>
+<tr class="separator:a0e8c3f46deb150e48acaa79fe26b2e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Override I2C clock speed values</h2></td></tr>
+<tr class="memitem:a1229320c595db94034f9fec9efcd46a3"><td class="memItemLeft" align="right" valign="top"><a id="a1229320c595db94034f9fec9efcd46a3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HAVE_I2C_SPEED_T</b></td></tr>
+<tr class="separator:a1229320c595db94034f9fec9efcd46a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e6a870f98abb8cffa95373b69fb8243"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a6e6a870f98abb8cffa95373b69fb8243">i2c_speed_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a> = 10000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a> = 100000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a> = 400000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a> = 1000000ul
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a> = 3400000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a> = 10000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a> = 100000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a> = 400000u
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a> = 400000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a> = 400000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a> = 0
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a>
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a>
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a>
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a>
+<br />
+ }</td></tr>
+<tr class="separator:a6e6a870f98abb8cffa95373b69fb8243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bd1b3321b66208c3499e83d495333cd"><td class="memItemLeft" align="right" valign="top"><a id="a7bd1b3321b66208c3499e83d495333cd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a7bd1b3321b66208c3499e83d495333cd">PERIPH_SPI_NEEDS_INIT_CS</a></td></tr>
+<tr class="memdesc:a7bd1b3321b66208c3499e83d495333cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable common SPI functions. <br /></td></tr>
+<tr class="separator:a7bd1b3321b66208c3499e83d495333cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d9c2b9cf24ed0b13807d63f5e9b11f"><td class="memItemLeft" align="right" valign="top"><a id="af3d9c2b9cf24ed0b13807d63f5e9b11f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_BYTE</b></td></tr>
+<tr class="separator:af3d9c2b9cf24ed0b13807d63f5e9b11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac68c30cec18f4abf11cc4bb09c13df17"><td class="memItemLeft" align="right" valign="top"><a id="ac68c30cec18f4abf11cc4bb09c13df17"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_REG</b></td></tr>
+<tr class="separator:ac68c30cec18f4abf11cc4bb09c13df17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeb6291046cbd0102e8c87af75e4200d"><td class="memItemLeft" align="right" valign="top"><a id="afeb6291046cbd0102e8c87af75e4200d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_REGS</b></td></tr>
+<tr class="separator:afeb6291046cbd0102e8c87af75e4200d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0505b52e78af9251f6a1921d30214e"><td class="memItemLeft" align="right" valign="top"><a id="a0d0505b52e78af9251f6a1921d30214e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a0d0505b52e78af9251f6a1921d30214e">SPI_UNDEF</a>&#160;&#160;&#160;(UCHAR_MAX)</td></tr>
+<tr class="memdesc:a0d0505b52e78af9251f6a1921d30214e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define global value for undefined SPI device. <br /></td></tr>
+<tr class="separator:a0d0505b52e78af9251f6a1921d30214e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a067f31ad368c40e0477ca9ead1110041"><td class="memItemLeft" align="right" valign="top"><a id="a067f31ad368c40e0477ca9ead1110041"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#a067f31ad368c40e0477ca9ead1110041">HAVE_SPI_T</a></td></tr>
+<tr class="memdesc:a067f31ad368c40e0477ca9ead1110041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define spi_t data type to save data. <br /></td></tr>
+<tr class="separator:a067f31ad368c40e0477ca9ead1110041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb0e0a49f74e9b75ea31b82597fff6b4"><td class="memItemLeft" align="right" valign="top"><a id="adb0e0a49f74e9b75ea31b82597fff6b4"></a>
+typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>spi_t</b></td></tr>
+<tr class="separator:adb0e0a49f74e9b75ea31b82597fff6b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6d9d193934d2c1c598837398369a197"><td class="memItemLeft" align="right" valign="top"><a id="ad6d9d193934d2c1c598837398369a197"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#ad6d9d193934d2c1c598837398369a197">HAVE_SPI_CLK_T</a></td></tr>
+<tr class="memdesc:ad6d9d193934d2c1c598837398369a197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available SPI clock speeds. <br /></td></tr>
+<tr class="separator:ad6d9d193934d2c1c598837398369a197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae81cec9f03084065c25089e514a57337"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a> = 100000U
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a> = 400000U
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a> = 1000000U
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a> = 5000000U
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a> = 10000000U
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a> = KHZ(100)
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a> = KHZ(400)
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a> = MHZ(1)
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a> = MHZ(5)
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a> = MHZ(10)
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a> = 100000
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a> = 400000
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a> = 1000000
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a> = 5000000
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a> = SPI_CLK_5MHZ
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a> = KHZ(100)
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a> = KHZ(400)
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a> = MHZ(1)
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a> = MHZ(5)
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a> = SPI_CLK_5MHZ
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a> = 0
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a>
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a>
+, <a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a>
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__spi.html#ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a>
+<br />
+ }</td></tr>
+<tr class="separator:ae81cec9f03084065c25089e514a57337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Interrupt level used to control nested interrupts</h2></td></tr>
+<tr class="memitem:aa375cff8e60c9488def9f87ec31d962b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atxmega_2include_2periph__cpu_8h.html#aa375cff8e60c9488def9f87ec31d962b">cpu_int_lvl_t</a> { <a class="el" href="atxmega_2include_2periph__cpu_8h.html#aa375cff8e60c9488def9f87ec31d962ba71bb4e289773c11414081335284bdd97">CPU_INT_LVL_OFF</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#aa375cff8e60c9488def9f87ec31d962ba898ea2eafde6b0b619289c9f4f7bedae">CPU_INT_LVL_LOW</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#aa375cff8e60c9488def9f87ec31d962ba6f7be05e2ae293d709277cb66456fae7">CPU_INT_LVL_MID</a>
+, <a class="el" href="atxmega_2include_2periph__cpu_8h.html#aa375cff8e60c9488def9f87ec31d962bacbb1dce3753850ed74a48f38a53594bc">CPU_INT_LVL_HIGH</a>
+ }</td></tr>
+<tr class="separator:aa375cff8e60c9488def9f87ec31d962b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="af8d64e6e2aff9d844c6ce6614697b4f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8d64e6e2aff9d844c6ce6614697b4f5">&#9670;&nbsp;</a></span>ATXMEGA_GPIO_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ATXMEGA_GPIO_PIN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((x &amp; 0x0f) &lt;&lt; 8) | (y &amp; 0xff))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a CPU specific GPIO pin generator macro. </p>
+<p>The ATxmega internally uses pin mask to manipulate all gpio functions. This allows simultaneous pin actions at any method call. ATxmega specific applications can use ATXMEGA_GPIO_PIN macro to define pins and generic RIOT-OS application should continue to use GPIO_PIN API for compatibility. </p>
+
+</div>
+</div>
+<a id="a266796b5a896ca8127d9555e0fa5ed51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a266796b5a896ca8127d9555e0fa5ed51">&#9670;&nbsp;</a></span>HAVE_GPIO_MODE_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HAVE_GPIO_MODE_T</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available pin modes. </p>
+<p>Generally, a pin can be configured to be input or output. In output mode, a pin can further be put into push-pull or open drain configuration. Though this is supported by most platforms, this is not always the case, so driver implementations may return an error code if a mode is not supported. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a16af7b253440dadd46a80a4b9fddba4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16af7b253440dadd46a80a4b9fddba4d">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available ports on the ATxmega family. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4daeb6782d9dfedf3c6a78ffdb1624fa454"></a>PORT_A&#160;</td><td class="fielddoc"><p>port A - 600 - 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da16ada472d473fbd0207b99e9e4d68f4a"></a>PORT_B&#160;</td><td class="fielddoc"><p>port B - 620 - 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da627cc690c37f97527dd2f07aa22092d9"></a>PORT_C&#160;</td><td class="fielddoc"><p>port C - 640 - 2 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4daf7242fe75227a46a190645663f91ce69"></a>PORT_D&#160;</td><td class="fielddoc"><p>port D - 660 - 3 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4dabad63f022d1fa37a66f87dc31a78f6a9"></a>PORT_E&#160;</td><td class="fielddoc"><p>port E - 680 - 4 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4daa3760b302740c7d09c93ec7a634f837c"></a>PORT_F&#160;</td><td class="fielddoc"><p>port F - 6A0 - 5 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da48afb424254d52e7d97a7c1428f5aafa"></a>PORT_G&#160;</td><td class="fielddoc"><p>port G - 6C0 - 6 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da31d1ae08c10668d936d1c2c6426c1c47"></a>PORT_H&#160;</td><td class="fielddoc"><p>port H - 6E0 - 7 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da3eea70262d530701087c2a3a09c475fe"></a>PORT_J&#160;</td><td class="fielddoc"><p>port J - 700 - 8 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da23bae6dc45cdca7c90be62437df0f454"></a>PORT_K&#160;</td><td class="fielddoc"><p>port K - 720 - 9 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da9e83da163100e922da1c8065b5cf43c2"></a>PORT_L&#160;</td><td class="fielddoc"><p>port L - 740 - A </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4dab944189326f5bef270cabd531a023766"></a>PORT_M&#160;</td><td class="fielddoc"><p>port M - 760 - B </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4daef6d6fac4ce97e1efa95afc1c3e9177b"></a>PORT_N&#160;</td><td class="fielddoc"><p>port N - 780 - C </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da1a9a09148fb7bcfb9c01d102ae49c3b4"></a>PORT_P&#160;</td><td class="fielddoc"><p>port P - 7A0 - D </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4da949e8cdb80df02562cb0f2e02f87eaea"></a>PORT_Q&#160;</td><td class="fielddoc"><p>port Q - 7C0 - E </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16af7b253440dadd46a80a4b9fddba4dab94b63ec7d4ff26c379cb895421bb2e8"></a>PORT_R&#160;</td><td class="fielddoc"><p>port R - 7E0 - F </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="aa375cff8e60c9488def9f87ec31d962b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa375cff8e60c9488def9f87ec31d962b">&#9670;&nbsp;</a></span>cpu_int_lvl_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#aa375cff8e60c9488def9f87ec31d962b">cpu_int_lvl_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa375cff8e60c9488def9f87ec31d962ba71bb4e289773c11414081335284bdd97"></a>CPU_INT_LVL_OFF&#160;</td><td class="fielddoc"><p>Interrupt Disabled <br  />
+ </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa375cff8e60c9488def9f87ec31d962ba898ea2eafde6b0b619289c9f4f7bedae"></a>CPU_INT_LVL_LOW&#160;</td><td class="fielddoc"><p>Interrupt Low Level <br  />
+ </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa375cff8e60c9488def9f87ec31d962ba6f7be05e2ae293d709277cb66456fae7"></a>CPU_INT_LVL_MID&#160;</td><td class="fielddoc"><p>Interrupt Medium Level. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa375cff8e60c9488def9f87ec31d962bacbb1dce3753850ed74a48f38a53594bc"></a>CPU_INT_LVL_HIGH&#160;</td><td class="fielddoc"><p>Interrupt High Level <br  />
+ </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0e8c3f46deb150e48acaa79fe26b2e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e8c3f46deb150e48acaa79fe26b2e86">&#9670;&nbsp;</a></span>gpio_flank_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a4f2388ac8e1f57263037c3ff4b3a7b39"></a>GPIO_ISC_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks (default) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86aa66eac98d2fbcbacb1b23ddbd12fcd54"></a>GPIO_ISC_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a22848bc017239d7e836ca1413df283c5"></a>GPIO_ISC_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a42b7fa195b4013eaf4be4c50883b9350"></a>GPIO_ISC_LOW_LEVEL&#160;</td><td class="fielddoc"><p>emit interrupt on low level </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6cac6d4846100fdf6d4d9affdb336e4d"></a>GPIO_INT_DISABLED_ALL&#160;</td><td class="fielddoc"><p>disable all interrupts </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a2625cbb8746c5e09a2c83b5b49a2e0ab"></a>GPIO_INT0_VCT&#160;</td><td class="fielddoc"><p>enable interrupt on Vector 0 (default) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a400889a65566bc4d027e54ea9f767191"></a>GPIO_INT1_VCT&#160;</td><td class="fielddoc"><p>enable interrupt on Vector 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6fafbe2898ba18deab0ad13f6cecce98"></a>GPIO_LVL_OFF&#160;</td><td class="fielddoc"><p>interrupt disabled (default) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a66164b69c11c5d7a9eacb0478a339661"></a>GPIO_LVL_LOW&#160;</td><td class="fielddoc"><p>interrupt low level </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86ac7b0a93bb4c7b95c479f6bd86963b5f4"></a>GPIO_LVL_MID&#160;</td><td class="fielddoc"><p>interrupt medium level </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a979c7d9eac057c54c96dbe96853bc24c"></a>GPIO_LVL_HIGH&#160;</td><td class="fielddoc"><p>interrupt higher </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>not supported -&gt; random value </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a0227e43a6201c3330b2e6e9f71b74d6f"></a>GPIO_LEVEL_LOW&#160;</td><td class="fielddoc"><p>emit interrupt level-triggered on low input </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5a87f4701da8987969657f9ffb2563e0"></a>GPIO_LEVEL_HIGH&#160;</td><td class="fielddoc"><p>emit interrupt level-triggered on low input </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a201df5e2845212d28c89e2cf3fdaa642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201df5e2845212d28c89e2cf3fdaa642">&#9670;&nbsp;</a></span>GPIO_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642">GPIO_MODE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642ab63bf361ba2d515be181e8836c24913e"></a>GPIO_SLEW_RATE&#160;</td><td class="fielddoc"><p>enable slew rate </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642ab72871a7a1a507564b4866858a90ff32"></a>GPIO_INVERTED&#160;</td><td class="fielddoc"><p>enable inverted signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a73de15535a5a5517cdf8b7720652c494"></a>GPIO_OPC_TOTEN&#160;</td><td class="fielddoc"><p>select no pull resistor (TOTEM) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a93004776b8a24ab97dfbe55e81fd882f"></a>GPIO_OPC_BSKPR&#160;</td><td class="fielddoc"><p>push-pull mode (BUSKEEPER) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642acafd272234294bb978177d11bf185847"></a>GPIO_OPC_PD&#160;</td><td class="fielddoc"><p>pull-down resistor </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a44bd944f6de50d43b68e3e8525b2039b"></a>GPIO_OPC_PU&#160;</td><td class="fielddoc"><p>pull-up resistor </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a948d8b64c01fa774ada1b3c5be31580f"></a>GPIO_OPC_WRD_OR&#160;</td><td class="fielddoc"><p>enable wired OR <br  />
+ </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a82fb8061127adfd1e90442d0e3772898"></a>GPIO_OPC_WRD_AND&#160;</td><td class="fielddoc"><p>enable wired AND </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a8b034128b0bbec8156540207c239d6cc"></a>GPIO_OPC_WRD_OR_PULL&#160;</td><td class="fielddoc"><p>enable wired OR and pull-down resistor </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a537dc3134500ee45f695b5270e270c6a"></a>GPIO_OPC_WRD_AND_PULL&#160;</td><td class="fielddoc"><p>enable wired AND and pull-up resistor </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642ae8bd62cf000e751ffdce5a9de1c0dcc0"></a>GPIO_ANALOG&#160;</td><td class="fielddoc"><p>select GPIO for analog function </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a3343e227f62c4c536efff81438a8e155"></a>GPIO_IN&#160;</td><td class="fielddoc"><p>select GPIO MASK as input </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a201df5e2845212d28c89e2cf3fdaa642a1b59f059dea546f0248fb26232ee3531"></a>GPIO_OUT&#160;</td><td class="fielddoc"><p>select GPIO MASK as output </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6e6a870f98abb8cffa95373b69fb8243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e6a870f98abb8cffa95373b69fb8243">&#9670;&nbsp;</a></span>i2c_speed_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a6e6a870f98abb8cffa95373b69fb8243">i2c_speed_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0"></a>I2C_SPEED_LOW&#160;</td><td class="fielddoc"><p>low speed mode: ~10 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583"></a>I2C_SPEED_NORMAL&#160;</td><td class="fielddoc"><p>normal mode: ~100 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca"></a>I2C_SPEED_FAST&#160;</td><td class="fielddoc"><p>fast mode: ~400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e"></a>I2C_SPEED_FAST_PLUS&#160;</td><td class="fielddoc"><p>fast plus mode: ~1000 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48"></a>I2C_SPEED_HIGH&#160;</td><td class="fielddoc"><p>high speed mode: ~3400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0"></a>I2C_SPEED_LOW&#160;</td><td class="fielddoc"><p>low speed mode: ~10 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583"></a>I2C_SPEED_NORMAL&#160;</td><td class="fielddoc"><p>normal mode: ~100 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca"></a>I2C_SPEED_FAST&#160;</td><td class="fielddoc"><p>fast mode: ~400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e"></a>I2C_SPEED_FAST_PLUS&#160;</td><td class="fielddoc"><p>not supported, capped at 400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48"></a>I2C_SPEED_HIGH&#160;</td><td class="fielddoc"><p>not supported, capped at 400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0"></a>I2C_SPEED_LOW&#160;</td><td class="fielddoc"><p>low speed mode: ~10 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583"></a>I2C_SPEED_NORMAL&#160;</td><td class="fielddoc"><p>normal mode: ~100 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca"></a>I2C_SPEED_FAST&#160;</td><td class="fielddoc"><p>fast mode: ~400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e"></a>I2C_SPEED_FAST_PLUS&#160;</td><td class="fielddoc"><p>fast plus mode: ~1000 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48"></a>I2C_SPEED_HIGH&#160;</td><td class="fielddoc"><p>high speed mode: ~3400 kbit/s </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ae81cec9f03084065c25089e514a57337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae81cec9f03084065c25089e514a57337">&#9670;&nbsp;</a></span>spi_clk_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27"></a>SPI_CLK_100KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 100KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3"></a>SPI_CLK_400KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 400KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111"></a>SPI_CLK_1MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 1MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58"></a>SPI_CLK_5MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 5MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d"></a>SPI_CLK_10MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 10MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27"></a>SPI_CLK_100KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 100KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3"></a>SPI_CLK_400KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 400KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111"></a>SPI_CLK_1MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 1MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58"></a>SPI_CLK_5MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 5MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d"></a>SPI_CLK_10MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 10MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27"></a>SPI_CLK_100KHZ&#160;</td><td class="fielddoc"><p>100 kHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3"></a>SPI_CLK_400KHZ&#160;</td><td class="fielddoc"><p>400 kHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111"></a>SPI_CLK_1MHZ&#160;</td><td class="fielddoc"><p>1 MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58"></a>SPI_CLK_5MHZ&#160;</td><td class="fielddoc"><p>5 MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d"></a>SPI_CLK_10MHZ&#160;</td><td class="fielddoc"><p>10 MHz not supported, falling back to 5 MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27"></a>SPI_CLK_100KHZ&#160;</td><td class="fielddoc"><p>100 kHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3"></a>SPI_CLK_400KHZ&#160;</td><td class="fielddoc"><p>400 kHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111"></a>SPI_CLK_1MHZ&#160;</td><td class="fielddoc"><p>1 MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58"></a>SPI_CLK_5MHZ&#160;</td><td class="fielddoc"><p>5 MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d"></a>SPI_CLK_10MHZ&#160;</td><td class="fielddoc"><p>10 MHz not supported, falling back to 5 MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337ae6cc2c3387e4da1c7cb83aefb10f5d27"></a>SPI_CLK_100KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 100KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a8db155bff416a59ca71ce9b2a2568bf3"></a>SPI_CLK_400KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 400KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337abf727d641e5cceb12a58d29dc954c111"></a>SPI_CLK_1MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 1MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a4105210aa902203502e4392d4a3fbe58"></a>SPI_CLK_5MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 5MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae81cec9f03084065c25089e514a57337a1693f88bef873b11f7b85ce0bba8175d"></a>SPI_CLK_10MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 10MHz </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a66e6b1d10289945ae9284d769f136e59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66e6b1d10289945ae9284d769f136e59">&#9670;&nbsp;</a></span>timer_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a66e6b1d10289945ae9284d769f136e59">timer_type_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> Type. </p>
+<p><a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> Type 1 is equal to Type 0 (two channels instead four) <a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> Type 2 is Type 0 configured as two 8 bit timers instead one 16 bit <a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> Type 2 won't be available as a standard timer <a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> Type 5 is equal to Type 4 (two channels instead four) </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_b2b1df72100f29b893e5b93b99ce0acb.html">atxmega</a></li><li class="navelem"><a class="el" href="dir_66334d0debec833baa04fdc993f2e243.html">include</a></li><li class="navelem"><a class="el" href="atxmega_2include_2periph__cpu_8h.html">periph_cpu.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

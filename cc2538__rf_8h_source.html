@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/cc2538/include/cc2538_rf.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('cc2538__rf_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">cc2538_rf.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="cc2538__rf_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 MUTEX NZ Ltd.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Copyright (C) 2015 Loci Controls Inc.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifndef CC2538_RF_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define CC2538_RF_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;board.h&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cc2538__rfcore_8h.html">cc2538_rfcore.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sys_2include_2net_2ieee802154_8h.html">net/ieee802154.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="kernel__defines_8h.html">kernel_defines.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;net/ieee802154/radio.h&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="netopt_8h.html">net/netopt.h</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define CC2538_AUTOCRC_LEN          (2)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define CC2538_RF_FIFO_SIZE         (128)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#define CC2538_PACKET_LENGTH_SIZE   (1)</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define CC2538_RF_MAX_DATA_LEN (CC2538_RF_FIFO_SIZE - CC2538_PACKET_LENGTH_SIZE)</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/* TODO: Move these to sys/include/net/ieee802154.h somehow */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* IEEE 802.15.4 defined constants (2.4 GHz logical channels) */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a1a2605a47cff9eea1bc74101a8d189ca">   49</a></span>&#160;<span class="preprocessor">#define IEEE802154_MIN_FREQ         (2405) </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a52fc2e7050133f9404300f33dc4acc1d">   50</a></span>&#160;<span class="preprocessor">#define IEEE802154_MAX_FREQ         (2480) </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a73d7b4323262a5c71d5d74ead004900a">   52</a></span>&#160;<span class="preprocessor">#define IEEE802154_CHANNEL_SPACING  (5)    </span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define IEEE802154_CHAN2FREQ(chan)  ( IEEE802154_MIN_FREQ + ((chan) - IEEE802154_CHANNEL_MIN) * IEEE802154_CHANNEL_SPACING )</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define IEEE802154_FREQ2CHAN(freq)  ( IEEE802154_CHANNEL_MIN + ((freq) - IEEE802154_MIN_FREQ) / IEEE802154_CHANNEL_SPACING )</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/* /TODO */</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#define CC2538_MIN_FREQ             (2394)</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define CC2538_MAX_FREQ             (2507)</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ad656ebb825808599b95f60a3ca3d3dbc">   61</a></span>&#160;<span class="preprocessor">#define CC2538_RF_POWER_DEFAULT     (CONFIG_IEEE802154_DEFAULT_TXPOWER)    </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#define CC2538_RF_CHANNEL_DEFAULT   (CONFIG_IEEE802154_DEFAULT_CHANNEL)</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a1acba761c7a53afbdc365b5866b4c6ed">   64</a></span>&#160;<span class="preprocessor">#define OUTPUT_POWER_MIN            (-24)  </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a71d628e93aac863e33c3410d6a7bbfc0">   65</a></span>&#160;<span class="preprocessor">#define OUTPUT_POWER_MAX            (7)    </span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#define NUM_POWER_LEVELS            ( OUTPUT_POWER_MAX - OUTPUT_POWER_MIN + 1 )</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#define CC2538_CORR_VAL_MIN         (50U)</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define CC2538_CORR_VAL_MAX         (110U)</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#define CC2538_CORR_VAL_MASK        (0x7F)</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define CC2538_CRC_BIT_MASK         (0x80)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ab72fcf615613b6b866ef447467346875">   74</a></span>&#160;<span class="preprocessor">#define CC2538_CCA_THR_MASK         (0x000000FF)    </span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ab8726ea5d7ab7ec11e1e652a068daebe">   76</a></span>&#160;<span class="preprocessor">#define CC2538_CCA_MODE_MASK        (0x18)          </span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a78b7853e45d8f0efa94a96d6f241b863">   77</a></span>&#160;<span class="preprocessor">#define CC2538_CCA_MODE_POS         (3U)            </span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a465dbd526e5edee4119faaaac3bb7eb9">   79</a></span>&#160;<span class="preprocessor">#define CC2538_CSP_SKIP_INST_MASK   (0x70)          </span></div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aae1aade38f45705e5006f79597f874c3">   80</a></span>&#160;<span class="preprocessor">#define CC2538_CSP_SKIP_INST_POS    (4U)            </span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a8cff77deb5e94fe71d69aaa194897140">   82</a></span>&#160;<span class="preprocessor">#define CC2538_CSP_SKIP_N_MASK      (0x08)          </span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#adc2a32d3823205b2057f680b67dbda2b">   84</a></span>&#160;<span class="preprocessor">#define CC2538_CSP_SKIP_COND_CCA    (0x00)          </span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ad09fa4461d4ba391386b7422af6d96fb">   85</a></span>&#160;<span class="preprocessor">#define CC2538_CSP_SKIP_COND_CSPZ   (0x06)          </span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#afe26639b3bd5902fbca78ba04941eb9b">   86</a></span>&#160;<span class="preprocessor">#define CC2538_CSP_SKIP_COND_RSSI   (0x07)          </span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ac8ced460782a9950d7a8c0cf64fd60d6">   88</a></span>&#160;<span class="preprocessor">#define CC2538_SFR_MTMSEL_MASK      (0x7)           </span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a22a663898d88a5e05d66b195da3011c2">   89</a></span>&#160;<span class="preprocessor">#define CC2538_SFR_MTMSEL_TIMER_P   (0x2)           </span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#adb5ea154de18e655b6ac027c411484cf">   90</a></span>&#160;<span class="preprocessor">#define CC2538_MCTRL_SYNC_MASK      (0x2)           </span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aba65e884fac15d6159e0ae28722bd746">   91</a></span>&#160;<span class="preprocessor">#define CC2538_MCTRL_RUN_MASK       (0x1)           </span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aede2324e2a08132ca9413add41fed40d">   93</a></span>&#160;<span class="preprocessor">#define CC2538_CSP_MCU_CTRL_MASK    (0x1)           </span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define CC2538_CSP_INCMAXY_MAX_MASK (0x7)           </span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a49d5998cfccda32e90a72b42f86d8361">   98</a></span>&#160;<span class="preprocessor">#define CC2538_RXENABLE_RXON_MASK   (0x80)          </span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aba059ccaad2493ce1c9dce17a11cbd59">  100</a></span>&#160;<span class="preprocessor">#define CC2538_RSSI_OFFSET          (-73)  </span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#afbe37675b8bac2d45ddb79ef4a4ccfb4">  101</a></span>&#160;<span class="preprocessor">#define CC2538_RF_SENSITIVITY       (-97)  </span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#acbf1abf8bb053b4c73dcc49ea613c4dc">  103</a></span>&#160;<span class="preprocessor">#define CC2538_ACCEPT_FT_0_BEACON        (1 &lt;&lt; 3) </span></div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a97e7af215e861cfffd4c73aab3436dfa">  104</a></span>&#160;<span class="preprocessor">#define CC2538_ACCEPT_FT_1_DATA          (1 &lt;&lt; 4) </span></div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ac255c85eab86d809b1716a35b02af33f">  105</a></span>&#160;<span class="preprocessor">#define CC2538_ACCEPT_FT_2_ACK           (1 &lt;&lt; 5) </span></div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a5294d51185f28ec30320f3891c2420b4">  106</a></span>&#160;<span class="preprocessor">#define CC2538_ACCEPT_FT_3_CMD           (1 &lt;&lt; 6) </span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ac223edf9397cd6833d168617c7744f03">  107</a></span>&#160;<span class="preprocessor">#define CC2538_STATE_SFD_WAIT_RANGE_MIN  (0x03U)  </span></div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#af0d01a0630b10f6b30b4800025626159">  108</a></span>&#160;<span class="preprocessor">#define CC2538_STATE_SFD_WAIT_RANGE_MAX  (0x06U)  </span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define CC2538_FRMCTRL1_PENDING_OR_MASK  (0x04)   </span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#define CC2538_FRMCTRL0_RX_MODE_DIS      (0xC)    </span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#define RFCORE_ASSERT(expr) (void)( (expr) || RFCORE_ASSERT_failure(#expr, __FUNCTION__, __LINE__) )</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#if DEVELHELP</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#define RFCORE_WAIT_UNTIL(expr) while (!(expr)) {                                        \</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">    DEBUG(&quot;RFCORE_WAIT_UNTIL(%s) at line %u in %s()\n&quot;</span>, #expr, __LINE__, __FUNCTION__);  \</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    thread_yield();                                                                      \</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#define RFCORE_WAIT_UNTIL(expr) while (!(expr)) thread_yield()</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#define RFCORE_FLUSH_RECEIVE_FIFO() rfcore_strobe(ISFLUSHRX)</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#define ABS_DIFF(x, y)          ( ((x) &lt; (y))? ((y) - (x)) : ((x) - (y)) )</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#define BOOLEAN(x)              ( (x) != 0 )</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#define NOT(x)                  ( (x) == 0 )</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#define GET_BYTE(buffer, index) ( (unsigned char*)(buffer) )[index]</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#define BIT(n) ( 1 &lt;&lt; (n) )</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    FSM_STATE_IDLE           =  0,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    FSM_STATE_RX_CALIBRATION =  2,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    FSM_STATE_TX_CALIBRATION = 32,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    STROBE_ERR = BIT(6),</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    TXUNDERF   = BIT(5),</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    TXOVERF    = BIT(4),</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    RXUNDERF   = BIT(3),</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    RXOVERF    = BIT(2),</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    RXABO      = BIT(1),</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    NLOCK      = BIT(0),</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;};</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    SET_RXENMASK_ON_TX  = BIT(0),</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    IGNORE_TX_UNDERF    = BIT(1),</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    PENDING_OR          = BIT(2),</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;};</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    ENERGY_SCAN      = BIT(4),</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    AUTOACK          = BIT(5),</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    AUTOCRC          = BIT(6),</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    APPEND_DATA_MODE = BIT(7),</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;};</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    ACT_UNUSED       = BIT(0),</div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aaee1f1a011603c0c6712d061776c2e94">  177</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aaee1f1a011603c0c6712d061776c2e94">SFD</a>              = BIT(1), </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    FIFOP            = BIT(2),</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    SRC_MATCH_DONE   = BIT(3),</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    SRC_MATCH_FOUND  = BIT(4),</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    FRAME_ACCEPTED   = BIT(5),</div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aa0d55f120d999953660c1dd1707ed4ee">  182</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aa0d55f120d999953660c1dd1707ed4ee">RXPKTDONE</a>        = BIT(6), </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    RXMASKZERO       = BIT(7),</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;};</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    TXACKDONE        = BIT(0),</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    TXDONE           = BIT(1),</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    RF_IDLE          = BIT(2),</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    CSP_MANINT       = BIT(3),</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    CSP_STOP         = BIT(4),</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    CSP_WAIT         = BIT(5),</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;};</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    rfc_obs_sig0 = 0,</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    rfc_obs_sig1 = 1,</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    rfc_obs_sig2 = 2,</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;};</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a25cd3d32d6664dacd93e7fd4e967c2be">  211</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a25cd3d32d6664dacd93e7fd4e967c2be">constant_value_0</a> = 0x00, </div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad20691a0614d7a5910fd6345354cf3ca">  212</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad20691a0614d7a5910fd6345354cf3ca">constant_value_1</a> = 0x01, </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a7d07f933739549421065d5f7ba7c117d">rfc_sniff_data</a>   = 0x08, </div>
+<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af2403c22e3787d6fb4ca2f7b2e5e630a">  215</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af2403c22e3787d6fb4ca2f7b2e5e630a">rfc_sniff_clk</a>    = 0x09, </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a0665f9ef2a151f2edcfa0e342783f790">rssi_valid</a>       = 0x0c, </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad1de7ea82a913c037c6a32541cb27f3d">demod_cca</a>        = 0x0d, </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a559afa1136a79016de3b0f7b56342ce9">sampled_cca</a>      = 0x0e, </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ab0a9b29ac1b6695793f57f131bfd8426">sfd_sync</a>         = 0x0f, </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af00086e0caf71da683b2a29c6b37a63a">tx_active</a>        = 0x10, </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a15d3bee6d7471f4f2c31675dcb05b444">rx_active</a>        = 0x11, </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af06c96be923d75d21d34e0edb7d5e414">ffctrl_fifo</a>      = 0x12, </div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a8c798862fd8b21f272c6db6de1cb203d">ffctrl_fifop</a>     = 0x13, </div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a09b77bfb5836e32d5a1ed7823a4ffca1">packet_done</a>      = 0x14, </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a7565984c49959e43ef718da7280d4a0d">rfc_xor_rand_i_q</a> = 0x16, </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af187e9c79f69dede5aeb8cb3f433575d">rfc_rand_q</a>       = 0x17, </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a00a58141c36fa40ba3a72232ebdfbe89">rfc_rand_i</a>       = 0x18, </div>
+<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af97e982ac28022601db4259c3c6d4382">  250</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af97e982ac28022601db4259c3c6d4382">lock_status</a>      = 0x19, </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8aab0256e7b1a7f24b4a6d5ccecb300089">  251</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8aab0256e7b1a7f24b4a6d5ccecb300089">pa_pd</a>            = 0x20, </div>
+<div class="line"><a name="l00252"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a05fe49d555f8f0a8a5385a8690f02c82">  252</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a05fe49d555f8f0a8a5385a8690f02c82">lna_pd</a>           = 0x2a, </div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a18b72413eef3b883fe2e6e15d6373c6d">  253</a></span>&#160;    <a class="code" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a18b72413eef3b883fe2e6e15d6373c6d">disabled</a>         = 0xff, </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;};</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="preprocessor">#ifndef CONFIG_CC2538_RF_OBS_0</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#define CONFIG_CC2538_RF_OBS_0      tx_active</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">#ifndef CONFIG_CC2538_RF_OBS_1</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">#define CONFIG_CC2538_RF_OBS_1      rx_active</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="preprocessor">#ifndef CONFIG_CC2538_RF_OBS_2</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">#define CONFIG_CC2538_RF_OBS_2      rssi_valid</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">/* Default configuration for cc2538dk or similar */</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor">#ifndef CONFIG_CC2538_RF_OBS_SIG_0_PCX</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#define CONFIG_CC2538_RF_OBS_SIG_0_PCX  0   </span><span class="comment">/* PC0 = LED_1 (red) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">#ifndef CONFIG_CC2538_RF_OBS_SIG_1_PCX</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">#define CONFIG_CC2538_RF_OBS_SIG_1_PCX  1   </span><span class="comment">/* PC0 = LED_2 (red) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">#ifndef CONFIG_CC2538_RF_OBS_SIG_2_PCX</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">#define CONFIG_CC2538_RF_OBS_SIG_2_PCX  2   </span><span class="comment">/* PC0 = LED_3 (red) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">#if ((CONFIG_CC2538_RF_OBS_SIG_2_PCX &gt; 7) || \</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">     (CONFIG_CC2538_RF_OBS_SIG_1_PCX &gt; 7) || \</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">     (CONFIG_CC2538_RF_OBS_SIG_0_PCX &gt; 7))</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">#error &quot;CONFIG_CC2538_RF_OBS_SIG_X_PCX must be between 0-7 (PC0-PC7)&quot;</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="structcc2538__rf__t.html">  288</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="structcc2538__rf__t.html#aa36273cdb8e78115adc8de2df38b757f">  289</a></span>&#160;    uint8_t <a class="code" href="structcc2538__rf__t.html#aa36273cdb8e78115adc8de2df38b757f">state</a>;                </div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;} <a class="code" href="structcc2538__rf__t.html">cc2538_rf_t</a>;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a2a4e4f80376a68ef3ad750d03ebca596">  299</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a2a4e4f80376a68ef3ad750d03ebca596">cc2538_rf_hal_setup</a>(<a class="code" href="structieee802154__dev.html">ieee802154_dev_t</a> *hal);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a530a981b64d516e1cd3db486feeeac1d">  304</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a530a981b64d516e1cd3db486feeeac1d">cc2538_rf_enable_irq</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;{</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="cc2538_8h.html#adc5f6e6c268fa975cb4bf9f653ddb457">RFCORE_XREG_RFIRQM1</a> = TXDONE | CSP_STOP | TXACKDONE;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <a class="code" href="cc2538_8h.html#a9022d650f1bf2e3992a20ea9a6c2fed1">RFCORE_XREG_RFIRQM0</a> = <a class="code" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aa0d55f120d999953660c1dd1707ed4ee">RXPKTDONE</a> | <a class="code" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aaee1f1a011603c0c6712d061776c2e94">SFD</a>;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a9b84e9385b8173da18485ca6876ad0a3">  313</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a9b84e9385b8173da18485ca6876ad0a3">cc2538_rf_disable_irq</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;{</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="cc2538_8h.html#adc5f6e6c268fa975cb4bf9f653ddb457">RFCORE_XREG_RFIRQM1</a> = 0;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <a class="code" href="cc2538_8h.html#a9022d650f1bf2e3992a20ea9a6c2fed1">RFCORE_XREG_RFIRQM0</a> = 0;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;}</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a34909fde9d6674c0ee8004f99448bdf5">  323</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a34909fde9d6674c0ee8004f99448bdf5">cc2538_irq_handler</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
+<div class="line"><a name="l00331"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a3ddc7753d61ea25b1fff7b1f6342f6e2">  331</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="cc2538__rf_8h.html#a3ddc7753d61ea25b1fff7b1f6342f6e2">cc2538_channel_clear</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00338"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ac1ca972b29e9a19a14b73d44671d3431">  338</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#ac1ca972b29e9a19a14b73d44671d3431">cc2538_get_addr_long</a>(uint8_t *addr);</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a99383a4343c6e2cae7eed187238595a9">  345</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a99383a4343c6e2cae7eed187238595a9">cc2538_get_addr_short</a>(uint8_t *addr);</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
+<div class="line"><a name="l00352"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a1371ec054f5647c073af3b2ae1cb680a">  352</a></span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="cc2538__rf_8h.html#a1371ec054f5647c073af3b2ae1cb680a">cc2538_get_chan</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00360"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aa3af86647aeea6c7c25dcf2f064cefd9">  360</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="cc2538__rf_8h.html#aa3af86647aeea6c7c25dcf2f064cefd9">cc2538_get_monitor</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
+<div class="line"><a name="l00367"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a6c220bd72a12667b37fa47ff1a122f40">  367</a></span>&#160;uint16_t <a class="code" href="cc2538__rf_8h.html#a6c220bd72a12667b37fa47ff1a122f40">cc2538_get_pan</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
+<div class="line"><a name="l00374"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ae3f12118d0309ecb534f1172def074b8">  374</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="cc2538__rf_8h.html#ae3f12118d0309ecb534f1172def074b8">cc2538_get_tx_power</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
+<div class="line"><a name="l00380"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a5c62669daed88843d2ad9d3e8794d0b1">  380</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a5c62669daed88843d2ad9d3e8794d0b1">cc2538_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aa0d5c833f8a70e538eb6c43ccc8b16f7">  388</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="cc2538__rf_8h.html#aa0d5c833f8a70e538eb6c43ccc8b16f7">cc2538_is_on</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; </div>
+<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a1cc22965870d6d55dc55eb812746498d">  394</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a1cc22965870d6d55dc55eb812746498d">cc2538_off</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160; </div>
+<div class="line"><a name="l00400"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a23d22aa35df304e9275d9d1fb83d3cfb">  400</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="cc2538__rf_8h.html#a23d22aa35df304e9275d9d1fb83d3cfb">cc2538_on</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160; </div>
+<div class="line"><a name="l00407"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#afae5d370a453ba0c031df072f016eaa0">  407</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#afae5d370a453ba0c031df072f016eaa0">cc2538_setup</a>(<a class="code" href="structcc2538__rf__t.html">cc2538_rf_t</a> *dev);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00414"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a3fd5d635aa7597a5fc7080b9846d6246">  414</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a3fd5d635aa7597a5fc7080b9846d6246">cc2538_set_addr_short</a>(<span class="keyword">const</span> uint8_t *addr);</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160; </div>
+<div class="line"><a name="l00421"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a0ec6aaee98184e643d348e3061578cfc">  421</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a0ec6aaee98184e643d348e3061578cfc">cc2538_set_addr_long</a>(<span class="keyword">const</span> uint8_t *addr);</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160; </div>
+<div class="line"><a name="l00428"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a4f3b4aff7aa2379af856129c586c6a05">  428</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a4f3b4aff7aa2379af856129c586c6a05">cc2538_set_chan</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> chan);</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160; </div>
+<div class="line"><a name="l00435"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#ab15ea1dd97c76e4d9d05438b8034159d">  435</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#ab15ea1dd97c76e4d9d05438b8034159d">cc2538_set_freq</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> MHz);</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160; </div>
+<div class="line"><a name="l00442"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a8e3377695a72994f27bf99c8a95a46d6">  442</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a8e3377695a72994f27bf99c8a95a46d6">cc2538_set_monitor</a>(<span class="keywordtype">bool</span> mode);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160; </div>
+<div class="line"><a name="l00449"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a075dcfe2169c62559003081bd3c8c9cb">  449</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a075dcfe2169c62559003081bd3c8c9cb">cc2538_set_pan</a>(uint16_t pan);</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
+<div class="line"><a name="l00457"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#aab9930905a7483a3f2f6d90edfd81b05">  457</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#aab9930905a7483a3f2f6d90edfd81b05">cc2538_set_state</a>(<a class="code" href="structcc2538__rf__t.html">cc2538_rf_t</a> *dev, <a class="code" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a> state);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160; </div>
+<div class="line"><a name="l00464"></a><span class="lineno"><a class="line" href="cc2538__rf_8h.html#a6d0ec680bbeca76e6be1e421de2f0b34">  464</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="cc2538__rf_8h.html#a6d0ec680bbeca76e6be1e421de2f0b34">cc2538_set_tx_power</a>(<span class="keywordtype">int</span> dBm);</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160; </div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;}</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160; </div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CC2538_RF_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acc2538_8h_html_a9022d650f1bf2e3992a20ea9a6c2fed1"><div class="ttname"><a href="cc2538_8h.html#a9022d650f1bf2e3992a20ea9a6c2fed1">RFCORE_XREG_RFIRQM0</a></div><div class="ttdeci">#define RFCORE_XREG_RFIRQM0</div><div class="ttdoc">RF interrupt masks.</div><div class="ttdef"><b>Definition:</b> cc2538.h:384</div></div>
+<div class="ttc" id="acc2538_8h_html_adc5f6e6c268fa975cb4bf9f653ddb457"><div class="ttname"><a href="cc2538_8h.html#adc5f6e6c268fa975cb4bf9f653ddb457">RFCORE_XREG_RFIRQM1</a></div><div class="ttdeci">#define RFCORE_XREG_RFIRQM1</div><div class="ttdoc">RF interrupt masks.</div><div class="ttdef"><b>Definition:</b> cc2538.h:385</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a075dcfe2169c62559003081bd3c8c9cb"><div class="ttname"><a href="cc2538__rf_8h.html#a075dcfe2169c62559003081bd3c8c9cb">cc2538_set_pan</a></div><div class="ttdeci">void cc2538_set_pan(uint16_t pan)</div><div class="ttdoc">Set the PAN ID of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a0ec6aaee98184e643d348e3061578cfc"><div class="ttname"><a href="cc2538__rf_8h.html#a0ec6aaee98184e643d348e3061578cfc">cc2538_set_addr_long</a></div><div class="ttdeci">void cc2538_set_addr_long(const uint8_t *addr)</div><div class="ttdoc">Set the long address of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a1371ec054f5647c073af3b2ae1cb680a"><div class="ttname"><a href="cc2538__rf_8h.html#a1371ec054f5647c073af3b2ae1cb680a">cc2538_get_chan</a></div><div class="ttdeci">unsigned int cc2538_get_chan(void)</div><div class="ttdoc">Get the configured channel number of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a1cc22965870d6d55dc55eb812746498d"><div class="ttname"><a href="cc2538__rf_8h.html#a1cc22965870d6d55dc55eb812746498d">cc2538_off</a></div><div class="ttdeci">void cc2538_off(void)</div><div class="ttdoc">Deactivate the CC2538 radio device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a23d22aa35df304e9275d9d1fb83d3cfb"><div class="ttname"><a href="cc2538__rf_8h.html#a23d22aa35df304e9275d9d1fb83d3cfb">cc2538_on</a></div><div class="ttdeci">bool cc2538_on(void)</div><div class="ttdoc">Activate the CC2538 radio device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a2a4e4f80376a68ef3ad750d03ebca596"><div class="ttname"><a href="cc2538__rf_8h.html#a2a4e4f80376a68ef3ad750d03ebca596">cc2538_rf_hal_setup</a></div><div class="ttdeci">void cc2538_rf_hal_setup(ieee802154_dev_t *hal)</div><div class="ttdoc">Setup CC2538 in order to be used with the IEEE 802.15.4 Radio HAL.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a34909fde9d6674c0ee8004f99448bdf5"><div class="ttname"><a href="cc2538__rf_8h.html#a34909fde9d6674c0ee8004f99448bdf5">cc2538_irq_handler</a></div><div class="ttdeci">void cc2538_irq_handler(void)</div><div class="ttdoc">IRQ handler for RF events.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a3ddc7753d61ea25b1fff7b1f6342f6e2"><div class="ttname"><a href="cc2538__rf_8h.html#a3ddc7753d61ea25b1fff7b1f6342f6e2">cc2538_channel_clear</a></div><div class="ttdeci">bool cc2538_channel_clear(void)</div><div class="ttdoc">Trigger a clear channel assessment.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a3fd5d635aa7597a5fc7080b9846d6246"><div class="ttname"><a href="cc2538__rf_8h.html#a3fd5d635aa7597a5fc7080b9846d6246">cc2538_set_addr_short</a></div><div class="ttdeci">void cc2538_set_addr_short(const uint8_t *addr)</div><div class="ttdoc">Set the short address of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a4f3b4aff7aa2379af856129c586c6a05"><div class="ttname"><a href="cc2538__rf_8h.html#a4f3b4aff7aa2379af856129c586c6a05">cc2538_set_chan</a></div><div class="ttdeci">void cc2538_set_chan(unsigned int chan)</div><div class="ttdoc">Set the channel number of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a530a981b64d516e1cd3db486feeeac1d"><div class="ttname"><a href="cc2538__rf_8h.html#a530a981b64d516e1cd3db486feeeac1d">cc2538_rf_enable_irq</a></div><div class="ttdeci">static void cc2538_rf_enable_irq(void)</div><div class="ttdoc">Enable CC2538 RF IRQs.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:304</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a5c62669daed88843d2ad9d3e8794d0b1"><div class="ttname"><a href="cc2538__rf_8h.html#a5c62669daed88843d2ad9d3e8794d0b1">cc2538_init</a></div><div class="ttdeci">void cc2538_init(void)</div><div class="ttdoc">Initialise the CC2538 radio hardware.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a6c220bd72a12667b37fa47ff1a122f40"><div class="ttname"><a href="cc2538__rf_8h.html#a6c220bd72a12667b37fa47ff1a122f40">cc2538_get_pan</a></div><div class="ttdeci">uint16_t cc2538_get_pan(void)</div><div class="ttdoc">Get the configured PAN ID of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a6d0ec680bbeca76e6be1e421de2f0b34"><div class="ttname"><a href="cc2538__rf_8h.html#a6d0ec680bbeca76e6be1e421de2f0b34">cc2538_set_tx_power</a></div><div class="ttdeci">void cc2538_set_tx_power(int dBm)</div><div class="ttdoc">Set the transmission power for the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a8e3377695a72994f27bf99c8a95a46d6"><div class="ttname"><a href="cc2538__rf_8h.html#a8e3377695a72994f27bf99c8a95a46d6">cc2538_set_monitor</a></div><div class="ttdeci">void cc2538_set_monitor(bool mode)</div><div class="ttdoc">Enable/disable monitor (promiscuous) mode for the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a94798fdadfbf49a7c658ace669a1d310aa0d55f120d999953660c1dd1707ed4ee"><div class="ttname"><a href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aa0d55f120d999953660c1dd1707ed4ee">RXPKTDONE</a></div><div class="ttdeci">@ RXPKTDONE</div><div class="ttdoc">End of frame event.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:182</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a94798fdadfbf49a7c658ace669a1d310aaee1f1a011603c0c6712d061776c2e94"><div class="ttname"><a href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aaee1f1a011603c0c6712d061776c2e94">SFD</a></div><div class="ttdeci">@ SFD</div><div class="ttdoc">Start of frame event.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:177</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a99383a4343c6e2cae7eed187238595a9"><div class="ttname"><a href="cc2538__rf_8h.html#a99383a4343c6e2cae7eed187238595a9">cc2538_get_addr_short</a></div><div class="ttdeci">void cc2538_get_addr_short(uint8_t *addr)</div><div class="ttdoc">Get the configured short address of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_a9b84e9385b8173da18485ca6876ad0a3"><div class="ttname"><a href="cc2538__rf_8h.html#a9b84e9385b8173da18485ca6876ad0a3">cc2538_rf_disable_irq</a></div><div class="ttdeci">static void cc2538_rf_disable_irq(void)</div><div class="ttdoc">Disable CC2538 RF IRQs.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:313</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aa0d5c833f8a70e538eb6c43ccc8b16f7"><div class="ttname"><a href="cc2538__rf_8h.html#aa0d5c833f8a70e538eb6c43ccc8b16f7">cc2538_is_on</a></div><div class="ttdeci">bool cc2538_is_on(void)</div><div class="ttdoc">Check if device is active.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aa3af86647aeea6c7c25dcf2f064cefd9"><div class="ttname"><a href="cc2538__rf_8h.html#aa3af86647aeea6c7c25dcf2f064cefd9">cc2538_get_monitor</a></div><div class="ttdeci">bool cc2538_get_monitor(void)</div><div class="ttdoc">Check if device is in monitor (promiscuous) mode.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aab9930905a7483a3f2f6d90edfd81b05"><div class="ttname"><a href="cc2538__rf_8h.html#aab9930905a7483a3f2f6d90edfd81b05">cc2538_set_state</a></div><div class="ttdeci">void cc2538_set_state(cc2538_rf_t *dev, netopt_state_t state)</div><div class="ttdoc">Set the state of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a00a58141c36fa40ba3a72232ebdfbe89"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a00a58141c36fa40ba3a72232ebdfbe89">rfc_rand_i</a></div><div class="ttdeci">@ rfc_rand_i</div><div class="ttdoc">Random data output from the I channel of the receiver.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:248</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a05fe49d555f8f0a8a5385a8690f02c82"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a05fe49d555f8f0a8a5385a8690f02c82">lna_pd</a></div><div class="ttdeci">@ lna_pd</div><div class="ttdoc">LNA power-down signal.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:252</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a0665f9ef2a151f2edcfa0e342783f790"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a0665f9ef2a151f2edcfa0e342783f790">rssi_valid</a></div><div class="ttdeci">@ rssi_valid</div><div class="ttdoc">Pin is high when the RSSI value has been updated at least once since RX was started.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:216</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a09b77bfb5836e32d5a1ed7823a4ffca1"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a09b77bfb5836e32d5a1ed7823a4ffca1">packet_done</a></div><div class="ttdeci">@ packet_done</div><div class="ttdoc">A complete frame has been received.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:241</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a15d3bee6d7471f4f2c31675dcb05b444"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a15d3bee6d7471f4f2c31675dcb05b444">rx_active</a></div><div class="ttdeci">@ rx_active</div><div class="ttdoc">Indicates that FFCTRL is in one of the RX states.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:231</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a18b72413eef3b883fe2e6e15d6373c6d"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a18b72413eef3b883fe2e6e15d6373c6d">disabled</a></div><div class="ttdeci">@ disabled</div><div class="ttdoc">disabled</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:253</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a25cd3d32d6664dacd93e7fd4e967c2be"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a25cd3d32d6664dacd93e7fd4e967c2be">constant_value_0</a></div><div class="ttdeci">@ constant_value_0</div><div class="ttdoc">Constant value 0.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:211</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a559afa1136a79016de3b0f7b56342ce9"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a559afa1136a79016de3b0f7b56342ce9">sampled_cca</a></div><div class="ttdeci">@ sampled_cca</div><div class="ttdoc">A sampled version of the CCA bit from demodulator.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:222</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a7565984c49959e43ef718da7280d4a0d"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a7565984c49959e43ef718da7280d4a0d">rfc_xor_rand_i_q</a></div><div class="ttdeci">@ rfc_xor_rand_i_q</div><div class="ttdoc">XOR between I and Q random outputs.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:244</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a7d07f933739549421065d5f7ba7c117d"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a7d07f933739549421065d5f7ba7c117d">rfc_sniff_data</a></div><div class="ttdeci">@ rfc_sniff_data</div><div class="ttdoc">Data from packet sniffer.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:213</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a8c798862fd8b21f272c6db6de1cb203d"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a8c798862fd8b21f272c6db6de1cb203d">ffctrl_fifop</a></div><div class="ttdeci">@ ffctrl_fifop</div><div class="ttdoc">Pin is high when the number of bytes in the RXFIFO exceeds the programmable threshold or at least one...</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:235</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8aab0256e7b1a7f24b4a6d5ccecb300089"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8aab0256e7b1a7f24b4a6d5ccecb300089">pa_pd</a></div><div class="ttdeci">@ pa_pd</div><div class="ttdoc">Power amplifier power-down signal.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:251</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8ab0a9b29ac1b6695793f57f131bfd8426"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ab0a9b29ac1b6695793f57f131bfd8426">sfd_sync</a></div><div class="ttdeci">@ sfd_sync</div><div class="ttdoc">Pin is high when a SFD has been received or transmitted.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:225</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8ad1de7ea82a913c037c6a32541cb27f3d"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad1de7ea82a913c037c6a32541cb27f3d">demod_cca</a></div><div class="ttdeci">@ demod_cca</div><div class="ttdoc">Clear channel assessment.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:219</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8ad20691a0614d7a5910fd6345354cf3ca"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad20691a0614d7a5910fd6345354cf3ca">constant_value_1</a></div><div class="ttdeci">@ constant_value_1</div><div class="ttdoc">Constant value 1.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:212</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8af00086e0caf71da683b2a29c6b37a63a"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af00086e0caf71da683b2a29c6b37a63a">tx_active</a></div><div class="ttdeci">@ tx_active</div><div class="ttdoc">Indicates that FFCTRL is in one of the TX states.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:229</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8af06c96be923d75d21d34e0edb7d5e414"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af06c96be923d75d21d34e0edb7d5e414">ffctrl_fifo</a></div><div class="ttdeci">@ ffctrl_fifo</div><div class="ttdoc">Pin is high when one or more bytes are in the RXFIFO.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:233</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8af187e9c79f69dede5aeb8cb3f433575d"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af187e9c79f69dede5aeb8cb3f433575d">rfc_rand_q</a></div><div class="ttdeci">@ rfc_rand_q</div><div class="ttdoc">Random data output from the Q channel of the receiver.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:246</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8af2403c22e3787d6fb4ca2f7b2e5e630a"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af2403c22e3787d6fb4ca2f7b2e5e630a">rfc_sniff_clk</a></div><div class="ttdeci">@ rfc_sniff_clk</div><div class="ttdoc">250kHz clock for packet sniffer data.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:215</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8af97e982ac28022601db4259c3c6d4382"><div class="ttname"><a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af97e982ac28022601db4259c3c6d4382">lock_status</a></div><div class="ttdeci">@ lock_status</div><div class="ttdoc">1 when PLL is in lock, otherwise 0</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:250</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_ab15ea1dd97c76e4d9d05438b8034159d"><div class="ttname"><a href="cc2538__rf_8h.html#ab15ea1dd97c76e4d9d05438b8034159d">cc2538_set_freq</a></div><div class="ttdeci">void cc2538_set_freq(unsigned int MHz)</div><div class="ttdoc">Set the frequency of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_ac1ca972b29e9a19a14b73d44671d3431"><div class="ttname"><a href="cc2538__rf_8h.html#ac1ca972b29e9a19a14b73d44671d3431">cc2538_get_addr_long</a></div><div class="ttdeci">void cc2538_get_addr_long(uint8_t *addr)</div><div class="ttdoc">Get the configured long address of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_ae3f12118d0309ecb534f1172def074b8"><div class="ttname"><a href="cc2538__rf_8h.html#ae3f12118d0309ecb534f1172def074b8">cc2538_get_tx_power</a></div><div class="ttdeci">int cc2538_get_tx_power(void)</div><div class="ttdoc">Get the configured transmission power of the device.</div></div>
+<div class="ttc" id="acc2538__rf_8h_html_afae5d370a453ba0c031df072f016eaa0"><div class="ttname"><a href="cc2538__rf_8h.html#afae5d370a453ba0c031df072f016eaa0">cc2538_setup</a></div><div class="ttdeci">void cc2538_setup(cc2538_rf_t *dev)</div><div class="ttdoc">Setup a CC2538 radio device.</div></div>
+<div class="ttc" id="acc2538__rfcore_8h_html"><div class="ttname"><a href="cc2538__rfcore_8h.html">cc2538_rfcore.h</a></div><div class="ttdoc">CC2538 RF core interface.</div></div>
+<div class="ttc" id="agroup__net__netopt_html_ga796283228e6d45c83479d4c9cc83374f"><div class="ttname"><a href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a></div><div class="ttdeci">netopt_state_t</div><div class="ttdoc">Option parameter to be used with NETOPT_STATE to set or get the state of a network device or protocol...</div><div class="ttdef"><b>Definition:</b> netopt.h:894</div></div>
+<div class="ttc" id="akernel__defines_8h_html"><div class="ttname"><a href="kernel__defines_8h.html">kernel_defines.h</a></div><div class="ttdoc">Common macros and compiler attributes/pragmas configuration.</div></div>
+<div class="ttc" id="anetopt_8h_html"><div class="ttname"><a href="netopt_8h.html">netopt.h</a></div><div class="ttdoc">Definition of global configuration options.</div></div>
+<div class="ttc" id="astructcc2538__rf__t_html"><div class="ttname"><a href="structcc2538__rf__t.html">cc2538_rf_t</a></div><div class="ttdoc">Device descriptor for CC2538 transceiver.</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:288</div></div>
+<div class="ttc" id="astructcc2538__rf__t_html_aa36273cdb8e78115adc8de2df38b757f"><div class="ttname"><a href="structcc2538__rf__t.html#aa36273cdb8e78115adc8de2df38b757f">cc2538_rf_t::state</a></div><div class="ttdeci">uint8_t state</div><div class="ttdoc">current state of the radio</div><div class="ttdef"><b>Definition:</b> cc2538_rf.h:289</div></div>
+<div class="ttc" id="astructieee802154__dev_html"><div class="ttname"><a href="structieee802154__dev.html">ieee802154_dev</a></div><div class="ttdoc">the IEEE802.15.4 device descriptor</div><div class="ttdef"><b>Definition:</b> radio.h:415</div></div>
+<div class="ttc" id="asys_2include_2net_2ieee802154_8h_html"><div class="ttname"><a href="sys_2include_2net_2ieee802154_8h.html">ieee802154.h</a></div><div class="ttdoc">IEEE 802.15.4 header definitions.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_7a001c762ad797b9c41c11fadba7b7c6.html">cc2538</a></li><li class="navelem"><a class="el" href="dir_75b790e88f67ebc1b667ef8a22fb9ef0.html">include</a></li><li class="navelem"><a class="el" href="cc2538__rf_8h.html">cc2538_rf.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

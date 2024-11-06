@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/candev_mcp2515.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('candev__mcp2515_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">candev_mcp2515.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a> &raquo; <a class="el" href="group__drivers__can.html">CAN Drivers</a> &raquo; <a class="el" href="group__drivers__mcp2515.html">MCP2515</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definition of the implementation of the CAN controller driver.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Definition of the implementation of the CAN controller driver. </p>
+<dl class="section author"><dt>Author</dt><dd>Toon Stegen <a href="#" onclick="location.href='mai'+'lto:'+'too'+'n.'+'ste'+'ge'+'n@a'+'lt'+'ran'+'.c'+'om'; return false;">toon.<span style="display: none;">.nosp@m.</span>steg<span style="display: none;">.nosp@m.</span>en@al<span style="display: none;">.nosp@m.</span>tran<span style="display: none;">.nosp@m.</span>.com</a> </dd>
+<dd>
+Vincent Dupont <a href="#" onclick="location.href='mai'+'lto:'+'vin'+'ce'+'nt@'+'ot'+'ake'+'ys'+'.co'+'m'; return false;">vince<span style="display: none;">.nosp@m.</span>nt@o<span style="display: none;">.nosp@m.</span>takey<span style="display: none;">.nosp@m.</span>s.co<span style="display: none;">.nosp@m.</span>m</a> </dd>
+<dd>
+Wouter Symons <a href="#" onclick="location.href='mai'+'lto:'+'wos'+'ym'+'@ai'+'rs'+'ant'+'el'+'mo.'+'co'+'m'; return false;">wosym<span style="display: none;">.nosp@m.</span>@air<span style="display: none;">.nosp@m.</span>sante<span style="display: none;">.nosp@m.</span>lmo.<span style="display: none;">.nosp@m.</span>com</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="candev_8h_source.html">can/candev.h</a>&quot;</code><br />
+<code>#include &quot;cpu_conf.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="drivers_2include_2periph_2gpio_8h_source.html">periph/gpio.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="spi_8h_source.html">periph/spi.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mutex_8h_source.html">mutex.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for candev_mcp2515.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="candev__mcp2515_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcandev__mcp2515__conf.html">candev_mcp2515_conf</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCP2515 configuration descriptor.  <a href="structcandev__mcp2515__conf.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcandev__mcp2515.html">candev_mcp2515</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCP2515 device descriptor.  <a href="structcandev__mcp2515.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga41135fd3d385722206a093ee9433424a"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mcp2515.html#ga41135fd3d385722206a093ee9433424a">CANDEV_MCP2515_DEFAULT_BITRATE</a>&#160;&#160;&#160;500000</td></tr>
+<tr class="memdesc:ga41135fd3d385722206a093ee9433424a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default CAN bitrate. <br /></td></tr>
+<tr class="separator:ga41135fd3d385722206a093ee9433424a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada5c8077c95cb56aee7127836b38a67b"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mcp2515.html#gada5c8077c95cb56aee7127836b38a67b">CANDEV_MCP2515_DEFAULT_SPT</a>&#160;&#160;&#160;875</td></tr>
+<tr class="memdesc:gada5c8077c95cb56aee7127836b38a67b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default sampling point setup. <br /></td></tr>
+<tr class="separator:gada5c8077c95cb56aee7127836b38a67b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5b8ba40b7b8a6dbfb1b692cc0cf5cd6a"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mcp2515.html#ga5b8ba40b7b8a6dbfb1b692cc0cf5cd6a">MCP2515_TX_MAILBOXES</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:ga5b8ba40b7b8a6dbfb1b692cc0cf5cd6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of transmit mailboxes. <br /></td></tr>
+<tr class="separator:ga5b8ba40b7b8a6dbfb1b692cc0cf5cd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gaeacbd724734462b1e460f9a2452d0c6c"><td class="memItemLeft" align="right" valign="top">
+typedef struct <a class="el" href="structcandev__mcp2515.html">candev_mcp2515</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a></td></tr>
+<tr class="memdesc:gaeacbd724734462b1e460f9a2452d0c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCP2515 candev descriptor. <br /></td></tr>
+<tr class="separator:gaeacbd724734462b1e460f9a2452d0c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga89a43ec7c95848d7544a51c03a51f684"><td class="memItemLeft" align="right" valign="top">
+typedef struct <a class="el" href="structcandev__mcp2515__conf.html">candev_mcp2515_conf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mcp2515.html#ga89a43ec7c95848d7544a51c03a51f684">candev_mcp2515_conf_t</a></td></tr>
+<tr class="memdesc:ga89a43ec7c95848d7544a51c03a51f684"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCP2515 configuration descriptor. <br /></td></tr>
+<tr class="separator:ga89a43ec7c95848d7544a51c03a51f684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga68ae2e18b1e40d534ec5df27993c4006"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mcp2515.html#ga68ae2e18b1e40d534ec5df27993c4006">candev_mcp2515_init</a> (<a class="el" href="group__drivers__mcp2515.html#gaeacbd724734462b1e460f9a2452d0c6c">candev_mcp2515_t</a> *dev, const <a class="el" href="group__drivers__mcp2515.html#ga89a43ec7c95848d7544a51c03a51f684">candev_mcp2515_conf_t</a> *conf)</td></tr>
+<tr class="memdesc:ga68ae2e18b1e40d534ec5df27993c4006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a mcp2515 device by assigning a <code>timing</code> and an SPI configuration <code>conf</code>.  <a href="group__drivers__mcp2515.html#ga68ae2e18b1e40d534ec5df27993c4006">More...</a><br /></td></tr>
+<tr class="separator:ga68ae2e18b1e40d534ec5df27993c4006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Receive mailboxes and filters number</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpcc5b9dfe637ede54e9a890864523881a"></a>for RX buffers: the MCP2515 managed 6 acceptance filters in 2 mailboxes:</p>
+<ul>
+<li>MB0 contains 2 acceptance filters in relation with 1 acceptance mask</li>
+<li>MB1 contains 4 acceptance filters in relation with 1 acceptance mask <pre class="fragment">            MB0          MB1
+          +------+    +------+
+  mask 0  | RXM0 |    | RXM1 | mask 1
+          +======+    +======+
+ filter 0 | RXF0 |    | RXF2 | filter 2
+          +------+    +------+
+ filter 1 | RXF1 |    | RXF3 | filter 3
+          +------+    +------+
+                      | RXF4 | filter 4
+                      +------+
+                      | RXF5 | filter 5
+                      +------+
+</pre> </li>
+</ul>
+</td></tr>
+<tr class="memitem:ga80a52aaca6992fb747ced8f44b1e8d2b"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCP2515_RX_MAILBOXES</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ga80a52aaca6992fb747ced8f44b1e8d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b929f7c7efc6b9d0ce445906212ab11"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCP2515_FILTERS_MB0</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ga8b929f7c7efc6b9d0ce445906212ab11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1cd8ee8e0cbea82d09033a70b385ced1"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCP2515_FILTERS_MB1</b>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:ga1cd8ee8e0cbea82d09033a70b385ced1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d6437262dbefc0fccea7e9822208667"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCP2515_FILTERS</b>&#160;&#160;&#160;(MCP2515_FILTERS_MB0 + MCP2515_FILTERS_MB1)</td></tr>
+<tr class="separator:ga5d6437262dbefc0fccea7e9822208667"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="candev__mcp2515_8h.html">candev_mcp2515.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

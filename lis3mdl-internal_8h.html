@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/lis3mdl/include/lis3mdl-internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('lis3mdl-internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">lis3mdl-internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__sensors.html">Sensor Device Drivers</a> &#124; <a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__saul.html">[S]ensor [A]ctuator [U]ber [L]ayer</a> &raquo; <a class="el" href="group__drivers__lis3mdl.html">LIS3MDL 3-axis magnetometer</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definitions for the LIS3MDL 3-axis magnetometer.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Definitions for the LIS3MDL 3-axis magnetometer. </p>
+<dl class="section author"><dt>Author</dt><dd>René Herthel <a href="#" onclick="location.href='mai'+'lto:'+'ren'+'e-'+'her'+'th'+'el@'+'ou'+'tlo'+'ok'+'.de'; return false;">rene-<span style="display: none;">.nosp@m.</span>hert<span style="display: none;">.nosp@m.</span>hel@o<span style="display: none;">.nosp@m.</span>utlo<span style="display: none;">.nosp@m.</span>ok.de</a> </dd></dl>
+</div>
+<p><a href="lis3mdl-internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML chip identification</h2></td></tr>
+<tr class="memitem:ac4bf07f4e6f95de390ecec3a53befb0e"><td class="memItemLeft" align="right" valign="top"><a id="ac4bf07f4e6f95de390ecec3a53befb0e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_CHIP_ID</b>&#160;&#160;&#160;(0x3D)</td></tr>
+<tr class="separator:ac4bf07f4e6f95de390ecec3a53befb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad715922fb777cb27a3ceb3a220e5363d"><td class="memItemLeft" align="right" valign="top"><a id="ad715922fb777cb27a3ceb3a220e5363d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_CHIP_ADDR</b>&#160;&#160;&#160;(0x1C)</td></tr>
+<tr class="separator:ad715922fb777cb27a3ceb3a220e5363d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML device identification register</h2></td></tr>
+<tr class="memitem:a1976b2d3386251c0353c523271a709f0"><td class="memItemLeft" align="right" valign="top"><a id="a1976b2d3386251c0353c523271a709f0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3DML_WHO_AM_I_REG</b>&#160;&#160;&#160;(0x0F)</td></tr>
+<tr class="separator:a1976b2d3386251c0353c523271a709f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML control register</h2></td></tr>
+<tr class="memitem:a727530a6ab37d39d470380bbeae62091"><td class="memItemLeft" align="right" valign="top"><a id="a727530a6ab37d39d470380bbeae62091"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_CTRL_REG1</b>&#160;&#160;&#160;(0x20)</td></tr>
+<tr class="separator:a727530a6ab37d39d470380bbeae62091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0435f3bdf46c0d6a6b22f8e856eec161"><td class="memItemLeft" align="right" valign="top"><a id="a0435f3bdf46c0d6a6b22f8e856eec161"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_CTRL_REG2</b>&#160;&#160;&#160;(0x21)</td></tr>
+<tr class="separator:a0435f3bdf46c0d6a6b22f8e856eec161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a3b0dae2cbf0cd9c790c0ba3fc3b22"><td class="memItemLeft" align="right" valign="top"><a id="a49a3b0dae2cbf0cd9c790c0ba3fc3b22"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_CTRL_REG3</b>&#160;&#160;&#160;(0x22)</td></tr>
+<tr class="separator:a49a3b0dae2cbf0cd9c790c0ba3fc3b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61047e9b2d6fe7a6a40df56cf3acbbe9"><td class="memItemLeft" align="right" valign="top"><a id="a61047e9b2d6fe7a6a40df56cf3acbbe9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_CTRL_REG4</b>&#160;&#160;&#160;(0x23)</td></tr>
+<tr class="separator:a61047e9b2d6fe7a6a40df56cf3acbbe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8345f5540d48fd2eefc571c3a420f1c7"><td class="memItemLeft" align="right" valign="top"><a id="a8345f5540d48fd2eefc571c3a420f1c7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_CTRL_REG5</b>&#160;&#160;&#160;(0x24)</td></tr>
+<tr class="separator:a8345f5540d48fd2eefc571c3a420f1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML masks for CTRL_REG1</h2></td></tr>
+<tr class="memitem:ae1a266211fa0d0e871d3878da65eb07b"><td class="memItemLeft" align="right" valign="top"><a id="ae1a266211fa0d0e871d3878da65eb07b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG1_TEMP_EN</b>&#160;&#160;&#160;(0x80)</td></tr>
+<tr class="separator:ae1a266211fa0d0e871d3878da65eb07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML masks for CTRL_REG2</h2></td></tr>
+<tr class="memitem:a2a28cb8af4e053a131542b3b5b43fdfa"><td class="memItemLeft" align="right" valign="top"><a id="a2a28cb8af4e053a131542b3b5b43fdfa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG2_REBOOT</b>&#160;&#160;&#160;(0x06)</td></tr>
+<tr class="separator:a2a28cb8af4e053a131542b3b5b43fdfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0331b525f82860b9a38223c4343167bd"><td class="memItemLeft" align="right" valign="top"><a id="a0331b525f82860b9a38223c4343167bd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG2_SOFT_RST</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:a0331b525f82860b9a38223c4343167bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML masks for CTRL_REG3</h2></td></tr>
+<tr class="memitem:ae08837d3bfdc2745f037a5383728b0e5"><td class="memItemLeft" align="right" valign="top"><a id="ae08837d3bfdc2745f037a5383728b0e5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG3_LOW_POWER_EN</b>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:ae08837d3bfdc2745f037a5383728b0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a27aa11a699b08e73efa479ab3bfdeb"><td class="memItemLeft" align="right" valign="top"><a id="a9a27aa11a699b08e73efa479ab3bfdeb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG3_CONT_CONV_MODE</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a9a27aa11a699b08e73efa479ab3bfdeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9609525700d58b7570527669b2dcd24e"><td class="memItemLeft" align="right" valign="top"><a id="a9609525700d58b7570527669b2dcd24e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG3_Z_LOW_POWER</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:a9609525700d58b7570527669b2dcd24e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af696b817c0b3380c3ff93fcc910956ba"><td class="memItemLeft" align="right" valign="top"><a id="af696b817c0b3380c3ff93fcc910956ba"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG3_Z_MEDIUM_POWER</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:af696b817c0b3380c3ff93fcc910956ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML masks for CTRL_REG5</h2></td></tr>
+<tr class="memitem:aaf349cbfe20e5a541a314832335bf72e"><td class="memItemLeft" align="right" valign="top"><a id="aaf349cbfe20e5a541a314832335bf72e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG5_BDU</b>&#160;&#160;&#160;(0x40)</td></tr>
+<tr class="separator:aaf349cbfe20e5a541a314832335bf72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1b5ca6590346741539565e9d04ae04f"><td class="memItemLeft" align="right" valign="top"><a id="ab1b5ca6590346741539565e9d04ae04f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_REG5_BDU_OFF</b>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:ab1b5ca6590346741539565e9d04ae04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML status register</h2></td></tr>
+<tr class="memitem:a5ae82d87b54a9272fa14f6ca61c16186"><td class="memItemLeft" align="right" valign="top"><a id="a5ae82d87b54a9272fa14f6ca61c16186"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_STATUS_REG</b>&#160;&#160;&#160;(0x27)</td></tr>
+<tr class="separator:a5ae82d87b54a9272fa14f6ca61c16186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML magnometer output register</h2></td></tr>
+<tr class="memitem:a95a43bcdd5859581ca14fd36caf64ff0"><td class="memItemLeft" align="right" valign="top"><a id="a95a43bcdd5859581ca14fd36caf64ff0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_OUT_X_L_REG</b>&#160;&#160;&#160;(0x28)</td></tr>
+<tr class="separator:a95a43bcdd5859581ca14fd36caf64ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d54ba5fa22836e11f6324a06bab9aa0"><td class="memItemLeft" align="right" valign="top"><a id="a5d54ba5fa22836e11f6324a06bab9aa0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_OUT_X_H_REG</b>&#160;&#160;&#160;(0x29)</td></tr>
+<tr class="separator:a5d54ba5fa22836e11f6324a06bab9aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac460a177690f2111492f2678cd37af90"><td class="memItemLeft" align="right" valign="top"><a id="ac460a177690f2111492f2678cd37af90"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_OUT_Y_L_REG</b>&#160;&#160;&#160;(0x2A)</td></tr>
+<tr class="separator:ac460a177690f2111492f2678cd37af90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8d2d6d8ab6c08e27b7519bb32df6761"><td class="memItemLeft" align="right" valign="top"><a id="ad8d2d6d8ab6c08e27b7519bb32df6761"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_OUT_Y_H_REG</b>&#160;&#160;&#160;(0x2B)</td></tr>
+<tr class="separator:ad8d2d6d8ab6c08e27b7519bb32df6761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16ca54f4bc9b994e93e526d2805083d4"><td class="memItemLeft" align="right" valign="top"><a id="a16ca54f4bc9b994e93e526d2805083d4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_OUT_Z_L_REG</b>&#160;&#160;&#160;(0x2C)</td></tr>
+<tr class="separator:a16ca54f4bc9b994e93e526d2805083d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a039a75669f6475f1893d131b30640"><td class="memItemLeft" align="right" valign="top"><a id="a16a039a75669f6475f1893d131b30640"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_OUT_Z_H_REG</b>&#160;&#160;&#160;(0x2D)</td></tr>
+<tr class="separator:a16a039a75669f6475f1893d131b30640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML temperature output register</h2></td></tr>
+<tr class="memitem:aba4870bdbffb1a035af87c9c8559c24a"><td class="memItemLeft" align="right" valign="top"><a id="aba4870bdbffb1a035af87c9c8559c24a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_TEMP_OUT_L_REG</b>&#160;&#160;&#160;(0x2E)</td></tr>
+<tr class="separator:aba4870bdbffb1a035af87c9c8559c24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd8544d7970acc93e45f01245de7e59"><td class="memItemLeft" align="right" valign="top"><a id="a9cd8544d7970acc93e45f01245de7e59"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_TEMP_OUT_H_REG</b>&#160;&#160;&#160;(0x2F)</td></tr>
+<tr class="separator:a9cd8544d7970acc93e45f01245de7e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3DML interrupt register</h2></td></tr>
+<tr class="memitem:a7d5f52cbf72c03bf51d92f7744a2d40c"><td class="memItemLeft" align="right" valign="top"><a id="a7d5f52cbf72c03bf51d92f7744a2d40c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_INT_CFG_REG</b>&#160;&#160;&#160;(0x30)</td></tr>
+<tr class="separator:a7d5f52cbf72c03bf51d92f7744a2d40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a5c6830da1f125d8e881ce8753b7ae3"><td class="memItemLeft" align="right" valign="top"><a id="a4a5c6830da1f125d8e881ce8753b7ae3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_INT_SRC_REG</b>&#160;&#160;&#160;(0x31)</td></tr>
+<tr class="separator:a4a5c6830da1f125d8e881ce8753b7ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46a43caecfd2de870598494c9dbe922c"><td class="memItemLeft" align="right" valign="top"><a id="a46a43caecfd2de870598494c9dbe922c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_INT_THS_L_REG</b>&#160;&#160;&#160;(0x32)</td></tr>
+<tr class="separator:a46a43caecfd2de870598494c9dbe922c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39a3c0330a6013bc98afee3128faca33"><td class="memItemLeft" align="right" valign="top"><a id="a39a3c0330a6013bc98afee3128faca33"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_INT_THS_H_REG</b>&#160;&#160;&#160;(0x33)</td></tr>
+<tr class="separator:a39a3c0330a6013bc98afee3128faca33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3MDL masks for interrupt cfg register</h2></td></tr>
+<tr class="memitem:a3632e9cdaf0596960624d688f34ceb65"><td class="memItemLeft" align="right" valign="top"><a id="a3632e9cdaf0596960624d688f34ceb65"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_CFG_XIEN</b>&#160;&#160;&#160;(0x80)</td></tr>
+<tr class="separator:a3632e9cdaf0596960624d688f34ceb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8f709f1e1a46a1c98a2a21c3c5c731"><td class="memItemLeft" align="right" valign="top"><a id="a0a8f709f1e1a46a1c98a2a21c3c5c731"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_CFG_YIEN</b>&#160;&#160;&#160;(0x40)</td></tr>
+<tr class="separator:a0a8f709f1e1a46a1c98a2a21c3c5c731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a164c9b20fe9a5a6e61bd08b0e302aa2f"><td class="memItemLeft" align="right" valign="top"><a id="a164c9b20fe9a5a6e61bd08b0e302aa2f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_CFG_ZIEN</b>&#160;&#160;&#160;(0x20)</td></tr>
+<tr class="separator:a164c9b20fe9a5a6e61bd08b0e302aa2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a129756a26ea1c9c2e394e7568954179c"><td class="memItemLeft" align="right" valign="top"><a id="a129756a26ea1c9c2e394e7568954179c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_CFG_IEA</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:a129756a26ea1c9c2e394e7568954179c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed1417984cc6f1b8e3f6ddb52a4653c2"><td class="memItemLeft" align="right" valign="top"><a id="aed1417984cc6f1b8e3f6ddb52a4653c2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_CFG_LIR</b>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:aed1417984cc6f1b8e3f6ddb52a4653c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a114073ba1ddb21ab724dca39cfccb132"><td class="memItemLeft" align="right" valign="top"><a id="a114073ba1ddb21ab724dca39cfccb132"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_CFG_IEN</b>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="separator:a114073ba1ddb21ab724dca39cfccb132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LIS3MDL masks for interrupt src register</h2></td></tr>
+<tr class="memitem:a61d333c1700623721aff06a27c54c42a"><td class="memItemLeft" align="right" valign="top"><a id="a61d333c1700623721aff06a27c54c42a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_PTH_X</b>&#160;&#160;&#160;(0x80)</td></tr>
+<tr class="separator:a61d333c1700623721aff06a27c54c42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c49cebb7279da65267558a3243e064"><td class="memItemLeft" align="right" valign="top"><a id="a36c49cebb7279da65267558a3243e064"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_PTH_Y</b>&#160;&#160;&#160;(0x40)</td></tr>
+<tr class="separator:a36c49cebb7279da65267558a3243e064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44fa2a44ac34bfb741112c487e5e9618"><td class="memItemLeft" align="right" valign="top"><a id="a44fa2a44ac34bfb741112c487e5e9618"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_PTH_Z</b>&#160;&#160;&#160;(0x20)</td></tr>
+<tr class="separator:a44fa2a44ac34bfb741112c487e5e9618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabff5912e4a04fe28a8823c1afe546f0"><td class="memItemLeft" align="right" valign="top"><a id="aabff5912e4a04fe28a8823c1afe546f0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_NTH_X</b>&#160;&#160;&#160;(0x10)</td></tr>
+<tr class="separator:aabff5912e4a04fe28a8823c1afe546f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28df42406bc9511536ef18e96b3ec74f"><td class="memItemLeft" align="right" valign="top"><a id="a28df42406bc9511536ef18e96b3ec74f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_NTH_Y</b>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="separator:a28df42406bc9511536ef18e96b3ec74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8368e1ec1553d6d6cbca82fbee6a2f7"><td class="memItemLeft" align="right" valign="top"><a id="af8368e1ec1553d6d6cbca82fbee6a2f7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_NTH_Z</b>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:af8368e1ec1553d6d6cbca82fbee6a2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29b018b1f53db5aa9e81cf788fbdb752"><td class="memItemLeft" align="right" valign="top"><a id="a29b018b1f53db5aa9e81cf788fbdb752"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_MROI</b>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:a29b018b1f53db5aa9e81cf788fbdb752"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d914df5ea58485240fedb4e020472a8"><td class="memItemLeft" align="right" valign="top"><a id="a9d914df5ea58485240fedb4e020472a8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LIS3MDL_MASK_INT_SRC_INT</b>&#160;&#160;&#160;(0x01)</td></tr>
+<tr class="separator:a9d914df5ea58485240fedb4e020472a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_dcfe563b4e8da1dca43e9d66a722073b.html">lis3mdl</a></li><li class="navelem"><a class="el" href="dir_2312e056365875dfdf7a227975f1fb69.html">include</a></li><li class="navelem"><a class="el" href="lis3mdl-internal_8h.html">lis3mdl-internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

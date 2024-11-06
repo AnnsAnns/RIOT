@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/sht2x.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('sht2x_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">sht2x.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="sht2x_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016,2017,2018 Kees Bakker, SODAQ</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Copyright (C) 2017 George Psimenos</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Copyright (C) 2018 Steffen Robertz</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifndef SHT2X_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define SHT2X_H</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca3de0d9be042fd7cf9dd2d0c32040cd25">   41</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca3de0d9be042fd7cf9dd2d0c32040cd25">SHT2X_OK</a>            =  0,           </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaeb7b9e95d0ba372eb5bee21db5232b35">   42</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaeb7b9e95d0ba372eb5bee21db5232b35">SHT2X_ERR_I2C</a>       = -1,           </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acae05b49b91c90c107a2e7fb6b0d6351b3">   43</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acae05b49b91c90c107a2e7fb6b0d6351b3">SHT2X_ERR_NODEV</a>     = -2,           </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acac35df1e2e05ba7b9d1c557a665f40103">   44</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acac35df1e2e05ba7b9d1c557a665f40103">SHT2X_ERR_NOCAL</a>     = -3,           </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca98b73b29060fd1d02edd5bc59be91394">   45</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca98b73b29060fd1d02edd5bc59be91394">SHT2X_ERR_I2C_READ</a>  = -4,           </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaf27633780d9b8c7cfe9153c69b4f8226">   46</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaf27633780d9b8c7cfe9153c69b4f8226">SHT2X_ERR_TIMEDOUT</a>  = -5,           </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acad2d3558cd8829eaa98b9c88c82ed20b9">   47</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acad2d3558cd8829eaa98b9c88c82ed20b9">SHT2X_ERR_CRC</a>       = -6,           </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca0c4e41075731fc9c9823fe50e4cfd0f0">   48</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca0c4e41075731fc9c9823fe50e4cfd0f0">SHT2X_ERR_USERREG</a>   = -7,           </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaa343eac48c66cc1d1cfb33880818f0e7">   49</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaa343eac48c66cc1d1cfb33880818f0e7">SHT2X_ERR_RES</a>       = -8,           </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca67252afaeed5d0dd047d41b5ad0e77b7">   50</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca67252afaeed5d0dd047d41b5ad0e77b7">SHT2X_ERR_OTHER</a>     = -999,         </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga572a399632f2da92abbfad2793013028">   58</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028ac5d44869397f0758d16d0789df7b10aa">   59</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028ac5d44869397f0758d16d0789df7b10aa">SHT2X_RES_12_14BIT</a>  = 0x00,         </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028a292d74bc48818bfae7835b5437e7e08f">   60</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028a292d74bc48818bfae7835b5437e7e08f">SHT2X_RES_8_12BIT</a>   = 0x01,         </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028acfab70e80b51ee476fe60723a009d031">   61</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028acfab70e80b51ee476fe60723a009d031">SHT2X_RES_10_13BIT</a>  = 0x80,         </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028acae457168741343399ff4ce0aeff0597">   62</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028acae457168741343399ff4ce0aeff0597">SHT2X_RES_11_11BIT</a>  = 0x81,         </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;} <a class="code" href="group__drivers__sht2x.html#ga572a399632f2da92abbfad2793013028">sht2x_res_t</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga017e4f4214b458cb0f795f018157ade0">   68</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gga017e4f4214b458cb0f795f018157ade0a34be12724489f2eb114ab377a1870c18">   69</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#gga017e4f4214b458cb0f795f018157ade0a34be12724489f2eb114ab377a1870c18">SHT2X_MEASURE_MODE_HOLD</a> = 0,        </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="group__drivers__sht2x.html#gga017e4f4214b458cb0f795f018157ade0af7de14242e7b233f148102ad39a32ef8">SHT2X_MEASURE_MODE_NO_HOLD</a> = 1      </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gga017e4f4214b458cb0f795f018157ade0af7de14242e7b233f148102ad39a32ef8">   71</a></span>&#160;} <a class="code" href="group__drivers__sht2x.html#ga017e4f4214b458cb0f795f018157ade0">sht2x_measure_mode_t</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga94a35537b2588e5b3d4c135a72230c3d">   79</a></span>&#160;<span class="preprocessor">#define SHT2X_USER_RESOLUTION_MASK          0x81</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define SHT2X_USER_EOB_MASK                 0x40</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#define SHT2X_USER_HEATER_MASK              0x04</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define SHT2X_USER_RESERVED_MASK            0x38</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#define SHT2X_USER_OTP_MASK                 0x02</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structsht2x__params__t.html">   89</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structsht2x__params__t.html#a5e35a7acc264dc6e9b47509dc654100f">   90</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structsht2x__params__t.html#a5e35a7acc264dc6e9b47509dc654100f">i2c_dev</a>;                      </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structsht2x__params__t.html#aa8eb36200579b39074c7e349866b4295">   91</a></span>&#160;    uint8_t <a class="code" href="structsht2x__params__t.html#aa8eb36200579b39074c7e349866b4295">i2c_addr</a>;                   </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="structsht2x__params__t.html#af61e652706ed7229de6f0d76105b12a0">   92</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ga572a399632f2da92abbfad2793013028">sht2x_res_t</a> <a class="code" href="structsht2x__params__t.html#af61e652706ed7229de6f0d76105b12a0">resolution</a>;             </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structsht2x__params__t.html#a21c3dae2b220a50bcd61538217e40ee8">   93</a></span>&#160;    <a class="code" href="group__drivers__sht2x.html#ga017e4f4214b458cb0f795f018157ade0">sht2x_measure_mode_t</a> <a class="code" href="structsht2x__params__t.html#a21c3dae2b220a50bcd61538217e40ee8">measure_mode</a>;  </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="structsht2x__params__t.html#a37cec72a211d73c75d45cb9102306e3f">   94</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structsht2x__params__t.html#a37cec72a211d73c75d45cb9102306e3f">is_crc_enabled</a>;                </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;} <a class="code" href="structsht2x__params__t.html">sht2x_params_t</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structsht2x__t.html">  100</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structsht2x__t.html#ae9dc956c35a2886a163d5ccabbd5acb8">  101</a></span>&#160;    <a class="code" href="structsht2x__params__t.html">sht2x_params_t</a> <a class="code" href="structsht2x__t.html#ae9dc956c35a2886a163d5ccabbd5acb8">params</a>;              </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;} <a class="code" href="structsht2x__t.html">sht2x_t</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gad37d79a1eb817fdc38cd3d57dcea2f37">  116</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__sht2x.html#gad37d79a1eb817fdc38cd3d57dcea2f37">sht2x_init</a>(<a class="code" href="structsht2x__t.html">sht2x_t</a>* dev, <span class="keyword">const</span> <a class="code" href="structsht2x__params__t.html">sht2x_params_t</a>* params);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga9cb66c3c3d7cd6f75e1ac1607cd982a4">  126</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__sht2x.html#ga9cb66c3c3d7cd6f75e1ac1607cd982a4">sht2x_reset</a>(<a class="code" href="structsht2x__t.html">sht2x_t</a>* dev);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga34e1d1c815f0d345bec8acf63236eb83">  140</a></span>&#160;int16_t <a class="code" href="group__drivers__sht2x.html#ga34e1d1c815f0d345bec8acf63236eb83">sht2x_read_temperature</a>(<span class="keyword">const</span> <a class="code" href="structsht2x__t.html">sht2x_t</a>* dev);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga5295ca39adbe22abb34b5eb006eb91ca">  154</a></span>&#160;uint16_t <a class="code" href="group__drivers__sht2x.html#ga5295ca39adbe22abb34b5eb006eb91ca">sht2x_read_humidity</a>(<span class="keyword">const</span> <a class="code" href="structsht2x__t.html">sht2x_t</a> *dev);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#gac9abdaab2edd112b92cc4de2ef458772">  167</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__sht2x.html#gac9abdaab2edd112b92cc4de2ef458772">sht2x_read_ident</a>(<span class="keyword">const</span> <a class="code" href="structsht2x__t.html">sht2x_t</a> *dev, uint8_t *buffer, <span class="keywordtype">size_t</span> buflen);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga3bb57efe253bf90a2e21220ddca25a6b">  179</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__sht2x.html#ga3bb57efe253bf90a2e21220ddca25a6b">sht2x_read_userreg</a>(<span class="keyword">const</span> <a class="code" href="structsht2x__t.html">sht2x_t</a> *dev, uint8_t *userreg);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__drivers__sht2x.html#ga801adddd9e45f81f5a252217a19e4516">  190</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__sht2x.html#ga801adddd9e45f81f5a252217a19e4516">sht2x_write_userreg</a>(<span class="keyword">const</span> <a class="code" href="structsht2x__t.html">sht2x_t</a> *dev, uint8_t userreg);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SHT2X_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ga017e4f4214b458cb0f795f018157ade0"><div class="ttname"><a href="group__drivers__sht2x.html#ga017e4f4214b458cb0f795f018157ade0">sht2x_measure_mode_t</a></div><div class="ttdeci">sht2x_measure_mode_t</div><div class="ttdoc">Available Measuring modes.</div><div class="ttdef"><b>Definition:</b> sht2x.h:68</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ga34e1d1c815f0d345bec8acf63236eb83"><div class="ttname"><a href="group__drivers__sht2x.html#ga34e1d1c815f0d345bec8acf63236eb83">sht2x_read_temperature</a></div><div class="ttdeci">int16_t sht2x_read_temperature(const sht2x_t *dev)</div><div class="ttdoc">Read temperature value from the given SHT2X device, returned in centi °C.</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ga3bb57efe253bf90a2e21220ddca25a6b"><div class="ttname"><a href="group__drivers__sht2x.html#ga3bb57efe253bf90a2e21220ddca25a6b">sht2x_read_userreg</a></div><div class="ttdeci">int sht2x_read_userreg(const sht2x_t *dev, uint8_t *userreg)</div><div class="ttdoc">Read User Register from the given SHT2X device.</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ga5295ca39adbe22abb34b5eb006eb91ca"><div class="ttname"><a href="group__drivers__sht2x.html#ga5295ca39adbe22abb34b5eb006eb91ca">sht2x_read_humidity</a></div><div class="ttdeci">uint16_t sht2x_read_humidity(const sht2x_t *dev)</div><div class="ttdoc">Read humidity value from the given SHT2X device, returned in centi RH.</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ga572a399632f2da92abbfad2793013028"><div class="ttname"><a href="group__drivers__sht2x.html#ga572a399632f2da92abbfad2793013028">sht2x_res_t</a></div><div class="ttdeci">sht2x_res_t</div><div class="ttdoc">Available resolutions.</div><div class="ttdef"><b>Definition:</b> sht2x.h:58</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ga801adddd9e45f81f5a252217a19e4516"><div class="ttname"><a href="group__drivers__sht2x.html#ga801adddd9e45f81f5a252217a19e4516">sht2x_write_userreg</a></div><div class="ttdeci">int sht2x_write_userreg(const sht2x_t *dev, uint8_t userreg)</div><div class="ttdoc">Write User Register to the given SHT2X device.</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ga9cb66c3c3d7cd6f75e1ac1607cd982a4"><div class="ttname"><a href="group__drivers__sht2x.html#ga9cb66c3c3d7cd6f75e1ac1607cd982a4">sht2x_reset</a></div><div class="ttdeci">int sht2x_reset(sht2x_t *dev)</div><div class="ttdoc">Reset the SHT2X device.</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gac9abdaab2edd112b92cc4de2ef458772"><div class="ttname"><a href="group__drivers__sht2x.html#gac9abdaab2edd112b92cc4de2ef458772">sht2x_read_ident</a></div><div class="ttdeci">int sht2x_read_ident(const sht2x_t *dev, uint8_t *buffer, size_t buflen)</div><div class="ttdoc">Read identification code from the given SHT2X device.</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gad37d79a1eb817fdc38cd3d57dcea2f37"><div class="ttname"><a href="group__drivers__sht2x.html#gad37d79a1eb817fdc38cd3d57dcea2f37">sht2x_init</a></div><div class="ttdeci">int sht2x_init(sht2x_t *dev, const sht2x_params_t *params)</div><div class="ttdoc">Initialize the given SHT2X device.</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gga017e4f4214b458cb0f795f018157ade0a34be12724489f2eb114ab377a1870c18"><div class="ttname"><a href="group__drivers__sht2x.html#gga017e4f4214b458cb0f795f018157ade0a34be12724489f2eb114ab377a1870c18">SHT2X_MEASURE_MODE_HOLD</a></div><div class="ttdeci">@ SHT2X_MEASURE_MODE_HOLD</div><div class="ttdoc">trigger measurement, hold master</div><div class="ttdef"><b>Definition:</b> sht2x.h:69</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gga017e4f4214b458cb0f795f018157ade0af7de14242e7b233f148102ad39a32ef8"><div class="ttname"><a href="group__drivers__sht2x.html#gga017e4f4214b458cb0f795f018157ade0af7de14242e7b233f148102ad39a32ef8">SHT2X_MEASURE_MODE_NO_HOLD</a></div><div class="ttdeci">@ SHT2X_MEASURE_MODE_NO_HOLD</div><div class="ttdoc">trigger measurement, no hold master (i.e.</div><div class="ttdef"><b>Definition:</b> sht2x.h:70</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gga572a399632f2da92abbfad2793013028a292d74bc48818bfae7835b5437e7e08f"><div class="ttname"><a href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028a292d74bc48818bfae7835b5437e7e08f">SHT2X_RES_8_12BIT</a></div><div class="ttdeci">@ SHT2X_RES_8_12BIT</div><div class="ttdoc">RH= 8bit, T=12bit.</div><div class="ttdef"><b>Definition:</b> sht2x.h:60</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gga572a399632f2da92abbfad2793013028ac5d44869397f0758d16d0789df7b10aa"><div class="ttname"><a href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028ac5d44869397f0758d16d0789df7b10aa">SHT2X_RES_12_14BIT</a></div><div class="ttdeci">@ SHT2X_RES_12_14BIT</div><div class="ttdoc">RH=12bit, T=14bit.</div><div class="ttdef"><b>Definition:</b> sht2x.h:59</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gga572a399632f2da92abbfad2793013028acae457168741343399ff4ce0aeff0597"><div class="ttname"><a href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028acae457168741343399ff4ce0aeff0597">SHT2X_RES_11_11BIT</a></div><div class="ttdeci">@ SHT2X_RES_11_11BIT</div><div class="ttdoc">RH=11bit, T=11bit.</div><div class="ttdef"><b>Definition:</b> sht2x.h:62</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_gga572a399632f2da92abbfad2793013028acfab70e80b51ee476fe60723a009d031"><div class="ttname"><a href="group__drivers__sht2x.html#gga572a399632f2da92abbfad2793013028acfab70e80b51ee476fe60723a009d031">SHT2X_RES_10_13BIT</a></div><div class="ttdeci">@ SHT2X_RES_10_13BIT</div><div class="ttdoc">RH=10bit, T=13bit.</div><div class="ttdef"><b>Definition:</b> sht2x.h:61</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5aca0c4e41075731fc9c9823fe50e4cfd0f0"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca0c4e41075731fc9c9823fe50e4cfd0f0">SHT2X_ERR_USERREG</a></div><div class="ttdeci">@ SHT2X_ERR_USERREG</div><div class="ttdoc">cannot write User Reg</div><div class="ttdef"><b>Definition:</b> sht2x.h:48</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5aca3de0d9be042fd7cf9dd2d0c32040cd25"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca3de0d9be042fd7cf9dd2d0c32040cd25">SHT2X_OK</a></div><div class="ttdeci">@ SHT2X_OK</div><div class="ttdoc">everything was fine</div><div class="ttdef"><b>Definition:</b> sht2x.h:41</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5aca67252afaeed5d0dd047d41b5ad0e77b7"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca67252afaeed5d0dd047d41b5ad0e77b7">SHT2X_ERR_OTHER</a></div><div class="ttdeci">@ SHT2X_ERR_OTHER</div><div class="ttdoc">fatal error</div><div class="ttdef"><b>Definition:</b> sht2x.h:50</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5aca98b73b29060fd1d02edd5bc59be91394"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5aca98b73b29060fd1d02edd5bc59be91394">SHT2X_ERR_I2C_READ</a></div><div class="ttdeci">@ SHT2X_ERR_I2C_READ</div><div class="ttdoc">I2C read error.</div><div class="ttdef"><b>Definition:</b> sht2x.h:45</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5acaa343eac48c66cc1d1cfb33880818f0e7"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaa343eac48c66cc1d1cfb33880818f0e7">SHT2X_ERR_RES</a></div><div class="ttdeci">@ SHT2X_ERR_RES</div><div class="ttdoc">invalid resolution</div><div class="ttdef"><b>Definition:</b> sht2x.h:49</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5acac35df1e2e05ba7b9d1c557a665f40103"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acac35df1e2e05ba7b9d1c557a665f40103">SHT2X_ERR_NOCAL</a></div><div class="ttdeci">@ SHT2X_ERR_NOCAL</div><div class="ttdoc">could not read calibration data</div><div class="ttdef"><b>Definition:</b> sht2x.h:44</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5acad2d3558cd8829eaa98b9c88c82ed20b9"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acad2d3558cd8829eaa98b9c88c82ed20b9">SHT2X_ERR_CRC</a></div><div class="ttdeci">@ SHT2X_ERR_CRC</div><div class="ttdoc">CRC error.</div><div class="ttdef"><b>Definition:</b> sht2x.h:47</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5acae05b49b91c90c107a2e7fb6b0d6351b3"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acae05b49b91c90c107a2e7fb6b0d6351b3">SHT2X_ERR_NODEV</a></div><div class="ttdeci">@ SHT2X_ERR_NODEV</div><div class="ttdoc">did not detect SHT2x</div><div class="ttdef"><b>Definition:</b> sht2x.h:43</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5acaeb7b9e95d0ba372eb5bee21db5232b35"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaeb7b9e95d0ba372eb5bee21db5232b35">SHT2X_ERR_I2C</a></div><div class="ttdeci">@ SHT2X_ERR_I2C</div><div class="ttdoc">error initializing the I2C bus</div><div class="ttdef"><b>Definition:</b> sht2x.h:42</div></div>
+<div class="ttc" id="agroup__drivers__sht2x_html_ggaff44cf33e83896b8e5102305d23db5acaf27633780d9b8c7cfe9153c69b4f8226"><div class="ttname"><a href="group__drivers__sht2x.html#ggaff44cf33e83896b8e5102305d23db5acaf27633780d9b8c7cfe9153c69b4f8226">SHT2X_ERR_TIMEDOUT</a></div><div class="ttdeci">@ SHT2X_ERR_TIMEDOUT</div><div class="ttdoc">timed out</div><div class="ttdef"><b>Definition:</b> sht2x.h:46</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructsht2x__params__t_html"><div class="ttname"><a href="structsht2x__params__t.html">sht2x_params_t</a></div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> sht2x.h:89</div></div>
+<div class="ttc" id="astructsht2x__params__t_html_a21c3dae2b220a50bcd61538217e40ee8"><div class="ttname"><a href="structsht2x__params__t.html#a21c3dae2b220a50bcd61538217e40ee8">sht2x_params_t::measure_mode</a></div><div class="ttdeci">sht2x_measure_mode_t measure_mode</div><div class="ttdoc">measurement mode used</div><div class="ttdef"><b>Definition:</b> sht2x.h:93</div></div>
+<div class="ttc" id="astructsht2x__params__t_html_a37cec72a211d73c75d45cb9102306e3f"><div class="ttname"><a href="structsht2x__params__t.html#a37cec72a211d73c75d45cb9102306e3f">sht2x_params_t::is_crc_enabled</a></div><div class="ttdeci">bool is_crc_enabled</div><div class="ttdoc">do CRC or not</div><div class="ttdef"><b>Definition:</b> sht2x.h:94</div></div>
+<div class="ttc" id="astructsht2x__params__t_html_a5e35a7acc264dc6e9b47509dc654100f"><div class="ttname"><a href="structsht2x__params__t.html#a5e35a7acc264dc6e9b47509dc654100f">sht2x_params_t::i2c_dev</a></div><div class="ttdeci">i2c_t i2c_dev</div><div class="ttdoc">I2C device</div><div class="ttdef"><b>Definition:</b> sht2x.h:90</div></div>
+<div class="ttc" id="astructsht2x__params__t_html_aa8eb36200579b39074c7e349866b4295"><div class="ttname"><a href="structsht2x__params__t.html#aa8eb36200579b39074c7e349866b4295">sht2x_params_t::i2c_addr</a></div><div class="ttdeci">uint8_t i2c_addr</div><div class="ttdoc">I2C address</div><div class="ttdef"><b>Definition:</b> sht2x.h:91</div></div>
+<div class="ttc" id="astructsht2x__params__t_html_af61e652706ed7229de6f0d76105b12a0"><div class="ttname"><a href="structsht2x__params__t.html#af61e652706ed7229de6f0d76105b12a0">sht2x_params_t::resolution</a></div><div class="ttdeci">sht2x_res_t resolution</div><div class="ttdoc">resolution bits RH/temp</div><div class="ttdef"><b>Definition:</b> sht2x.h:92</div></div>
+<div class="ttc" id="astructsht2x__t_html"><div class="ttname"><a href="structsht2x__t.html">sht2x_t</a></div><div class="ttdoc">Device descriptor for the SHT2X sensor.</div><div class="ttdef"><b>Definition:</b> sht2x.h:100</div></div>
+<div class="ttc" id="astructsht2x__t_html_ae9dc956c35a2886a163d5ccabbd5acb8"><div class="ttname"><a href="structsht2x__t.html#ae9dc956c35a2886a163d5ccabbd5acb8">sht2x_t::params</a></div><div class="ttdeci">sht2x_params_t params</div><div class="ttdoc">Device Parameters.</div><div class="ttdef"><b>Definition:</b> sht2x.h:101</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="sht2x_8h.html">sht2x.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

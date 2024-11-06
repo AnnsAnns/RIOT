@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/lcd/include/lcd_internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('lcd__internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
+  <div class="headertitle">
+<div class="title">lcd_internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__display.html">Display Device Drivers</a> &raquo; <a class="el" href="group__drivers__lcd.html">LCD display driver</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Device driver implementation for the lcd display controller.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Device driver implementation for the lcd display controller. </p>
+<dl class="section author"><dt>Author</dt><dd>Koen Zandberg <a href="#" onclick="location.href='mai'+'lto:'+'koe'+'n@'+'ber'+'gz'+'and'+'.n'+'et'; return false;">koen@<span style="display: none;">.nosp@m.</span>berg<span style="display: none;">.nosp@m.</span>zand.<span style="display: none;">.nosp@m.</span>net</a> </dd>
+<dd>
+Francisco Molina <a href="#" onclick="location.href='mai'+'lto:'+'fra'+'nc'+'ois'+'-x'+'avi'+'er'+'.mo'+'li'+'na@'+'in'+'ria'+'.f'+'r'; return false;">franc<span style="display: none;">.nosp@m.</span>ois-<span style="display: none;">.nosp@m.</span>xavie<span style="display: none;">.nosp@m.</span>r.mo<span style="display: none;">.nosp@m.</span>lina@<span style="display: none;">.nosp@m.</span>inri<span style="display: none;">.nosp@m.</span>a.fr</a> </dd></dl>
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="lcd__internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a126ca4141ba3fe2c0899fb34b9984b95"><td class="memItemLeft" align="right" valign="top"><a id="a126ca4141ba3fe2c0899fb34b9984b95"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a126ca4141ba3fe2c0899fb34b9984b95">LCD_PIXSET_16BIT</a>&#160;&#160;&#160;0x55</td></tr>
+<tr class="memdesc:a126ca4141ba3fe2c0899fb34b9984b95"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCU and RGB 16 bit interface. <br /></td></tr>
+<tr class="separator:a126ca4141ba3fe2c0899fb34b9984b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa2036ceb9379320b38f41d3cbb8d71"><td class="memItemLeft" align="right" valign="top"><a id="acfa2036ceb9379320b38f41d3cbb8d71"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#acfa2036ceb9379320b38f41d3cbb8d71">LCD_PIXSET_18BIT</a>&#160;&#160;&#160;0x66</td></tr>
+<tr class="memdesc:acfa2036ceb9379320b38f41d3cbb8d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCU and RGB 18 bit interface (not implemented) <br /></td></tr>
+<tr class="separator:acfa2036ceb9379320b38f41d3cbb8d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">LCD commands</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpb849ae9a9da0bf69673dd6653d88e021"></a>Not exhaustive, please extend when required </p>
+</td></tr>
+<tr class="memitem:ac00d8e81fe283b0f7e46095eaf3758f8"><td class="memItemLeft" align="right" valign="top"><a id="ac00d8e81fe283b0f7e46095eaf3758f8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ac00d8e81fe283b0f7e46095eaf3758f8">LCD_CMD_SWRESET</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memdesc:ac00d8e81fe283b0f7e46095eaf3758f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software reset. <br /></td></tr>
+<tr class="separator:ac00d8e81fe283b0f7e46095eaf3758f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa84d3c343715c5be93bb0f20ffcf9e45"><td class="memItemLeft" align="right" valign="top"><a id="aa84d3c343715c5be93bb0f20ffcf9e45"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#aa84d3c343715c5be93bb0f20ffcf9e45">LCD_CMD_RDDIDIF</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memdesc:aa84d3c343715c5be93bb0f20ffcf9e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read display ID. <br /></td></tr>
+<tr class="separator:aa84d3c343715c5be93bb0f20ffcf9e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae88d71637bd42077b126141be0568af5"><td class="memItemLeft" align="right" valign="top"><a id="ae88d71637bd42077b126141be0568af5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ae88d71637bd42077b126141be0568af5">LCD_CMD_RDDST</a>&#160;&#160;&#160;0x09</td></tr>
+<tr class="memdesc:ae88d71637bd42077b126141be0568af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read display status. <br /></td></tr>
+<tr class="separator:ae88d71637bd42077b126141be0568af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9076c7bdd92391142050682cc66da8b8"><td class="memItemLeft" align="right" valign="top"><a id="a9076c7bdd92391142050682cc66da8b8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a9076c7bdd92391142050682cc66da8b8">LCD_CMD_SLPIN</a>&#160;&#160;&#160;0x10</td></tr>
+<tr class="memdesc:a9076c7bdd92391142050682cc66da8b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter sleep mode. <br /></td></tr>
+<tr class="separator:a9076c7bdd92391142050682cc66da8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9030786994f14df26dd3c99a79516e0a"><td class="memItemLeft" align="right" valign="top"><a id="a9030786994f14df26dd3c99a79516e0a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a9030786994f14df26dd3c99a79516e0a">LCD_CMD_SLPOUT</a>&#160;&#160;&#160;0x11</td></tr>
+<tr class="memdesc:a9030786994f14df26dd3c99a79516e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep out. <br /></td></tr>
+<tr class="separator:a9030786994f14df26dd3c99a79516e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaf83724b59ecc7af5ab6364c51b1c90"><td class="memItemLeft" align="right" valign="top"><a id="adaf83724b59ecc7af5ab6364c51b1c90"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#adaf83724b59ecc7af5ab6364c51b1c90">LCD_CMD_NORON</a>&#160;&#160;&#160;0x13</td></tr>
+<tr class="memdesc:adaf83724b59ecc7af5ab6364c51b1c90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal display mode on. <br /></td></tr>
+<tr class="separator:adaf83724b59ecc7af5ab6364c51b1c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94910d70286cdcfb296371ffccc71375"><td class="memItemLeft" align="right" valign="top"><a id="a94910d70286cdcfb296371ffccc71375"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a94910d70286cdcfb296371ffccc71375">LCD_CMD_DINVOFF</a>&#160;&#160;&#160;0x20</td></tr>
+<tr class="memdesc:a94910d70286cdcfb296371ffccc71375"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display inversion off. <br /></td></tr>
+<tr class="separator:a94910d70286cdcfb296371ffccc71375"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcec67da127c5e962fc4d2328fbea974"><td class="memItemLeft" align="right" valign="top"><a id="afcec67da127c5e962fc4d2328fbea974"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#afcec67da127c5e962fc4d2328fbea974">LCD_CMD_DINVON</a>&#160;&#160;&#160;0x21</td></tr>
+<tr class="memdesc:afcec67da127c5e962fc4d2328fbea974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display inversion on. <br /></td></tr>
+<tr class="separator:afcec67da127c5e962fc4d2328fbea974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62ede99e78cd5074d1bf6190af7eefc7"><td class="memItemLeft" align="right" valign="top"><a id="a62ede99e78cd5074d1bf6190af7eefc7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a62ede99e78cd5074d1bf6190af7eefc7">LCD_CMD_GAMSET</a>&#160;&#160;&#160;0x26</td></tr>
+<tr class="memdesc:a62ede99e78cd5074d1bf6190af7eefc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gamma Set. <br /></td></tr>
+<tr class="separator:a62ede99e78cd5074d1bf6190af7eefc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0e5be6fec8653a3cdeedf27571d5c44"><td class="memItemLeft" align="right" valign="top"><a id="ad0e5be6fec8653a3cdeedf27571d5c44"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ad0e5be6fec8653a3cdeedf27571d5c44">LCD_CMD_DISPOFF</a>&#160;&#160;&#160;0x28</td></tr>
+<tr class="memdesc:ad0e5be6fec8653a3cdeedf27571d5c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display OFF. <br /></td></tr>
+<tr class="separator:ad0e5be6fec8653a3cdeedf27571d5c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b84344a88624e8f9b52b5790241f6e6"><td class="memItemLeft" align="right" valign="top"><a id="a8b84344a88624e8f9b52b5790241f6e6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a8b84344a88624e8f9b52b5790241f6e6">LCD_CMD_DISPON</a>&#160;&#160;&#160;0x29</td></tr>
+<tr class="memdesc:a8b84344a88624e8f9b52b5790241f6e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display ON. <br /></td></tr>
+<tr class="separator:a8b84344a88624e8f9b52b5790241f6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67adb85097e3a6eb07ce0f4a1f56dcec"><td class="memItemLeft" align="right" valign="top"><a id="a67adb85097e3a6eb07ce0f4a1f56dcec"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a67adb85097e3a6eb07ce0f4a1f56dcec">LCD_CMD_CASET</a>&#160;&#160;&#160;0x2A</td></tr>
+<tr class="memdesc:a67adb85097e3a6eb07ce0f4a1f56dcec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Column Address Set. <br /></td></tr>
+<tr class="separator:a67adb85097e3a6eb07ce0f4a1f56dcec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bcd85022fdc74ea73cd8b28db1dc795"><td class="memItemLeft" align="right" valign="top"><a id="a9bcd85022fdc74ea73cd8b28db1dc795"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a9bcd85022fdc74ea73cd8b28db1dc795">LCD_CMD_PASET</a>&#160;&#160;&#160;0x2b</td></tr>
+<tr class="memdesc:a9bcd85022fdc74ea73cd8b28db1dc795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Page Address Set. <br /></td></tr>
+<tr class="separator:a9bcd85022fdc74ea73cd8b28db1dc795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493311a7392e46c1b0f39b16f7a74257"><td class="memItemLeft" align="right" valign="top"><a id="a493311a7392e46c1b0f39b16f7a74257"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a493311a7392e46c1b0f39b16f7a74257">LCD_CMD_RAMWR</a>&#160;&#160;&#160;0x2c</td></tr>
+<tr class="memdesc:a493311a7392e46c1b0f39b16f7a74257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory Write. <br /></td></tr>
+<tr class="separator:a493311a7392e46c1b0f39b16f7a74257"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90ae533cf76b746273a59b439aea2161"><td class="memItemLeft" align="right" valign="top"><a id="a90ae533cf76b746273a59b439aea2161"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a90ae533cf76b746273a59b439aea2161">LCD_CMD_RAMRD</a>&#160;&#160;&#160;0x2e</td></tr>
+<tr class="memdesc:a90ae533cf76b746273a59b439aea2161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory Read. <br /></td></tr>
+<tr class="separator:a90ae533cf76b746273a59b439aea2161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace4d3f9b442bfebc11d6071897ebbb72"><td class="memItemLeft" align="right" valign="top"><a id="ace4d3f9b442bfebc11d6071897ebbb72"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ace4d3f9b442bfebc11d6071897ebbb72">LCD_CMD_MADCTL</a>&#160;&#160;&#160;0x36</td></tr>
+<tr class="memdesc:ace4d3f9b442bfebc11d6071897ebbb72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory data access control. <br /></td></tr>
+<tr class="separator:ace4d3f9b442bfebc11d6071897ebbb72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26e7eef7f2be7c5c5c4c116e35c40106"><td class="memItemLeft" align="right" valign="top"><a id="a26e7eef7f2be7c5c5c4c116e35c40106"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a26e7eef7f2be7c5c5c4c116e35c40106">LCD_CMD_IDMOFF</a>&#160;&#160;&#160;0x38</td></tr>
+<tr class="memdesc:a26e7eef7f2be7c5c5c4c116e35c40106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Idle Mode OFF. <br /></td></tr>
+<tr class="separator:a26e7eef7f2be7c5c5c4c116e35c40106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad839cf435f53c1f546e644f8d84ae40b"><td class="memItemLeft" align="right" valign="top"><a id="ad839cf435f53c1f546e644f8d84ae40b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ad839cf435f53c1f546e644f8d84ae40b">LCD_CMD_IDMON</a>&#160;&#160;&#160;0x39</td></tr>
+<tr class="memdesc:ad839cf435f53c1f546e644f8d84ae40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Idle Mode ON. <br /></td></tr>
+<tr class="separator:ad839cf435f53c1f546e644f8d84ae40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ae9557a4b6fdb97a067d57c2a2250c"><td class="memItemLeft" align="right" valign="top"><a id="ab4ae9557a4b6fdb97a067d57c2a2250c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ab4ae9557a4b6fdb97a067d57c2a2250c">LCD_CMD_TEOFF</a>&#160;&#160;&#160;0x34</td></tr>
+<tr class="memdesc:ab4ae9557a4b6fdb97a067d57c2a2250c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tearing Effect Line Off. <br /></td></tr>
+<tr class="separator:ab4ae9557a4b6fdb97a067d57c2a2250c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34d827baf6326e3688dae8e7d9647ab9"><td class="memItemLeft" align="right" valign="top"><a id="a34d827baf6326e3688dae8e7d9647ab9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a34d827baf6326e3688dae8e7d9647ab9">LCD_CMD_TEON</a>&#160;&#160;&#160;0x35</td></tr>
+<tr class="memdesc:a34d827baf6326e3688dae8e7d9647ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tearing Effect Line On. <br /></td></tr>
+<tr class="separator:a34d827baf6326e3688dae8e7d9647ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad96215614e2bd3434cd161cf8543bd9c"><td class="memItemLeft" align="right" valign="top"><a id="ad96215614e2bd3434cd161cf8543bd9c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ad96215614e2bd3434cd161cf8543bd9c">LCD_CMD_COLMOD</a>&#160;&#160;&#160;0x3A</td></tr>
+<tr class="memdesc:ad96215614e2bd3434cd161cf8543bd9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface Pixel Format Set. <br /></td></tr>
+<tr class="separator:ad96215614e2bd3434cd161cf8543bd9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ab04e12b7a992201a50d0e3c972de59"><td class="memItemLeft" align="right" valign="top"><a id="a7ab04e12b7a992201a50d0e3c972de59"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a7ab04e12b7a992201a50d0e3c972de59">LCD_CMD_PIXSET</a>&#160;&#160;&#160;0x3A</td></tr>
+<tr class="memdesc:a7ab04e12b7a992201a50d0e3c972de59"><td class="mdescLeft">&#160;</td><td class="mdescRight">COLMOD: Pixel Format Set. <br /></td></tr>
+<tr class="separator:a7ab04e12b7a992201a50d0e3c972de59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b115d80b86ae8e63055a34247927bdd"><td class="memItemLeft" align="right" valign="top"><a id="a8b115d80b86ae8e63055a34247927bdd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a8b115d80b86ae8e63055a34247927bdd">LCD_CMD_RAMWRC</a>&#160;&#160;&#160;0x3c</td></tr>
+<tr class="memdesc:a8b115d80b86ae8e63055a34247927bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory Write Continue. <br /></td></tr>
+<tr class="separator:a8b115d80b86ae8e63055a34247927bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17a6c5749af7ee4ec4dcbd8a353d26c"><td class="memItemLeft" align="right" valign="top"><a id="ab17a6c5749af7ee4ec4dcbd8a353d26c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ab17a6c5749af7ee4ec4dcbd8a353d26c">LCD_CMD_RAMRDC</a>&#160;&#160;&#160;0x3e</td></tr>
+<tr class="memdesc:ab17a6c5749af7ee4ec4dcbd8a353d26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory Read Continue. <br /></td></tr>
+<tr class="separator:ab17a6c5749af7ee4ec4dcbd8a353d26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d9c379b5d904eee99aedb80218bb6e1"><td class="memItemLeft" align="right" valign="top"><a id="a2d9c379b5d904eee99aedb80218bb6e1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a2d9c379b5d904eee99aedb80218bb6e1">LCD_CMD_WRDISBV</a>&#160;&#160;&#160;0x51</td></tr>
+<tr class="memdesc:a2d9c379b5d904eee99aedb80218bb6e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write Display Brightness. <br /></td></tr>
+<tr class="separator:a2d9c379b5d904eee99aedb80218bb6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8b125a3bb63cc380ce94f8a88d610b3"><td class="memItemLeft" align="right" valign="top"><a id="ad8b125a3bb63cc380ce94f8a88d610b3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ad8b125a3bb63cc380ce94f8a88d610b3">LCD_CMD_WRCTRLD</a>&#160;&#160;&#160;0x53</td></tr>
+<tr class="memdesc:ad8b125a3bb63cc380ce94f8a88d610b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write Control Display. <br /></td></tr>
+<tr class="separator:ad8b125a3bb63cc380ce94f8a88d610b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac15eaca8a715f0d036a6fa3c7df41721"><td class="memItemLeft" align="right" valign="top"><a id="ac15eaca8a715f0d036a6fa3c7df41721"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ac15eaca8a715f0d036a6fa3c7df41721">LCD_CMD_RDCTRLD</a>&#160;&#160;&#160;0x54</td></tr>
+<tr class="memdesc:ac15eaca8a715f0d036a6fa3c7df41721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Control Display. <br /></td></tr>
+<tr class="separator:ac15eaca8a715f0d036a6fa3c7df41721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68a6717ef4c2da335bafc17ba6cb31a4"><td class="memItemLeft" align="right" valign="top"><a id="a68a6717ef4c2da335bafc17ba6cb31a4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a68a6717ef4c2da335bafc17ba6cb31a4">LCD_CMD_FRAMECTL1</a>&#160;&#160;&#160;0xb1</td></tr>
+<tr class="memdesc:a68a6717ef4c2da335bafc17ba6cb31a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frame control normal. <br /></td></tr>
+<tr class="separator:a68a6717ef4c2da335bafc17ba6cb31a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76bdc2a0d30a60189e183595fb6f1317"><td class="memItemLeft" align="right" valign="top"><a id="a76bdc2a0d30a60189e183595fb6f1317"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a76bdc2a0d30a60189e183595fb6f1317">LCD_CMD_FRAMECTL2</a>&#160;&#160;&#160;0xb2</td></tr>
+<tr class="memdesc:a76bdc2a0d30a60189e183595fb6f1317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frame control idle. <br /></td></tr>
+<tr class="separator:a76bdc2a0d30a60189e183595fb6f1317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f53b5f20469e894e58762090c88782a"><td class="memItemLeft" align="right" valign="top"><a id="a0f53b5f20469e894e58762090c88782a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a0f53b5f20469e894e58762090c88782a">LCD_CMD_FRAMECTL3</a>&#160;&#160;&#160;0xb3</td></tr>
+<tr class="memdesc:a0f53b5f20469e894e58762090c88782a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frame control partial. <br /></td></tr>
+<tr class="separator:a0f53b5f20469e894e58762090c88782a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a257b36e68ed94f06a920a5e0b244f9"><td class="memItemLeft" align="right" valign="top"><a id="a4a257b36e68ed94f06a920a5e0b244f9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a4a257b36e68ed94f06a920a5e0b244f9">LCD_CMD_DFUNC</a>&#160;&#160;&#160;0xb6</td></tr>
+<tr class="memdesc:a4a257b36e68ed94f06a920a5e0b244f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display function control. <br /></td></tr>
+<tr class="separator:a4a257b36e68ed94f06a920a5e0b244f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a472529afccbeb9779e2a34aef32552"><td class="memItemLeft" align="right" valign="top"><a id="a2a472529afccbeb9779e2a34aef32552"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a2a472529afccbeb9779e2a34aef32552">LCD_CMD_PWCTRL1</a>&#160;&#160;&#160;0xc0</td></tr>
+<tr class="memdesc:a2a472529afccbeb9779e2a34aef32552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power control 1. <br /></td></tr>
+<tr class="separator:a2a472529afccbeb9779e2a34aef32552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b8d0213f746a38801d032e223c27527"><td class="memItemLeft" align="right" valign="top"><a id="a7b8d0213f746a38801d032e223c27527"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a7b8d0213f746a38801d032e223c27527">LCD_CMD_PWCTRL2</a>&#160;&#160;&#160;0xc1</td></tr>
+<tr class="memdesc:a7b8d0213f746a38801d032e223c27527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power control 2. <br /></td></tr>
+<tr class="separator:a7b8d0213f746a38801d032e223c27527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addccff52b04bf588f3d73e987b7afce0"><td class="memItemLeft" align="right" valign="top"><a id="addccff52b04bf588f3d73e987b7afce0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#addccff52b04bf588f3d73e987b7afce0">LCD_CMD_VMCTRL1</a>&#160;&#160;&#160;0xc5</td></tr>
+<tr class="memdesc:addccff52b04bf588f3d73e987b7afce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">VCOM control 1. <br /></td></tr>
+<tr class="separator:addccff52b04bf588f3d73e987b7afce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade36e420a66f63cb36ab8155183ad134"><td class="memItemLeft" align="right" valign="top"><a id="ade36e420a66f63cb36ab8155183ad134"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#ade36e420a66f63cb36ab8155183ad134">LCD_CMD_VMCTRL2</a>&#160;&#160;&#160;0xc7</td></tr>
+<tr class="memdesc:ade36e420a66f63cb36ab8155183ad134"><td class="mdescLeft">&#160;</td><td class="mdescRight">VCOM control 2. <br /></td></tr>
+<tr class="separator:ade36e420a66f63cb36ab8155183ad134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbcaa030649a8264927ef5a14b3d906d"><td class="memItemLeft" align="right" valign="top"><a id="acbcaa030649a8264927ef5a14b3d906d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#acbcaa030649a8264927ef5a14b3d906d">LCD_CMD_PGAMCTRL</a>&#160;&#160;&#160;0xe0</td></tr>
+<tr class="memdesc:acbcaa030649a8264927ef5a14b3d906d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positive gamma correction. <br /></td></tr>
+<tr class="separator:acbcaa030649a8264927ef5a14b3d906d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29add4fd2fa3faec65f1a02387183cda"><td class="memItemLeft" align="right" valign="top"><a id="a29add4fd2fa3faec65f1a02387183cda"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a29add4fd2fa3faec65f1a02387183cda">LCD_CMD_NGAMCTRL</a>&#160;&#160;&#160;0xe1</td></tr>
+<tr class="memdesc:a29add4fd2fa3faec65f1a02387183cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Negative gamma correction. <br /></td></tr>
+<tr class="separator:a29add4fd2fa3faec65f1a02387183cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54903f22d137d58f4513a2a3df5a5686"><td class="memItemLeft" align="right" valign="top"><a id="a54903f22d137d58f4513a2a3df5a5686"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd__internal_8h.html#a54903f22d137d58f4513a2a3df5a5686">LCD_CMD_IFCTL</a>&#160;&#160;&#160;0xf6</td></tr>
+<tr class="memdesc:a54903f22d137d58f4513a2a3df5a5686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface control. <br /></td></tr>
+<tr class="separator:a54903f22d137d58f4513a2a3df5a5686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ba1d07ed4d5aa49bdda527e4db347ebf.html">lcd</a></li><li class="navelem"><a class="el" href="dir_c2b74b9fe919768062932e150ae2280e.html">include</a></li><li class="navelem"><a class="el" href="lcd__internal_8h.html">lcd_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

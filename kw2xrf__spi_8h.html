@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/kw2xrf/include/kw2xrf_spi.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('kw2xrf__spi_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">kw2xrf_spi.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a> &raquo; <a class="el" href="group__drivers__kw2xrf.html">KW2x radio-driver</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definition of KW2XRF SPI functions.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Definition of KW2XRF SPI functions. </p>
+<dl class="section author"><dt>Author</dt><dd>Johann Fischer <a href="#" onclick="location.href='mai'+'lto:'+'j.f'+'is'+'che'+'r@'+'phy'+'te'+'c.d'+'e'; return false;">j.fis<span style="display: none;">.nosp@m.</span>cher<span style="display: none;">.nosp@m.</span>@phyt<span style="display: none;">.nosp@m.</span>ec.d<span style="display: none;">.nosp@m.</span>e</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;<a class="el" href="stdio_8h_source.html">stdio.h</a>&gt;</code><br />
+<code>#include &quot;board.h&quot;</code><br />
+<code>#include &quot;cpu.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="spi_8h_source.html">periph/spi.h</a>&quot;</code><br />
+<code>#include &quot;periph_conf.h&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for kw2xrf_spi.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="kw2xrf__spi_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:aeddbbbcb75fe624b5ffa663cbfa47241"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#aeddbbbcb75fe624b5ffa663cbfa47241">kw2xrf_spi_init</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev)</td></tr>
+<tr class="memdesc:aeddbbbcb75fe624b5ffa663cbfa47241"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI interface initialization.  <a href="kw2xrf__spi_8h.html#aeddbbbcb75fe624b5ffa663cbfa47241">More...</a><br /></td></tr>
+<tr class="separator:aeddbbbcb75fe624b5ffa663cbfa47241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9db12e6b05b82cbdebde2d4d7ac7c9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#ab9db12e6b05b82cbdebde2d4d7ac7c9f">kw2xrf_write_dreg</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr, uint8_t value)</td></tr>
+<tr class="memdesc:ab9db12e6b05b82cbdebde2d4d7ac7c9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a byte to the kw2xrf register.  <a href="kw2xrf__spi_8h.html#ab9db12e6b05b82cbdebde2d4d7ac7c9f">More...</a><br /></td></tr>
+<tr class="separator:ab9db12e6b05b82cbdebde2d4d7ac7c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f0821f1e6b856e3720904d477b3fad9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#a4f0821f1e6b856e3720904d477b3fad9">kw2xrf_read_dreg</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr)</td></tr>
+<tr class="memdesc:a4f0821f1e6b856e3720904d477b3fad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a byte from the kw2xrf register.  <a href="kw2xrf__spi_8h.html#a4f0821f1e6b856e3720904d477b3fad9">More...</a><br /></td></tr>
+<tr class="separator:a4f0821f1e6b856e3720904d477b3fad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab049cbd9bf9e75ccf96069d71064c000"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#ab049cbd9bf9e75ccf96069d71064c000">kw2xrf_write_dregs</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr, uint8_t *buf, uint8_t length)</td></tr>
+<tr class="memdesc:ab049cbd9bf9e75ccf96069d71064c000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes to kw2xrf direct registers.  <a href="kw2xrf__spi_8h.html#ab049cbd9bf9e75ccf96069d71064c000">More...</a><br /></td></tr>
+<tr class="separator:ab049cbd9bf9e75ccf96069d71064c000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa8bfce3ee967cf39903c82016a98a95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#aaa8bfce3ee967cf39903c82016a98a95">kw2xrf_read_dregs</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr, uint8_t *buf, uint8_t length)</td></tr>
+<tr class="memdesc:aaa8bfce3ee967cf39903c82016a98a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a byte from the kw2xrf indirect register.  <a href="kw2xrf__spi_8h.html#aaa8bfce3ee967cf39903c82016a98a95">More...</a><br /></td></tr>
+<tr class="separator:aaa8bfce3ee967cf39903c82016a98a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8cea7a804bf6ef667fc09d1db30d8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#a1f8cea7a804bf6ef667fc09d1db30d8a">kw2xrf_write_ireg</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr, uint8_t value)</td></tr>
+<tr class="memdesc:a1f8cea7a804bf6ef667fc09d1db30d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes to a byte from the kw2xrf indirect register.  <a href="kw2xrf__spi_8h.html#a1f8cea7a804bf6ef667fc09d1db30d8a">More...</a><br /></td></tr>
+<tr class="separator:a1f8cea7a804bf6ef667fc09d1db30d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae3b88bc798aa6d857403d080326a18e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#aae3b88bc798aa6d857403d080326a18e">kw2xrf_read_ireg</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr)</td></tr>
+<tr class="memdesc:aae3b88bc798aa6d857403d080326a18e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a byte from the kw2xrf indirect register.  <a href="kw2xrf__spi_8h.html#aae3b88bc798aa6d857403d080326a18e">More...</a><br /></td></tr>
+<tr class="separator:aae3b88bc798aa6d857403d080326a18e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94476dbeffa31ae44396a357e8f0da85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#a94476dbeffa31ae44396a357e8f0da85">kw2xrf_write_iregs</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr, uint8_t *buf, uint8_t length)</td></tr>
+<tr class="memdesc:a94476dbeffa31ae44396a357e8f0da85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes to kw2xrf indirect registers.  <a href="kw2xrf__spi_8h.html#a94476dbeffa31ae44396a357e8f0da85">More...</a><br /></td></tr>
+<tr class="separator:a94476dbeffa31ae44396a357e8f0da85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05121e49cd848e7bc70e236339729f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#ad05121e49cd848e7bc70e236339729f4">kw2xrf_read_iregs</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t addr, uint8_t *buf, uint8_t length)</td></tr>
+<tr class="memdesc:ad05121e49cd848e7bc70e236339729f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a byte from the kw2xrf indirect register.  <a href="kw2xrf__spi_8h.html#ad05121e49cd848e7bc70e236339729f4">More...</a><br /></td></tr>
+<tr class="separator:ad05121e49cd848e7bc70e236339729f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af25f75478f5b19aaa7ccf7e21eb86f63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#af25f75478f5b19aaa7ccf7e21eb86f63">kw2xrf_write_fifo</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t *data, uint8_t data_length)</td></tr>
+<tr class="memdesc:af25f75478f5b19aaa7ccf7e21eb86f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes multiple bytes to the kw2xrf fifo.  <a href="kw2xrf__spi_8h.html#af25f75478f5b19aaa7ccf7e21eb86f63">More...</a><br /></td></tr>
+<tr class="separator:af25f75478f5b19aaa7ccf7e21eb86f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad2b75c84646e0b89e015fc0a085672"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kw2xrf__spi_8h.html#a6ad2b75c84646e0b89e015fc0a085672">kw2xrf_read_fifo</a> (<a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *dev, uint8_t *data, uint8_t data_length)</td></tr>
+<tr class="memdesc:a6ad2b75c84646e0b89e015fc0a085672"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads multiple bytes from the kw2xrf fifo.  <a href="kw2xrf__spi_8h.html#a6ad2b75c84646e0b89e015fc0a085672">More...</a><br /></td></tr>
+<tr class="separator:a6ad2b75c84646e0b89e015fc0a085672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a4f0821f1e6b856e3720904d477b3fad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f0821f1e6b856e3720904d477b3fad9">&#9670;&nbsp;</a></span>kw2xrf_read_dreg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t kw2xrf_read_dreg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads a byte from the kw2xrf register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to read. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Value of the register. </dd></dl>
+
+</div>
+</div>
+<a id="aaa8bfce3ee967cf39903c82016a98a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa8bfce3ee967cf39903c82016a98a95">&#9670;&nbsp;</a></span>kw2xrf_read_dregs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_read_dregs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads a byte from the kw2xrf indirect register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to read. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>Buffer, where the content of the reg shall be written to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Length of the register. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6ad2b75c84646e0b89e015fc0a085672"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad2b75c84646e0b89e015fc0a085672">&#9670;&nbsp;</a></span>kw2xrf_read_fifo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_read_fifo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>data_length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads multiple bytes from the kw2xrf fifo. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>A buffer to store the value of the fifo. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_length</td><td>The count of bytes which should be read. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aae3b88bc798aa6d857403d080326a18e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae3b88bc798aa6d857403d080326a18e">&#9670;&nbsp;</a></span>kw2xrf_read_ireg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t kw2xrf_read_ireg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads a byte from the kw2xrf indirect register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to read.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value in the register </dd></dl>
+
+</div>
+</div>
+<a id="ad05121e49cd848e7bc70e236339729f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad05121e49cd848e7bc70e236339729f4">&#9670;&nbsp;</a></span>kw2xrf_read_iregs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_read_iregs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads a byte from the kw2xrf indirect register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to read. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>Buffer, where the content of the reg shall be written to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Length of the register. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeddbbbcb75fe624b5ffa663cbfa47241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeddbbbcb75fe624b5ffa663cbfa47241">&#9670;&nbsp;</a></span>kw2xrf_spi_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kw2xrf_spi_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SPI interface initialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+-1 on error </dd></dl>
+
+</div>
+</div>
+<a id="ab9db12e6b05b82cbdebde2d4d7ac7c9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9db12e6b05b82cbdebde2d4d7ac7c9f">&#9670;&nbsp;</a></span>kw2xrf_write_dreg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_write_dreg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes a byte to the kw2xrf register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to write. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The value to write in the register. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab049cbd9bf9e75ccf96069d71064c000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab049cbd9bf9e75ccf96069d71064c000">&#9670;&nbsp;</a></span>kw2xrf_write_dregs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_write_dregs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes to kw2xrf direct registers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to write into. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>Value that shall be written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Length of the register. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af25f75478f5b19aaa7ccf7e21eb86f63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af25f75478f5b19aaa7ccf7e21eb86f63">&#9670;&nbsp;</a></span>kw2xrf_write_fifo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_write_fifo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>data_length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes multiple bytes to the kw2xrf fifo. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>A buffer with the value to write to the fifo. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_length</td><td>The count of bytes which should be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f8cea7a804bf6ef667fc09d1db30d8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8cea7a804bf6ef667fc09d1db30d8a">&#9670;&nbsp;</a></span>kw2xrf_write_ireg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_write_ireg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes to a byte from the kw2xrf indirect register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to write into. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Value that shall be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a94476dbeffa31ae44396a357e8f0da85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94476dbeffa31ae44396a357e8f0da85">&#9670;&nbsp;</a></span>kw2xrf_write_iregs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kw2xrf_write_iregs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkw2xrf__t.html">kw2xrf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes to kw2xrf indirect registers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address of the register to write into. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>Value that shall be written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Length of the register. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_dadb33e98ec691d782b2d449bd681a94.html">kw2xrf</a></li><li class="navelem"><a class="el" href="dir_2dd48b033fd81e36950d4baee7d21f81.html">include</a></li><li class="navelem"><a class="el" href="kw2xrf__spi_8h.html">kw2xrf_spi.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

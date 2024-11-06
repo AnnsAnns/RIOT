@@ -1,0 +1,26 @@
+var samr30_xpro_2include_2board_8h =
+[
+    [ "AT86RF2XX_PARAM_CS", "group__boards__samr30-xpro.html#ga555f5ce4ea27f15da0ed318fd79704ee", null ],
+    [ "AT86RF2XX_PARAM_INT", "group__boards__samr30-xpro.html#gab47f3ac0a872633fbef6ebe83d52883a", null ],
+    [ "AT86RF2XX_PARAM_RESET", "group__boards__samr30-xpro.html#gae1083f9546ac5eaf9cd81065ae0ac5c6", null ],
+    [ "AT86RF2XX_PARAM_SLEEP", "group__boards__samr30-xpro.html#gae453db88a26d1b28125182e50159c693", null ],
+    [ "AT86RF2XX_PARAM_SPI", "group__boards__samr30-xpro.html#ga660b6bfea153182d977d5af9475c0280", null ],
+    [ "AT86RF2XX_PARAM_SPI_CLK", "group__boards__samr30-xpro.html#gad137aec18dd89df2513e688b579d9595", null ],
+    [ "BTN0_MODE", "group__boards__samr30-xpro.html#ga904884feea8e03c30c9a85ca6d7a8e5c", null ],
+    [ "BTN0_PIN", "group__boards__samr30-xpro.html#gaab5c3eca54046333af52593b9e360270", null ],
+    [ "LED0_MASK", "group__boards__samr30-xpro.html#gabfabde35a3e8b7ab50146a5e223bfead", null ],
+    [ "LED0_OFF", "group__boards__samr30-xpro.html#gaef2e39b9fd343d0e437fac0463f3e02d", null ],
+    [ "LED0_ON", "group__boards__samr30-xpro.html#ga1e48dc02333bfc2e6ad3e5bd466eecd4", null ],
+    [ "LED0_PIN", "group__boards__samr30-xpro.html#ga3fc522fda449d6edde717d6a857429cf", null ],
+    [ "LED0_TOGGLE", "group__boards__samr30-xpro.html#gaebc6389533d9fc8dcbe4d2129a4d5a45", null ],
+    [ "LED1_MASK", "group__boards__samr30-xpro.html#ga669ed6e073140d069b30442bf4c08842", null ],
+    [ "LED1_OFF", "group__boards__samr30-xpro.html#ga343fd2d3ce61b84f88ddfaea32c67c58", null ],
+    [ "LED1_ON", "group__boards__samr30-xpro.html#gaadd4c7ae0cd4e9bbb17f7055dd51fe08", null ],
+    [ "LED1_PIN", "group__boards__samr30-xpro.html#ga318aa17e5d40e2132d2c7f6269ce7f51", null ],
+    [ "LED1_TOGGLE", "group__boards__samr30-xpro.html#ga267fdbba1d750146b73da35c1731fd17", null ],
+    [ "LED_PORT", "group__boards__samr30-xpro.html#ga663daa01e565aee93c6f20c5845b90b4", null ],
+    [ "RFCTL1_PIN", "group__boards__samr30-xpro.html#ga2364f376947112a08b6c534235a8f4fa", null ],
+    [ "RFCTL2_PIN", "group__boards__samr30-xpro.html#ga834d0ca9dc3c0d7e24ba2848ff6ddc1c", null ],
+    [ "RFCTL_ANTENNA_DEFAULT", "group__boards__samr30-xpro.html#ga8374c2ca3f70167aff3c6148a5e4ae62", null ],
+    [ "board_antenna_config", "group__boards__samr30-xpro.html#ga6fa97fb22cd406ad1bcf804519ce3927", null ]
+];

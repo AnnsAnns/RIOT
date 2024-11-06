@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/usb/usbus/msc/scsi.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('scsi_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">scsi.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="scsi_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019-2021 Mesotic SAS</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef USB_USBUS_MSC_SCSI_H</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define USB_USBUS_MSC_SCSI_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="byteorder_8h.html">byteorder.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#ifndef USBUS_MSC_VENDOR_ID</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define USBUS_MSC_VENDOR_ID &quot;RIOT-OS&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* USBUS_MSC_VENDOR_ID */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifndef USBUS_MSC_PRODUCT_ID</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define USBUS_MSC_PRODUCT_ID &quot;RIOT_MSC_DISK  &quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* USBUS_MSC_PRODUCT_ID */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifndef USBUS_MSC_PRODUCT_REV</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define USBUS_MSC_PRODUCT_REV &quot; 1.0&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* USBUS_MSC_PRODUCT_REV */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="scsi_8h.html#ae9e768d850fcb29e45bab0df02a356d1">   48</a></span>&#160;<span class="preprocessor">#define SCSI_TEST_UNIT_READY            0x00    </span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="scsi_8h.html#ac21bf0803bcdb4ade96e2eb6ce4ef847">   49</a></span>&#160;<span class="preprocessor">#define SCSI_REQUEST_SENSE              0x03    </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="scsi_8h.html#ad699eaa4a55233cd0d8aed810ccb3996">   50</a></span>&#160;<span class="preprocessor">#define SCSI_FORMAT_UNIT                0x04    </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="scsi_8h.html#ab4c8f5b2d1f25d97b00b9df156ccc283">   51</a></span>&#160;<span class="preprocessor">#define SCSI_INQUIRY                    0x12    </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="scsi_8h.html#a8df08cd2d2b645f319615d6ad78e86f0">   52</a></span>&#160;<span class="preprocessor">#define SCSI_MODE_SELECT6               0x15    </span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="scsi_8h.html#a31b2ec05301e98b1f9ab4e59c59772aa">   53</a></span>&#160;<span class="preprocessor">#define SCSI_MODE_SENSE6                0x1A    </span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="scsi_8h.html#a9dbe602f6f065f56340568451b4a9714">   54</a></span>&#160;<span class="preprocessor">#define SCSI_START_STOP_UNIT            0x1B    </span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="scsi_8h.html#adaebe7b81c3c81cff86563f4b1bfd7ea">   55</a></span>&#160;<span class="preprocessor">#define SCSI_MEDIA_REMOVAL              0x1E    </span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="scsi_8h.html#a960cfd4a1fcfa106b2dd51d406732b38">   56</a></span>&#160;<span class="preprocessor">#define SCSI_READ_FORMAT_CAPACITIES     0x23    </span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="scsi_8h.html#a3dc6f7fadac7bfeffb644345a3adc670">   57</a></span>&#160;<span class="preprocessor">#define SCSI_READ_CAPACITY              0x25    </span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="scsi_8h.html#a4f9d424a949ee51924aa88f283afb085">   58</a></span>&#160;<span class="preprocessor">#define SCSI_READ10                     0x28    </span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="scsi_8h.html#a2e6affd8322c8aa599a482726d816e7c">   59</a></span>&#160;<span class="preprocessor">#define SCCI_READ12                     0xA8    </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="scsi_8h.html#a4a9efd10e4c1670e2c3546f937e9cb34">   60</a></span>&#160;<span class="preprocessor">#define SCSI_WRITE10                    0x2A    </span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="scsi_8h.html#a068265dbd8ca2adb58afd8cc8bf66ab6">   61</a></span>&#160;<span class="preprocessor">#define SCSI_WRITE12                    0xAA    </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="scsi_8h.html#a22c6276138a88c7343d02519b9aae3cb">   62</a></span>&#160;<span class="preprocessor">#define SCSI_SEEK                       0x2B    </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="scsi_8h.html#a6a1756f98d55052ac581373ed012cbfa">   63</a></span>&#160;<span class="preprocessor">#define SCSI_WRITE_AND_VERIFY           0x2E    </span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="scsi_8h.html#a4f799250b498efb9dc2378a7a1baa302">   64</a></span>&#160;<span class="preprocessor">#define SCSI_VERIFY10                   0x2F    </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="scsi_8h.html#ae3bf7ade89179f73ff189241aa7dd48a">   65</a></span>&#160;<span class="preprocessor">#define SCSI_MODE_SELECT10              0x55    </span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="scsi_8h.html#ac7a3a604d44ff9de57300f4720578fc9">   66</a></span>&#160;<span class="preprocessor">#define SCSI_MODE_SENSE10               0x5A    </span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="scsi_8h.html#ac8089eeb7483863b2b0b71491c704bdf">   72</a></span>&#160;<span class="preprocessor">#define SCSI_CBW_SIGNATURE              0x43425355</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="scsi_8h.html#a8b8b88ad42b5660bd993f4d86d3b926a">   77</a></span>&#160;<span class="preprocessor">#define SCSI_CSW_SIGNATURE              0x53425355</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#define SCSI_VERSION_NONE               0x0000</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#define SCSI_VERSION_SCSI1              0x0001</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define SCSI_VERSION_SCSI2              0x0002</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#define SCSI_READ_FMT_CAPA_TYPE_RESERVED    0x00</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define SCSI_READ_FMT_CAPA_TYPE_UNFORMATTED 0x01</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#define SCSI_READ_FMT_CAPA_TYPE_FORMATTED   0x02</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define SCSI_READ_FMT_CAPA_TYPE_NO_MEDIA    0x03</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="scsi_8h.html#a5e816b725b5944bf48f1e4896fc8ad95">  103</a></span>&#160;<span class="preprocessor">#define SCSI_REQUEST_SENSE_ERROR              0x70</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_NO_SENSE             0x00</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_RECOVERED_ERROR      0x01</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_NOT_READY            0x02</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_MEDIUM_ERROR         0x03</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_HARDWARE_ERROR       0x04</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_ILLEGAL_REQUEST      0x05</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_UNIT_ATTENTION       0x06</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_DATA_PROTECT         0x07</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_BLANK_CHECK          0x08</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_VENDOR_SPECIFIC      0x09</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_ABORTED_COMMAND      0x0B</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_VOLUME_OVERFLOW      0x0D</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#define SCSI_SENSE_KEY_MISCOMPARE           0x0E</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="structmsc__test__unit__pkt__t.html">  130</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="structmsc__test__unit__pkt__t.html#a4360504f9d121fb0c74f52195113b1cd">  131</a></span>&#160;    uint8_t <a class="code" href="structmsc__test__unit__pkt__t.html#a4360504f9d121fb0c74f52195113b1cd">type</a>;           </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="structmsc__test__unit__pkt__t.html#a4421964aa56cdeca771ccde8289299b9">  132</a></span>&#160;    uint8_t <a class="code" href="structmsc__test__unit__pkt__t.html#a4421964aa56cdeca771ccde8289299b9">logical_unit</a>;   </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="structmsc__test__unit__pkt__t.html#a211b4723e74d21f2d292ba8799560f0f">  133</a></span>&#160;    uint8_t reserved[10];   </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;} <a class="code" href="structmsc__test__unit__pkt__t.html">msc_test_unit_pkt_t</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="structmsc__mode__parameter__pkt__t.html">  142</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="structmsc__mode__parameter__pkt__t.html#a4d9258cada77764396475edc07c315fa">  143</a></span>&#160;    uint8_t <a class="code" href="structmsc__mode__parameter__pkt__t.html#a4d9258cada77764396475edc07c315fa">mode_data_len</a>;      </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="structmsc__mode__parameter__pkt__t.html#a2137ce16503c436d5fe79d501e0f07ca">  144</a></span>&#160;    uint8_t <a class="code" href="structmsc__mode__parameter__pkt__t.html#a2137ce16503c436d5fe79d501e0f07ca">medium_type</a>;        </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="structmsc__mode__parameter__pkt__t.html#a82991f806268b699f73de0bf63afbbe6">  145</a></span>&#160;    uint8_t <a class="code" href="structmsc__mode__parameter__pkt__t.html#a82991f806268b699f73de0bf63afbbe6">flags</a>;              </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="structmsc__mode__parameter__pkt__t.html#aab2da79a752e2680b112ed94e9d72b8d">  146</a></span>&#160;    uint8_t <a class="code" href="structmsc__mode__parameter__pkt__t.html#aab2da79a752e2680b112ed94e9d72b8d">block_desc_len</a>;     </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;} <a class="code" href="structmsc__mode__parameter__pkt__t.html">msc_mode_parameter_pkt_t</a>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structmsc__cbw__rw10__pkt__t.html">  157</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structmsc__cbw__rw10__pkt__t.html#ae3cb5803aef536256b24f9c283180a3d">  158</a></span>&#160;    uint8_t <a class="code" href="structmsc__cbw__rw10__pkt__t.html#ae3cb5803aef536256b24f9c283180a3d">opcode</a>;         </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="structmsc__cbw__rw10__pkt__t.html#a4e5c92984c4971953d04e2e8f5c86806">  159</a></span>&#160;    uint8_t <a class="code" href="structmsc__cbw__rw10__pkt__t.html#a4e5c92984c4971953d04e2e8f5c86806">flags</a>;          </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="structmsc__cbw__rw10__pkt__t.html#a7844e98b350bc89dd3eb2e8bd8fae26c">  160</a></span>&#160;    <a class="code" href="unionbe__uint32__t.html">be_uint32_t</a> <a class="code" href="structmsc__cbw__rw10__pkt__t.html#a7844e98b350bc89dd3eb2e8bd8fae26c">blk_addr</a>;   </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="structmsc__cbw__rw10__pkt__t.html#a2487dba3e4d00db2df76469f3fcf1747">  161</a></span>&#160;    uint8_t <a class="code" href="structmsc__cbw__rw10__pkt__t.html#a2487dba3e4d00db2df76469f3fcf1747">group_number</a>;   </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="structmsc__cbw__rw10__pkt__t.html#a9111815eb97da4cea70217afadd2fc42">  162</a></span>&#160;    <a class="code" href="unionbe__uint16__t.html">be_uint16_t</a> <a class="code" href="structmsc__cbw__rw10__pkt__t.html#a9111815eb97da4cea70217afadd2fc42">xfer_len</a>;   </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;} <a class="code" href="structmsc__cbw__rw10__pkt__t.html">msc_cbw_rw10_pkt_t</a>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html">  173</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a685400d19decaac2a1aea8063a86aeda">  174</a></span>&#160;    uint8_t <a class="code" href="structmsc__inquiry__pkt__t.html#a685400d19decaac2a1aea8063a86aeda">type</a>;                   </div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a6b1d6353ab24df70c54241b6132d7327">  175</a></span>&#160;    uint8_t <a class="code" href="structmsc__inquiry__pkt__t.html#a6b1d6353ab24df70c54241b6132d7327">reserved1</a> : 7;          </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a33161e5d52c4489fe32196f3654880e8">  176</a></span>&#160;    uint8_t <a class="code" href="structmsc__inquiry__pkt__t.html#a33161e5d52c4489fe32196f3654880e8">removable</a> : 1;          </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#af8fc762332fd981e24ece08e532dc9a9">  177</a></span>&#160;    uint8_t <a class="code" href="structmsc__inquiry__pkt__t.html#af8fc762332fd981e24ece08e532dc9a9">version</a>;                </div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#adaf60b6e6e24056303ead0d4f9124537">  178</a></span>&#160;    uint8_t <a class="code" href="structmsc__inquiry__pkt__t.html#adaf60b6e6e24056303ead0d4f9124537">response_format</a> : 4;    </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a8131fc65ce4c5e2431078a50038670e9">  179</a></span>&#160;    uint8_t <a class="code" href="structmsc__inquiry__pkt__t.html#a8131fc65ce4c5e2431078a50038670e9">reserved3</a> : 4;          </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a164fc104e19d3b25a99a350b67af1bc6">  180</a></span>&#160;    uint8_t <a class="code" href="structmsc__inquiry__pkt__t.html#a164fc104e19d3b25a99a350b67af1bc6">length</a>;                 </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a74ac8c5ed7ad552741b9bdc0e2168a49">  181</a></span>&#160;    uint8_t flags[3];               </div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a05f53612265bd50e34a2d828a3c71e89">  182</a></span>&#160;    uint8_t vendor_id[8];           </div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a620f4cf7403e32092829b7c841d3b4e6">  183</a></span>&#160;    uint8_t product_id[16];         </div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="structmsc__inquiry__pkt__t.html#a03ea32c891a0361f84d642dd35704e56">  184</a></span>&#160;    uint8_t product_rev[4];         </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;} <a class="code" href="structmsc__inquiry__pkt__t.html">msc_inquiry_pkt_t</a>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="structmsc__read__fmt__capa__pkt__t.html">  193</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="structmsc__read__fmt__capa__pkt__t.html#a6c44ba62a3bcb25ccdff3ed639e1d0c6">  194</a></span>&#160;    uint8_t reserved1[3];       </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="structmsc__read__fmt__capa__pkt__t.html#ad9df2b54ff96008fa48c96db7b856dce">  195</a></span>&#160;    uint8_t <a class="code" href="structmsc__read__fmt__capa__pkt__t.html#ad9df2b54ff96008fa48c96db7b856dce">list_length</a>;        </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="structmsc__read__fmt__capa__pkt__t.html#a98e49054f17aa08beaa0c8d49382e3d8">  196</a></span>&#160;    <a class="code" href="unionbe__uint32__t.html">be_uint32_t</a> <a class="code" href="structmsc__read__fmt__capa__pkt__t.html#a98e49054f17aa08beaa0c8d49382e3d8">blk_nb</a>;            </div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="structmsc__read__fmt__capa__pkt__t.html#a1d137c4b25ce36f71c3ba757b8fe7d39">  197</a></span>&#160;    uint8_t <a class="code" href="structmsc__read__fmt__capa__pkt__t.html#a1d137c4b25ce36f71c3ba757b8fe7d39">type</a>;               </div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="structmsc__read__fmt__capa__pkt__t.html#a6115cb6ca073b5355759ac9705d658ec">  198</a></span>&#160;    uint8_t blk_len[3];         </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;} <a class="code" href="structmsc__read__fmt__capa__pkt__t.html">msc_read_fmt_capa_pkt_t</a>;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html">  205</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#abbb92704b8d71581241aaf1b12170549">  206</a></span>&#160;    uint8_t <a class="code" href="structmsc__request__sense__pkt__t.html#abbb92704b8d71581241aaf1b12170549">error_code</a>;         </div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#ab3e57ec4e2cbc554f2b50f7edf2383e6">  207</a></span>&#160;    uint8_t <a class="code" href="structmsc__request__sense__pkt__t.html#ab3e57ec4e2cbc554f2b50f7edf2383e6">reserved1</a>;          </div>
+<div class="line"><a name="l00208"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#a9ebb59ed4f6ef42e226cce132b629247">  208</a></span>&#160;    uint8_t <a class="code" href="structmsc__request__sense__pkt__t.html#a9ebb59ed4f6ef42e226cce132b629247">sense_key</a>;          </div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#a0050dcc92b8fa3fa8efe3df91aaa0887">  209</a></span>&#160;    uint8_t reserved2[4];       </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#af1ed3c7659756aa22a07d7d62940bfe8">  210</a></span>&#160;    uint8_t <a class="code" href="structmsc__request__sense__pkt__t.html#af1ed3c7659756aa22a07d7d62940bfe8">add_len</a>;            </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#aba0cd65d34ab5f511d959ecedf9e2d8e">  211</a></span>&#160;    uint8_t reserved3[4];       </div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#a5bc65084e3ea980b97a89fa949f5f55b">  212</a></span>&#160;    uint8_t <a class="code" href="structmsc__request__sense__pkt__t.html#a5bc65084e3ea980b97a89fa949f5f55b">asc</a>;                </div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#a7a3cd95cc26e7a1ad09d2c398d82ad66">  213</a></span>&#160;    uint8_t <a class="code" href="structmsc__request__sense__pkt__t.html#a7a3cd95cc26e7a1ad09d2c398d82ad66">ascq</a>;               </div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#a211370a214e690fe816f5aec7a909fb1">  214</a></span>&#160;    uint8_t <a class="code" href="structmsc__request__sense__pkt__t.html#a211370a214e690fe816f5aec7a909fb1">fruc</a>;               </div>
+<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="structmsc__request__sense__pkt__t.html#a0f42ca523ec7aad01db39b06f423ab92">  215</a></span>&#160;    uint16_t <a class="code" href="structmsc__request__sense__pkt__t.html#a0f42ca523ec7aad01db39b06f423ab92">sk_spec</a>;           </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;} <a class="code" href="structmsc__request__sense__pkt__t.html">msc_request_sense_pkt_t</a>;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="structmsc__read__capa__pkt__t.html">  226</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="structmsc__read__capa__pkt__t.html#a30cba46071db3de77bf125ee13be31d1">  227</a></span>&#160;    <a class="code" href="unionbe__uint32__t.html">be_uint32_t</a> <a class="code" href="structmsc__read__capa__pkt__t.html#a30cba46071db3de77bf125ee13be31d1">last_blk</a>;  </div>
+<div class="line"><a name="l00228"></a><span class="lineno"><a class="line" href="structmsc__read__capa__pkt__t.html#a95f6655cd1b820be34d16cf3b27aaddd">  228</a></span>&#160;    <a class="code" href="unionbe__uint32__t.html">be_uint32_t</a> <a class="code" href="structmsc__read__capa__pkt__t.html#a95f6655cd1b820be34d16cf3b27aaddd">blk_len</a>;   </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;} <a class="code" href="structmsc__read__capa__pkt__t.html">msc_read_capa_pkt_t</a>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html">  237</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html#a576c1f896e6698af4a2d83da8f9b0277">  238</a></span>&#160;    uint32_t <a class="code" href="structmsc__cbw__buf__t.html#a576c1f896e6698af4a2d83da8f9b0277">signature</a>; </div>
+<div class="line"><a name="l00239"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html#a36a541b09f154c6008b27affa334e352">  239</a></span>&#160;    uint32_t <a class="code" href="structmsc__cbw__buf__t.html#a36a541b09f154c6008b27affa334e352">tag</a>;       </div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html#ade228effa10193d6ea769fa02b403f4e">  240</a></span>&#160;    uint32_t <a class="code" href="structmsc__cbw__buf__t.html#ade228effa10193d6ea769fa02b403f4e">data_len</a>;  </div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html#af97ac6782ba8fed60a37beb1b0f21d34">  241</a></span>&#160;    uint8_t <a class="code" href="structmsc__cbw__buf__t.html#af97ac6782ba8fed60a37beb1b0f21d34">flags</a>;      </div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html#aaf68f7bed9ede8ecf63c992af54c58ab">  242</a></span>&#160;    uint8_t <a class="code" href="structmsc__cbw__buf__t.html#aaf68f7bed9ede8ecf63c992af54c58ab">lun</a>;        </div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html#afd9141c33a60ed20b8139c18190d919e">  243</a></span>&#160;    uint8_t <a class="code" href="structmsc__cbw__buf__t.html#afd9141c33a60ed20b8139c18190d919e">cb_len</a>;     </div>
+<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="structmsc__cbw__buf__t.html#af3e9c9e6450d6f0bfd65acd96a957fc8">  244</a></span>&#160;    uint8_t cb[16];     </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;} <a class="code" href="structmsc__cbw__buf__t.html">msc_cbw_buf_t</a>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="structmsc__csw__buf__t.html">  253</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>__attribute__((packed)) {</div>
+<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="structmsc__csw__buf__t.html#a0319734a11051f1c59e26ca474e046ea">  254</a></span>&#160;    uint32_t <a class="code" href="structmsc__csw__buf__t.html#a0319734a11051f1c59e26ca474e046ea">signature</a>; </div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="structmsc__csw__buf__t.html#a64ae44fea6476414d1c74506decdb7b1">  255</a></span>&#160;    uint32_t <a class="code" href="structmsc__csw__buf__t.html#a64ae44fea6476414d1c74506decdb7b1">tag</a>;       </div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="structmsc__csw__buf__t.html#a8fa4775b0057e20e63b6dbb105a6738c">  256</a></span>&#160;    uint32_t <a class="code" href="structmsc__csw__buf__t.html#a8fa4775b0057e20e63b6dbb105a6738c">data_left</a>; </div>
+<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="structmsc__csw__buf__t.html#a0e8c9a50f9914afc8bf6c7722496c50c">  257</a></span>&#160;    uint8_t <a class="code" href="structmsc__csw__buf__t.html#a0e8c9a50f9914afc8bf6c7722496c50c">status</a>;     </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;} <a class="code" href="structmsc__csw__buf__t.html">msc_csw_buf_t</a>;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="line"><a name="l00264"></a><span class="lineno"><a class="line" href="structcbw__info__t.html">  264</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00265"></a><span class="lineno"><a class="line" href="structcbw__info__t.html#aa9b7cdcf2bfa9689256e9b6f72193c9f">  265</a></span>&#160;    uint32_t <a class="code" href="structcbw__info__t.html#aa9b7cdcf2bfa9689256e9b6f72193c9f">tag</a>;   </div>
+<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="structcbw__info__t.html#a869a9ad60a88408b7c979152e91d144f">  266</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structcbw__info__t.html#a869a9ad60a88408b7c979152e91d144f">len</a>;     </div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="structcbw__info__t.html#a6da3f0059a1cb09a602c2e14b50a27a0">  267</a></span>&#160;    uint8_t <a class="code" href="structcbw__info__t.html#a6da3f0059a1cb09a602c2e14b50a27a0">status</a>; </div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="structcbw__info__t.html#a8cd5a9fef4645a396cf636cb0f753be2">  268</a></span>&#160;    uint8_t <a class="code" href="structcbw__info__t.html#a8cd5a9fef4645a396cf636cb0f753be2">lun</a>;    </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;} <a class="code" href="structcbw__info__t.html">cbw_info_t</a>;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="scsi_8h.html#a43cbf7a94efc8afdc45cbb886942a7b9">  279</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="scsi_8h.html#a43cbf7a94efc8afdc45cbb886942a7b9">usbus_msc_scsi_process_cmd</a>(<a class="code" href="structusbus.html">usbus_t</a> *<a class="code" href="structusbus.html">usbus</a>, <a class="code" href="structusbus__handler.html">usbus_handler_t</a> *handler, <a class="code" href="structusbdev__ep.html">usbdev_ep_t</a> *ep,</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                                <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="scsi_8h.html#a4854678088aa2c3aca4edb34e3bba876">  288</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="scsi_8h.html#a4854678088aa2c3aca4edb34e3bba876">scsi_gen_csw</a>(<a class="code" href="structusbus__handler.html">usbus_handler_t</a> *handler, <a class="code" href="structcbw__info__t.html">cbw_info_t</a> *cmd);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;}</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* USB_USBUS_MSC_SCSI_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="abyteorder_8h_html"><div class="ttname"><a href="byteorder_8h.html">byteorder.h</a></div><div class="ttdoc">Functions to work with different byte orders.</div></div>
+<div class="ttc" id="ascsi_8h_html_a43cbf7a94efc8afdc45cbb886942a7b9"><div class="ttname"><a href="scsi_8h.html#a43cbf7a94efc8afdc45cbb886942a7b9">usbus_msc_scsi_process_cmd</a></div><div class="ttdeci">void usbus_msc_scsi_process_cmd(usbus_t *usbus, usbus_handler_t *handler, usbdev_ep_t *ep, size_t len)</div><div class="ttdoc">Process incoming Command Block Wrapper buffer.</div></div>
+<div class="ttc" id="ascsi_8h_html_a4854678088aa2c3aca4edb34e3bba876"><div class="ttname"><a href="scsi_8h.html#a4854678088aa2c3aca4edb34e3bba876">scsi_gen_csw</a></div><div class="ttdeci">void scsi_gen_csw(usbus_handler_t *handler, cbw_info_t *cmd)</div><div class="ttdoc">Generate Command Status Wrapper and send it to the host.</div></div>
+<div class="ttc" id="astructcbw__info__t_html"><div class="ttname"><a href="structcbw__info__t.html">cbw_info_t</a></div><div class="ttdoc">USBUS Command Block Wrapper information.</div><div class="ttdef"><b>Definition:</b> scsi.h:264</div></div>
+<div class="ttc" id="astructcbw__info__t_html_a6da3f0059a1cb09a602c2e14b50a27a0"><div class="ttname"><a href="structcbw__info__t.html#a6da3f0059a1cb09a602c2e14b50a27a0">cbw_info_t::status</a></div><div class="ttdeci">uint8_t status</div><div class="ttdoc">Status of the current operation.</div><div class="ttdef"><b>Definition:</b> scsi.h:267</div></div>
+<div class="ttc" id="astructcbw__info__t_html_a869a9ad60a88408b7c979152e91d144f"><div class="ttname"><a href="structcbw__info__t.html#a869a9ad60a88408b7c979152e91d144f">cbw_info_t::len</a></div><div class="ttdeci">size_t len</div><div class="ttdoc">Remaining bytes to handle.</div><div class="ttdef"><b>Definition:</b> scsi.h:266</div></div>
+<div class="ttc" id="astructcbw__info__t_html_a8cd5a9fef4645a396cf636cb0f753be2"><div class="ttname"><a href="structcbw__info__t.html#a8cd5a9fef4645a396cf636cb0f753be2">cbw_info_t::lun</a></div><div class="ttdeci">uint8_t lun</div><div class="ttdoc">Store LUN from CBW.</div><div class="ttdef"><b>Definition:</b> scsi.h:268</div></div>
+<div class="ttc" id="astructcbw__info__t_html_aa9b7cdcf2bfa9689256e9b6f72193c9f"><div class="ttname"><a href="structcbw__info__t.html#aa9b7cdcf2bfa9689256e9b6f72193c9f">cbw_info_t::tag</a></div><div class="ttdeci">uint32_t tag</div><div class="ttdoc">Store tag information from CBW.</div><div class="ttdef"><b>Definition:</b> scsi.h:265</div></div>
+<div class="ttc" id="astructmsc__cbw__buf__t_html"><div class="ttname"><a href="structmsc__cbw__buf__t.html">msc_cbw_buf_t</a></div><div class="ttdoc">Command Block Wrapper packet structure.</div><div class="ttdef"><b>Definition:</b> scsi.h:237</div></div>
+<div class="ttc" id="astructmsc__cbw__buf__t_html_a36a541b09f154c6008b27affa334e352"><div class="ttname"><a href="structmsc__cbw__buf__t.html#a36a541b09f154c6008b27affa334e352">msc_cbw_buf_t::tag</a></div><div class="ttdeci">uint32_t tag</div><div class="ttdoc">ID for the current command.</div><div class="ttdef"><b>Definition:</b> scsi.h:239</div></div>
+<div class="ttc" id="astructmsc__cbw__buf__t_html_a576c1f896e6698af4a2d83da8f9b0277"><div class="ttname"><a href="structmsc__cbw__buf__t.html#a576c1f896e6698af4a2d83da8f9b0277">msc_cbw_buf_t::signature</a></div><div class="ttdeci">uint32_t signature</div><div class="ttdoc">CBW signature (SCSI_CBW_SIGNATURE)</div><div class="ttdef"><b>Definition:</b> scsi.h:238</div></div>
+<div class="ttc" id="astructmsc__cbw__buf__t_html_aaf68f7bed9ede8ecf63c992af54c58ab"><div class="ttname"><a href="structmsc__cbw__buf__t.html#aaf68f7bed9ede8ecf63c992af54c58ab">msc_cbw_buf_t::lun</a></div><div class="ttdeci">uint8_t lun</div><div class="ttdoc">Target Logical Unit Number.</div><div class="ttdef"><b>Definition:</b> scsi.h:242</div></div>
+<div class="ttc" id="astructmsc__cbw__buf__t_html_ade228effa10193d6ea769fa02b403f4e"><div class="ttname"><a href="structmsc__cbw__buf__t.html#ade228effa10193d6ea769fa02b403f4e">msc_cbw_buf_t::data_len</a></div><div class="ttdeci">uint32_t data_len</div><div class="ttdoc">Number of bytes host expects to transfer from/to.</div><div class="ttdef"><b>Definition:</b> scsi.h:240</div></div>
+<div class="ttc" id="astructmsc__cbw__buf__t_html_af97ac6782ba8fed60a37beb1b0f21d34"><div class="ttname"><a href="structmsc__cbw__buf__t.html#af97ac6782ba8fed60a37beb1b0f21d34">msc_cbw_buf_t::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdoc">Command block flags.</div><div class="ttdef"><b>Definition:</b> scsi.h:241</div></div>
+<div class="ttc" id="astructmsc__cbw__buf__t_html_afd9141c33a60ed20b8139c18190d919e"><div class="ttname"><a href="structmsc__cbw__buf__t.html#afd9141c33a60ed20b8139c18190d919e">msc_cbw_buf_t::cb_len</a></div><div class="ttdeci">uint8_t cb_len</div><div class="ttdoc">Length of the block in bytes (max: 16 bytes)</div><div class="ttdef"><b>Definition:</b> scsi.h:243</div></div>
+<div class="ttc" id="astructmsc__cbw__rw10__pkt__t_html"><div class="ttname"><a href="structmsc__cbw__rw10__pkt__t.html">msc_cbw_rw10_pkt_t</a></div><div class="ttdoc">CBW Packet structure for (SCSI_READ10) and (SCSI_WRITE10) requests.</div><div class="ttdef"><b>Definition:</b> scsi.h:157</div></div>
+<div class="ttc" id="astructmsc__cbw__rw10__pkt__t_html_a2487dba3e4d00db2df76469f3fcf1747"><div class="ttname"><a href="structmsc__cbw__rw10__pkt__t.html#a2487dba3e4d00db2df76469f3fcf1747">msc_cbw_rw10_pkt_t::group_number</a></div><div class="ttdeci">uint8_t group_number</div><div class="ttdoc">Group number.</div><div class="ttdef"><b>Definition:</b> scsi.h:161</div></div>
+<div class="ttc" id="astructmsc__cbw__rw10__pkt__t_html_a4e5c92984c4971953d04e2e8f5c86806"><div class="ttname"><a href="structmsc__cbw__rw10__pkt__t.html#a4e5c92984c4971953d04e2e8f5c86806">msc_cbw_rw10_pkt_t::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdoc">Miscellaneous flags.</div><div class="ttdef"><b>Definition:</b> scsi.h:159</div></div>
+<div class="ttc" id="astructmsc__cbw__rw10__pkt__t_html_a7844e98b350bc89dd3eb2e8bd8fae26c"><div class="ttname"><a href="structmsc__cbw__rw10__pkt__t.html#a7844e98b350bc89dd3eb2e8bd8fae26c">msc_cbw_rw10_pkt_t::blk_addr</a></div><div class="ttdeci">be_uint32_t blk_addr</div><div class="ttdoc">Block address.</div><div class="ttdef"><b>Definition:</b> scsi.h:160</div></div>
+<div class="ttc" id="astructmsc__cbw__rw10__pkt__t_html_a9111815eb97da4cea70217afadd2fc42"><div class="ttname"><a href="structmsc__cbw__rw10__pkt__t.html#a9111815eb97da4cea70217afadd2fc42">msc_cbw_rw10_pkt_t::xfer_len</a></div><div class="ttdeci">be_uint16_t xfer_len</div><div class="ttdoc">Transfer length in bytes.</div><div class="ttdef"><b>Definition:</b> scsi.h:162</div></div>
+<div class="ttc" id="astructmsc__cbw__rw10__pkt__t_html_ae3cb5803aef536256b24f9c283180a3d"><div class="ttname"><a href="structmsc__cbw__rw10__pkt__t.html#ae3cb5803aef536256b24f9c283180a3d">msc_cbw_rw10_pkt_t::opcode</a></div><div class="ttdeci">uint8_t opcode</div><div class="ttdoc">Operation code.</div><div class="ttdef"><b>Definition:</b> scsi.h:158</div></div>
+<div class="ttc" id="astructmsc__csw__buf__t_html"><div class="ttname"><a href="structmsc__csw__buf__t.html">msc_csw_buf_t</a></div><div class="ttdoc">Command Status Wrapper packet structure.</div><div class="ttdef"><b>Definition:</b> scsi.h:253</div></div>
+<div class="ttc" id="astructmsc__csw__buf__t_html_a0319734a11051f1c59e26ca474e046ea"><div class="ttname"><a href="structmsc__csw__buf__t.html#a0319734a11051f1c59e26ca474e046ea">msc_csw_buf_t::signature</a></div><div class="ttdeci">uint32_t signature</div><div class="ttdoc">CSW signature (SCSI_CSW_SIGNATURE)</div><div class="ttdef"><b>Definition:</b> scsi.h:254</div></div>
+<div class="ttc" id="astructmsc__csw__buf__t_html_a0e8c9a50f9914afc8bf6c7722496c50c"><div class="ttname"><a href="structmsc__csw__buf__t.html#a0e8c9a50f9914afc8bf6c7722496c50c">msc_csw_buf_t::status</a></div><div class="ttdeci">uint8_t status</div><div class="ttdoc">Status of the command.</div><div class="ttdef"><b>Definition:</b> scsi.h:257</div></div>
+<div class="ttc" id="astructmsc__csw__buf__t_html_a64ae44fea6476414d1c74506decdb7b1"><div class="ttname"><a href="structmsc__csw__buf__t.html#a64ae44fea6476414d1c74506decdb7b1">msc_csw_buf_t::tag</a></div><div class="ttdeci">uint32_t tag</div><div class="ttdoc">ID for the answered CBW.</div><div class="ttdef"><b>Definition:</b> scsi.h:255</div></div>
+<div class="ttc" id="astructmsc__csw__buf__t_html_a8fa4775b0057e20e63b6dbb105a6738c"><div class="ttname"><a href="structmsc__csw__buf__t.html#a8fa4775b0057e20e63b6dbb105a6738c">msc_csw_buf_t::data_left</a></div><div class="ttdeci">uint32_t data_left</div><div class="ttdoc">Indicate how many bytes from the CBW were not processed.</div><div class="ttdef"><b>Definition:</b> scsi.h:256</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html">msc_inquiry_pkt_t</a></div><div class="ttdoc">Packet structure to answer (SCSI_INQUIRY) request.</div><div class="ttdef"><b>Definition:</b> scsi.h:173</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html_a164fc104e19d3b25a99a350b67af1bc6"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html#a164fc104e19d3b25a99a350b67af1bc6">msc_inquiry_pkt_t::length</a></div><div class="ttdeci">uint8_t length</div><div class="ttdoc">Byte 4 Additional Length (n-4)</div><div class="ttdef"><b>Definition:</b> scsi.h:180</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html_a33161e5d52c4489fe32196f3654880e8"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html#a33161e5d52c4489fe32196f3654880e8">msc_inquiry_pkt_t::removable</a></div><div class="ttdeci">uint8_t removable</div><div class="ttdoc">Byte 1 [B7] Removable device flag.</div><div class="ttdef"><b>Definition:</b> scsi.h:176</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html_a685400d19decaac2a1aea8063a86aeda"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html#a685400d19decaac2a1aea8063a86aeda">msc_inquiry_pkt_t::type</a></div><div class="ttdeci">uint8_t type</div><div class="ttdoc">Byte 0 Peripheral type.</div><div class="ttdef"><b>Definition:</b> scsi.h:174</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html_a6b1d6353ab24df70c54241b6132d7327"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html#a6b1d6353ab24df70c54241b6132d7327">msc_inquiry_pkt_t::reserved1</a></div><div class="ttdeci">uint8_t reserved1</div><div class="ttdoc">Byte 1 [B6..B0] Reserved.</div><div class="ttdef"><b>Definition:</b> scsi.h:175</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html_a8131fc65ce4c5e2431078a50038670e9"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html#a8131fc65ce4c5e2431078a50038670e9">msc_inquiry_pkt_t::reserved3</a></div><div class="ttdeci">uint8_t reserved3</div><div class="ttdoc">Byte 3 [B7..B4] Reserved.</div><div class="ttdef"><b>Definition:</b> scsi.h:179</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html_adaf60b6e6e24056303ead0d4f9124537"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html#adaf60b6e6e24056303ead0d4f9124537">msc_inquiry_pkt_t::response_format</a></div><div class="ttdeci">uint8_t response_format</div><div class="ttdoc">Byte 3 [B3..B0] Response Data Format.</div><div class="ttdef"><b>Definition:</b> scsi.h:178</div></div>
+<div class="ttc" id="astructmsc__inquiry__pkt__t_html_af8fc762332fd981e24ece08e532dc9a9"><div class="ttname"><a href="structmsc__inquiry__pkt__t.html#af8fc762332fd981e24ece08e532dc9a9">msc_inquiry_pkt_t::version</a></div><div class="ttdeci">uint8_t version</div><div class="ttdoc">Byte 2 SCSI Version.</div><div class="ttdef"><b>Definition:</b> scsi.h:177</div></div>
+<div class="ttc" id="astructmsc__mode__parameter__pkt__t_html"><div class="ttname"><a href="structmsc__mode__parameter__pkt__t.html">msc_mode_parameter_pkt_t</a></div><div class="ttdoc">Packet structure to answer (SCSI_MODE_SELECT6) and (SCSI_MODE_SENSE6) requests.</div><div class="ttdef"><b>Definition:</b> scsi.h:142</div></div>
+<div class="ttc" id="astructmsc__mode__parameter__pkt__t_html_a2137ce16503c436d5fe79d501e0f07ca"><div class="ttname"><a href="structmsc__mode__parameter__pkt__t.html#a2137ce16503c436d5fe79d501e0f07ca">msc_mode_parameter_pkt_t::medium_type</a></div><div class="ttdeci">uint8_t medium_type</div><div class="ttdoc">Type of medium.</div><div class="ttdef"><b>Definition:</b> scsi.h:144</div></div>
+<div class="ttc" id="astructmsc__mode__parameter__pkt__t_html_a4d9258cada77764396475edc07c315fa"><div class="ttname"><a href="structmsc__mode__parameter__pkt__t.html#a4d9258cada77764396475edc07c315fa">msc_mode_parameter_pkt_t::mode_data_len</a></div><div class="ttdeci">uint8_t mode_data_len</div><div class="ttdoc">Size of the whole packet.</div><div class="ttdef"><b>Definition:</b> scsi.h:143</div></div>
+<div class="ttc" id="astructmsc__mode__parameter__pkt__t_html_a82991f806268b699f73de0bf63afbbe6"><div class="ttname"><a href="structmsc__mode__parameter__pkt__t.html#a82991f806268b699f73de0bf63afbbe6">msc_mode_parameter_pkt_t::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdoc">Miscellaneous flags.</div><div class="ttdef"><b>Definition:</b> scsi.h:145</div></div>
+<div class="ttc" id="astructmsc__mode__parameter__pkt__t_html_aab2da79a752e2680b112ed94e9d72b8d"><div class="ttname"><a href="structmsc__mode__parameter__pkt__t.html#aab2da79a752e2680b112ed94e9d72b8d">msc_mode_parameter_pkt_t::block_desc_len</a></div><div class="ttdeci">uint8_t block_desc_len</div><div class="ttdoc">Length of block descriptor.</div><div class="ttdef"><b>Definition:</b> scsi.h:146</div></div>
+<div class="ttc" id="astructmsc__read__capa__pkt__t_html"><div class="ttname"><a href="structmsc__read__capa__pkt__t.html">msc_read_capa_pkt_t</a></div><div class="ttdoc">Packet structure to answer (SCSI_READ_CAPACITY) request.</div><div class="ttdef"><b>Definition:</b> scsi.h:226</div></div>
+<div class="ttc" id="astructmsc__read__capa__pkt__t_html_a30cba46071db3de77bf125ee13be31d1"><div class="ttname"><a href="structmsc__read__capa__pkt__t.html#a30cba46071db3de77bf125ee13be31d1">msc_read_capa_pkt_t::last_blk</a></div><div class="ttdeci">be_uint32_t last_blk</div><div class="ttdoc">Indicate last block number.</div><div class="ttdef"><b>Definition:</b> scsi.h:227</div></div>
+<div class="ttc" id="astructmsc__read__capa__pkt__t_html_a95f6655cd1b820be34d16cf3b27aaddd"><div class="ttname"><a href="structmsc__read__capa__pkt__t.html#a95f6655cd1b820be34d16cf3b27aaddd">msc_read_capa_pkt_t::blk_len</a></div><div class="ttdeci">be_uint32_t blk_len</div><div class="ttdoc">Total size of a block in bytes.</div><div class="ttdef"><b>Definition:</b> scsi.h:228</div></div>
+<div class="ttc" id="astructmsc__read__fmt__capa__pkt__t_html"><div class="ttname"><a href="structmsc__read__fmt__capa__pkt__t.html">msc_read_fmt_capa_pkt_t</a></div><div class="ttdoc">Packet structure to answer (SCSI_READ_FORMAT_CAPACITIES) request.</div><div class="ttdef"><b>Definition:</b> scsi.h:193</div></div>
+<div class="ttc" id="astructmsc__read__fmt__capa__pkt__t_html_a1d137c4b25ce36f71c3ba757b8fe7d39"><div class="ttname"><a href="structmsc__read__fmt__capa__pkt__t.html#a1d137c4b25ce36f71c3ba757b8fe7d39">msc_read_fmt_capa_pkt_t::type</a></div><div class="ttdeci">uint8_t type</div><div class="ttdoc">Byte 8 Descriptor type.</div><div class="ttdef"><b>Definition:</b> scsi.h:197</div></div>
+<div class="ttc" id="astructmsc__read__fmt__capa__pkt__t_html_a98e49054f17aa08beaa0c8d49382e3d8"><div class="ttname"><a href="structmsc__read__fmt__capa__pkt__t.html#a98e49054f17aa08beaa0c8d49382e3d8">msc_read_fmt_capa_pkt_t::blk_nb</a></div><div class="ttdeci">be_uint32_t blk_nb</div><div class="ttdoc">Byte 7..4 Number of blocks.</div><div class="ttdef"><b>Definition:</b> scsi.h:196</div></div>
+<div class="ttc" id="astructmsc__read__fmt__capa__pkt__t_html_ad9df2b54ff96008fa48c96db7b856dce"><div class="ttname"><a href="structmsc__read__fmt__capa__pkt__t.html#ad9df2b54ff96008fa48c96db7b856dce">msc_read_fmt_capa_pkt_t::list_length</a></div><div class="ttdeci">uint8_t list_length</div><div class="ttdoc">Byte 3 Capacity list length.</div><div class="ttdef"><b>Definition:</b> scsi.h:195</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html">msc_request_sense_pkt_t</a></div><div class="ttdoc">Packet structure to answer (SCSI_REQUEST_SENSE) request.</div><div class="ttdef"><b>Definition:</b> scsi.h:205</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_a0f42ca523ec7aad01db39b06f423ab92"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#a0f42ca523ec7aad01db39b06f423ab92">msc_request_sense_pkt_t::sk_spec</a></div><div class="ttdeci">uint16_t sk_spec</div><div class="ttdoc">Byte 16..15 Sense Key Specific.</div><div class="ttdef"><b>Definition:</b> scsi.h:215</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_a211370a214e690fe816f5aec7a909fb1"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#a211370a214e690fe816f5aec7a909fb1">msc_request_sense_pkt_t::fruc</a></div><div class="ttdeci">uint8_t fruc</div><div class="ttdoc">Byte 14 Field Replaceable Unit Code.</div><div class="ttdef"><b>Definition:</b> scsi.h:214</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_a5bc65084e3ea980b97a89fa949f5f55b"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#a5bc65084e3ea980b97a89fa949f5f55b">msc_request_sense_pkt_t::asc</a></div><div class="ttdeci">uint8_t asc</div><div class="ttdoc">Byte 12 Additional Sense Code.</div><div class="ttdef"><b>Definition:</b> scsi.h:212</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_a7a3cd95cc26e7a1ad09d2c398d82ad66"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#a7a3cd95cc26e7a1ad09d2c398d82ad66">msc_request_sense_pkt_t::ascq</a></div><div class="ttdeci">uint8_t ascq</div><div class="ttdoc">Byte 13 Additional Sense Code Qualifier.</div><div class="ttdef"><b>Definition:</b> scsi.h:213</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_a9ebb59ed4f6ef42e226cce132b629247"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#a9ebb59ed4f6ef42e226cce132b629247">msc_request_sense_pkt_t::sense_key</a></div><div class="ttdeci">uint8_t sense_key</div><div class="ttdoc">Byte 2 Sense key.</div><div class="ttdef"><b>Definition:</b> scsi.h:208</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_ab3e57ec4e2cbc554f2b50f7edf2383e6"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#ab3e57ec4e2cbc554f2b50f7edf2383e6">msc_request_sense_pkt_t::reserved1</a></div><div class="ttdeci">uint8_t reserved1</div><div class="ttdoc">Reserved.</div><div class="ttdef"><b>Definition:</b> scsi.h:207</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_abbb92704b8d71581241aaf1b12170549"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#abbb92704b8d71581241aaf1b12170549">msc_request_sense_pkt_t::error_code</a></div><div class="ttdeci">uint8_t error_code</div><div class="ttdoc">Byte 0 Error code.</div><div class="ttdef"><b>Definition:</b> scsi.h:206</div></div>
+<div class="ttc" id="astructmsc__request__sense__pkt__t_html_af1ed3c7659756aa22a07d7d62940bfe8"><div class="ttname"><a href="structmsc__request__sense__pkt__t.html#af1ed3c7659756aa22a07d7d62940bfe8">msc_request_sense_pkt_t::add_len</a></div><div class="ttdeci">uint8_t add_len</div><div class="ttdoc">Byte 7 Additional sense length.</div><div class="ttdef"><b>Definition:</b> scsi.h:210</div></div>
+<div class="ttc" id="astructmsc__test__unit__pkt__t_html"><div class="ttname"><a href="structmsc__test__unit__pkt__t.html">msc_test_unit_pkt_t</a></div><div class="ttdoc">Packet structure to answer (SCSI_TEST_UNIT_READY) request.</div><div class="ttdef"><b>Definition:</b> scsi.h:130</div></div>
+<div class="ttc" id="astructmsc__test__unit__pkt__t_html_a4360504f9d121fb0c74f52195113b1cd"><div class="ttname"><a href="structmsc__test__unit__pkt__t.html#a4360504f9d121fb0c74f52195113b1cd">msc_test_unit_pkt_t::type</a></div><div class="ttdeci">uint8_t type</div><div class="ttdoc">type of device</div><div class="ttdef"><b>Definition:</b> scsi.h:131</div></div>
+<div class="ttc" id="astructmsc__test__unit__pkt__t_html_a4421964aa56cdeca771ccde8289299b9"><div class="ttname"><a href="structmsc__test__unit__pkt__t.html#a4421964aa56cdeca771ccde8289299b9">msc_test_unit_pkt_t::logical_unit</a></div><div class="ttdeci">uint8_t logical_unit</div><div class="ttdoc">Selected LUN.</div><div class="ttdef"><b>Definition:</b> scsi.h:132</div></div>
+<div class="ttc" id="astructusbdev__ep_html"><div class="ttname"><a href="structusbdev__ep.html">usbdev_ep</a></div><div class="ttdoc">usbdev endpoint descriptor</div><div class="ttdef"><b>Definition:</b> usbdev.h:259</div></div>
+<div class="ttc" id="astructusbus__handler_html"><div class="ttname"><a href="structusbus__handler.html">usbus_handler</a></div><div class="ttdoc">USBUS handler struct.</div><div class="ttdef"><b>Definition:</b> usbus.h:436</div></div>
+<div class="ttc" id="astructusbus_html"><div class="ttname"><a href="structusbus.html">usbus</a></div><div class="ttdoc">USBUS context struct.</div><div class="ttdef"><b>Definition:</b> usbus.h:448</div></div>
+<div class="ttc" id="aunionbe__uint16__t_html"><div class="ttname"><a href="unionbe__uint16__t.html">be_uint16_t</a></div><div class="ttdoc">A 16 bit integer in big endian aka network byte order.</div><div class="ttdef"><b>Definition:</b> byteorder.h:74</div></div>
+<div class="ttc" id="aunionbe__uint32__t_html"><div class="ttname"><a href="unionbe__uint32__t.html">be_uint32_t</a></div><div class="ttdoc">A 32 bit integer in big endian aka network byte order.</div><div class="ttdef"><b>Definition:</b> byteorder.h:84</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_eb9793bc0cf8fa4de3ce4b7ae00045c5.html">usb</a></li><li class="navelem"><a class="el" href="dir_29b9f09949a565fa71a57daea60cabf4.html">usbus</a></li><li class="navelem"><a class="el" href="dir_3fec7abb368bfbeba1490fd96ea4cf2c.html">msc</a></li><li class="navelem"><a class="el" href="scsi_8h.html">scsi.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

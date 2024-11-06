@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/mfrc522.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mfrc522_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mfrc522.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mfrc522_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2021 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#ifndef MFRC522_H</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define MFRC522_H</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;stdbool.h&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mfrc522__regs_8h.html">mfrc522_regs.h</a>&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga016ce3c66512405b5b0f3d5039782bcb">   55</a></span>&#160;<span class="preprocessor">#define MFRC522_UID_MAX_SIZE  10</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gaab71e9ae567b0ce37fc780f28e92a439">   60</a></span>&#160;<span class="preprocessor">#define MFRC522_MF_ACK  0xA</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga8435582d23e115b2f9c68f3cbba2880f">   65</a></span>&#160;<span class="preprocessor">#define MFRC522_MF_KEY_SIZE  6</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html">   70</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html#a1dc98bf0cf10bc628a5e0bbfb7b5a19c">   71</a></span>&#160;    spi_t <a class="code" href="structmfrc522__params__t.html#a1dc98bf0cf10bc628a5e0bbfb7b5a19c">spi_dev</a>;      </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html#a3d4bdeb02c5d2d1d44fe43f253d5557a">   72</a></span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> <a class="code" href="structmfrc522__params__t.html#a3d4bdeb02c5d2d1d44fe43f253d5557a">spi_clk</a>;  </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html#a348a44909b0febecb8328785d9dc10c3">   73</a></span>&#160;    gpio_t <a class="code" href="structmfrc522__params__t.html#a348a44909b0febecb8328785d9dc10c3">sck_pin</a>;     </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html#a2f912a9e06aea6d0eb1576b1f3e2a57a">   74</a></span>&#160;    gpio_t <a class="code" href="structmfrc522__params__t.html#a2f912a9e06aea6d0eb1576b1f3e2a57a">miso_pin</a>;    </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html#a6c81cfccaa856179017d376f911e9f5e">   75</a></span>&#160;    gpio_t <a class="code" href="structmfrc522__params__t.html#a6c81cfccaa856179017d376f911e9f5e">mosi_pin</a>;    </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html#ad94e707acad333a80a154debc74bed0b">   76</a></span>&#160;    gpio_t <a class="code" href="structmfrc522__params__t.html#ad94e707acad333a80a154debc74bed0b">cs_pin</a>;      </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="structmfrc522__params__t.html#a82f6e2d447a83c675bfe74b8a585a21d">   77</a></span>&#160;    gpio_t <a class="code" href="structmfrc522__params__t.html#a82f6e2d447a83c675bfe74b8a585a21d">rst_pin</a>;     </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <a class="code" href="structmfrc522__params__t.html">mfrc522_params_t</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structmfrc522__t.html">   83</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="structmfrc522__t.html#ac9d4dec08881500087ba1311c16cb176">   84</a></span>&#160;    <a class="code" href="structmfrc522__params__t.html">mfrc522_params_t</a> <a class="code" href="structmfrc522__t.html#ac9d4dec08881500087ba1311c16cb176">params</a>;  </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;} <a class="code" href="structmfrc522__t.html">mfrc522_t</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structmfrc522__uid__t.html">   90</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structmfrc522__uid__t.html#acc8faad782a6f12879c41d9d4af20802">   91</a></span>&#160;    uint8_t <a class="code" href="structmfrc522__uid__t.html#acc8faad782a6f12879c41d9d4af20802">size</a>;                               </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="structmfrc522__uid__t.html#ad8f0ea9d8336a61bdd584438cc9a0901">   92</a></span>&#160;    uint8_t uid_byte[<a class="code" href="group__drivers__mfrc522.html#ga016ce3c66512405b5b0f3d5039782bcb">MFRC522_UID_MAX_SIZE</a>];     </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structmfrc522__uid__t.html#a4126a6e2b134f8295c50ebb01ada6061">   93</a></span>&#160;    uint8_t <a class="code" href="structmfrc522__uid__t.html#a4126a6e2b134f8295c50ebb01ada6061">sak</a>;                                </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;} <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structmfrc522__mifare__key__t.html">  100</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structmfrc522__mifare__key__t.html#a5e619186ef0c7e439707a0655e50571b">  101</a></span>&#160;    uint8_t key_byte[<a class="code" href="group__drivers__mfrc522.html#ga8435582d23e115b2f9c68f3cbba2880f">MFRC522_MF_KEY_SIZE</a>];  </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;} <a class="code" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">  107</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a54181fb39067b717ec991e8b7cee9b8c">  108</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a54181fb39067b717ec991e8b7cee9b8c">MFRC522_PICC_TYPE_ISO_14443_4</a>,      </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ab17aa2fc84ed855b8f0739913068e5ad">  109</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ab17aa2fc84ed855b8f0739913068e5ad">MFRC522_PICC_TYPE_ISO_18092</a>,        </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a82440ae14051cfd6a163c44a368ceb37">  110</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a82440ae14051cfd6a163c44a368ceb37">MFRC522_PICC_TYPE_MIFARE_MINI</a>,      </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4aa0842ffe78c7eb0e3e50023ab8555206">  111</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4aa0842ffe78c7eb0e3e50023ab8555206">MFRC522_PICC_TYPE_MIFARE_1K</a>,        </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a66d516f2f32de4afb43216b5ccf86804">  112</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a66d516f2f32de4afb43216b5ccf86804">MFRC522_PICC_TYPE_MIFARE_4K</a>,        </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a5bdab066171aabf26e4a51a6b6f82abc">  113</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a5bdab066171aabf26e4a51a6b6f82abc">MFRC522_PICC_TYPE_MIFARE_UL</a>,        </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7c1ca3a1d6007e3d8756683fbe9a2f29">  114</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7c1ca3a1d6007e3d8756683fbe9a2f29">MFRC522_PICC_TYPE_MIFARE_PLUS</a>,      </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7e9a94106c447f4bf2961d0c5fe5557b">  115</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7e9a94106c447f4bf2961d0c5fe5557b">MFRC522_PICC_TYPE_MIFARE_DESFIRE</a>,   </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a83f7ce6e4e57aacd2202e4f46cafb5d7">MFRC522_PICC_TYPE_TNP3XXX</a>,          </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ada76c526ba87176f4f628d82dc4434cb">  118</a></span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ada76c526ba87176f4f628d82dc4434cb">MFRC522_PICC_TYPE_NOT_COMPLETE</a>,     </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a9c158029c33cf5f4af7e5500d4a1adc3">MFRC522_PICC_TYPE_UNKNOWN</a>           </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a9c158029c33cf5f4af7e5500d4a1adc3">  120</a></span>&#160;} <a class="code" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gae88e704c1baca8b42a37ea5c4da11efd">  129</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gae88e704c1baca8b42a37ea5c4da11efd">mfrc522_pcd_set_register_bitmask</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="mfrc522__regs_8h.html#abf9e5478d91cd52534962e2be981069e">mfrc522_pcd_register_t</a> reg, uint8_t mask);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga82a4ed520523bfab0cbb03093494e9e9">  138</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga82a4ed520523bfab0cbb03093494e9e9">mfrc522_pcd_clear_register_bitmask</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="mfrc522__regs_8h.html#abf9e5478d91cd52534962e2be981069e">mfrc522_pcd_register_t</a> reg, uint8_t mask);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gaf4d5f10591dc1cbb6a85dfe3f466b0e1">  152</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#gaf4d5f10591dc1cbb6a85dfe3f466b0e1">mfrc522_pcd_calculate_crc</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <span class="keyword">const</span> uint8_t *data, uint8_t length, uint8_t *result);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga2bf3fbf93f06d481c5dc3721d09fc089">  164</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga2bf3fbf93f06d481c5dc3721d09fc089">mfrc522_pcd_init</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structmfrc522__params__t.html">mfrc522_params_t</a> *params);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga6f293c33f06b4c7627c10bda1d25209c">  172</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga6f293c33f06b4c7627c10bda1d25209c">mfrc522_pcd_reset</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gad05b7fab52868dc979048fcd300168ad">  180</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gad05b7fab52868dc979048fcd300168ad">mfrc522_pcd_antenna_on</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga13602aa60c6f6dbf294a4c3ab3cbec23">  187</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga13602aa60c6f6dbf294a4c3ab3cbec23">mfrc522_pcd_antenna_off</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga51d0152f001dab967c4ea8d176097a13">  196</a></span>&#160;<a class="code" href="mfrc522__regs_8h.html#ac90ea4e202c15a1dfc4e53d4409373bb">mfrc522_pcd_rx_gain_t</a> <a class="code" href="group__drivers__mfrc522.html#ga51d0152f001dab967c4ea8d176097a13">mfrc522_pcd_get_antenna_gain</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gae127381e4436bdd16b54cdf964c51c5a">  204</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gae127381e4436bdd16b54cdf964c51c5a">mfrc522_pcd_set_antenna_gain</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="mfrc522__regs_8h.html#ac90ea4e202c15a1dfc4e53d4409373bb">mfrc522_pcd_rx_gain_t</a> rx_gain);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga8952088c0080c4a947853ac29e29cd07">  217</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga8952088c0080c4a947853ac29e29cd07">mfrc522_pcd_soft_power_down</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga32ee8a9d114cfde21b8252a64a34a1ad">  224</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga32ee8a9d114cfde21b8252a64a34a1ad">mfrc522_pcd_soft_power_up</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga1dbc1ddda667fe66a59ded1d59410088">  251</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga1dbc1ddda667fe66a59ded1d59410088">mfrc522_pcd_transceive_data</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev,</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                                <span class="keyword">const</span> uint8_t *send_data, uint8_t send_len,</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                                uint8_t *back_data, uint8_t *back_len,</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                                uint8_t *valid_bits, uint8_t rx_align, <span class="keywordtype">bool</span> check_crc);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga5bcdaf5761f5c237973caddcf2dddc2a">  285</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga5bcdaf5761f5c237973caddcf2dddc2a">mfrc522_pcd_communicate_with_picc</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="mfrc522__regs_8h.html#a2428cbbbebd30305493d387c60e0a58c">mfrc522_pcd_command_t</a> command,</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                                      uint8_t wait_irq,</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                                      <span class="keyword">const</span> uint8_t *send_data, uint8_t send_len,</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                                      uint8_t *back_data, uint8_t *back_len,</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                                      uint8_t *valid_bits, uint8_t rx_align, <span class="keywordtype">bool</span> check_crc);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gae3750565c51431cc2ec898cadc4e7a94">  310</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#gae3750565c51431cc2ec898cadc4e7a94">mfrc522_picc_request_a</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t *buffer_atqa, uint8_t *buffer_size);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
+<div class="line"><a name="l00331"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga777c18185cf8d679633d7966e8fa7d45">  331</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga777c18185cf8d679633d7966e8fa7d45">mfrc522_picc_wakeup_a</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t *buffer_atqa, uint8_t *buffer_size);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00354"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga8610819376a07184ca10ed857271602e">  354</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga8610819376a07184ca10ed857271602e">mfrc522_picc_reqa_or_wupa</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="mfrc522__regs_8h.html#a38055f6f904b626f6b42b9a65754179c">mfrc522_picc_command_t</a> command,</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                              uint8_t *buffer_atqa, uint8_t *buffer_size);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gae99cef019d906fbdd3f0d5cc36ba8614">  392</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#gae99cef019d906fbdd3f0d5cc36ba8614">mfrc522_picc_select</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid, uint8_t valid_bits);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
+<div class="line"><a name="l00403"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gaa1d11fe896bd4a2bb54828192cce3d57">  403</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#gaa1d11fe896bd4a2bb54828192cce3d57">mfrc522_picc_halt_a</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160; </div>
+<div class="line"><a name="l00431"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gaaccc7d2f773269ff1e8a1b8b84c6255e">  431</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#gaaccc7d2f773269ff1e8a1b8b84c6255e">mfrc522_pcd_authenticate</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="mfrc522__regs_8h.html#a38055f6f904b626f6b42b9a65754179c">mfrc522_picc_command_t</a> command,</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                             uint8_t block_addr, <span class="keyword">const</span> <a class="code" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a> *key,</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                             <span class="keyword">const</span> <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160; </div>
+<div class="line"><a name="l00443"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga91157640715039ff621a2ca45dea634a">  443</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga91157640715039ff621a2ca45dea634a">mfrc522_pcd_stop_crypto1</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
+<div class="line"><a name="l00474"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga93eb1ba17298d423c3e3377d3fe5169c">  474</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga93eb1ba17298d423c3e3377d3fe5169c">mfrc522_mifare_read</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, uint8_t *buffer, uint8_t *buffer_size);</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
+<div class="line"><a name="l00501"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga4fc360fdac04ed584ca00bb5f114c905">  501</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga4fc360fdac04ed584ca00bb5f114c905">mfrc522_mifare_write</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr,</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;                         <span class="keyword">const</span> uint8_t *buffer, uint8_t buffer_size);</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160; </div>
+<div class="line"><a name="l00518"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga0a9df2c7e7e2cca3509be2115c29a4ca">  518</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga0a9df2c7e7e2cca3509be2115c29a4ca">mfrc522_mifare_ultralight_write</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t page, <span class="keyword">const</span> uint8_t *buffer);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160; </div>
+<div class="line"><a name="l00538"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga9486e7850ac4e55e49ef2b06c61d6d34">  538</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga9486e7850ac4e55e49ef2b06c61d6d34">mfrc522_mifare_decrement</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t delta);</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160; </div>
+<div class="line"><a name="l00557"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga71b32a01fd06126b4e69eb480105a334">  557</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga71b32a01fd06126b4e69eb480105a334">mfrc522_mifare_increment</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t delta);</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160; </div>
+<div class="line"><a name="l00574"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga8f068ff4f4a767e27377ea29edb3c51a">  574</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga8f068ff4f4a767e27377ea29edb3c51a">mfrc522_mifare_restore</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr);</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160; </div>
+<div class="line"><a name="l00594"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga425fc11f981ad253a0cc2b63fe79e41c">  594</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga425fc11f981ad253a0cc2b63fe79e41c">mfrc522_mifare_transfer</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr);</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160; </div>
+<div class="line"><a name="l00613"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga7b613640e59d100c0adce970d719a643">  613</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga7b613640e59d100c0adce970d719a643">mfrc522_mifare_get_value</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t *value);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160; </div>
+<div class="line"><a name="l00633"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga55179c88daf10c79d637f4dcfeb81344">  633</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga55179c88daf10c79d637f4dcfeb81344">mfrc522_mifare_set_value</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t value);</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160; </div>
+<div class="line"><a name="l00650"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gad151ef47d2f2d0a170940c13593c8e56">  650</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#gad151ef47d2f2d0a170940c13593c8e56">mfrc522_pcd_ntag216_auth</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <span class="keyword">const</span> uint8_t *password, uint8_t p_ack[]);</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160; </div>
+<div class="line"><a name="l00670"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga9543484f6aed8109ba53e88b1881de00">  670</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga9543484f6aed8109ba53e88b1881de00">mfrc522_pcd_mifare_transceive</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev,</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;                                  <span class="keyword">const</span> uint8_t *send_data, uint8_t send_len,</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                                  <span class="keywordtype">bool</span> accept_timeout);</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160; </div>
+<div class="line"><a name="l00681"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gac082d5d29416e660ac117bada5311e44">  681</a></span>&#160;<a class="code" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a> <a class="code" href="group__drivers__mfrc522.html#gac082d5d29416e660ac117bada5311e44">mfrc522_picc_get_type</a>(uint8_t sak);</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160; </div>
+<div class="line"><a name="l00690"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga58dfb62498e9d34af12d5c6e0bba5574">  690</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="group__drivers__mfrc522.html#ga58dfb62498e9d34af12d5c6e0bba5574">mfrc522_picc_get_type_string</a>(<a class="code" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a> picc_type);</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160; </div>
+<div class="line"><a name="l00707"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gabdf548dbc90a211e53364a2d379c5992">  707</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gabdf548dbc90a211e53364a2d379c5992">mfrc522_mifare_set_access_bits</a>(uint8_t *access_bit_buffer,</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;                                    uint8_t g0, uint8_t g1, uint8_t g2, uint8_t g3);</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160; </div>
+<div class="line"><a name="l00729"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga274d7471dbe8025f1a64fb53c62044d5">  729</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga274d7471dbe8025f1a64fb53c62044d5">mfrc522_mifare_open_uid_backdoor</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160; </div>
+<div class="line"><a name="l00753"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gaa991a89437c7a388a8861638418643d1">  753</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#gaa991a89437c7a388a8861638418643d1">mfrc522_mifare_set_uid</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid,</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;                           <span class="keyword">const</span> uint8_t *new_uid, uint8_t new_uid_size);</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160; </div>
+<div class="line"><a name="l00768"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga59dbf1d7261091d042981593988a86db">  768</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga59dbf1d7261091d042981593988a86db">mfrc522_mifare_unbrick_uid_sector</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160; </div>
+<div class="line"><a name="l00780"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gac7836a121808f62740c12f52bfeb82a8">  780</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__mfrc522.html#gac7836a121808f62740c12f52bfeb82a8">mfrc522_picc_is_new_card_present</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160; </div>
+<div class="line"><a name="l00799"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga6d4c760531d7d1eb79974caf74a7da19">  799</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mfrc522.html#ga6d4c760531d7d1eb79974caf74a7da19">mfrc522_picc_read_card_serial</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid);</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160; </div>
+<div class="line"><a name="l00806"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gaa65922fe7dbd5c31b9cb33305b5c93c6">  806</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gaa65922fe7dbd5c31b9cb33305b5c93c6">mfrc522_pcd_dump_version_to_serial</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160; </div>
+<div class="line"><a name="l00817"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga9e7fee0db62c32a0f0c015239206688d">  817</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga9e7fee0db62c32a0f0c015239206688d">mfrc522_picc_dump_to_serial</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid);</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160; </div>
+<div class="line"><a name="l00824"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gad3d17752e4bcf7e6a732df90dc14f659">  824</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gad3d17752e4bcf7e6a732df90dc14f659">mfrc522_picc_dump_details_to_serial</a>(<a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid);</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160; </div>
+<div class="line"><a name="l00836"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#ga5138229a9f4723ff4aeb4302611006a5">  836</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#ga5138229a9f4723ff4aeb4302611006a5">mfrc522_picc_dump_mifare_classic_to_serial</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid,</div>
+<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;                                                <a class="code" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a> picc_type,</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;                                                <a class="code" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a> *key);</div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160; </div>
+<div class="line"><a name="l00852"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gac0f64a1b45e018164aab646b9c8be8a9">  852</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gac0f64a1b45e018164aab646b9c8be8a9">mfrc522_picc_dump_mifare_classic_sector_to_serial</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="code" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid,</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;                                                       <a class="code" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a> *key, uint8_t sector);</div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160; </div>
+<div class="line"><a name="l00860"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gaa344e4f5db65961677feae076291efc4">  860</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__mfrc522.html#gaa344e4f5db65961677feae076291efc4">mfrc522_picc_dump_mifare_ultralight_to_serial</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160; </div>
+<div class="line"><a name="l00871"></a><span class="lineno"><a class="line" href="group__drivers__mfrc522.html#gab810713a04a1555c1a2b9356bd22377b">  871</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__mfrc522.html#gab810713a04a1555c1a2b9356bd22377b">mfrc522_pcd_perform_self_test</a>(<a class="code" href="structmfrc522__t.html">mfrc522_t</a> *dev);</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160; </div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;}</div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160; </div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MFRC522_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga016ce3c66512405b5b0f3d5039782bcb"><div class="ttname"><a href="group__drivers__mfrc522.html#ga016ce3c66512405b5b0f3d5039782bcb">MFRC522_UID_MAX_SIZE</a></div><div class="ttdeci">#define MFRC522_UID_MAX_SIZE</div><div class="ttdoc">Maximum size for uid byte array.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:55</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga0a9df2c7e7e2cca3509be2115c29a4ca"><div class="ttname"><a href="group__drivers__mfrc522.html#ga0a9df2c7e7e2cca3509be2115c29a4ca">mfrc522_mifare_ultralight_write</a></div><div class="ttdeci">int mfrc522_mifare_ultralight_write(mfrc522_t *dev, uint8_t page, const uint8_t *buffer)</div><div class="ttdoc">Write a 4 byte page to the active MIFARE Ultralight PICC.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga13602aa60c6f6dbf294a4c3ab3cbec23"><div class="ttname"><a href="group__drivers__mfrc522.html#ga13602aa60c6f6dbf294a4c3ab3cbec23">mfrc522_pcd_antenna_off</a></div><div class="ttdeci">void mfrc522_pcd_antenna_off(mfrc522_t *dev)</div><div class="ttdoc">Turns the antenna off by disabling pins TX1 and TX2.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga1dbc1ddda667fe66a59ded1d59410088"><div class="ttname"><a href="group__drivers__mfrc522.html#ga1dbc1ddda667fe66a59ded1d59410088">mfrc522_pcd_transceive_data</a></div><div class="ttdeci">int mfrc522_pcd_transceive_data(mfrc522_t *dev, const uint8_t *send_data, uint8_t send_len, uint8_t *back_data, uint8_t *back_len, uint8_t *valid_bits, uint8_t rx_align, bool check_crc)</div><div class="ttdoc">Executes MFRC522_CMD_TRANSCEIVE.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga274d7471dbe8025f1a64fb53c62044d5"><div class="ttname"><a href="group__drivers__mfrc522.html#ga274d7471dbe8025f1a64fb53c62044d5">mfrc522_mifare_open_uid_backdoor</a></div><div class="ttdeci">int mfrc522_mifare_open_uid_backdoor(mfrc522_t *dev)</div><div class="ttdoc">Performs the &quot;magic sequence&quot; needed to get Chinese UID changeable Mifare cards to allow writing to s...</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga2bf3fbf93f06d481c5dc3721d09fc089"><div class="ttname"><a href="group__drivers__mfrc522.html#ga2bf3fbf93f06d481c5dc3721d09fc089">mfrc522_pcd_init</a></div><div class="ttdeci">int mfrc522_pcd_init(mfrc522_t *dev, const mfrc522_params_t *params)</div><div class="ttdoc">Initialization.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga32ee8a9d114cfde21b8252a64a34a1ad"><div class="ttname"><a href="group__drivers__mfrc522.html#ga32ee8a9d114cfde21b8252a64a34a1ad">mfrc522_pcd_soft_power_up</a></div><div class="ttdeci">void mfrc522_pcd_soft_power_up(mfrc522_t *dev)</div><div class="ttdoc">Set the MFRC522 to leave soft power-down mode.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga33c7a3d97499278cbe30fb9c61a562e4"><div class="ttname"><a href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a></div><div class="ttdeci">mfrc522_picc_type_t</div><div class="ttdoc">PICC types.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:107</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga425fc11f981ad253a0cc2b63fe79e41c"><div class="ttname"><a href="group__drivers__mfrc522.html#ga425fc11f981ad253a0cc2b63fe79e41c">mfrc522_mifare_transfer</a></div><div class="ttdeci">int mfrc522_mifare_transfer(mfrc522_t *dev, uint8_t block_addr)</div><div class="ttdoc">Write the value from the Transfer Buffer into destination block.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga4fc360fdac04ed584ca00bb5f114c905"><div class="ttname"><a href="group__drivers__mfrc522.html#ga4fc360fdac04ed584ca00bb5f114c905">mfrc522_mifare_write</a></div><div class="ttdeci">int mfrc522_mifare_write(mfrc522_t *dev, uint8_t block_addr, const uint8_t *buffer, uint8_t buffer_size)</div><div class="ttdoc">Write 16 bytes to the active PICC.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga5138229a9f4723ff4aeb4302611006a5"><div class="ttname"><a href="group__drivers__mfrc522.html#ga5138229a9f4723ff4aeb4302611006a5">mfrc522_picc_dump_mifare_classic_to_serial</a></div><div class="ttdeci">void mfrc522_picc_dump_mifare_classic_to_serial(mfrc522_t *dev, mfrc522_uid_t *uid, mfrc522_picc_type_t picc_type, mfrc522_mifare_key_t *key)</div><div class="ttdoc">Dump memory contents of a MIFARE Classic PICC to stdout.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga51d0152f001dab967c4ea8d176097a13"><div class="ttname"><a href="group__drivers__mfrc522.html#ga51d0152f001dab967c4ea8d176097a13">mfrc522_pcd_get_antenna_gain</a></div><div class="ttdeci">mfrc522_pcd_rx_gain_t mfrc522_pcd_get_antenna_gain(mfrc522_t *dev)</div><div class="ttdoc">Get the current MFRC522 receiver gain.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga55179c88daf10c79d637f4dcfeb81344"><div class="ttname"><a href="group__drivers__mfrc522.html#ga55179c88daf10c79d637f4dcfeb81344">mfrc522_mifare_set_value</a></div><div class="ttdeci">int mfrc522_mifare_set_value(mfrc522_t *dev, uint8_t block_addr, int32_t value)</div><div class="ttdoc">Helper routine to write a specific value into a Value Block.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga58dfb62498e9d34af12d5c6e0bba5574"><div class="ttname"><a href="group__drivers__mfrc522.html#ga58dfb62498e9d34af12d5c6e0bba5574">mfrc522_picc_get_type_string</a></div><div class="ttdeci">const char * mfrc522_picc_get_type_string(mfrc522_picc_type_t picc_type)</div><div class="ttdoc">Returns the name for the PICC type.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga59dbf1d7261091d042981593988a86db"><div class="ttname"><a href="group__drivers__mfrc522.html#ga59dbf1d7261091d042981593988a86db">mfrc522_mifare_unbrick_uid_sector</a></div><div class="ttdeci">int mfrc522_mifare_unbrick_uid_sector(mfrc522_t *dev)</div><div class="ttdoc">Reset entire sector 0 to zeroes, so the card can be read again by readers.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga5bcdaf5761f5c237973caddcf2dddc2a"><div class="ttname"><a href="group__drivers__mfrc522.html#ga5bcdaf5761f5c237973caddcf2dddc2a">mfrc522_pcd_communicate_with_picc</a></div><div class="ttdeci">int mfrc522_pcd_communicate_with_picc(mfrc522_t *dev, mfrc522_pcd_command_t command, uint8_t wait_irq, const uint8_t *send_data, uint8_t send_len, uint8_t *back_data, uint8_t *back_len, uint8_t *valid_bits, uint8_t rx_align, bool check_crc)</div><div class="ttdoc">Transfers data to MFRC522's FIFO, executes a command, waits for completion and transfers data back fr...</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga6d4c760531d7d1eb79974caf74a7da19"><div class="ttname"><a href="group__drivers__mfrc522.html#ga6d4c760531d7d1eb79974caf74a7da19">mfrc522_picc_read_card_serial</a></div><div class="ttdeci">int mfrc522_picc_read_card_serial(mfrc522_t *dev, mfrc522_uid_t *uid)</div><div class="ttdoc">Simple wrapper around mfrc522_picc_select()</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga6f293c33f06b4c7627c10bda1d25209c"><div class="ttname"><a href="group__drivers__mfrc522.html#ga6f293c33f06b4c7627c10bda1d25209c">mfrc522_pcd_reset</a></div><div class="ttdeci">void mfrc522_pcd_reset(mfrc522_t *dev)</div><div class="ttdoc">Performs a soft reset on the MFRC522 chip and waits for it to be ready again.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga71b32a01fd06126b4e69eb480105a334"><div class="ttname"><a href="group__drivers__mfrc522.html#ga71b32a01fd06126b4e69eb480105a334">mfrc522_mifare_increment</a></div><div class="ttdeci">int mfrc522_mifare_increment(mfrc522_t *dev, uint8_t block_addr, int32_t delta)</div><div class="ttdoc">Add the operand to the value of the addressed block, and store the result in the Transfer Buffer.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga777c18185cf8d679633d7966e8fa7d45"><div class="ttname"><a href="group__drivers__mfrc522.html#ga777c18185cf8d679633d7966e8fa7d45">mfrc522_picc_wakeup_a</a></div><div class="ttdeci">int mfrc522_picc_wakeup_a(mfrc522_t *dev, uint8_t *buffer_atqa, uint8_t *buffer_size)</div><div class="ttdoc">Transmits WUPA, Type A.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga7b613640e59d100c0adce970d719a643"><div class="ttname"><a href="group__drivers__mfrc522.html#ga7b613640e59d100c0adce970d719a643">mfrc522_mifare_get_value</a></div><div class="ttdeci">int mfrc522_mifare_get_value(mfrc522_t *dev, uint8_t block_addr, int32_t *value)</div><div class="ttdoc">Helper routine to read the current value from a Value Block.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga82a4ed520523bfab0cbb03093494e9e9"><div class="ttname"><a href="group__drivers__mfrc522.html#ga82a4ed520523bfab0cbb03093494e9e9">mfrc522_pcd_clear_register_bitmask</a></div><div class="ttdeci">void mfrc522_pcd_clear_register_bitmask(mfrc522_t *dev, mfrc522_pcd_register_t reg, uint8_t mask)</div><div class="ttdoc">Clears the bits given in mask from register reg.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga8435582d23e115b2f9c68f3cbba2880f"><div class="ttname"><a href="group__drivers__mfrc522.html#ga8435582d23e115b2f9c68f3cbba2880f">MFRC522_MF_KEY_SIZE</a></div><div class="ttdeci">#define MFRC522_MF_KEY_SIZE</div><div class="ttdoc">A Mifare Crypto1 key is 6 bytes.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:65</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga8610819376a07184ca10ed857271602e"><div class="ttname"><a href="group__drivers__mfrc522.html#ga8610819376a07184ca10ed857271602e">mfrc522_picc_reqa_or_wupa</a></div><div class="ttdeci">int mfrc522_picc_reqa_or_wupa(mfrc522_t *dev, mfrc522_picc_command_t command, uint8_t *buffer_atqa, uint8_t *buffer_size)</div><div class="ttdoc">Transmits REQA (Type A) or WUPA (Type A) commands.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga8952088c0080c4a947853ac29e29cd07"><div class="ttname"><a href="group__drivers__mfrc522.html#ga8952088c0080c4a947853ac29e29cd07">mfrc522_pcd_soft_power_down</a></div><div class="ttdeci">void mfrc522_pcd_soft_power_down(mfrc522_t *dev)</div><div class="ttdoc">Set the MFRC522 to soft power-down mode.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga8f068ff4f4a767e27377ea29edb3c51a"><div class="ttname"><a href="group__drivers__mfrc522.html#ga8f068ff4f4a767e27377ea29edb3c51a">mfrc522_mifare_restore</a></div><div class="ttdeci">int mfrc522_mifare_restore(mfrc522_t *dev, uint8_t block_addr)</div><div class="ttdoc">Copies the value of the addressed block into the Transfer Buffer.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga91157640715039ff621a2ca45dea634a"><div class="ttname"><a href="group__drivers__mfrc522.html#ga91157640715039ff621a2ca45dea634a">mfrc522_pcd_stop_crypto1</a></div><div class="ttdeci">void mfrc522_pcd_stop_crypto1(mfrc522_t *dev)</div><div class="ttdoc">Used to exit the PCD from its authenticated state.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga93eb1ba17298d423c3e3377d3fe5169c"><div class="ttname"><a href="group__drivers__mfrc522.html#ga93eb1ba17298d423c3e3377d3fe5169c">mfrc522_mifare_read</a></div><div class="ttdeci">int mfrc522_mifare_read(mfrc522_t *dev, uint8_t block_addr, uint8_t *buffer, uint8_t *buffer_size)</div><div class="ttdoc">Read 16 bytes (+ 2 bytes CRC_A) from the active PICC.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga9486e7850ac4e55e49ef2b06c61d6d34"><div class="ttname"><a href="group__drivers__mfrc522.html#ga9486e7850ac4e55e49ef2b06c61d6d34">mfrc522_mifare_decrement</a></div><div class="ttdeci">int mfrc522_mifare_decrement(mfrc522_t *dev, uint8_t block_addr, int32_t delta)</div><div class="ttdoc">Subtract the operand from the value of the addressed block, and store the result in the Transfer Buff...</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga9543484f6aed8109ba53e88b1881de00"><div class="ttname"><a href="group__drivers__mfrc522.html#ga9543484f6aed8109ba53e88b1881de00">mfrc522_pcd_mifare_transceive</a></div><div class="ttdeci">int mfrc522_pcd_mifare_transceive(mfrc522_t *dev, const uint8_t *send_data, uint8_t send_len, bool accept_timeout)</div><div class="ttdoc">Wrapper for MIFARE protocol communication.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_ga9e7fee0db62c32a0f0c015239206688d"><div class="ttname"><a href="group__drivers__mfrc522.html#ga9e7fee0db62c32a0f0c015239206688d">mfrc522_picc_dump_to_serial</a></div><div class="ttdeci">void mfrc522_picc_dump_to_serial(mfrc522_t *dev, mfrc522_uid_t *uid)</div><div class="ttdoc">Dump debug info about the selected PICC to stdout.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gaa1d11fe896bd4a2bb54828192cce3d57"><div class="ttname"><a href="group__drivers__mfrc522.html#gaa1d11fe896bd4a2bb54828192cce3d57">mfrc522_picc_halt_a</a></div><div class="ttdeci">int mfrc522_picc_halt_a(mfrc522_t *dev)</div><div class="ttdoc">Instructs a PICC in state ACTIVE(*) to go to state HALT.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gaa344e4f5db65961677feae076291efc4"><div class="ttname"><a href="group__drivers__mfrc522.html#gaa344e4f5db65961677feae076291efc4">mfrc522_picc_dump_mifare_ultralight_to_serial</a></div><div class="ttdeci">void mfrc522_picc_dump_mifare_ultralight_to_serial(mfrc522_t *dev)</div><div class="ttdoc">Dump memory contents of a MIFARE Ultralight PICC to stdout.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gaa65922fe7dbd5c31b9cb33305b5c93c6"><div class="ttname"><a href="group__drivers__mfrc522.html#gaa65922fe7dbd5c31b9cb33305b5c93c6">mfrc522_pcd_dump_version_to_serial</a></div><div class="ttdeci">void mfrc522_pcd_dump_version_to_serial(mfrc522_t *dev)</div><div class="ttdoc">Dump debug info about the connected PCD to stdout.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gaa991a89437c7a388a8861638418643d1"><div class="ttname"><a href="group__drivers__mfrc522.html#gaa991a89437c7a388a8861638418643d1">mfrc522_mifare_set_uid</a></div><div class="ttdeci">int mfrc522_mifare_set_uid(mfrc522_t *dev, mfrc522_uid_t *uid, const uint8_t *new_uid, uint8_t new_uid_size)</div><div class="ttdoc">Read entire block 0, including all manufacturer data, and overwrites that block with the new UID,...</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gaaccc7d2f773269ff1e8a1b8b84c6255e"><div class="ttname"><a href="group__drivers__mfrc522.html#gaaccc7d2f773269ff1e8a1b8b84c6255e">mfrc522_pcd_authenticate</a></div><div class="ttdeci">int mfrc522_pcd_authenticate(mfrc522_t *dev, mfrc522_picc_command_t command, uint8_t block_addr, const mfrc522_mifare_key_t *key, const mfrc522_uid_t *uid)</div><div class="ttdoc">Executes the MFRC522 MFAuthent command.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gab810713a04a1555c1a2b9356bd22377b"><div class="ttname"><a href="group__drivers__mfrc522.html#gab810713a04a1555c1a2b9356bd22377b">mfrc522_pcd_perform_self_test</a></div><div class="ttdeci">bool mfrc522_pcd_perform_self_test(mfrc522_t *dev)</div><div class="ttdoc">Perform a self-test of the MFRC522.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gabdf548dbc90a211e53364a2d379c5992"><div class="ttname"><a href="group__drivers__mfrc522.html#gabdf548dbc90a211e53364a2d379c5992">mfrc522_mifare_set_access_bits</a></div><div class="ttdeci">void mfrc522_mifare_set_access_bits(uint8_t *access_bit_buffer, uint8_t g0, uint8_t g1, uint8_t g2, uint8_t g3)</div><div class="ttdoc">Calculates the bit pattern needed for the specified access bits.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gac082d5d29416e660ac117bada5311e44"><div class="ttname"><a href="group__drivers__mfrc522.html#gac082d5d29416e660ac117bada5311e44">mfrc522_picc_get_type</a></div><div class="ttdeci">mfrc522_picc_type_t mfrc522_picc_get_type(uint8_t sak)</div><div class="ttdoc">Translates the SAK (Select Acknowledge) to a PICC type.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gac0f64a1b45e018164aab646b9c8be8a9"><div class="ttname"><a href="group__drivers__mfrc522.html#gac0f64a1b45e018164aab646b9c8be8a9">mfrc522_picc_dump_mifare_classic_sector_to_serial</a></div><div class="ttdeci">void mfrc522_picc_dump_mifare_classic_sector_to_serial(mfrc522_t *dev, mfrc522_uid_t *uid, mfrc522_mifare_key_t *key, uint8_t sector)</div><div class="ttdoc">Dump memory contents of a sector of a MIFARE Classic PICC to stdout.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gac7836a121808f62740c12f52bfeb82a8"><div class="ttname"><a href="group__drivers__mfrc522.html#gac7836a121808f62740c12f52bfeb82a8">mfrc522_picc_is_new_card_present</a></div><div class="ttdeci">bool mfrc522_picc_is_new_card_present(mfrc522_t *dev)</div><div class="ttdoc">Checks whether a new card could be detected.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gad05b7fab52868dc979048fcd300168ad"><div class="ttname"><a href="group__drivers__mfrc522.html#gad05b7fab52868dc979048fcd300168ad">mfrc522_pcd_antenna_on</a></div><div class="ttdeci">void mfrc522_pcd_antenna_on(mfrc522_t *dev)</div><div class="ttdoc">Turns the antenna on by enabling pins TX1 and TX2.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gad151ef47d2f2d0a170940c13593c8e56"><div class="ttname"><a href="group__drivers__mfrc522.html#gad151ef47d2f2d0a170940c13593c8e56">mfrc522_pcd_ntag216_auth</a></div><div class="ttdeci">int mfrc522_pcd_ntag216_auth(mfrc522_t *dev, const uint8_t *password, uint8_t p_ack[])</div><div class="ttdoc">Authenticate with a NTAG216.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gad3d17752e4bcf7e6a732df90dc14f659"><div class="ttname"><a href="group__drivers__mfrc522.html#gad3d17752e4bcf7e6a732df90dc14f659">mfrc522_picc_dump_details_to_serial</a></div><div class="ttdeci">void mfrc522_picc_dump_details_to_serial(mfrc522_uid_t *uid)</div><div class="ttdoc">Dump card info (UID, SAK, Type) about the selected PICC to stdout.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gae127381e4436bdd16b54cdf964c51c5a"><div class="ttname"><a href="group__drivers__mfrc522.html#gae127381e4436bdd16b54cdf964c51c5a">mfrc522_pcd_set_antenna_gain</a></div><div class="ttdeci">void mfrc522_pcd_set_antenna_gain(mfrc522_t *dev, mfrc522_pcd_rx_gain_t rx_gain)</div><div class="ttdoc">Set the MFRC522 receiver gain.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gae3750565c51431cc2ec898cadc4e7a94"><div class="ttname"><a href="group__drivers__mfrc522.html#gae3750565c51431cc2ec898cadc4e7a94">mfrc522_picc_request_a</a></div><div class="ttdeci">int mfrc522_picc_request_a(mfrc522_t *dev, uint8_t *buffer_atqa, uint8_t *buffer_size)</div><div class="ttdoc">Transmits REQA, Type A.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gae88e704c1baca8b42a37ea5c4da11efd"><div class="ttname"><a href="group__drivers__mfrc522.html#gae88e704c1baca8b42a37ea5c4da11efd">mfrc522_pcd_set_register_bitmask</a></div><div class="ttdeci">void mfrc522_pcd_set_register_bitmask(mfrc522_t *dev, mfrc522_pcd_register_t reg, uint8_t mask)</div><div class="ttdoc">Sets the bits given in mask in register reg.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gae99cef019d906fbdd3f0d5cc36ba8614"><div class="ttname"><a href="group__drivers__mfrc522.html#gae99cef019d906fbdd3f0d5cc36ba8614">mfrc522_picc_select</a></div><div class="ttdeci">int mfrc522_picc_select(mfrc522_t *dev, mfrc522_uid_t *uid, uint8_t valid_bits)</div><div class="ttdoc">Transmits SELECT/ANTICOLLISION commands to select a single PICC.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gaf4d5f10591dc1cbb6a85dfe3f466b0e1"><div class="ttname"><a href="group__drivers__mfrc522.html#gaf4d5f10591dc1cbb6a85dfe3f466b0e1">mfrc522_pcd_calculate_crc</a></div><div class="ttdeci">int mfrc522_pcd_calculate_crc(mfrc522_t *dev, const uint8_t *data, uint8_t length, uint8_t *result)</div><div class="ttdoc">Use the CRC coprocessor in the MFRC522 to calculate a CRC_A.</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a54181fb39067b717ec991e8b7cee9b8c"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a54181fb39067b717ec991e8b7cee9b8c">MFRC522_PICC_TYPE_ISO_14443_4</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_ISO_14443_4</div><div class="ttdoc">PICC compliant with ISO/IEC 14443-4.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:108</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a5bdab066171aabf26e4a51a6b6f82abc"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a5bdab066171aabf26e4a51a6b6f82abc">MFRC522_PICC_TYPE_MIFARE_UL</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_MIFARE_UL</div><div class="ttdoc">MIFARE Ultralight or Ultralight C.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:113</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a66d516f2f32de4afb43216b5ccf86804"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a66d516f2f32de4afb43216b5ccf86804">MFRC522_PICC_TYPE_MIFARE_4K</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_MIFARE_4K</div><div class="ttdoc">MIFARE Classic protocol, 4KB.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:112</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a7c1ca3a1d6007e3d8756683fbe9a2f29"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7c1ca3a1d6007e3d8756683fbe9a2f29">MFRC522_PICC_TYPE_MIFARE_PLUS</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_MIFARE_PLUS</div><div class="ttdoc">MIFARE Plus.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:114</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a7e9a94106c447f4bf2961d0c5fe5557b"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7e9a94106c447f4bf2961d0c5fe5557b">MFRC522_PICC_TYPE_MIFARE_DESFIRE</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_MIFARE_DESFIRE</div><div class="ttdoc">MIFARE DESFire.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:115</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a82440ae14051cfd6a163c44a368ceb37"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a82440ae14051cfd6a163c44a368ceb37">MFRC522_PICC_TYPE_MIFARE_MINI</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_MIFARE_MINI</div><div class="ttdoc">MIFARE Classic protocol, 320 bytes.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:110</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a83f7ce6e4e57aacd2202e4f46cafb5d7"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a83f7ce6e4e57aacd2202e4f46cafb5d7">MFRC522_PICC_TYPE_TNP3XXX</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_TNP3XXX</div><div class="ttdoc">Only mentioned in NXP AN 10833 MIFARE Type Identification Procedure.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:116</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4a9c158029c33cf5f4af7e5500d4a1adc3"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a9c158029c33cf5f4af7e5500d4a1adc3">MFRC522_PICC_TYPE_UNKNOWN</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_UNKNOWN</div><div class="ttdoc">unknown type</div><div class="ttdef"><b>Definition:</b> mfrc522.h:119</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4aa0842ffe78c7eb0e3e50023ab8555206"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4aa0842ffe78c7eb0e3e50023ab8555206">MFRC522_PICC_TYPE_MIFARE_1K</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_MIFARE_1K</div><div class="ttdoc">MIFARE Classic protocol, 1KB.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:111</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4ab17aa2fc84ed855b8f0739913068e5ad"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ab17aa2fc84ed855b8f0739913068e5ad">MFRC522_PICC_TYPE_ISO_18092</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_ISO_18092</div><div class="ttdoc">PICC compliant with ISO/IEC 18092 (NFC)</div><div class="ttdef"><b>Definition:</b> mfrc522.h:109</div></div>
+<div class="ttc" id="agroup__drivers__mfrc522_html_gga33c7a3d97499278cbe30fb9c61a562e4ada76c526ba87176f4f628d82dc4434cb"><div class="ttname"><a href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ada76c526ba87176f4f628d82dc4434cb">MFRC522_PICC_TYPE_NOT_COMPLETE</a></div><div class="ttdeci">@ MFRC522_PICC_TYPE_NOT_COMPLETE</div><div class="ttdoc">SAK indicates UID is not complete.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:118</div></div>
+<div class="ttc" id="amfrc522__regs_8h_html"><div class="ttname"><a href="mfrc522__regs_8h.html">mfrc522_regs.h</a></div><div class="ttdoc">Register definitions for the MFRC522 controller.</div></div>
+<div class="ttc" id="amfrc522__regs_8h_html_a2428cbbbebd30305493d387c60e0a58c"><div class="ttname"><a href="mfrc522__regs_8h.html#a2428cbbbebd30305493d387c60e0a58c">mfrc522_pcd_command_t</a></div><div class="ttdeci">mfrc522_pcd_command_t</div><div class="ttdoc">Command definitions.</div><div class="ttdef"><b>Definition:</b> mfrc522_regs.h:101</div></div>
+<div class="ttc" id="amfrc522__regs_8h_html_a38055f6f904b626f6b42b9a65754179c"><div class="ttname"><a href="mfrc522__regs_8h.html#a38055f6f904b626f6b42b9a65754179c">mfrc522_picc_command_t</a></div><div class="ttdeci">mfrc522_picc_command_t</div><div class="ttdoc">PICC command definitions.</div><div class="ttdef"><b>Definition:</b> mfrc522_regs.h:140</div></div>
+<div class="ttc" id="amfrc522__regs_8h_html_abf9e5478d91cd52534962e2be981069e"><div class="ttname"><a href="mfrc522__regs_8h.html#abf9e5478d91cd52534962e2be981069e">mfrc522_pcd_register_t</a></div><div class="ttdeci">mfrc522_pcd_register_t</div><div class="ttdoc">Register definitions.</div><div class="ttdef"><b>Definition:</b> mfrc522_regs.h:36</div></div>
+<div class="ttc" id="amfrc522__regs_8h_html_ac90ea4e202c15a1dfc4e53d4409373bb"><div class="ttname"><a href="mfrc522__regs_8h.html#ac90ea4e202c15a1dfc4e53d4409373bb">mfrc522_pcd_rx_gain_t</a></div><div class="ttdeci">mfrc522_pcd_rx_gain_t</div><div class="ttdoc">Receiver gain definitions.</div><div class="ttdef"><b>Definition:</b> mfrc522_regs.h:120</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructmfrc522__mifare__key__t_html"><div class="ttname"><a href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a></div><div class="ttdoc">A struct used for passing a MIFARE Crypto1 key.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:100</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html"><div class="ttname"><a href="structmfrc522__params__t.html">mfrc522_params_t</a></div><div class="ttdoc">MFRC522 device initialization parameters.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:70</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html_a1dc98bf0cf10bc628a5e0bbfb7b5a19c"><div class="ttname"><a href="structmfrc522__params__t.html#a1dc98bf0cf10bc628a5e0bbfb7b5a19c">mfrc522_params_t::spi_dev</a></div><div class="ttdeci">spi_t spi_dev</div><div class="ttdoc">SPI bus the controller is connected to.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:71</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html_a2f912a9e06aea6d0eb1576b1f3e2a57a"><div class="ttname"><a href="structmfrc522__params__t.html#a2f912a9e06aea6d0eb1576b1f3e2a57a">mfrc522_params_t::miso_pin</a></div><div class="ttdeci">gpio_t miso_pin</div><div class="ttdoc">MISO pin.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:74</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html_a348a44909b0febecb8328785d9dc10c3"><div class="ttname"><a href="structmfrc522__params__t.html#a348a44909b0febecb8328785d9dc10c3">mfrc522_params_t::sck_pin</a></div><div class="ttdeci">gpio_t sck_pin</div><div class="ttdoc">SCK pin.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:73</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html_a3d4bdeb02c5d2d1d44fe43f253d5557a"><div class="ttname"><a href="structmfrc522__params__t.html#a3d4bdeb02c5d2d1d44fe43f253d5557a">mfrc522_params_t::spi_clk</a></div><div class="ttdeci">spi_clk_t spi_clk</div><div class="ttdoc">SPI clock speed.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:72</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html_a6c81cfccaa856179017d376f911e9f5e"><div class="ttname"><a href="structmfrc522__params__t.html#a6c81cfccaa856179017d376f911e9f5e">mfrc522_params_t::mosi_pin</a></div><div class="ttdeci">gpio_t mosi_pin</div><div class="ttdoc">MOSI pin.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:75</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html_a82f6e2d447a83c675bfe74b8a585a21d"><div class="ttname"><a href="structmfrc522__params__t.html#a82f6e2d447a83c675bfe74b8a585a21d">mfrc522_params_t::rst_pin</a></div><div class="ttdeci">gpio_t rst_pin</div><div class="ttdoc">Reset pin.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:77</div></div>
+<div class="ttc" id="astructmfrc522__params__t_html_ad94e707acad333a80a154debc74bed0b"><div class="ttname"><a href="structmfrc522__params__t.html#ad94e707acad333a80a154debc74bed0b">mfrc522_params_t::cs_pin</a></div><div class="ttdeci">gpio_t cs_pin</div><div class="ttdoc">Slave select pin.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:76</div></div>
+<div class="ttc" id="astructmfrc522__t_html"><div class="ttname"><a href="structmfrc522__t.html">mfrc522_t</a></div><div class="ttdoc">MFRC522 device data structure type.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:83</div></div>
+<div class="ttc" id="astructmfrc522__t_html_ac9d4dec08881500087ba1311c16cb176"><div class="ttname"><a href="structmfrc522__t.html#ac9d4dec08881500087ba1311c16cb176">mfrc522_t::params</a></div><div class="ttdeci">mfrc522_params_t params</div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:84</div></div>
+<div class="ttc" id="astructmfrc522__uid__t_html"><div class="ttname"><a href="structmfrc522__uid__t.html">mfrc522_uid_t</a></div><div class="ttdoc">A struct used for passing the UID of a PICC.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:90</div></div>
+<div class="ttc" id="astructmfrc522__uid__t_html_a4126a6e2b134f8295c50ebb01ada6061"><div class="ttname"><a href="structmfrc522__uid__t.html#a4126a6e2b134f8295c50ebb01ada6061">mfrc522_uid_t::sak</a></div><div class="ttdeci">uint8_t sak</div><div class="ttdoc">The SAK (Select acknowledge) byte returned from the PICC after successful selection.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:93</div></div>
+<div class="ttc" id="astructmfrc522__uid__t_html_acc8faad782a6f12879c41d9d4af20802"><div class="ttname"><a href="structmfrc522__uid__t.html#acc8faad782a6f12879c41d9d4af20802">mfrc522_uid_t::size</a></div><div class="ttdeci">uint8_t size</div><div class="ttdoc">Number of bytes in the UID.</div><div class="ttdef"><b>Definition:</b> mfrc522.h:91</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="mfrc522_8h.html">mfrc522.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

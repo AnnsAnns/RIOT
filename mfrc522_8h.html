@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/mfrc522.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mfrc522_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">mfrc522.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__actuators.html">Actuator Device Drivers</a> &raquo; <a class="el" href="group__drivers__mfrc522.html">MFRC522 RFID controller</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;stdbool.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="spi_8h_source.html">periph/spi.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mfrc522__regs_8h_source.html">mfrc522_regs.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for mfrc522.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="mfrc522_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmfrc522__params__t.html">mfrc522_params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MFRC522 device initialization parameters.  <a href="structmfrc522__params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmfrc522__t.html">mfrc522_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MFRC522 device data structure type.  <a href="structmfrc522__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct used for passing the UID of a PICC.  <a href="structmfrc522__uid__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct used for passing a MIFARE Crypto1 key.  <a href="structmfrc522__mifare__key__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga016ce3c66512405b5b0f3d5039782bcb"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga016ce3c66512405b5b0f3d5039782bcb">MFRC522_UID_MAX_SIZE</a>&#160;&#160;&#160;10</td></tr>
+<tr class="memdesc:ga016ce3c66512405b5b0f3d5039782bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size for uid byte array. <br /></td></tr>
+<tr class="separator:ga016ce3c66512405b5b0f3d5039782bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab71e9ae567b0ce37fc780f28e92a439"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gaab71e9ae567b0ce37fc780f28e92a439">MFRC522_MF_ACK</a>&#160;&#160;&#160;0xA</td></tr>
+<tr class="memdesc:gaab71e9ae567b0ce37fc780f28e92a439"><td class="mdescLeft">&#160;</td><td class="mdescRight">The MIFARE Classic uses a 4 bit ACK/NAK.  <a href="group__drivers__mfrc522.html#gaab71e9ae567b0ce37fc780f28e92a439">More...</a><br /></td></tr>
+<tr class="separator:gaab71e9ae567b0ce37fc780f28e92a439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8435582d23e115b2f9c68f3cbba2880f"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga8435582d23e115b2f9c68f3cbba2880f">MFRC522_MF_KEY_SIZE</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memdesc:ga8435582d23e115b2f9c68f3cbba2880f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Mifare Crypto1 key is 6 bytes. <br /></td></tr>
+<tr class="separator:ga8435582d23e115b2f9c68f3cbba2880f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga33c7a3d97499278cbe30fb9c61a562e4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a54181fb39067b717ec991e8b7cee9b8c">MFRC522_PICC_TYPE_ISO_14443_4</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ab17aa2fc84ed855b8f0739913068e5ad">MFRC522_PICC_TYPE_ISO_18092</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a82440ae14051cfd6a163c44a368ceb37">MFRC522_PICC_TYPE_MIFARE_MINI</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4aa0842ffe78c7eb0e3e50023ab8555206">MFRC522_PICC_TYPE_MIFARE_1K</a>
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a66d516f2f32de4afb43216b5ccf86804">MFRC522_PICC_TYPE_MIFARE_4K</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a5bdab066171aabf26e4a51a6b6f82abc">MFRC522_PICC_TYPE_MIFARE_UL</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7c1ca3a1d6007e3d8756683fbe9a2f29">MFRC522_PICC_TYPE_MIFARE_PLUS</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a7e9a94106c447f4bf2961d0c5fe5557b">MFRC522_PICC_TYPE_MIFARE_DESFIRE</a>
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a83f7ce6e4e57aacd2202e4f46cafb5d7">MFRC522_PICC_TYPE_TNP3XXX</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4ada76c526ba87176f4f628d82dc4434cb">MFRC522_PICC_TYPE_NOT_COMPLETE</a>
+, <a class="el" href="group__drivers__mfrc522.html#gga33c7a3d97499278cbe30fb9c61a562e4a9c158029c33cf5f4af7e5500d4a1adc3">MFRC522_PICC_TYPE_UNKNOWN</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga33c7a3d97499278cbe30fb9c61a562e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">PICC types.  <a href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">More...</a><br /></td></tr>
+<tr class="separator:ga33c7a3d97499278cbe30fb9c61a562e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gae88e704c1baca8b42a37ea5c4da11efd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gae88e704c1baca8b42a37ea5c4da11efd">mfrc522_pcd_set_register_bitmask</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="mfrc522__regs_8h.html#abf9e5478d91cd52534962e2be981069e">mfrc522_pcd_register_t</a> reg, uint8_t mask)</td></tr>
+<tr class="memdesc:gae88e704c1baca8b42a37ea5c4da11efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the bits given in mask in register reg.  <a href="group__drivers__mfrc522.html#gae88e704c1baca8b42a37ea5c4da11efd">More...</a><br /></td></tr>
+<tr class="separator:gae88e704c1baca8b42a37ea5c4da11efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga82a4ed520523bfab0cbb03093494e9e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga82a4ed520523bfab0cbb03093494e9e9">mfrc522_pcd_clear_register_bitmask</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="mfrc522__regs_8h.html#abf9e5478d91cd52534962e2be981069e">mfrc522_pcd_register_t</a> reg, uint8_t mask)</td></tr>
+<tr class="memdesc:ga82a4ed520523bfab0cbb03093494e9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the bits given in mask from register reg.  <a href="group__drivers__mfrc522.html#ga82a4ed520523bfab0cbb03093494e9e9">More...</a><br /></td></tr>
+<tr class="separator:ga82a4ed520523bfab0cbb03093494e9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4d5f10591dc1cbb6a85dfe3f466b0e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gaf4d5f10591dc1cbb6a85dfe3f466b0e1">mfrc522_pcd_calculate_crc</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, const uint8_t *data, uint8_t length, uint8_t *result)</td></tr>
+<tr class="memdesc:gaf4d5f10591dc1cbb6a85dfe3f466b0e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use the CRC coprocessor in the MFRC522 to calculate a CRC_A.  <a href="group__drivers__mfrc522.html#gaf4d5f10591dc1cbb6a85dfe3f466b0e1">More...</a><br /></td></tr>
+<tr class="separator:gaf4d5f10591dc1cbb6a85dfe3f466b0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2bf3fbf93f06d481c5dc3721d09fc089"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga2bf3fbf93f06d481c5dc3721d09fc089">mfrc522_pcd_init</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, const <a class="el" href="structmfrc522__params__t.html">mfrc522_params_t</a> *params)</td></tr>
+<tr class="memdesc:ga2bf3fbf93f06d481c5dc3721d09fc089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization.  <a href="group__drivers__mfrc522.html#ga2bf3fbf93f06d481c5dc3721d09fc089">More...</a><br /></td></tr>
+<tr class="separator:ga2bf3fbf93f06d481c5dc3721d09fc089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f293c33f06b4c7627c10bda1d25209c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga6f293c33f06b4c7627c10bda1d25209c">mfrc522_pcd_reset</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga6f293c33f06b4c7627c10bda1d25209c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a soft reset on the MFRC522 chip and waits for it to be ready again.  <a href="group__drivers__mfrc522.html#ga6f293c33f06b4c7627c10bda1d25209c">More...</a><br /></td></tr>
+<tr class="separator:ga6f293c33f06b4c7627c10bda1d25209c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad05b7fab52868dc979048fcd300168ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gad05b7fab52868dc979048fcd300168ad">mfrc522_pcd_antenna_on</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:gad05b7fab52868dc979048fcd300168ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns the antenna on by enabling pins TX1 and TX2.  <a href="group__drivers__mfrc522.html#gad05b7fab52868dc979048fcd300168ad">More...</a><br /></td></tr>
+<tr class="separator:gad05b7fab52868dc979048fcd300168ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13602aa60c6f6dbf294a4c3ab3cbec23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga13602aa60c6f6dbf294a4c3ab3cbec23">mfrc522_pcd_antenna_off</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga13602aa60c6f6dbf294a4c3ab3cbec23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns the antenna off by disabling pins TX1 and TX2.  <a href="group__drivers__mfrc522.html#ga13602aa60c6f6dbf294a4c3ab3cbec23">More...</a><br /></td></tr>
+<tr class="separator:ga13602aa60c6f6dbf294a4c3ab3cbec23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51d0152f001dab967c4ea8d176097a13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mfrc522__regs_8h.html#ac90ea4e202c15a1dfc4e53d4409373bb">mfrc522_pcd_rx_gain_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga51d0152f001dab967c4ea8d176097a13">mfrc522_pcd_get_antenna_gain</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga51d0152f001dab967c4ea8d176097a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current MFRC522 receiver gain.  <a href="group__drivers__mfrc522.html#ga51d0152f001dab967c4ea8d176097a13">More...</a><br /></td></tr>
+<tr class="separator:ga51d0152f001dab967c4ea8d176097a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae127381e4436bdd16b54cdf964c51c5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gae127381e4436bdd16b54cdf964c51c5a">mfrc522_pcd_set_antenna_gain</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="mfrc522__regs_8h.html#ac90ea4e202c15a1dfc4e53d4409373bb">mfrc522_pcd_rx_gain_t</a> rx_gain)</td></tr>
+<tr class="memdesc:gae127381e4436bdd16b54cdf964c51c5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the MFRC522 receiver gain.  <a href="group__drivers__mfrc522.html#gae127381e4436bdd16b54cdf964c51c5a">More...</a><br /></td></tr>
+<tr class="separator:gae127381e4436bdd16b54cdf964c51c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8952088c0080c4a947853ac29e29cd07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga8952088c0080c4a947853ac29e29cd07">mfrc522_pcd_soft_power_down</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga8952088c0080c4a947853ac29e29cd07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the MFRC522 to soft power-down mode.  <a href="group__drivers__mfrc522.html#ga8952088c0080c4a947853ac29e29cd07">More...</a><br /></td></tr>
+<tr class="separator:ga8952088c0080c4a947853ac29e29cd07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32ee8a9d114cfde21b8252a64a34a1ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga32ee8a9d114cfde21b8252a64a34a1ad">mfrc522_pcd_soft_power_up</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga32ee8a9d114cfde21b8252a64a34a1ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the MFRC522 to leave soft power-down mode.  <a href="group__drivers__mfrc522.html#ga32ee8a9d114cfde21b8252a64a34a1ad">More...</a><br /></td></tr>
+<tr class="separator:ga32ee8a9d114cfde21b8252a64a34a1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1dbc1ddda667fe66a59ded1d59410088"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga1dbc1ddda667fe66a59ded1d59410088">mfrc522_pcd_transceive_data</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, const uint8_t *send_data, uint8_t send_len, uint8_t *back_data, uint8_t *back_len, uint8_t *valid_bits, uint8_t rx_align, bool check_crc)</td></tr>
+<tr class="memdesc:ga1dbc1ddda667fe66a59ded1d59410088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes MFRC522_CMD_TRANSCEIVE.  <a href="group__drivers__mfrc522.html#ga1dbc1ddda667fe66a59ded1d59410088">More...</a><br /></td></tr>
+<tr class="separator:ga1dbc1ddda667fe66a59ded1d59410088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5bcdaf5761f5c237973caddcf2dddc2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga5bcdaf5761f5c237973caddcf2dddc2a">mfrc522_pcd_communicate_with_picc</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="mfrc522__regs_8h.html#a2428cbbbebd30305493d387c60e0a58c">mfrc522_pcd_command_t</a> command, uint8_t wait_irq, const uint8_t *send_data, uint8_t send_len, uint8_t *back_data, uint8_t *back_len, uint8_t *valid_bits, uint8_t rx_align, bool check_crc)</td></tr>
+<tr class="memdesc:ga5bcdaf5761f5c237973caddcf2dddc2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers data to MFRC522's FIFO, executes a command, waits for completion and transfers data back from the FIFO.  <a href="group__drivers__mfrc522.html#ga5bcdaf5761f5c237973caddcf2dddc2a">More...</a><br /></td></tr>
+<tr class="separator:ga5bcdaf5761f5c237973caddcf2dddc2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae3750565c51431cc2ec898cadc4e7a94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gae3750565c51431cc2ec898cadc4e7a94">mfrc522_picc_request_a</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t *buffer_atqa, uint8_t *buffer_size)</td></tr>
+<tr class="memdesc:gae3750565c51431cc2ec898cadc4e7a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits REQA, Type A.  <a href="group__drivers__mfrc522.html#gae3750565c51431cc2ec898cadc4e7a94">More...</a><br /></td></tr>
+<tr class="separator:gae3750565c51431cc2ec898cadc4e7a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga777c18185cf8d679633d7966e8fa7d45"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga777c18185cf8d679633d7966e8fa7d45">mfrc522_picc_wakeup_a</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t *buffer_atqa, uint8_t *buffer_size)</td></tr>
+<tr class="memdesc:ga777c18185cf8d679633d7966e8fa7d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits WUPA, Type A.  <a href="group__drivers__mfrc522.html#ga777c18185cf8d679633d7966e8fa7d45">More...</a><br /></td></tr>
+<tr class="separator:ga777c18185cf8d679633d7966e8fa7d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8610819376a07184ca10ed857271602e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga8610819376a07184ca10ed857271602e">mfrc522_picc_reqa_or_wupa</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="mfrc522__regs_8h.html#a38055f6f904b626f6b42b9a65754179c">mfrc522_picc_command_t</a> command, uint8_t *buffer_atqa, uint8_t *buffer_size)</td></tr>
+<tr class="memdesc:ga8610819376a07184ca10ed857271602e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits REQA (Type A) or WUPA (Type A) commands.  <a href="group__drivers__mfrc522.html#ga8610819376a07184ca10ed857271602e">More...</a><br /></td></tr>
+<tr class="separator:ga8610819376a07184ca10ed857271602e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae99cef019d906fbdd3f0d5cc36ba8614"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gae99cef019d906fbdd3f0d5cc36ba8614">mfrc522_picc_select</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid, uint8_t valid_bits)</td></tr>
+<tr class="memdesc:gae99cef019d906fbdd3f0d5cc36ba8614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits SELECT/ANTICOLLISION commands to select a single PICC.  <a href="group__drivers__mfrc522.html#gae99cef019d906fbdd3f0d5cc36ba8614">More...</a><br /></td></tr>
+<tr class="separator:gae99cef019d906fbdd3f0d5cc36ba8614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa1d11fe896bd4a2bb54828192cce3d57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gaa1d11fe896bd4a2bb54828192cce3d57">mfrc522_picc_halt_a</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa1d11fe896bd4a2bb54828192cce3d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs a PICC in state ACTIVE(*) to go to state HALT.  <a href="group__drivers__mfrc522.html#gaa1d11fe896bd4a2bb54828192cce3d57">More...</a><br /></td></tr>
+<tr class="separator:gaa1d11fe896bd4a2bb54828192cce3d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaccc7d2f773269ff1e8a1b8b84c6255e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gaaccc7d2f773269ff1e8a1b8b84c6255e">mfrc522_pcd_authenticate</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="mfrc522__regs_8h.html#a38055f6f904b626f6b42b9a65754179c">mfrc522_picc_command_t</a> command, uint8_t block_addr, const <a class="el" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a> *key, const <a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid)</td></tr>
+<tr class="memdesc:gaaccc7d2f773269ff1e8a1b8b84c6255e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the MFRC522 MFAuthent command.  <a href="group__drivers__mfrc522.html#gaaccc7d2f773269ff1e8a1b8b84c6255e">More...</a><br /></td></tr>
+<tr class="separator:gaaccc7d2f773269ff1e8a1b8b84c6255e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga91157640715039ff621a2ca45dea634a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga91157640715039ff621a2ca45dea634a">mfrc522_pcd_stop_crypto1</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga91157640715039ff621a2ca45dea634a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to exit the PCD from its authenticated state.  <a href="group__drivers__mfrc522.html#ga91157640715039ff621a2ca45dea634a">More...</a><br /></td></tr>
+<tr class="separator:ga91157640715039ff621a2ca45dea634a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93eb1ba17298d423c3e3377d3fe5169c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga93eb1ba17298d423c3e3377d3fe5169c">mfrc522_mifare_read</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, uint8_t *buffer, uint8_t *buffer_size)</td></tr>
+<tr class="memdesc:ga93eb1ba17298d423c3e3377d3fe5169c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read 16 bytes (+ 2 bytes CRC_A) from the active PICC.  <a href="group__drivers__mfrc522.html#ga93eb1ba17298d423c3e3377d3fe5169c">More...</a><br /></td></tr>
+<tr class="separator:ga93eb1ba17298d423c3e3377d3fe5169c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fc360fdac04ed584ca00bb5f114c905"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga4fc360fdac04ed584ca00bb5f114c905">mfrc522_mifare_write</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, const uint8_t *buffer, uint8_t buffer_size)</td></tr>
+<tr class="memdesc:ga4fc360fdac04ed584ca00bb5f114c905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write 16 bytes to the active PICC.  <a href="group__drivers__mfrc522.html#ga4fc360fdac04ed584ca00bb5f114c905">More...</a><br /></td></tr>
+<tr class="separator:ga4fc360fdac04ed584ca00bb5f114c905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a9df2c7e7e2cca3509be2115c29a4ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga0a9df2c7e7e2cca3509be2115c29a4ca">mfrc522_mifare_ultralight_write</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t page, const uint8_t *buffer)</td></tr>
+<tr class="memdesc:ga0a9df2c7e7e2cca3509be2115c29a4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a 4 byte page to the active MIFARE Ultralight PICC.  <a href="group__drivers__mfrc522.html#ga0a9df2c7e7e2cca3509be2115c29a4ca">More...</a><br /></td></tr>
+<tr class="separator:ga0a9df2c7e7e2cca3509be2115c29a4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9486e7850ac4e55e49ef2b06c61d6d34"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga9486e7850ac4e55e49ef2b06c61d6d34">mfrc522_mifare_decrement</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t delta)</td></tr>
+<tr class="memdesc:ga9486e7850ac4e55e49ef2b06c61d6d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract the operand from the value of the addressed block, and store the result in the Transfer Buffer.  <a href="group__drivers__mfrc522.html#ga9486e7850ac4e55e49ef2b06c61d6d34">More...</a><br /></td></tr>
+<tr class="separator:ga9486e7850ac4e55e49ef2b06c61d6d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71b32a01fd06126b4e69eb480105a334"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga71b32a01fd06126b4e69eb480105a334">mfrc522_mifare_increment</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t delta)</td></tr>
+<tr class="memdesc:ga71b32a01fd06126b4e69eb480105a334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the operand to the value of the addressed block, and store the result in the Transfer Buffer.  <a href="group__drivers__mfrc522.html#ga71b32a01fd06126b4e69eb480105a334">More...</a><br /></td></tr>
+<tr class="separator:ga71b32a01fd06126b4e69eb480105a334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f068ff4f4a767e27377ea29edb3c51a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga8f068ff4f4a767e27377ea29edb3c51a">mfrc522_mifare_restore</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr)</td></tr>
+<tr class="memdesc:ga8f068ff4f4a767e27377ea29edb3c51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the value of the addressed block into the Transfer Buffer.  <a href="group__drivers__mfrc522.html#ga8f068ff4f4a767e27377ea29edb3c51a">More...</a><br /></td></tr>
+<tr class="separator:ga8f068ff4f4a767e27377ea29edb3c51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga425fc11f981ad253a0cc2b63fe79e41c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga425fc11f981ad253a0cc2b63fe79e41c">mfrc522_mifare_transfer</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr)</td></tr>
+<tr class="memdesc:ga425fc11f981ad253a0cc2b63fe79e41c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the value from the Transfer Buffer into destination block.  <a href="group__drivers__mfrc522.html#ga425fc11f981ad253a0cc2b63fe79e41c">More...</a><br /></td></tr>
+<tr class="separator:ga425fc11f981ad253a0cc2b63fe79e41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7b613640e59d100c0adce970d719a643"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga7b613640e59d100c0adce970d719a643">mfrc522_mifare_get_value</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t *value)</td></tr>
+<tr class="memdesc:ga7b613640e59d100c0adce970d719a643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper routine to read the current value from a Value Block.  <a href="group__drivers__mfrc522.html#ga7b613640e59d100c0adce970d719a643">More...</a><br /></td></tr>
+<tr class="separator:ga7b613640e59d100c0adce970d719a643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55179c88daf10c79d637f4dcfeb81344"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga55179c88daf10c79d637f4dcfeb81344">mfrc522_mifare_set_value</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, uint8_t block_addr, int32_t value)</td></tr>
+<tr class="memdesc:ga55179c88daf10c79d637f4dcfeb81344"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper routine to write a specific value into a Value Block.  <a href="group__drivers__mfrc522.html#ga55179c88daf10c79d637f4dcfeb81344">More...</a><br /></td></tr>
+<tr class="separator:ga55179c88daf10c79d637f4dcfeb81344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad151ef47d2f2d0a170940c13593c8e56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gad151ef47d2f2d0a170940c13593c8e56">mfrc522_pcd_ntag216_auth</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, const uint8_t *password, uint8_t p_ack[])</td></tr>
+<tr class="memdesc:gad151ef47d2f2d0a170940c13593c8e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticate with a NTAG216.  <a href="group__drivers__mfrc522.html#gad151ef47d2f2d0a170940c13593c8e56">More...</a><br /></td></tr>
+<tr class="separator:gad151ef47d2f2d0a170940c13593c8e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9543484f6aed8109ba53e88b1881de00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga9543484f6aed8109ba53e88b1881de00">mfrc522_pcd_mifare_transceive</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, const uint8_t *send_data, uint8_t send_len, bool accept_timeout)</td></tr>
+<tr class="memdesc:ga9543484f6aed8109ba53e88b1881de00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper for MIFARE protocol communication.  <a href="group__drivers__mfrc522.html#ga9543484f6aed8109ba53e88b1881de00">More...</a><br /></td></tr>
+<tr class="separator:ga9543484f6aed8109ba53e88b1881de00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac082d5d29416e660ac117bada5311e44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gac082d5d29416e660ac117bada5311e44">mfrc522_picc_get_type</a> (uint8_t sak)</td></tr>
+<tr class="memdesc:gac082d5d29416e660ac117bada5311e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates the SAK (Select Acknowledge) to a PICC type.  <a href="group__drivers__mfrc522.html#gac082d5d29416e660ac117bada5311e44">More...</a><br /></td></tr>
+<tr class="separator:gac082d5d29416e660ac117bada5311e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58dfb62498e9d34af12d5c6e0bba5574"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga58dfb62498e9d34af12d5c6e0bba5574">mfrc522_picc_get_type_string</a> (<a class="el" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a> picc_type)</td></tr>
+<tr class="memdesc:ga58dfb62498e9d34af12d5c6e0bba5574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name for the PICC type.  <a href="group__drivers__mfrc522.html#ga58dfb62498e9d34af12d5c6e0bba5574">More...</a><br /></td></tr>
+<tr class="separator:ga58dfb62498e9d34af12d5c6e0bba5574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabdf548dbc90a211e53364a2d379c5992"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gabdf548dbc90a211e53364a2d379c5992">mfrc522_mifare_set_access_bits</a> (uint8_t *access_bit_buffer, uint8_t g0, uint8_t g1, uint8_t g2, uint8_t g3)</td></tr>
+<tr class="memdesc:gabdf548dbc90a211e53364a2d379c5992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the bit pattern needed for the specified access bits.  <a href="group__drivers__mfrc522.html#gabdf548dbc90a211e53364a2d379c5992">More...</a><br /></td></tr>
+<tr class="separator:gabdf548dbc90a211e53364a2d379c5992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga274d7471dbe8025f1a64fb53c62044d5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga274d7471dbe8025f1a64fb53c62044d5">mfrc522_mifare_open_uid_backdoor</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga274d7471dbe8025f1a64fb53c62044d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the "magic sequence" needed to get Chinese UID changeable Mifare cards to allow writing to sector 0, where the card UID is stored.  <a href="group__drivers__mfrc522.html#ga274d7471dbe8025f1a64fb53c62044d5">More...</a><br /></td></tr>
+<tr class="separator:ga274d7471dbe8025f1a64fb53c62044d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa991a89437c7a388a8861638418643d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gaa991a89437c7a388a8861638418643d1">mfrc522_mifare_set_uid</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid, const uint8_t *new_uid, uint8_t new_uid_size)</td></tr>
+<tr class="memdesc:gaa991a89437c7a388a8861638418643d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read entire block 0, including all manufacturer data, and overwrites that block with the new UID, a freshly calculated BCC, and the original manufacturer data.  <a href="group__drivers__mfrc522.html#gaa991a89437c7a388a8861638418643d1">More...</a><br /></td></tr>
+<tr class="separator:gaa991a89437c7a388a8861638418643d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59dbf1d7261091d042981593988a86db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga59dbf1d7261091d042981593988a86db">mfrc522_mifare_unbrick_uid_sector</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:ga59dbf1d7261091d042981593988a86db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset entire sector 0 to zeroes, so the card can be read again by readers.  <a href="group__drivers__mfrc522.html#ga59dbf1d7261091d042981593988a86db">More...</a><br /></td></tr>
+<tr class="separator:ga59dbf1d7261091d042981593988a86db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac7836a121808f62740c12f52bfeb82a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gac7836a121808f62740c12f52bfeb82a8">mfrc522_picc_is_new_card_present</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:gac7836a121808f62740c12f52bfeb82a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a new card could be detected.  <a href="group__drivers__mfrc522.html#gac7836a121808f62740c12f52bfeb82a8">More...</a><br /></td></tr>
+<tr class="separator:gac7836a121808f62740c12f52bfeb82a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d4c760531d7d1eb79974caf74a7da19"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga6d4c760531d7d1eb79974caf74a7da19">mfrc522_picc_read_card_serial</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid)</td></tr>
+<tr class="memdesc:ga6d4c760531d7d1eb79974caf74a7da19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple wrapper around <a class="el" href="group__drivers__mfrc522.html#gae99cef019d906fbdd3f0d5cc36ba8614" title="Transmits SELECT/ANTICOLLISION commands to select a single PICC.">mfrc522_picc_select()</a>  <a href="group__drivers__mfrc522.html#ga6d4c760531d7d1eb79974caf74a7da19">More...</a><br /></td></tr>
+<tr class="separator:ga6d4c760531d7d1eb79974caf74a7da19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa65922fe7dbd5c31b9cb33305b5c93c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gaa65922fe7dbd5c31b9cb33305b5c93c6">mfrc522_pcd_dump_version_to_serial</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa65922fe7dbd5c31b9cb33305b5c93c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump debug info about the connected PCD to stdout.  <a href="group__drivers__mfrc522.html#gaa65922fe7dbd5c31b9cb33305b5c93c6">More...</a><br /></td></tr>
+<tr class="separator:gaa65922fe7dbd5c31b9cb33305b5c93c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9e7fee0db62c32a0f0c015239206688d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga9e7fee0db62c32a0f0c015239206688d">mfrc522_picc_dump_to_serial</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid)</td></tr>
+<tr class="memdesc:ga9e7fee0db62c32a0f0c015239206688d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump debug info about the selected PICC to stdout.  <a href="group__drivers__mfrc522.html#ga9e7fee0db62c32a0f0c015239206688d">More...</a><br /></td></tr>
+<tr class="separator:ga9e7fee0db62c32a0f0c015239206688d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad3d17752e4bcf7e6a732df90dc14f659"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gad3d17752e4bcf7e6a732df90dc14f659">mfrc522_picc_dump_details_to_serial</a> (<a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid)</td></tr>
+<tr class="memdesc:gad3d17752e4bcf7e6a732df90dc14f659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump card info (UID, SAK, Type) about the selected PICC to stdout.  <a href="group__drivers__mfrc522.html#gad3d17752e4bcf7e6a732df90dc14f659">More...</a><br /></td></tr>
+<tr class="separator:gad3d17752e4bcf7e6a732df90dc14f659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5138229a9f4723ff4aeb4302611006a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#ga5138229a9f4723ff4aeb4302611006a5">mfrc522_picc_dump_mifare_classic_to_serial</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid, <a class="el" href="group__drivers__mfrc522.html#ga33c7a3d97499278cbe30fb9c61a562e4">mfrc522_picc_type_t</a> picc_type, <a class="el" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a> *key)</td></tr>
+<tr class="memdesc:ga5138229a9f4723ff4aeb4302611006a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump memory contents of a MIFARE Classic PICC to stdout.  <a href="group__drivers__mfrc522.html#ga5138229a9f4723ff4aeb4302611006a5">More...</a><br /></td></tr>
+<tr class="separator:ga5138229a9f4723ff4aeb4302611006a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac0f64a1b45e018164aab646b9c8be8a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gac0f64a1b45e018164aab646b9c8be8a9">mfrc522_picc_dump_mifare_classic_sector_to_serial</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev, <a class="el" href="structmfrc522__uid__t.html">mfrc522_uid_t</a> *uid, <a class="el" href="structmfrc522__mifare__key__t.html">mfrc522_mifare_key_t</a> *key, uint8_t sector)</td></tr>
+<tr class="memdesc:gac0f64a1b45e018164aab646b9c8be8a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump memory contents of a sector of a MIFARE Classic PICC to stdout.  <a href="group__drivers__mfrc522.html#gac0f64a1b45e018164aab646b9c8be8a9">More...</a><br /></td></tr>
+<tr class="separator:gac0f64a1b45e018164aab646b9c8be8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa344e4f5db65961677feae076291efc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gaa344e4f5db65961677feae076291efc4">mfrc522_picc_dump_mifare_ultralight_to_serial</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa344e4f5db65961677feae076291efc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump memory contents of a MIFARE Ultralight PICC to stdout.  <a href="group__drivers__mfrc522.html#gaa344e4f5db65961677feae076291efc4">More...</a><br /></td></tr>
+<tr class="separator:gaa344e4f5db65961677feae076291efc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab810713a04a1555c1a2b9356bd22377b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__mfrc522.html#gab810713a04a1555c1a2b9356bd22377b">mfrc522_pcd_perform_self_test</a> (<a class="el" href="structmfrc522__t.html">mfrc522_t</a> *dev)</td></tr>
+<tr class="memdesc:gab810713a04a1555c1a2b9356bd22377b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a self-test of the MFRC522.  <a href="group__drivers__mfrc522.html#gab810713a04a1555c1a2b9356bd22377b">More...</a><br /></td></tr>
+<tr class="separator:gab810713a04a1555c1a2b9356bd22377b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="mfrc522_8h.html">mfrc522.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

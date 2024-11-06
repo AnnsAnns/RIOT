@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: DNS over CoAP client implementation</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__net__gcoap__dns.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#files">Files</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">DNS over CoAP client implementation<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__application__layer.html">Application Layer</a> &raquo; <a class="el" href="group__net__gcoap.html">GCoAP</a> &#124; <a class="el" href="group__pseudomodules.html">Generic pseudomodules</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>A DNS over CoAP client prototype based on gCoAP. </p>
+<p>Enable <a class="el" href="group__net__gcoap__dns.html">DNS over CoAP client implementation</a>.</p>
+<p>DNS over CoAP allows a node to use a CoAP server to resolve DNS request, following <a href="https://datatracker.ietf.org/doc/draft-ietf-core-dns-over-coap/">draft-ietf-core-dns-over-coap</a>.</p>
+<p>The <code>gcoap_dns</code> module does not replace the <a class="el" href="group__net__sock__dns.html#ga508b47ec287a3846ca8f8fc2c0bbe9bd">sock_dns_query</a> function when built, and is not used as a back-end to <a class="el" href="group__net__utils.html#ga602ddb0b10821c5e6ae592abca644fdb">netutils_get_ipv6</a> automatically. It does, however, provide a drop-in replacement for <a class="el" href="group__net__sock__dns.html#ga508b47ec287a3846ca8f8fc2c0bbe9bd">sock_dns_query</a> in its <a class="el" href="group__net__gcoap__dns.html#gaadb30532f0d6ed65b528df575e05ab9f">gcoap_dns_query</a> function. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__gcoap__dns__config"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__gcoap__dns__config.html">GCoAP DNS over CoAP client configuration</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:gcoap_2dns_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gcoap_2dns_8h.html">dns.h</a></td></tr>
+<tr class="memdesc:gcoap_2dns_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>gcoap_dns</code> definitions <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaadb30532f0d6ed65b528df575e05ab9f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#gaadb30532f0d6ed65b528df575e05ab9f">gcoap_dns_query</a> (const char *domain_name, void *addr_out, int family)</td></tr>
+<tr class="memdesc:gaadb30532f0d6ed65b528df575e05ab9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query a domain name via CoAP synchronously.  <a href="group__net__gcoap__dns.html#gaadb30532f0d6ed65b528df575e05ab9f">More...</a><br /></td></tr>
+<tr class="separator:gaadb30532f0d6ed65b528df575e05ab9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac86d1963fadee9385dce0f1463d4fbf6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#gac86d1963fadee9385dce0f1463d4fbf6">gcoap_dns_server_uri_set</a> (const char *uri)</td></tr>
+<tr class="memdesc:gac86d1963fadee9385dce0f1463d4fbf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets and checks a URI for a DoC server.  <a href="group__net__gcoap__dns.html#gac86d1963fadee9385dce0f1463d4fbf6">More...</a><br /></td></tr>
+<tr class="separator:gac86d1963fadee9385dce0f1463d4fbf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c508b439095e29b2c7fb540408050ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#ga3c508b439095e29b2c7fb540408050ea">gcoap_dns_server_uri_is_set</a> (void)</td></tr>
+<tr class="memdesc:ga3c508b439095e29b2c7fb540408050ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the URI for the DoC server is set.  <a href="group__net__gcoap__dns.html#ga3c508b439095e29b2c7fb540408050ea">More...</a><br /></td></tr>
+<tr class="separator:ga3c508b439095e29b2c7fb540408050ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga82129a1e6a6d64d63d16d29bf5e611e0"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#ga82129a1e6a6d64d63d16d29bf5e611e0">gcoap_dns_server_uri_get</a> (char *uri, size_t uri_len)</td></tr>
+<tr class="memdesc:ga82129a1e6a6d64d63d16d29bf5e611e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the URI for the DoC server.  <a href="group__net__gcoap__dns.html#ga82129a1e6a6d64d63d16d29bf5e611e0">More...</a><br /></td></tr>
+<tr class="separator:ga82129a1e6a6d64d63d16d29bf5e611e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafb92a4faab33919e700ec779e95a66ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#gafb92a4faab33919e700ec779e95a66ae">gcoap_dns_cred_reset</a> (void)</td></tr>
+<tr class="memdesc:gafb92a4faab33919e700ec779e95a66ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all added credentials.  <a href="group__net__gcoap__dns.html#gafb92a4faab33919e700ec779e95a66ae">More...</a><br /></td></tr>
+<tr class="separator:gafb92a4faab33919e700ec779e95a66ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga47fef7e608bf9c84b877b6026719dd7c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#ga47fef7e608bf9c84b877b6026719dd7c">gcoap_dns_cred_add</a> (<a class="el" href="structcredman__credential__t.html">credman_credential_t</a> *creds)</td></tr>
+<tr class="memdesc:ga47fef7e608bf9c84b877b6026719dd7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a credential for the use with the configured DoC server.  <a href="group__net__gcoap__dns.html#ga47fef7e608bf9c84b877b6026719dd7c">More...</a><br /></td></tr>
+<tr class="separator:ga47fef7e608bf9c84b877b6026719dd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae33c8e7f6a9cbdc632f56b6f8d556e89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#gae33c8e7f6a9cbdc632f56b6f8d556e89">gcoap_dns_cred_remove</a> (<a class="el" href="group__net__credman.html#ga89fc115fe10d879da7faf1c0d0f901a7">credman_tag_t</a> tag, <a class="el" href="group__net__credman.html#ga9b3a1809012813b046937832b80a4ffd">credman_type_t</a> type)</td></tr>
+<tr class="memdesc:gae33c8e7f6a9cbdc632f56b6f8d556e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a credential for the use with the configured DoC server.  <a href="group__net__gcoap__dns.html#gae33c8e7f6a9cbdc632f56b6f8d556e89">More...</a><br /></td></tr>
+<tr class="separator:gae33c8e7f6a9cbdc632f56b6f8d556e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94fe266bb2a87effc3c55c58f76b49bc"><td class="memItemLeft" align="right" valign="top"><a id="ga94fe266bb2a87effc3c55c58f76b49bc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#ga94fe266bb2a87effc3c55c58f76b49bc">gcoap_dns_server_proxy_reset</a> (void)</td></tr>
+<tr class="memdesc:ga94fe266bb2a87effc3c55c58f76b49bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the proxy URI. <br /></td></tr>
+<tr class="separator:ga94fe266bb2a87effc3c55c58f76b49bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b79f31ead91bcee1409d7a1c805f00c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#ga9b79f31ead91bcee1409d7a1c805f00c">gcoap_dns_server_proxy_set</a> (const char *proxy)</td></tr>
+<tr class="memdesc:ga9b79f31ead91bcee1409d7a1c805f00c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets and checks a proxy URI.  <a href="group__net__gcoap__dns.html#ga9b79f31ead91bcee1409d7a1c805f00c">More...</a><br /></td></tr>
+<tr class="separator:ga9b79f31ead91bcee1409d7a1c805f00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf72e55c33b8c945a2ddd1180947ff1c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#gaf72e55c33b8c945a2ddd1180947ff1c6">gcoap_dns_server_proxy_is_set</a> (void)</td></tr>
+<tr class="memdesc:gaf72e55c33b8c945a2ddd1180947ff1c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a proxy URI is set.  <a href="group__net__gcoap__dns.html#gaf72e55c33b8c945a2ddd1180947ff1c6">More...</a><br /></td></tr>
+<tr class="separator:gaf72e55c33b8c945a2ddd1180947ff1c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf5560c6a14d4789bbb6b1c13fc594b4d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gcoap__dns.html#gaf5560c6a14d4789bbb6b1c13fc594b4d">gcoap_dns_server_proxy_get</a> (char *proxy, size_t proxy_len)</td></tr>
+<tr class="memdesc:gaf5560c6a14d4789bbb6b1c13fc594b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the proxy URI.  <a href="group__net__gcoap__dns.html#gaf5560c6a14d4789bbb6b1c13fc594b4d">More...</a><br /></td></tr>
+<tr class="separator:gaf5560c6a14d4789bbb6b1c13fc594b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga47fef7e608bf9c84b877b6026719dd7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga47fef7e608bf9c84b877b6026719dd7c">&#9670;&nbsp;</a></span>gcoap_dns_cred_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gcoap_dns_cred_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcredman__credential__t.html">credman_credential_t</a> *&#160;</td>
+          <td class="paramname"><em>creds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a credential for the use with the configured DoC server. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>creds != NULL.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">creds</td><td>A crential. May not be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success </dd>
+<dd>
+-ENOTSUP if DTLS is not supported (because <code>gcoap_dtls</code> is not compiled in) </dd>
+<dd>
+-ENOMEM if <a class="el" href="group__gcoap__dns__config.html#ga6ef7cb949375e1f52aaf9346fa6d3490">CONFIG_GCOAP_DNS_CREDS_MAX</a> is exceeded (duplicates may be added). </dd>
+<dd>
+-EBADF if the credential can not be added to <a class="el" href="group__net__credman.html">(D)TLS Credential Manager</a> or the GCoAP DTLS sock. </dd></dl>
+
+</div>
+</div>
+<a id="gae33c8e7f6a9cbdc632f56b6f8d556e89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae33c8e7f6a9cbdc632f56b6f8d556e89">&#9670;&nbsp;</a></span>gcoap_dns_cred_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gcoap_dns_cred_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__credman.html#ga89fc115fe10d879da7faf1c0d0f901a7">credman_tag_t</a>&#160;</td>
+          <td class="paramname"><em>tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__net__credman.html#ga9b3a1809012813b046937832b80a4ffd">credman_type_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a credential for the use with the configured DoC server. </p>
+<p>This also removes the credentials from the <a class="el" href="group__net__credman.html">(D)TLS Credential Manager</a> and the GCoAP DTLS sock.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tag</td><td>The tag of the credential. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>The type of the credential. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gafb92a4faab33919e700ec779e95a66ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafb92a4faab33919e700ec779e95a66ae">&#9670;&nbsp;</a></span>gcoap_dns_cred_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gcoap_dns_cred_reset </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes all added credentials. </p>
+<p>This also removes the credentials from the <a class="el" href="group__net__credman.html">(D)TLS Credential Manager</a> and the GCoAP DTLS sock. </p>
+
+</div>
+</div>
+<a id="gaadb30532f0d6ed65b528df575e05ab9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaadb30532f0d6ed65b528df575e05ab9f">&#9670;&nbsp;</a></span>gcoap_dns_query()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gcoap_dns_query </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>domain_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>addr_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>family</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Query a domain name via CoAP synchronously. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">domain_name</td><td>A '\0'-terminated domain name. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">addr_out</td><td>The resolved address. Must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">family</td><td>The desired address family for <code>addr_out</code>. <a class="el" href="group__net__af.html#ggad825d553b53d96e75e002bc6f64642e1aa0641a57327aef3ea3aef5bda8355c25">AF_UNSPEC</a> for any address family (an IPv6 address will take preference over an IPv4 address).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of <code>addr_out</code> in bytes on success </dd>
+<dd>
+-EAFNOSUPPORT, if the hostname of the URI resolves to an unknown address family. </dd>
+<dd>
+-EBADMSG, when receiving erroneous response or response containing an error code. </dd>
+<dd>
+-ECONNABORTED, if CoAP request cannot be sent. </dd>
+<dd>
+-ECONNREFUSED, if no URI is set for the client (see <a class="el" href="group__net__gcoap__dns.html#gac86d1963fadee9385dce0f1463d4fbf6">gcoap_dns_server_uri_set()</a>). </dd>
+<dd>
+-EDESTADDRREQ, if CoAP response was received from an unexpected remote. </dd>
+<dd>
+-EHOSTUNREACH, if the hostname of the URI can not be resolved </dd>
+<dd>
+-ENOBUFS, if there was not enough buffer space for the request. </dd>
+<dd>
+-ENOBUFS, if length of received CoAP body is greater than <a class="el" href="group__net__dns__msg__conf.html#ga9530cd696fa9efb6052c27fcdf76020f">CONFIG_DNS_MSG_LEN</a>. </dd>
+<dd>
+-ENOENT, if Zone-ID of the URI can not be found locally. </dd>
+<dd>
+-ENOMSG, if CoAP response did not contain a DNS response. </dd>
+<dd>
+-ENOTRECOVERABLE, on gCoAP-internal error. </dd>
+<dd>
+-ENOTSUP, if credential can not be added for to client. </dd>
+<dd>
+-ETIMEDOUT, if CoAP request timed out. </dd></dl>
+
+</div>
+</div>
+<a id="gaf5560c6a14d4789bbb6b1c13fc594b4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf5560c6a14d4789bbb6b1c13fc594b4d">&#9670;&nbsp;</a></span>gcoap_dns_server_proxy_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t gcoap_dns_server_proxy_get </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>proxy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>proxy_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the proxy URI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">proxy</td><td>The current proxy URI </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">proxy_len</td><td>Maximum length for <code>proxy</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Length of the <code>proxy</code> on return. 0, if no URI is set. </dd>
+<dd>
+-ENOBUFS, if the configured URI is longer than <code>proxy_len</code>. </dd></dl>
+
+</div>
+</div>
+<a id="gaf72e55c33b8c945a2ddd1180947ff1c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf72e55c33b8c945a2ddd1180947ff1c6">&#9670;&nbsp;</a></span>gcoap_dns_server_proxy_is_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool gcoap_dns_server_proxy_is_set </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a proxy URI is set. </p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>A proxy URI is set. </td></tr>
+    <tr><td class="paramname">false</td><td>There is no URI set for the DoC server. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9b79f31ead91bcee1409d7a1c805f00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9b79f31ead91bcee1409d7a1c805f00c">&#9670;&nbsp;</a></span>gcoap_dns_server_proxy_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gcoap_dns_server_proxy_set </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>proxy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets and checks a proxy URI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">proxy</td><td>A proxy URI. Must contain a <code>dns</code> query variable.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of <code>proxy</code> on success. </dd>
+<dd>
+-ENOBUFS, if the client implementation has not enough buffer space to process the proxy URI. </dd>
+<dd>
+-ENOSUP, if module <code>gcoap_dns_proxied</code> is not compiled in. </dd></dl>
+
+</div>
+</div>
+<a id="ga82129a1e6a6d64d63d16d29bf5e611e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga82129a1e6a6d64d63d16d29bf5e611e0">&#9670;&nbsp;</a></span>gcoap_dns_server_uri_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t gcoap_dns_server_uri_get </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>uri</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>uri_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the URI for the DoC server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">uri</td><td>The current URI for the DoC server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uri_len</td><td>Maximum length for <code>uri</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Length of the <code>uri</code> on return. 0, if no URI is set. </dd>
+<dd>
+-ENOBUFS, if the configured URI is longer than <code>uri_len</code>. </dd></dl>
+
+</div>
+</div>
+<a id="ga3c508b439095e29b2c7fb540408050ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c508b439095e29b2c7fb540408050ea">&#9670;&nbsp;</a></span>gcoap_dns_server_uri_is_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool gcoap_dns_server_uri_is_set </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the URI for the DoC server is set. </p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>A URI for the DoC server is set. </td></tr>
+    <tr><td class="paramname">false</td><td>There is no URI set for the DoC server. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac86d1963fadee9385dce0f1463d4fbf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac86d1963fadee9385dce0f1463d4fbf6">&#9670;&nbsp;</a></span>gcoap_dns_server_uri_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gcoap_dns_server_uri_set </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>uri</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets and checks a URI for a DoC server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">uri</td><td>A URI. May be NULL to remove the URI. Unless the <a class="el" href="group__net__sock__dns.html">DNS sock API</a> module is also used, the host component of the URI needs to be an IP literal.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>length of <code>uri</code> on success (0 when URI is removed). </dd>
+<dd>
+-EINVAL, if <code>uri</code> is not a valid URI for DNS over CoAP. </dd>
+<dd>
+-ENOBUFS, if the client implementation has not enough buffer space to process the URI. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/stm32/include/periph/cpu_spi.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('cpu__spi_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">cpu_spi.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="cpu__spi_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2017 OTA keys S.A.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef PERIPH_CPU_SPI_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define PERIPH_CPU_SPI_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;cpu.h&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="units_8h.html">macros/units.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cpu__dma_8h.html">periph/cpu_dma.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cpu__gpio_8h.html">periph/cpu_gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/* resolve circular dependency by declaring spi_t here */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#define HAVE_SPI_T</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">typedef</span> uint_fast8_t <a class="code" href="group__drivers__periph__spi.html#ga12004e6f2a2ea6b7c0a96c654a2f3874">spi_t</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#a1b9e5f52b319c2bf8bf6266b995cc740">   47</a></span>&#160;<span class="preprocessor">#define SPI_HWCS_MASK       (0xffffff00)</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#a292c9a0a5b03329a153ad28343ff2e09">   55</a></span>&#160;<span class="preprocessor">#define SPI_HWCS(x)         (SPI_HWCS_MASK | x)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#a8b0f414ed05adc20a504e8705587f9f8">   60</a></span>&#160;<span class="preprocessor">#define SPI_CS_UNDEF        (GPIO_UNDEF)</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#define HAVE_SPI_CS_T</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">typedef</span> uint32_t <a class="code" href="group__drivers__periph__spi.html#gaf5fbaf43946646c588c9372e8906c99e">spi_cs_t</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#af3d9c2b9cf24ed0b13807d63f5e9b11f">   77</a></span>&#160;<span class="preprocessor">#define PERIPH_SPI_NEEDS_TRANSFER_BYTE</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#ac68c30cec18f4abf11cc4bb09c13df17">   79</a></span>&#160;<span class="preprocessor">#define PERIPH_SPI_NEEDS_TRANSFER_REG</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#afeb6291046cbd0102e8c87af75e4200d">   81</a></span>&#160;<span class="preprocessor">#define PERIPH_SPI_NEEDS_TRANSFER_REGS</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#ad6d9d193934d2c1c598837398369a197">   88</a></span>&#160;<span class="preprocessor">#define HAVE_SPI_CLK_T</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffae6cc2c3387e4da1c7cb83aefb10f5d27">   90</a></span>&#160;    <a class="code" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a> = <a class="code" href="units_8h.html#aee55275295c076c6d23c994777623253">KHZ</a>(100), </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa8db155bff416a59ca71ce9b2a2568bf3">   91</a></span>&#160;    <a class="code" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a> = <a class="code" href="units_8h.html#aee55275295c076c6d23c994777623253">KHZ</a>(400), </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffabf727d641e5cceb12a58d29dc954c111">   92</a></span>&#160;    <a class="code" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffabf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a>   = <a class="code" href="units_8h.html#ab7b18750ddf0850461f926ae151ca7fa">MHZ</a>(1),   </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa4105210aa902203502e4392d4a3fbe58">   93</a></span>&#160;    <a class="code" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a>   = <a class="code" href="units_8h.html#ab7b18750ddf0850461f926ae151ca7fa">MHZ</a>(5),   </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa1693f88bef873b11f7b85ce0bba8175d">   94</a></span>&#160;    <a class="code" href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a>  = <a class="code" href="units_8h.html#ab7b18750ddf0850461f926ae151ca7fa">MHZ</a>(10),  </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;};</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="cpu__spi_8h.html#a17adf016c33fa2f2e36c9bec898bc0c8">  100</a></span>&#160;<span class="keyword">typedef</span> uint32_t <a class="code" href="cpu__spi_8h.html#a17adf016c33fa2f2e36c9bec898bc0c8">spi_clk_t</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="structspi__conf__t.html#a31bda124233f47b74c2bdd4a6e81f7e1">  107</a></span>&#160;    SPI_TypeDef *<a class="code" href="structspi__conf__t.html#a31bda124233f47b74c2bdd4a6e81f7e1">dev</a>;       </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    gpio_t mosi_pin;        </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    gpio_t miso_pin;        </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    gpio_t sclk_pin;        </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="group__drivers__periph__spi.html#gaf5fbaf43946646c588c9372e8906c99e">spi_cs_t</a> cs_pin;        </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#ifndef CPU_FAM_STM32F1</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="structspi__conf__t.html#a91b2db5fabdc17ed5b314c3d228f666a">  113</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structspi__conf__t.html#a91b2db5fabdc17ed5b314c3d228f666a">mosi_af</a>;      </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structspi__conf__t.html#a22755e9078feb95feeefbc77361ed9c3">  114</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structspi__conf__t.html#a22755e9078feb95feeefbc77361ed9c3">miso_af</a>;      </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structspi__conf__t.html#a4f38816d39c76b681f86b38506e8abb5">  115</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structspi__conf__t.html#a4f38816d39c76b681f86b38506e8abb5">sclk_af</a>;      </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structspi__conf__t.html#a63e10a24b42ceedce24a8e5cf2069a01">  116</a></span>&#160;    <a class="code" href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a> <a class="code" href="structspi__conf__t.html#a63e10a24b42ceedce24a8e5cf2069a01">cs_af</a>;        </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structspi__conf__t.html#a0d857abedbcc6a3cf3f7477d3edd4e2e">  118</a></span>&#160;    uint32_t <a class="code" href="structspi__conf__t.html#a0d857abedbcc6a3cf3f7477d3edd4e2e">rccmask</a>;       </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    uint8_t apbbus;         </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#ifdef MODULE_PERIPH_DMA</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="sam0__common_2include_2periph__cpu__common_8h.html#abc9032c3a330351ad3078e39069b3514">dma_t</a> tx_dma;           </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    uint8_t tx_dma_chan;    </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="sam0__common_2include_2periph__cpu__common_8h.html#abc9032c3a330351ad3078e39069b3514">dma_t</a> rx_dma;           </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    uint8_t rx_dma_chan;    </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;} <a class="code" href="structspi__conf__t.html">spi_conf_t</a>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;gpio_t <a class="code" href="group__drivers__periph__spi.html#ga206fc7968c27b40069ec5c3d7de03eb3">spi_pin_miso</a>(spi_t bus);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;gpio_t <a class="code" href="group__drivers__periph__spi.html#ga5a1dd3972f11c2383927855a4daf5d89">spi_pin_mosi</a>(spi_t bus);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;gpio_t <a class="code" href="group__drivers__periph__spi.html#ga64ad55ec9f29b85502d74a1a4230cd45">spi_pin_clk</a>(spi_t bus);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* PERIPH_CPU_SPI_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acpu__dma_8h_html"><div class="ttname"><a href="cpu__dma_8h.html">cpu_dma.h</a></div><div class="ttdoc">DMA CPU specific definitions for the STM32 family.</div></div>
+<div class="ttc" id="acpu__gpio_8h_html"><div class="ttname"><a href="cpu__gpio_8h.html">cpu_gpio.h</a></div><div class="ttdoc">GPIO CPU definitions for the STM32 family.</div></div>
+<div class="ttc" id="acpu__spi_8h_html_a17adf016c33fa2f2e36c9bec898bc0c8"><div class="ttname"><a href="cpu__spi_8h.html#a17adf016c33fa2f2e36c9bec898bc0c8">spi_clk_t</a></div><div class="ttdeci">uint32_t spi_clk_t</div><div class="ttdoc">SPI clock type.</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:100</div></div>
+<div class="ttc" id="acpu__spi_8h_html_aa94c5fdcac6a4b26211b612c3edc04ffa1693f88bef873b11f7b85ce0bba8175d"><div class="ttname"><a href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a></div><div class="ttdeci">@ SPI_CLK_10MHZ</div><div class="ttdoc">drive the SPI bus with 10MHz</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:94</div></div>
+<div class="ttc" id="acpu__spi_8h_html_aa94c5fdcac6a4b26211b612c3edc04ffa4105210aa902203502e4392d4a3fbe58"><div class="ttname"><a href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a></div><div class="ttdeci">@ SPI_CLK_5MHZ</div><div class="ttdoc">drive the SPI bus with 5MHz</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:93</div></div>
+<div class="ttc" id="acpu__spi_8h_html_aa94c5fdcac6a4b26211b612c3edc04ffa8db155bff416a59ca71ce9b2a2568bf3"><div class="ttname"><a href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffa8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a></div><div class="ttdeci">@ SPI_CLK_400KHZ</div><div class="ttdoc">drive the SPI bus with 400KHz</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:91</div></div>
+<div class="ttc" id="acpu__spi_8h_html_aa94c5fdcac6a4b26211b612c3edc04ffabf727d641e5cceb12a58d29dc954c111"><div class="ttname"><a href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffabf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a></div><div class="ttdeci">@ SPI_CLK_1MHZ</div><div class="ttdoc">drive the SPI bus with 1MHz</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:92</div></div>
+<div class="ttc" id="acpu__spi_8h_html_aa94c5fdcac6a4b26211b612c3edc04ffae6cc2c3387e4da1c7cb83aefb10f5d27"><div class="ttname"><a href="cpu__spi_8h.html#aa94c5fdcac6a4b26211b612c3edc04ffae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a></div><div class="ttdeci">@ SPI_CLK_100KHZ</div><div class="ttdoc">drive the SPI bus with 100KHz</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:90</div></div>
+<div class="ttc" id="agd32v_2include_2periph__cpu_8h_html_a06ed6aad7d9b996fee989c31338138cd"><div class="ttname"><a href="gd32v_2include_2periph__cpu_8h.html#a06ed6aad7d9b996fee989c31338138cd">gpio_af_t</a></div><div class="ttdeci">gpio_af_t</div><div class="ttdoc">Override alternative GPIO mode options.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:166</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ga12004e6f2a2ea6b7c0a96c654a2f3874"><div class="ttname"><a href="group__drivers__periph__spi.html#ga12004e6f2a2ea6b7c0a96c654a2f3874">spi_t</a></div><div class="ttdeci">uint_fast8_t spi_t</div><div class="ttdoc">Default type for SPI devices.</div><div class="ttdef"><b>Definition:</b> spi.h:127</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ga206fc7968c27b40069ec5c3d7de03eb3"><div class="ttname"><a href="group__drivers__periph__spi.html#ga206fc7968c27b40069ec5c3d7de03eb3">spi_pin_miso</a></div><div class="ttdeci">gpio_t spi_pin_miso(spi_t dev)</div><div class="ttdoc">Get the MISO pin of the given SPI bus.</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ga5a1dd3972f11c2383927855a4daf5d89"><div class="ttname"><a href="group__drivers__periph__spi.html#ga5a1dd3972f11c2383927855a4daf5d89">spi_pin_mosi</a></div><div class="ttdeci">gpio_t spi_pin_mosi(spi_t dev)</div><div class="ttdoc">Get the MOSI pin of the given SPI bus.</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_ga64ad55ec9f29b85502d74a1a4230cd45"><div class="ttname"><a href="group__drivers__periph__spi.html#ga64ad55ec9f29b85502d74a1a4230cd45">spi_pin_clk</a></div><div class="ttdeci">gpio_t spi_pin_clk(spi_t dev)</div><div class="ttdoc">Get the CLK pin of the given SPI bus.</div></div>
+<div class="ttc" id="agroup__drivers__periph__spi_html_gaf5fbaf43946646c588c9372e8906c99e"><div class="ttname"><a href="group__drivers__periph__spi.html#gaf5fbaf43946646c588c9372e8906c99e">spi_cs_t</a></div><div class="ttdeci">gpio_t spi_cs_t</div><div class="ttdoc">Chip select pin type overlaps with gpio_t so it can be casted to this.</div><div class="ttdef"><b>Definition:</b> spi.h:135</div></div>
+<div class="ttc" id="asam0__common_2include_2periph__cpu__common_8h_html_abc9032c3a330351ad3078e39069b3514"><div class="ttname"><a href="sam0__common_2include_2periph__cpu__common_8h.html#abc9032c3a330351ad3078e39069b3514">dma_t</a></div><div class="ttdeci">unsigned dma_t</div><div class="ttdoc">DMA channel type.</div><div class="ttdef"><b>Definition:</b> periph_cpu_common.h:1127</div></div>
+<div class="ttc" id="astructspi__conf__t_html"><div class="ttname"><a href="structspi__conf__t.html">spi_conf_t</a></div><div class="ttdoc">SPI device configuration.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:337</div></div>
+<div class="ttc" id="astructspi__conf__t_html_a0d857abedbcc6a3cf3f7477d3edd4e2e"><div class="ttname"><a href="structspi__conf__t.html#a0d857abedbcc6a3cf3f7477d3edd4e2e">spi_conf_t::rccmask</a></div><div class="ttdeci">uint32_t rccmask</div><div class="ttdoc">bit in the RCC peripheral enable register</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:118</div></div>
+<div class="ttc" id="astructspi__conf__t_html_a22755e9078feb95feeefbc77361ed9c3"><div class="ttname"><a href="structspi__conf__t.html#a22755e9078feb95feeefbc77361ed9c3">spi_conf_t::miso_af</a></div><div class="ttdeci">gpio_af_t miso_af</div><div class="ttdoc">MISO pin alternate function.</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:114</div></div>
+<div class="ttc" id="astructspi__conf__t_html_a31bda124233f47b74c2bdd4a6e81f7e1"><div class="ttname"><a href="structspi__conf__t.html#a31bda124233f47b74c2bdd4a6e81f7e1">spi_conf_t::dev</a></div><div class="ttdeci">SPI_TypeDef * dev</div><div class="ttdoc">SPI device base register address.</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:107</div></div>
+<div class="ttc" id="astructspi__conf__t_html_a4f38816d39c76b681f86b38506e8abb5"><div class="ttname"><a href="structspi__conf__t.html#a4f38816d39c76b681f86b38506e8abb5">spi_conf_t::sclk_af</a></div><div class="ttdeci">gpio_af_t sclk_af</div><div class="ttdoc">SCLK pin alternate function.</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:115</div></div>
+<div class="ttc" id="astructspi__conf__t_html_a63e10a24b42ceedce24a8e5cf2069a01"><div class="ttname"><a href="structspi__conf__t.html#a63e10a24b42ceedce24a8e5cf2069a01">spi_conf_t::cs_af</a></div><div class="ttdeci">gpio_af_t cs_af</div><div class="ttdoc">HWCS pin alternate function.</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:116</div></div>
+<div class="ttc" id="astructspi__conf__t_html_a91b2db5fabdc17ed5b314c3d228f666a"><div class="ttname"><a href="structspi__conf__t.html#a91b2db5fabdc17ed5b314c3d228f666a">spi_conf_t::mosi_af</a></div><div class="ttdeci">gpio_af_t mosi_af</div><div class="ttdoc">MOSI pin alternate function.</div><div class="ttdef"><b>Definition:</b> cpu_spi.h:113</div></div>
+<div class="ttc" id="aunits_8h_html"><div class="ttname"><a href="units_8h.html">units.h</a></div><div class="ttdoc">Unit helper macros.</div></div>
+<div class="ttc" id="aunits_8h_html_ab7b18750ddf0850461f926ae151ca7fa"><div class="ttname"><a href="units_8h.html#ab7b18750ddf0850461f926ae151ca7fa">MHZ</a></div><div class="ttdeci">#define MHZ(x)</div><div class="ttdoc">A macro to return the Hz in x MHz.</div><div class="ttdef"><b>Definition:</b> units.h:49</div></div>
+<div class="ttc" id="aunits_8h_html_aee55275295c076c6d23c994777623253"><div class="ttname"><a href="units_8h.html#aee55275295c076c6d23c994777623253">KHZ</a></div><div class="ttdeci">#define KHZ(x)</div><div class="ttdoc">A macro to return the Hz in x kHz.</div><div class="ttdef"><b>Definition:</b> units.h:44</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_8fb93018175f1eef8ccffa491ecd65e5.html">stm32</a></li><li class="navelem"><a class="el" href="dir_2c7c57a0102e8392aaea30c0e4d338a5.html">include</a></li><li class="navelem"><a class="el" href="dir_2467268495d90d0a752e11c9806aa072.html">periph</a></li><li class="navelem"><a class="el" href="cpu__spi_8h.html">cpu_spi.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

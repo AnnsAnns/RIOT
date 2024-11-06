@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: pkg/uwb-core/include/dpl/dpl_eventq.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('dpl__eventq_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">dpl_eventq.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="dpl__eventq_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2020 Inria</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef DPL_DPL_EVENTQ_H</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define DPL_DPL_EVENTQ_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dpl__types_8h.html">dpl/dpl_types.h</a>&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="os__eventq_8h.html">os/os_eventq.h</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="uwb__core_8h.html">uwb_core.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structdpl__event.html">   35</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structdpl__event.html">dpl_event</a> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">struct </span><a class="code" href="structos__event.html">os_event</a> <a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>;     </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structdpl__eventq.html">   42</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structdpl__eventq.html">dpl_eventq</a> {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">struct </span><a class="code" href="structos__eventq.html">os_eventq</a> <a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>;   </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#aab9eb32e14db0d0aa1cdf06121fb378c">   49</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#aab9eb32e14db0d0aa1cdf06121fb378c">dpl_event_fn</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *ev);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#ac0c503363ae3367b7b6ce81f6edbbe0b">   58</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#ac0c503363ae3367b7b6ce81f6edbbe0b">dpl_event_init</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *ev, <a class="code" href="dpl__eventq_8h.html#aab9eb32e14db0d0aa1cdf06121fb378c">dpl_event_fn</a> * fn,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                 <span class="keywordtype">void</span> *arg)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="os__eventq_8h.html#a11ebf359634a0eda787f6ba128aa3d63">os_event_init</a>(&amp;ev-&gt;<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>, (<a class="code" href="os__eventq_8h.html#a6e572d40b307b9f40bec72281548b63e">os_event_fn</a>*) fn, arg);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#af4a756ca2e59f4dd96c1d109d09671e2">   71</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="dpl__eventq_8h.html#af4a756ca2e59f4dd96c1d109d09671e2">dpl_event_is_queued</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *ev)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="os__eventq_8h.html#a6acd6bff91dba04678d7f45127001e64">os_event_is_queued</a>(&amp;ev-&gt;<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#a4a17cb4566be71e30eb905348852b2f7">   81</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> *<a class="code" href="dpl__eventq_8h.html#a4a17cb4566be71e30eb905348852b2f7">dpl_event_get_arg</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *ev)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="os__eventq_8h.html#a4270767a1f016988bf6eb0a0ef69df25">os_event_get_arg</a>(&amp;ev-&gt;<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#aacd2ac815712bdbb65d0fa7ff2f6a65a">   92</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#aacd2ac815712bdbb65d0fa7ff2f6a65a">dpl_event_set_arg</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *ev, <span class="keywordtype">void</span> *arg)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="os__eventq_8h.html#a13e3f8b9f187b900e84323c4714c06b3">os_event_set_arg</a>(&amp;ev-&gt;<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>, arg);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#a39973afb7e8123e55b08def3a431ae60">  102</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#a39973afb7e8123e55b08def3a431ae60">dpl_event_run</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *ev)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;   <a class="code" href="os__eventq_8h.html#a83efb2aad7d2cddfaead929308e763d1">os_event_run</a>(&amp;ev-&gt;<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#aeea3844e022d10a361d6b2e514f317e9">  112</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#aeea3844e022d10a361d6b2e514f317e9">dpl_eventq_init</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="os__eventq_8h.html#a9a3085d78ea356a53979bfc69637307d">os_eventq_init</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#a58547185c5e1f18f5f92b36cb850bfcb">  122</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="dpl__eventq_8h.html#a58547185c5e1f18f5f92b36cb850bfcb">dpl_eventq_inited</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="os__eventq_8h.html#a37e51e1b019b2788e6b4321bba9cc857">os_eventq_inited</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#ae723afdf9fd35d33b1f8a5f8e3845416">  134</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#ae723afdf9fd35d33b1f8a5f8e3845416">dpl_eventq_deinit</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq)</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;{</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    (void) evq;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="comment">/* Can&#39;t deinit an eventq in RIOT */</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#a28f5b3422af6e0ad526917290b23196e">  147</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="structdpl__event.html">dpl_event</a> * <a class="code" href="dpl__eventq_8h.html#a28f5b3422af6e0ad526917290b23196e">dpl_eventq_get</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq)</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;{</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> (<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *) <a class="code" href="os__eventq_8h.html#aa9795b8630e04e07caafa8ae5e0ce0b6">os_eventq_get</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>, DPL_WAIT_FOREVER);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#ad071470ab273eca950c31b57cb6b2846">  157</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="structdpl__event.html">dpl_event</a> * <a class="code" href="dpl__eventq_8h.html#ad071470ab273eca950c31b57cb6b2846">dpl_eventq_get_no_wait</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq)</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;{</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">return</span> (<span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *) <a class="code" href="os__eventq_8h.html#aa0cf05d6291230c088ac0c5432871c9d">os_eventq_get_no_wait</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;}</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#acc4741844c1cec6e538ba745b71b9617">  168</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#acc4741844c1cec6e538ba745b71b9617">dpl_eventq_put</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq, <span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>)</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;{</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <a class="code" href="os__eventq_8h.html#ab688f5805fb365cfa7afce84a10e566b">os_eventq_put</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>, &amp;<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>-&gt;ev);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;}</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#a4ab9994d153a17aeb82aa162b11139a2">  179</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#a4ab9994d153a17aeb82aa162b11139a2">dpl_eventq_remove</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq, <span class="keyword">struct</span> <a class="code" href="structdpl__event.html">dpl_event</a> *<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;{</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <a class="code" href="os__eventq_8h.html#a6a65a5316446a1e26a55f576b1a65ef3">os_eventq_remove</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>, &amp;<a class="code" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">ev</a>-&gt;ev);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#a6209e5806ce5c2411497ad0b8fe1809a">  189</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="dpl__eventq_8h.html#a6209e5806ce5c2411497ad0b8fe1809a">dpl_eventq_run</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq)</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;{</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="os__eventq_8h.html#ae4f0fa91f246a2000baf21a6380d1b6d">os_eventq_run</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="dpl__eventq_8h.html#a3da830a1d35c3d1fdfd187afbf76f440">  201</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="dpl__eventq_8h.html#a3da830a1d35c3d1fdfd187afbf76f440">dpl_eventq_is_empty</a>(<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *evq)</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;{</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="os__eventq_8h.html#a00a7fcccdd01bc285caa7107f5f747e6">os_eventq_is_empty</a>(&amp;evq-&gt;<a class="code" href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">evq</a>);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;}</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">  214</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="structdpl__eventq.html">dpl_eventq</a> * <a class="code" href="dpl__eventq_8h.html#a73d36a1b6a9dc1bc591917d80ab780d9">dpl_eventq_dflt_get</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;{</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordflow">return</span> (<span class="keyword">struct</span> <a class="code" href="structdpl__eventq.html">dpl_eventq</a> *) <a class="code" href="uwb__core_8h.html#a8f4f5338a3ecf3741444bb0fdfd80aae">uwb_core_get_eventq</a>();</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;}</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DPL_DPL_EVENTQ_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adpl__eventq_8h_html_a28f5b3422af6e0ad526917290b23196e"><div class="ttname"><a href="dpl__eventq_8h.html#a28f5b3422af6e0ad526917290b23196e">dpl_eventq_get</a></div><div class="ttdeci">static struct dpl_event * dpl_eventq_get(struct dpl_eventq *evq)</div><div class="ttdoc">Get next event from event queue, blocking.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:147</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_a39973afb7e8123e55b08def3a431ae60"><div class="ttname"><a href="dpl__eventq_8h.html#a39973afb7e8123e55b08def3a431ae60">dpl_event_run</a></div><div class="ttdeci">static void dpl_event_run(struct dpl_event *ev)</div><div class="ttdoc">Runs an event.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:102</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_a3da830a1d35c3d1fdfd187afbf76f440"><div class="ttname"><a href="dpl__eventq_8h.html#a3da830a1d35c3d1fdfd187afbf76f440">dpl_eventq_is_empty</a></div><div class="ttdeci">static bool dpl_eventq_is_empty(struct dpl_eventq *evq)</div><div class="ttdoc">Check if queue is empty.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:201</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_a4a17cb4566be71e30eb905348852b2f7"><div class="ttname"><a href="dpl__eventq_8h.html#a4a17cb4566be71e30eb905348852b2f7">dpl_event_get_arg</a></div><div class="ttdeci">static void * dpl_event_get_arg(struct dpl_event *ev)</div><div class="ttdoc">Runs an event.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:81</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_a4ab9994d153a17aeb82aa162b11139a2"><div class="ttname"><a href="dpl__eventq_8h.html#a4ab9994d153a17aeb82aa162b11139a2">dpl_eventq_remove</a></div><div class="ttdeci">static void dpl_eventq_remove(struct dpl_eventq *evq, struct dpl_event *ev)</div><div class="ttdoc">Remove an event from the queue.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:179</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_a58547185c5e1f18f5f92b36cb850bfcb"><div class="ttname"><a href="dpl__eventq_8h.html#a58547185c5e1f18f5f92b36cb850bfcb">dpl_eventq_inited</a></div><div class="ttdeci">static int dpl_eventq_inited(struct dpl_eventq *evq)</div><div class="ttdoc">Check whether the event queue is initialized.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:122</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_a6209e5806ce5c2411497ad0b8fe1809a"><div class="ttname"><a href="dpl__eventq_8h.html#a6209e5806ce5c2411497ad0b8fe1809a">dpl_eventq_run</a></div><div class="ttdeci">static void dpl_eventq_run(struct dpl_eventq *evq)</div><div class="ttdoc">Gets and runs an event from the queue callback.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:189</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_a73d36a1b6a9dc1bc591917d80ab780d9"><div class="ttname"><a href="dpl__eventq_8h.html#a73d36a1b6a9dc1bc591917d80ab780d9">dpl_eventq_dflt_get</a></div><div class="ttdeci">static struct dpl_eventq * dpl_eventq_dflt_get(void)</div><div class="ttdoc">Retrieves the default event queue.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:214</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_aab9eb32e14db0d0aa1cdf06121fb378c"><div class="ttname"><a href="dpl__eventq_8h.html#aab9eb32e14db0d0aa1cdf06121fb378c">dpl_event_fn</a></div><div class="ttdeci">void dpl_event_fn(struct dpl_event *ev)</div><div class="ttdoc">dpl event callback function</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:49</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_aacd2ac815712bdbb65d0fa7ff2f6a65a"><div class="ttname"><a href="dpl__eventq_8h.html#aacd2ac815712bdbb65d0fa7ff2f6a65a">dpl_event_set_arg</a></div><div class="ttdeci">static void dpl_event_set_arg(struct dpl_event *ev, void *arg)</div><div class="ttdoc">Set the vent arg.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:92</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_ac0c503363ae3367b7b6ce81f6edbbe0b"><div class="ttname"><a href="dpl__eventq_8h.html#ac0c503363ae3367b7b6ce81f6edbbe0b">dpl_event_init</a></div><div class="ttdeci">static void dpl_event_init(struct dpl_event *ev, dpl_event_fn *fn, void *arg)</div><div class="ttdoc">Init a event.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:58</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_acc4741844c1cec6e538ba745b71b9617"><div class="ttname"><a href="dpl__eventq_8h.html#acc4741844c1cec6e538ba745b71b9617">dpl_eventq_put</a></div><div class="ttdeci">static void dpl_eventq_put(struct dpl_eventq *evq, struct dpl_event *ev)</div><div class="ttdoc">Put an event on the event queue.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:168</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_ad071470ab273eca950c31b57cb6b2846"><div class="ttname"><a href="dpl__eventq_8h.html#ad071470ab273eca950c31b57cb6b2846">dpl_eventq_get_no_wait</a></div><div class="ttdeci">static struct dpl_event * dpl_eventq_get_no_wait(struct dpl_eventq *evq)</div><div class="ttdoc">Get next event from event queue, non-blocking.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:157</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_ae723afdf9fd35d33b1f8a5f8e3845416"><div class="ttname"><a href="dpl__eventq_8h.html#ae723afdf9fd35d33b1f8a5f8e3845416">dpl_eventq_deinit</a></div><div class="ttdeci">static void dpl_eventq_deinit(struct dpl_eventq *evq)</div><div class="ttdoc">Deinitialize an event queue.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:134</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_aeea3844e022d10a361d6b2e514f317e9"><div class="ttname"><a href="dpl__eventq_8h.html#aeea3844e022d10a361d6b2e514f317e9">dpl_eventq_init</a></div><div class="ttdeci">static void dpl_eventq_init(struct dpl_eventq *evq)</div><div class="ttdoc">Initialize the event queue.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:112</div></div>
+<div class="ttc" id="adpl__eventq_8h_html_af4a756ca2e59f4dd96c1d109d09671e2"><div class="ttname"><a href="dpl__eventq_8h.html#af4a756ca2e59f4dd96c1d109d09671e2">dpl_event_is_queued</a></div><div class="ttdeci">static bool dpl_event_is_queued(struct dpl_event *ev)</div><div class="ttdoc">Check if event is in queue.</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:71</div></div>
+<div class="ttc" id="adpl__types_8h_html"><div class="ttname"><a href="dpl__types_8h.html">dpl_types.h</a></div><div class="ttdoc">uwb-core DPL (Decawave Porting Layer) types</div></div>
+<div class="ttc" id="aos__eventq_8h_html"><div class="ttname"><a href="os__eventq_8h.html">os_eventq.h</a></div><div class="ttdoc">mynewt-core event and event queue abstraction</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a00a7fcccdd01bc285caa7107f5f747e6"><div class="ttname"><a href="os__eventq_8h.html#a00a7fcccdd01bc285caa7107f5f747e6">os_eventq_is_empty</a></div><div class="ttdeci">static bool os_eventq_is_empty(struct os_eventq *evq)</div><div class="ttdoc">Check if queue is empty.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:227</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a11ebf359634a0eda787f6ba128aa3d63"><div class="ttname"><a href="os__eventq_8h.html#a11ebf359634a0eda787f6ba128aa3d63">os_event_init</a></div><div class="ttdeci">static void os_event_init(struct os_event *ev, os_event_fn *fn, void *arg)</div><div class="ttdoc">Init a event.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:60</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a13e3f8b9f187b900e84323c4714c06b3"><div class="ttname"><a href="os__eventq_8h.html#a13e3f8b9f187b900e84323c4714c06b3">os_event_set_arg</a></div><div class="ttdeci">static void os_event_set_arg(struct os_event *ev, void *arg)</div><div class="ttdoc">Set the event argument.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:100</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a37e51e1b019b2788e6b4321bba9cc857"><div class="ttname"><a href="os__eventq_8h.html#a37e51e1b019b2788e6b4321bba9cc857">os_eventq_inited</a></div><div class="ttdeci">static int os_eventq_inited(struct os_eventq *evq)</div><div class="ttdoc">Check whether the event queue is initialized.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:130</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a4270767a1f016988bf6eb0a0ef69df25"><div class="ttname"><a href="os__eventq_8h.html#a4270767a1f016988bf6eb0a0ef69df25">os_event_get_arg</a></div><div class="ttdeci">static void * os_event_get_arg(struct os_event *ev)</div><div class="ttdoc">Returns event argument.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:89</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a6a65a5316446a1e26a55f576b1a65ef3"><div class="ttname"><a href="os__eventq_8h.html#a6a65a5316446a1e26a55f576b1a65ef3">os_eventq_remove</a></div><div class="ttdeci">static void os_eventq_remove(struct os_eventq *evq, struct os_event *ev)</div><div class="ttdoc">Remove an event from the queue.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:204</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a6acd6bff91dba04678d7f45127001e64"><div class="ttname"><a href="os__eventq_8h.html#a6acd6bff91dba04678d7f45127001e64">os_event_is_queued</a></div><div class="ttdeci">static bool os_event_is_queued(struct os_event *ev)</div><div class="ttdoc">Check if event is in queue.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:79</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a6e572d40b307b9f40bec72281548b63e"><div class="ttname"><a href="os__eventq_8h.html#a6e572d40b307b9f40bec72281548b63e">os_event_fn</a></div><div class="ttdeci">void os_event_fn(struct os_event *ev)</div><div class="ttdoc">Event callback function.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:51</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a83efb2aad7d2cddfaead929308e763d1"><div class="ttname"><a href="os__eventq_8h.html#a83efb2aad7d2cddfaead929308e763d1">os_event_run</a></div><div class="ttdeci">static void os_event_run(struct os_event *ev)</div><div class="ttdoc">Runs an event.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:110</div></div>
+<div class="ttc" id="aos__eventq_8h_html_a9a3085d78ea356a53979bfc69637307d"><div class="ttname"><a href="os__eventq_8h.html#a9a3085d78ea356a53979bfc69637307d">os_eventq_init</a></div><div class="ttdeci">static void os_eventq_init(struct os_eventq *evq)</div><div class="ttdoc">Initialize the event queue.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:120</div></div>
+<div class="ttc" id="aos__eventq_8h_html_aa0cf05d6291230c088ac0c5432871c9d"><div class="ttname"><a href="os__eventq_8h.html#aa0cf05d6291230c088ac0c5432871c9d">os_eventq_get_no_wait</a></div><div class="ttdeci">static struct os_event * os_eventq_get_no_wait(struct os_eventq *evq)</div><div class="ttdoc">Get next event from event queue, non-blocking.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:178</div></div>
+<div class="ttc" id="aos__eventq_8h_html_aa9795b8630e04e07caafa8ae5e0ce0b6"><div class="ttname"><a href="os__eventq_8h.html#aa9795b8630e04e07caafa8ae5e0ce0b6">os_eventq_get</a></div><div class="ttdeci">static struct os_event * os_eventq_get(struct os_eventq *evq, os_time_t tmo)</div><div class="ttdoc">Get next event from event queue.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:156</div></div>
+<div class="ttc" id="aos__eventq_8h_html_ab688f5805fb365cfa7afce84a10e566b"><div class="ttname"><a href="os__eventq_8h.html#ab688f5805fb365cfa7afce84a10e566b">os_eventq_put</a></div><div class="ttdeci">static void os_eventq_put(struct os_eventq *evq, struct os_event *ev)</div><div class="ttdoc">Put an event on the event queue.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:193</div></div>
+<div class="ttc" id="aos__eventq_8h_html_ae4f0fa91f246a2000baf21a6380d1b6d"><div class="ttname"><a href="os__eventq_8h.html#ae4f0fa91f246a2000baf21a6380d1b6d">os_eventq_run</a></div><div class="ttdeci">static void os_eventq_run(struct os_eventq *evq)</div><div class="ttdoc">Gets and runs an event from the queue callback.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:214</div></div>
+<div class="ttc" id="astructdpl__event_html"><div class="ttname"><a href="structdpl__event.html">dpl_event</a></div><div class="ttdoc">dpl event wrapper</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:35</div></div>
+<div class="ttc" id="astructdpl__event_html_a6ded53753688eb21e528c650aa9333c7"><div class="ttname"><a href="structdpl__event.html#a6ded53753688eb21e528c650aa9333c7">dpl_event::ev</a></div><div class="ttdeci">struct os_event ev</div><div class="ttdoc">the event</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:36</div></div>
+<div class="ttc" id="astructdpl__eventq_html"><div class="ttname"><a href="structdpl__eventq.html">dpl_eventq</a></div><div class="ttdoc">dpl event queue wrapper</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:42</div></div>
+<div class="ttc" id="astructdpl__eventq_html_a03a28aaa55321ff23daaeca05349e0cf"><div class="ttname"><a href="structdpl__eventq.html#a03a28aaa55321ff23daaeca05349e0cf">dpl_eventq::evq</a></div><div class="ttdeci">struct os_eventq evq</div><div class="ttdoc">the event queue</div><div class="ttdef"><b>Definition:</b> dpl_eventq.h:43</div></div>
+<div class="ttc" id="astructos__event_html"><div class="ttname"><a href="structos__event.html">os_event</a></div><div class="ttdoc">Event wrapper.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:35</div></div>
+<div class="ttc" id="astructos__eventq_html"><div class="ttname"><a href="structos__eventq.html">os_eventq</a></div><div class="ttdoc">Event queue wrapper.</div><div class="ttdef"><b>Definition:</b> os_eventq.h:44</div></div>
+<div class="ttc" id="auwb__core_8h_html"><div class="ttname"><a href="uwb__core_8h.html">uwb_core.h</a></div></div>
+<div class="ttc" id="auwb__core_8h_html_a8f4f5338a3ecf3741444bb0fdfd80aae"><div class="ttname"><a href="uwb__core_8h.html#a8f4f5338a3ecf3741444bb0fdfd80aae">uwb_core_get_eventq</a></div><div class="ttdeci">event_queue_t * uwb_core_get_eventq(void)</div><div class="ttdoc">Retrieves the default event queue.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_1b757248df2f96757224e5c7d0d8f21a.html">pkg</a></li><li class="navelem"><a class="el" href="dir_62a9af1fe12759ebff26909c724a4a35.html">uwb-core</a></li><li class="navelem"><a class="el" href="dir_7df4fedca132c1310170e80f3d479a4c.html">include</a></li><li class="navelem"><a class="el" href="dir_213ffa2f86ca3dfea74f6f44d896c7fd.html">dpl</a></li><li class="navelem"><a class="el" href="dpl__eventq_8h.html">dpl_eventq.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/hd44780.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('hd44780_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">hd44780.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="hd44780_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2017 HAW Hamburg</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef HD44780_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define HD44780_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga0ab8d2585216b38d0a5250f0447f6b52">   37</a></span>&#160;<span class="preprocessor">#define HD44780_MAX_COLS        (40U)</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga66fd2b6df621c34f983f496552c2d1ea">   42</a></span>&#160;<span class="preprocessor">#define HD44780_MAX_ROWS        (4U)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga79b119603236f8f1007493f5fea96a6c">   47</a></span>&#160;<span class="preprocessor">#define HD44780_MAX_PINS        (8U)</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga951e70bbf0c16b2b1bbd86bf3ef22925">   55</a></span>&#160;<span class="preprocessor">#define HD44780_CGRAM_SIZE      (8U)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structhd44780__params__t.html">   60</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structhd44780__params__t.html#a75e805567653c5f01ad2364b7785e500">   61</a></span>&#160;    uint8_t <a class="code" href="structhd44780__params__t.html#a75e805567653c5f01ad2364b7785e500">cols</a>;                   </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structhd44780__params__t.html#ad946dbd5574b9854248c1f5454ec31d5">   62</a></span>&#160;    uint8_t <a class="code" href="structhd44780__params__t.html#ad946dbd5574b9854248c1f5454ec31d5">rows</a>;                   </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structhd44780__params__t.html#a68f6cbe4b5808f7c7c256399cf798d8a">   63</a></span>&#160;    gpio_t <a class="code" href="structhd44780__params__t.html#a68f6cbe4b5808f7c7c256399cf798d8a">rs</a>;                      </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structhd44780__params__t.html#a6484e24b639c73001cffe6defff8dde9">   64</a></span>&#160;    gpio_t <a class="code" href="structhd44780__params__t.html#a6484e24b639c73001cffe6defff8dde9">rw</a>;                      </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structhd44780__params__t.html#a81a7b86a98707e52c9335469462ce35a">   65</a></span>&#160;    gpio_t <a class="code" href="structhd44780__params__t.html#a81a7b86a98707e52c9335469462ce35a">enable</a>;                  </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="structhd44780__params__t.html#a90b575dd424fcdc15fd34d733ac23cdb">   66</a></span>&#160;    gpio_t data[<a class="code" href="group__drivers__hd44780.html#ga79b119603236f8f1007493f5fea96a6c">HD44780_MAX_PINS</a>];  </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <a class="code" href="structhd44780__params__t.html">hd44780_params_t</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structhd44780__t.html">   72</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structhd44780__t.html#a2bcfaf8bd4c788666955d7c9e59420d0">   73</a></span>&#160;    <a class="code" href="structhd44780__params__t.html">hd44780_params_t</a> <a class="code" href="structhd44780__t.html#a2bcfaf8bd4c788666955d7c9e59420d0">p</a>;             </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structhd44780__t.html#a2caead129de883eb28d8c12ba2e1fe19">   74</a></span>&#160;    uint8_t <a class="code" href="structhd44780__t.html#a2caead129de883eb28d8c12ba2e1fe19">flag</a>;                   </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structhd44780__t.html#add7a2c18202fc2158168575c8c74a9fc">   75</a></span>&#160;    uint8_t <a class="code" href="structhd44780__t.html#add7a2c18202fc2158168575c8c74a9fc">ctrl</a>;                   </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structhd44780__t.html#acc31b59d6c30de6e4a4bbee88fb9c9c4">   76</a></span>&#160;    uint8_t <a class="code" href="structhd44780__t.html#acc31b59d6c30de6e4a4bbee88fb9c9c4">mode</a>;                   </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="structhd44780__t.html#a31b9776bec0a79a77ffbbbbe1744e193">   77</a></span>&#160;    uint8_t roff[<a class="code" href="group__drivers__hd44780.html#ga66fd2b6df621c34f983f496552c2d1ea">HD44780_MAX_ROWS</a>]; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <a class="code" href="structhd44780__t.html">hd44780_t</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga2a57c0b8e66a2bcfa11b14b3f1139ef1">   83</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gga2a57c0b8e66a2bcfa11b14b3f1139ef1a97f71d02d42937c6e2b18c6a69388875">   84</a></span>&#160;    <a class="code" href="group__drivers__hd44780.html#gga2a57c0b8e66a2bcfa11b14b3f1139ef1a97f71d02d42937c6e2b18c6a69388875">HD44780_OFF</a>,                    </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="group__drivers__hd44780.html#gga2a57c0b8e66a2bcfa11b14b3f1139ef1a52325f8ec305ff5c66af4ba73926559d">HD44780_ON</a>                      </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gga2a57c0b8e66a2bcfa11b14b3f1139ef1a52325f8ec305ff5c66af4ba73926559d">   86</a></span>&#160;} <a class="code" href="group__drivers__hd44780.html#ga2a57c0b8e66a2bcfa11b14b3f1139ef1">hd44780_state_t</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gaba71832a5c79189079e00ea5951426b0">   96</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__hd44780.html#gaba71832a5c79189079e00ea5951426b0">hd44780_init</a>(<a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structhd44780__params__t.html">hd44780_params_t</a> *params);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga915ed976c878828af930cfc4be441a89">  103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga915ed976c878828af930cfc4be441a89">hd44780_clear</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gab41361450ba48accad84e893a01df5c7">  110</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#gab41361450ba48accad84e893a01df5c7">hd44780_home</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga7f89d6007d4a743b72cd89c652793ad0">  119</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga7f89d6007d4a743b72cd89c652793ad0">hd44780_set_cursor</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, uint8_t col, uint8_t row);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gaf8e692f768fd5fa877fdae09b89d5c26">  127</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#gaf8e692f768fd5fa877fdae09b89d5c26">hd44780_display</a>(<a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, <a class="code" href="group__drivers__hd44780.html#ga2a57c0b8e66a2bcfa11b14b3f1139ef1">hd44780_state_t</a> state);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga380841d815ff92d98bb1e85543d41fe6">  135</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga380841d815ff92d98bb1e85543d41fe6">hd44780_cursor</a>(<a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, <a class="code" href="group__drivers__hd44780.html#ga2a57c0b8e66a2bcfa11b14b3f1139ef1">hd44780_state_t</a> state);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gaf022045dd17a770780215f79b7d78e83">  143</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#gaf022045dd17a770780215f79b7d78e83">hd44780_blink</a>(<a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, <a class="code" href="group__drivers__hd44780.html#ga2a57c0b8e66a2bcfa11b14b3f1139ef1">hd44780_state_t</a> state);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga0c16f0e8ab976d84aa876f62a39aeb49">  150</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga0c16f0e8ab976d84aa876f62a39aeb49">hd44780_scroll_left</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga59e2e91d252c9f136f61d1c3b1db36d0">  157</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga59e2e91d252c9f136f61d1c3b1db36d0">hd44780_scroll_right</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga755d60952c2788b4011eccaee9ffda48">  164</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga755d60952c2788b4011eccaee9ffda48">hd44780_left2right</a>(<a class="code" href="structhd44780__t.html">hd44780_t</a> *dev);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga087af543d137830f14d5f05003c7fa3c">  171</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga087af543d137830f14d5f05003c7fa3c">hd44780_right2left</a>(<a class="code" href="structhd44780__t.html">hd44780_t</a> *dev);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga35e99338602964039824f424e4de5b1e">  179</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga35e99338602964039824f424e4de5b1e">hd44780_autoscroll</a>(<a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, <a class="code" href="group__drivers__hd44780.html#ga2a57c0b8e66a2bcfa11b14b3f1139ef1">hd44780_state_t</a> state);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gae60074ee18abb18279c949c42b549f1b">  190</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#gae60074ee18abb18279c949c42b549f1b">hd44780_create_char</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, uint8_t location, uint8_t charmap[]);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#ga88d69445a680a04aa2a1cee302ec32ef">  198</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#ga88d69445a680a04aa2a1cee302ec32ef">hd44780_write</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, uint8_t value);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="group__drivers__hd44780.html#gab344fb47c9a5784ce6fe0bce72c62d75">  206</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__hd44780.html#gab344fb47c9a5784ce6fe0bce72c62d75">hd44780_print</a>(<span class="keyword">const</span> <a class="code" href="structhd44780__t.html">hd44780_t</a> *dev, <span class="keyword">const</span> <span class="keywordtype">char</span> *data);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;}</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HD44780_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga087af543d137830f14d5f05003c7fa3c"><div class="ttname"><a href="group__drivers__hd44780.html#ga087af543d137830f14d5f05003c7fa3c">hd44780_right2left</a></div><div class="ttdeci">void hd44780_right2left(hd44780_t *dev)</div><div class="ttdoc">Set display direction right to left.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga0c16f0e8ab976d84aa876f62a39aeb49"><div class="ttname"><a href="group__drivers__hd44780.html#ga0c16f0e8ab976d84aa876f62a39aeb49">hd44780_scroll_left</a></div><div class="ttdeci">void hd44780_scroll_left(const hd44780_t *dev)</div><div class="ttdoc">Enable left scrolling.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga2a57c0b8e66a2bcfa11b14b3f1139ef1"><div class="ttname"><a href="group__drivers__hd44780.html#ga2a57c0b8e66a2bcfa11b14b3f1139ef1">hd44780_state_t</a></div><div class="ttdeci">hd44780_state_t</div><div class="ttdoc">Simple state values.</div><div class="ttdef"><b>Definition:</b> hd44780.h:83</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga35e99338602964039824f424e4de5b1e"><div class="ttname"><a href="group__drivers__hd44780.html#ga35e99338602964039824f424e4de5b1e">hd44780_autoscroll</a></div><div class="ttdeci">void hd44780_autoscroll(hd44780_t *dev, hd44780_state_t state)</div><div class="ttdoc">Display autoscroll on or off.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga380841d815ff92d98bb1e85543d41fe6"><div class="ttname"><a href="group__drivers__hd44780.html#ga380841d815ff92d98bb1e85543d41fe6">hd44780_cursor</a></div><div class="ttdeci">void hd44780_cursor(hd44780_t *dev, hd44780_state_t state)</div><div class="ttdoc">Show cursor, on or off.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga59e2e91d252c9f136f61d1c3b1db36d0"><div class="ttname"><a href="group__drivers__hd44780.html#ga59e2e91d252c9f136f61d1c3b1db36d0">hd44780_scroll_right</a></div><div class="ttdeci">void hd44780_scroll_right(const hd44780_t *dev)</div><div class="ttdoc">Enable right scrolling.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga66fd2b6df621c34f983f496552c2d1ea"><div class="ttname"><a href="group__drivers__hd44780.html#ga66fd2b6df621c34f983f496552c2d1ea">HD44780_MAX_ROWS</a></div><div class="ttdeci">#define HD44780_MAX_ROWS</div><div class="ttdoc">Maximal number of rows supported by the driver.</div><div class="ttdef"><b>Definition:</b> hd44780.h:42</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga755d60952c2788b4011eccaee9ffda48"><div class="ttname"><a href="group__drivers__hd44780.html#ga755d60952c2788b4011eccaee9ffda48">hd44780_left2right</a></div><div class="ttdeci">void hd44780_left2right(hd44780_t *dev)</div><div class="ttdoc">Set display direction left to right.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga79b119603236f8f1007493f5fea96a6c"><div class="ttname"><a href="group__drivers__hd44780.html#ga79b119603236f8f1007493f5fea96a6c">HD44780_MAX_PINS</a></div><div class="ttdeci">#define HD44780_MAX_PINS</div><div class="ttdoc">Number of data pins for communication 4 or 8.</div><div class="ttdef"><b>Definition:</b> hd44780.h:47</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga7f89d6007d4a743b72cd89c652793ad0"><div class="ttname"><a href="group__drivers__hd44780.html#ga7f89d6007d4a743b72cd89c652793ad0">hd44780_set_cursor</a></div><div class="ttdeci">void hd44780_set_cursor(const hd44780_t *dev, uint8_t col, uint8_t row)</div><div class="ttdoc">Set cursor to specific position in column and row.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga88d69445a680a04aa2a1cee302ec32ef"><div class="ttname"><a href="group__drivers__hd44780.html#ga88d69445a680a04aa2a1cee302ec32ef">hd44780_write</a></div><div class="ttdeci">void hd44780_write(const hd44780_t *dev, uint8_t value)</div><div class="ttdoc">Write a single character on the LCD.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_ga915ed976c878828af930cfc4be441a89"><div class="ttname"><a href="group__drivers__hd44780.html#ga915ed976c878828af930cfc4be441a89">hd44780_clear</a></div><div class="ttdeci">void hd44780_clear(const hd44780_t *dev)</div><div class="ttdoc">Clear display, delete all chars.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gab344fb47c9a5784ce6fe0bce72c62d75"><div class="ttname"><a href="group__drivers__hd44780.html#gab344fb47c9a5784ce6fe0bce72c62d75">hd44780_print</a></div><div class="ttdeci">void hd44780_print(const hd44780_t *dev, const char *data)</div><div class="ttdoc">Write a string on the LCD.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gab41361450ba48accad84e893a01df5c7"><div class="ttname"><a href="group__drivers__hd44780.html#gab41361450ba48accad84e893a01df5c7">hd44780_home</a></div><div class="ttdeci">void hd44780_home(const hd44780_t *dev)</div><div class="ttdoc">Reset cursor to row 0 and column 0.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gaba71832a5c79189079e00ea5951426b0"><div class="ttname"><a href="group__drivers__hd44780.html#gaba71832a5c79189079e00ea5951426b0">hd44780_init</a></div><div class="ttdeci">int hd44780_init(hd44780_t *dev, const hd44780_params_t *params)</div><div class="ttdoc">Initialize the given driver.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gae60074ee18abb18279c949c42b549f1b"><div class="ttname"><a href="group__drivers__hd44780.html#gae60074ee18abb18279c949c42b549f1b">hd44780_create_char</a></div><div class="ttdeci">void hd44780_create_char(const hd44780_t *dev, uint8_t location, uint8_t charmap[])</div><div class="ttdoc">Create and store a custom character on display memory.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gaf022045dd17a770780215f79b7d78e83"><div class="ttname"><a href="group__drivers__hd44780.html#gaf022045dd17a770780215f79b7d78e83">hd44780_blink</a></div><div class="ttdeci">void hd44780_blink(hd44780_t *dev, hd44780_state_t state)</div><div class="ttdoc">Blink cursor, on or off.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gaf8e692f768fd5fa877fdae09b89d5c26"><div class="ttname"><a href="group__drivers__hd44780.html#gaf8e692f768fd5fa877fdae09b89d5c26">hd44780_display</a></div><div class="ttdeci">void hd44780_display(hd44780_t *dev, hd44780_state_t state)</div><div class="ttdoc">Turn display on or off.</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gga2a57c0b8e66a2bcfa11b14b3f1139ef1a52325f8ec305ff5c66af4ba73926559d"><div class="ttname"><a href="group__drivers__hd44780.html#gga2a57c0b8e66a2bcfa11b14b3f1139ef1a52325f8ec305ff5c66af4ba73926559d">HD44780_ON</a></div><div class="ttdeci">@ HD44780_ON</div><div class="ttdoc">enable feature</div><div class="ttdef"><b>Definition:</b> hd44780.h:85</div></div>
+<div class="ttc" id="agroup__drivers__hd44780_html_gga2a57c0b8e66a2bcfa11b14b3f1139ef1a97f71d02d42937c6e2b18c6a69388875"><div class="ttname"><a href="group__drivers__hd44780.html#gga2a57c0b8e66a2bcfa11b14b3f1139ef1a97f71d02d42937c6e2b18c6a69388875">HD44780_OFF</a></div><div class="ttdeci">@ HD44780_OFF</div><div class="ttdoc">disable feature</div><div class="ttdef"><b>Definition:</b> hd44780.h:84</div></div>
+<div class="ttc" id="astructhd44780__params__t_html"><div class="ttname"><a href="structhd44780__params__t.html">hd44780_params_t</a></div><div class="ttdoc">Parameters needed for device initialization.</div><div class="ttdef"><b>Definition:</b> hd44780.h:60</div></div>
+<div class="ttc" id="astructhd44780__params__t_html_a6484e24b639c73001cffe6defff8dde9"><div class="ttname"><a href="structhd44780__params__t.html#a6484e24b639c73001cffe6defff8dde9">hd44780_params_t::rw</a></div><div class="ttdeci">gpio_t rw</div><div class="ttdoc">rw gpio pin</div><div class="ttdef"><b>Definition:</b> hd44780.h:64</div></div>
+<div class="ttc" id="astructhd44780__params__t_html_a68f6cbe4b5808f7c7c256399cf798d8a"><div class="ttname"><a href="structhd44780__params__t.html#a68f6cbe4b5808f7c7c256399cf798d8a">hd44780_params_t::rs</a></div><div class="ttdeci">gpio_t rs</div><div class="ttdoc">rs gpio pin</div><div class="ttdef"><b>Definition:</b> hd44780.h:63</div></div>
+<div class="ttc" id="astructhd44780__params__t_html_a75e805567653c5f01ad2364b7785e500"><div class="ttname"><a href="structhd44780__params__t.html#a75e805567653c5f01ad2364b7785e500">hd44780_params_t::cols</a></div><div class="ttdeci">uint8_t cols</div><div class="ttdoc">number of LCD cols</div><div class="ttdef"><b>Definition:</b> hd44780.h:61</div></div>
+<div class="ttc" id="astructhd44780__params__t_html_a81a7b86a98707e52c9335469462ce35a"><div class="ttname"><a href="structhd44780__params__t.html#a81a7b86a98707e52c9335469462ce35a">hd44780_params_t::enable</a></div><div class="ttdeci">gpio_t enable</div><div class="ttdoc">enable gpio pin</div><div class="ttdef"><b>Definition:</b> hd44780.h:65</div></div>
+<div class="ttc" id="astructhd44780__params__t_html_ad946dbd5574b9854248c1f5454ec31d5"><div class="ttname"><a href="structhd44780__params__t.html#ad946dbd5574b9854248c1f5454ec31d5">hd44780_params_t::rows</a></div><div class="ttdeci">uint8_t rows</div><div class="ttdoc">number of LCD rows</div><div class="ttdef"><b>Definition:</b> hd44780.h:62</div></div>
+<div class="ttc" id="astructhd44780__t_html"><div class="ttname"><a href="structhd44780__t.html">hd44780_t</a></div><div class="ttdoc">Device descriptor for HD44780 LCD.</div><div class="ttdef"><b>Definition:</b> hd44780.h:72</div></div>
+<div class="ttc" id="astructhd44780__t_html_a2bcfaf8bd4c788666955d7c9e59420d0"><div class="ttname"><a href="structhd44780__t.html#a2bcfaf8bd4c788666955d7c9e59420d0">hd44780_t::p</a></div><div class="ttdeci">hd44780_params_t p</div><div class="ttdoc">LCD config parameters.</div><div class="ttdef"><b>Definition:</b> hd44780.h:73</div></div>
+<div class="ttc" id="astructhd44780__t_html_a2caead129de883eb28d8c12ba2e1fe19"><div class="ttname"><a href="structhd44780__t.html#a2caead129de883eb28d8c12ba2e1fe19">hd44780_t::flag</a></div><div class="ttdeci">uint8_t flag</div><div class="ttdoc">LCD functional flags.</div><div class="ttdef"><b>Definition:</b> hd44780.h:74</div></div>
+<div class="ttc" id="astructhd44780__t_html_acc31b59d6c30de6e4a4bbee88fb9c9c4"><div class="ttname"><a href="structhd44780__t.html#acc31b59d6c30de6e4a4bbee88fb9c9c4">hd44780_t::mode</a></div><div class="ttdeci">uint8_t mode</div><div class="ttdoc">LCD mode flags.</div><div class="ttdef"><b>Definition:</b> hd44780.h:76</div></div>
+<div class="ttc" id="astructhd44780__t_html_add7a2c18202fc2158168575c8c74a9fc"><div class="ttname"><a href="structhd44780__t.html#add7a2c18202fc2158168575c8c74a9fc">hd44780_t::ctrl</a></div><div class="ttdeci">uint8_t ctrl</div><div class="ttdoc">LCD control flags.</div><div class="ttdef"><b>Definition:</b> hd44780.h:75</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="hd44780_8h.html">hd44780.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

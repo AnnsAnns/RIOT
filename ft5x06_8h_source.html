@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/ft5x06.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ft5x06_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ft5x06.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ft5x06_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2021 Inria</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#ifndef FT5X06_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define FT5X06_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ft5x06__constants_8h.html">ft5x06_constants.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef MODULE_TOUCH_DEV</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;touch_dev.h&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structft5x06__touch__position__t.html">   45</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structft5x06__touch__position__t.html#a5edfead7818cbb94d2b65f39bffa26a8">   46</a></span>&#160;    uint16_t <a class="code" href="structft5x06__touch__position__t.html#a5edfead7818cbb94d2b65f39bffa26a8">x</a>;                         </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structft5x06__touch__position__t.html#acf11bfb886a3d973af2ea69b98e8d6b9">   47</a></span>&#160;    uint16_t <a class="code" href="structft5x06__touch__position__t.html#acf11bfb886a3d973af2ea69b98e8d6b9">y</a>;                         </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <a class="code" href="structft5x06__touch__position__t.html">ft5x06_touch_position_t</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gaf09ba7ee8136d1a3e01958ffbed5f26d">   53</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da7f2cc29622b0268e05846bb40d6ecc78">   54</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da7f2cc29622b0268e05846bb40d6ecc78">FT5X06_TOUCH_NO_GESTURE</a>,            </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26daf851684035e1962d836e37a0ba466cc1">   55</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26daf851684035e1962d836e37a0ba466cc1">FT5X06_TOUCH_MOVE_UP</a>,               </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da4a1d4dfbac7b8cee36d9d0107c9133e9">   56</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da4a1d4dfbac7b8cee36d9d0107c9133e9">FT5X06_TOUCH_MOVE_LEFT</a>,             </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26dac7a53209974d81e08620c4afdc912820">   57</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26dac7a53209974d81e08620c4afdc912820">FT5X06_TOUCH_MOVE_DOWN</a>,             </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da0d4bea314869f27baca08d535a3615cf">   58</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da0d4bea314869f27baca08d535a3615cf">FT5X06_TOUCH_MOVE_RIGHT</a>,            </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26dab9432f5dbfee8174fe627ba0a9bb3a94">   59</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26dab9432f5dbfee8174fe627ba0a9bb3a94">FT5X06_TOUCH_ZOOM_IN</a>,               </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da0590416690a5fcf4defbc317302c06ce">   60</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da0590416690a5fcf4defbc317302c06ce">FT5X06_TOUCH_ZOOM_OUT</a>,              </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <a class="code" href="group__drivers__ft5x06.html#gaf09ba7ee8136d1a3e01958ffbed5f26d">ft5x06_touch_gesture_t</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ga44250c0d29da83c8aaf0da4d01dbffa3">   66</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a04ac72e0c2d4b8e4003596203fab1985">   67</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a04ac72e0c2d4b8e4003596203fab1985">FT5X06_TYPE_FT5X06</a>,                 </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a5c07c0e44bc3543cda0711c4e0bd67b0">   68</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a5c07c0e44bc3543cda0711c4e0bd67b0">FT5X06_TYPE_FT5606</a>,                 </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a8f0ef48b222108124d25d0b2e7b0be33">   69</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a8f0ef48b222108124d25d0b2e7b0be33">FT5X06_TYPE_FT5X16</a>,                 </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a887c6e7e47963812a063e1c47b890014">   70</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a887c6e7e47963812a063e1c47b890014">FT5X06_TYPE_FT6X06</a>,                 </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a55b0109191cbb9f7a3bdbb4bdaa8f33d">   71</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a55b0109191cbb9f7a3bdbb4bdaa8f33d">FT5X06_TYPE_FT6X36</a>,                 </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3ad89ac89f7bda77526caca8db4d4e9c16">   72</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3ad89ac89f7bda77526caca8db4d4e9c16">FT5X06_TYPE_FT5X06I</a>,                </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a65d8603ad50a7c54da3618185525eebb">   73</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a65d8603ad50a7c54da3618185525eebb">FT5X06_TYPE_FT5336</a>,                 </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a461d7c1be28324c371338354785ff2f5">   74</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a461d7c1be28324c371338354785ff2f5">FT5X06_TYPE_FT3316</a>,                 </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a9c37481f5eb469333a4126f2b2ccb7ff">   75</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a9c37481f5eb469333a4126f2b2ccb7ff">FT5X06_TYPE_FT5436I</a>,                </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3aec4c7937b767ee0218f3f2704fc2002d">   76</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3aec4c7937b767ee0218f3f2704fc2002d">FT5X06_TYPE_FT5336I</a>,                </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a04ec5014e457e5a3e6fe0d9a6316c525">   77</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a04ec5014e457e5a3e6fe0d9a6316c525">FT5X06_TYPE_FT5X46</a>,                 </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <a class="code" href="group__drivers__ft5x06.html#ga44250c0d29da83c8aaf0da4d01dbffa3">ft5x06_type_t</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ga089f26e52bd67a7478109a13627f7dec">   93</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decae61aaf4e5916d1a9afd8918aff0d402b">   94</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decae61aaf4e5916d1a9afd8918aff0d402b">FT5X06_NO_CONV</a>  = 0x00, </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decad8d8f76bd5105cbf7b870876fc940543">   95</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decad8d8f76bd5105cbf7b870876fc940543">FT5X06_MIRROR_X</a> = 0x01, </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decaf4b4c497c806045603b67ed77960d374">   96</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decaf4b4c497c806045603b67ed77960d374">FT5X06_MIRROR_Y</a> = 0x02, </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7deca43fdbb9a3a4acb4b313ac9383dc42878">   97</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7deca43fdbb9a3a4acb4b313ac9383dc42878">FT5X06_SWAP_XY</a>  = 0x04, </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;} <a class="code" href="group__drivers__ft5x06.html#ga089f26e52bd67a7478109a13627f7dec">ft5x06_touch_conv_t</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ga4c56bfbacee727ea4bbb3099ee46a9f3">  105</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__drivers__ft5x06.html#ga4c56bfbacee727ea4bbb3099ee46a9f3">ft5x06_event_cb_t</a>)(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html">  114</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html#a345f07c034d9d89de0c30f4968f1bf99">  115</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structft5x06__params__t.html#a345f07c034d9d89de0c30f4968f1bf99">i2c</a>;                  </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html#a2867f0ec6006dfc52011e6f247fcbdb7">  116</a></span>&#160;    uint8_t <a class="code" href="structft5x06__params__t.html#a2867f0ec6006dfc52011e6f247fcbdb7">addr</a>;               </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html#af84b87f85720c2aefc1822e6ebb5e899">  117</a></span>&#160;    gpio_t <a class="code" href="structft5x06__params__t.html#af84b87f85720c2aefc1822e6ebb5e899">int_pin</a>;             </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html#aa7f4f2019764e4f5ebc6e57d15f2af8b">  118</a></span>&#160;    uint16_t <a class="code" href="structft5x06__params__t.html#aa7f4f2019764e4f5ebc6e57d15f2af8b">xmax</a>;              </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html#a10629080acfd06a2e048fdbf83d3121c">  119</a></span>&#160;    uint16_t <a class="code" href="structft5x06__params__t.html#a10629080acfd06a2e048fdbf83d3121c">ymax</a>;              </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html#ac421a658ec240e11bd59c44c91c77dee">  120</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ga089f26e52bd67a7478109a13627f7dec">ft5x06_touch_conv_t</a> <a class="code" href="structft5x06__params__t.html#ac421a658ec240e11bd59c44c91c77dee">xyconv</a>; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="structft5x06__params__t.html#a244dcc8c3ab2119a561f753382d41155">  122</a></span>&#160;    <a class="code" href="group__drivers__ft5x06.html#ga44250c0d29da83c8aaf0da4d01dbffa3">ft5x06_type_t</a> <a class="code" href="structft5x06__params__t.html#a244dcc8c3ab2119a561f753382d41155">type</a>;         </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;} <a class="code" href="structft5x06__params__t.html">ft5x06_params_t</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="structft5x06__t.html">  128</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#ifdef MODULE_TOUCH_DEV</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="structtouch__dev.html">touch_dev_t</a> *dev;               </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="structft5x06__t.html#a00a323166e545f4c524366cf81a49eeb">  132</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structft5x06__params__t.html">ft5x06_params_t</a> *<a class="code" href="structft5x06__t.html#a00a323166e545f4c524366cf81a49eeb">params</a>;  </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;} <a class="code" href="structft5x06__t.html">ft5x06_t</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#gaafa9ee8b8cbad2d17bc4c5649183bc4e">  147</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ft5x06.html#gaafa9ee8b8cbad2d17bc4c5649183bc4e">ft5x06_init</a>(<a class="code" href="structft5x06__t.html">ft5x06_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structft5x06__params__t.html">ft5x06_params_t</a> *params,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <a class="code" href="group__drivers__ft5x06.html#ga4c56bfbacee727ea4bbb3099ee46a9f3">ft5x06_event_cb_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ga65255d61c60dc1d246b83776ebc4aa63">  160</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ft5x06.html#ga65255d61c60dc1d246b83776ebc4aa63">ft5x06_read_touch_positions</a>(<span class="keyword">const</span> <a class="code" href="structft5x06__t.html">ft5x06_t</a> *dev, <a class="code" href="structft5x06__touch__position__t.html">ft5x06_touch_position_t</a> *positions, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ga6bdca67f468c846768eacc5c291556ab">  171</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ft5x06.html#ga6bdca67f468c846768eacc5c291556ab">ft5x06_read_touch_count</a>(<span class="keyword">const</span> <a class="code" href="structft5x06__t.html">ft5x06_t</a> *dev, uint8_t *count);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="group__drivers__ft5x06.html#ga08ee85c87e9d41e828aa88e27c7c6c66">  182</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__ft5x06.html#ga08ee85c87e9d41e828aa88e27c7c6c66">ft5x06_read_touch_gesture</a>(<span class="keyword">const</span> <a class="code" href="structft5x06__t.html">ft5x06_t</a> *dev, <a class="code" href="group__drivers__ft5x06.html#gaf09ba7ee8136d1a3e01958ffbed5f26d">ft5x06_touch_gesture_t</a> *gesture);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FT5X06_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="aft5x06__constants_8h_html"><div class="ttname"><a href="ft5x06__constants_8h.html">ft5x06_constants.h</a></div><div class="ttdoc">Internal register addresses, bitfields and constants.</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ga089f26e52bd67a7478109a13627f7dec"><div class="ttname"><a href="group__drivers__ft5x06.html#ga089f26e52bd67a7478109a13627f7dec">ft5x06_touch_conv_t</a></div><div class="ttdeci">ft5x06_touch_conv_t</div><div class="ttdoc">Touch screen coordinate conversions.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:93</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ga08ee85c87e9d41e828aa88e27c7c6c66"><div class="ttname"><a href="group__drivers__ft5x06.html#ga08ee85c87e9d41e828aa88e27c7c6c66">ft5x06_read_touch_gesture</a></div><div class="ttdeci">int ft5x06_read_touch_gesture(const ft5x06_t *dev, ft5x06_touch_gesture_t *gesture)</div><div class="ttdoc">Read the gesture detected.</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ga44250c0d29da83c8aaf0da4d01dbffa3"><div class="ttname"><a href="group__drivers__ft5x06.html#ga44250c0d29da83c8aaf0da4d01dbffa3">ft5x06_type_t</a></div><div class="ttdeci">ft5x06_type_t</div><div class="ttdoc">Device type.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:66</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ga4c56bfbacee727ea4bbb3099ee46a9f3"><div class="ttname"><a href="group__drivers__ft5x06.html#ga4c56bfbacee727ea4bbb3099ee46a9f3">ft5x06_event_cb_t</a></div><div class="ttdeci">void(* ft5x06_event_cb_t)(void *arg)</div><div class="ttdoc">Signature of the touch event callback triggered from interrupt.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:105</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ga65255d61c60dc1d246b83776ebc4aa63"><div class="ttname"><a href="group__drivers__ft5x06.html#ga65255d61c60dc1d246b83776ebc4aa63">ft5x06_read_touch_positions</a></div><div class="ttdeci">int ft5x06_read_touch_positions(const ft5x06_t *dev, ft5x06_touch_position_t *positions, size_t len)</div><div class="ttdoc">Read the touch positions.</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ga6bdca67f468c846768eacc5c291556ab"><div class="ttname"><a href="group__drivers__ft5x06.html#ga6bdca67f468c846768eacc5c291556ab">ft5x06_read_touch_count</a></div><div class="ttdeci">int ft5x06_read_touch_count(const ft5x06_t *dev, uint8_t *count)</div><div class="ttdoc">Read the number of touch.</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gaafa9ee8b8cbad2d17bc4c5649183bc4e"><div class="ttname"><a href="group__drivers__ft5x06.html#gaafa9ee8b8cbad2d17bc4c5649183bc4e">ft5x06_init</a></div><div class="ttdeci">int ft5x06_init(ft5x06_t *dev, const ft5x06_params_t *params, ft5x06_event_cb_t cb, void *arg)</div><div class="ttdoc">Initialize the given device.</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gaf09ba7ee8136d1a3e01958ffbed5f26d"><div class="ttname"><a href="group__drivers__ft5x06.html#gaf09ba7ee8136d1a3e01958ffbed5f26d">ft5x06_touch_gesture_t</a></div><div class="ttdeci">ft5x06_touch_gesture_t</div><div class="ttdoc">Touch gesture.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:53</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga089f26e52bd67a7478109a13627f7deca43fdbb9a3a4acb4b313ac9383dc42878"><div class="ttname"><a href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7deca43fdbb9a3a4acb4b313ac9383dc42878">FT5X06_SWAP_XY</a></div><div class="ttdeci">@ FT5X06_SWAP_XY</div><div class="ttdoc">Swap XY, applied before optional mirroring.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:97</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga089f26e52bd67a7478109a13627f7decad8d8f76bd5105cbf7b870876fc940543"><div class="ttname"><a href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decad8d8f76bd5105cbf7b870876fc940543">FT5X06_MIRROR_X</a></div><div class="ttdeci">@ FT5X06_MIRROR_X</div><div class="ttdoc">Mirror X, applied after optional swapping.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:95</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga089f26e52bd67a7478109a13627f7decae61aaf4e5916d1a9afd8918aff0d402b"><div class="ttname"><a href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decae61aaf4e5916d1a9afd8918aff0d402b">FT5X06_NO_CONV</a></div><div class="ttdeci">@ FT5X06_NO_CONV</div><div class="ttdoc">No conversion.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:94</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga089f26e52bd67a7478109a13627f7decaf4b4c497c806045603b67ed77960d374"><div class="ttname"><a href="group__drivers__ft5x06.html#gga089f26e52bd67a7478109a13627f7decaf4b4c497c806045603b67ed77960d374">FT5X06_MIRROR_Y</a></div><div class="ttdeci">@ FT5X06_MIRROR_Y</div><div class="ttdoc">Mirror Y, applied after optional swapping.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:96</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a04ac72e0c2d4b8e4003596203fab1985"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a04ac72e0c2d4b8e4003596203fab1985">FT5X06_TYPE_FT5X06</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5X06</div><div class="ttdoc">FT5X06.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:67</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a04ec5014e457e5a3e6fe0d9a6316c525"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a04ec5014e457e5a3e6fe0d9a6316c525">FT5X06_TYPE_FT5X46</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5X46</div><div class="ttdoc">FT5X46.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:77</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a461d7c1be28324c371338354785ff2f5"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a461d7c1be28324c371338354785ff2f5">FT5X06_TYPE_FT3316</a></div><div class="ttdeci">@ FT5X06_TYPE_FT3316</div><div class="ttdoc">FT3316.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:74</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a55b0109191cbb9f7a3bdbb4bdaa8f33d"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a55b0109191cbb9f7a3bdbb4bdaa8f33d">FT5X06_TYPE_FT6X36</a></div><div class="ttdeci">@ FT5X06_TYPE_FT6X36</div><div class="ttdoc">FT6X36.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:71</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a5c07c0e44bc3543cda0711c4e0bd67b0"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a5c07c0e44bc3543cda0711c4e0bd67b0">FT5X06_TYPE_FT5606</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5606</div><div class="ttdoc">FT5606.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:68</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a65d8603ad50a7c54da3618185525eebb"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a65d8603ad50a7c54da3618185525eebb">FT5X06_TYPE_FT5336</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5336</div><div class="ttdoc">FT5336.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:73</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a887c6e7e47963812a063e1c47b890014"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a887c6e7e47963812a063e1c47b890014">FT5X06_TYPE_FT6X06</a></div><div class="ttdeci">@ FT5X06_TYPE_FT6X06</div><div class="ttdoc">FT6X06.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:70</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a8f0ef48b222108124d25d0b2e7b0be33"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a8f0ef48b222108124d25d0b2e7b0be33">FT5X06_TYPE_FT5X16</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5X16</div><div class="ttdoc">FT5X16.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:69</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3a9c37481f5eb469333a4126f2b2ccb7ff"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3a9c37481f5eb469333a4126f2b2ccb7ff">FT5X06_TYPE_FT5436I</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5436I</div><div class="ttdoc">FT5436I.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:75</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3ad89ac89f7bda77526caca8db4d4e9c16"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3ad89ac89f7bda77526caca8db4d4e9c16">FT5X06_TYPE_FT5X06I</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5X06I</div><div class="ttdoc">FT5X06I.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:72</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_gga44250c0d29da83c8aaf0da4d01dbffa3aec4c7937b767ee0218f3f2704fc2002d"><div class="ttname"><a href="group__drivers__ft5x06.html#gga44250c0d29da83c8aaf0da4d01dbffa3aec4c7937b767ee0218f3f2704fc2002d">FT5X06_TYPE_FT5336I</a></div><div class="ttdeci">@ FT5X06_TYPE_FT5336I</div><div class="ttdoc">FT5336I.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:76</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ggaf09ba7ee8136d1a3e01958ffbed5f26da0590416690a5fcf4defbc317302c06ce"><div class="ttname"><a href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da0590416690a5fcf4defbc317302c06ce">FT5X06_TOUCH_ZOOM_OUT</a></div><div class="ttdeci">@ FT5X06_TOUCH_ZOOM_OUT</div><div class="ttdoc">Zoom out gesture detected.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:60</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ggaf09ba7ee8136d1a3e01958ffbed5f26da0d4bea314869f27baca08d535a3615cf"><div class="ttname"><a href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da0d4bea314869f27baca08d535a3615cf">FT5X06_TOUCH_MOVE_RIGHT</a></div><div class="ttdeci">@ FT5X06_TOUCH_MOVE_RIGHT</div><div class="ttdoc">Move right gesture detected.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:58</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ggaf09ba7ee8136d1a3e01958ffbed5f26da4a1d4dfbac7b8cee36d9d0107c9133e9"><div class="ttname"><a href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da4a1d4dfbac7b8cee36d9d0107c9133e9">FT5X06_TOUCH_MOVE_LEFT</a></div><div class="ttdeci">@ FT5X06_TOUCH_MOVE_LEFT</div><div class="ttdoc">Move left gesture detected.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:56</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ggaf09ba7ee8136d1a3e01958ffbed5f26da7f2cc29622b0268e05846bb40d6ecc78"><div class="ttname"><a href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26da7f2cc29622b0268e05846bb40d6ecc78">FT5X06_TOUCH_NO_GESTURE</a></div><div class="ttdeci">@ FT5X06_TOUCH_NO_GESTURE</div><div class="ttdoc">No gesture detected.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:54</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ggaf09ba7ee8136d1a3e01958ffbed5f26dab9432f5dbfee8174fe627ba0a9bb3a94"><div class="ttname"><a href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26dab9432f5dbfee8174fe627ba0a9bb3a94">FT5X06_TOUCH_ZOOM_IN</a></div><div class="ttdeci">@ FT5X06_TOUCH_ZOOM_IN</div><div class="ttdoc">Zoom int gesture detected.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:59</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ggaf09ba7ee8136d1a3e01958ffbed5f26dac7a53209974d81e08620c4afdc912820"><div class="ttname"><a href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26dac7a53209974d81e08620c4afdc912820">FT5X06_TOUCH_MOVE_DOWN</a></div><div class="ttdeci">@ FT5X06_TOUCH_MOVE_DOWN</div><div class="ttdoc">Move down gesture detected.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:57</div></div>
+<div class="ttc" id="agroup__drivers__ft5x06_html_ggaf09ba7ee8136d1a3e01958ffbed5f26daf851684035e1962d836e37a0ba466cc1"><div class="ttname"><a href="group__drivers__ft5x06.html#ggaf09ba7ee8136d1a3e01958ffbed5f26daf851684035e1962d836e37a0ba466cc1">FT5X06_TOUCH_MOVE_UP</a></div><div class="ttdeci">@ FT5X06_TOUCH_MOVE_UP</div><div class="ttdoc">Move up gesture detected.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:55</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructft5x06__params__t_html"><div class="ttname"><a href="structft5x06__params__t.html">ft5x06_params_t</a></div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:114</div></div>
+<div class="ttc" id="astructft5x06__params__t_html_a10629080acfd06a2e048fdbf83d3121c"><div class="ttname"><a href="structft5x06__params__t.html#a10629080acfd06a2e048fdbf83d3121c">ft5x06_params_t::ymax</a></div><div class="ttdeci">uint16_t ymax</div><div class="ttdoc">Touch screen max Y position.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:119</div></div>
+<div class="ttc" id="astructft5x06__params__t_html_a244dcc8c3ab2119a561f753382d41155"><div class="ttname"><a href="structft5x06__params__t.html#a244dcc8c3ab2119a561f753382d41155">ft5x06_params_t::type</a></div><div class="ttdeci">ft5x06_type_t type</div><div class="ttdoc">Device type.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:122</div></div>
+<div class="ttc" id="astructft5x06__params__t_html_a2867f0ec6006dfc52011e6f247fcbdb7"><div class="ttname"><a href="structft5x06__params__t.html#a2867f0ec6006dfc52011e6f247fcbdb7">ft5x06_params_t::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdoc">Device I2C address.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:116</div></div>
+<div class="ttc" id="astructft5x06__params__t_html_a345f07c034d9d89de0c30f4968f1bf99"><div class="ttname"><a href="structft5x06__params__t.html#a345f07c034d9d89de0c30f4968f1bf99">ft5x06_params_t::i2c</a></div><div class="ttdeci">i2c_t i2c</div><div class="ttdoc">I2C device which is used.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:115</div></div>
+<div class="ttc" id="astructft5x06__params__t_html_aa7f4f2019764e4f5ebc6e57d15f2af8b"><div class="ttname"><a href="structft5x06__params__t.html#aa7f4f2019764e4f5ebc6e57d15f2af8b">ft5x06_params_t::xmax</a></div><div class="ttdeci">uint16_t xmax</div><div class="ttdoc">Touch screen max X position.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:118</div></div>
+<div class="ttc" id="astructft5x06__params__t_html_ac421a658ec240e11bd59c44c91c77dee"><div class="ttname"><a href="structft5x06__params__t.html#ac421a658ec240e11bd59c44c91c77dee">ft5x06_params_t::xyconv</a></div><div class="ttdeci">ft5x06_touch_conv_t xyconv</div><div class="ttdoc">Touch screen coordinates conversion, swapping is performed before mirroring.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:120</div></div>
+<div class="ttc" id="astructft5x06__params__t_html_af84b87f85720c2aefc1822e6ebb5e899"><div class="ttname"><a href="structft5x06__params__t.html#af84b87f85720c2aefc1822e6ebb5e899">ft5x06_params_t::int_pin</a></div><div class="ttdeci">gpio_t int_pin</div><div class="ttdoc">Touch screen interrupt pin.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:117</div></div>
+<div class="ttc" id="astructft5x06__t_html"><div class="ttname"><a href="structft5x06__t.html">ft5x06_t</a></div><div class="ttdoc">Device descriptor for the driver.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:128</div></div>
+<div class="ttc" id="astructft5x06__t_html_a00a323166e545f4c524366cf81a49eeb"><div class="ttname"><a href="structft5x06__t.html#a00a323166e545f4c524366cf81a49eeb">ft5x06_t::params</a></div><div class="ttdeci">const ft5x06_params_t * params</div><div class="ttdoc">Initialization parameters.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:132</div></div>
+<div class="ttc" id="astructft5x06__touch__position__t_html"><div class="ttname"><a href="structft5x06__touch__position__t.html">ft5x06_touch_position_t</a></div><div class="ttdoc">Touch position structure.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:45</div></div>
+<div class="ttc" id="astructft5x06__touch__position__t_html_a5edfead7818cbb94d2b65f39bffa26a8"><div class="ttname"><a href="structft5x06__touch__position__t.html#a5edfead7818cbb94d2b65f39bffa26a8">ft5x06_touch_position_t::x</a></div><div class="ttdeci">uint16_t x</div><div class="ttdoc">X position.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:46</div></div>
+<div class="ttc" id="astructft5x06__touch__position__t_html_acf11bfb886a3d973af2ea69b98e8d6b9"><div class="ttname"><a href="structft5x06__touch__position__t.html#acf11bfb886a3d973af2ea69b98e8d6b9">ft5x06_touch_position_t::y</a></div><div class="ttdeci">uint16_t y</div><div class="ttdoc">Y position.</div><div class="ttdef"><b>Definition:</b> ft5x06.h:47</div></div>
+<div class="ttc" id="astructtouch__dev_html"><div class="ttname"><a href="structtouch__dev.html">touch_dev</a></div><div class="ttdoc">Generic type for a touch device.</div><div class="ttdef"><b>Definition:</b> touch_dev.h:116</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="ft5x06_8h.html">ft5x06.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

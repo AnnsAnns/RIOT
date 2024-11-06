@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/sx126x.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('sx126x_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">sx126x.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="sx126x_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gae3bb9098ad5443272bf137dfeac9aa39">    1</a></span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2021 Inria</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef SX126X_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define SX126X_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="assert_8h.html">assert.h</a>&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;sx126x_driver.h&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_8h.html">net/netdev.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structsx126x.html">sx126x</a> <a class="code" href="structsx126x.html">sx126x_t</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gacaadc1f1b5900369a978064592169b14">   45</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    SX126X_RF_MODE_RX,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    SX126X_RF_MODE_TX_LPA,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    SX126X_RF_MODE_TX_HPA,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <a class="code" href="group__drivers__sx126x.html#gacaadc1f1b5900369a978064592169b14">sx126x_rf_mode_t</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gaaacf3e7d858bcd6a3fcf7fb7f705c907">   55</a></span>&#160;<span class="preprocessor">#define SX126X_SINGLE ((            \</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">                          IS_USED(MODULE_SX1261) \</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">                        + IS_USED(MODULE_SX1262) \</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">                        + IS_USED(MODULE_SX1268) \</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">                        + IS_USED(MODULE_LLCC68) \</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">                        + IS_USED(MODULE_SX126X_STM32WL) \</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">                        ) == 1)</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#if (IS_USED(MODULE_SX1261) || IS_USED(MODULE_SX1262) || \</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">     IS_USED(MODULE_SX1268) || IS_USED(MODULE_LLCC68))</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#define SX126X_SPI    1</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga6ae7dc7e3f165bfb6ced346719b10f31">   74</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    SX126X_TYPE_SX1261,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    SX126X_TYPE_SX1262,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    SX126X_TYPE_SX1268,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    SX126X_TYPE_LLCC68,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    SX126X_TYPE_STM32WL,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <a class="code" href="group__drivers__sx126x.html#ga6ae7dc7e3f165bfb6ced346719b10f31">sx126x_type_t</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html">   85</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html#a22fb06666274435ef65509d6677788d6">   86</a></span>&#160;    spi_t <a class="code" href="structsx126x__params__t.html#a22fb06666274435ef65509d6677788d6">spi</a>;                          </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html#a0d661f5c0ff22ed225a40dc8df7c24fa">   87</a></span>&#160;    gpio_t <a class="code" href="structsx126x__params__t.html#a0d661f5c0ff22ed225a40dc8df7c24fa">nss_pin</a>;                     </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html#af0ee314e0a6460b11e4ef1a4e3226147">   88</a></span>&#160;    gpio_t <a class="code" href="structsx126x__params__t.html#af0ee314e0a6460b11e4ef1a4e3226147">reset_pin</a>;                   </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html#a217358b6254c2f423b3ea27026489db1">   89</a></span>&#160;    gpio_t <a class="code" href="structsx126x__params__t.html#a217358b6254c2f423b3ea27026489db1">busy_pin</a>;                    </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html#a652592cb091d3a51ec53f0d09aad7333">   90</a></span>&#160;    gpio_t <a class="code" href="structsx126x__params__t.html#a652592cb091d3a51ec53f0d09aad7333">dio1_pin</a>;                    </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html#ae67c70ef6cae03d49c34a0370c258305">   91</a></span>&#160;    sx126x_reg_mod_t <a class="code" href="structsx126x__params__t.html#ae67c70ef6cae03d49c34a0370c258305">regulator</a>;         </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="structsx126x__params__t.html#adc9cf083b645559269c500b03b05488a">   92</a></span>&#160;    <a class="code" href="group__drivers__sx126x.html#ga6ae7dc7e3f165bfb6ced346719b10f31">sx126x_type_t</a> <a class="code" href="structsx126x__params__t.html#adc9cf083b645559269c500b03b05488a">type</a>;                 </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_SX126X_RF_SWITCH)</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    void(*set_rf_mode)(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, <a class="code" href="group__drivers__sx126x.html#gacaadc1f1b5900369a978064592169b14">sx126x_rf_mode_t</a> rf_mode);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="group__drivers__sx126x.html#gacaadc1f1b5900369a978064592169b14">sx126x_rf_mode_t</a> tx_pa_mode;        </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;} <a class="code" href="structsx126x__params__t.html">sx126x_params_t</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="structsx126x.html">  105</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structsx126x.html">sx126x</a> {</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="structsx126x.html#ab46294c4c86eb3b4059b2d49bfb166b4">  106</a></span>&#160;    <a class="code" href="structnetdev.html">netdev_t</a> <a class="code" href="structsx126x.html#ab46294c4c86eb3b4059b2d49bfb166b4">netdev</a>;                        </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="structsx126x.html#abed9b00b4177f2958fcabe970df7b193">  107</a></span>&#160;    <a class="code" href="structsx126x__params__t.html">sx126x_params_t</a> *<a class="code" href="structsx126x.html#abed9b00b4177f2958fcabe970df7b193">params</a>;                </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structsx126x.html#a9e4338511ed0c5daa6a6afc12b3e860f">  108</a></span>&#160;    sx126x_pkt_params_lora_t <a class="code" href="structsx126x.html#a9e4338511ed0c5daa6a6afc12b3e860f">pkt_params</a>;    </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structsx126x.html#a8adcccd979be770db0552cef70793dc8">  109</a></span>&#160;    sx126x_mod_params_lora_t <a class="code" href="structsx126x.html#a8adcccd979be770db0552cef70793dc8">mod_params</a>;    </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structsx126x.html#a2d952f2a869d9f16d07185f97fce131e">  110</a></span>&#160;    uint32_t <a class="code" href="structsx126x.html#a2d952f2a869d9f16d07185f97fce131e">channel</a>;                       </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structsx126x.html#ab641a5036ebda680d55b434442c8d285">  111</a></span>&#160;    uint16_t <a class="code" href="structsx126x.html#ab641a5036ebda680d55b434442c8d285">rx_timeout</a>;                    </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structsx126x.html#a412c5e3f8ace684d230152d2c2f3e228">  112</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structsx126x.html#a412c5e3f8ace684d230152d2c2f3e228">radio_sleep</a>;                       </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga71e972ac094658e744f1c4c8188e38ef">  123</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga71e972ac094658e744f1c4c8188e38ef">sx126x_setup</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structsx126x__params__t.html">sx126x_params_t</a> *params, uint8_t index);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga036d88ad1a53f92efa1a1907911c5418">  132</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__sx126x.html#ga036d88ad1a53f92efa1a1907911c5418">sx126x_init</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gaa56b597a646bc23e8181c22f35aebc22">  142</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__drivers__sx126x.html#gaa56b597a646bc23e8181c22f35aebc22">sx126x_symbol_to_msec</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, uint16_t symbols)</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <a class="code" href="assert_8h.html#a3153a272f18d0f805028fce7e4337b53">assert</a>(dev &amp;&amp; (dev-&gt;<a class="code" href="structsx126x.html#a8adcccd979be770db0552cef70793dc8">mod_params</a>.bw &lt;= SX126X_LORA_BW_500) &amp;&amp; \</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;           (dev-&gt;<a class="code" href="structsx126x.html#a8adcccd979be770db0552cef70793dc8">mod_params</a>.bw &gt;= SX126X_LORA_BW_125));</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="comment">/* Refer section 6.1.4 LoRa Time-on-Air in SX1268 datasheet */</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">return</span> (symbols * (1 &lt;&lt; (dev-&gt;<a class="code" href="structsx126x.html#a8adcccd979be770db0552cef70793dc8">mod_params</a>.sf + 7 - dev-&gt;<a class="code" href="structsx126x.html#a8adcccd979be770db0552cef70793dc8">mod_params</a>.bw)) / 1000);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gad00ba8ffe6e57402c09c827bbc355412">  158</a></span>&#160;uint32_t <a class="code" href="group__drivers__sx126x.html#gad00ba8ffe6e57402c09c827bbc355412">sx126x_get_channel</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gac5253a0ddffb9a931c3180f588687407">  166</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#gac5253a0ddffb9a931c3180f588687407">sx126x_set_channel</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, uint32_t freq);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gacbb32cad3c0ef88dbc46d9d13736a4a7">  175</a></span>&#160;uint8_t <a class="code" href="group__drivers__sx126x.html#gacbb32cad3c0ef88dbc46d9d13736a4a7">sx126x_get_bandwidth</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga13d6d07ba4a70b19fe71df655ed2bf39">  183</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga13d6d07ba4a70b19fe71df655ed2bf39">sx126x_set_bandwidth</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, uint8_t bandwidth);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gaa27ce422fe7cd706fc5bb26f2c5fb248">  192</a></span>&#160;uint8_t <a class="code" href="group__drivers__sx126x.html#gaa27ce422fe7cd706fc5bb26f2c5fb248">sx126x_get_spreading_factor</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga0a1a611c164abda1fb0768d6b0f04405">  200</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga0a1a611c164abda1fb0768d6b0f04405">sx126x_set_spreading_factor</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, uint8_t sf);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gab3bcafffa472481910f290afc275c6a1">  209</a></span>&#160;uint8_t <a class="code" href="group__drivers__sx126x.html#gab3bcafffa472481910f290afc275c6a1">sx126x_get_coding_rate</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga2e6c9b9b0a1fa5a624f5f68674163226">  217</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga2e6c9b9b0a1fa5a624f5f68674163226">sx126x_set_coding_rate</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, uint8_t cr);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gae9f5650cd310d0a2a94f410dd7b992dc">  226</a></span>&#160;uint8_t <a class="code" href="group__drivers__sx126x.html#gae9f5650cd310d0a2a94f410dd7b992dc">sx126x_get_lora_payload_length</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga887888c826f798f5e9ff98e23cc832fd">  234</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga887888c826f798f5e9ff98e23cc832fd">sx126x_set_lora_payload_length</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, uint8_t len);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gae4340803a0ad98c20b1e3f609347d98c">  243</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__sx126x.html#gae4340803a0ad98c20b1e3f609347d98c">sx126x_get_lora_crc</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga5a0d831a0e6d031c5088369187de8c53">  251</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga5a0d831a0e6d031c5088369187de8c53">sx126x_set_lora_crc</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, <span class="keywordtype">bool</span> crc);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gadcee482dd2f75dbc3ab980b9af3702ad">  260</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__sx126x.html#gadcee482dd2f75dbc3ab980b9af3702ad">sx126x_get_lora_implicit_header</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga1719d8abf9501fe836488ab411738ba5">  268</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga1719d8abf9501fe836488ab411738ba5">sx126x_set_lora_implicit_header</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, <span class="keywordtype">bool</span> mode);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga2d565f4920e2652cedaa906e76ecf9f2">  277</a></span>&#160;uint16_t <a class="code" href="group__drivers__sx126x.html#ga2d565f4920e2652cedaa906e76ecf9f2">sx126x_get_lora_preamble_length</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga78943089a3608efc1260a1c9b5cfb802">  285</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga78943089a3608efc1260a1c9b5cfb802">sx126x_set_lora_preamble_length</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, uint16_t preamble);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#gafb5d32e266b4a37cdcd6d91c3d504acd">  294</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__sx126x.html#gafb5d32e266b4a37cdcd6d91c3d504acd">sx126x_get_lora_iq_invert</a>(<span class="keyword">const</span> <a class="code" href="structsx126x.html">sx126x_t</a> *dev);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno"><a class="line" href="group__drivers__sx126x.html#ga27aa4e2779c1592dfe7e4248f6a0b561">  302</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__sx126x.html#ga27aa4e2779c1592dfe7e4248f6a0b561">sx126x_set_lora_iq_invert</a>(<a class="code" href="structsx126x.html">sx126x_t</a> *dev, <span class="keywordtype">bool</span> iq_invert);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;}</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SX126X_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div><div class="ttdoc">POSIX.1-2008 compliant version of the assert macro.</div></div>
+<div class="ttc" id="aassert_8h_html_a3153a272f18d0f805028fce7e4337b53"><div class="ttname"><a href="assert_8h.html#a3153a272f18d0f805028fce7e4337b53">assert</a></div><div class="ttdeci">#define assert(cond)</div><div class="ttdoc">abort the program if assertion is false</div><div class="ttdef"><b>Definition:</b> assert.h:136</div></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_8h.html">netdev.h</a></div><div class="ttdoc">Definitions low-level network driver interface.</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga036d88ad1a53f92efa1a1907911c5418"><div class="ttname"><a href="group__drivers__sx126x.html#ga036d88ad1a53f92efa1a1907911c5418">sx126x_init</a></div><div class="ttdeci">int sx126x_init(sx126x_t *dev)</div><div class="ttdoc">Initialize the given device.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga0a1a611c164abda1fb0768d6b0f04405"><div class="ttname"><a href="group__drivers__sx126x.html#ga0a1a611c164abda1fb0768d6b0f04405">sx126x_set_spreading_factor</a></div><div class="ttdeci">void sx126x_set_spreading_factor(sx126x_t *dev, uint8_t sf)</div><div class="ttdoc">Sets the LoRa spreading factor.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga13d6d07ba4a70b19fe71df655ed2bf39"><div class="ttname"><a href="group__drivers__sx126x.html#ga13d6d07ba4a70b19fe71df655ed2bf39">sx126x_set_bandwidth</a></div><div class="ttdeci">void sx126x_set_bandwidth(sx126x_t *dev, uint8_t bandwidth)</div><div class="ttdoc">Sets the LoRa bandwidth.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga1719d8abf9501fe836488ab411738ba5"><div class="ttname"><a href="group__drivers__sx126x.html#ga1719d8abf9501fe836488ab411738ba5">sx126x_set_lora_implicit_header</a></div><div class="ttdeci">void sx126x_set_lora_implicit_header(sx126x_t *dev, bool mode)</div><div class="ttdoc">Sets LoRa implicit header mode.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga27aa4e2779c1592dfe7e4248f6a0b561"><div class="ttname"><a href="group__drivers__sx126x.html#ga27aa4e2779c1592dfe7e4248f6a0b561">sx126x_set_lora_iq_invert</a></div><div class="ttdeci">void sx126x_set_lora_iq_invert(sx126x_t *dev, bool iq_invert)</div><div class="ttdoc">Enable/disable the LoRa IQ inverted mode.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga2d565f4920e2652cedaa906e76ecf9f2"><div class="ttname"><a href="group__drivers__sx126x.html#ga2d565f4920e2652cedaa906e76ecf9f2">sx126x_get_lora_preamble_length</a></div><div class="ttdeci">uint16_t sx126x_get_lora_preamble_length(const sx126x_t *dev)</div><div class="ttdoc">Gets the LoRa preamble length.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga2e6c9b9b0a1fa5a624f5f68674163226"><div class="ttname"><a href="group__drivers__sx126x.html#ga2e6c9b9b0a1fa5a624f5f68674163226">sx126x_set_coding_rate</a></div><div class="ttdeci">void sx126x_set_coding_rate(sx126x_t *dev, uint8_t cr)</div><div class="ttdoc">Sets the LoRa coding rate.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga5a0d831a0e6d031c5088369187de8c53"><div class="ttname"><a href="group__drivers__sx126x.html#ga5a0d831a0e6d031c5088369187de8c53">sx126x_set_lora_crc</a></div><div class="ttdeci">void sx126x_set_lora_crc(sx126x_t *dev, bool crc)</div><div class="ttdoc">Enable/Disable CRC verification mode.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga6ae7dc7e3f165bfb6ced346719b10f31"><div class="ttname"><a href="group__drivers__sx126x.html#ga6ae7dc7e3f165bfb6ced346719b10f31">sx126x_type_t</a></div><div class="ttdeci">sx126x_type_t</div><div class="ttdoc">Used to identify if its a generic SPI module.</div><div class="ttdef"><b>Definition:</b> sx126x.h:74</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga71e972ac094658e744f1c4c8188e38ef"><div class="ttname"><a href="group__drivers__sx126x.html#ga71e972ac094658e744f1c4c8188e38ef">sx126x_setup</a></div><div class="ttdeci">void sx126x_setup(sx126x_t *dev, const sx126x_params_t *params, uint8_t index)</div><div class="ttdoc">Setup the radio device.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga78943089a3608efc1260a1c9b5cfb802"><div class="ttname"><a href="group__drivers__sx126x.html#ga78943089a3608efc1260a1c9b5cfb802">sx126x_set_lora_preamble_length</a></div><div class="ttdeci">void sx126x_set_lora_preamble_length(sx126x_t *dev, uint16_t preamble)</div><div class="ttdoc">Sets the LoRa preamble length.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_ga887888c826f798f5e9ff98e23cc832fd"><div class="ttname"><a href="group__drivers__sx126x.html#ga887888c826f798f5e9ff98e23cc832fd">sx126x_set_lora_payload_length</a></div><div class="ttdeci">void sx126x_set_lora_payload_length(sx126x_t *dev, uint8_t len)</div><div class="ttdoc">Sets the payload length.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gaa27ce422fe7cd706fc5bb26f2c5fb248"><div class="ttname"><a href="group__drivers__sx126x.html#gaa27ce422fe7cd706fc5bb26f2c5fb248">sx126x_get_spreading_factor</a></div><div class="ttdeci">uint8_t sx126x_get_spreading_factor(const sx126x_t *dev)</div><div class="ttdoc">Gets the LoRa spreading factor.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gaa56b597a646bc23e8181c22f35aebc22"><div class="ttname"><a href="group__drivers__sx126x.html#gaa56b597a646bc23e8181c22f35aebc22">sx126x_symbol_to_msec</a></div><div class="ttdeci">static int sx126x_symbol_to_msec(sx126x_t *dev, uint16_t symbols)</div><div class="ttdoc">Converts symbol value to time in milliseconds.</div><div class="ttdef"><b>Definition:</b> sx126x.h:142</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gab3bcafffa472481910f290afc275c6a1"><div class="ttname"><a href="group__drivers__sx126x.html#gab3bcafffa472481910f290afc275c6a1">sx126x_get_coding_rate</a></div><div class="ttdeci">uint8_t sx126x_get_coding_rate(const sx126x_t *dev)</div><div class="ttdoc">Gets the LoRa coding rate.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gac5253a0ddffb9a931c3180f588687407"><div class="ttname"><a href="group__drivers__sx126x.html#gac5253a0ddffb9a931c3180f588687407">sx126x_set_channel</a></div><div class="ttdeci">void sx126x_set_channel(sx126x_t *dev, uint32_t freq)</div><div class="ttdoc">Sets the channel RF frequency.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gacaadc1f1b5900369a978064592169b14"><div class="ttname"><a href="group__drivers__sx126x.html#gacaadc1f1b5900369a978064592169b14">sx126x_rf_mode_t</a></div><div class="ttdeci">sx126x_rf_mode_t</div><div class="ttdoc">RF switch states.</div><div class="ttdef"><b>Definition:</b> sx126x.h:45</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gacbb32cad3c0ef88dbc46d9d13736a4a7"><div class="ttname"><a href="group__drivers__sx126x.html#gacbb32cad3c0ef88dbc46d9d13736a4a7">sx126x_get_bandwidth</a></div><div class="ttdeci">uint8_t sx126x_get_bandwidth(const sx126x_t *dev)</div><div class="ttdoc">Gets the LoRa bandwidth.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gad00ba8ffe6e57402c09c827bbc355412"><div class="ttname"><a href="group__drivers__sx126x.html#gad00ba8ffe6e57402c09c827bbc355412">sx126x_get_channel</a></div><div class="ttdeci">uint32_t sx126x_get_channel(const sx126x_t *dev)</div><div class="ttdoc">Gets the channel RF frequency.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gadcee482dd2f75dbc3ab980b9af3702ad"><div class="ttname"><a href="group__drivers__sx126x.html#gadcee482dd2f75dbc3ab980b9af3702ad">sx126x_get_lora_implicit_header</a></div><div class="ttdeci">bool sx126x_get_lora_implicit_header(const sx126x_t *dev)</div><div class="ttdoc">Gets the LoRa implicit header mode.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gae4340803a0ad98c20b1e3f609347d98c"><div class="ttname"><a href="group__drivers__sx126x.html#gae4340803a0ad98c20b1e3f609347d98c">sx126x_get_lora_crc</a></div><div class="ttdeci">bool sx126x_get_lora_crc(const sx126x_t *dev)</div><div class="ttdoc">Checks if CRC verification mode is enabled.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gae9f5650cd310d0a2a94f410dd7b992dc"><div class="ttname"><a href="group__drivers__sx126x.html#gae9f5650cd310d0a2a94f410dd7b992dc">sx126x_get_lora_payload_length</a></div><div class="ttdeci">uint8_t sx126x_get_lora_payload_length(const sx126x_t *dev)</div><div class="ttdoc">Gets the payload length.</div></div>
+<div class="ttc" id="agroup__drivers__sx126x_html_gafb5d32e266b4a37cdcd6d91c3d504acd"><div class="ttname"><a href="group__drivers__sx126x.html#gafb5d32e266b4a37cdcd6d91c3d504acd">sx126x_get_lora_iq_invert</a></div><div class="ttdeci">bool sx126x_get_lora_iq_invert(const sx126x_t *dev)</div><div class="ttdoc">Checks if the LoRa inverted IQ mode is enabled/disabled.</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructnetdev_html"><div class="ttname"><a href="structnetdev.html">netdev</a></div><div class="ttdoc">Structure to hold driver state.</div><div class="ttdef"><b>Definition:</b> netdev.h:363</div></div>
+<div class="ttc" id="astructsx126x__params__t_html"><div class="ttname"><a href="structsx126x__params__t.html">sx126x_params_t</a></div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> sx126x.h:85</div></div>
+<div class="ttc" id="astructsx126x__params__t_html_a0d661f5c0ff22ed225a40dc8df7c24fa"><div class="ttname"><a href="structsx126x__params__t.html#a0d661f5c0ff22ed225a40dc8df7c24fa">sx126x_params_t::nss_pin</a></div><div class="ttdeci">gpio_t nss_pin</div><div class="ttdoc">SPI NSS pin.</div><div class="ttdef"><b>Definition:</b> sx126x.h:87</div></div>
+<div class="ttc" id="astructsx126x__params__t_html_a217358b6254c2f423b3ea27026489db1"><div class="ttname"><a href="structsx126x__params__t.html#a217358b6254c2f423b3ea27026489db1">sx126x_params_t::busy_pin</a></div><div class="ttdeci">gpio_t busy_pin</div><div class="ttdoc">Busy pin.</div><div class="ttdef"><b>Definition:</b> sx126x.h:89</div></div>
+<div class="ttc" id="astructsx126x__params__t_html_a22fb06666274435ef65509d6677788d6"><div class="ttname"><a href="structsx126x__params__t.html#a22fb06666274435ef65509d6677788d6">sx126x_params_t::spi</a></div><div class="ttdeci">spi_t spi</div><div class="ttdoc">SPI device.</div><div class="ttdef"><b>Definition:</b> sx126x.h:86</div></div>
+<div class="ttc" id="astructsx126x__params__t_html_a652592cb091d3a51ec53f0d09aad7333"><div class="ttname"><a href="structsx126x__params__t.html#a652592cb091d3a51ec53f0d09aad7333">sx126x_params_t::dio1_pin</a></div><div class="ttdeci">gpio_t dio1_pin</div><div class="ttdoc">Dio1 pin.</div><div class="ttdef"><b>Definition:</b> sx126x.h:90</div></div>
+<div class="ttc" id="astructsx126x__params__t_html_adc9cf083b645559269c500b03b05488a"><div class="ttname"><a href="structsx126x__params__t.html#adc9cf083b645559269c500b03b05488a">sx126x_params_t::type</a></div><div class="ttdeci">sx126x_type_t type</div><div class="ttdoc">Variant of sx126x.</div><div class="ttdef"><b>Definition:</b> sx126x.h:92</div></div>
+<div class="ttc" id="astructsx126x__params__t_html_ae67c70ef6cae03d49c34a0370c258305"><div class="ttname"><a href="structsx126x__params__t.html#ae67c70ef6cae03d49c34a0370c258305">sx126x_params_t::regulator</a></div><div class="ttdeci">sx126x_reg_mod_t regulator</div><div class="ttdoc">Power regulator mode.</div><div class="ttdef"><b>Definition:</b> sx126x.h:91</div></div>
+<div class="ttc" id="astructsx126x__params__t_html_af0ee314e0a6460b11e4ef1a4e3226147"><div class="ttname"><a href="structsx126x__params__t.html#af0ee314e0a6460b11e4ef1a4e3226147">sx126x_params_t::reset_pin</a></div><div class="ttdeci">gpio_t reset_pin</div><div class="ttdoc">Reset pin.</div><div class="ttdef"><b>Definition:</b> sx126x.h:88</div></div>
+<div class="ttc" id="astructsx126x_html"><div class="ttname"><a href="structsx126x.html">sx126x</a></div><div class="ttdoc">Device descriptor for the driver.</div><div class="ttdef"><b>Definition:</b> sx126x.h:105</div></div>
+<div class="ttc" id="astructsx126x_html_a2d952f2a869d9f16d07185f97fce131e"><div class="ttname"><a href="structsx126x.html#a2d952f2a869d9f16d07185f97fce131e">sx126x::channel</a></div><div class="ttdeci">uint32_t channel</div><div class="ttdoc">Current channel frequency (in Hz)</div><div class="ttdef"><b>Definition:</b> sx126x.h:110</div></div>
+<div class="ttc" id="astructsx126x_html_a412c5e3f8ace684d230152d2c2f3e228"><div class="ttname"><a href="structsx126x.html#a412c5e3f8ace684d230152d2c2f3e228">sx126x::radio_sleep</a></div><div class="ttdeci">bool radio_sleep</div><div class="ttdoc">Radio sleep status.</div><div class="ttdef"><b>Definition:</b> sx126x.h:112</div></div>
+<div class="ttc" id="astructsx126x_html_a8adcccd979be770db0552cef70793dc8"><div class="ttname"><a href="structsx126x.html#a8adcccd979be770db0552cef70793dc8">sx126x::mod_params</a></div><div class="ttdeci">sx126x_mod_params_lora_t mod_params</div><div class="ttdoc">Lora modulation parameters.</div><div class="ttdef"><b>Definition:</b> sx126x.h:109</div></div>
+<div class="ttc" id="astructsx126x_html_a9e4338511ed0c5daa6a6afc12b3e860f"><div class="ttname"><a href="structsx126x.html#a9e4338511ed0c5daa6a6afc12b3e860f">sx126x::pkt_params</a></div><div class="ttdeci">sx126x_pkt_params_lora_t pkt_params</div><div class="ttdoc">Lora packet parameters.</div><div class="ttdef"><b>Definition:</b> sx126x.h:108</div></div>
+<div class="ttc" id="astructsx126x_html_ab46294c4c86eb3b4059b2d49bfb166b4"><div class="ttname"><a href="structsx126x.html#ab46294c4c86eb3b4059b2d49bfb166b4">sx126x::netdev</a></div><div class="ttdeci">netdev_t netdev</div><div class="ttdoc">Netdev parent struct.</div><div class="ttdef"><b>Definition:</b> sx126x.h:106</div></div>
+<div class="ttc" id="astructsx126x_html_ab641a5036ebda680d55b434442c8d285"><div class="ttname"><a href="structsx126x.html#ab641a5036ebda680d55b434442c8d285">sx126x::rx_timeout</a></div><div class="ttdeci">uint16_t rx_timeout</div><div class="ttdoc">Rx Timeout in terms of symbols.</div><div class="ttdef"><b>Definition:</b> sx126x.h:111</div></div>
+<div class="ttc" id="astructsx126x_html_abed9b00b4177f2958fcabe970df7b193"><div class="ttname"><a href="structsx126x.html#abed9b00b4177f2958fcabe970df7b193">sx126x::params</a></div><div class="ttdeci">sx126x_params_t * params</div><div class="ttdoc">Initialization parameters.</div><div class="ttdef"><b>Definition:</b> sx126x.h:107</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="sx126x_8h.html">sx126x.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

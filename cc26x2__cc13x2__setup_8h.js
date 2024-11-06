@@ -1,0 +1,25 @@
+var cc26x2__cc13x2__setup_8h =
+[
+    [ "ROM_API_SETUP", "cc26x2__cc13x2__setup_8h.html#acd8f3e13944e294a1b0ed0b13d49acba", null ],
+    [ "rom_setup_after_cold_reset_wakeup_from_shutdown_cfg1", "cc26x2__cc13x2__setup_8h.html#a73a56b47b53ad3ac434a72d6522aed52", null ],
+    [ "rom_setup_after_cold_reset_wakeup_from_shutdown_cfg2", "cc26x2__cc13x2__setup_8h.html#ac043cca53c2163b01f09411a30d044cc", null ],
+    [ "rom_setup_after_cold_reset_wakeup_from_shutdown_cfg3", "cc26x2__cc13x2__setup_8h.html#ab00eb7013351f7da5f690c9527837bfb", null ],
+    [ "rom_setup_get_trim_for_adc_sh_mode_en", "cc26x2__cc13x2__setup_8h.html#a93f93842e5e42555ab3e3a50c9810d59", null ],
+    [ "rom_setup_get_trim_for_adc_sh_vbuf_en", "cc26x2__cc13x2__setup_8h.html#a08ca88203d84d447f4b5ca83f7178d4e", null ],
+    [ "rom_setup_get_trim_for_ampcomp_ctrl", "cc26x2__cc13x2__setup_8h.html#a8e13c0558b392d9ed70b0af1b8cf8779", null ],
+    [ "rom_setup_get_trim_for_ampcomp_th1", "cc26x2__cc13x2__setup_8h.html#a73bce74a0ee37c1ef2be77bf19215045", null ],
+    [ "rom_setup_get_trim_for_ampcomp_th2", "cc26x2__cc13x2__setup_8h.html#a616ad361f1dcdc61ad5408eadadb8776", null ],
+    [ "rom_setup_get_trim_for_anabypass_value1", "cc26x2__cc13x2__setup_8h.html#abeecabe03de465cbc8e74c3be0effa64", null ],
+    [ "rom_setup_get_trim_for_dblr_loop_filter_reset_voltage", "cc26x2__cc13x2__setup_8h.html#a46c8e9a2743d76a4e74d59f134c781f6", null ],
+    [ "rom_setup_get_trim_for_radc_ext_cfg", "cc26x2__cc13x2__setup_8h.html#a0f525619420e0dd3be3abf7c75f99b70", null ],
+    [ "rom_setup_get_trim_for_rc_osc_lf_ibias_trim", "cc26x2__cc13x2__setup_8h.html#ad7eb2f937f8e6d7d968a8c10a19b3588", null ],
+    [ "rom_setup_get_trim_for_rc_osc_lf_rtune_ctune_trim", "cc26x2__cc13x2__setup_8h.html#afd22e2004fb1a872a799f5ed76caea9f", null ],
+    [ "rom_setup_get_trim_for_xosc_hf_ctl", "cc26x2__cc13x2__setup_8h.html#a354c2e7c0409930961756fa815990655", null ],
+    [ "rom_setup_get_trim_for_xosc_hf_fast_start", "cc26x2__cc13x2__setup_8h.html#a8ac0e600b9c7ef265c5ee99ade63b356", null ],
+    [ "rom_setup_get_trim_for_xosc_hf_ibiastherm", "cc26x2__cc13x2__setup_8h.html#acd7b73bde9e3ab056a0a2df154c2b68a", null ],
+    [ "rom_setup_get_trim_for_xosc_lf_regulator_and_cmirrwr_ratio", "cc26x2__cc13x2__setup_8h.html#a32628bb3087f70fa9bbb31fb53064749", null ],
+    [ "rom_setup_set_aon_rtc_sub_sec_inc", "cc26x2__cc13x2__setup_8h.html#ab1ae70d8f53b9b046c3afef50096e4a8", null ],
+    [ "rom_setup_set_cache_mode_according_to_ccfg_setting", "cc26x2__cc13x2__setup_8h.html#ad0e7063357d7875f7501dbd15ee26cad", null ],
+    [ "rom_setup_step_vddr_trim_to", "cc26x2__cc13x2__setup_8h.html#aea4179ba5a86085cf4a17c76a42bfd91", null ],
+    [ "setup_trim_device", "cc26x2__cc13x2__setup_8h.html#a56d07c7c7730a86cbfbb4354972b76a0", null ]
+];

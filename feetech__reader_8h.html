@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/feetech/include/feetech_reader.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('feetech__reader_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a>  </div>
+  <div class="headertitle">
+<div class="title">feetech_reader.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__actuators.html">Actuator Device Drivers</a> &raquo; <a class="el" href="group__drivers__feetech.html">Feetech driver</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface definition for Feetech packet reader.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface definition for Feetech packet reader. </p>
+<dl class="section author"><dt>Author</dt><dd>Loïc Dauphin <a href="#" onclick="location.href='mai'+'lto:'+'loi'+'c.'+'dau'+'ph'+'in@'+'in'+'ria'+'.f'+'r'; return false;">loic.<span style="display: none;">.nosp@m.</span>daup<span style="display: none;">.nosp@m.</span>hin@i<span style="display: none;">.nosp@m.</span>nria<span style="display: none;">.nosp@m.</span>.fr</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;<a class="el" href="feetech__protocol_8h_source.html">feetech_protocol.h</a>&quot;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for feetech_reader.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="feetech__reader_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Feetech packet reader struct.  <a href="structfeetech__reader__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad17c6b5d8c8f7a0ade413b4b44df17a7"><td class="memItemLeft" align="right" valign="top"><a id="ad17c6b5d8c8f7a0ade413b4b44df17a7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FEETECH_ACK_SIZE</b>&#160;&#160;&#160;(6)</td></tr>
+<tr class="separator:ad17c6b5d8c8f7a0ade413b4b44df17a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abde31bd6613d8921deeb073557a9ecdc"><td class="memItemLeft" align="right" valign="top"><a id="abde31bd6613d8921deeb073557a9ecdc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FEETECH_RESPONSE_SIZE</b>(len)&#160;&#160;&#160;(6 + len)</td></tr>
+<tr class="separator:abde31bd6613d8921deeb073557a9ecdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75911efcbca8379f5381130560788dea"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a75911efcbca8379f5381130560788dea">feetech_reader_init</a> (<a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader, const uint8_t *buffer, size_t size)</td></tr>
+<tr class="memdesc:a75911efcbca8379f5381130560788dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Feetech packet reader.  <a href="feetech__reader_8h.html#a75911efcbca8379f5381130560788dea">More...</a><br /></td></tr>
+<tr class="separator:a75911efcbca8379f5381130560788dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc5ca97a8636c4d23c105b9569220ea"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#aefc5ca97a8636c4d23c105b9569220ea">feetech_reader_compute_sum</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:aefc5ca97a8636c4d23c105b9569220ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the packet's sum.  <a href="feetech__reader_8h.html#aefc5ca97a8636c4d23c105b9569220ea">More...</a><br /></td></tr>
+<tr class="separator:aefc5ca97a8636c4d23c105b9569220ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbbfe6cd9379757e01e82d2bc88e2edd"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#acbbfe6cd9379757e01e82d2bc88e2edd">feetech_reader_check_minsize</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:acbbfe6cd9379757e01e82d2bc88e2edd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the packet has the minimum required size.  <a href="feetech__reader_8h.html#acbbfe6cd9379757e01e82d2bc88e2edd">More...</a><br /></td></tr>
+<tr class="separator:acbbfe6cd9379757e01e82d2bc88e2edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5127fd1d882f668d140824c89636dd43"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a5127fd1d882f668d140824c89636dd43">feetech_reader_check_start</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a5127fd1d882f668d140824c89636dd43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the packet begins with 2 FEETECH_START bits.  <a href="feetech__reader_8h.html#a5127fd1d882f668d140824c89636dd43">More...</a><br /></td></tr>
+<tr class="separator:a5127fd1d882f668d140824c89636dd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba1e050cfe1428cfc37fe6a5c766de4b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#aba1e050cfe1428cfc37fe6a5c766de4b">feetech_reader_check_size</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:aba1e050cfe1428cfc37fe6a5c766de4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the packet's size is the same as the buffer's size.  <a href="feetech__reader_8h.html#aba1e050cfe1428cfc37fe6a5c766de4b">More...</a><br /></td></tr>
+<tr class="separator:aba1e050cfe1428cfc37fe6a5c766de4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a396fed2b7dbabb694470b662909a287e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a396fed2b7dbabb694470b662909a287e">feetech_reader_check_sum</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a396fed2b7dbabb694470b662909a287e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the computed sum and the sum of the packet are equal.  <a href="feetech__reader_8h.html#a396fed2b7dbabb694470b662909a287e">More...</a><br /></td></tr>
+<tr class="separator:a396fed2b7dbabb694470b662909a287e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6308e8a0d24125f826af9f76a0c77714"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a6308e8a0d24125f826af9f76a0c77714">feetech_reader_is_valid</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a6308e8a0d24125f826af9f76a0c77714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the packet is valid.  <a href="feetech__reader_8h.html#a6308e8a0d24125f826af9f76a0c77714">More...</a><br /></td></tr>
+<tr class="separator:a6308e8a0d24125f826af9f76a0c77714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dfd2f3b2d8d5d639bd28c17c659e348"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a4dfd2f3b2d8d5d639bd28c17c659e348">feetech_reader_get_id</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a4dfd2f3b2d8d5d639bd28c17c659e348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's device id.  <a href="feetech__reader_8h.html#a4dfd2f3b2d8d5d639bd28c17c659e348">More...</a><br /></td></tr>
+<tr class="separator:a4dfd2f3b2d8d5d639bd28c17c659e348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13ddd2a8ee91467728acbae2f87bc7e"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#ab13ddd2a8ee91467728acbae2f87bc7e">feetech_reader_get_instr</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:ab13ddd2a8ee91467728acbae2f87bc7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's instruction code.  <a href="feetech__reader_8h.html#ab13ddd2a8ee91467728acbae2f87bc7e">More...</a><br /></td></tr>
+<tr class="separator:ab13ddd2a8ee91467728acbae2f87bc7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fd2c729b39497313d4da8b9b2951fed"><td class="memItemLeft" align="right" valign="top">static const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a8fd2c729b39497313d4da8b9b2951fed">feetech_reader_response_get_payload</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a8fd2c729b39497313d4da8b9b2951fed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's payload (response)  <a href="feetech__reader_8h.html#a8fd2c729b39497313d4da8b9b2951fed">More...</a><br /></td></tr>
+<tr class="separator:a8fd2c729b39497313d4da8b9b2951fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2e49a4143d722123ac9348d7bf50e60"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#ac2e49a4143d722123ac9348d7bf50e60">feetech_reader_response_get_payload_size</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:ac2e49a4143d722123ac9348d7bf50e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's payload size (response)  <a href="feetech__reader_8h.html#ac2e49a4143d722123ac9348d7bf50e60">More...</a><br /></td></tr>
+<tr class="separator:ac2e49a4143d722123ac9348d7bf50e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86100cd2cb6c07bdbed893d7ea45c663"><td class="memItemLeft" align="right" valign="top">static const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a86100cd2cb6c07bdbed893d7ea45c663">feetech_reader_write_get_payload</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a86100cd2cb6c07bdbed893d7ea45c663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's payload (WRITE)  <a href="feetech__reader_8h.html#a86100cd2cb6c07bdbed893d7ea45c663">More...</a><br /></td></tr>
+<tr class="separator:a86100cd2cb6c07bdbed893d7ea45c663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add77b3cb0a2616da84573fdd0df9180f"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#add77b3cb0a2616da84573fdd0df9180f">feetech_reader_write_get_payload_size</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:add77b3cb0a2616da84573fdd0df9180f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's payload size (WRITE)  <a href="feetech__reader_8h.html#add77b3cb0a2616da84573fdd0df9180f">More...</a><br /></td></tr>
+<tr class="separator:add77b3cb0a2616da84573fdd0df9180f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09fa6ea7efb42e2973099c3ad28bd23e"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a09fa6ea7efb42e2973099c3ad28bd23e">feetech_reader_write_get_reg</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a09fa6ea7efb42e2973099c3ad28bd23e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's target register address (WRITE)  <a href="feetech__reader_8h.html#a09fa6ea7efb42e2973099c3ad28bd23e">More...</a><br /></td></tr>
+<tr class="separator:a09fa6ea7efb42e2973099c3ad28bd23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7553f209078557372f6981af4f15894d"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a7553f209078557372f6981af4f15894d">feetech_reader_read_get_size</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a7553f209078557372f6981af4f15894d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's READ size.  <a href="feetech__reader_8h.html#a7553f209078557372f6981af4f15894d">More...</a><br /></td></tr>
+<tr class="separator:a7553f209078557372f6981af4f15894d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64f11dcbf3fe9d7c1853ee9eeb91a4d0"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a64f11dcbf3fe9d7c1853ee9eeb91a4d0">feetech_reader_read_get_reg</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a64f11dcbf3fe9d7c1853ee9eeb91a4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's target register address (READ)  <a href="feetech__reader_8h.html#a64f11dcbf3fe9d7c1853ee9eeb91a4d0">More...</a><br /></td></tr>
+<tr class="separator:a64f11dcbf3fe9d7c1853ee9eeb91a4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492ef8ce3e76a73bf5449ecdf32a00ad"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a492ef8ce3e76a73bf5449ecdf32a00ad">feetech_reader_sync_write_get_payload_size</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a492ef8ce3e76a73bf5449ecdf32a00ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet items' payload size (SYNC_WRITE)  <a href="feetech__reader_8h.html#a492ef8ce3e76a73bf5449ecdf32a00ad">More...</a><br /></td></tr>
+<tr class="separator:a492ef8ce3e76a73bf5449ecdf32a00ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74192d181cba687309242714a6c3fe65"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a74192d181cba687309242714a6c3fe65">feetech_reader_sync_write_get_reg</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a74192d181cba687309242714a6c3fe65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet's target register address (SYNC_WRITE)  <a href="feetech__reader_8h.html#a74192d181cba687309242714a6c3fe65">More...</a><br /></td></tr>
+<tr class="separator:a74192d181cba687309242714a6c3fe65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37ccc6a185c74f624b57a0ef9972296e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a37ccc6a185c74f624b57a0ef9972296e">feetech_reader_sync_write_get_items_count</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader)</td></tr>
+<tr class="memdesc:a37ccc6a185c74f624b57a0ef9972296e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet items' count (SYNC_WRITE)  <a href="feetech__reader_8h.html#a37ccc6a185c74f624b57a0ef9972296e">More...</a><br /></td></tr>
+<tr class="separator:a37ccc6a185c74f624b57a0ef9972296e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fc215393f3b7e27b1b7101436db9bb1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#a0fc215393f3b7e27b1b7101436db9bb1">feetech_reader_sync_write_item_get_id</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader, uint8_t index)</td></tr>
+<tr class="memdesc:a0fc215393f3b7e27b1b7101436db9bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet item's device id (SYNC_WRITE)  <a href="feetech__reader_8h.html#a0fc215393f3b7e27b1b7101436db9bb1">More...</a><br /></td></tr>
+<tr class="separator:a0fc215393f3b7e27b1b7101436db9bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af750a6260258e690da0bf32b77b6fee9"><td class="memItemLeft" align="right" valign="top">const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="feetech__reader_8h.html#af750a6260258e690da0bf32b77b6fee9">feetech_reader_sync_write_item_get_payload</a> (const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *reader, uint8_t index)</td></tr>
+<tr class="memdesc:af750a6260258e690da0bf32b77b6fee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet item's payload (SYNC_WRITE)  <a href="feetech__reader_8h.html#af750a6260258e690da0bf32b77b6fee9">More...</a><br /></td></tr>
+<tr class="separator:af750a6260258e690da0bf32b77b6fee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="acbbfe6cd9379757e01e82d2bc88e2edd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbbfe6cd9379757e01e82d2bc88e2edd">&#9670;&nbsp;</a></span>feetech_reader_check_minsize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool feetech_reader_check_minsize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the packet has the minimum required size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the packet has the minimum required size </dd>
+<dd>
+false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aba1e050cfe1428cfc37fe6a5c766de4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba1e050cfe1428cfc37fe6a5c766de4b">&#9670;&nbsp;</a></span>feetech_reader_check_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool feetech_reader_check_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the packet's size is the same as the buffer's size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the packet's size is the same as the buffer's size </dd>
+<dd>
+false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a5127fd1d882f668d140824c89636dd43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5127fd1d882f668d140824c89636dd43">&#9670;&nbsp;</a></span>feetech_reader_check_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool feetech_reader_check_start </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the packet begins with 2 FEETECH_START bits. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the packet begins with 2 FEETECH_START bits </dd>
+<dd>
+false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a396fed2b7dbabb694470b662909a287e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a396fed2b7dbabb694470b662909a287e">&#9670;&nbsp;</a></span>feetech_reader_check_sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool feetech_reader_check_sum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the computed sum and the sum of the packet are equal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the computed sum and the sum of the packet are equal </dd>
+<dd>
+false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aefc5ca97a8636c4d23c105b9569220ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefc5ca97a8636c4d23c105b9569220ea">&#9670;&nbsp;</a></span>feetech_reader_compute_sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t feetech_reader_compute_sum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the packet's sum. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the sum of the packet </dd></dl>
+
+</div>
+</div>
+<a id="a4dfd2f3b2d8d5d639bd28c17c659e348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dfd2f3b2d8d5d639bd28c17c659e348">&#9670;&nbsp;</a></span>feetech_reader_get_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t feetech_reader_get_id </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's device id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the packet's device id </dd></dl>
+
+</div>
+</div>
+<a id="ab13ddd2a8ee91467728acbae2f87bc7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab13ddd2a8ee91467728acbae2f87bc7e">&#9670;&nbsp;</a></span>feetech_reader_get_instr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t feetech_reader_get_instr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's instruction code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the packet's instruction code </dd></dl>
+
+</div>
+</div>
+<a id="a75911efcbca8379f5381130560788dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75911efcbca8379f5381130560788dea">&#9670;&nbsp;</a></span>feetech_reader_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void feetech_reader_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the Feetech packet reader. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">reader</td><td>the packet reader </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>the buffer used to store data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the size of the buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6308e8a0d24125f826af9f76a0c77714"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6308e8a0d24125f826af9f76a0c77714">&#9670;&nbsp;</a></span>feetech_reader_is_valid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool feetech_reader_is_valid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the packet is valid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the packet is valid </dd>
+<dd>
+false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a64f11dcbf3fe9d7c1853ee9eeb91a4d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64f11dcbf3fe9d7c1853ee9eeb91a4d0">&#9670;&nbsp;</a></span>feetech_reader_read_get_reg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t feetech_reader_read_get_reg </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's target register address (READ) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the register address </dd></dl>
+
+</div>
+</div>
+<a id="a7553f209078557372f6981af4f15894d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7553f209078557372f6981af4f15894d">&#9670;&nbsp;</a></span>feetech_reader_read_get_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static size_t feetech_reader_read_get_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's READ size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the READ size </dd></dl>
+
+</div>
+</div>
+<a id="a8fd2c729b39497313d4da8b9b2951fed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fd2c729b39497313d4da8b9b2951fed">&#9670;&nbsp;</a></span>feetech_reader_response_get_payload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const uint8_t* feetech_reader_response_get_payload </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's payload (response) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the address of the beginning of the payload </dd></dl>
+
+</div>
+</div>
+<a id="ac2e49a4143d722123ac9348d7bf50e60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2e49a4143d722123ac9348d7bf50e60">&#9670;&nbsp;</a></span>feetech_reader_response_get_payload_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static size_t feetech_reader_response_get_payload_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's payload size (response) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the size of the payload </dd></dl>
+
+</div>
+</div>
+<a id="a37ccc6a185c74f624b57a0ef9972296e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37ccc6a185c74f624b57a0ef9972296e">&#9670;&nbsp;</a></span>feetech_reader_sync_write_get_items_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t feetech_reader_sync_write_get_items_count </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the packet items' count (SYNC_WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of items in the packet </dd></dl>
+
+</div>
+</div>
+<a id="a492ef8ce3e76a73bf5449ecdf32a00ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a492ef8ce3e76a73bf5449ecdf32a00ad">&#9670;&nbsp;</a></span>feetech_reader_sync_write_get_payload_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static size_t feetech_reader_sync_write_get_payload_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet items' payload size (SYNC_WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the size of the items' payload </dd></dl>
+
+</div>
+</div>
+<a id="a74192d181cba687309242714a6c3fe65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74192d181cba687309242714a6c3fe65">&#9670;&nbsp;</a></span>feetech_reader_sync_write_get_reg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t feetech_reader_sync_write_get_reg </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's target register address (SYNC_WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the register address </dd></dl>
+
+</div>
+</div>
+<a id="a0fc215393f3b7e27b1b7101436db9bb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fc215393f3b7e27b1b7101436db9bb1">&#9670;&nbsp;</a></span>feetech_reader_sync_write_item_get_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t feetech_reader_sync_write_item_get_id </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the packet item's device id (SYNC_WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>the item index</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the item's device id </dd></dl>
+
+</div>
+</div>
+<a id="af750a6260258e690da0bf32b77b6fee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af750a6260258e690da0bf32b77b6fee9">&#9670;&nbsp;</a></span>feetech_reader_sync_write_item_get_payload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t* feetech_reader_sync_write_item_get_payload </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the packet item's payload (SYNC_WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>the item index</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the beginning address of the payload </dd></dl>
+
+</div>
+</div>
+<a id="a86100cd2cb6c07bdbed893d7ea45c663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86100cd2cb6c07bdbed893d7ea45c663">&#9670;&nbsp;</a></span>feetech_reader_write_get_payload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const uint8_t* feetech_reader_write_get_payload </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's payload (WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the beginning address of the payload </dd></dl>
+
+</div>
+</div>
+<a id="add77b3cb0a2616da84573fdd0df9180f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add77b3cb0a2616da84573fdd0df9180f">&#9670;&nbsp;</a></span>feetech_reader_write_get_payload_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static size_t feetech_reader_write_get_payload_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's payload size (WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the size of the payload </dd></dl>
+
+</div>
+</div>
+<a id="a09fa6ea7efb42e2973099c3ad28bd23e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09fa6ea7efb42e2973099c3ad28bd23e">&#9670;&nbsp;</a></span>feetech_reader_write_get_reg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t feetech_reader_write_get_reg </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structfeetech__reader__t.html">feetech_reader_t</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the packet's target register address (WRITE) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reader</td><td>the packet reader</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the register address </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_e970f03c2194680eeb4b7056467ba042.html">feetech</a></li><li class="navelem"><a class="el" href="dir_d32825a7f5801892f00cc0dcea286066.html">include</a></li><li class="navelem"><a class="el" href="feetech__reader_8h.html">feetech_reader.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

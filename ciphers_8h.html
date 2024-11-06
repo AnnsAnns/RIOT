@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/crypto/ciphers.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ciphers_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a>  </div>
+  <div class="headertitle">
+<div class="title">ciphers.h File Reference<div class="ingroups"><a class="el" href="group__sys.html">System</a> &raquo; <a class="el" href="group__sys__crypto.html">Crypto</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Headers for the packet encryption class.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Headers for the packet encryption class. </p>
+<p>They are used to encrypt single packets.</p>
+<dl class="section author"><dt>Author</dt><dd>Freie Universitaet Berlin, Computer Systems &amp; Telematics </dd>
+<dd>
+Nicolai Schmittberger <a href="#" onclick="location.href='mai'+'lto:'+'nic'+'ol'+'ai.'+'sc'+'hmi'+'tt'+'ber'+'ge'+'r@f'+'u-'+'ber'+'li'+'n.d'+'e'; return false;">nicol<span style="display: none;">.nosp@m.</span>ai.s<span style="display: none;">.nosp@m.</span>chmit<span style="display: none;">.nosp@m.</span>tber<span style="display: none;">.nosp@m.</span>ger@f<span style="display: none;">.nosp@m.</span>u-be<span style="display: none;">.nosp@m.</span>rlin.<span style="display: none;">.nosp@m.</span>de</a> </dd>
+<dd>
+Zakaria Kasmi <a href="#" onclick="location.href='mai'+'lto:'+'zka'+'sm'+'i@i'+'nf'+'.fu'+'-b'+'erl'+'in'+'.de'; return false;">zkasm<span style="display: none;">.nosp@m.</span>i@in<span style="display: none;">.nosp@m.</span>f.fu-<span style="display: none;">.nosp@m.</span>berl<span style="display: none;">.nosp@m.</span>in.de</a> </dd>
+<dd>
+Mark Essien <a href="#" onclick="location.href='mai'+'lto:'+'mar'+'ke'+'ssi'+'en'+'@gm'+'ai'+'l.c'+'om'; return false;">marke<span style="display: none;">.nosp@m.</span>ssie<span style="display: none;">.nosp@m.</span>n@gma<span style="display: none;">.nosp@m.</span>il.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="modules_8h_source.html">modules.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for ciphers.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="ciphers_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcipher__context__t.html">cipher_context_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the context for cipher-operations  <a href="structcipher__context__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcipher__interface__st.html">cipher_interface_st</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">BlockCipher-Interface for the Cipher-Algorithms.  <a href="structcipher__interface__st.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcipher__t.html">cipher_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">basic struct for using block ciphers contains the cipher interface and the context  <a href="structcipher__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c4552d3ad73a68aba8ee6ec90a432b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#ae0c4552d3ad73a68aba8ee6ec90a432b">CIPHERS_MAX_KEY_SIZE</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:ae0c4552d3ad73a68aba8ee6ec90a432b"><td class="mdescLeft">&#160;</td><td class="mdescRight">the length of keys in bytes  <a href="ciphers_8h.html#ae0c4552d3ad73a68aba8ee6ec90a432b">More...</a><br /></td></tr>
+<tr class="separator:ae0c4552d3ad73a68aba8ee6ec90a432b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70714bab22e2760b96b7e755168b13d5"><td class="memItemLeft" align="right" valign="top"><a id="a70714bab22e2760b96b7e755168b13d5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CIPHER_MAX_BLOCK_SIZE</b>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:a70714bab22e2760b96b7e755168b13d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f3cbf83227a3c2381a16b22bebbea2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#a52f3cbf83227a3c2381a16b22bebbea2">CIPHER_MAX_CONTEXT_SIZE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a52f3cbf83227a3c2381a16b22bebbea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context sizes needed for the different ciphers.  <a href="ciphers_8h.html#a52f3cbf83227a3c2381a16b22bebbea2">More...</a><br /></td></tr>
+<tr class="separator:a52f3cbf83227a3c2381a16b22bebbea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a929ec194f91a3c680c52b70a149a89ac"><td class="memItemLeft" align="right" valign="top"><a id="a929ec194f91a3c680c52b70a149a89ac"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CIPHER_ERR_INVALID_KEY_SIZE</b>&#160;&#160;&#160;-3</td></tr>
+<tr class="separator:a929ec194f91a3c680c52b70a149a89ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a163288dcd873ef570eaff265b296d910"><td class="memItemLeft" align="right" valign="top"><a id="a163288dcd873ef570eaff265b296d910"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CIPHER_ERR_INVALID_LENGTH</b>&#160;&#160;&#160;-4</td></tr>
+<tr class="separator:a163288dcd873ef570eaff265b296d910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3e0cfe58b5d93574164315e1d0dad8f"><td class="memItemLeft" align="right" valign="top"><a id="af3e0cfe58b5d93574164315e1d0dad8f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CIPHER_ERR_ENC_FAILED</b>&#160;&#160;&#160;-5</td></tr>
+<tr class="separator:af3e0cfe58b5d93574164315e1d0dad8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c56d2986314a0926411999b5d9b7551"><td class="memItemLeft" align="right" valign="top"><a id="a0c56d2986314a0926411999b5d9b7551"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CIPHER_ERR_DEC_FAILED</b>&#160;&#160;&#160;-6</td></tr>
+<tr class="separator:a0c56d2986314a0926411999b5d9b7551"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf39190dbba09ccb14b50f4fa140795"><td class="memItemLeft" align="right" valign="top"><a id="acaf39190dbba09ccb14b50f4fa140795"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#acaf39190dbba09ccb14b50f4fa140795">CIPHER_ERR_BAD_CONTEXT_SIZE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:acaf39190dbba09ccb14b50f4fa140795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is returned by the cipher_init functions, if the corresponding algorithm has not been included in the build. <br /></td></tr>
+<tr class="separator:acaf39190dbba09ccb14b50f4fa140795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab098b5d653b19b19449d0a11706fb5cd"><td class="memItemLeft" align="right" valign="top"><a id="ab098b5d653b19b19449d0a11706fb5cd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#ab098b5d653b19b19449d0a11706fb5cd">CIPHER_INIT_SUCCESS</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ab098b5d653b19b19449d0a11706fb5cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returned by cipher_init upon successful initialization of a cipher. <br /></td></tr>
+<tr class="separator:ab098b5d653b19b19449d0a11706fb5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eaea0b06b7fcf673767aeceaa2f70a0"><td class="memItemLeft" align="right" valign="top"><a id="a2eaea0b06b7fcf673767aeceaa2f70a0"></a>
+typedef struct <a class="el" href="structcipher__interface__st.html">cipher_interface_st</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#a2eaea0b06b7fcf673767aeceaa2f70a0">cipher_interface_t</a></td></tr>
+<tr class="memdesc:a2eaea0b06b7fcf673767aeceaa2f70a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">BlockCipher-Interface for the Cipher-Algorithms. <br /></td></tr>
+<tr class="separator:a2eaea0b06b7fcf673767aeceaa2f70a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8e67bf62296bb7517d132e3a9e20416"><td class="memItemLeft" align="right" valign="top"><a id="af8e67bf62296bb7517d132e3a9e20416"></a>
+typedef const <a class="el" href="ciphers_8h.html#a2eaea0b06b7fcf673767aeceaa2f70a0">cipher_interface_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#af8e67bf62296bb7517d132e3a9e20416">cipher_id_t</a></td></tr>
+<tr class="memdesc:af8e67bf62296bb7517d132e3a9e20416"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer type to BlockCipher-Interface for the Cipher-Algorithms. <br /></td></tr>
+<tr class="separator:af8e67bf62296bb7517d132e3a9e20416"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af93f37b818df2b3c42f9826f75b0e556"><td class="memItemLeft" align="right" valign="top"><a id="af93f37b818df2b3c42f9826f75b0e556"></a>
+const <a class="el" href="ciphers_8h.html#af8e67bf62296bb7517d132e3a9e20416">cipher_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#af93f37b818df2b3c42f9826f75b0e556">CIPHER_AES</a></td></tr>
+<tr class="memdesc:af93f37b818df2b3c42f9826f75b0e556"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES cipher id. <br /></td></tr>
+<tr class="separator:af93f37b818df2b3c42f9826f75b0e556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33dc7486f4011e7d3b99d1720f7cc350"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#a33dc7486f4011e7d3b99d1720f7cc350">cipher_init</a> (<a class="el" href="structcipher__t.html">cipher_t</a> *cipher, <a class="el" href="ciphers_8h.html#af8e67bf62296bb7517d132e3a9e20416">cipher_id_t</a> cipher_id, const uint8_t *key, uint8_t key_size)</td></tr>
+<tr class="memdesc:a33dc7486f4011e7d3b99d1720f7cc350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize new cipher state.  <a href="ciphers_8h.html#a33dc7486f4011e7d3b99d1720f7cc350">More...</a><br /></td></tr>
+<tr class="separator:a33dc7486f4011e7d3b99d1720f7cc350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab107fa538e58f5c3e54f362eafd95fcc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#ab107fa538e58f5c3e54f362eafd95fcc">cipher_encrypt</a> (const <a class="el" href="structcipher__t.html">cipher_t</a> *cipher, const uint8_t *input, uint8_t *output)</td></tr>
+<tr class="memdesc:ab107fa538e58f5c3e54f362eafd95fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt data of BLOCK_SIZE length *.  <a href="ciphers_8h.html#ab107fa538e58f5c3e54f362eafd95fcc">More...</a><br /></td></tr>
+<tr class="separator:ab107fa538e58f5c3e54f362eafd95fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837fd1a7da5ea2feed8d1a0691c9b146"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#a837fd1a7da5ea2feed8d1a0691c9b146">cipher_decrypt</a> (const <a class="el" href="structcipher__t.html">cipher_t</a> *cipher, const uint8_t *input, uint8_t *output)</td></tr>
+<tr class="memdesc:a837fd1a7da5ea2feed8d1a0691c9b146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypt data of BLOCK_SIZE length *.  <a href="ciphers_8h.html#a837fd1a7da5ea2feed8d1a0691c9b146">More...</a><br /></td></tr>
+<tr class="separator:a837fd1a7da5ea2feed8d1a0691c9b146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb0b1044ba7a3dafcce9ef4b0730190a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ciphers_8h.html#abb0b1044ba7a3dafcce9ef4b0730190a">cipher_get_block_size</a> (const <a class="el" href="structcipher__t.html">cipher_t</a> *cipher)</td></tr>
+<tr class="memdesc:abb0b1044ba7a3dafcce9ef4b0730190a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get block size of cipher *.  <a href="ciphers_8h.html#abb0b1044ba7a3dafcce9ef4b0730190a">More...</a><br /></td></tr>
+<tr class="separator:abb0b1044ba7a3dafcce9ef4b0730190a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a52f3cbf83227a3c2381a16b22bebbea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52f3cbf83227a3c2381a16b22bebbea2">&#9670;&nbsp;</a></span>CIPHER_MAX_CONTEXT_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIPHER_MAX_CONTEXT_SIZE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Context sizes needed for the different ciphers. </p>
+<p>Always order by number of bytes descending!!! <br  />
+<br  />
+</p>
+<p>aes needs CIPHERS_MAX_KEY_SIZE bytes <br  />
+ </p>
+
+</div>
+</div>
+<a id="ae0c4552d3ad73a68aba8ee6ec90a432b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c4552d3ad73a68aba8ee6ec90a432b">&#9670;&nbsp;</a></span>CIPHERS_MAX_KEY_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CIPHERS_MAX_KEY_SIZE&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>the length of keys in bytes </p>
+<p>As of now AES is the only cipher which supports different key sizes. Here we optimize the CIPHERS_MAX_KEY_SIZE to always have the smallest possible value based on which AES key sizes are used. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a837fd1a7da5ea2feed8d1a0691c9b146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837fd1a7da5ea2feed8d1a0691c9b146">&#9670;&nbsp;</a></span>cipher_decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cipher_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcipher__t.html">cipher_t</a> *&#160;</td>
+          <td class="paramname"><em>cipher</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypt data of BLOCK_SIZE length *. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cipher</td><td>Already initialized cipher struct </td></tr>
+    <tr><td class="paramname">input</td><td>pointer to input data (of size BLOCKS_SIZE) to decrypt </td></tr>
+    <tr><td class="paramname">output</td><td>pointer to allocated memory for decrypted data. It has to be of size BLOCK_SIZE</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the decrypt operation of the underlying cipher, which is always 1 in case of success </dd>
+<dd>
+A negative value for an error </dd></dl>
+
+</div>
+</div>
+<a id="ab107fa538e58f5c3e54f362eafd95fcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab107fa538e58f5c3e54f362eafd95fcc">&#9670;&nbsp;</a></span>cipher_encrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cipher_encrypt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcipher__t.html">cipher_t</a> *&#160;</td>
+          <td class="paramname"><em>cipher</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypt data of BLOCK_SIZE length *. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cipher</td><td>Already initialized cipher struct </td></tr>
+    <tr><td class="paramname">input</td><td>pointer to input data to encrypt </td></tr>
+    <tr><td class="paramname">output</td><td>pointer to allocated memory for encrypted data. It has to be of size BLOCK_SIZE</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result of the encrypt operation of the underlying cipher, which is always 1 in case of success </dd>
+<dd>
+A negative value for an error </dd></dl>
+
+</div>
+</div>
+<a id="abb0b1044ba7a3dafcce9ef4b0730190a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb0b1044ba7a3dafcce9ef4b0730190a">&#9670;&nbsp;</a></span>cipher_get_block_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cipher_get_block_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcipher__t.html">cipher_t</a> *&#160;</td>
+          <td class="paramname"><em>cipher</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get block size of cipher *. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cipher</td><td>Already initialized cipher struct</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The cipher's block size (in bytes) </dd></dl>
+
+</div>
+</div>
+<a id="a33dc7486f4011e7d3b99d1720f7cc350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33dc7486f4011e7d3b99d1720f7cc350">&#9670;&nbsp;</a></span>cipher_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cipher_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcipher__t.html">cipher_t</a> *&#160;</td>
+          <td class="paramname"><em>cipher</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ciphers_8h.html#af8e67bf62296bb7517d132e3a9e20416">cipher_id_t</a>&#160;</td>
+          <td class="paramname"><em>cipher_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>key_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize new cipher state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cipher</td><td>cipher struct to init (already allocated memory) </td></tr>
+    <tr><td class="paramname">cipher_id</td><td>cipher algorithm id </td></tr>
+    <tr><td class="paramname">key</td><td>encryption key to use </td></tr>
+    <tr><td class="paramname">key_size</td><td>length of the encryption key</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>CIPHER_INIT_SUCCESS if the initialization was successful. </dd>
+<dd>
+CIPHER_ERR_BAD_CONTEXT_SIZE if CIPHER_MAX_CONTEXT_SIZE has not been defined (which means that the cipher has not been included in the build) </dd>
+<dd>
+The command may return CIPHER_ERR_INVALID_KEY_SIZE if the key size is not valid. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="dir_0ad69467a20205cef2b7e6370c6fd011.html">crypto</a></li><li class="navelem"><a class="el" href="ciphers_8h.html">ciphers.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

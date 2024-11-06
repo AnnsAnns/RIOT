@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/mma7660.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mma7660_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mma7660.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mma7660_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 University of California, Berkeley</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef MMA7660_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define MMA7660_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1a3a133d76520420fdac37e8384185aa9a">   39</a></span>&#160;    <a class="code" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1a3a133d76520420fdac37e8384185aa9a">MMA7660_OK</a>,               </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1ad42bb0a6dc5da42ec90d8205d69e8314">   40</a></span>&#160;    <a class="code" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1ad42bb0a6dc5da42ec90d8205d69e8314">MMA7660_I2C_ERR</a>,          </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1af4a09a0dc9ec05953172bc320016aae3">   41</a></span>&#160;    <a class="code" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1af4a09a0dc9ec05953172bc320016aae3">MMA7660_I2C_READ_ERR</a>,     </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1acecab4c5b8daa70da71443b078b13f7a">   42</a></span>&#160;    <a class="code" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1acecab4c5b8daa70da71443b078b13f7a">MMA7660_I2C_WRITE_ERR</a>,    </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1a17cccb2d40230ea4bdf67ed7acace7f8">   43</a></span>&#160;    <a class="code" href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1a17cccb2d40230ea4bdf67ed7acace7f8">MMA7660_READ_ERR</a>,         </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structmma7660__params__t.html">   49</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structmma7660__params__t.html#a274f878af4bd0397a95598db8c567393">   51</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structmma7660__params__t.html#a274f878af4bd0397a95598db8c567393">i2c</a>;                </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structmma7660__params__t.html#a8c2181002f2eb3bec630a3cbe454e4ff">   52</a></span>&#160;    uint8_t <a class="code" href="structmma7660__params__t.html#a8c2181002f2eb3bec630a3cbe454e4ff">addr</a>;             </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structmma7660__params__t.html#a8381382d7b6bcef08b4f6afc11cdbf59">   53</a></span>&#160;    uint8_t <a class="code" href="structmma7660__params__t.html#a8381382d7b6bcef08b4f6afc11cdbf59">amsr</a>;             </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structmma7660__params__t.html#ac4567e5d8ae61faca589aa798ec68e5b">   54</a></span>&#160;    uint8_t <a class="code" href="structmma7660__params__t.html#ac4567e5d8ae61faca589aa798ec68e5b">awsr</a>;             </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structmma7660__params__t.html#ac89aff5458698e039196a50aebe9ac9e">   55</a></span>&#160;    uint8_t <a class="code" href="structmma7660__params__t.html#ac89aff5458698e039196a50aebe9ac9e">filt</a>;             </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;} <a class="code" href="structmma7660__params__t.html">mma7660_params_t</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structmma7660__t.html">   61</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structmma7660__t.html#a0411ababe6c424354ef39154959c2171">   63</a></span>&#160;    <a class="code" href="structmma7660__params__t.html">mma7660_params_t</a> <a class="code" href="structmma7660__t.html#a0411ababe6c424354ef39154959c2171">params</a>;  </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;} <a class="code" href="structmma7660__t.html">mma7660_t</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structmma7660__data__t.html">   69</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structmma7660__data__t.html#a051ec7114b47397b02b97b30f711124d">   70</a></span>&#160;    int16_t <a class="code" href="structmma7660__data__t.html#a051ec7114b47397b02b97b30f711124d">x</a>;                  </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structmma7660__data__t.html#a63c520f45d9598e64ae7e5f4d63e4f2e">   71</a></span>&#160;    int16_t <a class="code" href="structmma7660__data__t.html#a63c520f45d9598e64ae7e5f4d63e4f2e">y</a>;                  </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structmma7660__data__t.html#afd3d0ec28d060cfca753649aa1f73628">   72</a></span>&#160;    int16_t <a class="code" href="structmma7660__data__t.html#afd3d0ec28d060cfca753649aa1f73628">z</a>;                  </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;} <a class="code" href="structmma7660__data__t.html">mma7660_data_t</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define MODE_ACTIVE_SHIFT             (0U)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define MODE_AUTOWAKE_SHIFT           (3U)</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#define MODE_AUTOSLEEP_SHIFT          (4U)</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define MODE_PRESCALE_SHIFT           (5U)</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#define MODE_INTERRUPT_DEFAULT        (0x40) </span><span class="comment">/* Active low, push-pull */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_NONE        (0x00)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_FB          (0x01)</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_UDLR        (0x02)</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_TAP         (0x04)</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_AUTOSLEEP   (0x08)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_MEASURE     (0x10)</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_SHX         (0x20)</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_SHY         (0x40)</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#define MMA7660_INTSOURCE_SHZ         (0x80)</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define MMA7660_SR_AMPD               (0x00)</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#define MMA7660_SR_AM64               (0x01)</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define MMA7660_SR_AM32               (0x02)</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#define MMA7660_SR_AM16               (0x03)</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#define MMA7660_SR_AM8                (0x04)</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#define MMA7660_SR_AM4                (0x05)</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#define MMA7660_SR_AM2                (0x06)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#define MMA7660_SR_AM1                (0x07)</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#define MMA7660_SR_AW32               (0x00)</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#define MMA7660_SR_AW16               (0x08)</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#define MMA7660_SR_AW8                (0x10)</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#define MMA7660_SR_AW1                (0x18)</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define MMA7660_PDET_X                (0x20)</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#define MMA7660_PDET_Y                (0x40)</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define MMA7660_PDET_Z                (0x80)</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#define MMA7660_ADDR                  (0x4C)</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">/* This is actually 46.9 but the sensor is not accurate enough</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"> * for that to matter</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#define MMA7660_MG_PER_COUNT          (47U)</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ga77b0f534508f0fa6edf4ca31d03638f0">  129</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#ga77b0f534508f0fa6edf4ca31d03638f0">mma7660_init</a>(<a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structmma7660__params__t.html">mma7660_params_t</a> *params);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ga269a690b3564e5627863b02ba6e42be3">  146</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#ga269a690b3564e5627863b02ba6e42be3">mma7660_set_mode</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, uint8_t active,</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                     uint8_t autowake, uint8_t autosleep, uint8_t prescale);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ga10ba7a14ce7116c5ffddc6ffca98c287">  158</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#ga10ba7a14ce7116c5ffddc6ffca98c287">mma7660_read_tilt</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, uint8_t *res);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#gad15a475321c33260ee49c722d4166383">  169</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#gad15a475321c33260ee49c722d4166383">mma7660_write_sleep_count</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, uint8_t sleep);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#gaf1732ba9d7e33b8666d679325e31a7e1">  180</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#gaf1732ba9d7e33b8666d679325e31a7e1">mma7660_config_interrupts</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, uint8_t isource_flags);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ga2164bcf3b56406e943ca3602012d7d58">  196</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#ga2164bcf3b56406e943ca3602012d7d58">mma7660_config_samplerate</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, uint8_t amsr, uint8_t awsr, uint8_t filt);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#gaeb421e31df1b5f2bc91f6432fd1e1a3c">  211</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#gaeb421e31df1b5f2bc91f6432fd1e1a3c">mma7660_config_pdet</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, uint8_t pdth, uint8_t enabled_axes);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#gae9469d9921288a9f6889a1d9b410b24f">  225</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#gae9469d9921288a9f6889a1d9b410b24f">mma7660_config_pd</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, uint8_t pd) ;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#gaaac40d04aebe00a433f30e7b37d5307e">  236</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#gaaac40d04aebe00a433f30e7b37d5307e">mma7660_read</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, <a class="code" href="structmma7660__data__t.html">mma7660_data_t</a> *data);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="group__drivers__mma7660.html#ga337c8b446883dd0d0b924a9725a6ffcc">  253</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__mma7660.html#ga337c8b446883dd0d0b924a9725a6ffcc">mma7660_read_counts</a>(<span class="keyword">const</span> <a class="code" href="structmma7660__t.html">mma7660_t</a> *dev, int8_t *x, int8_t *y, int8_t *z);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;}</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MMA7660_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ga10ba7a14ce7116c5ffddc6ffca98c287"><div class="ttname"><a href="group__drivers__mma7660.html#ga10ba7a14ce7116c5ffddc6ffca98c287">mma7660_read_tilt</a></div><div class="ttdeci">int mma7660_read_tilt(const mma7660_t *dev, uint8_t *res)</div><div class="ttdoc">Read the tilt register.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ga2164bcf3b56406e943ca3602012d7d58"><div class="ttname"><a href="group__drivers__mma7660.html#ga2164bcf3b56406e943ca3602012d7d58">mma7660_config_samplerate</a></div><div class="ttdeci">int mma7660_config_samplerate(const mma7660_t *dev, uint8_t amsr, uint8_t awsr, uint8_t filt)</div><div class="ttdoc">Configure the sample rate.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ga269a690b3564e5627863b02ba6e42be3"><div class="ttname"><a href="group__drivers__mma7660.html#ga269a690b3564e5627863b02ba6e42be3">mma7660_set_mode</a></div><div class="ttdeci">int mma7660_set_mode(const mma7660_t *dev, uint8_t active, uint8_t autowake, uint8_t autosleep, uint8_t prescale)</div><div class="ttdoc">Set the mode register.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ga337c8b446883dd0d0b924a9725a6ffcc"><div class="ttname"><a href="group__drivers__mma7660.html#ga337c8b446883dd0d0b924a9725a6ffcc">mma7660_read_counts</a></div><div class="ttdeci">int mma7660_read_counts(const mma7660_t *dev, int8_t *x, int8_t *y, int8_t *z)</div><div class="ttdoc">Read the acceleration counts (unconverted)</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ga77b0f534508f0fa6edf4ca31d03638f0"><div class="ttname"><a href="group__drivers__mma7660.html#ga77b0f534508f0fa6edf4ca31d03638f0">mma7660_init</a></div><div class="ttdeci">int mma7660_init(mma7660_t *dev, const mma7660_params_t *params)</div><div class="ttdoc">Initialize an MMA7660 device.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_gaaac40d04aebe00a433f30e7b37d5307e"><div class="ttname"><a href="group__drivers__mma7660.html#gaaac40d04aebe00a433f30e7b37d5307e">mma7660_read</a></div><div class="ttdeci">int mma7660_read(const mma7660_t *dev, mma7660_data_t *data)</div><div class="ttdoc">Read the acceleration counts converted to mG.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_gad15a475321c33260ee49c722d4166383"><div class="ttname"><a href="group__drivers__mma7660.html#gad15a475321c33260ee49c722d4166383">mma7660_write_sleep_count</a></div><div class="ttdeci">int mma7660_write_sleep_count(const mma7660_t *dev, uint8_t sleep)</div><div class="ttdoc">Write the sleep count register.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_gae9469d9921288a9f6889a1d9b410b24f"><div class="ttname"><a href="group__drivers__mma7660.html#gae9469d9921288a9f6889a1d9b410b24f">mma7660_config_pd</a></div><div class="ttdeci">int mma7660_config_pd(const mma7660_t *dev, uint8_t pd)</div><div class="ttdoc">Configure the tap detection debounce count.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_gaeb421e31df1b5f2bc91f6432fd1e1a3c"><div class="ttname"><a href="group__drivers__mma7660.html#gaeb421e31df1b5f2bc91f6432fd1e1a3c">mma7660_config_pdet</a></div><div class="ttdeci">int mma7660_config_pdet(const mma7660_t *dev, uint8_t pdth, uint8_t enabled_axes)</div><div class="ttdoc">Configure the tap detection.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_gaf1732ba9d7e33b8666d679325e31a7e1"><div class="ttname"><a href="group__drivers__mma7660.html#gaf1732ba9d7e33b8666d679325e31a7e1">mma7660_config_interrupts</a></div><div class="ttdeci">int mma7660_config_interrupts(const mma7660_t *dev, uint8_t isource_flags)</div><div class="ttdoc">Configure the interrupt sources.</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ggae07532c74c7e685988e820f34d132fc1a17cccb2d40230ea4bdf67ed7acace7f8"><div class="ttname"><a href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1a17cccb2d40230ea4bdf67ed7acace7f8">MMA7660_READ_ERR</a></div><div class="ttdeci">@ MMA7660_READ_ERR</div><div class="ttdoc">error when reading counts</div><div class="ttdef"><b>Definition:</b> mma7660.h:43</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ggae07532c74c7e685988e820f34d132fc1a3a133d76520420fdac37e8384185aa9a"><div class="ttname"><a href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1a3a133d76520420fdac37e8384185aa9a">MMA7660_OK</a></div><div class="ttdeci">@ MMA7660_OK</div><div class="ttdoc">all ok</div><div class="ttdef"><b>Definition:</b> mma7660.h:39</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ggae07532c74c7e685988e820f34d132fc1acecab4c5b8daa70da71443b078b13f7a"><div class="ttname"><a href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1acecab4c5b8daa70da71443b078b13f7a">MMA7660_I2C_WRITE_ERR</a></div><div class="ttdeci">@ MMA7660_I2C_WRITE_ERR</div><div class="ttdoc">i2c bus cannot be written</div><div class="ttdef"><b>Definition:</b> mma7660.h:42</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ggae07532c74c7e685988e820f34d132fc1ad42bb0a6dc5da42ec90d8205d69e8314"><div class="ttname"><a href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1ad42bb0a6dc5da42ec90d8205d69e8314">MMA7660_I2C_ERR</a></div><div class="ttdeci">@ MMA7660_I2C_ERR</div><div class="ttdoc">i2c bus initialization error</div><div class="ttdef"><b>Definition:</b> mma7660.h:40</div></div>
+<div class="ttc" id="agroup__drivers__mma7660_html_ggae07532c74c7e685988e820f34d132fc1af4a09a0dc9ec05953172bc320016aae3"><div class="ttname"><a href="group__drivers__mma7660.html#ggae07532c74c7e685988e820f34d132fc1af4a09a0dc9ec05953172bc320016aae3">MMA7660_I2C_READ_ERR</a></div><div class="ttdeci">@ MMA7660_I2C_READ_ERR</div><div class="ttdoc">i2c bus cannot be read</div><div class="ttdef"><b>Definition:</b> mma7660.h:41</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructmma7660__data__t_html"><div class="ttname"><a href="structmma7660__data__t.html">mma7660_data_t</a></div><div class="ttdoc">Data type for the result data.</div><div class="ttdef"><b>Definition:</b> mma7660.h:69</div></div>
+<div class="ttc" id="astructmma7660__data__t_html_a051ec7114b47397b02b97b30f711124d"><div class="ttname"><a href="structmma7660__data__t.html#a051ec7114b47397b02b97b30f711124d">mma7660_data_t::x</a></div><div class="ttdeci">int16_t x</div><div class="ttdoc">acceleration in X direction</div><div class="ttdef"><b>Definition:</b> mma7660.h:70</div></div>
+<div class="ttc" id="astructmma7660__data__t_html_a63c520f45d9598e64ae7e5f4d63e4f2e"><div class="ttname"><a href="structmma7660__data__t.html#a63c520f45d9598e64ae7e5f4d63e4f2e">mma7660_data_t::y</a></div><div class="ttdeci">int16_t y</div><div class="ttdoc">acceleration in Y direction</div><div class="ttdef"><b>Definition:</b> mma7660.h:71</div></div>
+<div class="ttc" id="astructmma7660__data__t_html_afd3d0ec28d060cfca753649aa1f73628"><div class="ttname"><a href="structmma7660__data__t.html#afd3d0ec28d060cfca753649aa1f73628">mma7660_data_t::z</a></div><div class="ttdeci">int16_t z</div><div class="ttdoc">acceleration in Z direction</div><div class="ttdef"><b>Definition:</b> mma7660.h:72</div></div>
+<div class="ttc" id="astructmma7660__params__t_html"><div class="ttname"><a href="structmma7660__params__t.html">mma7660_params_t</a></div><div class="ttdoc">Parameters for an MMA7660 device.</div><div class="ttdef"><b>Definition:</b> mma7660.h:50</div></div>
+<div class="ttc" id="astructmma7660__params__t_html_a274f878af4bd0397a95598db8c567393"><div class="ttname"><a href="structmma7660__params__t.html#a274f878af4bd0397a95598db8c567393">mma7660_params_t::i2c</a></div><div class="ttdeci">i2c_t i2c</div><div class="ttdoc">the I2C handle</div><div class="ttdef"><b>Definition:</b> mma7660.h:51</div></div>
+<div class="ttc" id="astructmma7660__params__t_html_a8381382d7b6bcef08b4f6afc11cdbf59"><div class="ttname"><a href="structmma7660__params__t.html#a8381382d7b6bcef08b4f6afc11cdbf59">mma7660_params_t::amsr</a></div><div class="ttdeci">uint8_t amsr</div><div class="ttdoc">active mode sample rate</div><div class="ttdef"><b>Definition:</b> mma7660.h:53</div></div>
+<div class="ttc" id="astructmma7660__params__t_html_a8c2181002f2eb3bec630a3cbe454e4ff"><div class="ttname"><a href="structmma7660__params__t.html#a8c2181002f2eb3bec630a3cbe454e4ff">mma7660_params_t::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdoc">the device I2C address</div><div class="ttdef"><b>Definition:</b> mma7660.h:52</div></div>
+<div class="ttc" id="astructmma7660__params__t_html_ac4567e5d8ae61faca589aa798ec68e5b"><div class="ttname"><a href="structmma7660__params__t.html#ac4567e5d8ae61faca589aa798ec68e5b">mma7660_params_t::awsr</a></div><div class="ttdeci">uint8_t awsr</div><div class="ttdoc">auto wake sample rate</div><div class="ttdef"><b>Definition:</b> mma7660.h:54</div></div>
+<div class="ttc" id="astructmma7660__params__t_html_ac89aff5458698e039196a50aebe9ac9e"><div class="ttname"><a href="structmma7660__params__t.html#ac89aff5458698e039196a50aebe9ac9e">mma7660_params_t::filt</a></div><div class="ttdeci">uint8_t filt</div><div class="ttdoc">filter samples</div><div class="ttdef"><b>Definition:</b> mma7660.h:55</div></div>
+<div class="ttc" id="astructmma7660__t_html"><div class="ttname"><a href="structmma7660__t.html">mma7660_t</a></div><div class="ttdoc">Device descriptor for an MMA7660 device.</div><div class="ttdef"><b>Definition:</b> mma7660.h:62</div></div>
+<div class="ttc" id="astructmma7660__t_html_a0411ababe6c424354ef39154959c2171"><div class="ttname"><a href="structmma7660__t.html#a0411ababe6c424354ef39154959c2171">mma7660_t::params</a></div><div class="ttdeci">mma7660_params_t params</div><div class="ttdoc">initialization parameters</div><div class="ttdef"><b>Definition:</b> mma7660.h:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="mma7660_8h.html">mma7660.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

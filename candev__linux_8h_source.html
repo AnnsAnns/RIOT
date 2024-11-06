@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/native/include/candev_linux.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('candev__linux_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">candev_linux.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="candev__linux_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2016 OTA keys S.A.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef CANDEV_LINUX_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define CANDEV_LINUX_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#if defined(__linux__) </span><span class="comment">/* SocketCAN is supported only on Linux */</span><span class="preprocessor"> || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sys_2include_2can_2device_8h.html">can/device.h</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="candev_8h.html">can/candev.h</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mutex_8h.html">mutex.h</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#ga314fd0bfec6e2abeeb5a24a50779b35b">   41</a></span>&#160;<span class="preprocessor">#define CAN_MAX_SIZE_INTERFACE_NAME (5)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structcandev__conf.html">   46</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcandev__conf.html">candev_conf</a> {</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structcandev__conf.html#a81e9ab25fe070e1f6b5ccd44d014ab8d">   48</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structcandev__conf.html#a81e9ab25fe070e1f6b5ccd44d014ab8d">interface_name</a>[<a class="code" href="group__drivers__candev__linux.html#ga314fd0bfec6e2abeeb5a24a50779b35b">CAN_MAX_SIZE_INTERFACE_NAME</a> + 1];</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#ga43415495c4b8b546c6b6939527e1f29d">   49</a></span>&#160;} <a class="code" href="group__drivers__candev__linux.html#ga43415495c4b8b546c6b6939527e1f29d">can_conf_t</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#ga1f144ca1575a4ebb59b99cd6273b5389">   52</a></span>&#160;<span class="preprocessor">#define HAVE_CAN_CONF_T</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#ifndef CANDEV_LINUX_MAX_FILTERS_RX</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#gaec19105f9718a8946c0c350dd9a5d635">   58</a></span>&#160;<span class="preprocessor">#define CANDEV_LINUX_MAX_FILTERS_RX  (16)</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#ifndef CANDEV_LINUX_DEFAULT_BITRATE</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#ga1079abfb970db5efddd538a9283dd15a">   65</a></span>&#160;<span class="preprocessor">#define CANDEV_LINUX_DEFAULT_BITRATE (500000)</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifndef CANDEV_LINUX_DEFAULT_SPT</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#ga58f95c0cfa47bb38df75d7c330821b96">   72</a></span>&#160;<span class="preprocessor">#define CANDEV_LINUX_DEFAULT_SPT (875)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="structcandev__linux.html">   78</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcandev__linux.html">candev_linux</a> {</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="structcandev__linux.html#ad2a896c91e9240449d11c15be8c7ddcc">   79</a></span>&#160;    <a class="code" href="structcandev.html">candev_t</a> <a class="code" href="structcandev__linux.html#ad2a896c91e9240449d11c15be8c7ddcc">candev</a>;                  </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structcandev__linux.html#aa146edd57daea361eb74a46f35075ddf">   80</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structcandev__linux.html#aa146edd57daea361eb74a46f35075ddf">sock</a>;                         </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="structcandev__linux.html#a2520255f20dfa235632bd5a7856ea2fc">   81</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structcan__conf__t.html">can_conf_t</a> *<a class="code" href="structcandev__linux.html#a2520255f20dfa235632bd5a7856ea2fc">conf</a>;  </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">struct </span><a class="code" href="structcan__filter.html">can_filter</a> <a class="code" href="structcandev__linux.html#ae1694e97e69534fb2aae495f7fe4bb81">filters</a>[<a class="code" href="group__drivers__candev__linux.html#gaec19105f9718a8946c0c350dd9a5d635">CANDEV_LINUX_MAX_FILTERS_RX</a>];</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#gad7ce13d09422d0173a1ad6444b011320">   84</a></span>&#160;} <a class="code" href="group__drivers__candev__linux.html#gad7ce13d09422d0173a1ad6444b011320">can_t</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="group__drivers__candev__linux.html#gaf157b88f267810575b5f71a48691e548">   87</a></span>&#160;<span class="preprocessor">#define HAVE_CAN_T</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcan__conf__t.html">can_conf_t</a> <a class="code" href="structcandev__conf.html">candev_conf</a>[<a class="code" href="sys_2include_2can_2device_8h.html#a9ce56ce1cbbf2757486f5c8338c0234b">CAN_DLL_NUMOF</a>];</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(__linux__) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CANDEV_LINUX_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acandev_8h_html"><div class="ttname"><a href="candev_8h.html">candev.h</a></div><div class="ttdoc">Definitions for low-level CAN driver interface.</div></div>
+<div class="ttc" id="agroup__drivers__candev__linux_html_ga314fd0bfec6e2abeeb5a24a50779b35b"><div class="ttname"><a href="group__drivers__candev__linux.html#ga314fd0bfec6e2abeeb5a24a50779b35b">CAN_MAX_SIZE_INTERFACE_NAME</a></div><div class="ttdeci">#define CAN_MAX_SIZE_INTERFACE_NAME</div><div class="ttdoc">Maximum size of an interface name.</div><div class="ttdef"><b>Definition:</b> candev_linux.h:41</div></div>
+<div class="ttc" id="agroup__drivers__candev__linux_html_ga43415495c4b8b546c6b6939527e1f29d"><div class="ttname"><a href="group__drivers__candev__linux.html#ga43415495c4b8b546c6b6939527e1f29d">can_conf_t</a></div><div class="ttdeci">struct candev_conf can_conf_t</div><div class="ttdoc">Linux candev configuration.</div></div>
+<div class="ttc" id="agroup__drivers__candev__linux_html_gad7ce13d09422d0173a1ad6444b011320"><div class="ttname"><a href="group__drivers__candev__linux.html#gad7ce13d09422d0173a1ad6444b011320">can_t</a></div><div class="ttdeci">struct candev_linux can_t</div><div class="ttdoc">The candev_linux struct.</div></div>
+<div class="ttc" id="agroup__drivers__candev__linux_html_gaec19105f9718a8946c0c350dd9a5d635"><div class="ttname"><a href="group__drivers__candev__linux.html#gaec19105f9718a8946c0c350dd9a5d635">CANDEV_LINUX_MAX_FILTERS_RX</a></div><div class="ttdeci">#define CANDEV_LINUX_MAX_FILTERS_RX</div><div class="ttdoc">Max number of rx filters which can be set.</div><div class="ttdef"><b>Definition:</b> candev_linux.h:58</div></div>
+<div class="ttc" id="amutex_8h_html"><div class="ttname"><a href="mutex_8h.html">mutex.h</a></div><div class="ttdoc">Mutex for thread synchronization.</div></div>
+<div class="ttc" id="astructcan__conf__t_html"><div class="ttname"><a href="structcan__conf__t.html">can_conf_t</a></div><div class="ttdoc">ESP CAN device configuration.</div><div class="ttdef"><b>Definition:</b> can_esp.h:88</div></div>
+<div class="ttc" id="astructcan__filter_html"><div class="ttname"><a href="structcan__filter.html">can_filter</a></div><div class="ttdoc">Controller Area Network filter.</div><div class="ttdef"><b>Definition:</b> can.h:101</div></div>
+<div class="ttc" id="astructcandev__conf_html"><div class="ttname"><a href="structcandev__conf.html">candev_conf</a></div><div class="ttdoc">Linux candev configuration.</div><div class="ttdef"><b>Definition:</b> candev_linux.h:46</div></div>
+<div class="ttc" id="astructcandev__conf_html_a81e9ab25fe070e1f6b5ccd44d014ab8d"><div class="ttname"><a href="structcandev__conf.html#a81e9ab25fe070e1f6b5ccd44d014ab8d">candev_conf::interface_name</a></div><div class="ttdeci">char interface_name[CAN_MAX_SIZE_INTERFACE_NAME+1]</div><div class="ttdoc">local interface name</div><div class="ttdef"><b>Definition:</b> candev_linux.h:48</div></div>
+<div class="ttc" id="astructcandev__linux_html"><div class="ttname"><a href="structcandev__linux.html">candev_linux</a></div><div class="ttdoc">The candev_linux struct.</div><div class="ttdef"><b>Definition:</b> candev_linux.h:78</div></div>
+<div class="ttc" id="astructcandev__linux_html_a2520255f20dfa235632bd5a7856ea2fc"><div class="ttname"><a href="structcandev__linux.html#a2520255f20dfa235632bd5a7856ea2fc">candev_linux::conf</a></div><div class="ttdeci">const can_conf_t * conf</div><div class="ttdoc">device configuration</div><div class="ttdef"><b>Definition:</b> candev_linux.h:81</div></div>
+<div class="ttc" id="astructcandev__linux_html_aa146edd57daea361eb74a46f35075ddf"><div class="ttname"><a href="structcandev__linux.html#aa146edd57daea361eb74a46f35075ddf">candev_linux::sock</a></div><div class="ttdeci">int sock</div><div class="ttdoc">local socket id</div><div class="ttdef"><b>Definition:</b> candev_linux.h:80</div></div>
+<div class="ttc" id="astructcandev__linux_html_ad2a896c91e9240449d11c15be8c7ddcc"><div class="ttname"><a href="structcandev__linux.html#ad2a896c91e9240449d11c15be8c7ddcc">candev_linux::candev</a></div><div class="ttdeci">candev_t candev</div><div class="ttdoc">candev base structure</div><div class="ttdef"><b>Definition:</b> candev_linux.h:79</div></div>
+<div class="ttc" id="astructcandev__linux_html_ae1694e97e69534fb2aae495f7fe4bb81"><div class="ttname"><a href="structcandev__linux.html#ae1694e97e69534fb2aae495f7fe4bb81">candev_linux::filters</a></div><div class="ttdeci">struct can_filter filters[CANDEV_LINUX_MAX_FILTERS_RX]</div><div class="ttdoc">filter list</div><div class="ttdef"><b>Definition:</b> candev_linux.h:83</div></div>
+<div class="ttc" id="astructcandev_html"><div class="ttname"><a href="structcandev.html">candev</a></div><div class="ttdoc">Structure to hold driver state.</div><div class="ttdef"><b>Definition:</b> candev.h:77</div></div>
+<div class="ttc" id="asys_2include_2can_2device_8h_html"><div class="ttname"><a href="sys_2include_2can_2device_8h.html">device.h</a></div><div class="ttdoc">Definitions of CAN device interface.</div></div>
+<div class="ttc" id="asys_2include_2can_2device_8h_html_a9ce56ce1cbbf2757486f5c8338c0234b"><div class="ttname"><a href="sys_2include_2can_2device_8h.html#a9ce56ce1cbbf2757486f5c8338c0234b">CAN_DLL_NUMOF</a></div><div class="ttdeci">#define CAN_DLL_NUMOF</div><div class="ttdoc">Maximum number of interfaces which can be registered on DLL.</div><div class="ttdef"><b>Definition:</b> device.h:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_08417b664fe5404ce1d8d11465ea350a.html">native</a></li><li class="navelem"><a class="el" href="dir_10f33502332143c94afd5e97ec1b514c.html">include</a></li><li class="navelem"><a class="el" href="candev__linux_8h.html">candev_linux.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

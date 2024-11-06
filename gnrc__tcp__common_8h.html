@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/net/gnrc/transport_layer/tcp/include/gnrc_tcp_common.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('gnrc__tcp__common_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">gnrc_tcp_common.h File Reference<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__network__layer.html">Network Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__transportlayer.html">Transport Layer</a> &raquo; <a class="el" href="group__net__gnrc.html">Generic (GNRC) network stack</a> &raquo; <a class="el" href="group__net__gnrc__tcp.html">TCP</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Internally used defines, macros and variable declarations.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internally used defines, macros and variable declarations. </p>
+<dl class="section author"><dt>Author</dt><dd>Simon Brummer <a href="#" onclick="location.href='mai'+'lto:'+'sim'+'on'+'.br'+'um'+'mer'+'@p'+'ost'+'eo'+'.de'; return false;">simon<span style="display: none;">.nosp@m.</span>.bru<span style="display: none;">.nosp@m.</span>mmer@<span style="display: none;">.nosp@m.</span>post<span style="display: none;">.nosp@m.</span>eo.de</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;thread.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="mutex_8h_source.html">mutex.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="evtimer_8h_source.html">evtimer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="netapi_8h_source.html">net/gnrc/netapi.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tcb_8h_source.html">net/gnrc/tcp/tcb.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for gnrc_tcp_common.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="gnrc__tcp__common_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gnrc__tcp__common__tcb__list__t.html">_gnrc_tcp_common_tcb_list_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCB list type.  <a href="struct__gnrc__tcp__common__tcb__list__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a0095fe3523ede92a3093712f1124572b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a0095fe3523ede92a3093712f1124572b">RTO_UNINITIALIZED</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="memdesc:a0095fe3523ede92a3093712f1124572b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define for marking that time measurement is uninitialized.  <a href="gnrc__tcp__common_8h.html#a0095fe3523ede92a3093712f1124572b">More...</a><br /></td></tr>
+<tr class="separator:a0095fe3523ede92a3093712f1124572b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aee945a11ee7207709773ae03ba0e1c"><td class="memItemLeft" align="right" valign="top"><a id="a7aee945a11ee7207709773ae03ba0e1c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a7aee945a11ee7207709773ae03ba0e1c">INSIDE_WND</a>(l_ed,  seq_num,  r_ed)&#160;&#160;&#160;(<a class="el" href="gnrc__tcp__common_8h.html#abce297c6d27cf3fd36d5d935315e7d5b">LEQ_32_BIT</a>(l_ed, seq_num) &amp;&amp; <a class="el" href="gnrc__tcp__common_8h.html#a2a85996b4590cf93ffc94cf1ecb1c0b4">LSS_32_BIT</a>(seq_num, r_ed))</td></tr>
+<tr class="memdesc:a7aee945a11ee7207709773ae03ba0e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given sequence number falls into receive window. <br /></td></tr>
+<tr class="separator:a7aee945a11ee7207709773ae03ba0e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba6e87488fbff162c6f60d1f6f84a167"><td class="memItemLeft" align="right" valign="top"><a id="aba6e87488fbff162c6f60d1f6f84a167"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#aba6e87488fbff162c6f60d1f6f84a167">GET_OFFSET</a>(x)&#160;&#160;&#160;(((x) &amp; <a class="el" href="gnrc__tcp__common_8h.html#a670b09ef3e48f63f083538e93975fb39">MSK_OFFSET</a>) &gt;&gt; 12)</td></tr>
+<tr class="memdesc:aba6e87488fbff162c6f60d1f6f84a167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract offset value from "offctl" field in TCP header. <br /></td></tr>
+<tr class="separator:aba6e87488fbff162c6f60d1f6f84a167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef3be3a8abcafe2399a8a890e4540bf8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#aef3be3a8abcafe2399a8a890e4540bf8">TCP_DEBUG_ENTER</a></td></tr>
+<tr class="memdesc:aef3be3a8abcafe2399a8a890e4540bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro used to create debug message on function entry.  <a href="gnrc__tcp__common_8h.html#aef3be3a8abcafe2399a8a890e4540bf8">More...</a><br /></td></tr>
+<tr class="separator:aef3be3a8abcafe2399a8a890e4540bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1accb8b7d4cb7e41ee8eed0bd67639e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a1accb8b7d4cb7e41ee8eed0bd67639e6">TCP_DEBUG_LEAVE</a></td></tr>
+<tr class="memdesc:a1accb8b7d4cb7e41ee8eed0bd67639e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro used to create debug message on function exit.  <a href="gnrc__tcp__common_8h.html#a1accb8b7d4cb7e41ee8eed0bd67639e6">More...</a><br /></td></tr>
+<tr class="separator:a1accb8b7d4cb7e41ee8eed0bd67639e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0a397e1c431bc0d206c44457f09edf0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#af0a397e1c431bc0d206c44457f09edf0">TCP_DEBUG_ERROR</a>(msg)</td></tr>
+<tr class="memdesc:af0a397e1c431bc0d206c44457f09edf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro used to create debug message on error.  <a href="gnrc__tcp__common_8h.html#af0a397e1c431bc0d206c44457f09edf0">More...</a><br /></td></tr>
+<tr class="separator:af0a397e1c431bc0d206c44457f09edf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa029653373bf833a14f122968d132537"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#aa029653373bf833a14f122968d132537">TCP_DEBUG_INFO</a>(msg)</td></tr>
+<tr class="memdesc:aa029653373bf833a14f122968d132537"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro used to create informational debug message.  <a href="gnrc__tcp__common_8h.html#aa029653373bf833a14f122968d132537">More...</a><br /></td></tr>
+<tr class="separator:aa029653373bf833a14f122968d132537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a9aaf13d7a9f8d906d1172da872163f99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__gnrc__tcp__common__tcb__list__t.html">_gnrc_tcp_common_tcb_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a9aaf13d7a9f8d906d1172da872163f99">_gnrc_tcp_common_get_tcb_list</a> (void)</td></tr>
+<tr class="memdesc:a9aaf13d7a9f8d906d1172da872163f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to access to TCB list.  <a href="gnrc__tcp__common_8h.html#a9aaf13d7a9f8d906d1172da872163f99">More...</a><br /></td></tr>
+<tr class="separator:a9aaf13d7a9f8d906d1172da872163f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a651c7cba24e0ef829759a13e5931b3b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a651c7cba24e0ef829759a13e5931b3b1">PORT_UNSPEC</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:a651c7cba24e0ef829759a13e5931b3b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port number unspecified.  <a href="gnrc__tcp__common_8h.html#a651c7cba24e0ef829759a13e5931b3b1">More...</a><br /></td></tr>
+<tr class="separator:a651c7cba24e0ef829759a13e5931b3b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3629465317ea83b820bb749b9642354"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#ae3629465317ea83b820bb749b9642354">STATUS_LISTENING</a>&#160;&#160;&#160;(1 &lt;&lt; 0)</td></tr>
+<tr class="memdesc:ae3629465317ea83b820bb749b9642354"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCB status flags.  <a href="gnrc__tcp__common_8h.html#ae3629465317ea83b820bb749b9642354">More...</a><br /></td></tr>
+<tr class="separator:ae3629465317ea83b820bb749b9642354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac39abf4d4bb0b326da63fd5a5faa6508"><td class="memItemLeft" align="right" valign="top"><a id="ac39abf4d4bb0b326da63fd5a5faa6508"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#ac39abf4d4bb0b326da63fd5a5faa6508">STATUS_ALLOW_ANY_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; 1)</td></tr>
+<tr class="memdesc:ac39abf4d4bb0b326da63fd5a5faa6508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Status bitmask ALLOW_ANY_ADDR. <br /></td></tr>
+<tr class="separator:ac39abf4d4bb0b326da63fd5a5faa6508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5151f2fb02d3e5504d98b5cf3adcae78"><td class="memItemLeft" align="right" valign="top"><a id="a5151f2fb02d3e5504d98b5cf3adcae78"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a5151f2fb02d3e5504d98b5cf3adcae78">STATUS_NOTIFY_USER</a>&#160;&#160;&#160;(1 &lt;&lt; 2)</td></tr>
+<tr class="memdesc:a5151f2fb02d3e5504d98b5cf3adcae78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Status bitmask NOTIFY_USER. <br /></td></tr>
+<tr class="separator:a5151f2fb02d3e5504d98b5cf3adcae78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e91dac5250f1946782ee63b20798144"><td class="memItemLeft" align="right" valign="top"><a id="a1e91dac5250f1946782ee63b20798144"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a1e91dac5250f1946782ee63b20798144">STATUS_ACCEPTED</a>&#160;&#160;&#160;(1 &lt;&lt; 3)</td></tr>
+<tr class="memdesc:a1e91dac5250f1946782ee63b20798144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Status bitmask ACCEPTED. <br /></td></tr>
+<tr class="separator:a1e91dac5250f1946782ee63b20798144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b34e07f1f728fa8d9031a055667ae1d"><td class="memItemLeft" align="right" valign="top"><a id="a5b34e07f1f728fa8d9031a055667ae1d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a5b34e07f1f728fa8d9031a055667ae1d">STATUS_LOCKED</a>&#160;&#160;&#160;(1 &lt;&lt; 4)</td></tr>
+<tr class="memdesc:a5b34e07f1f728fa8d9031a055667ae1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Status bitmask LOCKED. <br /></td></tr>
+<tr class="separator:a5b34e07f1f728fa8d9031a055667ae1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44dd55e2fca212950c05fd078ea5c417"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a44dd55e2fca212950c05fd078ea5c417">TCP_EVENTLOOP_PRIO</a>&#160;&#160;&#160;(<a class="el" href="thread__config_8h.html#ac57374d1c51374ebf95d9679281af818">THREAD_PRIORITY_MAIN</a> - 2U)</td></tr>
+<tr class="memdesc:a44dd55e2fca212950c05fd078ea5c417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines for "eventloop" thread settings.  <a href="gnrc__tcp__common_8h.html#a44dd55e2fca212950c05fd078ea5c417">More...</a><br /></td></tr>
+<tr class="separator:a44dd55e2fca212950c05fd078ea5c417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3847f85fd8318c785bc87fb2c4d0f4b"><td class="memItemLeft" align="right" valign="top"><a id="ae3847f85fd8318c785bc87fb2c4d0f4b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#ae3847f85fd8318c785bc87fb2c4d0f4b">TCP_EVENTLOOP_STACK_SIZE</a>&#160;&#160;&#160;(<a class="el" href="native_2include_2cpu__conf_8h.html#a713ebddc00581f4d415095cdbfd8791f">THREAD_STACKSIZE_DEFAULT</a>)</td></tr>
+<tr class="memdesc:ae3847f85fd8318c785bc87fb2c4d0f4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Handler stack size. <br /></td></tr>
+<tr class="separator:ae3847f85fd8318c785bc87fb2c4d0f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101fc1d443c113fe0a4eeb6c3fbf06c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a101fc1d443c113fe0a4eeb6c3fbf06c8">MSK_FIN</a>&#160;&#160;&#160;(0x0001)</td></tr>
+<tr class="memdesc:a101fc1d443c113fe0a4eeb6c3fbf06c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitmasks for control bit field handling.  <a href="gnrc__tcp__common_8h.html#a101fc1d443c113fe0a4eeb6c3fbf06c8">More...</a><br /></td></tr>
+<tr class="separator:a101fc1d443c113fe0a4eeb6c3fbf06c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3708b74de40b7d3d4dd7049ef7ff86f0"><td class="memItemLeft" align="right" valign="top"><a id="a3708b74de40b7d3d4dd7049ef7ff86f0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a3708b74de40b7d3d4dd7049ef7ff86f0">MSK_SYN</a>&#160;&#160;&#160;(0x0002)</td></tr>
+<tr class="memdesc:a3708b74de40b7d3d4dd7049ef7ff86f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask SYN. <br /></td></tr>
+<tr class="separator:a3708b74de40b7d3d4dd7049ef7ff86f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f7f251fc046204e1af584ce646b29f7"><td class="memItemLeft" align="right" valign="top"><a id="a5f7f251fc046204e1af584ce646b29f7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a5f7f251fc046204e1af584ce646b29f7">MSK_RST</a>&#160;&#160;&#160;(0x0004)</td></tr>
+<tr class="memdesc:a5f7f251fc046204e1af584ce646b29f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask RST. <br /></td></tr>
+<tr class="separator:a5f7f251fc046204e1af584ce646b29f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0585ae19f48f87173d038b8b96e4d963"><td class="memItemLeft" align="right" valign="top"><a id="a0585ae19f48f87173d038b8b96e4d963"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a0585ae19f48f87173d038b8b96e4d963">MSK_PSH</a>&#160;&#160;&#160;(0x0008)</td></tr>
+<tr class="memdesc:a0585ae19f48f87173d038b8b96e4d963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask PSH. <br /></td></tr>
+<tr class="separator:a0585ae19f48f87173d038b8b96e4d963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0be310c4b4a33195a478e7318390782"><td class="memItemLeft" align="right" valign="top"><a id="ae0be310c4b4a33195a478e7318390782"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#ae0be310c4b4a33195a478e7318390782">MSK_ACK</a>&#160;&#160;&#160;(0x0010)</td></tr>
+<tr class="memdesc:ae0be310c4b4a33195a478e7318390782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask ACK. <br /></td></tr>
+<tr class="separator:ae0be310c4b4a33195a478e7318390782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfdcfdb6aa00fcfca544cf139333a7e0"><td class="memItemLeft" align="right" valign="top"><a id="abfdcfdb6aa00fcfca544cf139333a7e0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#abfdcfdb6aa00fcfca544cf139333a7e0">MSK_URG</a>&#160;&#160;&#160;(0x0020)</td></tr>
+<tr class="memdesc:abfdcfdb6aa00fcfca544cf139333a7e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask URG. <br /></td></tr>
+<tr class="separator:abfdcfdb6aa00fcfca544cf139333a7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a233d8a6ddedc8b63d517b1a8e3fa9f48"><td class="memItemLeft" align="right" valign="top"><a id="a233d8a6ddedc8b63d517b1a8e3fa9f48"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a233d8a6ddedc8b63d517b1a8e3fa9f48">MSK_FIN_ACK</a>&#160;&#160;&#160;(0x0011)</td></tr>
+<tr class="memdesc:a233d8a6ddedc8b63d517b1a8e3fa9f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask FIN &amp; ACK. <br /></td></tr>
+<tr class="separator:a233d8a6ddedc8b63d517b1a8e3fa9f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac70cf5abb3994fac0a2a23629bd8eadd"><td class="memItemLeft" align="right" valign="top"><a id="ac70cf5abb3994fac0a2a23629bd8eadd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#ac70cf5abb3994fac0a2a23629bd8eadd">MSK_SYN_ACK</a>&#160;&#160;&#160;(0x0012)</td></tr>
+<tr class="memdesc:ac70cf5abb3994fac0a2a23629bd8eadd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask SYN &amp; ACK. <br /></td></tr>
+<tr class="separator:ac70cf5abb3994fac0a2a23629bd8eadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a3f58e1f4c6bbdc316b3ee761532b8"><td class="memItemLeft" align="right" valign="top"><a id="ae8a3f58e1f4c6bbdc316b3ee761532b8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#ae8a3f58e1f4c6bbdc316b3ee761532b8">MSK_RST_ACK</a>&#160;&#160;&#160;(0x0014)</td></tr>
+<tr class="memdesc:ae8a3f58e1f4c6bbdc316b3ee761532b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask RST &amp; ACK. <br /></td></tr>
+<tr class="separator:ae8a3f58e1f4c6bbdc316b3ee761532b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50225e9352404b14b910a39a3f2f9150"><td class="memItemLeft" align="right" valign="top"><a id="a50225e9352404b14b910a39a3f2f9150"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a50225e9352404b14b910a39a3f2f9150">MSK_SYN_FIN_ACK</a>&#160;&#160;&#160;(0x0013)</td></tr>
+<tr class="memdesc:a50225e9352404b14b910a39a3f2f9150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask SYN &amp; FIN &amp; ACK. <br /></td></tr>
+<tr class="separator:a50225e9352404b14b910a39a3f2f9150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a144ee8bd1c2f3acb6eb4905dbbaf40ce"><td class="memItemLeft" align="right" valign="top"><a id="a144ee8bd1c2f3acb6eb4905dbbaf40ce"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a144ee8bd1c2f3acb6eb4905dbbaf40ce">MSK_FIN_ACK_PSH</a>&#160;&#160;&#160;(0x0019)</td></tr>
+<tr class="memdesc:a144ee8bd1c2f3acb6eb4905dbbaf40ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask FIN &amp; ACK &amp; PSH. <br /></td></tr>
+<tr class="separator:a144ee8bd1c2f3acb6eb4905dbbaf40ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d75ba4386526804830c1c6b5eadf22e"><td class="memItemLeft" align="right" valign="top"><a id="a8d75ba4386526804830c1c6b5eadf22e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a8d75ba4386526804830c1c6b5eadf22e">MSK_CTL</a>&#160;&#160;&#160;(0x003F)</td></tr>
+<tr class="memdesc:a8d75ba4386526804830c1c6b5eadf22e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask TCP status control bits. <br /></td></tr>
+<tr class="separator:a8d75ba4386526804830c1c6b5eadf22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670b09ef3e48f63f083538e93975fb39"><td class="memItemLeft" align="right" valign="top"><a id="a670b09ef3e48f63f083538e93975fb39"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a670b09ef3e48f63f083538e93975fb39">MSK_OFFSET</a>&#160;&#160;&#160;(0xF000)</td></tr>
+<tr class="memdesc:a670b09ef3e48f63f083538e93975fb39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: Packet bitmask TCP status option offset. <br /></td></tr>
+<tr class="separator:a670b09ef3e48f63f083538e93975fb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f2605887da3831c56d9cd7baee0bb60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a9f2605887da3831c56d9cd7baee0bb60">MSG_TYPE_CONNECTION_TIMEOUT</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__netapi.html#ga6edd8d8871394091cff19457fc3da1b5">GNRC_NETAPI_MSG_TYPE_ACK</a> + 101)</td></tr>
+<tr class="memdesc:a9f2605887da3831c56d9cd7baee0bb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message types for GNRC TCPs internal message passing.  <a href="gnrc__tcp__common_8h.html#a9f2605887da3831c56d9cd7baee0bb60">More...</a><br /></td></tr>
+<tr class="separator:a9f2605887da3831c56d9cd7baee0bb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ae3f744ba67f22f897d70675bffe30"><td class="memItemLeft" align="right" valign="top"><a id="a29ae3f744ba67f22f897d70675bffe30"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a29ae3f744ba67f22f897d70675bffe30">MSG_TYPE_PROBE_TIMEOUT</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__netapi.html#ga6edd8d8871394091cff19457fc3da1b5">GNRC_NETAPI_MSG_TYPE_ACK</a> + 102)</td></tr>
+<tr class="memdesc:a29ae3f744ba67f22f897d70675bffe30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: message id. <br /></td></tr>
+<tr class="separator:a29ae3f744ba67f22f897d70675bffe30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a020db1acc1b0feaede65fdefdb52fe67"><td class="memItemLeft" align="right" valign="top"><a id="a020db1acc1b0feaede65fdefdb52fe67"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a020db1acc1b0feaede65fdefdb52fe67">MSG_TYPE_USER_SPEC_TIMEOUT</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__netapi.html#ga6edd8d8871394091cff19457fc3da1b5">GNRC_NETAPI_MSG_TYPE_ACK</a> + 103)</td></tr>
+<tr class="memdesc:a020db1acc1b0feaede65fdefdb52fe67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: message id. <br /></td></tr>
+<tr class="separator:a020db1acc1b0feaede65fdefdb52fe67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177b15102f89fa912de0e0bd656cd90c"><td class="memItemLeft" align="right" valign="top"><a id="a177b15102f89fa912de0e0bd656cd90c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a177b15102f89fa912de0e0bd656cd90c">MSG_TYPE_RETRANSMISSION</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__netapi.html#ga6edd8d8871394091cff19457fc3da1b5">GNRC_NETAPI_MSG_TYPE_ACK</a> + 104)</td></tr>
+<tr class="memdesc:a177b15102f89fa912de0e0bd656cd90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: message id. <br /></td></tr>
+<tr class="separator:a177b15102f89fa912de0e0bd656cd90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6289b62cc3fa65595ca0891f7d308b01"><td class="memItemLeft" align="right" valign="top"><a id="a6289b62cc3fa65595ca0891f7d308b01"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a6289b62cc3fa65595ca0891f7d308b01">MSG_TYPE_TIMEWAIT</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__netapi.html#ga6edd8d8871394091cff19457fc3da1b5">GNRC_NETAPI_MSG_TYPE_ACK</a> + 105)</td></tr>
+<tr class="memdesc:a6289b62cc3fa65595ca0891f7d308b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: message id. <br /></td></tr>
+<tr class="separator:a6289b62cc3fa65595ca0891f7d308b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bb33bc9145e8c6ee735210f29cd36f7"><td class="memItemLeft" align="right" valign="top"><a id="a9bb33bc9145e8c6ee735210f29cd36f7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a9bb33bc9145e8c6ee735210f29cd36f7">MSG_TYPE_NOTIFY_USER</a>&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__netapi.html#ga6edd8d8871394091cff19457fc3da1b5">GNRC_NETAPI_MSG_TYPE_ACK</a> + 106)</td></tr>
+<tr class="memdesc:a9bb33bc9145e8c6ee735210f29cd36f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: message id. <br /></td></tr>
+<tr class="separator:a9bb33bc9145e8c6ee735210f29cd36f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a85996b4590cf93ffc94cf1ecb1c0b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a2a85996b4590cf93ffc94cf1ecb1c0b4">LSS_32_BIT</a>(x,  y)&#160;&#160;&#160;(((int32_t) (x)) - ((int32_t) (y)) &lt;  0)</td></tr>
+<tr class="memdesc:a2a85996b4590cf93ffc94cf1ecb1c0b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overflow tolerant comparison operators for sequence and acknowledgement number comparison.  <a href="gnrc__tcp__common_8h.html#a2a85996b4590cf93ffc94cf1ecb1c0b4">More...</a><br /></td></tr>
+<tr class="separator:a2a85996b4590cf93ffc94cf1ecb1c0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce297c6d27cf3fd36d5d935315e7d5b"><td class="memItemLeft" align="right" valign="top"><a id="abce297c6d27cf3fd36d5d935315e7d5b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#abce297c6d27cf3fd36d5d935315e7d5b">LEQ_32_BIT</a>(x,  y)&#160;&#160;&#160;(((int32_t) (x)) - ((int32_t) (y)) &lt;= 0)</td></tr>
+<tr class="memdesc:abce297c6d27cf3fd36d5d935315e7d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: operator &lt;=. <br /></td></tr>
+<tr class="separator:abce297c6d27cf3fd36d5d935315e7d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4872fa2b6c227dd236dfde842a4f3fd6"><td class="memItemLeft" align="right" valign="top"><a id="a4872fa2b6c227dd236dfde842a4f3fd6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#a4872fa2b6c227dd236dfde842a4f3fd6">GRT_32_BIT</a>(x,  y)&#160;&#160;&#160;(!<a class="el" href="gnrc__tcp__common_8h.html#abce297c6d27cf3fd36d5d935315e7d5b">LEQ_32_BIT</a>(x, y))</td></tr>
+<tr class="memdesc:a4872fa2b6c227dd236dfde842a4f3fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: operator &gt; <br /></td></tr>
+<tr class="separator:a4872fa2b6c227dd236dfde842a4f3fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2543fc0e0ccbc8c21dca8a99c03f2f2"><td class="memItemLeft" align="right" valign="top"><a id="ab2543fc0e0ccbc8c21dca8a99c03f2f2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__tcp__common_8h.html#ab2543fc0e0ccbc8c21dca8a99c03f2f2">GEQ_32_BIT</a>(x,  y)&#160;&#160;&#160;(!LSS_32_BOT(x, y))</td></tr>
+<tr class="memdesc:ab2543fc0e0ccbc8c21dca8a99c03f2f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: operator &gt;=. <br /></td></tr>
+<tr class="separator:ab2543fc0e0ccbc8c21dca8a99c03f2f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a2a85996b4590cf93ffc94cf1ecb1c0b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a85996b4590cf93ffc94cf1ecb1c0b4">&#9670;&nbsp;</a></span>LSS_32_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LSS_32_BIT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((int32_t) (x)) - ((int32_t) (y)) &lt;  0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overflow tolerant comparison operators for sequence and acknowledgement number comparison. </p>
+<p>Internal: operator &lt; </p>
+
+</div>
+</div>
+<a id="a9f2605887da3831c56d9cd7baee0bb60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f2605887da3831c56d9cd7baee0bb60">&#9670;&nbsp;</a></span>MSG_TYPE_CONNECTION_TIMEOUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MSG_TYPE_CONNECTION_TIMEOUT&#160;&#160;&#160;(<a class="el" href="group__net__gnrc__netapi.html#ga6edd8d8871394091cff19457fc3da1b5">GNRC_NETAPI_MSG_TYPE_ACK</a> + 101)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Message types for GNRC TCPs internal message passing. </p>
+<p>Internal: message id </p>
+
+</div>
+</div>
+<a id="a101fc1d443c113fe0a4eeb6c3fbf06c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101fc1d443c113fe0a4eeb6c3fbf06c8">&#9670;&nbsp;</a></span>MSK_FIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MSK_FIN&#160;&#160;&#160;(0x0001)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bitmasks for control bit field handling. </p>
+<p>Internal: Packet bitmask FIN </p>
+
+</div>
+</div>
+<a id="a651c7cba24e0ef829759a13e5931b3b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a651c7cba24e0ef829759a13e5931b3b1">&#9670;&nbsp;</a></span>PORT_UNSPEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PORT_UNSPEC&#160;&#160;&#160;(0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Port number unspecified. </p>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.ietf.org/rfc/rfc1700.txt">https://www.ietf.org/rfc/rfc1700.txt</a> </dd></dl>
+
+</div>
+</div>
+<a id="a0095fe3523ede92a3093712f1124572b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0095fe3523ede92a3093712f1124572b">&#9670;&nbsp;</a></span>RTO_UNINITIALIZED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RTO_UNINITIALIZED&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define for marking that time measurement is uninitialized. </p>
+<p>Internal: Constant RTO uninitialized </p>
+
+</div>
+</div>
+<a id="ae3629465317ea83b820bb749b9642354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3629465317ea83b820bb749b9642354">&#9670;&nbsp;</a></span>STATUS_LISTENING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STATUS_LISTENING&#160;&#160;&#160;(1 &lt;&lt; 0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TCB status flags. </p>
+<p>Internal: Status bitmask LISTENING </p>
+
+</div>
+</div>
+<a id="aef3be3a8abcafe2399a8a890e4540bf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef3be3a8abcafe2399a8a890e4540bf8">&#9670;&nbsp;</a></span>TCP_DEBUG_ENTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TCP_DEBUG_ENTER</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                              <a class="code" href="debug_8h.html#a96dd473db0b3d10bd43390cdacb00120">DEBUG</a>(<span class="stringliteral">&quot;GNRC_TCP: Enter \&quot;%s\&quot;, File: %s(%d)\n&quot;</span>, \</div>
+<div class="line">                              <a class="code" href="debug_8h.html#a94c324ab9e9283e9ec9324baf52f8a71">DEBUG_FUNC</a>, __FILE__, __LINE__)</div>
+<div class="ttc" id="adebug_8h_html_a94c324ab9e9283e9ec9324baf52f8a71"><div class="ttname"><a href="debug_8h.html#a94c324ab9e9283e9ec9324baf52f8a71">DEBUG_FUNC</a></div><div class="ttdeci">#define DEBUG_FUNC</div><div class="ttdoc">Contains the function name if given compiler supports it.</div><div class="ttdef"><b>Definition:</b> debug.h:108</div></div>
+<div class="ttc" id="adebug_8h_html_a96dd473db0b3d10bd43390cdacb00120"><div class="ttname"><a href="debug_8h.html#a96dd473db0b3d10bd43390cdacb00120">DEBUG</a></div><div class="ttdeci">#define DEBUG(...)</div><div class="ttdoc">Print debug information to stdout.</div><div class="ttdef"><b>Definition:</b> debug.h:118</div></div>
+</div><!-- fragment -->
+<p>Helper macro used to create debug message on function entry. </p>
+<dl class="section note"><dt>Note</dt><dd>Compilation units using TCP_DEBUG_ENTER must set ENABLE_DEBUG and include <a class="el" href="debug_8h.html" title="Debug-header.">debug.h</a>. </dd></dl>
+
+</div>
+</div>
+<a id="af0a397e1c431bc0d206c44457f09edf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0a397e1c431bc0d206c44457f09edf0">&#9670;&nbsp;</a></span>TCP_DEBUG_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TCP_DEBUG_ERROR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">msg</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                                   <a class="code" href="debug_8h.html#a96dd473db0b3d10bd43390cdacb00120">DEBUG</a>(<span class="stringliteral">&quot;GNRC_TCP: Error: \&quot;%s\&quot;, Func: %s, File: %s(%d)\n&quot;</span>, \</div>
+<div class="line">                                   msg, <a class="code" href="debug_8h.html#a94c324ab9e9283e9ec9324baf52f8a71">DEBUG_FUNC</a>, __FILE__, __LINE__)</div>
+</div><!-- fragment -->
+<p>Helper macro used to create debug message on error. </p>
+<dl class="section note"><dt>Note</dt><dd>Compilation units using TCP_DEBUG_ERROR must set ENABLE_DEBUG and include <a class="el" href="debug_8h.html" title="Debug-header.">debug.h</a>. </dd></dl>
+
+</div>
+</div>
+<a id="aa029653373bf833a14f122968d132537"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa029653373bf833a14f122968d132537">&#9670;&nbsp;</a></span>TCP_DEBUG_INFO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TCP_DEBUG_INFO</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">msg</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                                  <a class="code" href="debug_8h.html#a96dd473db0b3d10bd43390cdacb00120">DEBUG</a>(<span class="stringliteral">&quot;GNRC_TCP: Info: \&quot;%s\&quot;, Func: %s, File: %s(%d)\n&quot;</span>, \</div>
+<div class="line">                                  msg, <a class="code" href="debug_8h.html#a94c324ab9e9283e9ec9324baf52f8a71">DEBUG_FUNC</a>, __FILE__, __LINE__)</div>
+</div><!-- fragment -->
+<p>Helper macro used to create informational debug message. </p>
+<dl class="section note"><dt>Note</dt><dd>Compilation units using TCP_DEBUG_INFO must set ENABLE_DEBUG and include <a class="el" href="debug_8h.html" title="Debug-header.">debug.h</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a1accb8b7d4cb7e41ee8eed0bd67639e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1accb8b7d4cb7e41ee8eed0bd67639e6">&#9670;&nbsp;</a></span>TCP_DEBUG_LEAVE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TCP_DEBUG_LEAVE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                              <a class="code" href="debug_8h.html#a96dd473db0b3d10bd43390cdacb00120">DEBUG</a>(<span class="stringliteral">&quot;GNRC_TCP: Leave \&quot;%s\&quot;, File: %s(%d)\n&quot;</span>, \</div>
+<div class="line">                              <a class="code" href="debug_8h.html#a94c324ab9e9283e9ec9324baf52f8a71">DEBUG_FUNC</a>, __FILE__, __LINE__)</div>
+</div><!-- fragment -->
+<p>Helper macro used to create debug message on function exit. </p>
+<dl class="section note"><dt>Note</dt><dd>Compilation units using TCP_DEBUG_LEAVE must set ENABLE_DEBUG and include <a class="el" href="debug_8h.html" title="Debug-header.">debug.h</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a44dd55e2fca212950c05fd078ea5c417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44dd55e2fca212950c05fd078ea5c417">&#9670;&nbsp;</a></span>TCP_EVENTLOOP_PRIO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TCP_EVENTLOOP_PRIO&#160;&#160;&#160;(<a class="el" href="thread__config_8h.html#ac57374d1c51374ebf95d9679281af818">THREAD_PRIORITY_MAIN</a> - 2U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines for "eventloop" thread settings. </p>
+<p>Internal: Handler priority </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a9aaf13d7a9f8d906d1172da872163f99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aaf13d7a9f8d906d1172da872163f99">&#9670;&nbsp;</a></span>_gnrc_tcp_common_get_tcb_list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__gnrc__tcp__common__tcb__list__t.html">_gnrc_tcp_common_tcb_list_t</a>* _gnrc_tcp_common_get_tcb_list </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to access to TCB list. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to global TCB list. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_8029da4437d789f4711f6586d7ee68bf.html">net</a></li><li class="navelem"><a class="el" href="dir_3441f3001dd6ccd78cd6b9a576f26623.html">gnrc</a></li><li class="navelem"><a class="el" href="dir_0727303dbfc59bd8e335280ddc9d2cf1.html">transport_layer</a></li><li class="navelem"><a class="el" href="dir_d99edc6487248bf918b7b8209db2fc3e.html">tcp</a></li><li class="navelem"><a class="el" href="dir_51a369ceafaf466f30cd9596f2b3392c.html">include</a></li><li class="navelem"><a class="el" href="gnrc__tcp__common_8h.html">gnrc_tcp_common.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

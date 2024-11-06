@@ -1,0 +1,26 @@
+var boards_2frdm_kl43z_2include_2periph__conf_8h =
+[
+    [ "ADC_NUMOF", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a2f0c741db24aa2ccded869ba53f6a302", null ],
+    [ "ADC_REF_SETTING", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a0739f7d5bd518c59da17c1e0248f02db", null ],
+    [ "CLOCK_BUSCLOCK", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a47b8fb0bde3602f542629a3a73f3cb96", null ],
+    [ "CLOCK_CORECLOCK", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#afc465f12242e68f6c3695caa3ba0a169", null ],
+    [ "CLOCK_MCGIRCLK", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a95a07d0993dd2825d45e3a41773e1a36", null ],
+    [ "I2C_0_ISR", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a5655b75a493bbd17b560958d66369152", null ],
+    [ "I2C_1_ISR", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#add7e561d6118d47ed5cbe258073607ab", null ],
+    [ "I2C_NUMOF", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#abce62e16a6e3b3205801fed93c51692d", null ],
+    [ "LPTMR_CONFIG", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a403e041dff680770a6206018e406f72c", null ],
+    [ "LPTMR_ISR_0", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#aa92b3018f33615954594e9ea395991d1", null ],
+    [ "LPTMR_NUMOF", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#af404dfea11a245ccd77baec388c2da5a", null ],
+    [ "LPUART_0_ISR", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a8a05327027d0cc9ebe9ff714b0716e69", null ],
+    [ "LPUART_0_SRC", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#ad3719956bec3ed126b3fb6e37c5f1cbf", null ],
+    [ "PIT_BASECLOCK", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a422423244be42d00a0fbc27cdc1798f5", null ],
+    [ "PIT_CONFIG", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a4d3c916098ef9d754a85e9d65d6fb34e", null ],
+    [ "PIT_ISR_0", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#aa1c7a21c9d38b2e3cfaf660b70e59272", null ],
+    [ "PIT_NUMOF", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a5f68f194b32c0deea003fa8a56a848e5", null ],
+    [ "TIMER_NUMOF", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a6e2f66f5b6f5c835dd11f9766c4ed897", null ],
+    [ "UART_NUMOF", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a850405f2aaa352ad264346531f0e6230", null ],
+    [ "adc_config", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a160c7b1c3bc13c7cb5ac4ed375f4e21d", null ],
+    [ "clock_config", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a021b7e40d51887bc813ae47548c898d2", null ],
+    [ "i2c_config", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#aa9dcbfbe7aa5baf027d834e5bca62a47", null ],
+    [ "uart_config", "boards_2frdm-kl43z_2include_2periph__conf_8h.html#a1643cfc64589407fb96b4cbf908689a5", null ]
+];

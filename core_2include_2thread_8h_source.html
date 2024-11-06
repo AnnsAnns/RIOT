@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: core/include/thread.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('core_2include_2thread_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">thread.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="core_2include_2thread_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2014 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#ifndef THREAD_H</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#define THREAD_H</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="clist_8h.html">clist.h</a>&quot;</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cib_8h.html">cib.h</a>&quot;</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sys_2include_2net_2dns_2msg_8h.html">msg.h</a>&quot;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sched_8h.html">sched.h</a>&quot;</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="thread__config_8h.html">thread_config.h</a>&quot;</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#ifdef MODULE_CORE_THREAD_FLAGS</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="thread__flags_8h.html">thread_flags.h</a>&quot;</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#include &quot;thread_arch.h&quot;</span> <span class="comment">/* IWYU pragma: export */</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#ifdef THREAD_API_INLINED</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#define THREAD_MAYBE_INLINE static inline __attribute__((always_inline))</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group__core__thread.html#gae42834449d4aa117dd881cc1716a5f4e">  147</a></span>&#160;<span class="preprocessor">#define THREAD_MAYBE_INLINE</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* THREAD_API_INLINED */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#if defined(DEVELHELP) &amp;&amp; !defined(CONFIG_THREAD_NAMES)</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="group__core__thread.html#gaa55ed7288e242cd4b2a8872f912dae96">  157</a></span>&#160;<span class="preprocessor">#define CONFIG_THREAD_NAMES</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="group__core__thread.html#gab1b7486500c7dbaabdd2ac9a085ac39a">  163</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> *(*thread_task_func_t)(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="struct__thread.html">  168</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct__thread.html">_thread</a> {</div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="struct__thread.html#a09eea99498158fcfe734910b2f3df22c">  169</a></span>&#160;    <span class="keywordtype">char</span> *<a class="code" href="struct__thread.html#a09eea99498158fcfe734910b2f3df22c">sp</a>;                       </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="struct__thread.html#a2f158c4e18e63d81e071048e2e5a071f">  170</a></span>&#160;    <a class="code" href="group__core__sched.html#gac528c02d3cccfb103d539b26ccdba6b2">thread_status_t</a> <a class="code" href="struct__thread.html#a2f158c4e18e63d81e071048e2e5a071f">status</a>;         </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="struct__thread.html#a654101f2bb704e4c33053979088c87ff">  171</a></span>&#160;    uint8_t <a class="code" href="struct__thread.html#a654101f2bb704e4c33053979088c87ff">priority</a>;               </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="struct__thread.html#aff7351b19d237a3e155b38e7ac21dad2">  173</a></span>&#160;    <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> <a class="code" href="struct__thread.html#aff7351b19d237a3e155b38e7ac21dad2">pid</a>;               </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#if defined(MODULE_CORE_THREAD_FLAGS) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="struct__thread.html#a1ecb5902eff39fdba2fd6fdf7c95b50b">  176</a></span>&#160;    <a class="code" href="group__core__thread__flags.html#ga9e19bb7d3442b5ba39da5d0fd49fd1ca">thread_flags_t</a> <a class="code" href="struct__thread.html#a1ecb5902eff39fdba2fd6fdf7c95b50b">flags</a>;           </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="struct__thread.html#ac71ab65e786b1431def0840facc2b599">  179</a></span>&#160;    <a class="code" href="structlist__node.html">clist_node_t</a> <a class="code" href="struct__thread.html#ac71ab65e786b1431def0840facc2b599">rq_entry</a>;          </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor">#if defined(MODULE_CORE_MSG) || defined(MODULE_CORE_THREAD_FLAGS) \</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor">    || defined(MODULE_CORE_MBOX) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="struct__thread.html#afe7e02f9edce6dd687781f50957d4da9">  183</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="struct__thread.html#afe7e02f9edce6dd687781f50957d4da9">wait_data</a>;                </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#if defined(MODULE_CORE_MSG) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="struct__thread.html#a23eac8bcc11e70b8b2e40d1d9b00857b">  187</a></span>&#160;    <a class="code" href="structlist__node.html">list_node_t</a> <a class="code" href="struct__thread.html#a23eac8bcc11e70b8b2e40d1d9b00857b">msg_waiters</a>;        </div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="struct__thread.html#a1e235cf9171684121108ba7f115d17b7">  190</a></span>&#160;    <a class="code" href="structcib__t.html">cib_t</a> <a class="code" href="struct__thread.html#a1e235cf9171684121108ba7f115d17b7">msg_queue</a>;                </div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="struct__thread.html#a5a5b07e6d4d9212694803d2a9394c478">  192</a></span>&#160;    <a class="code" href="structmsg__t.html">msg_t</a> *<a class="code" href="struct__thread.html#a5a5b07e6d4d9212694803d2a9394c478">msg_array</a>;               </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#if defined(DEVELHELP) || IS_ACTIVE(SCHED_TEST_STACK) \</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">    || defined(MODULE_MPU_STACK_GUARD) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="struct__thread.html#a1163b634e1c7a399192e40152c02c285">  197</a></span>&#160;    <span class="keywordtype">char</span> *<a class="code" href="struct__thread.html#a1163b634e1c7a399192e40152c02c285">stack_start</a>;              </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#if defined(CONFIG_THREAD_NAMES) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="struct__thread.html#a83a61fc95804b88af6551d9dd83a9cec">  200</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="struct__thread.html#a83a61fc95804b88af6551d9dd83a9cec">name</a>;               </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#if defined(DEVELHELP) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="struct__thread.html#a6853c994e80e79beacae5fc19d599991">  203</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct__thread.html#a6853c994e80e79beacae5fc19d599991">stack_size</a>;                 </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">/* enable TLS only when Picolibc is compiled with TLS enabled */</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#ifdef PICOLIBC_TLS</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">void</span> *tls;                      </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;};</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga31d767ff839598270044e04a53ffa7f4">  218</a></span>&#160;<span class="preprocessor">#define THREAD_CREATE_SLEEPING          (1)</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="group__core__thread.html#gaa8901763d4bd30418a4ef730711b86ae">  223</a></span>&#160;<span class="preprocessor">#define THREAD_AUTO_FREE                (2)</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga55062dd3d2da4ee10c96a5ff39505ff4">  231</a></span>&#160;<span class="preprocessor">#define THREAD_CREATE_WOUT_YIELD        (4)</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="group__core__thread.html#gaca0f981819582216a85af20f6676032b">  238</a></span>&#160;<span class="preprocessor">#define THREAD_CREATE_NO_STACKTEST      (8)</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga51f8182fbb138fd27746e509b69d3aed">  247</a></span>&#160;<span class="preprocessor">#define THREAD_CREATE_STACKTEST         (0)</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga7e0403a9aa86ce0ec136f6b069d4434a">  274</a></span>&#160;<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> <a class="code" href="group__core__thread.html#ga7e0403a9aa86ce0ec136f6b069d4434a">thread_create</a>(<span class="keywordtype">char</span> *stack,</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                           <span class="keywordtype">int</span> stacksize,</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                           uint8_t priority,</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                           <span class="keywordtype">int</span> flags,</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                           <a class="code" href="group__core__thread.html#gab1b7486500c7dbaabdd2ac9a085ac39a">thread_task_func_t</a> task_func,</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                           <span class="keywordtype">void</span> *arg,</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">char</span> *name);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga590ebd6a4db0890f35e9bd03c8d98b74">  288</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="struct__thread.html">thread_t</a> *<a class="code" href="group__core__thread.html#ga590ebd6a4db0890f35e9bd03c8d98b74">thread_get_unchecked</a>(<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;{</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="struct__thread.html">thread_t</a> *)<a class="code" href="group__core__sched.html#gac45dd99fa5d31177f4380534fc46eded">sched_threads</a>[pid];</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;}</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
+<div class="line"><a name="l00300"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga291191901d69837ffff231d312892c70">  300</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="struct__thread.html">thread_t</a> *<a class="code" href="group__core__thread.html#ga291191901d69837ffff231d312892c70">thread_get</a>(<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;{</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__core__sched.html#ga512e493d9d773ddd21c3370ad14b8aaa">pid_is_valid</a>(pid)) {</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__core__thread.html#ga590ebd6a4db0890f35e9bd03c8d98b74">thread_get_unchecked</a>(pid);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    }</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;}</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga126920c73220c857489a340ee1a5072a">  316</a></span>&#160;<a class="code" href="group__core__sched.html#gac528c02d3cccfb103d539b26ccdba6b2">thread_status_t</a> <a class="code" href="group__core__thread.html#ga126920c73220c857489a340ee1a5072a">thread_getstatus</a>(<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga8d16ab2564e99827b629f8cb1a253beb">  321</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#ga8d16ab2564e99827b629f8cb1a253beb">thread_sleep</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="preprocessor">#if defined(MODULE_CORE_THREAD) || DOXYGEN</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="group__core__thread.html#gaaa9229e0f462f60bb9550919fa3d7699">  335</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#gaaa9229e0f462f60bb9550919fa3d7699">thread_yield</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#gaaa9229e0f462f60bb9550919fa3d7699">thread_yield</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;{</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="comment">/* NO-OP */</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;}</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
+<div class="line"><a name="l00355"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga83ca2e8c4cc394985e88b643d2a61840">  355</a></span>&#160;<a class="code" href="group__core__thread.html#gae42834449d4aa117dd881cc1716a5f4e">THREAD_MAYBE_INLINE</a> <span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#ga83ca2e8c4cc394985e88b643d2a61840">thread_yield_higher</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00366"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga76c8b55efc2c693fc6e2c6acd9ca2ddb">  366</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#ga76c8b55efc2c693fc6e2c6acd9ca2ddb">thread_zombify</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
+<div class="line"><a name="l00376"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga862dec3a65ad85c3b18bdf2d5450880e">  376</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__core__thread.html#ga862dec3a65ad85c3b18bdf2d5450880e">thread_kill_zombie</a>(<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="group__core__thread.html#gaab65867d92604d57f6efb622586466f4">  386</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__core__thread.html#gaab65867d92604d57f6efb622586466f4">thread_wakeup</a>(<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="group__core__thread.html#gab68e945fba9216126e255648a9a4ee8a">  393</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> <a class="code" href="group__core__thread.html#gab68e945fba9216126e255648a9a4ee8a">thread_getpid</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;{</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keyword">extern</span> <span class="keyword">volatile</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> sched_active_pid;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160; </div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keywordflow">return</span> sched_active_pid;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;}</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
+<div class="line"><a name="l00407"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga605ef75cf40c9116339ba8ef54193e4c">  407</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="struct__thread.html">thread_t</a> *<a class="code" href="group__core__thread.html#ga605ef75cf40c9116339ba8ef54193e4c">thread_get_active</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;{</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keyword">extern</span> <span class="keyword">volatile</span> <a class="code" href="struct__thread.html">thread_t</a> *sched_active_thread;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="struct__thread.html">thread_t</a> *)sched_active_thread;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;}</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160; </div>
+<div class="line"><a name="l00424"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga46cf14bb228358de0e8a7a0e5425a466">  424</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="group__core__thread.html#ga46cf14bb228358de0e8a7a0e5425a466">thread_stack_init</a>(<a class="code" href="group__core__thread.html#gab1b7486500c7dbaabdd2ac9a085ac39a">thread_task_func_t</a> task_func, <span class="keywordtype">void</span> *arg,</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                        <span class="keywordtype">void</span> *stack_start, <span class="keywordtype">int</span> stack_size);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga66b51382807f0a214c15e282fec5476f">  440</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#ga66b51382807f0a214c15e282fec5476f">thread_add_to_list</a>(<a class="code" href="structlist__node.html">list_node_t</a> *list, <a class="code" href="struct__thread.html">thread_t</a> *thread);</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160; </div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="preprocessor">#if defined(MODULE_CORE_THREAD) || DOXYGEN</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga95be7fb4afdce288dd85286c8591c8dd">  453</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="group__core__thread.html#ga95be7fb4afdce288dd85286c8591c8dd">thread_getname</a>(<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid);</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="group__core__thread.html#ga95be7fb4afdce288dd85286c8591c8dd">thread_getname</a>(<a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;{</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    (void)pid;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;(none)&quot;</span>;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;}</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
+<div class="line"><a name="l00477"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga0f434687135c31e82dedd44da4bc0f92">  477</a></span>&#160;uintptr_t <a class="code" href="group__core__thread.html#ga0f434687135c31e82dedd44da4bc0f92">measure_stack_free_internal</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *stack, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160; </div>
+<div class="line"><a name="l00482"></a><span class="lineno"><a class="line" href="group__core__thread.html#gabb6763813ca04ff4b87b47f3d524505b">  482</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__core__thread.html#gabb6763813ca04ff4b87b47f3d524505b">thread_isr_stack_usage</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160; </div>
+<div class="line"><a name="l00487"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga7ce2b0b9af6fd608f8135076aeaff674">  487</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="group__core__thread.html#ga7ce2b0b9af6fd608f8135076aeaff674">thread_isr_stack_pointer</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160; </div>
+<div class="line"><a name="l00492"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga7fd6618f65f13fd9a023b79da69545b1">  492</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="group__core__thread.html#ga7fd6618f65f13fd9a023b79da69545b1">thread_isr_stack_start</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160; </div>
+<div class="line"><a name="l00497"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga05ea0c25c648d6990819d8502ae47696">  497</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#ga05ea0c25c648d6990819d8502ae47696">thread_stack_print</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160; </div>
+<div class="line"><a name="l00502"></a><span class="lineno"><a class="line" href="group__core__thread.html#gad80df800e5bde287544899ebea3af1c9">  502</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__core__thread.html#gad80df800e5bde287544899ebea3af1c9">thread_print_stack</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160; </div>
+<div class="line"><a name="l00514"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga7d49bed9a012215e798f4ec4027bd4cd">  514</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="group__core__thread.html#ga7d49bed9a012215e798f4ec4027bd4cd">thread_has_msg_queue</a>(<span class="keyword">const</span> <span class="keyword">volatile</span> <span class="keyword">struct</span> <a class="code" href="struct__thread.html">_thread</a> *thread)</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;{</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="preprocessor">#if defined(MODULE_CORE_MSG) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <span class="keywordflow">return</span> (thread-&gt;<a class="code" href="struct__thread.html#a5a5b07e6d4d9212694803d2a9394c478">msg_array</a> != NULL);</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    (void)thread;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;}</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160; </div>
+<div class="line"><a name="l00530"></a><span class="lineno"><a class="line" href="group__core__thread.html#gabc7668e26f5270824c18641cb3cbf802">  530</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__core__sched.html#gac528c02d3cccfb103d539b26ccdba6b2">thread_status_t</a> <a class="code" href="group__core__thread.html#gabc7668e26f5270824c18641cb3cbf802">thread_get_status</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;{</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#a2f158c4e18e63d81e071048e2e5a071f">status</a>;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;}</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160; </div>
+<div class="line"><a name="l00541"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga2793dad289626600e20c24136d788d94">  541</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__core__thread.html#ga2793dad289626600e20c24136d788d94">thread_get_priority</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;{</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#a654101f2bb704e4c33053979088c87ff">priority</a>;</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;}</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
+<div class="line"><a name="l00552"></a><span class="lineno"><a class="line" href="group__core__thread.html#gab7beb106598f0c575c227cf8ed0476a0">  552</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="group__core__thread.html#gab7beb106598f0c575c227cf8ed0476a0">thread_is_active</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;{</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#a2f158c4e18e63d81e071048e2e5a071f">status</a> &gt;= <a class="code" href="group__core__sched.html#gaf4e431441709328f9355dfb7e21a0eb9">STATUS_ON_RUNQUEUE</a>;</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;}</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160; </div>
+<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga4facacad3d8f92317d1441b779c06147">  563</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="group__core__thread.html#ga4facacad3d8f92317d1441b779c06147">thread_state_to_string</a>(<a class="code" href="group__core__sched.html#gac528c02d3cccfb103d539b26ccdba6b2">thread_status_t</a> state);</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160; </div>
+<div class="line"><a name="l00571"></a><span class="lineno"><a class="line" href="group__core__thread.html#gad2729868906246ee7d10f39248e6b38b">  571</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> *<a class="code" href="group__core__thread.html#gad2729868906246ee7d10f39248e6b38b">thread_get_stackstart</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;{</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;<span class="preprocessor">#if defined(DEVELHELP) || IS_ACTIVE(SCHED_TEST_STACK) \</span></div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;<span class="preprocessor">    || defined(MODULE_MPU_STACK_GUARD)</span></div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#a1163b634e1c7a399192e40152c02c285">stack_start</a>;</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;    (void)thread;</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;}</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160; </div>
+<div class="line"><a name="l00590"></a><span class="lineno"><a class="line" href="group__core__thread.html#gab1840b02a7834a147ed07be206e05020">  590</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> *<a class="code" href="group__core__thread.html#gab1840b02a7834a147ed07be206e05020">thread_get_sp</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;{</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#a09eea99498158fcfe734910b2f3df22c">sp</a>;</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;}</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160; </div>
+<div class="line"><a name="l00601"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga3023b920b107656efd152a31a5cd9983">  601</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> <a class="code" href="group__core__thread.html#ga3023b920b107656efd152a31a5cd9983">thread_get_stacksize</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;{</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;<span class="preprocessor">#if defined(DEVELHELP)</span></div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#a6853c994e80e79beacae5fc19d599991">stack_size</a>;</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;    (void)thread;</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;}</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160; </div>
+<div class="line"><a name="l00619"></a><span class="lineno"><a class="line" href="group__core__thread.html#gaf75328abc29a0c004cfe6f1f1f010e9e">  619</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> <a class="code" href="group__core__thread.html#gaf75328abc29a0c004cfe6f1f1f010e9e">thread_getpid_of</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;{</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#aff7351b19d237a3e155b38e7ac21dad2">pid</a>;</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;}</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160; </div>
+<div class="line"><a name="l00630"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga705b23a68178d07032091a81b5e0f7b0">  630</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="group__core__thread.html#ga705b23a68178d07032091a81b5e0f7b0">thread_get_name</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;{</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;<span class="preprocessor">#if defined(CONFIG_THREAD_NAMES)</span></div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;    <span class="keywordflow">return</span> thread-&gt;<a class="code" href="struct__thread.html#a83a61fc95804b88af6551d9dd83a9cec">name</a>;</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;    (void)thread;</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;}</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160; </div>
+<div class="line"><a name="l00650"></a><span class="lineno"><a class="line" href="group__core__thread.html#ga6e445472b5a25b211079bb3e2d552c77">  650</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t <a class="code" href="group__core__thread.html#ga6e445472b5a25b211079bb3e2d552c77">thread_measure_stack_free</a>(<span class="keyword">const</span> <a class="code" href="struct__thread.html">thread_t</a> *thread)</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;{</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    <span class="comment">/* explicitly casting void pointers is bad code style, but needed for C++</span></div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="comment">     * compatibility */</span></div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__core__thread.html#ga0f434687135c31e82dedd44da4bc0f92">measure_stack_free_internal</a>((<span class="keyword">const</span> <span class="keywordtype">char</span> *)<a class="code" href="group__core__thread.html#gad2729868906246ee7d10f39248e6b38b">thread_get_stackstart</a>(thread),</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;                                       <a class="code" href="group__core__thread.html#ga3023b920b107656efd152a31a5cd9983">thread_get_stacksize</a>(thread));</div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;}</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160; </div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;}</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160; </div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* THREAD_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acib_8h_html"><div class="ttname"><a href="cib_8h.html">cib.h</a></div><div class="ttdoc">Circular integer buffer interface.</div></div>
+<div class="ttc" id="aclist_8h_html"><div class="ttname"><a href="clist_8h.html">clist.h</a></div><div class="ttdoc">Circular linked list.</div></div>
+<div class="ttc" id="agroup__core__sched_html_ga512e493d9d773ddd21c3370ad14b8aaa"><div class="ttname"><a href="group__core__sched.html#ga512e493d9d773ddd21c3370ad14b8aaa">pid_is_valid</a></div><div class="ttdeci">static int pid_is_valid(kernel_pid_t pid)</div><div class="ttdoc">Determine if the given pid is valid.</div><div class="ttdef"><b>Definition:</b> sched.h:148</div></div>
+<div class="ttc" id="agroup__core__sched_html_ga8375139300d7cbf23bd8bd89ddddbe84"><div class="ttname"><a href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a></div><div class="ttdeci">int16_t kernel_pid_t</div><div class="ttdoc">Unique process identifier.</div><div class="ttdef"><b>Definition:</b> sched.h:139</div></div>
+<div class="ttc" id="agroup__core__sched_html_gac45dd99fa5d31177f4380534fc46eded"><div class="ttname"><a href="group__core__sched.html#gac45dd99fa5d31177f4380534fc46eded">sched_threads</a></div><div class="ttdeci">volatile thread_t * sched_threads[KERNEL_PID_LAST+1]</div><div class="ttdoc">Thread table.</div></div>
+<div class="ttc" id="agroup__core__sched_html_gac528c02d3cccfb103d539b26ccdba6b2"><div class="ttname"><a href="group__core__sched.html#gac528c02d3cccfb103d539b26ccdba6b2">thread_status_t</a></div><div class="ttdeci">thread_status_t</div><div class="ttdef"><b>Definition:</b> sched.h:163</div></div>
+<div class="ttc" id="agroup__core__sched_html_gaf4e431441709328f9355dfb7e21a0eb9"><div class="ttname"><a href="group__core__sched.html#gaf4e431441709328f9355dfb7e21a0eb9">STATUS_ON_RUNQUEUE</a></div><div class="ttdeci">#define STATUS_ON_RUNQUEUE</div><div class="ttdoc">to check if on run queue: st &gt;= STATUS_ON_RUNQUEUE</div><div class="ttdef"><b>Definition:</b> sched.h:185</div></div>
+<div class="ttc" id="agroup__core__thread__flags_html_ga9e19bb7d3442b5ba39da5d0fd49fd1ca"><div class="ttname"><a href="group__core__thread__flags.html#ga9e19bb7d3442b5ba39da5d0fd49fd1ca">thread_flags_t</a></div><div class="ttdeci">uint16_t thread_flags_t</div><div class="ttdoc">Type definition of thread_flags_t.</div><div class="ttdef"><b>Definition:</b> thread_flags.h:122</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga05ea0c25c648d6990819d8502ae47696"><div class="ttname"><a href="group__core__thread.html#ga05ea0c25c648d6990819d8502ae47696">thread_stack_print</a></div><div class="ttdeci">void thread_stack_print(void)</div><div class="ttdoc">Print the current stack to stdout.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga0f434687135c31e82dedd44da4bc0f92"><div class="ttname"><a href="group__core__thread.html#ga0f434687135c31e82dedd44da4bc0f92">measure_stack_free_internal</a></div><div class="ttdeci">uintptr_t measure_stack_free_internal(const char *stack, size_t size)</div><div class="ttdoc">Measures the stack usage of a stack.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga126920c73220c857489a340ee1a5072a"><div class="ttname"><a href="group__core__thread.html#ga126920c73220c857489a340ee1a5072a">thread_getstatus</a></div><div class="ttdeci">thread_status_t thread_getstatus(kernel_pid_t pid)</div><div class="ttdoc">Returns the status of a process.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga2793dad289626600e20c24136d788d94"><div class="ttname"><a href="group__core__thread.html#ga2793dad289626600e20c24136d788d94">thread_get_priority</a></div><div class="ttdeci">static uint8_t thread_get_priority(const thread_t *thread)</div><div class="ttdoc">Get a thread's priority.</div><div class="ttdef"><b>Definition:</b> thread.h:541</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga291191901d69837ffff231d312892c70"><div class="ttname"><a href="group__core__thread.html#ga291191901d69837ffff231d312892c70">thread_get</a></div><div class="ttdeci">static thread_t * thread_get(kernel_pid_t pid)</div><div class="ttdoc">Retrieve a thread control block by PID.</div><div class="ttdef"><b>Definition:</b> thread.h:300</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga3023b920b107656efd152a31a5cd9983"><div class="ttname"><a href="group__core__thread.html#ga3023b920b107656efd152a31a5cd9983">thread_get_stacksize</a></div><div class="ttdeci">static size_t thread_get_stacksize(const thread_t *thread)</div><div class="ttdoc">Get size of a thread's stack.</div><div class="ttdef"><b>Definition:</b> thread.h:601</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga46cf14bb228358de0e8a7a0e5425a466"><div class="ttname"><a href="group__core__thread.html#ga46cf14bb228358de0e8a7a0e5425a466">thread_stack_init</a></div><div class="ttdeci">char * thread_stack_init(thread_task_func_t task_func, void *arg, void *stack_start, int stack_size)</div><div class="ttdoc">Gets called upon thread creation to set CPU registers.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga4facacad3d8f92317d1441b779c06147"><div class="ttname"><a href="group__core__thread.html#ga4facacad3d8f92317d1441b779c06147">thread_state_to_string</a></div><div class="ttdeci">const char * thread_state_to_string(thread_status_t state)</div><div class="ttdoc">Convert a thread state code to a human readable string.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga590ebd6a4db0890f35e9bd03c8d98b74"><div class="ttname"><a href="group__core__thread.html#ga590ebd6a4db0890f35e9bd03c8d98b74">thread_get_unchecked</a></div><div class="ttdeci">static thread_t * thread_get_unchecked(kernel_pid_t pid)</div><div class="ttdoc">Retrieve a thread control block by PID.</div><div class="ttdef"><b>Definition:</b> thread.h:288</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga605ef75cf40c9116339ba8ef54193e4c"><div class="ttname"><a href="group__core__thread.html#ga605ef75cf40c9116339ba8ef54193e4c">thread_get_active</a></div><div class="ttdeci">static thread_t * thread_get_active(void)</div><div class="ttdoc">Returns a pointer to the Thread Control Block of the currently running thread.</div><div class="ttdef"><b>Definition:</b> thread.h:407</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga66b51382807f0a214c15e282fec5476f"><div class="ttname"><a href="group__core__thread.html#ga66b51382807f0a214c15e282fec5476f">thread_add_to_list</a></div><div class="ttdeci">void thread_add_to_list(list_node_t *list, thread_t *thread)</div><div class="ttdoc">Add thread to list, sorted by priority (internal)</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga6e445472b5a25b211079bb3e2d552c77"><div class="ttname"><a href="group__core__thread.html#ga6e445472b5a25b211079bb3e2d552c77">thread_measure_stack_free</a></div><div class="ttdeci">static uintptr_t thread_measure_stack_free(const thread_t *thread)</div><div class="ttdoc">Measures the stack usage of a stack.</div><div class="ttdef"><b>Definition:</b> thread.h:650</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga705b23a68178d07032091a81b5e0f7b0"><div class="ttname"><a href="group__core__thread.html#ga705b23a68178d07032091a81b5e0f7b0">thread_get_name</a></div><div class="ttdeci">static const char * thread_get_name(const thread_t *thread)</div><div class="ttdoc">Get name of thread.</div><div class="ttdef"><b>Definition:</b> thread.h:630</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga76c8b55efc2c693fc6e2c6acd9ca2ddb"><div class="ttname"><a href="group__core__thread.html#ga76c8b55efc2c693fc6e2c6acd9ca2ddb">thread_zombify</a></div><div class="ttdeci">void thread_zombify(void)</div><div class="ttdoc">Puts the current thread into zombie state.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga7ce2b0b9af6fd608f8135076aeaff674"><div class="ttname"><a href="group__core__thread.html#ga7ce2b0b9af6fd608f8135076aeaff674">thread_isr_stack_pointer</a></div><div class="ttdeci">void * thread_isr_stack_pointer(void)</div><div class="ttdoc">Get the current ISR stack pointer.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga7d49bed9a012215e798f4ec4027bd4cd"><div class="ttname"><a href="group__core__thread.html#ga7d49bed9a012215e798f4ec4027bd4cd">thread_has_msg_queue</a></div><div class="ttdeci">static int thread_has_msg_queue(const volatile struct _thread *thread)</div><div class="ttdoc">Checks if a thread has an initialized message queue.</div><div class="ttdef"><b>Definition:</b> thread.h:514</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga7e0403a9aa86ce0ec136f6b069d4434a"><div class="ttname"><a href="group__core__thread.html#ga7e0403a9aa86ce0ec136f6b069d4434a">thread_create</a></div><div class="ttdeci">kernel_pid_t thread_create(char *stack, int stacksize, uint8_t priority, int flags, thread_task_func_t task_func, void *arg, const char *name)</div><div class="ttdoc">Creates a new thread.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga7fd6618f65f13fd9a023b79da69545b1"><div class="ttname"><a href="group__core__thread.html#ga7fd6618f65f13fd9a023b79da69545b1">thread_isr_stack_start</a></div><div class="ttdeci">void * thread_isr_stack_start(void)</div><div class="ttdoc">Get the start of the ISR stack.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga83ca2e8c4cc394985e88b643d2a61840"><div class="ttname"><a href="group__core__thread.html#ga83ca2e8c4cc394985e88b643d2a61840">thread_yield_higher</a></div><div class="ttdeci">THREAD_MAYBE_INLINE void thread_yield_higher(void)</div><div class="ttdoc">Lets current thread yield in favor of a higher prioritized thread.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga862dec3a65ad85c3b18bdf2d5450880e"><div class="ttname"><a href="group__core__thread.html#ga862dec3a65ad85c3b18bdf2d5450880e">thread_kill_zombie</a></div><div class="ttdeci">int thread_kill_zombie(kernel_pid_t pid)</div><div class="ttdoc">Terminates zombie thread.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga8d16ab2564e99827b629f8cb1a253beb"><div class="ttname"><a href="group__core__thread.html#ga8d16ab2564e99827b629f8cb1a253beb">thread_sleep</a></div><div class="ttdeci">void thread_sleep(void)</div><div class="ttdoc">Puts the current thread into sleep mode.</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga95be7fb4afdce288dd85286c8591c8dd"><div class="ttname"><a href="group__core__thread.html#ga95be7fb4afdce288dd85286c8591c8dd">thread_getname</a></div><div class="ttdeci">const char * thread_getname(kernel_pid_t pid)</div><div class="ttdoc">Returns the name of a process.</div></div>
+<div class="ttc" id="agroup__core__thread_html_gaaa9229e0f462f60bb9550919fa3d7699"><div class="ttname"><a href="group__core__thread.html#gaaa9229e0f462f60bb9550919fa3d7699">thread_yield</a></div><div class="ttdeci">void thread_yield(void)</div><div class="ttdoc">Lets current thread yield.</div></div>
+<div class="ttc" id="agroup__core__thread_html_gaab65867d92604d57f6efb622586466f4"><div class="ttname"><a href="group__core__thread.html#gaab65867d92604d57f6efb622586466f4">thread_wakeup</a></div><div class="ttdeci">int thread_wakeup(kernel_pid_t pid)</div><div class="ttdoc">Wakes up a sleeping thread.</div></div>
+<div class="ttc" id="agroup__core__thread_html_gab1840b02a7834a147ed07be206e05020"><div class="ttname"><a href="group__core__thread.html#gab1840b02a7834a147ed07be206e05020">thread_get_sp</a></div><div class="ttdeci">static void * thread_get_sp(const thread_t *thread)</div><div class="ttdoc">Get stored Stack Pointer of thread.</div><div class="ttdef"><b>Definition:</b> thread.h:590</div></div>
+<div class="ttc" id="agroup__core__thread_html_gab1b7486500c7dbaabdd2ac9a085ac39a"><div class="ttname"><a href="group__core__thread.html#gab1b7486500c7dbaabdd2ac9a085ac39a">thread_task_func_t</a></div><div class="ttdeci">void *(* thread_task_func_t)(void *arg)</div><div class="ttdoc">Prototype for a thread entry function.</div><div class="ttdef"><b>Definition:</b> thread.h:163</div></div>
+<div class="ttc" id="agroup__core__thread_html_gab68e945fba9216126e255648a9a4ee8a"><div class="ttname"><a href="group__core__thread.html#gab68e945fba9216126e255648a9a4ee8a">thread_getpid</a></div><div class="ttdeci">static kernel_pid_t thread_getpid(void)</div><div class="ttdoc">Returns the process ID of the currently running thread.</div><div class="ttdef"><b>Definition:</b> thread.h:393</div></div>
+<div class="ttc" id="agroup__core__thread_html_gab7beb106598f0c575c227cf8ed0476a0"><div class="ttname"><a href="group__core__thread.html#gab7beb106598f0c575c227cf8ed0476a0">thread_is_active</a></div><div class="ttdeci">static bool thread_is_active(const thread_t *thread)</div><div class="ttdoc">Returns if a thread is active (currently running or waiting to be scheduled)</div><div class="ttdef"><b>Definition:</b> thread.h:552</div></div>
+<div class="ttc" id="agroup__core__thread_html_gabb6763813ca04ff4b87b47f3d524505b"><div class="ttname"><a href="group__core__thread.html#gabb6763813ca04ff4b87b47f3d524505b">thread_isr_stack_usage</a></div><div class="ttdeci">int thread_isr_stack_usage(void)</div><div class="ttdoc">Get the number of bytes used on the ISR stack.</div></div>
+<div class="ttc" id="agroup__core__thread_html_gabc7668e26f5270824c18641cb3cbf802"><div class="ttname"><a href="group__core__thread.html#gabc7668e26f5270824c18641cb3cbf802">thread_get_status</a></div><div class="ttdeci">static thread_status_t thread_get_status(const thread_t *thread)</div><div class="ttdoc">Get a thread's status.</div><div class="ttdef"><b>Definition:</b> thread.h:530</div></div>
+<div class="ttc" id="agroup__core__thread_html_gad2729868906246ee7d10f39248e6b38b"><div class="ttname"><a href="group__core__thread.html#gad2729868906246ee7d10f39248e6b38b">thread_get_stackstart</a></div><div class="ttdeci">static void * thread_get_stackstart(const thread_t *thread)</div><div class="ttdoc">Get start address (lowest) of a thread's stack.</div><div class="ttdef"><b>Definition:</b> thread.h:571</div></div>
+<div class="ttc" id="agroup__core__thread_html_gad80df800e5bde287544899ebea3af1c9"><div class="ttname"><a href="group__core__thread.html#gad80df800e5bde287544899ebea3af1c9">thread_print_stack</a></div><div class="ttdeci">void thread_print_stack(void)</div><div class="ttdoc">Prints human readable, ps-like thread information for debugging purposes.</div></div>
+<div class="ttc" id="agroup__core__thread_html_gae42834449d4aa117dd881cc1716a5f4e"><div class="ttname"><a href="group__core__thread.html#gae42834449d4aa117dd881cc1716a5f4e">THREAD_MAYBE_INLINE</a></div><div class="ttdeci">#define THREAD_MAYBE_INLINE</div><div class="ttdoc">Macro definition to inline some of the platform specific implementations.</div><div class="ttdef"><b>Definition:</b> thread.h:147</div></div>
+<div class="ttc" id="agroup__core__thread_html_gaf75328abc29a0c004cfe6f1f1f010e9e"><div class="ttname"><a href="group__core__thread.html#gaf75328abc29a0c004cfe6f1f1f010e9e">thread_getpid_of</a></div><div class="ttdeci">static kernel_pid_t thread_getpid_of(const thread_t *thread)</div><div class="ttdoc">Get PID of thread.</div><div class="ttdef"><b>Definition:</b> thread.h:619</div></div>
+<div class="ttc" id="asched_8h_html"><div class="ttname"><a href="sched_8h.html">sched.h</a></div><div class="ttdoc">Scheduler API definition.</div></div>
+<div class="ttc" id="astruct__thread_html"><div class="ttname"><a href="struct__thread.html">_thread</a></div><div class="ttdoc">thread_t holds thread's context data.</div><div class="ttdef"><b>Definition:</b> thread.h:168</div></div>
+<div class="ttc" id="astruct__thread_html_a09eea99498158fcfe734910b2f3df22c"><div class="ttname"><a href="struct__thread.html#a09eea99498158fcfe734910b2f3df22c">_thread::sp</a></div><div class="ttdeci">char * sp</div><div class="ttdoc">thread's stack pointer</div><div class="ttdef"><b>Definition:</b> thread.h:169</div></div>
+<div class="ttc" id="astruct__thread_html_a1163b634e1c7a399192e40152c02c285"><div class="ttname"><a href="struct__thread.html#a1163b634e1c7a399192e40152c02c285">_thread::stack_start</a></div><div class="ttdeci">char * stack_start</div><div class="ttdoc">thread's stack start address</div><div class="ttdef"><b>Definition:</b> thread.h:197</div></div>
+<div class="ttc" id="astruct__thread_html_a1e235cf9171684121108ba7f115d17b7"><div class="ttname"><a href="struct__thread.html#a1e235cf9171684121108ba7f115d17b7">_thread::msg_queue</a></div><div class="ttdeci">cib_t msg_queue</div><div class="ttdoc">index of this [thread's message queue] (thread_t::msg_array), if any</div><div class="ttdef"><b>Definition:</b> thread.h:190</div></div>
+<div class="ttc" id="astruct__thread_html_a1ecb5902eff39fdba2fd6fdf7c95b50b"><div class="ttname"><a href="struct__thread.html#a1ecb5902eff39fdba2fd6fdf7c95b50b">_thread::flags</a></div><div class="ttdeci">thread_flags_t flags</div><div class="ttdoc">currently set flags</div><div class="ttdef"><b>Definition:</b> thread.h:176</div></div>
+<div class="ttc" id="astruct__thread_html_a23eac8bcc11e70b8b2e40d1d9b00857b"><div class="ttname"><a href="struct__thread.html#a23eac8bcc11e70b8b2e40d1d9b00857b">_thread::msg_waiters</a></div><div class="ttdeci">list_node_t msg_waiters</div><div class="ttdoc">threads waiting for their message to be delivered to this thread (i.e.</div><div class="ttdef"><b>Definition:</b> thread.h:187</div></div>
+<div class="ttc" id="astruct__thread_html_a2f158c4e18e63d81e071048e2e5a071f"><div class="ttname"><a href="struct__thread.html#a2f158c4e18e63d81e071048e2e5a071f">_thread::status</a></div><div class="ttdeci">thread_status_t status</div><div class="ttdoc">thread's status</div><div class="ttdef"><b>Definition:</b> thread.h:170</div></div>
+<div class="ttc" id="astruct__thread_html_a5a5b07e6d4d9212694803d2a9394c478"><div class="ttname"><a href="struct__thread.html#a5a5b07e6d4d9212694803d2a9394c478">_thread::msg_array</a></div><div class="ttdeci">msg_t * msg_array</div><div class="ttdoc">memory holding messages sent to this thread's message queue</div><div class="ttdef"><b>Definition:</b> thread.h:192</div></div>
+<div class="ttc" id="astruct__thread_html_a654101f2bb704e4c33053979088c87ff"><div class="ttname"><a href="struct__thread.html#a654101f2bb704e4c33053979088c87ff">_thread::priority</a></div><div class="ttdeci">uint8_t priority</div><div class="ttdoc">thread's priority</div><div class="ttdef"><b>Definition:</b> thread.h:171</div></div>
+<div class="ttc" id="astruct__thread_html_a6853c994e80e79beacae5fc19d599991"><div class="ttname"><a href="struct__thread.html#a6853c994e80e79beacae5fc19d599991">_thread::stack_size</a></div><div class="ttdeci">int stack_size</div><div class="ttdoc">thread's stack size</div><div class="ttdef"><b>Definition:</b> thread.h:203</div></div>
+<div class="ttc" id="astruct__thread_html_a83a61fc95804b88af6551d9dd83a9cec"><div class="ttname"><a href="struct__thread.html#a83a61fc95804b88af6551d9dd83a9cec">_thread::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">thread's name</div><div class="ttdef"><b>Definition:</b> thread.h:200</div></div>
+<div class="ttc" id="astruct__thread_html_ac71ab65e786b1431def0840facc2b599"><div class="ttname"><a href="struct__thread.html#ac71ab65e786b1431def0840facc2b599">_thread::rq_entry</a></div><div class="ttdeci">clist_node_t rq_entry</div><div class="ttdoc">run queue entry</div><div class="ttdef"><b>Definition:</b> thread.h:179</div></div>
+<div class="ttc" id="astruct__thread_html_afe7e02f9edce6dd687781f50957d4da9"><div class="ttname"><a href="struct__thread.html#afe7e02f9edce6dd687781f50957d4da9">_thread::wait_data</a></div><div class="ttdeci">void * wait_data</div><div class="ttdoc">used by msg, mbox and thread flags</div><div class="ttdef"><b>Definition:</b> thread.h:183</div></div>
+<div class="ttc" id="astruct__thread_html_aff7351b19d237a3e155b38e7ac21dad2"><div class="ttname"><a href="struct__thread.html#aff7351b19d237a3e155b38e7ac21dad2">_thread::pid</a></div><div class="ttdeci">kernel_pid_t pid</div><div class="ttdoc">thread's process id</div><div class="ttdef"><b>Definition:</b> thread.h:173</div></div>
+<div class="ttc" id="astructcib__t_html"><div class="ttname"><a href="structcib__t.html">cib_t</a></div><div class="ttdoc">circular integer buffer structure</div><div class="ttdef"><b>Definition:</b> cib.h:34</div></div>
+<div class="ttc" id="astructlist__node_html"><div class="ttname"><a href="structlist__node.html">list_node</a></div><div class="ttdoc">List node structure.</div><div class="ttdef"><b>Definition:</b> list.h:40</div></div>
+<div class="ttc" id="astructmsg__t_html"><div class="ttname"><a href="structmsg__t.html">msg_t</a></div><div class="ttdoc">Describes a message object which can be sent between threads.</div><div class="ttdef"><b>Definition:</b> msg.h:196</div></div>
+<div class="ttc" id="asys_2include_2net_2dns_2msg_8h_html"><div class="ttname"><a href="sys_2include_2net_2dns_2msg_8h.html">msg.h</a></div><div class="ttdoc">Definitions for parsing and composition of DNS messages.</div></div>
+<div class="ttc" id="athread__config_8h_html"><div class="ttname"><a href="thread__config_8h.html">thread_config.h</a></div><div class="ttdoc">Thread configuration defines.</div></div>
+<div class="ttc" id="athread__flags_8h_html"><div class="ttname"><a href="thread__flags_8h.html">thread_flags.h</a></div><div class="ttdoc">Thread Flags API.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4270bfced15e0e73154b13468c7c9ad9.html">core</a></li><li class="navelem"><a class="el" href="dir_24d671cfcbc5d5238a6bd565a49d198f.html">include</a></li><li class="navelem"><a class="el" href="core_2include_2thread_8h.html">thread.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: SUIT secure firmware OTA upgrade infrastructure</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__sys__suit.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">SUIT secure firmware OTA upgrade infrastructure<div class="ingroups"><a class="el" href="group__sys.html">System</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>SUIT manifest handling. </p>
+<p>@experimental</p>
+<dl class="section note"><dt>Note</dt><dd>The current implementation of this specification is based on the IETF-SUIT-v9 draft. The module is still experimental and will change to match future draft specifications</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://tools.ietf.org/html/draft-ietf-suit-manifest-09">https://tools.ietf.org/html/draft-ietf-suit-manifest-09</a></dd></dl>
+<p>Handler functions for SUIT manifests </p><dl class="section author"><dt>Author</dt><dd>Koen Zandberg <a href="#" onclick="location.href='mai'+'lto:'+'koe'+'n@'+'ber'+'gz'+'and'+'.n'+'et'; return false;">koen@<span style="display: none;">.nosp@m.</span>berg<span style="display: none;">.nosp@m.</span>zand.<span style="display: none;">.nosp@m.</span>net</a> </dd>
+<dd>
+Kaspar Schleiser <a href="#" onclick="location.href='mai'+'lto:'+'kas'+'pa'+'r@s'+'ch'+'lei'+'se'+'r.d'+'e'; return false;">kaspa<span style="display: none;">.nosp@m.</span>r@sc<span style="display: none;">.nosp@m.</span>hleis<span style="display: none;">.nosp@m.</span>er.d<span style="display: none;">.nosp@m.</span>e</a> </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__sys__suit__transport__coap"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit__transport__coap.html">SUIT firmware CoAP transport</a></td></tr>
+<tr class="memdesc:group__sys__suit__transport__coap"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT secure firmware updates over CoAP. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__suit__transport__worker"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit__transport__worker.html">SUIT firmware worker thread</a></td></tr>
+<tr class="memdesc:group__sys__suit__transport__worker"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT secure firmware updates worker thread. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__suit__transport__vfs"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit__transport__vfs.html">SUIT secure firmware OTA VFS transport</a></td></tr>
+<tr class="memdesc:group__sys__suit__transport__vfs"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT firmware VFS transport. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__suit__transport__mock"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit__transport__mock.html">SUIT secure firmware OTA mock transport</a></td></tr>
+<tr class="memdesc:group__sys__suit__transport__mock"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT firmware mock transport. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__sys__suit__storage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit__storage.html">SUIT secure firmware OTA upgrade storage</a></td></tr>
+<tr class="memdesc:group__sys__suit__storage"><td class="mdescLeft">&#160;</td><td class="mdescRight">infrastructure <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsuit__param__ref__t.html">suit_param_ref_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT parameter reference.  <a href="structsuit__param__ref__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsuit__component__t.html">suit_component_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT component struct as decoded from the manifest.  <a href="structsuit__component__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsuit__manifest__t.html">suit_manifest_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT manifest struct.  <a href="structsuit__manifest__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga30a9d72c910ae1f19046cff92430380a"><td class="memItemLeft" align="right" valign="top"><a id="ga30a9d72c910ae1f19046cff92430380a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga30a9d72c910ae1f19046cff92430380a">SUIT_COSE_BUF_SIZE</a>&#160;&#160;&#160;(180U)</td></tr>
+<tr class="memdesc:ga30a9d72c910ae1f19046cff92430380a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer size used for Cose. <br /></td></tr>
+<tr class="separator:ga30a9d72c910ae1f19046cff92430380a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f095f24c38e2f3b8d0fa57005aa315c"><td class="memItemLeft" align="right" valign="top"><a id="ga4f095f24c38e2f3b8d0fa57005aa315c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga4f095f24c38e2f3b8d0fa57005aa315c">CONFIG_SUIT_COMPONENT_MAX</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:ga4f095f24c38e2f3b8d0fa57005aa315c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of components supported in a SUIT manifest. <br /></td></tr>
+<tr class="separator:ga4f095f24c38e2f3b8d0fa57005aa315c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga040a97e2c60e13dc6d33d787277f979c"><td class="memItemLeft" align="right" valign="top"><a id="ga040a97e2c60e13dc6d33d787277f979c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga040a97e2c60e13dc6d33d787277f979c">CONFIG_SUIT_COMPONENT_MAX_NAME_LEN</a>&#160;&#160;&#160;(32U)</td></tr>
+<tr class="memdesc:ga040a97e2c60e13dc6d33d787277f979c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum name of component, includes separator. <br /></td></tr>
+<tr class="separator:ga040a97e2c60e13dc6d33d787277f979c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga06428f70b7d93c61acd277f67acab8c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga06428f70b7d93c61acd277f67acab8c8">SUIT_VERSION</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:ga06428f70b7d93c61acd277f67acab8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current SUIT serialization format version.  <a href="group__sys__suit.html#ga06428f70b7d93c61acd277f67acab8c8">More...</a><br /></td></tr>
+<tr class="separator:ga06428f70b7d93c61acd277f67acab8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga70006cfe2a4fbf84d34d2949d376f322"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga70006cfe2a4fbf84d34d2949d376f322">SUIT_MANIFEST_COMPONENT_ALL</a>&#160;&#160;&#160;(UINT8_MAX)</td></tr>
+<tr class="memdesc:ga70006cfe2a4fbf84d34d2949d376f322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component index representing all components.  <a href="group__sys__suit.html#ga70006cfe2a4fbf84d34d2949d376f322">More...</a><br /></td></tr>
+<tr class="separator:ga70006cfe2a4fbf84d34d2949d376f322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga04b6a802d3358ffa9523f237e801aff9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga04b6a802d3358ffa9523f237e801aff9">SUIT_MANIFEST_COMPONENT_NONE</a>&#160;&#160;&#160;(<a class="el" href="group__sys__suit.html#ga70006cfe2a4fbf84d34d2949d376f322">SUIT_MANIFEST_COMPONENT_ALL</a> - 1)</td></tr>
+<tr class="memdesc:ga04b6a802d3358ffa9523f237e801aff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component index representing no components.  <a href="group__sys__suit.html#ga04b6a802d3358ffa9523f237e801aff9">More...</a><br /></td></tr>
+<tr class="separator:ga04b6a802d3358ffa9523f237e801aff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gae2a098c307a0f3dc530cd3ba9b6e73a3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structsuit__storage.html">suit_storage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gae2a098c307a0f3dc530cd3ba9b6e73a3">suit_storage_ref_t</a></td></tr>
+<tr class="memdesc:gae2a098c307a0f3dc530cd3ba9b6e73a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declaration for storage struct.  <a href="group__sys__suit.html#gae2a098c307a0f3dc530cd3ba9b6e73a3">More...</a><br /></td></tr>
+<tr class="separator:gae2a098c307a0f3dc530cd3ba9b6e73a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga5ad972943b02a8964f9f1d3c60da1fb5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga5ad972943b02a8964f9f1d3c60da1fb5">suit_error_t</a> { <br />
+&#160;&#160;<a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a5be35b975835e9929e7143166c0ed9f5">SUIT_OK</a> = 0
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a188ecd2e19ba039afd96c5f6c9ba2128">SUIT_ERR_INVALID_MANIFEST</a> = -1
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a3f3af15e282b6ba269f7e934d0832229">SUIT_ERR_UNSUPPORTED</a> = -2
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a7fc7ae86cce0178997e8794747c743a8">SUIT_ERR_NOT_SUPPORTED</a> = -3
+, <br />
+&#160;&#160;<a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a38644cc69a9eea757ca9524ff9061ba8">SUIT_ERR_COND</a> = -4
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5aec62ebdf00fcc20c90674f45d905392c">SUIT_ERR_SEQUENCE_NUMBER</a> = -5
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5ad5c61c90a4f0c047e5b263bc8d290c24">SUIT_ERR_SIGNATURE</a> = -6
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a45002f4f7d2396f9d65f9d8a61a25e5a">SUIT_ERR_DIGEST_MISMATCH</a> = -7
+, <br />
+&#160;&#160;<a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5ad9ee0799e2fde2cabb94de9395aac1c6">SUIT_ERR_POLICY_FORBIDDEN</a> = -8
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a1c593a6fe06e572cc6ac1955486e44eb">SUIT_ERR_NO_MEM</a> = -9
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a4d54006e560bb1510c9aab483db2b709">SUIT_ERR_STORAGE</a> = -50
+, <a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a9ed97960dfabc31499e8d568b5bc3cd1">SUIT_ERR_STORAGE_EXCEEDED</a> = -51
+, <br />
+&#160;&#160;<a class="el" href="group__sys__suit.html#gga5ad972943b02a8964f9f1d3c60da1fb5a1d19afb576a3a7f9eb617a3786ea60b7">SUIT_ERR_STORAGE_UNAVAILABLE</a> = -52
+<br />
+ }</td></tr>
+<tr class="memdesc:ga5ad972943b02a8964f9f1d3c60da1fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT error codes.  <a href="group__sys__suit.html#ga5ad972943b02a8964f9f1d3c60da1fb5">More...</a><br /></td></tr>
+<tr class="separator:ga5ad972943b02a8964f9f1d3c60da1fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab313c09e7d9e39fb73febd8f2f91ab8e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gab313c09e7d9e39fb73febd8f2f91ab8e">suit_digest_t</a> { <a class="el" href="group__sys__suit.html#ggab313c09e7d9e39fb73febd8f2f91ab8eaa088c9dbc69f3281e828e05fcf4e6cd5">SUIT_DIGEST_NONE</a> = 0
+, <a class="el" href="group__sys__suit.html#ggab313c09e7d9e39fb73febd8f2f91ab8ea19f71952636d842bc60c4e10171eef01">SUIT_DIGEST_SHA256</a> = 1
+, <a class="el" href="group__sys__suit.html#ggab313c09e7d9e39fb73febd8f2f91ab8eae568145b91528502843f36e4d9ab42e9">SUIT_DIGEST_SHA384</a> = 2
+, <a class="el" href="group__sys__suit.html#ggab313c09e7d9e39fb73febd8f2f91ab8eab5ef108c3571a6e314146db46b1fbee1">SUIT_DIGEST_SHA512</a> = 3
+ }</td></tr>
+<tr class="memdesc:gab313c09e7d9e39fb73febd8f2f91ab8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT payload digest algorithms.  <a href="group__sys__suit.html#gab313c09e7d9e39fb73febd8f2f91ab8e">More...</a><br /></td></tr>
+<tr class="separator:gab313c09e7d9e39fb73febd8f2f91ab8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6840a110c55cc92733b825189d0067fc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga6840a110c55cc92733b825189d0067fc">suit_digest_type_t</a> { <a class="el" href="group__sys__suit.html#gga6840a110c55cc92733b825189d0067fcafcf976e78a1060b3225c5f42db5ad9f3">SUIT_DIGEST_TYPE_RAW</a> = 1
+, <a class="el" href="group__sys__suit.html#gga6840a110c55cc92733b825189d0067fca1beef552bfaef0f7ddf958e57397ce45">SUIT_DIGEST_TYPE_INSTALLED</a> = 2
+, <a class="el" href="group__sys__suit.html#gga6840a110c55cc92733b825189d0067fca07af4f85fd6475efa964a16c2a116134">SUIT_DIGEST_TYPE_CIPHERTEXT</a> = 3
+, <a class="el" href="group__sys__suit.html#gga6840a110c55cc92733b825189d0067fca1f0a3b6ba3ced0d3c2fc08a86f6fc06e">SUIT_DIGEST_TYPE_PREIMAGE</a> = 4
+ }</td></tr>
+<tr class="memdesc:ga6840a110c55cc92733b825189d0067fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT payload digest types.  <a href="group__sys__suit.html#ga6840a110c55cc92733b825189d0067fc">More...</a><br /></td></tr>
+<tr class="separator:ga6840a110c55cc92733b825189d0067fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab719707cad671ce69bd3b488843e06b9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="group__sys__suit.html#ggab719707cad671ce69bd3b488843e06b9a8a1cfd8fa2a06faee658d9d350c363ee">SUIT_COMPONENT_IDENTIFIER</a> = 1
+, <a class="el" href="group__sys__suit.html#ggab719707cad671ce69bd3b488843e06b9a8d3dc612d277ad867c9ac452a67e28d3">SUIT_COMPONENT_SIZE</a> = 2
+, <a class="el" href="group__sys__suit.html#ggab719707cad671ce69bd3b488843e06b9abe79779eee73aa54a6afedee3a04c18f">SUIT_COMPONENT_DIGEST</a> = 3
+ }</td></tr>
+<tr class="memdesc:gab719707cad671ce69bd3b488843e06b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT component types.  <a href="group__sys__suit.html#gab719707cad671ce69bd3b488843e06b9">More...</a><br /></td></tr>
+<tr class="separator:gab719707cad671ce69bd3b488843e06b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga7124648870add69ea903cc45005af6eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga7124648870add69ea903cc45005af6eb">suit_parse</a> (<a class="el" href="structsuit__manifest__t.html">suit_manifest_t</a> *manifest, const uint8_t *buf, size_t len)</td></tr>
+<tr class="memdesc:ga7124648870add69ea903cc45005af6eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a manifest.  <a href="group__sys__suit.html#ga7124648870add69ea903cc45005af6eb">More...</a><br /></td></tr>
+<tr class="separator:ga7124648870add69ea903cc45005af6eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabb7f6b7ab687dd9f6c602bd9182a2e8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gabb7f6b7ab687dd9f6c602bd9182a2e8d">suit_policy_check</a> (<a class="el" href="structsuit__manifest__t.html">suit_manifest_t</a> *manifest)</td></tr>
+<tr class="memdesc:gabb7f6b7ab687dd9f6c602bd9182a2e8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check a manifest policy.  <a href="group__sys__suit.html#gabb7f6b7ab687dd9f6c602bd9182a2e8d">More...</a><br /></td></tr>
+<tr class="separator:gabb7f6b7ab687dd9f6c602bd9182a2e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a61ecb5f64f16d7f628ada8ab067c6e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga9a61ecb5f64f16d7f628ada8ab067c6e">suit_component_set_flag</a> (<a class="el" href="structsuit__component__t.html">suit_component_t</a> *component, uint16_t flag)</td></tr>
+<tr class="memdesc:ga9a61ecb5f64f16d7f628ada8ab067c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a component flag.  <a href="group__sys__suit.html#ga9a61ecb5f64f16d7f628ada8ab067c6e">More...</a><br /></td></tr>
+<tr class="separator:ga9a61ecb5f64f16d7f628ada8ab067c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac0ab2c031f8b96794a78e7982dab5e18"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gac0ab2c031f8b96794a78e7982dab5e18">suit_component_check_flag</a> (<a class="el" href="structsuit__component__t.html">suit_component_t</a> *component, uint16_t flag)</td></tr>
+<tr class="memdesc:gac0ab2c031f8b96794a78e7982dab5e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check a component flag.  <a href="group__sys__suit.html#gac0ab2c031f8b96794a78e7982dab5e18">More...</a><br /></td></tr>
+<tr class="separator:gac0ab2c031f8b96794a78e7982dab5e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafa5799b8385193f0cb38668d93ef1c26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gafa5799b8385193f0cb38668d93ef1c26">suit_component_name_to_string</a> (const <a class="el" href="structsuit__manifest__t.html">suit_manifest_t</a> *manifest, const <a class="el" href="structsuit__component__t.html">suit_component_t</a> *component, char separator, char *buf, size_t buf_len)</td></tr>
+<tr class="memdesc:gafa5799b8385193f0cb38668d93ef1c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a component name to a string.  <a href="group__sys__suit.html#gafa5799b8385193f0cb38668d93ef1c26">More...</a><br /></td></tr>
+<tr class="separator:gafa5799b8385193f0cb38668d93ef1c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">SUIT parameters</h2></td></tr>
+<tr class="memitem:gaaa0af8fd3b78ca36befceb2f1c6b3785"><td class="memItemLeft" align="right" valign="top"><a id="gaaa0af8fd3b78ca36befceb2f1c6b3785"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>suit_parameter_t</b> { <br />
+&#160;&#160;<b>SUIT_PARAMETER_VENDOR_IDENTIFIER</b> = 1
+, <b>SUIT_PARAMETER_CLASS_IDENTIFIER</b> = 2
+, <b>SUIT_PARAMETER_IMAGE_DIGEST</b> = 3
+, <b>SUIT_PARAMETER_USE_BEFORE</b> = 4
+, <br />
+&#160;&#160;<b>SUIT_PARAMETER_COMPONENT_OFFSET</b> = 5
+, <b>SUIT_PARAMETER_STRICT_ORDER</b> = 12
+, <b>SUIT_PARAMETER_SOFT_FAILURE</b> = 13
+, <b>SUIT_PARAMETER_IMAGE_SIZE</b> = 14
+, <br />
+&#160;&#160;<b>SUIT_PARAMETER_ENCRYPTION_INFO</b> = 18
+, <b>SUIT_PARAMETER_COMPRESSION_INFO</b> = 19
+, <b>SUIT_PARAMETER_UNPACK_INFO</b> = 20
+, <b>SUIT_PARAMETER_URI</b> = 21
+, <br />
+&#160;&#160;<b>SUIT_PARAMETER_SOURCE_COMPONENT</b> = 22
+, <b>SUIT_PARAMETER_RUN_ARGS</b> = 23
+, <b>SUIT_PARAMETER_DEVICE_IDENTIFIER</b> = 24
+, <b>SUIT_PARAMETER_MINIMUM_BATTERY</b> = 26
+, <br />
+&#160;&#160;<b>SUIT_PARAMETER_UPDATE_PRIORITY</b> = 27
+, <b>SUIT_PARAMETER_VERSION</b> = 28
+, <b>SUIT_PARAMETER_WAIT_INFO</b> = 29
+, <b>SUIT_PARAMETER_URI_LIST</b> = 30
+<br />
+ }</td></tr>
+<tr class="separator:gaaa0af8fd3b78ca36befceb2f1c6b3785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga464e2131a90240a4449f24135e8e3ca3"><td class="memItemLeft" align="right" valign="top"><a id="ga464e2131a90240a4449f24135e8e3ca3"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SUIT_COND_VENDOR_ID</b> = 1
+, <b>SUIT_COND_CLASS_ID</b> = 2
+, <b>SUIT_COND_DEV_ID</b> = 3
+, <b>SUIT_COND_BEST_BEFORE</b> = 4
+ }</td></tr>
+<tr class="memdesc:ga464e2131a90240a4449f24135e8e3ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT conditionals. <br /></td></tr>
+<tr class="separator:ga464e2131a90240a4449f24135e8e3ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga79d4e0b13d0199b10c510452a4e8c22c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga79d4e0b13d0199b10c510452a4e8c22c">suit_init_conditions</a> (void)</td></tr>
+<tr class="memdesc:ga79d4e0b13d0199b10c510452a4e8c22c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize boot-time conditions for SUIT manifests.  <a href="group__sys__suit.html#ga79d4e0b13d0199b10c510452a4e8c22c">More...</a><br /></td></tr>
+<tr class="separator:ga79d4e0b13d0199b10c510452a4e8c22c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac63e2a9d4ccfdd15e59d94f68bb1fad1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuuid__t.html">uuid_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gac63e2a9d4ccfdd15e59d94f68bb1fad1">suit_get_vendor_id</a> (void)</td></tr>
+<tr class="memdesc:gac63e2a9d4ccfdd15e59d94f68bb1fad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the generated vendor ID.  <a href="group__sys__suit.html#gac63e2a9d4ccfdd15e59d94f68bb1fad1">More...</a><br /></td></tr>
+<tr class="separator:gac63e2a9d4ccfdd15e59d94f68bb1fad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a4c0905d94eb3471466abdbe8f83b2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuuid__t.html">uuid_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga9a4c0905d94eb3471466abdbe8f83b2f">suit_get_class_id</a> (void)</td></tr>
+<tr class="memdesc:ga9a4c0905d94eb3471466abdbe8f83b2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the generated class ID.  <a href="group__sys__suit.html#ga9a4c0905d94eb3471466abdbe8f83b2f">More...</a><br /></td></tr>
+<tr class="separator:ga9a4c0905d94eb3471466abdbe8f83b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga86c177ddfdc89fce8c740ec99aa6c95a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuuid__t.html">uuid_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga86c177ddfdc89fce8c740ec99aa6c95a">suit_get_device_id</a> (void)</td></tr>
+<tr class="memdesc:ga86c177ddfdc89fce8c740ec99aa6c95a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the generated device ID.  <a href="group__sys__suit.html#ga86c177ddfdc89fce8c740ec99aa6c95a">More...</a><br /></td></tr>
+<tr class="separator:ga86c177ddfdc89fce8c740ec99aa6c95a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga72453be1fc48d6fe4e0e2b6b9495187f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga72453be1fc48d6fe4e0e2b6b9495187f">SUIT_VENDOR_DOMAIN</a>&#160;&#160;&#160;&quot;riot-os.org&quot;</td></tr>
+<tr class="memdesc:ga72453be1fc48d6fe4e0e2b6b9495187f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SUIT conditions.  <a href="group__sys__suit.html#ga72453be1fc48d6fe4e0e2b6b9495187f">More...</a><br /></td></tr>
+<tr class="separator:ga72453be1fc48d6fe4e0e2b6b9495187f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e06fd558a665f98c0e11df1db838cde"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga4e06fd558a665f98c0e11df1db838cde">SUIT_CLASS_ID</a>&#160;&#160;&#160;<a class="el" href="group__config__riotbuild.html#ga8fc9a8d57dbc30d25ba92e07f931ed25">RIOT_BOARD</a></td></tr>
+<tr class="memdesc:ga4e06fd558a665f98c0e11df1db838cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SUIT class ID source.  <a href="group__sys__suit.html#ga4e06fd558a665f98c0e11df1db838cde">More...</a><br /></td></tr>
+<tr class="separator:ga4e06fd558a665f98c0e11df1db838cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">SUIT manifest status flags</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp999e23d0165b2f60df18e03d8dc0734c"></a>These flags apply to the full manifest. </p>
+</td></tr>
+<tr class="memitem:ga86c73366b1118649a4a06ca1c2a92c66"><td class="memItemLeft" align="right" valign="top"><a id="ga86c73366b1118649a4a06ca1c2a92c66"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga86c73366b1118649a4a06ca1c2a92c66">SUIT_STATE_HAVE_COMPONENTS</a>&#160;&#160;&#160;(1 &lt;&lt; 0)</td></tr>
+<tr class="memdesc:ga86c73366b1118649a4a06ca1c2a92c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit flags used to determine if SUIT manifest contains components. <br /></td></tr>
+<tr class="separator:ga86c73366b1118649a4a06ca1c2a92c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5561c9b216af4631abc668d8429a885b"><td class="memItemLeft" align="right" valign="top"><a id="ga5561c9b216af4631abc668d8429a885b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga5561c9b216af4631abc668d8429a885b">SUIT_STATE_COSE_AUTHENTICATED</a>&#160;&#160;&#160;(1 &lt;&lt; 1)</td></tr>
+<tr class="memdesc:ga5561c9b216af4631abc668d8429a885b"><td class="mdescLeft">&#160;</td><td class="mdescRight">COSE signature OK. <br /></td></tr>
+<tr class="separator:ga5561c9b216af4631abc668d8429a885b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga29e9a3e2dbae47e4a539b655bf69b69f"><td class="memItemLeft" align="right" valign="top"><a id="ga29e9a3e2dbae47e4a539b655bf69b69f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga29e9a3e2dbae47e4a539b655bf69b69f">SUIT_STATE_FULLY_AUTHENTICATED</a>&#160;&#160;&#160;(1 &lt;&lt; 2)</td></tr>
+<tr class="memdesc:ga29e9a3e2dbae47e4a539b655bf69b69f"><td class="mdescLeft">&#160;</td><td class="mdescRight">COSE payload matches SUIT manifest digest. <br /></td></tr>
+<tr class="separator:ga29e9a3e2dbae47e4a539b655bf69b69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">SUIT component flags.</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp795af438955804f95b188a5a3d8d4960"></a>These state flags apply to individual components inside a manifest. </p>
+</td></tr>
+<tr class="memitem:ga40673655c9ffe75dc2897e6223a36b58"><td class="memItemLeft" align="right" valign="top"><a id="ga40673655c9ffe75dc2897e6223a36b58"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga40673655c9ffe75dc2897e6223a36b58">SUIT_COMPONENT_STATE_FETCHED</a>&#160;&#160;&#160;(1 &lt;&lt; 0)</td></tr>
+<tr class="memdesc:ga40673655c9ffe75dc2897e6223a36b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component is fetched. <br /></td></tr>
+<tr class="separator:ga40673655c9ffe75dc2897e6223a36b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga988635edf1d3c3fc1966015f0026a4ee"><td class="memItemLeft" align="right" valign="top"><a id="ga988635edf1d3c3fc1966015f0026a4ee"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#ga988635edf1d3c3fc1966015f0026a4ee">SUIT_COMPONENT_STATE_FETCH_FAILED</a>&#160;&#160;&#160;(1 &lt;&lt; 1)</td></tr>
+<tr class="memdesc:ga988635edf1d3c3fc1966015f0026a4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component fetched but failed. <br /></td></tr>
+<tr class="separator:ga988635edf1d3c3fc1966015f0026a4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf828d5cd2da1e01ec744d33129b55518"><td class="memItemLeft" align="right" valign="top"><a id="gaf828d5cd2da1e01ec744d33129b55518"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gaf828d5cd2da1e01ec744d33129b55518">SUIT_COMPONENT_STATE_VERIFIED</a>&#160;&#160;&#160;(1 &lt;&lt; 2)</td></tr>
+<tr class="memdesc:gaf828d5cd2da1e01ec744d33129b55518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component is verified. <br /></td></tr>
+<tr class="separator:gaf828d5cd2da1e01ec744d33129b55518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabb051c4bddad01a7a2d60f4debc23064"><td class="memItemLeft" align="right" valign="top"><a id="gabb051c4bddad01a7a2d60f4debc23064"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gabb051c4bddad01a7a2d60f4debc23064">SUIT_COMPONENT_STATE_INSTALLED</a>&#160;&#160;&#160;(1 &lt;&lt; 3)</td></tr>
+<tr class="memdesc:gabb051c4bddad01a7a2d60f4debc23064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component is installed, but has not been verified. <br /></td></tr>
+<tr class="separator:gabb051c4bddad01a7a2d60f4debc23064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0faa2a8b7b369b87a58ef03bb749dc1"><td class="memItemLeft" align="right" valign="top"><a id="gae0faa2a8b7b369b87a58ef03bb749dc1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sys__suit.html#gae0faa2a8b7b369b87a58ef03bb749dc1">SUIT_COMPONENT_STATE_FINALIZED</a>&#160;&#160;&#160;(1 &lt;&lt; 4)</td></tr>
+<tr class="memdesc:gae0faa2a8b7b369b87a58ef03bb749dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component successfully installed. <br /></td></tr>
+<tr class="separator:gae0faa2a8b7b369b87a58ef03bb749dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga4e06fd558a665f98c0e11df1db838cde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4e06fd558a665f98c0e11df1db838cde">&#9670;&nbsp;</a></span>SUIT_CLASS_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SUIT_CLASS_ID&#160;&#160;&#160;<a class="el" href="group__config__riotbuild.html#ga8fc9a8d57dbc30d25ba92e07f931ed25">RIOT_BOARD</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The SUIT class ID source. </p>
+<p>By default the RIOT_VERSION define is used for this </p>
+
+</div>
+</div>
+<a id="ga70006cfe2a4fbf84d34d2949d376f322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga70006cfe2a4fbf84d34d2949d376f322">&#9670;&nbsp;</a></span>SUIT_MANIFEST_COMPONENT_ALL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SUIT_MANIFEST_COMPONENT_ALL&#160;&#160;&#160;(UINT8_MAX)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Component index representing all components. </p>
+<p>Used when suit-directive-set-component-index = True </p>
+
+</div>
+</div>
+<a id="ga04b6a802d3358ffa9523f237e801aff9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04b6a802d3358ffa9523f237e801aff9">&#9670;&nbsp;</a></span>SUIT_MANIFEST_COMPONENT_NONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SUIT_MANIFEST_COMPONENT_NONE&#160;&#160;&#160;(<a class="el" href="group__sys__suit.html#ga70006cfe2a4fbf84d34d2949d376f322">SUIT_MANIFEST_COMPONENT_ALL</a> - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Component index representing no components. </p>
+<p>Used when suit-directive-set-component-index = False </p>
+
+</div>
+</div>
+<a id="ga72453be1fc48d6fe4e0e2b6b9495187f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga72453be1fc48d6fe4e0e2b6b9495187f">&#9670;&nbsp;</a></span>SUIT_VENDOR_DOMAIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SUIT_VENDOR_DOMAIN&#160;&#160;&#160;&quot;riot-os.org&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SUIT conditions. </p>
+<p>SUIT conditions API </p><dl class="section author"><dt>Author</dt><dd>Koen Zandberg <a href="#" onclick="location.href='mai'+'lto:'+'koe'+'n@'+'ber'+'gz'+'and'+'.n'+'et'; return false;">koen@<span style="display: none;">.nosp@m.</span>berg<span style="display: none;">.nosp@m.</span>zand.<span style="display: none;">.nosp@m.</span>net</a> </dd>
+<dd>
+Kaspar Schleiser <a href="#" onclick="location.href='mai'+'lto:'+'kas'+'pa'+'r@s'+'ch'+'lei'+'se'+'r.d'+'e'; return false;">kaspa<span style="display: none;">.nosp@m.</span>r@sc<span style="display: none;">.nosp@m.</span>hleis<span style="display: none;">.nosp@m.</span>er.d<span style="display: none;">.nosp@m.</span>e</a></dd></dl>
+<p>The SUIT vendor ID source</p>
+<p>The basis of the UUID must be the vendor domain, please change this when using this module in a product Device vendor domain </p>
+
+</div>
+</div>
+<a id="ga06428f70b7d93c61acd277f67acab8c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga06428f70b7d93c61acd277f67acab8c8">&#9670;&nbsp;</a></span>SUIT_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SUIT_VERSION&#160;&#160;&#160;(1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Current SUIT serialization format version. </p>
+<p>see <a href="https://tools.ietf.org/html/draft-ietf-suit-manifest-03#section-7">https://tools.ietf.org/html/draft-ietf-suit-manifest-03#section-7</a> for details </p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="gae2a098c307a0f3dc530cd3ba9b6e73a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2a098c307a0f3dc530cd3ba9b6e73a3">&#9670;&nbsp;</a></span>suit_storage_ref_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structsuit__storage.html">suit_storage</a> <a class="el" href="group__sys__suit.html#gae2a098c307a0f3dc530cd3ba9b6e73a3">suit_storage_ref_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forward declaration for storage struct. </p>
+<p>Breaks a dependency chain </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gab719707cad671ce69bd3b488843e06b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab719707cad671ce69bd3b488843e06b9">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SUIT component types. </p>
+<p>Unofficial list from <a href="https://github.com/ARMmbed/suit-manifest-generator">suit-manifest-generator</a> </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggab719707cad671ce69bd3b488843e06b9a8a1cfd8fa2a06faee658d9d350c363ee"></a>SUIT_COMPONENT_IDENTIFIER&#160;</td><td class="fielddoc"><p>Identifier component. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab719707cad671ce69bd3b488843e06b9a8d3dc612d277ad867c9ac452a67e28d3"></a>SUIT_COMPONENT_SIZE&#160;</td><td class="fielddoc"><p>Size component. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab719707cad671ce69bd3b488843e06b9abe79779eee73aa54a6afedee3a04c18f"></a>SUIT_COMPONENT_DIGEST&#160;</td><td class="fielddoc"><p>Digest component. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gab313c09e7d9e39fb73febd8f2f91ab8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab313c09e7d9e39fb73febd8f2f91ab8e">&#9670;&nbsp;</a></span>suit_digest_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__sys__suit.html#gab313c09e7d9e39fb73febd8f2f91ab8e">suit_digest_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SUIT payload digest algorithms. </p>
+<p>Unofficial list from <a href="https://github.com/ARMmbed/suit-manifest-generator">suit-manifest-generator</a> </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggab313c09e7d9e39fb73febd8f2f91ab8eaa088c9dbc69f3281e828e05fcf4e6cd5"></a>SUIT_DIGEST_NONE&#160;</td><td class="fielddoc"><p>No digest algo supplied. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab313c09e7d9e39fb73febd8f2f91ab8ea19f71952636d842bc60c4e10171eef01"></a>SUIT_DIGEST_SHA256&#160;</td><td class="fielddoc"><p>SHA256. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab313c09e7d9e39fb73febd8f2f91ab8eae568145b91528502843f36e4d9ab42e9"></a>SUIT_DIGEST_SHA384&#160;</td><td class="fielddoc"><p>SHA384. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab313c09e7d9e39fb73febd8f2f91ab8eab5ef108c3571a6e314146db46b1fbee1"></a>SUIT_DIGEST_SHA512&#160;</td><td class="fielddoc"><p>SHA512. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga6840a110c55cc92733b825189d0067fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6840a110c55cc92733b825189d0067fc">&#9670;&nbsp;</a></span>suit_digest_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__sys__suit.html#ga6840a110c55cc92733b825189d0067fc">suit_digest_type_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SUIT payload digest types. </p>
+<p>Unofficial list from <a href="https://github.com/ARMmbed/suit-manifest-generator">suit-manifest-generator</a> </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6840a110c55cc92733b825189d0067fcafcf976e78a1060b3225c5f42db5ad9f3"></a>SUIT_DIGEST_TYPE_RAW&#160;</td><td class="fielddoc"><p>Raw payload digest. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6840a110c55cc92733b825189d0067fca1beef552bfaef0f7ddf958e57397ce45"></a>SUIT_DIGEST_TYPE_INSTALLED&#160;</td><td class="fielddoc"><p>Installed firmware digest. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6840a110c55cc92733b825189d0067fca07af4f85fd6475efa964a16c2a116134"></a>SUIT_DIGEST_TYPE_CIPHERTEXT&#160;</td><td class="fielddoc"><p>Ciphertext digest. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6840a110c55cc92733b825189d0067fca1f0a3b6ba3ced0d3c2fc08a86f6fc06e"></a>SUIT_DIGEST_TYPE_PREIMAGE&#160;</td><td class="fielddoc"><p>Pre-image digest. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga5ad972943b02a8964f9f1d3c60da1fb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ad972943b02a8964f9f1d3c60da1fb5">&#9670;&nbsp;</a></span>suit_error_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__sys__suit.html#ga5ad972943b02a8964f9f1d3c60da1fb5">suit_error_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SUIT error codes. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a5be35b975835e9929e7143166c0ed9f5"></a>SUIT_OK&#160;</td><td class="fielddoc"><p>Manifest parsed and validated. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a188ecd2e19ba039afd96c5f6c9ba2128"></a>SUIT_ERR_INVALID_MANIFEST&#160;</td><td class="fielddoc"><p>Unexpected CBOR structure detected. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a3f3af15e282b6ba269f7e934d0832229"></a>SUIT_ERR_UNSUPPORTED&#160;</td><td class="fielddoc"><p>Unsupported SUIT feature detected. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a7fc7ae86cce0178997e8794747c743a8"></a>SUIT_ERR_NOT_SUPPORTED&#160;</td><td class="fielddoc"><p>Unsupported features detected. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a38644cc69a9eea757ca9524ff9061ba8"></a>SUIT_ERR_COND&#160;</td><td class="fielddoc"><p>Conditionals evaluate to false. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5aec62ebdf00fcc20c90674f45d905392c"></a>SUIT_ERR_SEQUENCE_NUMBER&#160;</td><td class="fielddoc"><p>Sequence number less or equal to current sequence number. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5ad5c61c90a4f0c047e5b263bc8d290c24"></a>SUIT_ERR_SIGNATURE&#160;</td><td class="fielddoc"><p>Unable to verify signature. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a45002f4f7d2396f9d65f9d8a61a25e5a"></a>SUIT_ERR_DIGEST_MISMATCH&#160;</td><td class="fielddoc"><p>Digest mismatch with COSE and SUIT. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5ad9ee0799e2fde2cabb94de9395aac1c6"></a>SUIT_ERR_POLICY_FORBIDDEN&#160;</td><td class="fielddoc"><p>Denied because of policy mismatch. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a1c593a6fe06e572cc6ac1955486e44eb"></a>SUIT_ERR_NO_MEM&#160;</td><td class="fielddoc"><p>Out of memory condition. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a4d54006e560bb1510c9aab483db2b709"></a>SUIT_ERR_STORAGE&#160;</td><td class="fielddoc"><p>Backend returned an error. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a9ed97960dfabc31499e8d568b5bc3cd1"></a>SUIT_ERR_STORAGE_EXCEEDED&#160;</td><td class="fielddoc"><p>Backend out of space. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ad972943b02a8964f9f1d3c60da1fb5a1d19afb576a3a7f9eb617a3786ea60b7"></a>SUIT_ERR_STORAGE_UNAVAILABLE&#160;</td><td class="fielddoc"><p>Backend location not available. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gac0ab2c031f8b96794a78e7982dab5e18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac0ab2c031f8b96794a78e7982dab5e18">&#9670;&nbsp;</a></span>suit_component_check_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool suit_component_check_flag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsuit__component__t.html">suit_component_t</a> *&#160;</td>
+          <td class="paramname"><em>component</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>flag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check a component flag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>Component to check a flag for </td></tr>
+    <tr><td class="paramname">flag</td><td>Flag to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the flag is set </dd></dl>
+
+</div>
+</div>
+<a id="gafa5799b8385193f0cb38668d93ef1c26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafa5799b8385193f0cb38668d93ef1c26">&#9670;&nbsp;</a></span>suit_component_name_to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int suit_component_name_to_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsuit__manifest__t.html">suit_manifest_t</a> *&#160;</td>
+          <td class="paramname"><em>manifest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structsuit__component__t.html">suit_component_t</a> *&#160;</td>
+          <td class="paramname"><em>component</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>separator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>buf_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a component name to a string. </p>
+<p>Each component part is prefixed with <code>separator</code> </p>
+<dl class="section return"><dt>Returns</dt><dd>SUIT_OK if successful </dd>
+<dd>
+negative error code on error </dd></dl>
+
+</div>
+</div>
+<a id="ga9a61ecb5f64f16d7f628ada8ab067c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a61ecb5f64f16d7f628ada8ab067c6e">&#9670;&nbsp;</a></span>suit_component_set_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void suit_component_set_flag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsuit__component__t.html">suit_component_t</a> *&#160;</td>
+          <td class="paramname"><em>component</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>flag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a component flag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>Component to set flag for </td></tr>
+    <tr><td class="paramname">flag</td><td>Flag to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9a4c0905d94eb3471466abdbe8f83b2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a4c0905d94eb3471466abdbe8f83b2f">&#9670;&nbsp;</a></span>suit_get_class_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuuid__t.html">uuid_t</a>* suit_get_class_id </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve the generated class ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The class ID as UUID </dd></dl>
+
+</div>
+</div>
+<a id="ga86c177ddfdc89fce8c740ec99aa6c95a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga86c177ddfdc89fce8c740ec99aa6c95a">&#9670;&nbsp;</a></span>suit_get_device_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuuid__t.html">uuid_t</a>* suit_get_device_id </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve the generated device ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The device ID as UUID </dd></dl>
+
+</div>
+</div>
+<a id="gac63e2a9d4ccfdd15e59d94f68bb1fad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac63e2a9d4ccfdd15e59d94f68bb1fad1">&#9670;&nbsp;</a></span>suit_get_vendor_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuuid__t.html">uuid_t</a>* suit_get_vendor_id </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve the generated vendor ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The vendor ID as UUID </dd></dl>
+
+</div>
+</div>
+<a id="ga79d4e0b13d0199b10c510452a4e8c22c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga79d4e0b13d0199b10c510452a4e8c22c">&#9670;&nbsp;</a></span>suit_init_conditions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void suit_init_conditions </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize boot-time conditions for SUIT manifests. </p>
+<p>This initializes the device-based conditions for validating manifest preconditions</p>
+<p>Vendor url as UUID: UUID5(DNS_PREFIX, SUIT_VENDOR_DOMAIN) Device class UUID: UUID5(vendor, SUIT_CLASS_ID) Device specific UUID: UUID5(vendor, Device ID) </p>
+
+</div>
+</div>
+<a id="ga7124648870add69ea903cc45005af6eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7124648870add69ea903cc45005af6eb">&#9670;&nbsp;</a></span>suit_parse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int suit_parse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsuit__manifest__t.html">suit_manifest_t</a> *&#160;</td>
+          <td class="paramname"><em>manifest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse a manifest. </p>
+<dl class="section note"><dt>Note</dt><dd>The buffer is still required after parsing, please don't reuse the buffer while the <code>manifest</code> is used</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">manifest</td><td>manifest context to store information in </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>buffer to parse the manifest from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>length of the manifest data in the buffer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SUIT_OK on parseable manifest </dd>
+<dd>
+negative <a class="el" href="group__sys__suit.html#ga5ad972943b02a8964f9f1d3c60da1fb5">suit_error_t</a> code on error </dd></dl>
+
+</div>
+</div>
+<a id="gabb7f6b7ab687dd9f6c602bd9182a2e8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabb7f6b7ab687dd9f6c602bd9182a2e8d">&#9670;&nbsp;</a></span>suit_policy_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int suit_policy_check </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsuit__manifest__t.html">suit_manifest_t</a> *&#160;</td>
+          <td class="paramname"><em>manifest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check a manifest policy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">manifest</td><td>manifest context to check the policy for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on valid manifest policy </dd>
+<dd>
+-1 on invalid manifest policy </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

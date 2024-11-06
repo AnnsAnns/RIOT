@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/cc2420.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('cc2420_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">cc2420.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="cc2420_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2015 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for more</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef CC2420_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define CC2420_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_8h.html">net/netdev.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_2ieee802154_8h.html">net/netdev/ieee802154.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga7cf4cf554323505c1c233a52aca1f38e">   39</a></span>&#160;<span class="preprocessor">#define CC2420_PKT_MAXLEN       (IEEE802154_FRAME_LEN_MAX)</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define CC2420_CHAN_MIN         (IEEE802154_CHANNEL_MIN)</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#define CC2420_CHAN_MAX         (IEEE802154_CHANNEL_MAX)</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define CC2420_CHAN_DEFAULT     (CONFIG_IEEE802154_DEFAULT_CHANNEL)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define CC2420_TXPOWER_MIN      (-25)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define CC2420_TXPOWER_MAX      (0)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define CC2420_TXPOWER_DEFAULT  (CONFIG_IEEE802154_DEFAULT_TXPOWER)</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga76a10b9e295bc7003901c20462e750e9">   62</a></span>&#160;<span class="preprocessor">#define CC2420_RSSI_OFFSET      (-45)</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    CC2420_RET_CHAN_OK      = 2,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structcc2420__params.html">   74</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcc2420__params.html">cc2420_params</a> {</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structcc2420__params.html#aea0f0e95586584d4dbeedb32389f98c5">   75</a></span>&#160;    spi_t <a class="code" href="structcc2420__params.html#aea0f0e95586584d4dbeedb32389f98c5">spi</a>;              </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structcc2420__params.html#a5bed35504ecd68c9273833a001a7808e">   76</a></span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> <a class="code" href="structcc2420__params.html#a5bed35504ecd68c9273833a001a7808e">spi_clk</a>;      </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="structcc2420__params.html#a81463c27b9b547cc32a20b43ac90afa6">   77</a></span>&#160;    gpio_t <a class="code" href="structcc2420__params.html#a81463c27b9b547cc32a20b43ac90afa6">pin_cs</a>;          </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="structcc2420__params.html#a674bf62b39e3b97616ca58e6fa63eae9">   78</a></span>&#160;    gpio_t <a class="code" href="structcc2420__params.html#a674bf62b39e3b97616ca58e6fa63eae9">pin_fifo</a>;        </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="structcc2420__params.html#acf4329f89e5cf2a3abf170a723f9c99c">   79</a></span>&#160;    gpio_t <a class="code" href="structcc2420__params.html#acf4329f89e5cf2a3abf170a723f9c99c">pin_fifop</a>;       </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structcc2420__params.html#a26674e193276d652070e87b0f656cf8d">   80</a></span>&#160;    gpio_t <a class="code" href="structcc2420__params.html#a26674e193276d652070e87b0f656cf8d">pin_cca</a>;         </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="structcc2420__params.html#af61c00f52fdb640f0caae6e17367e7fb">   81</a></span>&#160;    gpio_t <a class="code" href="structcc2420__params.html#af61c00f52fdb640f0caae6e17367e7fb">pin_sfd</a>;         </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structcc2420__params.html#ac48c5124b69184fb69b2c605a79b25b5">   82</a></span>&#160;    gpio_t <a class="code" href="structcc2420__params.html#ac48c5124b69184fb69b2c605a79b25b5">pin_vrefen</a>;      </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structcc2420__params.html#a2a2aaeea9cbc11ad7ca096e133c2bdbd">   83</a></span>&#160;    gpio_t <a class="code" href="structcc2420__params.html#a2a2aaeea9cbc11ad7ca096e133c2bdbd">pin_reset</a>;       </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga7129aded13f475e31753fc6deded1ea7">   84</a></span>&#160;} <a class="code" href="group__drivers__cc2420.html#ga7129aded13f475e31753fc6deded1ea7">cc2420_params_t</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structcc2420__t.html">   89</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">/* netdev fields */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structcc2420__t.html#ad9ae597a31e26ebb5844cad5f38f65b3">   91</a></span>&#160;    <a class="code" href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a> <a class="code" href="structcc2420__t.html#ad9ae597a31e26ebb5844cad5f38f65b3">netdev</a>;   </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">/* device specific fields */</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structcc2420__t.html#a8c96d86ebc5952b2d9d3ca388ac07be3">   93</a></span>&#160;    <a class="code" href="structcc2420__params.html">cc2420_params_t</a> <a class="code" href="structcc2420__t.html#a8c96d86ebc5952b2d9d3ca388ac07be3">params</a>;       </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">/* device state fields */</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structcc2420__t.html#aa69f070e65571f63eac165590b1b97eb">   95</a></span>&#160;    uint8_t <a class="code" href="structcc2420__t.html#aa69f070e65571f63eac165590b1b97eb">state</a>;                </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="structcc2420__t.html#a288c0edf0e7497a8c2223baa950c15e8">   96</a></span>&#160;    uint16_t <a class="code" href="structcc2420__t.html#a288c0edf0e7497a8c2223baa950c15e8">options</a>;             </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;} <a class="code" href="structcc2420__t.html">cc2420_t</a>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga5403e7570e59d635afb8e8c48a5fd2fe">  110</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#ga5403e7570e59d635afb8e8c48a5fd2fe">cc2420_setup</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structcc2420__params.html">cc2420_params_t</a> *params, uint8_t index);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gaa0ce5e9cc058fd84404852702e61beca">  120</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__cc2420.html#gaa0ce5e9cc058fd84404852702e61beca">cc2420_init</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gac9811078b83509f2c46b925719e94bce">  129</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__cc2420.html#gac9811078b83509f2c46b925719e94bce">cc2420_reset</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga88026e56a0a41864731eb85b8c7f3ef2">  139</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__cc2420.html#ga88026e56a0a41864731eb85b8c7f3ef2">cc2420_cca</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga1df6ad4296c4b4298aaedd414f261fbe">  147</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#ga1df6ad4296c4b4298aaedd414f261fbe">cc2420_get_addr_short</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, uint8_t *addr);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gac5e07b68cae7c428dbe40c60a9c9d33d">  155</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#gac5e07b68cae7c428dbe40c60a9c9d33d">cc2420_set_addr_short</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, <span class="keyword">const</span> uint8_t *addr);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gabaeda7c33712d35704358ce8258979ee">  165</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#gabaeda7c33712d35704358ce8258979ee">cc2420_get_addr_long</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, uint8_t *addr_long);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga4f340ea1673d1cceca82f397877390e5">  173</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#ga4f340ea1673d1cceca82f397877390e5">cc2420_set_addr_long</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, <span class="keyword">const</span> uint8_t *addr_long);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gabefea788f749ba1256c634d6878e386e">  182</a></span>&#160;uint16_t <a class="code" href="group__drivers__cc2420.html#gabefea788f749ba1256c634d6878e386e">cc2420_get_pan</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga34da69b42e7c7dd8966b8295e4cd7fda">  190</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#ga34da69b42e7c7dd8966b8295e4cd7fda">cc2420_set_pan</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, uint16_t pan);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga58413f3832a6e713fef2eec199b9753f">  199</a></span>&#160;uint16_t <a class="code" href="group__drivers__cc2420.html#ga58413f3832a6e713fef2eec199b9753f">cc2420_get_chan</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gada44bf49b80b7d4881b7d16ba91cba5a">  207</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__cc2420.html#gada44bf49b80b7d4881b7d16ba91cba5a">cc2420_set_chan</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, uint16_t chan);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga3505547ea5ed61f9d02625fca512c039">  216</a></span>&#160;int16_t <a class="code" href="group__drivers__cc2420.html#ga3505547ea5ed61f9d02625fca512c039">cc2420_get_txpower</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga388532eff46b73b1c9805db565ca3232">  229</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#ga388532eff46b73b1c9805db565ca3232">cc2420_set_txpower</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, int16_t txpower);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga4e2d3dab50c507a9228b93d7c24f8632">  238</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__cc2420.html#ga4e2d3dab50c507a9228b93d7c24f8632">cc2420_set_option</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, uint16_t option, <span class="keywordtype">bool</span> state);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gae57a039a81a947cd04cc97b6ea1682af">  246</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__cc2420.html#gae57a039a81a947cd04cc97b6ea1682af">cc2420_set_state</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, <a class="code" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a> state);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gab0bcb0a373c9a847b1b3ff88b8f1da74">  255</a></span>&#160;<a class="code" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a> <a class="code" href="group__drivers__cc2420.html#gab0bcb0a373c9a847b1b3ff88b8f1da74">cc2420_get_state</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gaedbac8f277142b377f5b5126d2fd2843">  268</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="group__drivers__cc2420.html#gaedbac8f277142b377f5b5126d2fd2843">cc2420_send</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structiolist.html">iolist_t</a> *<a class="code" href="structiolist.html">iolist</a>);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
+<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga88ce045461eb40a515e1f46b0197d974">  279</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="group__drivers__cc2420.html#ga88ce045461eb40a515e1f46b0197d974">cc2420_tx_prepare</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structiolist.html">iolist_t</a> *<a class="code" href="structiolist.html">iolist</a>);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00286"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#gaa1e5201aa266e4b5fb45b0f8da3aeb07">  286</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__cc2420.html#gaa1e5201aa266e4b5fb45b0f8da3aeb07">cc2420_tx_exec</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="group__drivers__cc2420.html#ga4c39f7a16aadcbb1c73456d37cd68096">  299</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__cc2420.html#ga4c39f7a16aadcbb1c73456d37cd68096">cc2420_rx</a>(<a class="code" href="structcc2420__t.html">cc2420_t</a> *dev, uint8_t *buf, <span class="keywordtype">size_t</span> max_len, <span class="keywordtype">void</span> *info);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;}</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CC2420_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_2ieee802154_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_2ieee802154_8h.html">ieee802154.h</a></div><div class="ttdoc">Definitions for netdev common IEEE 802.15.4 code.</div></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_8h.html">netdev.h</a></div><div class="ttdoc">Definitions low-level network driver interface.</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga1df6ad4296c4b4298aaedd414f261fbe"><div class="ttname"><a href="group__drivers__cc2420.html#ga1df6ad4296c4b4298aaedd414f261fbe">cc2420_get_addr_short</a></div><div class="ttdeci">void cc2420_get_addr_short(cc2420_t *dev, uint8_t *addr)</div><div class="ttdoc">Get the short address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga34da69b42e7c7dd8966b8295e4cd7fda"><div class="ttname"><a href="group__drivers__cc2420.html#ga34da69b42e7c7dd8966b8295e4cd7fda">cc2420_set_pan</a></div><div class="ttdeci">void cc2420_set_pan(cc2420_t *dev, uint16_t pan)</div><div class="ttdoc">Set the PAN ID of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga3505547ea5ed61f9d02625fca512c039"><div class="ttname"><a href="group__drivers__cc2420.html#ga3505547ea5ed61f9d02625fca512c039">cc2420_get_txpower</a></div><div class="ttdeci">int16_t cc2420_get_txpower(cc2420_t *dev)</div><div class="ttdoc">Get the configured transmission power of the given device [in dBm].</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga388532eff46b73b1c9805db565ca3232"><div class="ttname"><a href="group__drivers__cc2420.html#ga388532eff46b73b1c9805db565ca3232">cc2420_set_txpower</a></div><div class="ttdeci">void cc2420_set_txpower(cc2420_t *dev, int16_t txpower)</div><div class="ttdoc">Set the transmission power of the given device [in dBm].</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga4c39f7a16aadcbb1c73456d37cd68096"><div class="ttname"><a href="group__drivers__cc2420.html#ga4c39f7a16aadcbb1c73456d37cd68096">cc2420_rx</a></div><div class="ttdeci">int cc2420_rx(cc2420_t *dev, uint8_t *buf, size_t max_len, void *info)</div><div class="ttdoc">Read a chunk of data from the receive buffer of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga4e2d3dab50c507a9228b93d7c24f8632"><div class="ttname"><a href="group__drivers__cc2420.html#ga4e2d3dab50c507a9228b93d7c24f8632">cc2420_set_option</a></div><div class="ttdeci">int cc2420_set_option(cc2420_t *dev, uint16_t option, bool state)</div><div class="ttdoc">Enable or disable driver specific options.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga4f340ea1673d1cceca82f397877390e5"><div class="ttname"><a href="group__drivers__cc2420.html#ga4f340ea1673d1cceca82f397877390e5">cc2420_set_addr_long</a></div><div class="ttdeci">void cc2420_set_addr_long(cc2420_t *dev, const uint8_t *addr_long)</div><div class="ttdoc">Set the long address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga5403e7570e59d635afb8e8c48a5fd2fe"><div class="ttname"><a href="group__drivers__cc2420.html#ga5403e7570e59d635afb8e8c48a5fd2fe">cc2420_setup</a></div><div class="ttdeci">void cc2420_setup(cc2420_t *dev, const cc2420_params_t *params, uint8_t index)</div><div class="ttdoc">Setup the device descriptor for the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga58413f3832a6e713fef2eec199b9753f"><div class="ttname"><a href="group__drivers__cc2420.html#ga58413f3832a6e713fef2eec199b9753f">cc2420_get_chan</a></div><div class="ttdeci">uint16_t cc2420_get_chan(cc2420_t *dev)</div><div class="ttdoc">Get the configured channel of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga7129aded13f475e31753fc6deded1ea7"><div class="ttname"><a href="group__drivers__cc2420.html#ga7129aded13f475e31753fc6deded1ea7">cc2420_params_t</a></div><div class="ttdeci">struct cc2420_params cc2420_params_t</div><div class="ttdoc">Struct holding all parameters needed for device initialization.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga88026e56a0a41864731eb85b8c7f3ef2"><div class="ttname"><a href="group__drivers__cc2420.html#ga88026e56a0a41864731eb85b8c7f3ef2">cc2420_cca</a></div><div class="ttdeci">bool cc2420_cca(cc2420_t *dev)</div><div class="ttdoc">Trigger a clear channel assessment.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_ga88ce045461eb40a515e1f46b0197d974"><div class="ttname"><a href="group__drivers__cc2420.html#ga88ce045461eb40a515e1f46b0197d974">cc2420_tx_prepare</a></div><div class="ttdeci">size_t cc2420_tx_prepare(cc2420_t *dev, const iolist_t *iolist)</div><div class="ttdoc">Prepare for sending of data.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gaa0ce5e9cc058fd84404852702e61beca"><div class="ttname"><a href="group__drivers__cc2420.html#gaa0ce5e9cc058fd84404852702e61beca">cc2420_init</a></div><div class="ttdeci">int cc2420_init(cc2420_t *dev)</div><div class="ttdoc">Initialize a given CC2420 device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gaa1e5201aa266e4b5fb45b0f8da3aeb07"><div class="ttname"><a href="group__drivers__cc2420.html#gaa1e5201aa266e4b5fb45b0f8da3aeb07">cc2420_tx_exec</a></div><div class="ttdeci">void cc2420_tx_exec(cc2420_t *dev)</div><div class="ttdoc">Trigger sending of data previously loaded into transmit buffer.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gab0bcb0a373c9a847b1b3ff88b8f1da74"><div class="ttname"><a href="group__drivers__cc2420.html#gab0bcb0a373c9a847b1b3ff88b8f1da74">cc2420_get_state</a></div><div class="ttdeci">netopt_state_t cc2420_get_state(cc2420_t *dev)</div><div class="ttdoc">Get the state of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gabaeda7c33712d35704358ce8258979ee"><div class="ttname"><a href="group__drivers__cc2420.html#gabaeda7c33712d35704358ce8258979ee">cc2420_get_addr_long</a></div><div class="ttdeci">void cc2420_get_addr_long(cc2420_t *dev, uint8_t *addr_long)</div><div class="ttdoc">Get the configured long address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gabefea788f749ba1256c634d6878e386e"><div class="ttname"><a href="group__drivers__cc2420.html#gabefea788f749ba1256c634d6878e386e">cc2420_get_pan</a></div><div class="ttdeci">uint16_t cc2420_get_pan(cc2420_t *dev)</div><div class="ttdoc">Get the configured PAN ID of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gac5e07b68cae7c428dbe40c60a9c9d33d"><div class="ttname"><a href="group__drivers__cc2420.html#gac5e07b68cae7c428dbe40c60a9c9d33d">cc2420_set_addr_short</a></div><div class="ttdeci">void cc2420_set_addr_short(cc2420_t *dev, const uint8_t *addr)</div><div class="ttdoc">Set the short address of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gac9811078b83509f2c46b925719e94bce"><div class="ttname"><a href="group__drivers__cc2420.html#gac9811078b83509f2c46b925719e94bce">cc2420_reset</a></div><div class="ttdeci">int cc2420_reset(cc2420_t *dev)</div><div class="ttdoc">Trigger a hardware reset and configure radio with default values.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gada44bf49b80b7d4881b7d16ba91cba5a"><div class="ttname"><a href="group__drivers__cc2420.html#gada44bf49b80b7d4881b7d16ba91cba5a">cc2420_set_chan</a></div><div class="ttdeci">int cc2420_set_chan(cc2420_t *dev, uint16_t chan)</div><div class="ttdoc">Set the channel of the given device.</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gae57a039a81a947cd04cc97b6ea1682af"><div class="ttname"><a href="group__drivers__cc2420.html#gae57a039a81a947cd04cc97b6ea1682af">cc2420_set_state</a></div><div class="ttdeci">int cc2420_set_state(cc2420_t *dev, netopt_state_t state)</div><div class="ttdoc">Set the state of the given device (trigger a state change)</div></div>
+<div class="ttc" id="agroup__drivers__cc2420_html_gaedbac8f277142b377f5b5126d2fd2843"><div class="ttname"><a href="group__drivers__cc2420.html#gaedbac8f277142b377f5b5126d2fd2843">cc2420_send</a></div><div class="ttdeci">size_t cc2420_send(cc2420_t *dev, const iolist_t *iolist)</div><div class="ttdoc">Convenience function for simply sending data.</div></div>
+<div class="ttc" id="agroup__net__netopt_html_ga796283228e6d45c83479d4c9cc83374f"><div class="ttname"><a href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a></div><div class="ttdeci">netopt_state_t</div><div class="ttdoc">Option parameter to be used with NETOPT_STATE to set or get the state of a network device or protocol...</div><div class="ttdef"><b>Definition:</b> netopt.h:894</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructcc2420__params_html"><div class="ttname"><a href="structcc2420__params.html">cc2420_params</a></div><div class="ttdoc">Struct holding all parameters needed for device initialization.</div><div class="ttdef"><b>Definition:</b> cc2420.h:74</div></div>
+<div class="ttc" id="astructcc2420__params_html_a26674e193276d652070e87b0f656cf8d"><div class="ttname"><a href="structcc2420__params.html#a26674e193276d652070e87b0f656cf8d">cc2420_params::pin_cca</a></div><div class="ttdeci">gpio_t pin_cca</div><div class="ttdoc">pin connected to CCA</div><div class="ttdef"><b>Definition:</b> cc2420.h:80</div></div>
+<div class="ttc" id="astructcc2420__params_html_a2a2aaeea9cbc11ad7ca096e133c2bdbd"><div class="ttname"><a href="structcc2420__params.html#a2a2aaeea9cbc11ad7ca096e133c2bdbd">cc2420_params::pin_reset</a></div><div class="ttdeci">gpio_t pin_reset</div><div class="ttdoc">pin connected to the reset pin</div><div class="ttdef"><b>Definition:</b> cc2420.h:83</div></div>
+<div class="ttc" id="astructcc2420__params_html_a5bed35504ecd68c9273833a001a7808e"><div class="ttname"><a href="structcc2420__params.html#a5bed35504ecd68c9273833a001a7808e">cc2420_params::spi_clk</a></div><div class="ttdeci">spi_clk_t spi_clk</div><div class="ttdoc">SPI speed to use.</div><div class="ttdef"><b>Definition:</b> cc2420.h:76</div></div>
+<div class="ttc" id="astructcc2420__params_html_a674bf62b39e3b97616ca58e6fa63eae9"><div class="ttname"><a href="structcc2420__params.html#a674bf62b39e3b97616ca58e6fa63eae9">cc2420_params::pin_fifo</a></div><div class="ttdeci">gpio_t pin_fifo</div><div class="ttdoc">pin connected to the FIFO interrupt pin</div><div class="ttdef"><b>Definition:</b> cc2420.h:78</div></div>
+<div class="ttc" id="astructcc2420__params_html_a81463c27b9b547cc32a20b43ac90afa6"><div class="ttname"><a href="structcc2420__params.html#a81463c27b9b547cc32a20b43ac90afa6">cc2420_params::pin_cs</a></div><div class="ttdeci">gpio_t pin_cs</div><div class="ttdoc">pin connected to chip select</div><div class="ttdef"><b>Definition:</b> cc2420.h:77</div></div>
+<div class="ttc" id="astructcc2420__params_html_ac48c5124b69184fb69b2c605a79b25b5"><div class="ttname"><a href="structcc2420__params.html#ac48c5124b69184fb69b2c605a79b25b5">cc2420_params::pin_vrefen</a></div><div class="ttdeci">gpio_t pin_vrefen</div><div class="ttdoc">pin connected to the Vref enable pin</div><div class="ttdef"><b>Definition:</b> cc2420.h:82</div></div>
+<div class="ttc" id="astructcc2420__params_html_acf4329f89e5cf2a3abf170a723f9c99c"><div class="ttname"><a href="structcc2420__params.html#acf4329f89e5cf2a3abf170a723f9c99c">cc2420_params::pin_fifop</a></div><div class="ttdeci">gpio_t pin_fifop</div><div class="ttdoc">pin connected to the FIFOP interrupt pin</div><div class="ttdef"><b>Definition:</b> cc2420.h:79</div></div>
+<div class="ttc" id="astructcc2420__params_html_aea0f0e95586584d4dbeedb32389f98c5"><div class="ttname"><a href="structcc2420__params.html#aea0f0e95586584d4dbeedb32389f98c5">cc2420_params::spi</a></div><div class="ttdeci">spi_t spi</div><div class="ttdoc">SPI bus the device is connected to.</div><div class="ttdef"><b>Definition:</b> cc2420.h:75</div></div>
+<div class="ttc" id="astructcc2420__params_html_af61c00f52fdb640f0caae6e17367e7fb"><div class="ttname"><a href="structcc2420__params.html#af61c00f52fdb640f0caae6e17367e7fb">cc2420_params::pin_sfd</a></div><div class="ttdeci">gpio_t pin_sfd</div><div class="ttdoc">pin connected to 'start of frame delimiter'</div><div class="ttdef"><b>Definition:</b> cc2420.h:81</div></div>
+<div class="ttc" id="astructcc2420__t_html"><div class="ttname"><a href="structcc2420__t.html">cc2420_t</a></div><div class="ttdoc">Device descriptor for CC2420 radio devices.</div><div class="ttdef"><b>Definition:</b> cc2420.h:89</div></div>
+<div class="ttc" id="astructcc2420__t_html_a288c0edf0e7497a8c2223baa950c15e8"><div class="ttname"><a href="structcc2420__t.html#a288c0edf0e7497a8c2223baa950c15e8">cc2420_t::options</a></div><div class="ttdeci">uint16_t options</div><div class="ttdoc">state of used options</div><div class="ttdef"><b>Definition:</b> cc2420.h:96</div></div>
+<div class="ttc" id="astructcc2420__t_html_a8c96d86ebc5952b2d9d3ca388ac07be3"><div class="ttname"><a href="structcc2420__t.html#a8c96d86ebc5952b2d9d3ca388ac07be3">cc2420_t::params</a></div><div class="ttdeci">cc2420_params_t params</div><div class="ttdoc">hardware interface configuration</div><div class="ttdef"><b>Definition:</b> cc2420.h:93</div></div>
+<div class="ttc" id="astructcc2420__t_html_aa69f070e65571f63eac165590b1b97eb"><div class="ttname"><a href="structcc2420__t.html#aa69f070e65571f63eac165590b1b97eb">cc2420_t::state</a></div><div class="ttdeci">uint8_t state</div><div class="ttdoc">current state of the radio</div><div class="ttdef"><b>Definition:</b> cc2420.h:95</div></div>
+<div class="ttc" id="astructcc2420__t_html_ad9ae597a31e26ebb5844cad5f38f65b3"><div class="ttname"><a href="structcc2420__t.html#ad9ae597a31e26ebb5844cad5f38f65b3">cc2420_t::netdev</a></div><div class="ttdeci">netdev_ieee802154_t netdev</div><div class="ttdoc">netdev parent struct</div><div class="ttdef"><b>Definition:</b> cc2420.h:91</div></div>
+<div class="ttc" id="astructiolist_html"><div class="ttname"><a href="structiolist.html">iolist</a></div><div class="ttdoc">iolist structure definition</div><div class="ttdef"><b>Definition:</b> iolist.h:39</div></div>
+<div class="ttc" id="astructnetdev__ieee802154__t_html"><div class="ttname"><a href="structnetdev__ieee802154__t.html">netdev_ieee802154_t</a></div><div class="ttdoc">Extended structure to hold IEEE 802.15.4 driver state.</div><div class="ttdef"><b>Definition:</b> ieee802154.h:100</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="cc2420_8h.html">cc2420.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

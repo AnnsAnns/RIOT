@@ -1,0 +1,25 @@
+var structccfg__regs__t =
+[
+    [ "BL_CONFIG", "structccfg__regs__t.html#a6ebf4384f4a7daa12d7ee78ef9d520ae", null ],
+    [ "CCFG_PROT_127_96", "structccfg__regs__t.html#a75ac9d5e443f500c2e6cdfdd986e75f2", null ],
+    [ "CCFG_PROT_31_0", "structccfg__regs__t.html#ac82d6dec870d2479a3c377e9f04e08aa", null ],
+    [ "CCFG_PROT_63_32", "structccfg__regs__t.html#a9f7081b8c5efd3ff91e0df3e1f89a8d4", null ],
+    [ "CCFG_PROT_95_64", "structccfg__regs__t.html#ad4034ba6ab22235817b99ab6f969b453", null ],
+    [ "CCFG_TAP_DAP_0", "structccfg__regs__t.html#ae08acae469ad8b368c98a2a47c78ce2b", null ],
+    [ "CCFG_TAP_DAP_1", "structccfg__regs__t.html#a04ddc03d664a7fb792ddc1d8ff4d9005", null ],
+    [ "CCFG_TI_OPTIONS", "structccfg__regs__t.html#a807104d4bab1cc6227ab5647b5c370a2", null ],
+    [ "ERASE_CONF", "structccfg__regs__t.html#af11bf42c6a3f3c05724cc12e9674a231", null ],
+    [ "EXT_LF_CLK", "structccfg__regs__t.html#a5695088ad1272634320ce5b8a0c6475b", null ],
+    [ "FREQ_OFFSET", "structccfg__regs__t.html#ab6d2c2dedf95655544613bb92380d793", null ],
+    [ "IEEE_BLE_0", "structccfg__regs__t.html#ac3c50811563d2457de8f6bab57c9457b", null ],
+    [ "IEEE_BLE_1", "structccfg__regs__t.html#a5816b9dc6a44d728fa7642d55300d009", null ],
+    [ "IEEE_MAC_0", "structccfg__regs__t.html#a0474d2ee547c517e0f5c5deb89a38cff", null ],
+    [ "IEEE_MAC_1", "structccfg__regs__t.html#a494a38854bc769b27ec355d481c631db", null ],
+    [ "IMAGE_VALID_CONF", "structccfg__regs__t.html#a30b5a1a2c308201d9ef1141e6c843b63", null ],
+    [ "MODE_CONF", "structccfg__regs__t.html#a81db5f14585998b285a8aa226327a7e1", null ],
+    [ "MODE_CONF_1", "structccfg__regs__t.html#afb890727069c5be7ad330021c9c474b5", null ],
+    [ "RTC_OFFSET", "structccfg__regs__t.html#a336d216d567f52bb125a5dc56ac5cd18", null ],
+    [ "SIZE_AND_DIS_FLAGS", "structccfg__regs__t.html#a29fedf1d7287341e2d090b3bb7f2a281", null ],
+    [ "VOLT_LOAD_0", "structccfg__regs__t.html#a7b4b4dbec36e171c31b44a246ce176d8", null ],
+    [ "VOLT_LOAD_1", "structccfg__regs__t.html#a21da4a80d4bf25c0194ca3f12ce767e9", null ]
+];

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: Messaging / IPC</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__core__msg.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Messaging / IPC<div class="ingroups"><a class="el" href="group__core.html">Kernel</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Messaging API for inter process communication. </p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Messages</h1>
+<p>IPC messages consist of a sender PID, a type, and some content. The sender PID will be set by the IPC internally and is not required to be set by the user. The type helps the receiver to multiplex different message types. The content can either be provided as a 32-bit integer or a pointer.</p>
+<p>Some message types are predefined; for example, <a class="el" href="group__net__gnrc__netapi.html#ga57b7e8cf32c12beecc9b84ca2cc073b5">GNRC_NETAPI_MSG_TYPE_RCV</a> &amp; co are defined. These are fixed in the sense that registering for a particular set of messages (for the above, e.g. <a class="el" href="group__net__gnrc__netreg.html#gafb6a9d0b840aae07c3c1617932835ef1">gnrc_netreg_register</a>) will use these message types. Threads that do nothing to receive such messages can safely use the same numbers for other purposes. The predefined types use non-conflicting ranges (e.g. <code>0x02NN</code>) to avoid ruling out simultaneous use of different components in the same thread.</p>
+<p>In general, threads may consider it an error to send them a message they did not request. Best practice is to log (but otherwise ignore) unexpected messages.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Blocking vs non-blocking</h1>
+<p>Messages can be sent and received blocking and non-blocking. Both can be used combined: A message send while blocking the sender thread can be received with the non-blocking variant and vice-versa.</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Blocking IPC</h2>
+<p>For the blocking variant use <a class="el" href="group__core__msg.html#gac5347725c3d203ac72604c0ab8b7d6d8">msg_send()</a> or <a class="el" href="group__core__msg.html#gae3e05f08bd71d6f65dc727624c4d5f7a">msg_receive()</a> respectively.</p>
+<p>Additionally, one can use <a class="el" href="group__core__msg.html#ga01aee21f8554591c7933d4ba05cfe85b">msg_send_receive()</a> to simultaneously block the sending thread and expect a response from the receiving thread. In this case, the receiving thread must use <a class="el" href="group__core__msg.html#ga2e7b09dc269eb4847f6e08b9900ffda9">msg_reply()</a> to reply to the message of the sender thread.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="inttypes_8h.html">inttypes.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="stdio_8h.html">stdio.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;msg.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;thread.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> rcv_pid;</div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">char</span> rcv_stack[<a class="code" href="thread__config_8h.html#a713ebddc00581f4d415095cdbfd8791f">THREAD_STACKSIZE_DEFAULT</a>];</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> *rcv(<span class="keywordtype">void</span> *arg)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="structmsg__t.html">msg_t</a> msg_req, msg_resp;</div>
+<div class="line"> </div>
+<div class="line">    (void)arg;</div>
+<div class="line">    <span class="keywordflow">while</span> (1) {</div>
+<div class="line">        <a class="code" href="group__core__msg.html#gae3e05f08bd71d6f65dc727624c4d5f7a">msg_receive</a>(&amp;msg_req);</div>
+<div class="line">        msg_resp.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a> = msg_req.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a> + 1;</div>
+<div class="line">        <a class="code" href="group__core__msg.html#ga2e7b09dc269eb4847f6e08b9900ffda9">msg_reply</a>(&amp;msg_req, &amp;msg_resp);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> NULL;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="structmsg__t.html">msg_t</a> msg_req, msg_resp;</div>
+<div class="line"> </div>
+<div class="line">    msg_resp.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a> = 0;</div>
+<div class="line">    rcv_pid = <a class="code" href="group__core__thread.html#ga7e0403a9aa86ce0ec136f6b069d4434a">thread_create</a>(rcv_stack, <span class="keyword">sizeof</span>(rcv_stack),</div>
+<div class="line">                            <a class="code" href="thread__config_8h.html#ac57374d1c51374ebf95d9679281af818">THREAD_PRIORITY_MAIN</a> - 1, 0, rcv, NULL, <span class="stringliteral">&quot;rcv&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">while</span> (1) {</div>
+<div class="line">        msg_req.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a> = msg_resp.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a>;</div>
+<div class="line">        <a class="code" href="group__core__msg.html#ga01aee21f8554591c7933d4ba05cfe85b">msg_send_receive</a>(&amp;msg_req, &amp;msg_resp, rcv_pid);</div>
+<div class="line">        <a class="code" href="group__cpu__avr8__common__stdio__wrapper.html#gad2eb277496af160238e7306fff780ad2">printf</a>(<span class="stringliteral">&quot;Result: %&quot;</span> PRIu32 <span class="stringliteral">&quot;\n&quot;</span>, msg_resp.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a>);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__core__msg_html_ga01aee21f8554591c7933d4ba05cfe85b"><div class="ttname"><a href="group__core__msg.html#ga01aee21f8554591c7933d4ba05cfe85b">msg_send_receive</a></div><div class="ttdeci">int msg_send_receive(msg_t *m, msg_t *reply, kernel_pid_t target_pid)</div><div class="ttdoc">Send a message, block until reply received.</div></div>
+<div class="ttc" id="agroup__core__msg_html_ga2e7b09dc269eb4847f6e08b9900ffda9"><div class="ttname"><a href="group__core__msg.html#ga2e7b09dc269eb4847f6e08b9900ffda9">msg_reply</a></div><div class="ttdeci">int msg_reply(msg_t *m, msg_t *reply)</div><div class="ttdoc">Replies to a message.</div></div>
+<div class="ttc" id="agroup__core__msg_html_gae3e05f08bd71d6f65dc727624c4d5f7a"><div class="ttname"><a href="group__core__msg.html#gae3e05f08bd71d6f65dc727624c4d5f7a">msg_receive</a></div><div class="ttdeci">int msg_receive(msg_t *m)</div><div class="ttdoc">Receive a message.</div></div>
+<div class="ttc" id="agroup__core__sched_html_ga8375139300d7cbf23bd8bd89ddddbe84"><div class="ttname"><a href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a></div><div class="ttdeci">int16_t kernel_pid_t</div><div class="ttdoc">Unique process identifier.</div><div class="ttdef"><b>Definition:</b> sched.h:139</div></div>
+<div class="ttc" id="agroup__core__thread_html_ga7e0403a9aa86ce0ec136f6b069d4434a"><div class="ttname"><a href="group__core__thread.html#ga7e0403a9aa86ce0ec136f6b069d4434a">thread_create</a></div><div class="ttdeci">kernel_pid_t thread_create(char *stack, int stacksize, uint8_t priority, int flags, thread_task_func_t task_func, void *arg, const char *name)</div><div class="ttdoc">Creates a new thread.</div></div>
+<div class="ttc" id="agroup__cpu__avr8__common__stdio__wrapper_html_gad2eb277496af160238e7306fff780ad2"><div class="ttname"><a href="group__cpu__avr8__common__stdio__wrapper.html#gad2eb277496af160238e7306fff780ad2">printf</a></div><div class="ttdeci">#define printf(...)</div><div class="ttdoc">A wrapper for the printf() function that passes arguments through unmodified, but fails to compile if...</div><div class="ttdef"><b>Definition:</b> stdio.h:60</div></div>
+<div class="ttc" id="ainttypes_8h_html"><div class="ttname"><a href="inttypes_8h.html">inttypes.h</a></div><div class="ttdoc">Adds include for missing inttype definitions.</div></div>
+<div class="ttc" id="astdio_8h_html"><div class="ttname"><a href="stdio_8h.html">stdio.h</a></div><div class="ttdoc">stdio wrapper to extend the C libs stdio</div></div>
+<div class="ttc" id="astructmsg__t_html"><div class="ttname"><a href="structmsg__t.html">msg_t</a></div><div class="ttdoc">Describes a message object which can be sent between threads.</div><div class="ttdef"><b>Definition:</b> msg.h:196</div></div>
+<div class="ttc" id="astructmsg__t_html_a191e1ed713936da26e17f9e644c1746f"><div class="ttname"><a href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">msg_t::content</a></div><div class="ttdeci">union msg_t::@1 content</div><div class="ttdoc">Content of the message.</div></div>
+<div class="ttc" id="astructmsg__t_html_af85cec640cceaa304c14b26254923adc"><div class="ttname"><a href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">msg_t::value</a></div><div class="ttdeci">uint32_t value</div><div class="ttdoc">Value content field.</div><div class="ttdef"><b>Definition:</b> msg.h:202</div></div>
+<div class="ttc" id="athread__config_8h_html_a713ebddc00581f4d415095cdbfd8791f"><div class="ttname"><a href="thread__config_8h.html#a713ebddc00581f4d415095cdbfd8791f">THREAD_STACKSIZE_DEFAULT</a></div><div class="ttdeci">#define THREAD_STACKSIZE_DEFAULT</div><div class="ttdoc">A reasonable default stack size that will suffice most smaller tasks.</div><div class="ttdef"><b>Definition:</b> thread_config.h:43</div></div>
+<div class="ttc" id="athread__config_8h_html_ac57374d1c51374ebf95d9679281af818"><div class="ttname"><a href="thread__config_8h.html#ac57374d1c51374ebf95d9679281af818">THREAD_PRIORITY_MAIN</a></div><div class="ttdeci">#define THREAD_PRIORITY_MAIN</div><div class="ttdoc">Priority of the main thread.</div><div class="ttdef"><b>Definition:</b> thread_config.h:135</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
+Non-blocking IPC</h2>
+<p>For the non-blocking variant use <a class="el" href="group__core__msg.html#ga99264bd4f263fa2b478308c1f7983c10">msg_try_send()</a> or <a class="el" href="group__core__msg.html#ga0a5e88bf7d9cadb41e5acf4deb300061">msg_try_receive()</a> respectively. If a message is sent in synchronous mode or the message queue (see below) of the receiving thread is full messages sent this way will be dropped.</p>
+<p>You can use the example on asynchronous IPC below - but without the queue - to get an impression of how to use non-blocking IPC.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Synchronous vs Asynchronous</h1>
+<p>RIOT's IPC supports both synchronous and asynchronous IPC.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Synchronous IPC</h2>
+<p>Synchronous IPC is the default mode i.e. is active when the receiving thread has no message queue initialized. Messages that can't be delivered when sending non-blocking (because the receiver already received a message) or which are sent when the receiver is not receive-blocked will be dropped.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Asynchronous IPC</h2>
+<p>To use asynchronous IPC one needs to initialize a message queue using <a class="el" href="group__core__msg.html#ga480e6f32c8ab18579b62a890f3fda2cd">msg_init_queue()</a> (note that it <b>must</b> be of a size equal to a power of two). Messages sent to a thread with a message queue that isn't full are never dropped and the sending never blocks, even when using <a class="el" href="group__core__msg.html#gac5347725c3d203ac72604c0ab8b7d6d8">msg_send()</a>. If the queue is full and the sending thread has a higher priority than the receiving thread the send-behavior is equivalent to synchronous mode.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="inttypes_8h.html">inttypes.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="stdio_8h.html">stdio.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;msg.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;thread.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#define RCV_QUEUE_SIZE  (8)</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> rcv_pid;</div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">char</span> rcv_stack[<a class="code" href="thread__config_8h.html#a713ebddc00581f4d415095cdbfd8791f">THREAD_STACKSIZE_DEFAULT</a> + <a class="code" href="thread__config_8h.html#af30305c0f413c7da1e7445de2b5ea5a5">THREAD_EXTRA_STACKSIZE_PRINTF</a>];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="structmsg__t.html">msg_t</a> rcv_queue[RCV_QUEUE_SIZE];</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> *rcv(<span class="keywordtype">void</span> *arg)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="structmsg__t.html">msg_t</a> msg;</div>
+<div class="line"> </div>
+<div class="line">    (void)arg;</div>
+<div class="line">    <a class="code" href="group__core__msg.html#ga480e6f32c8ab18579b62a890f3fda2cd">msg_init_queue</a>(rcv_queue, RCV_QUEUE_SIZE);</div>
+<div class="line">    <span class="keywordflow">while</span> (1) {</div>
+<div class="line">        <a class="code" href="group__core__msg.html#gae3e05f08bd71d6f65dc727624c4d5f7a">msg_receive</a>(&amp;msg);</div>
+<div class="line">        <a class="code" href="group__cpu__avr8__common__stdio__wrapper.html#gad2eb277496af160238e7306fff780ad2">printf</a>(<span class="stringliteral">&quot;Received %&quot;</span> PRIu32 <span class="stringliteral">&quot;\n&quot;</span>, msg.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a>);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> NULL;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="structmsg__t.html">msg_t</a> msg;</div>
+<div class="line"> </div>
+<div class="line">    msg.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a> = 0;</div>
+<div class="line">    rcv_pid = <a class="code" href="group__core__thread.html#ga7e0403a9aa86ce0ec136f6b069d4434a">thread_create</a>(rcv_stack, <span class="keyword">sizeof</span>(rcv_stack),</div>
+<div class="line">                            <a class="code" href="thread__config_8h.html#ac57374d1c51374ebf95d9679281af818">THREAD_PRIORITY_MAIN</a> - 1, 0, rcv, NULL, <span class="stringliteral">&quot;rcv&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">while</span> (1) {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="group__core__msg.html#ga99264bd4f263fa2b478308c1f7983c10">msg_try_send</a>(&amp;msg, rcv_pid) == 0) {</div>
+<div class="line">            <a class="code" href="group__cpu__avr8__common__stdio__wrapper.html#gad2eb277496af160238e7306fff780ad2">printf</a>(<span class="stringliteral">&quot;Receiver queue full.\n&quot;</span>);</div>
+<div class="line">        }</div>
+<div class="line">        msg.<a class="code" href="structmsg__t.html#a191e1ed713936da26e17f9e644c1746f">content</a>.<a class="code" href="structmsg__t.html#af85cec640cceaa304c14b26254923adc">value</a>++;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__core__msg_html_ga480e6f32c8ab18579b62a890f3fda2cd"><div class="ttname"><a href="group__core__msg.html#ga480e6f32c8ab18579b62a890f3fda2cd">msg_init_queue</a></div><div class="ttdeci">void msg_init_queue(msg_t *array, int num)</div><div class="ttdoc">Initialize the current thread's message queue.</div></div>
+<div class="ttc" id="agroup__core__msg_html_ga99264bd4f263fa2b478308c1f7983c10"><div class="ttname"><a href="group__core__msg.html#ga99264bd4f263fa2b478308c1f7983c10">msg_try_send</a></div><div class="ttdeci">int msg_try_send(msg_t *m, kernel_pid_t target_pid)</div><div class="ttdoc">Send a message (non-blocking).</div></div>
+<div class="ttc" id="athread__config_8h_html_af30305c0f413c7da1e7445de2b5ea5a5"><div class="ttname"><a href="thread__config_8h.html#af30305c0f413c7da1e7445de2b5ea5a5">THREAD_EXTRA_STACKSIZE_PRINTF</a></div><div class="ttdeci">#define THREAD_EXTRA_STACKSIZE_PRINTF</div><div class="ttdoc">Size of the task's printf stack in bytes.</div><div class="ttdef"><b>Definition:</b> thread_config.h:71</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
+Timing &amp; messages</h1>
+<p>Timing out the reception of a message or sending messages at a certain time is out of scope for the basic IPC provided by the kernel. See the <a class="el" href="group__sys__xtimer.html">xtimer</a> module on information for these functionalities. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:core_2include_2msg_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_2include_2msg_8h.html">msg.h</a></td></tr>
+<tr class="memdesc:core_2include_2msg_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Messaging API for inter process communication. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:msg__bus_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="msg__bus_8h.html">msg_bus.h</a></td></tr>
+<tr class="memdesc:msg__bus_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">@experimental <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmsg__t.html">msg_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a message object which can be sent between threads.  <a href="structmsg__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gadba0f57bc141ce3a7ec95fbd4bf26429"><td class="memItemLeft" align="right" valign="top"><a id="gadba0f57bc141ce3a7ec95fbd4bf26429"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#gadba0f57bc141ce3a7ec95fbd4bf26429">KERNEL_PID_ISR</a>&#160;&#160;&#160;(<a class="el" href="group__core__sched.html#ga8328107b84cbf548fa267bffd8a0496c">KERNEL_PID_LAST</a> + 1)</td></tr>
+<tr class="memdesc:gadba0f57bc141ce3a7ec95fbd4bf26429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of <a class="el" href="structmsg__t.html#a6c7d65a0a86c7b69ed58f9f71a043028" title="PID of sending thread.">msg_t::sender_pid</a> if the sender was an interrupt service routine. <br /></td></tr>
+<tr class="separator:gadba0f57bc141ce3a7ec95fbd4bf26429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gac5347725c3d203ac72604c0ab8b7d6d8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#gac5347725c3d203ac72604c0ab8b7d6d8">msg_send</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> target_pid)</td></tr>
+<tr class="memdesc:gac5347725c3d203ac72604c0ab8b7d6d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message (blocking).  <a href="group__core__msg.html#gac5347725c3d203ac72604c0ab8b7d6d8">More...</a><br /></td></tr>
+<tr class="separator:gac5347725c3d203ac72604c0ab8b7d6d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga99264bd4f263fa2b478308c1f7983c10"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga99264bd4f263fa2b478308c1f7983c10">msg_try_send</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> target_pid)</td></tr>
+<tr class="memdesc:ga99264bd4f263fa2b478308c1f7983c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message (non-blocking).  <a href="group__core__msg.html#ga99264bd4f263fa2b478308c1f7983c10">More...</a><br /></td></tr>
+<tr class="separator:ga99264bd4f263fa2b478308c1f7983c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8711110548c90fe5ca82215e89bb83dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga8711110548c90fe5ca82215e89bb83dd">msg_send_to_self</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m)</td></tr>
+<tr class="memdesc:ga8711110548c90fe5ca82215e89bb83dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to the current thread.  <a href="group__core__msg.html#ga8711110548c90fe5ca82215e89bb83dd">More...</a><br /></td></tr>
+<tr class="separator:ga8711110548c90fe5ca82215e89bb83dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2762c096056c5eac7ffe38c8727e033a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga2762c096056c5eac7ffe38c8727e033a">msg_send_int</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> target_pid)</td></tr>
+<tr class="memdesc:ga2762c096056c5eac7ffe38c8727e033a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send message from interrupt.  <a href="group__core__msg.html#ga2762c096056c5eac7ffe38c8727e033a">More...</a><br /></td></tr>
+<tr class="separator:ga2762c096056c5eac7ffe38c8727e033a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77476ad20575d236516ec0acb0bdabd1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga77476ad20575d236516ec0acb0bdabd1">msg_sent_by_int</a> (const <a class="el" href="structmsg__t.html">msg_t</a> *m)</td></tr>
+<tr class="memdesc:ga77476ad20575d236516ec0acb0bdabd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the message was sent inside an ISR.  <a href="group__core__msg.html#ga77476ad20575d236516ec0acb0bdabd1">More...</a><br /></td></tr>
+<tr class="separator:ga77476ad20575d236516ec0acb0bdabd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae3e05f08bd71d6f65dc727624c4d5f7a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#gae3e05f08bd71d6f65dc727624c4d5f7a">msg_receive</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m)</td></tr>
+<tr class="memdesc:gae3e05f08bd71d6f65dc727624c4d5f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive a message.  <a href="group__core__msg.html#gae3e05f08bd71d6f65dc727624c4d5f7a">More...</a><br /></td></tr>
+<tr class="separator:gae3e05f08bd71d6f65dc727624c4d5f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a5e88bf7d9cadb41e5acf4deb300061"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga0a5e88bf7d9cadb41e5acf4deb300061">msg_try_receive</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m)</td></tr>
+<tr class="memdesc:ga0a5e88bf7d9cadb41e5acf4deb300061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to receive a message.  <a href="group__core__msg.html#ga0a5e88bf7d9cadb41e5acf4deb300061">More...</a><br /></td></tr>
+<tr class="separator:ga0a5e88bf7d9cadb41e5acf4deb300061"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga01aee21f8554591c7933d4ba05cfe85b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga01aee21f8554591c7933d4ba05cfe85b">msg_send_receive</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m, <a class="el" href="structmsg__t.html">msg_t</a> *reply, <a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> target_pid)</td></tr>
+<tr class="memdesc:ga01aee21f8554591c7933d4ba05cfe85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message, block until reply received.  <a href="group__core__msg.html#ga01aee21f8554591c7933d4ba05cfe85b">More...</a><br /></td></tr>
+<tr class="separator:ga01aee21f8554591c7933d4ba05cfe85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2e7b09dc269eb4847f6e08b9900ffda9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga2e7b09dc269eb4847f6e08b9900ffda9">msg_reply</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m, <a class="el" href="structmsg__t.html">msg_t</a> *reply)</td></tr>
+<tr class="memdesc:ga2e7b09dc269eb4847f6e08b9900ffda9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replies to a message.  <a href="group__core__msg.html#ga2e7b09dc269eb4847f6e08b9900ffda9">More...</a><br /></td></tr>
+<tr class="separator:ga2e7b09dc269eb4847f6e08b9900ffda9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09edaaa9af7fca0a049459038b087583"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga09edaaa9af7fca0a049459038b087583">msg_reply_int</a> (<a class="el" href="structmsg__t.html">msg_t</a> *m, <a class="el" href="structmsg__t.html">msg_t</a> *reply)</td></tr>
+<tr class="memdesc:ga09edaaa9af7fca0a049459038b087583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replies to a message from interrupt.  <a href="group__core__msg.html#ga09edaaa9af7fca0a049459038b087583">More...</a><br /></td></tr>
+<tr class="separator:ga09edaaa9af7fca0a049459038b087583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef6ea5d2ddb211eb61a51acd3f9d7507"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#gaef6ea5d2ddb211eb61a51acd3f9d7507">msg_avail_thread</a> (<a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</td></tr>
+<tr class="memdesc:gaef6ea5d2ddb211eb61a51acd3f9d7507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check how many messages are available (waiting) in the message queue of a specific thread.  <a href="group__core__msg.html#gaef6ea5d2ddb211eb61a51acd3f9d7507">More...</a><br /></td></tr>
+<tr class="separator:gaef6ea5d2ddb211eb61a51acd3f9d7507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b99e9912e2cd5c85afbb72dedb77ca3"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga4b99e9912e2cd5c85afbb72dedb77ca3">msg_avail</a> (void)</td></tr>
+<tr class="memdesc:ga4b99e9912e2cd5c85afbb72dedb77ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check how many messages are available (waiting) in the message queue.  <a href="group__core__msg.html#ga4b99e9912e2cd5c85afbb72dedb77ca3">More...</a><br /></td></tr>
+<tr class="separator:ga4b99e9912e2cd5c85afbb72dedb77ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga489c0d4da83324cd92c99db0a7682407"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga489c0d4da83324cd92c99db0a7682407">msg_queue_capacity</a> (<a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> pid)</td></tr>
+<tr class="memdesc:ga489c0d4da83324cd92c99db0a7682407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum capacity of a thread's queue length.  <a href="group__core__msg.html#ga489c0d4da83324cd92c99db0a7682407">More...</a><br /></td></tr>
+<tr class="separator:ga489c0d4da83324cd92c99db0a7682407"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga480e6f32c8ab18579b62a890f3fda2cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga480e6f32c8ab18579b62a890f3fda2cd">msg_init_queue</a> (<a class="el" href="structmsg__t.html">msg_t</a> *array, int num)</td></tr>
+<tr class="memdesc:ga480e6f32c8ab18579b62a890f3fda2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current thread's message queue.  <a href="group__core__msg.html#ga480e6f32c8ab18579b62a890f3fda2cd">More...</a><br /></td></tr>
+<tr class="separator:ga480e6f32c8ab18579b62a890f3fda2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43b46e5167cdf2b2324920b59dae81a0"><td class="memItemLeft" align="right" valign="top"><a id="ga43b46e5167cdf2b2324920b59dae81a0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core__msg.html#ga43b46e5167cdf2b2324920b59dae81a0">msg_queue_print</a> (void)</td></tr>
+<tr class="memdesc:ga43b46e5167cdf2b2324920b59dae81a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the message queue of the current thread. <br /></td></tr>
+<tr class="separator:ga43b46e5167cdf2b2324920b59dae81a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga4b99e9912e2cd5c85afbb72dedb77ca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b99e9912e2cd5c85afbb72dedb77ca3">&#9670;&nbsp;</a></span>msg_avail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned msg_avail </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check how many messages are available (waiting) in the message queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of messages available in our queue on success </dd>
+<dd>
+0, if no caller's message queue is initialized </dd></dl>
+
+</div>
+</div>
+<a id="gaef6ea5d2ddb211eb61a51acd3f9d7507"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaef6ea5d2ddb211eb61a51acd3f9d7507">&#9670;&nbsp;</a></span>msg_avail_thread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned msg_avail_thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>pid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check how many messages are available (waiting) in the message queue of a specific thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pid</td><td>a PID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of messages available in queue of <code>pid</code> on success </dd>
+<dd>
+0, if no caller's message queue is initialized </dd></dl>
+
+</div>
+</div>
+<a id="ga480e6f32c8ab18579b62a890f3fda2cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga480e6f32c8ab18579b62a890f3fda2cd">&#9670;&nbsp;</a></span>msg_init_queue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void msg_init_queue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the current thread's message queue. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>num</code> <b>MUST BE A POWER OF TWO!</b></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">array</td><td>Pointer to preallocated array of <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structures, must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>Number of <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structures in array. <b>MUST BE POWER OF TWO!</b></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>If array resides on the stack, the containing stack frame must never be left, not even if it is the current thread's entry function. </p>
+
+</div>
+</div>
+<a id="ga489c0d4da83324cd92c99db0a7682407"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga489c0d4da83324cd92c99db0a7682407">&#9670;&nbsp;</a></span>msg_queue_capacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned msg_queue_capacity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>pid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get maximum capacity of a thread's queue length. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of total messages that fit in the queue of <code>pid</code> on success </dd>
+<dd>
+0, if no caller's message queue is initialized </dd></dl>
+
+</div>
+</div>
+<a id="gae3e05f08bd71d6f65dc727624c4d5f7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae3e05f08bd71d6f65dc727624c4d5f7a">&#9670;&nbsp;</a></span>msg_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_receive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Receive a message. </p>
+<p>This function blocks until a message was received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">m</td><td>Pointer to preallocated <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structure, must not be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, Function always succeeds or blocks forever. </dd></dl>
+
+</div>
+</div>
+<a id="ga2e7b09dc269eb4847f6e08b9900ffda9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2e7b09dc269eb4847f6e08b9900ffda9">&#9670;&nbsp;</a></span>msg_reply()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_reply </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>reply</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replies to a message. </p>
+<p>Sender must have sent the message with <a class="el" href="group__core__msg.html#ga01aee21f8554591c7933d4ba05cfe85b" title="Send a message, block until reply received.">msg_send_receive()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>message to reply to, must not be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">reply</td><td>message that target will get as reply, must not be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if successful </dd>
+<dd>
+-1, on error </dd></dl>
+
+</div>
+</div>
+<a id="ga09edaaa9af7fca0a049459038b087583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga09edaaa9af7fca0a049459038b087583">&#9670;&nbsp;</a></span>msg_reply_int()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_reply_int </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>reply</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replies to a message from interrupt. </p>
+<p>An ISR can obviously not receive messages, however a thread might delegate replying to a message to an ISR.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>message to reply to, must not be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">reply</td><td>message that target will get as reply, must not be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if successful </dd>
+<dd>
+-1, on error </dd></dl>
+
+</div>
+</div>
+<a id="gac5347725c3d203ac72604c0ab8b7d6d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5347725c3d203ac72604c0ab8b7d6d8">&#9670;&nbsp;</a></span>msg_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>target_pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message (blocking). </p>
+<p>This function sends a message to another thread. The <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structure has to be allocated (e.g. on the stack) before calling the function and can be freed afterwards. If called from an interrupt, this function will never block.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>Pointer to preallocated <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structure, must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_pid</td><td>PID of target thread</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if sending was successful (message delivered directly or to a queue) </dd>
+<dd>
+0, if called from ISR and receiver cannot receive the message now (it is not waiting or it's message queue is full) </dd>
+<dd>
+-1, on error (invalid PID) </dd></dl>
+
+</div>
+</div>
+<a id="ga2762c096056c5eac7ffe38c8727e033a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2762c096056c5eac7ffe38c8727e033a">&#9670;&nbsp;</a></span>msg_send_int()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_send_int </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>target_pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send message from interrupt. </p>
+<p>Will be automatically chosen instead of <a class="el" href="group__core__msg.html#gac5347725c3d203ac72604c0ab8b7d6d8" title="Send a message (blocking).">msg_send()</a> if called from an interrupt/ISR.</p>
+<p>The value of <code>m-&gt;sender_pid</code> is set to <a class="el" href="group__core__msg.html#gadba0f57bc141ce3a7ec95fbd4bf26429">KERNEL_PID_ISR</a>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__core__msg.html#ga77476ad20575d236516ec0acb0bdabd1" title="Test if the message was sent inside an ISR.">msg_sent_by_int()</a></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>Pointer to preallocated <a class="el" href="structmsg__t.html">msg_t</a> structure, must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_pid</td><td>PID of target thread.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if sending was successful </dd>
+<dd>
+0, if receiver is not waiting and <code>block == 0</code> </dd>
+<dd>
+-1, on error (invalid PID) </dd></dl>
+
+</div>
+</div>
+<a id="ga01aee21f8554591c7933d4ba05cfe85b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga01aee21f8554591c7933d4ba05cfe85b">&#9670;&nbsp;</a></span>msg_send_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_send_receive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>reply</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>target_pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message, block until reply received. </p>
+<p>This function sends a message to <em>target_pid</em> and then blocks until target has sent a reply which is then stored in <em>reply</em>. The responding thread must use <a class="el" href="group__core__msg.html#ga2e7b09dc269eb4847f6e08b9900ffda9">msg_reply()</a>.</p>
+<p>Any incoming messages other than the reply are put into the queue (if one is configured), block the sender (if sent with <a class="el" href="group__core__msg.html#gac5347725c3d203ac72604c0ab8b7d6d8">msg_send</a> from a thread), or rejected (if sent with <a class="el" href="group__core__msg.html#ga99264bd4f263fa2b478308c1f7983c10">msg_try_send</a> or from an interrupt) &ndash; just like if the thread were blocked on anything different than message reception.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>target_pid</code> is not the PID of the current thread.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>Pointer to preallocated <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structure with the message to send, must not be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">reply</td><td>Pointer to preallocated msg. Reply will be written here, must not be NULL. Can be identical to <code>m</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_pid</td><td>The PID of the target process</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if successful. </dd></dl>
+
+</div>
+</div>
+<a id="ga8711110548c90fe5ca82215e89bb83dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8711110548c90fe5ca82215e89bb83dd">&#9670;&nbsp;</a></span>msg_send_to_self()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_send_to_self </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message to the current thread. </p>
+<p>Will work only if the thread has a message queue.</p>
+<p>Will be automatically chosen instead of <code>msg_send</code> if <code>target_pid</code> == <code>thread_pid</code>. This function never blocks.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>pointer to message structure</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if sending was successful </dd>
+<dd>
+0 if the thread's message queue is full (or inexistent) </dd></dl>
+
+</div>
+</div>
+<a id="ga77476ad20575d236516ec0acb0bdabd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77476ad20575d236516ec0acb0bdabd1">&#9670;&nbsp;</a></span>msg_sent_by_int()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int msg_sent_by_int </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test if the message was sent inside an ISR. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__core__msg.html#ga2762c096056c5eac7ffe38c8727e033a" title="Send message from interrupt.">msg_send_int()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>The message in question. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>== 0</code> if <em>not</em> sent by an ISR </dd>
+<dd>
+<code>!= 0</code> if sent by an ISR </dd></dl>
+
+</div>
+</div>
+<a id="ga0a5e88bf7d9cadb41e5acf4deb300061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0a5e88bf7d9cadb41e5acf4deb300061">&#9670;&nbsp;</a></span>msg_try_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_try_receive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Try to receive a message. </p>
+<p>This function does not block if no message can be received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">m</td><td>Pointer to preallocated <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structure, must not be NULL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if a message was received </dd>
+<dd>
+-1, otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ga99264bd4f263fa2b478308c1f7983c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga99264bd4f263fa2b478308c1f7983c10">&#9670;&nbsp;</a></span>msg_try_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msg_try_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a>&#160;</td>
+          <td class="paramname"><em>target_pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a message (non-blocking). </p>
+<p>This function sends a message to another thread. The <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structure has to be allocated (e.g. on the stack) before calling the function and can be freed afterwards. This function will never block.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>Pointer to preallocated <code><a class="el" href="structmsg__t.html" title="Describes a message object which can be sent between threads.">msg_t</a></code> structure, must not be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target_pid</td><td>PID of target thread</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if sending was successful (message delivered directly or to a queue) </dd>
+<dd>
+0, if receiver is not waiting or has a full message queue </dd>
+<dd>
+-1, on error (invalid PID) </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

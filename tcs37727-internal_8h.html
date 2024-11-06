@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/tcs37727/include/tcs37727-internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('tcs37727-internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">tcs37727-internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__sensors.html">Sensor Device Drivers</a> &#124; <a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__saul.html">[S]ensor [A]ctuator [U]ber [L]ayer</a> &raquo; <a class="el" href="group__drivers__tcs37727.html">TCS37727 RGB Light Sensor</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Register definitions for the TCS37727 driver.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Register definitions for the TCS37727 driver. </p>
+<dl class="section author"><dt>Author</dt><dd>Johann Fischer <a href="#" onclick="location.href='mai'+'lto:'+'j.f'+'is'+'che'+'r@'+'phy'+'te'+'c.d'+'e'; return false;">j.fis<span style="display: none;">.nosp@m.</span>cher<span style="display: none;">.nosp@m.</span>@phyt<span style="display: none;">.nosp@m.</span>ec.d<span style="display: none;">.nosp@m.</span>e</a> </dd></dl>
+</div>
+<p><a href="tcs37727-internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:a5b0d5b8d0f8dd51864524709a93a778a"><td class="memItemLeft" align="right" valign="top"><a id="a5b0d5b8d0f8dd51864524709a93a778a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TCS37727_AG_THRESHOLD_LOW</b>&#160;&#160;&#160;200</td></tr>
+<tr class="separator:a5b0d5b8d0f8dd51864524709a93a778a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af626609b0009f5a0cf0ff3eaffaa083c"><td class="memItemLeft" align="right" valign="top"><a id="af626609b0009f5a0cf0ff3eaffaa083c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TCS37727_AG_THRESHOLD_HIGH</b>&#160;&#160;&#160;(65535 - TCS37727_AG_THRESHOLD_LOW)</td></tr>
+<tr class="separator:af626609b0009f5a0cf0ff3eaffaa083c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Register Map</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp092729737d14686054aa21531a3582c6"></a></p><dl class="section note"><dt>Note</dt><dd>All setting register are defined for repeated byte protocol transaction. </dd></dl>
+</td></tr>
+<tr class="memitem:ab48e7d1328584c6a60ad8ff4ccbd6108"><td class="memItemLeft" align="right" valign="top"><a id="ab48e7d1328584c6a60ad8ff4ccbd6108"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ab48e7d1328584c6a60ad8ff4ccbd6108">TCS37727_ENABLE</a>&#160;&#160;&#160;0x80</td></tr>
+<tr class="memdesc:ab48e7d1328584c6a60ad8ff4ccbd6108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables states and interrupts. <br /></td></tr>
+<tr class="separator:ab48e7d1328584c6a60ad8ff4ccbd6108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6497752bf033cfedb225c348bca22da"><td class="memItemLeft" align="right" valign="top"><a id="aa6497752bf033cfedb225c348bca22da"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#aa6497752bf033cfedb225c348bca22da">TCS37727_ATIME</a>&#160;&#160;&#160;0x81</td></tr>
+<tr class="memdesc:aa6497752bf033cfedb225c348bca22da"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGBC time. <br /></td></tr>
+<tr class="separator:aa6497752bf033cfedb225c348bca22da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b251bf0b6c2caf567f3af552b84d216"><td class="memItemLeft" align="right" valign="top"><a id="a5b251bf0b6c2caf567f3af552b84d216"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a5b251bf0b6c2caf567f3af552b84d216">TCS37727_PTIME</a>&#160;&#160;&#160;0x82</td></tr>
+<tr class="memdesc:a5b251bf0b6c2caf567f3af552b84d216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity time. <br /></td></tr>
+<tr class="separator:a5b251bf0b6c2caf567f3af552b84d216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad935af10a0553f88dcdf35271e2270f3"><td class="memItemLeft" align="right" valign="top"><a id="ad935af10a0553f88dcdf35271e2270f3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ad935af10a0553f88dcdf35271e2270f3">TCS37727_WTIME</a>&#160;&#160;&#160;0x83</td></tr>
+<tr class="memdesc:ad935af10a0553f88dcdf35271e2270f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait time. <br /></td></tr>
+<tr class="separator:ad935af10a0553f88dcdf35271e2270f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8727039baa656998eeca4e8721304b9d"><td class="memItemLeft" align="right" valign="top"><a id="a8727039baa656998eeca4e8721304b9d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a8727039baa656998eeca4e8721304b9d">TCS37727_AILTL</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memdesc:a8727039baa656998eeca4e8721304b9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear interrupt low threshold low byte. <br /></td></tr>
+<tr class="separator:a8727039baa656998eeca4e8721304b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bbe02fc4eb81b54fbd3e40440a6715f"><td class="memItemLeft" align="right" valign="top"><a id="a1bbe02fc4eb81b54fbd3e40440a6715f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a1bbe02fc4eb81b54fbd3e40440a6715f">TCS37727_AILTH</a>&#160;&#160;&#160;0x05</td></tr>
+<tr class="memdesc:a1bbe02fc4eb81b54fbd3e40440a6715f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear interrupt low threshold high byte. <br /></td></tr>
+<tr class="separator:a1bbe02fc4eb81b54fbd3e40440a6715f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b2634aa522725c637b1ce1a25383b2"><td class="memItemLeft" align="right" valign="top"><a id="a65b2634aa522725c637b1ce1a25383b2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a65b2634aa522725c637b1ce1a25383b2">TCS37727_AIHTL</a>&#160;&#160;&#160;0x06</td></tr>
+<tr class="memdesc:a65b2634aa522725c637b1ce1a25383b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear interrupt high threshold low byte. <br /></td></tr>
+<tr class="separator:a65b2634aa522725c637b1ce1a25383b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae001df838f64b8e0c9ee80dff90f5dcd"><td class="memItemLeft" align="right" valign="top"><a id="ae001df838f64b8e0c9ee80dff90f5dcd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ae001df838f64b8e0c9ee80dff90f5dcd">TCS37727_AIHTH</a>&#160;&#160;&#160;0x07</td></tr>
+<tr class="memdesc:ae001df838f64b8e0c9ee80dff90f5dcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear interrupt high threshold high byte. <br /></td></tr>
+<tr class="separator:ae001df838f64b8e0c9ee80dff90f5dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a067f076a0827dea255208323c6b8fb76"><td class="memItemLeft" align="right" valign="top"><a id="a067f076a0827dea255208323c6b8fb76"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a067f076a0827dea255208323c6b8fb76">TCS37727_PILTL</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memdesc:a067f076a0827dea255208323c6b8fb76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity interrupt low threshold low byte. <br /></td></tr>
+<tr class="separator:a067f076a0827dea255208323c6b8fb76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bea9df967dbcf3b58bb1be6f9e6216"><td class="memItemLeft" align="right" valign="top"><a id="a56bea9df967dbcf3b58bb1be6f9e6216"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a56bea9df967dbcf3b58bb1be6f9e6216">TCS37727_PILTH</a>&#160;&#160;&#160;0x09</td></tr>
+<tr class="memdesc:a56bea9df967dbcf3b58bb1be6f9e6216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity interrupt low threshold high byte. <br /></td></tr>
+<tr class="separator:a56bea9df967dbcf3b58bb1be6f9e6216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30ba60e29b40b10e61b6afcb378f83fd"><td class="memItemLeft" align="right" valign="top"><a id="a30ba60e29b40b10e61b6afcb378f83fd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a30ba60e29b40b10e61b6afcb378f83fd">TCS37727_PIHTL</a>&#160;&#160;&#160;0x0A</td></tr>
+<tr class="memdesc:a30ba60e29b40b10e61b6afcb378f83fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity interrupt high threshold low byte. <br /></td></tr>
+<tr class="separator:a30ba60e29b40b10e61b6afcb378f83fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7bb1a241f13e54b2a6c7daf22a337d3"><td class="memItemLeft" align="right" valign="top"><a id="aa7bb1a241f13e54b2a6c7daf22a337d3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#aa7bb1a241f13e54b2a6c7daf22a337d3">TCS37727_PIHTH</a>&#160;&#160;&#160;0x0B</td></tr>
+<tr class="memdesc:aa7bb1a241f13e54b2a6c7daf22a337d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity interrupt high threshold high byte. <br /></td></tr>
+<tr class="separator:aa7bb1a241f13e54b2a6c7daf22a337d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f58fc4621b3f5484aca397364245fd4"><td class="memItemLeft" align="right" valign="top"><a id="a7f58fc4621b3f5484aca397364245fd4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a7f58fc4621b3f5484aca397364245fd4">TCS37727_PERS</a>&#160;&#160;&#160;0x8C</td></tr>
+<tr class="memdesc:a7f58fc4621b3f5484aca397364245fd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt persistence filters. <br /></td></tr>
+<tr class="separator:a7f58fc4621b3f5484aca397364245fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0eb3f95c800e250476bbf6ff36bb779"><td class="memItemLeft" align="right" valign="top"><a id="ad0eb3f95c800e250476bbf6ff36bb779"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ad0eb3f95c800e250476bbf6ff36bb779">TCS37727_CONFIG</a>&#160;&#160;&#160;0x8D</td></tr>
+<tr class="memdesc:ad0eb3f95c800e250476bbf6ff36bb779"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration. <br /></td></tr>
+<tr class="separator:ad0eb3f95c800e250476bbf6ff36bb779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f91465c16833eb02b1f2e382a31e50"><td class="memItemLeft" align="right" valign="top"><a id="a36f91465c16833eb02b1f2e382a31e50"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a36f91465c16833eb02b1f2e382a31e50">TCS37727_PPULSE</a>&#160;&#160;&#160;0x8E</td></tr>
+<tr class="memdesc:a36f91465c16833eb02b1f2e382a31e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity pulse count. <br /></td></tr>
+<tr class="separator:a36f91465c16833eb02b1f2e382a31e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1b40fdad2ef2cfaa71a76c3d5864d2e"><td class="memItemLeft" align="right" valign="top"><a id="ae1b40fdad2ef2cfaa71a76c3d5864d2e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ae1b40fdad2ef2cfaa71a76c3d5864d2e">TCS37727_CONTROL</a>&#160;&#160;&#160;0x8F</td></tr>
+<tr class="memdesc:ae1b40fdad2ef2cfaa71a76c3d5864d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gain control register. <br /></td></tr>
+<tr class="separator:ae1b40fdad2ef2cfaa71a76c3d5864d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c84fef4fbb869cb4fc0bd1aa482d84b"><td class="memItemLeft" align="right" valign="top"><a id="a7c84fef4fbb869cb4fc0bd1aa482d84b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a7c84fef4fbb869cb4fc0bd1aa482d84b">TCS37727_ID</a>&#160;&#160;&#160;0x92</td></tr>
+<tr class="memdesc:a7c84fef4fbb869cb4fc0bd1aa482d84b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device IDID. <br /></td></tr>
+<tr class="separator:a7c84fef4fbb869cb4fc0bd1aa482d84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2fc21d77caaa0a56c80ea2f83820325"><td class="memItemLeft" align="right" valign="top"><a id="aa2fc21d77caaa0a56c80ea2f83820325"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#aa2fc21d77caaa0a56c80ea2f83820325">TCS37727_STATUS</a>&#160;&#160;&#160;0x93</td></tr>
+<tr class="memdesc:aa2fc21d77caaa0a56c80ea2f83820325"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device status. <br /></td></tr>
+<tr class="separator:aa2fc21d77caaa0a56c80ea2f83820325"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae161d2a6717ba167ce831403c5ea0f7a"><td class="memItemLeft" align="right" valign="top"><a id="ae161d2a6717ba167ce831403c5ea0f7a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ae161d2a6717ba167ce831403c5ea0f7a">TCS37727_CDATA</a>&#160;&#160;&#160;0x14</td></tr>
+<tr class="memdesc:ae161d2a6717ba167ce831403c5ea0f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear ADC data low byte. <br /></td></tr>
+<tr class="separator:ae161d2a6717ba167ce831403c5ea0f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af81ad95acd48139b67b6acb54603d0f9"><td class="memItemLeft" align="right" valign="top"><a id="af81ad95acd48139b67b6acb54603d0f9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#af81ad95acd48139b67b6acb54603d0f9">TCS37727_CDATAH</a>&#160;&#160;&#160;0x15</td></tr>
+<tr class="memdesc:af81ad95acd48139b67b6acb54603d0f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear ADC data high byte. <br /></td></tr>
+<tr class="separator:af81ad95acd48139b67b6acb54603d0f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad105b3e7315cb8ff6d61552f0435bb4d"><td class="memItemLeft" align="right" valign="top"><a id="ad105b3e7315cb8ff6d61552f0435bb4d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ad105b3e7315cb8ff6d61552f0435bb4d">TCS37727_RDATA</a>&#160;&#160;&#160;0x16</td></tr>
+<tr class="memdesc:ad105b3e7315cb8ff6d61552f0435bb4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Red ADC data low byte. <br /></td></tr>
+<tr class="separator:ad105b3e7315cb8ff6d61552f0435bb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a261a0c76261f8470ef1f9128f06a1502"><td class="memItemLeft" align="right" valign="top"><a id="a261a0c76261f8470ef1f9128f06a1502"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a261a0c76261f8470ef1f9128f06a1502">TCS37727_RDATAH</a>&#160;&#160;&#160;0x17</td></tr>
+<tr class="memdesc:a261a0c76261f8470ef1f9128f06a1502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Red ADC data high byte. <br /></td></tr>
+<tr class="separator:a261a0c76261f8470ef1f9128f06a1502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0af376dda6e6ec36f3557df07eda8c35"><td class="memItemLeft" align="right" valign="top"><a id="a0af376dda6e6ec36f3557df07eda8c35"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a0af376dda6e6ec36f3557df07eda8c35">TCS37727_GDATA</a>&#160;&#160;&#160;0x18</td></tr>
+<tr class="memdesc:a0af376dda6e6ec36f3557df07eda8c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Green ADC data low byte. <br /></td></tr>
+<tr class="separator:a0af376dda6e6ec36f3557df07eda8c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6562880838e046a203e00861dd44f667"><td class="memItemLeft" align="right" valign="top"><a id="a6562880838e046a203e00861dd44f667"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a6562880838e046a203e00861dd44f667">TCS37727_GDATAH</a>&#160;&#160;&#160;0x19</td></tr>
+<tr class="memdesc:a6562880838e046a203e00861dd44f667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Green ADC data high byte. <br /></td></tr>
+<tr class="separator:a6562880838e046a203e00861dd44f667"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeafcddb3c4557933e374f8c3bd2278c6"><td class="memItemLeft" align="right" valign="top"><a id="aeafcddb3c4557933e374f8c3bd2278c6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#aeafcddb3c4557933e374f8c3bd2278c6">TCS37727_BDATA</a>&#160;&#160;&#160;0x1A</td></tr>
+<tr class="memdesc:aeafcddb3c4557933e374f8c3bd2278c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blue ADC data low byte. <br /></td></tr>
+<tr class="separator:aeafcddb3c4557933e374f8c3bd2278c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8ba4fe629c17006e748defd2f810cd"><td class="memItemLeft" align="right" valign="top"><a id="aac8ba4fe629c17006e748defd2f810cd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#aac8ba4fe629c17006e748defd2f810cd">TCS37727_BDATAH</a>&#160;&#160;&#160;0x1B</td></tr>
+<tr class="memdesc:aac8ba4fe629c17006e748defd2f810cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blue ADC data high byte. <br /></td></tr>
+<tr class="separator:aac8ba4fe629c17006e748defd2f810cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d409ccbbf2f2940417c63fdfb678e87"><td class="memItemLeft" align="right" valign="top"><a id="a5d409ccbbf2f2940417c63fdfb678e87"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a5d409ccbbf2f2940417c63fdfb678e87">TCS37727_PDATA</a>&#160;&#160;&#160;0x1C</td></tr>
+<tr class="memdesc:a5d409ccbbf2f2940417c63fdfb678e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity ADC data low byte. <br /></td></tr>
+<tr class="separator:a5d409ccbbf2f2940417c63fdfb678e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a254db77af35187ae14743d6d2ecdff6e"><td class="memItemLeft" align="right" valign="top"><a id="a254db77af35187ae14743d6d2ecdff6e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a254db77af35187ae14743d6d2ecdff6e">TCS37727_PDATAH</a>&#160;&#160;&#160;0x1D</td></tr>
+<tr class="memdesc:a254db77af35187ae14743d6d2ecdff6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity ADC data high byte. <br /></td></tr>
+<tr class="separator:a254db77af35187ae14743d6d2ecdff6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Command Register</h2></td></tr>
+<tr class="memitem:a3db33f9ff3cda0c4f690b66308d8e0c8"><td class="memItemLeft" align="right" valign="top"><a id="a3db33f9ff3cda0c4f690b66308d8e0c8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a3db33f9ff3cda0c4f690b66308d8e0c8">TCS37727_BYTE_TRANS</a>&#160;&#160;&#160;0x80</td></tr>
+<tr class="memdesc:a3db33f9ff3cda0c4f690b66308d8e0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repeated byte protocol transaction. <br /></td></tr>
+<tr class="separator:a3db33f9ff3cda0c4f690b66308d8e0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b24e82a322c3204f25eeb92aefcae3"><td class="memItemLeft" align="right" valign="top"><a id="ad6b24e82a322c3204f25eeb92aefcae3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ad6b24e82a322c3204f25eeb92aefcae3">TCS37727_INC_TRANS</a>&#160;&#160;&#160;0xA0</td></tr>
+<tr class="memdesc:ad6b24e82a322c3204f25eeb92aefcae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auto-increment protocol transaction. <br /></td></tr>
+<tr class="separator:ad6b24e82a322c3204f25eeb92aefcae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a37c29e1a7120b130d51276e930dee"><td class="memItemLeft" align="right" valign="top"><a id="a77a37c29e1a7120b130d51276e930dee"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a77a37c29e1a7120b130d51276e930dee">TCS37727_SF_PICLR</a>&#160;&#160;&#160;0xE5</td></tr>
+<tr class="memdesc:a77a37c29e1a7120b130d51276e930dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity interrupt clear. <br /></td></tr>
+<tr class="separator:a77a37c29e1a7120b130d51276e930dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359cd5babd0ce66d0bf21d2d29ecfd0d"><td class="memItemLeft" align="right" valign="top"><a id="a359cd5babd0ce66d0bf21d2d29ecfd0d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a359cd5babd0ce66d0bf21d2d29ecfd0d">TCS37727_SF_CICLR</a>&#160;&#160;&#160;0xE6</td></tr>
+<tr class="memdesc:a359cd5babd0ce66d0bf21d2d29ecfd0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear channel interrupt clear. <br /></td></tr>
+<tr class="separator:a359cd5babd0ce66d0bf21d2d29ecfd0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ba97880342915b8f71d7960e1205de9"><td class="memItemLeft" align="right" valign="top"><a id="a5ba97880342915b8f71d7960e1205de9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a5ba97880342915b8f71d7960e1205de9">TCS37727_SF_PCICLR</a>&#160;&#160;&#160;0xE7</td></tr>
+<tr class="memdesc:a5ba97880342915b8f71d7960e1205de9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity and Clear channel interrupt clear. <br /></td></tr>
+<tr class="separator:a5ba97880342915b8f71d7960e1205de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Enable Register</h2></td></tr>
+<tr class="memitem:a1287e41e0e6b78c36f0c215c2ba5f475"><td class="memItemLeft" align="right" valign="top"><a id="a1287e41e0e6b78c36f0c215c2ba5f475"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a1287e41e0e6b78c36f0c215c2ba5f475">TCS37727_ENABLE_PIEN</a>&#160;&#160;&#160;(1 &lt;&lt; 5)</td></tr>
+<tr class="memdesc:a1287e41e0e6b78c36f0c215c2ba5f475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity interrupt enable. <br /></td></tr>
+<tr class="separator:a1287e41e0e6b78c36f0c215c2ba5f475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb74c395a2761c83bf3da3ab66b5ec5"><td class="memItemLeft" align="right" valign="top"><a id="a8cb74c395a2761c83bf3da3ab66b5ec5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a8cb74c395a2761c83bf3da3ab66b5ec5">TCS37727_ENABLE_AIEN</a>&#160;&#160;&#160;(1 &lt;&lt; 4)</td></tr>
+<tr class="memdesc:a8cb74c395a2761c83bf3da3ab66b5ec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear channel interrupt enable. <br /></td></tr>
+<tr class="separator:a8cb74c395a2761c83bf3da3ab66b5ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a035255e7957f2b337ffeb63b17a54baf"><td class="memItemLeft" align="right" valign="top"><a id="a035255e7957f2b337ffeb63b17a54baf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a035255e7957f2b337ffeb63b17a54baf">TCS37727_ENABLE_WEN</a>&#160;&#160;&#160;(1 &lt;&lt; 3)</td></tr>
+<tr class="memdesc:a035255e7957f2b337ffeb63b17a54baf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait enable, activates the wait feature. <br /></td></tr>
+<tr class="separator:a035255e7957f2b337ffeb63b17a54baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8499731a7169a27e3d8354e5badf2e9"><td class="memItemLeft" align="right" valign="top"><a id="ae8499731a7169a27e3d8354e5badf2e9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ae8499731a7169a27e3d8354e5badf2e9">TCS37727_ENABLE_PEN</a>&#160;&#160;&#160;(1 &lt;&lt; 2)</td></tr>
+<tr class="memdesc:ae8499731a7169a27e3d8354e5badf2e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proximity enable, activates the proximity function. <br /></td></tr>
+<tr class="separator:ae8499731a7169a27e3d8354e5badf2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab134c5261302b8c0b72cb225efb4e44e"><td class="memItemLeft" align="right" valign="top"><a id="ab134c5261302b8c0b72cb225efb4e44e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#ab134c5261302b8c0b72cb225efb4e44e">TCS37727_ENABLE_AEN</a>&#160;&#160;&#160;(1 &lt;&lt; 1)</td></tr>
+<tr class="memdesc:ab134c5261302b8c0b72cb225efb4e44e"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGBC enable, actives the two-channel ADC. <br /></td></tr>
+<tr class="separator:ab134c5261302b8c0b72cb225efb4e44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e677544f11c3a8d9c8b9de5cc0bd180"><td class="memItemLeft" align="right" valign="top"><a id="a8e677544f11c3a8d9c8b9de5cc0bd180"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a8e677544f11c3a8d9c8b9de5cc0bd180">TCS37727_ENABLE_PON</a>&#160;&#160;&#160;(1 &lt;&lt; 0)</td></tr>
+<tr class="memdesc:a8e677544f11c3a8d9c8b9de5cc0bd180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power ON. <br /></td></tr>
+<tr class="separator:a8e677544f11c3a8d9c8b9de5cc0bd180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Control Register</h2></td></tr>
+<tr class="memitem:a35e5afd6e2cd2cc0d5d985b344511685"><td class="memItemLeft" align="right" valign="top"><a id="a35e5afd6e2cd2cc0d5d985b344511685"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a35e5afd6e2cd2cc0d5d985b344511685">TCS37727_CONTROL_PDRIVE_100</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:a35e5afd6e2cd2cc0d5d985b344511685"><td class="mdescLeft">&#160;</td><td class="mdescRight">100 mA LED Drive Strength <br /></td></tr>
+<tr class="separator:a35e5afd6e2cd2cc0d5d985b344511685"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2686972f348a7358a64cb242a785c3d5"><td class="memItemLeft" align="right" valign="top"><a id="a2686972f348a7358a64cb242a785c3d5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a2686972f348a7358a64cb242a785c3d5">TCS37727_CONTROL_PDRIVE_50</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memdesc:a2686972f348a7358a64cb242a785c3d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">50 mA LED Drive Strength <br /></td></tr>
+<tr class="separator:a2686972f348a7358a64cb242a785c3d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cba1343b4f1439b9902935bfdf6ce20"><td class="memItemLeft" align="right" valign="top"><a id="a6cba1343b4f1439b9902935bfdf6ce20"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a6cba1343b4f1439b9902935bfdf6ce20">TCS37727_CONTROL_PDRIVE_25</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memdesc:a6cba1343b4f1439b9902935bfdf6ce20"><td class="mdescLeft">&#160;</td><td class="mdescRight">25 mA LED Drive Strength <br /></td></tr>
+<tr class="separator:a6cba1343b4f1439b9902935bfdf6ce20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6862eb8aaabedb8e6d72d227ef8988ea"><td class="memItemLeft" align="right" valign="top"><a id="a6862eb8aaabedb8e6d72d227ef8988ea"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a6862eb8aaabedb8e6d72d227ef8988ea">TCS37727_CONTROL_PDRIVE_12</a>&#160;&#160;&#160;0x0C</td></tr>
+<tr class="memdesc:a6862eb8aaabedb8e6d72d227ef8988ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">12.5 mA LED Drive Strength <br /></td></tr>
+<tr class="separator:a6862eb8aaabedb8e6d72d227ef8988ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a211799c43881ee25b761b0d813df36d2"><td class="memItemLeft" align="right" valign="top"><a id="a211799c43881ee25b761b0d813df36d2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a211799c43881ee25b761b0d813df36d2">TCS37727_CONTROL_PDRIVE_MASK</a>&#160;&#160;&#160;0x0C</td></tr>
+<tr class="memdesc:a211799c43881ee25b761b0d813df36d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">PDRIVE Mask. <br /></td></tr>
+<tr class="separator:a211799c43881ee25b761b0d813df36d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a706172ffdfc8c13b5e0ac919b961fc50"><td class="memItemLeft" align="right" valign="top"><a id="a706172ffdfc8c13b5e0ac919b961fc50"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a706172ffdfc8c13b5e0ac919b961fc50">TCS37727_CONTROL_AGAIN_1</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:a706172ffdfc8c13b5e0ac919b961fc50"><td class="mdescLeft">&#160;</td><td class="mdescRight">1x gain RGBC Gain Value <br /></td></tr>
+<tr class="separator:a706172ffdfc8c13b5e0ac919b961fc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b2a026acef0769dda67b11ae3ea256"><td class="memItemLeft" align="right" valign="top"><a id="a41b2a026acef0769dda67b11ae3ea256"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a41b2a026acef0769dda67b11ae3ea256">TCS37727_CONTROL_AGAIN_4</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memdesc:a41b2a026acef0769dda67b11ae3ea256"><td class="mdescLeft">&#160;</td><td class="mdescRight">4x gain RGBC Gain Value <br /></td></tr>
+<tr class="separator:a41b2a026acef0769dda67b11ae3ea256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf7a7b17bd689a472384175b3f556a19"><td class="memItemLeft" align="right" valign="top"><a id="abf7a7b17bd689a472384175b3f556a19"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#abf7a7b17bd689a472384175b3f556a19">TCS37727_CONTROL_AGAIN_16</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memdesc:abf7a7b17bd689a472384175b3f556a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">16x gain RGBC Gain Value <br /></td></tr>
+<tr class="separator:abf7a7b17bd689a472384175b3f556a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af85a823beb68dd63376b9f0e5df2c519"><td class="memItemLeft" align="right" valign="top"><a id="af85a823beb68dd63376b9f0e5df2c519"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#af85a823beb68dd63376b9f0e5df2c519">TCS37727_CONTROL_AGAIN_60</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memdesc:af85a823beb68dd63376b9f0e5df2c519"><td class="mdescLeft">&#160;</td><td class="mdescRight">60x gain RGBC Gain Value <br /></td></tr>
+<tr class="separator:af85a823beb68dd63376b9f0e5df2c519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37162e664d46edca716b01e8d3fc0668"><td class="memItemLeft" align="right" valign="top"><a id="a37162e664d46edca716b01e8d3fc0668"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tcs37727-internal_8h.html#a37162e664d46edca716b01e8d3fc0668">TCS37727_CONTROL_AGAIN_MASK</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memdesc:a37162e664d46edca716b01e8d3fc0668"><td class="mdescLeft">&#160;</td><td class="mdescRight">AGAIN Mask. <br /></td></tr>
+<tr class="separator:a37162e664d46edca716b01e8d3fc0668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Device ID</h2></td></tr>
+<tr class="memitem:a41154222dec54d8bcf3a9988b9b01f49"><td class="memItemLeft" align="right" valign="top"><a id="a41154222dec54d8bcf3a9988b9b01f49"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TCS37727_ID_VALUE</b>&#160;&#160;&#160;0x49</td></tr>
+<tr class="separator:a41154222dec54d8bcf3a9988b9b01f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Predefined ATIME register values.</h2></td></tr>
+<tr class="memitem:a35136ebdff14ddbd9baebf089e0561cb"><td class="memItemLeft" align="right" valign="top"><a id="a35136ebdff14ddbd9baebf089e0561cb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TCS37727_ATIME_MIN</b>&#160;&#160;&#160;2400    /* 2.4ms integration time, max count 1024 */</td></tr>
+<tr class="separator:a35136ebdff14ddbd9baebf089e0561cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77f0d2491fdf4b1f4c9f141cf6f05216"><td class="memItemLeft" align="right" valign="top"><a id="a77f0d2491fdf4b1f4c9f141cf6f05216"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TCS37727_ATIME_MAX</b>&#160;&#160;&#160;614000  /* 614ms integration time, max count 0xffff */</td></tr>
+<tr class="separator:a77f0d2491fdf4b1f4c9f141cf6f05216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e829902f2b7ae395941953c3aa1d479"><td class="memItemLeft" align="right" valign="top"><a id="a9e829902f2b7ae395941953c3aa1d479"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TCS37727_ATIME_TO_REG</b>(val)&#160;&#160;&#160;(256 - (uint8_t)((val) / 2400))</td></tr>
+<tr class="separator:a9e829902f2b7ae395941953c3aa1d479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98c13af14f9611af75f26a719a26e8fb"><td class="memItemLeft" align="right" valign="top"><a id="a98c13af14f9611af75f26a719a26e8fb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TCS37727_ATIME_TO_US</b>(reg)&#160;&#160;&#160;((256 - (uint8_t)(reg)) * 2400)</td></tr>
+<tr class="separator:a98c13af14f9611af75f26a719a26e8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Coefficients for Lux and CT Equations (DN40)</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp275d099a41046459027fb94a150a3dda"></a></p><dl class="section note"><dt>Note</dt><dd>Coefficients in integer format, multiplied by 1000. </dd></dl>
+</td></tr>
+<tr class="memitem:a0378d045411feda85a663017cd870ba9"><td class="memItemLeft" align="right" valign="top"><a id="a0378d045411feda85a663017cd870ba9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DGF_IF</b>&#160;&#160;&#160;310</td></tr>
+<tr class="separator:a0378d045411feda85a663017cd870ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f278b17e75a36ef890bd09ad2562787"><td class="memItemLeft" align="right" valign="top"><a id="a1f278b17e75a36ef890bd09ad2562787"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>R_COEF_IF</b>&#160;&#160;&#160;136</td></tr>
+<tr class="separator:a1f278b17e75a36ef890bd09ad2562787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2356f6c1c88dfaa361194ce045036c70"><td class="memItemLeft" align="right" valign="top"><a id="a2356f6c1c88dfaa361194ce045036c70"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>G_COEF_IF</b>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:a2356f6c1c88dfaa361194ce045036c70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae709b55b84f482f38d952349582007a"><td class="memItemLeft" align="right" valign="top"><a id="aae709b55b84f482f38d952349582007a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>B_COEF_IF</b>&#160;&#160;&#160;-444</td></tr>
+<tr class="separator:aae709b55b84f482f38d952349582007a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad685ada412b3b9c9972940d3c209d9f3"><td class="memItemLeft" align="right" valign="top"><a id="ad685ada412b3b9c9972940d3c209d9f3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CT_COEF_IF</b>&#160;&#160;&#160;3810</td></tr>
+<tr class="separator:ad685ada412b3b9c9972940d3c209d9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62750b2c4462cc7d87e00cfbbfa0c2a"><td class="memItemLeft" align="right" valign="top"><a id="ab62750b2c4462cc7d87e00cfbbfa0c2a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CT_OFFSET_IF</b>&#160;&#160;&#160;1391</td></tr>
+<tr class="separator:ab62750b2c4462cc7d87e00cfbbfa0c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ade085a58da755431c3cbe9cda2c1e71.html">tcs37727</a></li><li class="navelem"><a class="el" href="dir_1f1ccfbf7a30181162fe4b4c450cb8f7.html">include</a></li><li class="navelem"><a class="el" href="tcs37727-internal_8h.html">tcs37727-internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

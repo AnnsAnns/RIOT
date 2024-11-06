@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/stmpe811.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('stmpe811_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">stmpe811.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="stmpe811_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019 Inria</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef STMPE811_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define STMPE811_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sys_2include_2senml_2saul_8h.html">saul.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_STMPE811_SPI)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spi_8h.html">periph/spi.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifdef MODULE_TOUCH_DEV</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;touch_dev.h&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ga5ca8b7590c655bcf4acb9b16a48d558a">   43</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#gga5ca8b7590c655bcf4acb9b16a48d558aa90026ee26471890794e4c1a1574185b8">   44</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#gga5ca8b7590c655bcf4acb9b16a48d558aa90026ee26471890794e4c1a1574185b8">STMPE811_TOUCH_STATE_PRESSED</a>,       </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#gga5ca8b7590c655bcf4acb9b16a48d558aa4b0db442db71127c710e65e93df2b33e">   45</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#gga5ca8b7590c655bcf4acb9b16a48d558aa4b0db442db71127c710e65e93df2b33e">STMPE811_TOUCH_STATE_RELEASED</a>,      </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <a class="code" href="group__drivers__stmpe811.html#ga5ca8b7590c655bcf4acb9b16a48d558a">stmpe811_touch_state_t</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#gae4f35b9889b9ac8bedbb2b8243caf0e7">   61</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7a802c8f2c3b16a6ef1bf09aef03d13669">   62</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7a802c8f2c3b16a6ef1bf09aef03d13669">STMPE811_NO_CONV</a>  = 0x00, </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7a01df7afb099f15af06b71d68981786f1">   63</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7a01df7afb099f15af06b71d68981786f1">STMPE811_MIRROR_X</a> = 0x01, </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7acc32a108d2150f9c7777d20026a43969">   64</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7acc32a108d2150f9c7777d20026a43969">STMPE811_MIRROR_Y</a> = 0x02, </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7aaa10c435b02e7904a5a093ff18c5e8ad">   65</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7aaa10c435b02e7904a5a093ff18c5e8ad">STMPE811_SWAP_XY</a>  = 0x04, </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;} <a class="code" href="group__drivers__stmpe811.html#gae4f35b9889b9ac8bedbb2b8243caf0e7">stmpe811_touch_conv_t</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structstmpe811__touch__position__t.html">   71</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structstmpe811__touch__position__t.html#a89d96f570f93a3ba9241f3257f2c45ef">   72</a></span>&#160;    uint16_t <a class="code" href="structstmpe811__touch__position__t.html#a89d96f570f93a3ba9241f3257f2c45ef">x</a>;                         </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structstmpe811__touch__position__t.html#ac8a7566a6722a433cd692eb7f683001b">   73</a></span>&#160;    uint16_t <a class="code" href="structstmpe811__touch__position__t.html#ac8a7566a6722a433cd692eb7f683001b">y</a>;                         </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;} <a class="code" href="structstmpe811__touch__position__t.html">stmpe811_touch_position_t</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ga298f293a352d24618600d0d1dfe96ebe">   81</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="group__drivers__stmpe811.html#ga298f293a352d24618600d0d1dfe96ebe">stmpe811_event_cb_t</a>)(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structstmpe811__params__t.html">   90</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_STMPE811_SPI)</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">/* SPI configuration */</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    spi_t spi;                          </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="msp430_2include_2f2xx__g2xx_2periph__cpu_8h.html#ac4b206a51636d91c5cffcbcee458c3cb">spi_mode_t</a> mode;                    </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a> clk;                      </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    gpio_t cs;                          </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">/* I2C details */</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="structstmpe811__params__t.html#af6de9cbebe6721f06e968771cf954854">   99</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structstmpe811__params__t.html#af6de9cbebe6721f06e968771cf954854">i2c</a>;                         </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structstmpe811__params__t.html#af60dbb6f4de39417b340857534fd5f17">  100</a></span>&#160;    uint8_t <a class="code" href="structstmpe811__params__t.html#af60dbb6f4de39417b340857534fd5f17">addr</a>;                      </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="structstmpe811__params__t.html#a005b3339b065f17955b9bcf9f0b4d3aa">  102</a></span>&#160;    gpio_t <a class="code" href="structstmpe811__params__t.html#a005b3339b065f17955b9bcf9f0b4d3aa">int_pin</a>;                    </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structstmpe811__params__t.html#af787d9fd15d2e2485e1545e1af14c9d9">  103</a></span>&#160;    uint16_t <a class="code" href="structstmpe811__params__t.html#af787d9fd15d2e2485e1545e1af14c9d9">xmax</a>;                     </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structstmpe811__params__t.html#a0d9f93cf432369f1b4839f4d79cbc3f3">  104</a></span>&#160;    uint16_t <a class="code" href="structstmpe811__params__t.html#a0d9f93cf432369f1b4839f4d79cbc3f3">ymax</a>;                     </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="structstmpe811__params__t.html#abe1140013b75702c4a848045f990f2de">  105</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#gae4f35b9889b9ac8bedbb2b8243caf0e7">stmpe811_touch_conv_t</a> <a class="code" href="structstmpe811__params__t.html#abe1140013b75702c4a848045f990f2de">xyconv</a>;      </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;} <a class="code" href="structstmpe811__params__t.html">stmpe811_params_t</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structstmpe811__t.html">  112</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#ifdef MODULE_TOUCH_DEV</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="structtouch__dev.html">touch_dev_t</a> *dev;                   </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structstmpe811__t.html#a65def88fac81cefeeb4c7d7008b3726d">  116</a></span>&#160;    <a class="code" href="structstmpe811__params__t.html">stmpe811_params_t</a> <a class="code" href="structstmpe811__t.html#a65def88fac81cefeeb4c7d7008b3726d">params</a>;           </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structstmpe811__t.html#a00d4f44c016bd8fd3855788c3061596a">  117</a></span>&#160;    <a class="code" href="group__drivers__stmpe811.html#ga298f293a352d24618600d0d1dfe96ebe">stmpe811_event_cb_t</a> <a class="code" href="structstmpe811__t.html#a00d4f44c016bd8fd3855788c3061596a">cb</a>;             </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structstmpe811__t.html#a459587c3a8d10a562ea0ffa2f03da806">  118</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structstmpe811__t.html#a459587c3a8d10a562ea0ffa2f03da806">cb_arg</a>;                       </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="structstmpe811__t.html#a1c9423ec917cb2c02d02b2bed3073aba">  119</a></span>&#160;    uint16_t <a class="code" href="structstmpe811__t.html#a1c9423ec917cb2c02d02b2bed3073aba">prev_x</a>;                    </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="structstmpe811__t.html#a3a424dcd69d8c89221111c2b831ab246">  120</a></span>&#160;    uint16_t <a class="code" href="structstmpe811__t.html#a3a424dcd69d8c89221111c2b831ab246">prev_y</a>;                    </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;} <a class="code" href="structstmpe811__t.html">stmpe811_t</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ga6157af7b234d51cf25ca93396865d765">  136</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__stmpe811.html#ga6157af7b234d51cf25ca93396865d765">stmpe811_init</a>(<a class="code" href="structstmpe811__t.html">stmpe811_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structstmpe811__params__t.html">stmpe811_params_t</a> * params,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                  <a class="code" href="group__drivers__stmpe811.html#ga298f293a352d24618600d0d1dfe96ebe">stmpe811_event_cb_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ga387e3ddb160cc6eb8c5ce9b7f05bb3fc">  148</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__stmpe811.html#ga387e3ddb160cc6eb8c5ce9b7f05bb3fc">stmpe811_read_touch_position</a>(<a class="code" href="structstmpe811__t.html">stmpe811_t</a> *dev, <a class="code" href="structstmpe811__touch__position__t.html">stmpe811_touch_position_t</a> *position);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="group__drivers__stmpe811.html#ga4f58efa8d981410a5f607334ec8c61c5">  159</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__stmpe811.html#ga4f58efa8d981410a5f607334ec8c61c5">stmpe811_read_touch_state</a>(<span class="keyword">const</span> <a class="code" href="structstmpe811__t.html">stmpe811_t</a> *dev, <a class="code" href="group__drivers__stmpe811.html#ga5ca8b7590c655bcf4acb9b16a48d558a">stmpe811_touch_state_t</a> *state);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;}</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STMPE811_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatxmega_2include_2periph__cpu_8h_html_ae81cec9f03084065c25089e514a57337"><div class="ttname"><a href="atxmega_2include_2periph__cpu_8h.html#ae81cec9f03084065c25089e514a57337">spi_clk_t</a></div><div class="ttdeci">spi_clk_t</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:352</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ga298f293a352d24618600d0d1dfe96ebe"><div class="ttname"><a href="group__drivers__stmpe811.html#ga298f293a352d24618600d0d1dfe96ebe">stmpe811_event_cb_t</a></div><div class="ttdeci">void(* stmpe811_event_cb_t)(void *arg)</div><div class="ttdoc">Signature of touch event callback triggered from interrupt.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:81</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ga387e3ddb160cc6eb8c5ce9b7f05bb3fc"><div class="ttname"><a href="group__drivers__stmpe811.html#ga387e3ddb160cc6eb8c5ce9b7f05bb3fc">stmpe811_read_touch_position</a></div><div class="ttdeci">int stmpe811_read_touch_position(stmpe811_t *dev, stmpe811_touch_position_t *position)</div><div class="ttdoc">Read the touch position.</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ga4f58efa8d981410a5f607334ec8c61c5"><div class="ttname"><a href="group__drivers__stmpe811.html#ga4f58efa8d981410a5f607334ec8c61c5">stmpe811_read_touch_state</a></div><div class="ttdeci">int stmpe811_read_touch_state(const stmpe811_t *dev, stmpe811_touch_state_t *state)</div><div class="ttdoc">Read the touch state (pressed or released)</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ga5ca8b7590c655bcf4acb9b16a48d558a"><div class="ttname"><a href="group__drivers__stmpe811.html#ga5ca8b7590c655bcf4acb9b16a48d558a">stmpe811_touch_state_t</a></div><div class="ttdeci">stmpe811_touch_state_t</div><div class="ttdoc">Touch state enum.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:43</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ga6157af7b234d51cf25ca93396865d765"><div class="ttname"><a href="group__drivers__stmpe811.html#ga6157af7b234d51cf25ca93396865d765">stmpe811_init</a></div><div class="ttdeci">int stmpe811_init(stmpe811_t *dev, const stmpe811_params_t *params, stmpe811_event_cb_t cb, void *arg)</div><div class="ttdoc">Initialize the given STMPE811 device.</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_gae4f35b9889b9ac8bedbb2b8243caf0e7"><div class="ttname"><a href="group__drivers__stmpe811.html#gae4f35b9889b9ac8bedbb2b8243caf0e7">stmpe811_touch_conv_t</a></div><div class="ttdeci">stmpe811_touch_conv_t</div><div class="ttdoc">Touch screen coordinate conversions.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:61</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_gga5ca8b7590c655bcf4acb9b16a48d558aa4b0db442db71127c710e65e93df2b33e"><div class="ttname"><a href="group__drivers__stmpe811.html#gga5ca8b7590c655bcf4acb9b16a48d558aa4b0db442db71127c710e65e93df2b33e">STMPE811_TOUCH_STATE_RELEASED</a></div><div class="ttdeci">@ STMPE811_TOUCH_STATE_RELEASED</div><div class="ttdoc">Touchscreen is released.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:45</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_gga5ca8b7590c655bcf4acb9b16a48d558aa90026ee26471890794e4c1a1574185b8"><div class="ttname"><a href="group__drivers__stmpe811.html#gga5ca8b7590c655bcf4acb9b16a48d558aa90026ee26471890794e4c1a1574185b8">STMPE811_TOUCH_STATE_PRESSED</a></div><div class="ttdeci">@ STMPE811_TOUCH_STATE_PRESSED</div><div class="ttdoc">Touchscreen is pressed.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:44</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ggae4f35b9889b9ac8bedbb2b8243caf0e7a01df7afb099f15af06b71d68981786f1"><div class="ttname"><a href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7a01df7afb099f15af06b71d68981786f1">STMPE811_MIRROR_X</a></div><div class="ttdeci">@ STMPE811_MIRROR_X</div><div class="ttdoc">Mirror X, applied after optional swapping.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:63</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ggae4f35b9889b9ac8bedbb2b8243caf0e7a802c8f2c3b16a6ef1bf09aef03d13669"><div class="ttname"><a href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7a802c8f2c3b16a6ef1bf09aef03d13669">STMPE811_NO_CONV</a></div><div class="ttdeci">@ STMPE811_NO_CONV</div><div class="ttdoc">No conversion.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:62</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ggae4f35b9889b9ac8bedbb2b8243caf0e7aaa10c435b02e7904a5a093ff18c5e8ad"><div class="ttname"><a href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7aaa10c435b02e7904a5a093ff18c5e8ad">STMPE811_SWAP_XY</a></div><div class="ttdeci">@ STMPE811_SWAP_XY</div><div class="ttdoc">Swap XY, applied before optional mirroring.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:65</div></div>
+<div class="ttc" id="agroup__drivers__stmpe811_html_ggae4f35b9889b9ac8bedbb2b8243caf0e7acc32a108d2150f9c7777d20026a43969"><div class="ttname"><a href="group__drivers__stmpe811.html#ggae4f35b9889b9ac8bedbb2b8243caf0e7acc32a108d2150f9c7777d20026a43969">STMPE811_MIRROR_Y</a></div><div class="ttdeci">@ STMPE811_MIRROR_Y</div><div class="ttdoc">Mirror Y, applied after optional swapping.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:64</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="amsp430_2include_2f2xx__g2xx_2periph__cpu_8h_html_ac4b206a51636d91c5cffcbcee458c3cb"><div class="ttname"><a href="msp430_2include_2f2xx__g2xx_2periph__cpu_8h.html#ac4b206a51636d91c5cffcbcee458c3cb">spi_mode_t</a></div><div class="ttdeci">spi_mode_t</div><div class="ttdoc">Support SPI modes.</div><div class="ttdef"><b>Definition:</b> periph_cpu.h:43</div></div>
+<div class="ttc" id="aspi_8h_html"><div class="ttname"><a href="spi_8h.html">spi.h</a></div><div class="ttdoc">Low-level SPI peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructstmpe811__params__t_html"><div class="ttname"><a href="structstmpe811__params__t.html">stmpe811_params_t</a></div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:90</div></div>
+<div class="ttc" id="astructstmpe811__params__t_html_a005b3339b065f17955b9bcf9f0b4d3aa"><div class="ttname"><a href="structstmpe811__params__t.html#a005b3339b065f17955b9bcf9f0b4d3aa">stmpe811_params_t::int_pin</a></div><div class="ttdeci">gpio_t int_pin</div><div class="ttdoc">Touch screen interrupt pin.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:102</div></div>
+<div class="ttc" id="astructstmpe811__params__t_html_a0d9f93cf432369f1b4839f4d79cbc3f3"><div class="ttname"><a href="structstmpe811__params__t.html#a0d9f93cf432369f1b4839f4d79cbc3f3">stmpe811_params_t::ymax</a></div><div class="ttdeci">uint16_t ymax</div><div class="ttdoc">Touch screen max Y position.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:104</div></div>
+<div class="ttc" id="astructstmpe811__params__t_html_abe1140013b75702c4a848045f990f2de"><div class="ttname"><a href="structstmpe811__params__t.html#abe1140013b75702c4a848045f990f2de">stmpe811_params_t::xyconv</a></div><div class="ttdeci">stmpe811_touch_conv_t xyconv</div><div class="ttdoc">Touch screen coordinates conversion, swapping is applied before mirroring.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:105</div></div>
+<div class="ttc" id="astructstmpe811__params__t_html_af60dbb6f4de39417b340857534fd5f17"><div class="ttname"><a href="structstmpe811__params__t.html#af60dbb6f4de39417b340857534fd5f17">stmpe811_params_t::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdoc">Device I2C address.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:100</div></div>
+<div class="ttc" id="astructstmpe811__params__t_html_af6de9cbebe6721f06e968771cf954854"><div class="ttname"><a href="structstmpe811__params__t.html#af6de9cbebe6721f06e968771cf954854">stmpe811_params_t::i2c</a></div><div class="ttdeci">i2c_t i2c</div><div class="ttdoc">I2C device which is used.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:99</div></div>
+<div class="ttc" id="astructstmpe811__params__t_html_af787d9fd15d2e2485e1545e1af14c9d9"><div class="ttname"><a href="structstmpe811__params__t.html#af787d9fd15d2e2485e1545e1af14c9d9">stmpe811_params_t::xmax</a></div><div class="ttdeci">uint16_t xmax</div><div class="ttdoc">Touch screen max X position.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:103</div></div>
+<div class="ttc" id="astructstmpe811__t_html"><div class="ttname"><a href="structstmpe811__t.html">stmpe811_t</a></div><div class="ttdoc">Device descriptor for the STMPE811 sensor.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:112</div></div>
+<div class="ttc" id="astructstmpe811__t_html_a00d4f44c016bd8fd3855788c3061596a"><div class="ttname"><a href="structstmpe811__t.html#a00d4f44c016bd8fd3855788c3061596a">stmpe811_t::cb</a></div><div class="ttdeci">stmpe811_event_cb_t cb</div><div class="ttdoc">Configured IRQ event callback.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:117</div></div>
+<div class="ttc" id="astructstmpe811__t_html_a1c9423ec917cb2c02d02b2bed3073aba"><div class="ttname"><a href="structstmpe811__t.html#a1c9423ec917cb2c02d02b2bed3073aba">stmpe811_t::prev_x</a></div><div class="ttdeci">uint16_t prev_x</div><div class="ttdoc">Previous X coordinate.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:119</div></div>
+<div class="ttc" id="astructstmpe811__t_html_a3a424dcd69d8c89221111c2b831ab246"><div class="ttname"><a href="structstmpe811__t.html#a3a424dcd69d8c89221111c2b831ab246">stmpe811_t::prev_y</a></div><div class="ttdeci">uint16_t prev_y</div><div class="ttdoc">Previous Y coordinate.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:120</div></div>
+<div class="ttc" id="astructstmpe811__t_html_a459587c3a8d10a562ea0ffa2f03da806"><div class="ttname"><a href="structstmpe811__t.html#a459587c3a8d10a562ea0ffa2f03da806">stmpe811_t::cb_arg</a></div><div class="ttdeci">void * cb_arg</div><div class="ttdoc">Extra argument for the callback.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:118</div></div>
+<div class="ttc" id="astructstmpe811__t_html_a65def88fac81cefeeb4c7d7008b3726d"><div class="ttname"><a href="structstmpe811__t.html#a65def88fac81cefeeb4c7d7008b3726d">stmpe811_t::params</a></div><div class="ttdeci">stmpe811_params_t params</div><div class="ttdoc">Device parameters.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:116</div></div>
+<div class="ttc" id="astructstmpe811__touch__position__t_html"><div class="ttname"><a href="structstmpe811__touch__position__t.html">stmpe811_touch_position_t</a></div><div class="ttdoc">Touch position structure.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:71</div></div>
+<div class="ttc" id="astructstmpe811__touch__position__t_html_a89d96f570f93a3ba9241f3257f2c45ef"><div class="ttname"><a href="structstmpe811__touch__position__t.html#a89d96f570f93a3ba9241f3257f2c45ef">stmpe811_touch_position_t::x</a></div><div class="ttdeci">uint16_t x</div><div class="ttdoc">X position.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:72</div></div>
+<div class="ttc" id="astructstmpe811__touch__position__t_html_ac8a7566a6722a433cd692eb7f683001b"><div class="ttname"><a href="structstmpe811__touch__position__t.html#ac8a7566a6722a433cd692eb7f683001b">stmpe811_touch_position_t::y</a></div><div class="ttdeci">uint16_t y</div><div class="ttdoc">Y position.</div><div class="ttdef"><b>Definition:</b> stmpe811.h:73</div></div>
+<div class="ttc" id="astructtouch__dev_html"><div class="ttname"><a href="structtouch__dev.html">touch_dev</a></div><div class="ttdoc">Generic type for a touch device.</div><div class="ttdef"><b>Definition:</b> touch_dev.h:116</div></div>
+<div class="ttc" id="asys_2include_2senml_2saul_8h_html"><div class="ttname"><a href="sys_2include_2senml_2saul_8h.html">saul.h</a></div><div class="ttdoc">Functionality for reading [S]ensor [A]ctuator [U]ber [L]ayer sensors as SenML.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="stmpe811_8h.html">stmpe811.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

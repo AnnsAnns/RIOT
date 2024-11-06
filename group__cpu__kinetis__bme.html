@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: Kinetis Bit Manipulation Engine (BME)</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__cpu__kinetis__bme.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Kinetis Bit Manipulation Engine (BME)<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__kinetis.html">NXP Kinetis</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Macros for using decorated memory accesses with the Bit Manipulation Engine available in Kinetis Cortex-M0+ devices. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:bme_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bme_8h.html">bme.h</a></td></tr>
+<tr class="memdesc:bme_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro definitions for the Kinetis Bit Manipulation Engine (BME) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga06145299a2769dfe171ac948a6c156c8"><td class="memItemLeft" align="right" valign="top"><a id="ga06145299a2769dfe171ac948a6c156c8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga06145299a2769dfe171ac948a6c156c8">BITBAND_FUNCTIONS_PROVIDED</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ga06145299a2769dfe171ac948a6c156c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell <a class="el" href="bit_8h.html" title="Bit access macros with bit-banding support for Cortex-M based CPUs.">bit.h</a> that we provide CPU specific bit manipulation functions. <br /></td></tr>
+<tr class="separator:ga06145299a2769dfe171ac948a6c156c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c5269009a5f7be415464a1b11543a27"><td class="memItemLeft" align="right" valign="top"><a id="ga6c5269009a5f7be415464a1b11543a27"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga6c5269009a5f7be415464a1b11543a27">BME_AND_MASK</a>&#160;&#160;&#160;(1 &lt;&lt; 26)</td></tr>
+<tr class="memdesc:ga6c5269009a5f7be415464a1b11543a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">AND decoration bitmask. <br /></td></tr>
+<tr class="separator:ga6c5269009a5f7be415464a1b11543a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34b703e728f49f0947f7bde6a138b883"><td class="memItemLeft" align="right" valign="top"><a id="ga34b703e728f49f0947f7bde6a138b883"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga34b703e728f49f0947f7bde6a138b883">BME_OR_MASK</a>&#160;&#160;&#160;(1 &lt;&lt; 27)</td></tr>
+<tr class="memdesc:ga34b703e728f49f0947f7bde6a138b883"><td class="mdescLeft">&#160;</td><td class="mdescRight">OR decoration bitmask. <br /></td></tr>
+<tr class="separator:ga34b703e728f49f0947f7bde6a138b883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae81f3a391e0f05c04d5e134f6a79d0ca"><td class="memItemLeft" align="right" valign="top"><a id="gae81f3a391e0f05c04d5e134f6a79d0ca"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#gae81f3a391e0f05c04d5e134f6a79d0ca">BME_XOR_MASK</a>&#160;&#160;&#160;(3 &lt;&lt; 26)</td></tr>
+<tr class="memdesc:gae81f3a391e0f05c04d5e134f6a79d0ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">XOR decoration bitmask. <br /></td></tr>
+<tr class="separator:gae81f3a391e0f05c04d5e134f6a79d0ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad780dfd08580952ca996dc3e2c729c1e"><td class="memItemLeft" align="right" valign="top"><a id="gad780dfd08580952ca996dc3e2c729c1e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#gad780dfd08580952ca996dc3e2c729c1e">BME_LAC1_MASK</a>(BIT)&#160;&#160;&#160;((1 &lt;&lt; 27) | ((BIT) &lt;&lt; 21))</td></tr>
+<tr class="memdesc:gad780dfd08580952ca996dc3e2c729c1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load-and-clear 1 bit. <br /></td></tr>
+<tr class="separator:gad780dfd08580952ca996dc3e2c729c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb3302ecd0c8a708f503d07392b68f97"><td class="memItemLeft" align="right" valign="top"><a id="gacb3302ecd0c8a708f503d07392b68f97"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#gacb3302ecd0c8a708f503d07392b68f97">BME_LAS1_MASK</a>(BIT)&#160;&#160;&#160;((3 &lt;&lt; 26) | ((BIT) &lt;&lt; 21))</td></tr>
+<tr class="memdesc:gacb3302ecd0c8a708f503d07392b68f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load-and-set 1 bit. <br /></td></tr>
+<tr class="separator:gacb3302ecd0c8a708f503d07392b68f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga24437b71b449d27ffdcdea6ee5fbd1ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga24437b71b449d27ffdcdea6ee5fbd1ac">BME_BF_MASK</a>(bit,  width)&#160;&#160;&#160;((1 &lt;&lt; 28) | ((bit) &lt;&lt; 23) | (((width) - 1 ) &lt;&lt; 19))</td></tr>
+<tr class="memdesc:ga24437b71b449d27ffdcdea6ee5fbd1ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit field extraction bitmask.  <a href="group__cpu__kinetis__bme.html#ga24437b71b449d27ffdcdea6ee5fbd1ac">More...</a><br /></td></tr>
+<tr class="separator:ga24437b71b449d27ffdcdea6ee5fbd1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga0b4fd914ea873c45a3afbb88a8a07592"><td class="memItemLeft" align="right" valign="top">static volatile void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga0b4fd914ea873c45a3afbb88a8a07592">bme_bf_addr</a> (volatile void *ptr, uintptr_t bit, uintptr_t width)</td></tr>
+<tr class="memdesc:ga0b4fd914ea873c45a3afbb88a8a07592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit field address macro.  <a href="group__cpu__kinetis__bme.html#ga0b4fd914ea873c45a3afbb88a8a07592">More...</a><br /></td></tr>
+<tr class="separator:ga0b4fd914ea873c45a3afbb88a8a07592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga08ccc4949c9324805059e8d7c4e32614"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga08ccc4949c9324805059e8d7c4e32614">bme_bitfield32</a> (volatile uint32_t *ptr, uint8_t bit, uint8_t width)</td></tr>
+<tr class="memdesc:ga08ccc4949c9324805059e8d7c4e32614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access a bitfield (32 bit load/store)  <a href="group__cpu__kinetis__bme.html#ga08ccc4949c9324805059e8d7c4e32614">More...</a><br /></td></tr>
+<tr class="separator:ga08ccc4949c9324805059e8d7c4e32614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab031b3216ed3e90d9f68a962b75c005c"><td class="memItemLeft" align="right" valign="top">static volatile uint16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#gab031b3216ed3e90d9f68a962b75c005c">bme_bitfield16</a> (volatile uint16_t *ptr, uint8_t bit, uint8_t width)</td></tr>
+<tr class="memdesc:gab031b3216ed3e90d9f68a962b75c005c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access a bitfield (16 bit load/store)  <a href="group__cpu__kinetis__bme.html#gab031b3216ed3e90d9f68a962b75c005c">More...</a><br /></td></tr>
+<tr class="separator:gab031b3216ed3e90d9f68a962b75c005c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff4b0a49363a4be931823347979c487c"><td class="memItemLeft" align="right" valign="top">static volatile uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#gaff4b0a49363a4be931823347979c487c">bme_bitfield8</a> (volatile uint8_t *ptr, uint8_t bit, uint8_t width)</td></tr>
+<tr class="memdesc:gaff4b0a49363a4be931823347979c487c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access a bitfield (8 bit load/store)  <a href="group__cpu__kinetis__bme.html#gaff4b0a49363a4be931823347979c487c">More...</a><br /></td></tr>
+<tr class="separator:gaff4b0a49363a4be931823347979c487c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6948507c7e8c7d511772fd621b3d1e70"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga6948507c7e8c7d511772fd621b3d1e70">bit_set32</a> (volatile uint32_t *ptr, uint8_t bit)</td></tr>
+<tr class="memdesc:ga6948507c7e8c7d511772fd621b3d1e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a single bit in the 32 bit word pointed to by <code>ptr</code>.  <a href="group__cpu__kinetis__bme.html#ga6948507c7e8c7d511772fd621b3d1e70">More...</a><br /></td></tr>
+<tr class="separator:ga6948507c7e8c7d511772fd621b3d1e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga270b85554e86dae115c1fa102431d8a2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga270b85554e86dae115c1fa102431d8a2">bit_set16</a> (volatile uint16_t *ptr, uint8_t bit)</td></tr>
+<tr class="memdesc:ga270b85554e86dae115c1fa102431d8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a single bit in the 16 bit word pointed to by <code>ptr</code>.  <a href="group__cpu__kinetis__bme.html#ga270b85554e86dae115c1fa102431d8a2">More...</a><br /></td></tr>
+<tr class="separator:ga270b85554e86dae115c1fa102431d8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3e8ece38e5528d3a78a04a9497381720"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga3e8ece38e5528d3a78a04a9497381720">bit_set8</a> (volatile uint8_t *ptr, uint8_t bit)</td></tr>
+<tr class="memdesc:ga3e8ece38e5528d3a78a04a9497381720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a single bit in the 8 bit byte pointed to by <code>ptr</code>.  <a href="group__cpu__kinetis__bme.html#ga3e8ece38e5528d3a78a04a9497381720">More...</a><br /></td></tr>
+<tr class="separator:ga3e8ece38e5528d3a78a04a9497381720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37a2f727e14b66792ce533119b764bc4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga37a2f727e14b66792ce533119b764bc4">bit_clear32</a> (volatile uint32_t *ptr, uint8_t bit)</td></tr>
+<tr class="memdesc:ga37a2f727e14b66792ce533119b764bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a single bit in the 32 bit word pointed to by <code>ptr</code>.  <a href="group__cpu__kinetis__bme.html#ga37a2f727e14b66792ce533119b764bc4">More...</a><br /></td></tr>
+<tr class="separator:ga37a2f727e14b66792ce533119b764bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac698c3aba1ec7262a017ef4ffc3f8c2a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#gac698c3aba1ec7262a017ef4ffc3f8c2a">bit_clear16</a> (volatile uint16_t *ptr, uint8_t bit)</td></tr>
+<tr class="memdesc:gac698c3aba1ec7262a017ef4ffc3f8c2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a single bit in the 16 bit word pointed to by <code>ptr</code>.  <a href="group__cpu__kinetis__bme.html#gac698c3aba1ec7262a017ef4ffc3f8c2a">More...</a><br /></td></tr>
+<tr class="separator:gac698c3aba1ec7262a017ef4ffc3f8c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga060bdc450aab2ab10da5a7a2acddd769"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cpu__kinetis__bme.html#ga060bdc450aab2ab10da5a7a2acddd769">bit_clear8</a> (volatile uint8_t *ptr, uint8_t bit)</td></tr>
+<tr class="memdesc:ga060bdc450aab2ab10da5a7a2acddd769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a single bit in the 8 bit byte pointed to by <code>ptr</code>.  <a href="group__cpu__kinetis__bme.html#ga060bdc450aab2ab10da5a7a2acddd769">More...</a><br /></td></tr>
+<tr class="separator:ga060bdc450aab2ab10da5a7a2acddd769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga24437b71b449d27ffdcdea6ee5fbd1ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga24437b71b449d27ffdcdea6ee5fbd1ac">&#9670;&nbsp;</a></span>BME_BF_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BME_BF_MASK</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">bit, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">width&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((1 &lt;&lt; 28) | ((bit) &lt;&lt; 23) | (((width) - 1 ) &lt;&lt; 19))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bit field extraction bitmask. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bit</td><td>LSB of the bitfield within the word/halfword/byte </td></tr>
+    <tr><td class="paramname">width</td><td>Number of bits to extract </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gac698c3aba1ec7262a017ef4ffc3f8c2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac698c3aba1ec7262a017ef4ffc3f8c2a">&#9670;&nbsp;</a></span>bit_clear16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void bit_clear16 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint16_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear a single bit in the 16 bit word pointed to by <code>ptr</code>. </p>
+<p>The effect is the same as for the following snippet:</p>
+<div class="fragment"><div class="line">*ptr &amp;= ~(1 &lt;&lt; bit);</div>
+</div><!-- fragment --><p>There is a read-modify-write cycle occurring within the core, but this cycle is atomic and can not be disrupted by IRQs</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to target word </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>bit number within the word </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga37a2f727e14b66792ce533119b764bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga37a2f727e14b66792ce533119b764bc4">&#9670;&nbsp;</a></span>bit_clear32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void bit_clear32 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint32_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear a single bit in the 32 bit word pointed to by <code>ptr</code>. </p>
+<p>The effect is the same as for the following snippet:</p>
+<div class="fragment"><div class="line">*ptr &amp;= ~(1 &lt;&lt; bit);</div>
+</div><!-- fragment --><p>There is a read-modify-write cycle occurring within the core, but this cycle is atomic and can not be disrupted by IRQs</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to target word </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>bit number within the word </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga060bdc450aab2ab10da5a7a2acddd769"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga060bdc450aab2ab10da5a7a2acddd769">&#9670;&nbsp;</a></span>bit_clear8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void bit_clear8 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint8_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear a single bit in the 8 bit byte pointed to by <code>ptr</code>. </p>
+<p>The effect is the same as for the following snippet:</p>
+<div class="fragment"><div class="line">*ptr &amp;= ~(1 &lt;&lt; bit);</div>
+</div><!-- fragment --><p>There is a read-modify-write cycle occurring within the core, but this cycle is atomic and can not be disrupted by IRQs</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to target byte </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>bit number within the byte </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga270b85554e86dae115c1fa102431d8a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga270b85554e86dae115c1fa102431d8a2">&#9670;&nbsp;</a></span>bit_set16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void bit_set16 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint16_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a single bit in the 16 bit word pointed to by <code>ptr</code>. </p>
+<p>The effect is the same as for the following snippet:</p>
+<div class="fragment"><div class="line">*ptr |= (1 &lt;&lt; bit);</div>
+</div><!-- fragment --><p>There is a read-modify-write cycle occurring within the core, but this cycle is atomic and can not be disrupted by IRQs</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to target word </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>bit number within the word </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6948507c7e8c7d511772fd621b3d1e70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6948507c7e8c7d511772fd621b3d1e70">&#9670;&nbsp;</a></span>bit_set32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void bit_set32 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint32_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a single bit in the 32 bit word pointed to by <code>ptr</code>. </p>
+<p>The effect is the same as for the following snippet:</p>
+<div class="fragment"><div class="line">*ptr |= (1 &lt;&lt; bit);</div>
+</div><!-- fragment --><p>There is a read-modify-write cycle occurring within the core, but this cycle is atomic and can not be disrupted by IRQs</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to target word </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>bit number within the word </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga3e8ece38e5528d3a78a04a9497381720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3e8ece38e5528d3a78a04a9497381720">&#9670;&nbsp;</a></span>bit_set8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void bit_set8 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint8_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a single bit in the 8 bit byte pointed to by <code>ptr</code>. </p>
+<p>The effect is the same as for the following snippet:</p>
+<div class="fragment"><div class="line">*ptr |= (1 &lt;&lt; bit);</div>
+</div><!-- fragment --><p>There is a read-modify-write cycle occurring within the core, but this cycle is atomic and can not be disrupted by IRQs</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to target byte </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>bit number within the byte </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0b4fd914ea873c45a3afbb88a8a07592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0b4fd914ea873c45a3afbb88a8a07592">&#9670;&nbsp;</a></span>bme_bf_addr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static volatile void* bme_bf_addr </td>
+          <td>(</td>
+          <td class="paramtype">volatile void *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uintptr_t&#160;</td>
+          <td class="paramname"><em>bit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uintptr_t&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bit field address macro. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>The target address must lie within a part of the peripheral address space 0x40000000 - 0x40070000</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Pointer to target register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>Location of the LSB of the bitfield within the register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Width of the the bitfield, in bits</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bitfield address as an uintptr_t </dd></dl>
+
+</div>
+</div>
+<a id="gab031b3216ed3e90d9f68a962b75c005c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab031b3216ed3e90d9f68a962b75c005c">&#9670;&nbsp;</a></span>bme_bitfield16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static volatile uint16_t* bme_bitfield16 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint16_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access a bitfield (16 bit load/store) </p>
+<p>This macro can be used both for store <code>(*bme_bitfield16(xxx) = y)</code> and load <code>(y = *bme_bitfield16(ptr, bit))</code></p>
+<dl class="section pre"><dt>Precondition</dt><dd>The target address must lie within a part of the peripheral address space 0x40000000 - 0x40070000</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Pointer to target register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>Location of the LSB of the bitfield within the register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Width of the the bitfield, in bits</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bitfield extracted as a (modifiable) lvalue </dd></dl>
+
+</div>
+</div>
+<a id="ga08ccc4949c9324805059e8d7c4e32614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga08ccc4949c9324805059e8d7c4e32614">&#9670;&nbsp;</a></span>bme_bitfield32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static volatile uint32_t* bme_bitfield32 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint32_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access a bitfield (32 bit load/store) </p>
+<p>This macro can be used both for store <code>(*bme_bitfield32(xxx) = y)</code> and load <code>(y = *bme_bitfield32(ptr, bit))</code></p>
+<dl class="section pre"><dt>Precondition</dt><dd>The target address must lie within a part of the peripheral address space 0x40000000 - 0x40070000</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Pointer to target register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>Location of the LSB of the bitfield within the register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Width of the the bitfield, in bits</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bitfield extracted as a (modifiable) lvalue </dd></dl>
+
+</div>
+</div>
+<a id="gaff4b0a49363a4be931823347979c487c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff4b0a49363a4be931823347979c487c">&#9670;&nbsp;</a></span>bme_bitfield8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static volatile uint8_t* bme_bitfield8 </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint8_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>bit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access a bitfield (8 bit load/store) </p>
+<p>This macro can be used both for store <code>(*bme_bitfield8(xxx) = y)</code> and load <code>(y = *bme_bitfield8(ptr, bit))</code></p>
+<dl class="section pre"><dt>Precondition</dt><dd>The target address must lie within a part of the peripheral address space 0x40000000 - 0x40070000</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Pointer to target register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bit</td><td>Location of the LSB of the bitfield within the register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Width of the the bitfield, in bits</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bitfield extracted as a (modifiable) lvalue </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

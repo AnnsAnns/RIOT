@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/vl6180x.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('vl6180x_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">vl6180x.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="vl6180x_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2021 Gunar Schorcht</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="preprocessor">#ifndef VL6180X_H</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="preprocessor">#define VL6180X_H</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160; </div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;{</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160; </div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160; </div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160; </div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="vl6180x__regs_8h.html">vl6180x_regs.h</a>&quot;</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga073f17f7fd9eaee55465373cd11c1eb7">  409</a></span>&#160;<span class="preprocessor">#define VL6180X_I2C_ADDR    (0x29)  </span></div>
+<div class="line"><a name="l00414"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gaeef583aa05ce818cc70d29a056989b25">  414</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00415"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7f6affab50fad3822de4282756dea121">  415</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7f6affab50fad3822de4282756dea121">VL6180X_OK</a>              = 0,    </div>
+<div class="line"><a name="l00416"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25ac8d11d6d78c7381342f84dd0ba813e53">  416</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25ac8d11d6d78c7381342f84dd0ba813e53">VL6180X_ERROR_I2C</a>       = 1,    </div>
+<div class="line"><a name="l00417"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a61e428d8857ec8a0b0218edd9518b73c">  417</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a61e428d8857ec8a0b0218edd9518b73c">VL6180X_ERROR_WRONG_ID</a>  = 2,    </div>
+<div class="line"><a name="l00418"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a815c7accebbe4235c7160cc814eae1d7">  418</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a815c7accebbe4235c7160cc814eae1d7">VL6180X_ERROR_NO_PIN</a>    = 3,    </div>
+<div class="line"><a name="l00419"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a360404e7faa85e16b7842f0035e08229">  419</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a360404e7faa85e16b7842f0035e08229">VL6180X_ERROR_NO_DATA</a>   = 4,    </div>
+<div class="line"><a name="l00420"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7e32432f2b999c80c3683c02afe5d578">  420</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7e32432f2b999c80c3683c02afe5d578">VL6180X_ERROR_RNG</a>       = 5,    </div>
+<div class="line"><a name="l00421"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a6b07aea008982c578ba2b76d5bd5f82a">  421</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a6b07aea008982c578ba2b76d5bd5f82a">VL6180X_ERROR_ALS</a>       = 6,    </div>
+<div class="line"><a name="l00422"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a33a04e3c71bf5225a814a000500ff985">  422</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a33a04e3c71bf5225a814a000500ff985">VL6180X_ERROR_NOT_READY</a> = 7,    </div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;} <a class="code" href="group__drivers__vl6180x.html#gaeef583aa05ce818cc70d29a056989b25">vl6180x_error_t</a>;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160; </div>
+<div class="line"><a name="l00428"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">  428</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00429"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275abb4766eade555f1c832a5d9f89a5a3cd">  429</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275abb4766eade555f1c832a5d9f89a5a3cd">VL6180X_ALS_GAIN_20</a>   = 0,  </div>
+<div class="line"><a name="l00430"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ad102aa3ece443847a43dbb7f5eed47de">  430</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ad102aa3ece443847a43dbb7f5eed47de">VL6180X_ALS_GAIN_10</a>   = 1,  </div>
+<div class="line"><a name="l00431"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a1722fece787c98dbe56224b0af4a6938">  431</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a1722fece787c98dbe56224b0af4a6938">VL6180X_ALS_GAIN_5</a>    = 2,  </div>
+<div class="line"><a name="l00432"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a18c0beb22b85c171c728608b8471fca3">  432</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a18c0beb22b85c171c728608b8471fca3">VL6180X_ALS_GAIN_2_5</a>  = 3,  </div>
+<div class="line"><a name="l00433"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a360ec43a4a5affa52e4fb59aa71f071d">  433</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a360ec43a4a5affa52e4fb59aa71f071d">VL6180X_ALS_GAIN_1_67</a> = 4,  </div>
+<div class="line"><a name="l00434"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ae73d105cf26af74bd0f65517b51f0a9a">  434</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ae73d105cf26af74bd0f65517b51f0a9a">VL6180X_ALS_GAIN_1_25</a> = 5,  </div>
+<div class="line"><a name="l00435"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a30dc67d0dcf42ae7375ddd926bd7b1df">  435</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a30dc67d0dcf42ae7375ddd926bd7b1df">VL6180X_ALS_GAIN_1</a>    = 6,  </div>
+<div class="line"><a name="l00436"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a516c2b27941ff89cdeca19411641b652">  436</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a516c2b27941ff89cdeca19411641b652">VL6180X_ALS_GAIN_40</a>   = 7,  </div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;} <a class="code" href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">vl6180x_als_gain_t</a>;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160; </div>
+<div class="line"><a name="l00442"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">  442</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00443"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eaf529b2e7c6f468dae80042b0348774ba">  443</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eaf529b2e7c6f468dae80042b0348774ba">VL6180X_RNG_OK</a> = 0,                     </div>
+<div class="line"><a name="l00444"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eac3af1ef5840e1c5950df30a78f9d039e">  444</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eac3af1ef5840e1c5950df30a78f9d039e">VL6180X_RNG_VCSEL_CONT_TEST</a> = 1,        </div>
+<div class="line"><a name="l00445"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7325a5f62800cd0385776c4e3339266a">  445</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7325a5f62800cd0385776c4e3339266a">VL6180X_RNG_VCSEL_WD_TEST</a> = 2,          </div>
+<div class="line"><a name="l00446"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae11d525e398576504ae072d9422ea11d">  446</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae11d525e398576504ae072d9422ea11d">VL6180X_RNG_VCSEL_WD</a> = 3,               </div>
+<div class="line"><a name="l00447"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7538a1d0a68a76cd12e6e2f28a417b72">  447</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7538a1d0a68a76cd12e6e2f28a417b72">VL6180X_RNG_PLL1_LOCK</a> = 4,              </div>
+<div class="line"><a name="l00448"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae094e64a6b04101812c390ebb0a0fbfa">  448</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae094e64a6b04101812c390ebb0a0fbfa">VL6180X_RNG_PLL2_LOCK</a> = 5,              </div>
+<div class="line"><a name="l00449"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea1bd990a8309bceef123f087a0d694147">  449</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea1bd990a8309bceef123f087a0d694147">VL6180X_RNG_EARLY_CONV_EST</a> = 6,         </div>
+<div class="line"><a name="l00450"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea890b71c1e02d0856a371c96f22f11bbd">  450</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea890b71c1e02d0856a371c96f22f11bbd">VL6180X_RNG_MAX_CONV</a> = 7,               </div>
+<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea244e0dbd34747e92066ff11cbefab84b">  451</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea244e0dbd34747e92066ff11cbefab84b">VL6180X_RNG_NO_TARGET</a> = 8,              </div>
+<div class="line"><a name="l00452"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eab95933fd2c0beee955cfd20e93c8e841">  452</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eab95933fd2c0beee955cfd20e93c8e841">VL6180X_RNG_MAX_SNR</a> = 11,               </div>
+<div class="line"><a name="l00453"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eafab42d5dc696918491c1ed77530b2fae">  453</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eafab42d5dc696918491c1ed77530b2fae">VL6180X_RNG_RAW_ALGO_UNDERFLOW</a> = 12,    </div>
+<div class="line"><a name="l00454"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7232d39365a099ee1725eaaecc698b7a">  454</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7232d39365a099ee1725eaaecc698b7a">VL6180X_RNG_RAW_ALGO_OVERFLOW</a> = 13,     </div>
+<div class="line"><a name="l00455"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea000b6386e9838228b41ca781f0a60a89">  455</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea000b6386e9838228b41ca781f0a60a89">VL6180X_RNG_ALGO_UNDERFLOW</a> = 14,        </div>
+<div class="line"><a name="l00456"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea21749fc9a65249a45114ffe69fc1171c">  456</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea21749fc9a65249a45114ffe69fc1171c">VL6180X_RNG_ALGO_OVERFLOW</a> = 15,         </div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;} <a class="code" href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">vl6180x_rng_status_t</a>;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160; </div>
+<div class="line"><a name="l00462"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">  462</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00463"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940ae2b103656afee5b5e09922be9948b1c4">  463</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940ae2b103656afee5b5e09922be9948b1c4">VL6180X_ALS_OK</a> = 0,                    </div>
+<div class="line"><a name="l00464"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a5f244a70dff3efb697060ebd74f6f7af">  464</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a5f244a70dff3efb697060ebd74f6f7af">VL6180X_ALS_OVERFLOW</a> = 1,              </div>
+<div class="line"><a name="l00465"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a8eaffb0eee7d6d8a7d0ac28ef5bf7144">  465</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a8eaffb0eee7d6d8a7d0ac28ef5bf7144">VL6180X_ALS_UNDERFLOW</a> = 2,             </div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;} <a class="code" href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">vl6180x_als_status_t</a>;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160; </div>
+<div class="line"><a name="l00485"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga874149548c7fa6a80cca96600ddad635">  485</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00486"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635aa1da06268b82284f56c46a567b27cf36">  486</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635aa1da06268b82284f56c46a567b27cf36">VL6180X_INT_NONE</a> = 0, </div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a1a15e75f9af5314f519dce07c3ce6b94">VL6180X_INT_LOW</a>  = 1, </div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a778f44971d117f62cd3ff6d89de72c42">VL6180X_INT_HIGH</a> = 2, </div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635aa7c6f823016999877eaa91bc0f497217">VL6180X_INT_OUT</a>  = 3, </div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a45c7fc526e0383910d95e8d0de7757cc">VL6180X_INT_DRDY</a> = 4, </div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;} <a class="code" href="group__drivers__vl6180x.html#ga874149548c7fa6a80cca96600ddad635">vl6180x_int_mode_t</a>;</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160; </div>
+<div class="line"><a name="l00512"></a><span class="lineno"><a class="line" href="structvl6180x__int__config__t.html">  512</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_RNG) || DOXYGEN</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno"><a class="line" href="structvl6180x__int__config__t.html#a9151b1c64b14667dfd111a399c2b6301">  514</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ga874149548c7fa6a80cca96600ddad635">vl6180x_int_mode_t</a> <a class="code" href="structvl6180x__int__config__t.html#a9151b1c64b14667dfd111a399c2b6301">rng_int</a>; </div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_ALS) || DOXYGEN</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno"><a class="line" href="structvl6180x__int__config__t.html#a76822625931d04b30e8bef40cc942fe4">  517</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ga874149548c7fa6a80cca96600ddad635">vl6180x_int_mode_t</a> <a class="code" href="structvl6180x__int__config__t.html#a76822625931d04b30e8bef40cc942fe4">als_int</a>; </div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;} <a class="code" href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a>;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160; </div>
+<div class="line"><a name="l00535"></a><span class="lineno"><a class="line" href="structvl6180x__int__thresh__t.html">  535</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_RNG) || DOXYGEN</span></div>
+<div class="line"><a name="l00537"></a><span class="lineno"><a class="line" href="structvl6180x__int__thresh__t.html#a15e187293edc9c1eff0fa9fe08f30157">  537</a></span>&#160;    uint8_t <a class="code" href="structvl6180x__int__thresh__t.html#a15e187293edc9c1eff0fa9fe08f30157">rng_high</a>;   </div>
+<div class="line"><a name="l00538"></a><span class="lineno"><a class="line" href="structvl6180x__int__thresh__t.html#a3bc8654b6121521d3953d80f26bc2ab3">  538</a></span>&#160;    uint8_t <a class="code" href="structvl6180x__int__thresh__t.html#a3bc8654b6121521d3953d80f26bc2ab3">rng_low</a>;    </div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_ALS) || DOXYGEN</span></div>
+<div class="line"><a name="l00541"></a><span class="lineno"><a class="line" href="structvl6180x__int__thresh__t.html#aaeb8802b48baf545e12914e0c85996f7">  541</a></span>&#160;    uint16_t <a class="code" href="structvl6180x__int__thresh__t.html#aaeb8802b48baf545e12914e0c85996f7">als_high</a>;  </div>
+<div class="line"><a name="l00542"></a><span class="lineno"><a class="line" href="structvl6180x__int__thresh__t.html#af2488e4eaba584b934a6e3d3ccd81afe">  542</a></span>&#160;    uint16_t <a class="code" href="structvl6180x__int__thresh__t.html#af2488e4eaba584b934a6e3d3ccd81afe">als_low</a>;   </div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;} <a class="code" href="structvl6180x__int__thresh__t.html">vl6180x_int_thresh_t</a>;</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
+<div class="line"><a name="l00549"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html">  549</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00554"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#aed283ac707d68ef0a49a3ae1fccc3dd2">  554</a></span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="structvl6180x__params__t.html#aed283ac707d68ef0a49a3ae1fccc3dd2">i2c_dev</a>;        </div>
+<div class="line"><a name="l00555"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#a8ba895c1dfcd29928d07b7d4c92b7ee8">  555</a></span>&#160;    uint8_t  <a class="code" href="structvl6180x__params__t.html#a8ba895c1dfcd29928d07b7d4c92b7ee8">i2c_addr</a>;       </div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_SHUTDOWN) || DOXYGEN</span></div>
+<div class="line"><a name="l00558"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#a156e0a45977d503f68352fd8844253fc">  558</a></span>&#160;    gpio_t   <a class="code" href="structvl6180x__params__t.html#a156e0a45977d503f68352fd8844253fc">shutdown_pin</a>;  </div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_SHUTDOWN) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160; </div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_IRQ) || DOXYGEN</span></div>
+<div class="line"><a name="l00562"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#ad23f825a687c48778d24133ca817104e">  562</a></span>&#160;    gpio_t               <a class="code" href="structvl6180x__params__t.html#ad23f825a687c48778d24133ca817104e">int_pin</a>;     </div>
+<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#a41e46006d9985bc9bdd0af18aff5cef5">  563</a></span>&#160;    <a class="code" href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a> <a class="code" href="structvl6180x__params__t.html#a41e46006d9985bc9bdd0af18aff5cef5">int_cfg</a>;     </div>
+<div class="line"><a name="l00564"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#ac5293d5209b3b68e23aa7c4b5e04d244">  564</a></span>&#160;    <a class="code" href="structvl6180x__int__thresh__t.html">vl6180x_int_thresh_t</a> <a class="code" href="structvl6180x__params__t.html#ac5293d5209b3b68e23aa7c4b5e04d244">int_thresh</a>;  </div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_IRQ) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160; </div>
+<div class="line"><a name="l00588"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#aa3331bdbe9ffead1999020d9fdef4f9a">  588</a></span>&#160;    uint8_t <a class="code" href="structvl6180x__params__t.html#aa3331bdbe9ffead1999020d9fdef4f9a">period</a>;</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160; </div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_RNG) || DOXYGEN</span></div>
+<div class="line"><a name="l00595"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#a41591bd06ae590008cea1ca565be2f71">  595</a></span>&#160;    uint8_t <a class="code" href="structvl6180x__params__t.html#a41591bd06ae590008cea1ca565be2f71">rng_max_time</a>;  </div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_RNG) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160; </div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_ALS) || DOXYGEN</span></div>
+<div class="line"><a name="l00606"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#a0aa0035dda5095061a43b31e5f6370f5">  606</a></span>&#160;    uint16_t <a class="code" href="structvl6180x__params__t.html#a0aa0035dda5095061a43b31e5f6370f5">als_int_time</a>; </div>
+<div class="line"><a name="l00608"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#a651f03c1c10e5178f1a7c27cd283c8ef">  608</a></span>&#160;    uint16_t <a class="code" href="structvl6180x__params__t.html#a651f03c1c10e5178f1a7c27cd283c8ef">als_lux_res</a>;  </div>
+<div class="line"><a name="l00611"></a><span class="lineno"><a class="line" href="structvl6180x__params__t.html#ab306b1a7590e6929a3a78b542d4ff040">  611</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">vl6180x_als_gain_t</a> <a class="code" href="structvl6180x__params__t.html#ab306b1a7590e6929a3a78b542d4ff040">als_gain</a>; </div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_ALS) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160; </div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;} <a class="code" href="structvl6180x__params__t.html">vl6180x_params_t</a>;</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160; </div>
+<div class="line"><a name="l00621"></a><span class="lineno"><a class="line" href="structvl6180x__t.html">  621</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160; </div>
+<div class="line"><a name="l00623"></a><span class="lineno"><a class="line" href="structvl6180x__t.html#a58a7845d128599c5c1b1a11138f73bf2">  623</a></span>&#160;    <a class="code" href="structvl6180x__params__t.html">vl6180x_params_t</a> <a class="code" href="structvl6180x__t.html#a58a7845d128599c5c1b1a11138f73bf2">params</a>;  </div>
+<div class="line"><a name="l00624"></a><span class="lineno"><a class="line" href="structvl6180x__t.html#a6c08663d42a5a291759e8d7b291f5a17">  624</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structvl6180x__t.html#a6c08663d42a5a291759e8d7b291f5a17">cont_meas</a>;           </div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_RNG) || DOXYGEN</span></div>
+<div class="line"><a name="l00626"></a><span class="lineno"><a class="line" href="structvl6180x__t.html#a2f2953ba65eb9582f55b878c9ee349c5">  626</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">vl6180x_rng_status_t</a> <a class="code" href="structvl6180x__t.html#a2f2953ba65eb9582f55b878c9ee349c5">rng_status</a>; </div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_RNG) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_ALS) || DOXYGEN</span></div>
+<div class="line"><a name="l00629"></a><span class="lineno"><a class="line" href="structvl6180x__t.html#a27928cdf197b38378943f8f98cb0b0ab">  629</a></span>&#160;    <a class="code" href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">vl6180x_als_status_t</a> <a class="code" href="structvl6180x__t.html#a27928cdf197b38378943f8f98cb0b0ab">als_status</a>; </div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_ALS) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;} <a class="code" href="structvl6180x__t.html">vl6180x_t</a>;</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160; </div>
+<div class="line"><a name="l00653"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gaee994b4e0d657f6504b8ecb779843977">  653</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#gaee994b4e0d657f6504b8ecb779843977">vl6180x_init</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structvl6180x__params__t.html">vl6180x_params_t</a> *params);</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160; </div>
+<div class="line"><a name="l00675"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga36daffc23638118062efda0aacc7564e">  675</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga36daffc23638118062efda0aacc7564e">vl6180x_start_cont</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160; </div>
+<div class="line"><a name="l00695"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga4567388bb1fcd88d01314d3a5da41291">  695</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga4567388bb1fcd88d01314d3a5da41291">vl6180x_stop_cont</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160; </div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_RNG) || DOXYGEN</span></div>
+<div class="line"><a name="l00712"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gaec9a64cf95727d24706d55c7977c432c">  712</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#gaec9a64cf95727d24706d55c7977c432c">vl6180x_rng_data_ready</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; </div>
+<div class="line"><a name="l00735"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga04d126d28616bb47a0bed098d930c1d7">  735</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga04d126d28616bb47a0bed098d930c1d7">vl6180x_rng_read</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint8_t *mm);</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160; </div>
+<div class="line"><a name="l00745"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga0bf5eaf912925fa7106b693410f150ee">  745</a></span>&#160;<a class="code" href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">vl6180x_rng_status_t</a> <a class="code" href="group__drivers__vl6180x.html#ga0bf5eaf912925fa7106b693410f150ee">vl6180x_rng_status</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160; </div>
+<div class="line"><a name="l00760"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gab36ea67b4f669e2e82c4edd510caf6bd">  760</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#gab36ea67b4f669e2e82c4edd510caf6bd">vl6180x_rng_start_single</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160; </div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_CONFIG) || DOXYGEN</span></div>
+<div class="line"><a name="l00793"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gab19e36e6463c24128182f86fe04fdb09">  793</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#gab19e36e6463c24128182f86fe04fdb09">vl6180x_rng_config</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint8_t period, uint8_t max_time);</div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160; </div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_CONFIG) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_RNG) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160; </div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_ALS) || DOXYGEN</span></div>
+<div class="line"><a name="l00811"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga3c97236bab4af4fca7a2e5ba6f8e13d0">  811</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga3c97236bab4af4fca7a2e5ba6f8e13d0">vl6180x_als_data_ready</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160; </div>
+<div class="line"><a name="l00845"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga794a9ed589a84d731dcba0dfb60f4bfd">  845</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga794a9ed589a84d731dcba0dfb60f4bfd">vl6180x_als_read</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint16_t *raw, uint16_t *lux);</div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160; </div>
+<div class="line"><a name="l00855"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga4406e23b03d53454c097d09a8eb3957a">  855</a></span>&#160;<a class="code" href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">vl6180x_als_status_t</a> <a class="code" href="group__drivers__vl6180x.html#ga4406e23b03d53454c097d09a8eb3957a">vl6180x_als_status</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160; </div>
+<div class="line"><a name="l00870"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga856a14eee3d85833d184d9d1627d82f0">  870</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga856a14eee3d85833d184d9d1627d82f0">vl6180x_als_start_single</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160; </div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_CONFIG) || DOXYGEN</span></div>
+<div class="line"><a name="l00904"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gaf8b06aca582804624d3b46d4566e9e9a">  904</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#gaf8b06aca582804624d3b46d4566e9e9a">vl6180x_als_config</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint8_t period, uint8_t int_time,</div>
+<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;                                       <a class="code" href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">vl6180x_als_gain_t</a> gain);</div>
+<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160; </div>
+<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_CONFIG) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_ALS) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160; </div>
+<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_SHUTDOWN) || DOXYGEN</span></div>
+<div class="line"><a name="l00926"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gaf9985c866fb3a2269a892dac0deae36b">  926</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#gaf9985c866fb3a2269a892dac0deae36b">vl6180x_power_down</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160; </div>
+<div class="line"><a name="l00943"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga84fcdfbc772be9c72fa09d0b28aac4f1">  943</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga84fcdfbc772be9c72fa09d0b28aac4f1">vl6180x_power_up</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev);</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160; </div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_SHUTDOWN) || DOXYGEN  */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160; </div>
+<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_IRQ) || DOXYGEN</span></div>
+<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160; </div>
+<div class="line"><a name="l00979"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga84c03e22d383cf539eb347b4766fbd12">  979</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga84c03e22d383cf539eb347b4766fbd12">vl6180x_int_wait</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, <a class="code" href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a> *src);</div>
+<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160; </div>
+<div class="line"><a name="l01004"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga0d6047d9acfb6a16fd8034b965c859ab"> 1004</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga0d6047d9acfb6a16fd8034b965c859ab">vl6180x_int_enable</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, <a class="code" href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a> mode);</div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160; </div>
+<div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;<span class="preprocessor">#if IS_USED(MODULE_VL6180X_CONFIG) || DOXYGEN</span></div>
+<div class="line"><a name="l01021"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga3493c4777cea820dbf64e709265c95fd"> 1021</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga3493c4777cea820dbf64e709265c95fd">vl6180x_int_config</a>(<a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev, <a class="code" href="structvl6180x__int__thresh__t.html">vl6180x_int_thresh_t</a> thresh);</div>
+<div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160; </div>
+<div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_CONFIG) || DOXYGEN  */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IS_USED(MODULE_VL6180X_IRQ) || DOXYGEN */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160; </div>
+<div class="line"><a name="l01048"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#gac107470f68ea711cf0f65229a6b74a03"> 1048</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#gac107470f68ea711cf0f65229a6b74a03">vl6180x_reg_write</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev,</div>
+<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;                      uint16_t reg, <span class="keyword">const</span> uint8_t *data, uint8_t len);</div>
+<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160; </div>
+<div class="line"><a name="l01068"></a><span class="lineno"><a class="line" href="group__drivers__vl6180x.html#ga0df80d924d4a6afdc89d5409dd8a28a4"> 1068</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__vl6180x.html#ga0df80d924d4a6afdc89d5409dd8a28a4">vl6180x_reg_read</a>(<span class="keyword">const</span> <a class="code" href="structvl6180x__t.html">vl6180x_t</a> *dev,</div>
+<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;                     uint16_t reg, uint8_t *data, uint8_t len);</div>
+<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;}</div>
+<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160; </div>
+<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* VL6180X_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga04d126d28616bb47a0bed098d930c1d7"><div class="ttname"><a href="group__drivers__vl6180x.html#ga04d126d28616bb47a0bed098d930c1d7">vl6180x_rng_read</a></div><div class="ttdeci">int vl6180x_rng_read(vl6180x_t *dev, uint8_t *mm)</div><div class="ttdoc">Read one ranging data sample in mm.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga0bf5eaf912925fa7106b693410f150ee"><div class="ttname"><a href="group__drivers__vl6180x.html#ga0bf5eaf912925fa7106b693410f150ee">vl6180x_rng_status</a></div><div class="ttdeci">vl6180x_rng_status_t vl6180x_rng_status(const vl6180x_t *dev)</div><div class="ttdoc">Get status of last range measurement.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga0d6047d9acfb6a16fd8034b965c859ab"><div class="ttname"><a href="group__drivers__vl6180x.html#ga0d6047d9acfb6a16fd8034b965c859ab">vl6180x_int_enable</a></div><div class="ttdeci">int vl6180x_int_enable(vl6180x_t *dev, vl6180x_int_config_t mode)</div><div class="ttdoc">Enable and disable interrupts.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga0df80d924d4a6afdc89d5409dd8a28a4"><div class="ttname"><a href="group__drivers__vl6180x.html#ga0df80d924d4a6afdc89d5409dd8a28a4">vl6180x_reg_read</a></div><div class="ttdeci">int vl6180x_reg_read(const vl6180x_t *dev, uint16_t reg, uint8_t *data, uint8_t len)</div><div class="ttdoc">Direct read from register.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga2eadfeaf1f86a23885ef13eaa6885940"><div class="ttname"><a href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">vl6180x_als_status_t</a></div><div class="ttdeci">vl6180x_als_status_t</div><div class="ttdoc">Ambient light sensing (ALS) status.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:462</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga3493c4777cea820dbf64e709265c95fd"><div class="ttname"><a href="group__drivers__vl6180x.html#ga3493c4777cea820dbf64e709265c95fd">vl6180x_int_config</a></div><div class="ttdeci">int vl6180x_int_config(vl6180x_t *dev, vl6180x_int_thresh_t thresh)</div><div class="ttdoc">Configure thresholds for event interrupts at runtime.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga36daffc23638118062efda0aacc7564e"><div class="ttname"><a href="group__drivers__vl6180x.html#ga36daffc23638118062efda0aacc7564e">vl6180x_start_cont</a></div><div class="ttdeci">int vl6180x_start_cont(vl6180x_t *dev)</div><div class="ttdoc">Start measurements in continuous mode.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga3c97236bab4af4fca7a2e5ba6f8e13d0"><div class="ttname"><a href="group__drivers__vl6180x.html#ga3c97236bab4af4fca7a2e5ba6f8e13d0">vl6180x_als_data_ready</a></div><div class="ttdeci">int vl6180x_als_data_ready(const vl6180x_t *dev)</div><div class="ttdoc">ALS data ready status function.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga4406e23b03d53454c097d09a8eb3957a"><div class="ttname"><a href="group__drivers__vl6180x.html#ga4406e23b03d53454c097d09a8eb3957a">vl6180x_als_status</a></div><div class="ttdeci">vl6180x_als_status_t vl6180x_als_status(const vl6180x_t *dev)</div><div class="ttdoc">Get status of last ALS measurement.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga4567388bb1fcd88d01314d3a5da41291"><div class="ttname"><a href="group__drivers__vl6180x.html#ga4567388bb1fcd88d01314d3a5da41291">vl6180x_stop_cont</a></div><div class="ttdeci">int vl6180x_stop_cont(vl6180x_t *dev)</div><div class="ttdoc">Stop measurements in continuous mode.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga794a9ed589a84d731dcba0dfb60f4bfd"><div class="ttname"><a href="group__drivers__vl6180x.html#ga794a9ed589a84d731dcba0dfb60f4bfd">vl6180x_als_read</a></div><div class="ttdeci">int vl6180x_als_read(vl6180x_t *dev, uint16_t *raw, uint16_t *lux)</div><div class="ttdoc">Read one ambient light sensing (ALS) data sample.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga84c03e22d383cf539eb347b4766fbd12"><div class="ttname"><a href="group__drivers__vl6180x.html#ga84c03e22d383cf539eb347b4766fbd12">vl6180x_int_wait</a></div><div class="ttdeci">int vl6180x_int_wait(const vl6180x_t *dev, vl6180x_int_config_t *src)</div><div class="ttdoc">Wait for configured interrupts and return the interrupt sources.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga84fcdfbc772be9c72fa09d0b28aac4f1"><div class="ttname"><a href="group__drivers__vl6180x.html#ga84fcdfbc772be9c72fa09d0b28aac4f1">vl6180x_power_up</a></div><div class="ttdeci">int vl6180x_power_up(vl6180x_t *dev)</div><div class="ttdoc">Power down the sensor.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga856a14eee3d85833d184d9d1627d82f0"><div class="ttname"><a href="group__drivers__vl6180x.html#ga856a14eee3d85833d184d9d1627d82f0">vl6180x_als_start_single</a></div><div class="ttdeci">int vl6180x_als_start_single(const vl6180x_t *dev)</div><div class="ttdoc">Start a single-shot ALS measurement.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ga874149548c7fa6a80cca96600ddad635"><div class="ttname"><a href="group__drivers__vl6180x.html#ga874149548c7fa6a80cca96600ddad635">vl6180x_int_mode_t</a></div><div class="ttdeci">vl6180x_int_mode_t</div><div class="ttdoc">Interrupt mode.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:485</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gab19e36e6463c24128182f86fe04fdb09"><div class="ttname"><a href="group__drivers__vl6180x.html#gab19e36e6463c24128182f86fe04fdb09">vl6180x_rng_config</a></div><div class="ttdeci">int vl6180x_rng_config(vl6180x_t *dev, uint8_t period, uint8_t max_time)</div><div class="ttdoc">Reconfigure range measurements at runtime.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gab36ea67b4f669e2e82c4edd510caf6bd"><div class="ttname"><a href="group__drivers__vl6180x.html#gab36ea67b4f669e2e82c4edd510caf6bd">vl6180x_rng_start_single</a></div><div class="ttdeci">int vl6180x_rng_start_single(const vl6180x_t *dev)</div><div class="ttdoc">Start a single-shot range measurement.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gaba8bc8b0923dafee52fbe268058ea275"><div class="ttname"><a href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">vl6180x_als_gain_t</a></div><div class="ttdeci">vl6180x_als_gain_t</div><div class="ttdoc">Analogue gain for ALS measurements.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:428</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gac107470f68ea711cf0f65229a6b74a03"><div class="ttname"><a href="group__drivers__vl6180x.html#gac107470f68ea711cf0f65229a6b74a03">vl6180x_reg_write</a></div><div class="ttdeci">int vl6180x_reg_write(const vl6180x_t *dev, uint16_t reg, const uint8_t *data, uint8_t len)</div><div class="ttdoc">Direct write to register.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gaec9a64cf95727d24706d55c7977c432c"><div class="ttname"><a href="group__drivers__vl6180x.html#gaec9a64cf95727d24706d55c7977c432c">vl6180x_rng_data_ready</a></div><div class="ttdeci">int vl6180x_rng_data_ready(const vl6180x_t *dev)</div><div class="ttdoc">Range data ready status function.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gaee994b4e0d657f6504b8ecb779843977"><div class="ttname"><a href="group__drivers__vl6180x.html#gaee994b4e0d657f6504b8ecb779843977">vl6180x_init</a></div><div class="ttdeci">int vl6180x_init(vl6180x_t *dev, const vl6180x_params_t *params)</div><div class="ttdoc">Initialize the VL6180X sensor device.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gaeef583aa05ce818cc70d29a056989b25"><div class="ttname"><a href="group__drivers__vl6180x.html#gaeef583aa05ce818cc70d29a056989b25">vl6180x_error_t</a></div><div class="ttdeci">vl6180x_error_t</div><div class="ttdoc">Error codes.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:414</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gaf8b06aca582804624d3b46d4566e9e9a"><div class="ttname"><a href="group__drivers__vl6180x.html#gaf8b06aca582804624d3b46d4566e9e9a">vl6180x_als_config</a></div><div class="ttdeci">int vl6180x_als_config(vl6180x_t *dev, uint8_t period, uint8_t int_time, vl6180x_als_gain_t gain)</div><div class="ttdoc">Reconfigure ambient light sensing (ALS) during runtime.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gaf95787a8409141ccad02463eba94fb8e"><div class="ttname"><a href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">vl6180x_rng_status_t</a></div><div class="ttdeci">vl6180x_rng_status_t</div><div class="ttdoc">Range measurement status.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:442</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gaf9985c866fb3a2269a892dac0deae36b"><div class="ttname"><a href="group__drivers__vl6180x.html#gaf9985c866fb3a2269a892dac0deae36b">vl6180x_power_down</a></div><div class="ttdeci">int vl6180x_power_down(const vl6180x_t *dev)</div><div class="ttdoc">Power down the sensor.</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga2eadfeaf1f86a23885ef13eaa6885940a5f244a70dff3efb697060ebd74f6f7af"><div class="ttname"><a href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a5f244a70dff3efb697060ebd74f6f7af">VL6180X_ALS_OVERFLOW</a></div><div class="ttdeci">@ VL6180X_ALS_OVERFLOW</div><div class="ttdoc">ALS measurement overflow.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:464</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga2eadfeaf1f86a23885ef13eaa6885940a8eaffb0eee7d6d8a7d0ac28ef5bf7144"><div class="ttname"><a href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a8eaffb0eee7d6d8a7d0ac28ef5bf7144">VL6180X_ALS_UNDERFLOW</a></div><div class="ttdeci">@ VL6180X_ALS_UNDERFLOW</div><div class="ttdoc">ALS measurement underflow.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:465</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga2eadfeaf1f86a23885ef13eaa6885940ae2b103656afee5b5e09922be9948b1c4"><div class="ttname"><a href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940ae2b103656afee5b5e09922be9948b1c4">VL6180X_ALS_OK</a></div><div class="ttdeci">@ VL6180X_ALS_OK</div><div class="ttdoc">No error.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:463</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga874149548c7fa6a80cca96600ddad635a1a15e75f9af5314f519dce07c3ce6b94"><div class="ttname"><a href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a1a15e75f9af5314f519dce07c3ce6b94">VL6180X_INT_LOW</a></div><div class="ttdeci">@ VL6180X_INT_LOW</div><div class="ttdoc">Interrupt is triggered when values are below the lower threshold.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:488</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga874149548c7fa6a80cca96600ddad635a45c7fc526e0383910d95e8d0de7757cc"><div class="ttname"><a href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a45c7fc526e0383910d95e8d0de7757cc">VL6180X_INT_DRDY</a></div><div class="ttdeci">@ VL6180X_INT_DRDY</div><div class="ttdoc">Interrupt is triggered when new data are ready to be read.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:495</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga874149548c7fa6a80cca96600ddad635a778f44971d117f62cd3ff6d89de72c42"><div class="ttname"><a href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a778f44971d117f62cd3ff6d89de72c42">VL6180X_INT_HIGH</a></div><div class="ttdeci">@ VL6180X_INT_HIGH</div><div class="ttdoc">Interrupt is triggered when values are above the upper threshold.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:490</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga874149548c7fa6a80cca96600ddad635aa1da06268b82284f56c46a567b27cf36"><div class="ttname"><a href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635aa1da06268b82284f56c46a567b27cf36">VL6180X_INT_NONE</a></div><div class="ttdeci">@ VL6180X_INT_NONE</div><div class="ttdoc">Interrupt is disabled.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:486</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_gga874149548c7fa6a80cca96600ddad635aa7c6f823016999877eaa91bc0f497217"><div class="ttname"><a href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635aa7c6f823016999877eaa91bc0f497217">VL6180X_INT_OUT</a></div><div class="ttdeci">@ VL6180X_INT_OUT</div><div class="ttdoc">Interrupt is triggered when values are below the lower threshold or above the upper threshold (value ...</div><div class="ttdef"><b>Definition:</b> vl6180x.h:492</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275a1722fece787c98dbe56224b0af4a6938"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a1722fece787c98dbe56224b0af4a6938">VL6180X_ALS_GAIN_5</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_5</div><div class="ttdoc">5 x gain (actual analogue gain of 5.21)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:431</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275a18c0beb22b85c171c728608b8471fca3"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a18c0beb22b85c171c728608b8471fca3">VL6180X_ALS_GAIN_2_5</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_2_5</div><div class="ttdoc">2.5 x gain (actual analogue gain of 2.6)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:432</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275a30dc67d0dcf42ae7375ddd926bd7b1df"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a30dc67d0dcf42ae7375ddd926bd7b1df">VL6180X_ALS_GAIN_1</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_1</div><div class="ttdoc">1 x gain (actual analogue gain of 1.01), default</div><div class="ttdef"><b>Definition:</b> vl6180x.h:435</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275a360ec43a4a5affa52e4fb59aa71f071d"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a360ec43a4a5affa52e4fb59aa71f071d">VL6180X_ALS_GAIN_1_67</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_1_67</div><div class="ttdoc">1.67 x gain (actual analogue gain of 1.72)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:433</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275a516c2b27941ff89cdeca19411641b652"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a516c2b27941ff89cdeca19411641b652">VL6180X_ALS_GAIN_40</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_40</div><div class="ttdoc">40 x gain (actual analogue gain of 40)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:436</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275abb4766eade555f1c832a5d9f89a5a3cd"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275abb4766eade555f1c832a5d9f89a5a3cd">VL6180X_ALS_GAIN_20</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_20</div><div class="ttdoc">20 x gain (actual analogue gain of 20)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:429</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275ad102aa3ece443847a43dbb7f5eed47de"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ad102aa3ece443847a43dbb7f5eed47de">VL6180X_ALS_GAIN_10</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_10</div><div class="ttdoc">10 x gain (actual analogue gain of 10.32)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:430</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaba8bc8b0923dafee52fbe268058ea275ae73d105cf26af74bd0f65517b51f0a9a"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ae73d105cf26af74bd0f65517b51f0a9a">VL6180X_ALS_GAIN_1_25</a></div><div class="ttdeci">@ VL6180X_ALS_GAIN_1_25</div><div class="ttdoc">1.25 x gain (actual analogue gain of 1.28)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:434</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25a33a04e3c71bf5225a814a000500ff985"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a33a04e3c71bf5225a814a000500ff985">VL6180X_ERROR_NOT_READY</a></div><div class="ttdeci">@ VL6180X_ERROR_NOT_READY</div><div class="ttdoc">Device not ready.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:422</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25a360404e7faa85e16b7842f0035e08229"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a360404e7faa85e16b7842f0035e08229">VL6180X_ERROR_NO_DATA</a></div><div class="ttdeci">@ VL6180X_ERROR_NO_DATA</div><div class="ttdoc">No data available.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:419</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25a61e428d8857ec8a0b0218edd9518b73c"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a61e428d8857ec8a0b0218edd9518b73c">VL6180X_ERROR_WRONG_ID</a></div><div class="ttdeci">@ VL6180X_ERROR_WRONG_ID</div><div class="ttdoc">Wrong id read.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:417</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25a6b07aea008982c578ba2b76d5bd5f82a"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a6b07aea008982c578ba2b76d5bd5f82a">VL6180X_ERROR_ALS</a></div><div class="ttdeci">@ VL6180X_ERROR_ALS</div><div class="ttdoc">Ambient light sensing (ALS) error.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:421</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25a7e32432f2b999c80c3683c02afe5d578"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7e32432f2b999c80c3683c02afe5d578">VL6180X_ERROR_RNG</a></div><div class="ttdeci">@ VL6180X_ERROR_RNG</div><div class="ttdoc">Ranging error.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:420</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25a7f6affab50fad3822de4282756dea121"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7f6affab50fad3822de4282756dea121">VL6180X_OK</a></div><div class="ttdeci">@ VL6180X_OK</div><div class="ttdoc">Success.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:415</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25a815c7accebbe4235c7160cc814eae1d7"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a815c7accebbe4235c7160cc814eae1d7">VL6180X_ERROR_NO_PIN</a></div><div class="ttdeci">@ VL6180X_ERROR_NO_PIN</div><div class="ttdoc">Pin not defined.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:418</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaeef583aa05ce818cc70d29a056989b25ac8d11d6d78c7381342f84dd0ba813e53"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25ac8d11d6d78c7381342f84dd0ba813e53">VL6180X_ERROR_I2C</a></div><div class="ttdeci">@ VL6180X_ERROR_I2C</div><div class="ttdoc">I2C communication error.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:416</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea000b6386e9838228b41ca781f0a60a89"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea000b6386e9838228b41ca781f0a60a89">VL6180X_RNG_ALGO_UNDERFLOW</a></div><div class="ttdeci">@ VL6180X_RNG_ALGO_UNDERFLOW</div><div class="ttdoc">Ranging algorithm underflow.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:455</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea1bd990a8309bceef123f087a0d694147"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea1bd990a8309bceef123f087a0d694147">VL6180X_RNG_EARLY_CONV_EST</a></div><div class="ttdeci">@ VL6180X_RNG_EARLY_CONV_EST</div><div class="ttdoc">Early convergence estimate.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:449</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea21749fc9a65249a45114ffe69fc1171c"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea21749fc9a65249a45114ffe69fc1171c">VL6180X_RNG_ALGO_OVERFLOW</a></div><div class="ttdeci">@ VL6180X_RNG_ALGO_OVERFLOW</div><div class="ttdoc">Ranging algorithm overflow.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:456</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea244e0dbd34747e92066ff11cbefab84b"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea244e0dbd34747e92066ff11cbefab84b">VL6180X_RNG_NO_TARGET</a></div><div class="ttdeci">@ VL6180X_RNG_NO_TARGET</div><div class="ttdoc">No target, ignore.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:451</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea7232d39365a099ee1725eaaecc698b7a"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7232d39365a099ee1725eaaecc698b7a">VL6180X_RNG_RAW_ALGO_OVERFLOW</a></div><div class="ttdeci">@ VL6180X_RNG_RAW_ALGO_OVERFLOW</div><div class="ttdoc">Raw ranging algorithn overflow.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:454</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea7325a5f62800cd0385776c4e3339266a"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7325a5f62800cd0385776c4e3339266a">VL6180X_RNG_VCSEL_WD_TEST</a></div><div class="ttdeci">@ VL6180X_RNG_VCSEL_WD_TEST</div><div class="ttdoc">VCSEL watchdog test.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:445</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea7538a1d0a68a76cd12e6e2f28a417b72"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7538a1d0a68a76cd12e6e2f28a417b72">VL6180X_RNG_PLL1_LOCK</a></div><div class="ttdeci">@ VL6180X_RNG_PLL1_LOCK</div><div class="ttdoc">PLL1 lock.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:447</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8ea890b71c1e02d0856a371c96f22f11bbd"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea890b71c1e02d0856a371c96f22f11bbd">VL6180X_RNG_MAX_CONV</a></div><div class="ttdeci">@ VL6180X_RNG_MAX_CONV</div><div class="ttdoc">Maximum convergence time reached.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:450</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8eab95933fd2c0beee955cfd20e93c8e841"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eab95933fd2c0beee955cfd20e93c8e841">VL6180X_RNG_MAX_SNR</a></div><div class="ttdeci">@ VL6180X_RNG_MAX_SNR</div><div class="ttdoc">Maximum SNR reached.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:452</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8eac3af1ef5840e1c5950df30a78f9d039e"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eac3af1ef5840e1c5950df30a78f9d039e">VL6180X_RNG_VCSEL_CONT_TEST</a></div><div class="ttdeci">@ VL6180X_RNG_VCSEL_CONT_TEST</div><div class="ttdoc">VCSEL continuity Test.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:444</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8eae094e64a6b04101812c390ebb0a0fbfa"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae094e64a6b04101812c390ebb0a0fbfa">VL6180X_RNG_PLL2_LOCK</a></div><div class="ttdeci">@ VL6180X_RNG_PLL2_LOCK</div><div class="ttdoc">PLL2 lock.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:448</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8eae11d525e398576504ae072d9422ea11d"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae11d525e398576504ae072d9422ea11d">VL6180X_RNG_VCSEL_WD</a></div><div class="ttdeci">@ VL6180X_RNG_VCSEL_WD</div><div class="ttdoc">VCSEL watchdog.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:446</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8eaf529b2e7c6f468dae80042b0348774ba"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eaf529b2e7c6f468dae80042b0348774ba">VL6180X_RNG_OK</a></div><div class="ttdeci">@ VL6180X_RNG_OK</div><div class="ttdoc">No error.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:443</div></div>
+<div class="ttc" id="agroup__drivers__vl6180x_html_ggaf95787a8409141ccad02463eba94fb8eafab42d5dc696918491c1ed77530b2fae"><div class="ttname"><a href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eafab42d5dc696918491c1ed77530b2fae">VL6180X_RNG_RAW_ALGO_UNDERFLOW</a></div><div class="ttdeci">@ VL6180X_RNG_RAW_ALGO_UNDERFLOW</div><div class="ttdoc">Raw ranging algorithm underflow.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:453</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructvl6180x__int__config__t_html"><div class="ttname"><a href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a></div><div class="ttdoc">Interrupt config.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:512</div></div>
+<div class="ttc" id="astructvl6180x__int__config__t_html_a76822625931d04b30e8bef40cc942fe4"><div class="ttname"><a href="structvl6180x__int__config__t.html#a76822625931d04b30e8bef40cc942fe4">vl6180x_int_config_t::als_int</a></div><div class="ttdeci">vl6180x_int_mode_t als_int</div><div class="ttdoc">Interrupt mode for ALS measurements.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:517</div></div>
+<div class="ttc" id="astructvl6180x__int__config__t_html_a9151b1c64b14667dfd111a399c2b6301"><div class="ttname"><a href="structvl6180x__int__config__t.html#a9151b1c64b14667dfd111a399c2b6301">vl6180x_int_config_t::rng_int</a></div><div class="ttdeci">vl6180x_int_mode_t rng_int</div><div class="ttdoc">Interrupt mode for range measurements.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:514</div></div>
+<div class="ttc" id="astructvl6180x__int__thresh__t_html"><div class="ttname"><a href="structvl6180x__int__thresh__t.html">vl6180x_int_thresh_t</a></div><div class="ttdoc">Interrupt threshold configuration.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:535</div></div>
+<div class="ttc" id="astructvl6180x__int__thresh__t_html_a15e187293edc9c1eff0fa9fe08f30157"><div class="ttname"><a href="structvl6180x__int__thresh__t.html#a15e187293edc9c1eff0fa9fe08f30157">vl6180x_int_thresh_t::rng_high</a></div><div class="ttdeci">uint8_t rng_high</div><div class="ttdoc">upper threshold for range values</div><div class="ttdef"><b>Definition:</b> vl6180x.h:537</div></div>
+<div class="ttc" id="astructvl6180x__int__thresh__t_html_a3bc8654b6121521d3953d80f26bc2ab3"><div class="ttname"><a href="structvl6180x__int__thresh__t.html#a3bc8654b6121521d3953d80f26bc2ab3">vl6180x_int_thresh_t::rng_low</a></div><div class="ttdeci">uint8_t rng_low</div><div class="ttdoc">lower threshold for range values</div><div class="ttdef"><b>Definition:</b> vl6180x.h:538</div></div>
+<div class="ttc" id="astructvl6180x__int__thresh__t_html_aaeb8802b48baf545e12914e0c85996f7"><div class="ttname"><a href="structvl6180x__int__thresh__t.html#aaeb8802b48baf545e12914e0c85996f7">vl6180x_int_thresh_t::als_high</a></div><div class="ttdeci">uint16_t als_high</div><div class="ttdoc">upper threshold for ALS values</div><div class="ttdef"><b>Definition:</b> vl6180x.h:541</div></div>
+<div class="ttc" id="astructvl6180x__int__thresh__t_html_af2488e4eaba584b934a6e3d3ccd81afe"><div class="ttname"><a href="structvl6180x__int__thresh__t.html#af2488e4eaba584b934a6e3d3ccd81afe">vl6180x_int_thresh_t::als_low</a></div><div class="ttdeci">uint16_t als_low</div><div class="ttdoc">lower threshold for ALS values</div><div class="ttdef"><b>Definition:</b> vl6180x.h:542</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html"><div class="ttname"><a href="structvl6180x__params__t.html">vl6180x_params_t</a></div><div class="ttdoc">VL6180X device configuration.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:549</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_a0aa0035dda5095061a43b31e5f6370f5"><div class="ttname"><a href="structvl6180x__params__t.html#a0aa0035dda5095061a43b31e5f6370f5">vl6180x_params_t::als_int_time</a></div><div class="ttdeci">uint16_t als_int_time</div><div class="ttdoc">ALS integration time in ms [1...512] (default 100 = 100 ms, recommended)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:606</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_a156e0a45977d503f68352fd8844253fc"><div class="ttname"><a href="structvl6180x__params__t.html#a156e0a45977d503f68352fd8844253fc">vl6180x_params_t::shutdown_pin</a></div><div class="ttdeci">gpio_t shutdown_pin</div><div class="ttdoc">Shutdown pin, LOW active.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:558</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_a41591bd06ae590008cea1ca565be2f71"><div class="ttname"><a href="structvl6180x__params__t.html#a41591bd06ae590008cea1ca565be2f71">vl6180x_params_t::rng_max_time</a></div><div class="ttdeci">uint8_t rng_max_time</div><div class="ttdoc">Maximum convergence time in ms [1...63] given to the sensor to perform a range measurement (default 5...</div><div class="ttdef"><b>Definition:</b> vl6180x.h:595</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_a41e46006d9985bc9bdd0af18aff5cef5"><div class="ttname"><a href="structvl6180x__params__t.html#a41e46006d9985bc9bdd0af18aff5cef5">vl6180x_params_t::int_cfg</a></div><div class="ttdeci">vl6180x_int_config_t int_cfg</div><div class="ttdoc">Interrupt mode configuration.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:563</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_a651f03c1c10e5178f1a7c27cd283c8ef"><div class="ttname"><a href="structvl6180x__params__t.html#a651f03c1c10e5178f1a7c27cd283c8ef">vl6180x_params_t::als_lux_res</a></div><div class="ttdeci">uint16_t als_lux_res</div><div class="ttdoc">ALS lux resolution multiplied by factor 1000 (default 0.32 lux/count is the factory calibrated lux re...</div><div class="ttdef"><b>Definition:</b> vl6180x.h:608</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_a8ba895c1dfcd29928d07b7d4c92b7ee8"><div class="ttname"><a href="structvl6180x__params__t.html#a8ba895c1dfcd29928d07b7d4c92b7ee8">vl6180x_params_t::i2c_addr</a></div><div class="ttdeci">uint8_t i2c_addr</div><div class="ttdoc">I2C slave address.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:555</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_aa3331bdbe9ffead1999020d9fdef4f9a"><div class="ttname"><a href="structvl6180x__params__t.html#aa3331bdbe9ffead1999020d9fdef4f9a">vl6180x_params_t::period</a></div><div class="ttdeci">uint8_t period</div><div class="ttdoc">Measurement period in continuous mode in steps of 10 ms (default 20 = 200 ms).</div><div class="ttdef"><b>Definition:</b> vl6180x.h:588</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_ab306b1a7590e6929a3a78b542d4ff040"><div class="ttname"><a href="structvl6180x__params__t.html#ab306b1a7590e6929a3a78b542d4ff040">vl6180x_params_t::als_gain</a></div><div class="ttdeci">vl6180x_als_gain_t als_gain</div><div class="ttdoc">ALS analogue gain for light channel (default VL6180X_ALS_GAIN_1_0)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:611</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_ac5293d5209b3b68e23aa7c4b5e04d244"><div class="ttname"><a href="structvl6180x__params__t.html#ac5293d5209b3b68e23aa7c4b5e04d244">vl6180x_params_t::int_thresh</a></div><div class="ttdeci">vl6180x_int_thresh_t int_thresh</div><div class="ttdoc">Interrupt threshold configuration.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:564</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_ad23f825a687c48778d24133ca817104e"><div class="ttname"><a href="structvl6180x__params__t.html#ad23f825a687c48778d24133ca817104e">vl6180x_params_t::int_pin</a></div><div class="ttdeci">gpio_t int_pin</div><div class="ttdoc">Interrupt pin, LOW active.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:562</div></div>
+<div class="ttc" id="astructvl6180x__params__t_html_aed283ac707d68ef0a49a3ae1fccc3dd2"><div class="ttname"><a href="structvl6180x__params__t.html#aed283ac707d68ef0a49a3ae1fccc3dd2">vl6180x_params_t::i2c_dev</a></div><div class="ttdeci">unsigned i2c_dev</div><div class="ttdoc">I2C device, default I2C_DEV(0)</div><div class="ttdef"><b>Definition:</b> vl6180x.h:554</div></div>
+<div class="ttc" id="astructvl6180x__t_html"><div class="ttname"><a href="structvl6180x__t.html">vl6180x_t</a></div><div class="ttdoc">VL6180X sensor device data structure type.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:621</div></div>
+<div class="ttc" id="astructvl6180x__t_html_a27928cdf197b38378943f8f98cb0b0ab"><div class="ttname"><a href="structvl6180x__t.html#a27928cdf197b38378943f8f98cb0b0ab">vl6180x_t::als_status</a></div><div class="ttdeci">vl6180x_als_status_t als_status</div><div class="ttdoc">Status of last ALS measurement.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:629</div></div>
+<div class="ttc" id="astructvl6180x__t_html_a2f2953ba65eb9582f55b878c9ee349c5"><div class="ttname"><a href="structvl6180x__t.html#a2f2953ba65eb9582f55b878c9ee349c5">vl6180x_t::rng_status</a></div><div class="ttdeci">vl6180x_rng_status_t rng_status</div><div class="ttdoc">Status of last range measurement.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:626</div></div>
+<div class="ttc" id="astructvl6180x__t_html_a58a7845d128599c5c1b1a11138f73bf2"><div class="ttname"><a href="structvl6180x__t.html#a58a7845d128599c5c1b1a11138f73bf2">vl6180x_t::params</a></div><div class="ttdeci">vl6180x_params_t params</div><div class="ttdoc">Device initialization parameters.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:623</div></div>
+<div class="ttc" id="astructvl6180x__t_html_a6c08663d42a5a291759e8d7b291f5a17"><div class="ttname"><a href="structvl6180x__t.html#a6c08663d42a5a291759e8d7b291f5a17">vl6180x_t::cont_meas</a></div><div class="ttdeci">bool cont_meas</div><div class="ttdoc">Continuous mode running.</div><div class="ttdef"><b>Definition:</b> vl6180x.h:624</div></div>
+<div class="ttc" id="avl6180x__regs_8h_html"><div class="ttname"><a href="vl6180x__regs_8h.html">vl6180x_regs.h</a></div><div class="ttdoc">Register definitions for ST VL6180X Ranging and Ambient Light Sensing (ALS) module.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="vl6180x_8h.html">vl6180x.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

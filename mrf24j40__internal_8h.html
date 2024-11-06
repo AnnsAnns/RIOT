@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/mrf24j40/include/mrf24j40_internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mrf24j40__internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mrf24j40_internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a> &raquo; <a class="el" href="group__drivers__mrf24j40.html">MRF24J40 based drivers</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Internal interfaces for MRF24J40 drivers.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internal interfaces for MRF24J40 drivers. </p>
+<dl class="section author"><dt>Author</dt><dd>Neo Nenaco <a href="#" onclick="location.href='mai'+'lto:'+'neo'+'@n'+'ena'+'co'+'.de'; return false;">neo@n<span style="display: none;">.nosp@m.</span>enac<span style="display: none;">.nosp@m.</span>o.de</a> </dd>
+<dd>
+Koen Zandberg <a href="#" onclick="location.href='mai'+'lto:'+'koe'+'n@'+'ber'+'gz'+'and'+'.n'+'et'; return false;">koen@<span style="display: none;">.nosp@m.</span>berg<span style="display: none;">.nosp@m.</span>zand.<span style="display: none;">.nosp@m.</span>net</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="mrf24j40_8h_source.html">mrf24j40.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kernel__defines_8h_source.html">kernel_defines.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for mrf24j40_internal.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="mrf24j40__internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:a8834b3a29903898778ff5bec176dc952"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a8834b3a29903898778ff5bec176dc952">mrf24j40_init_hw</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:a8834b3a29903898778ff5bec176dc952"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialization as described in datasheet  <a href="mrf24j40__internal_8h.html#a8834b3a29903898778ff5bec176dc952">More...</a><br /></td></tr>
+<tr class="separator:a8834b3a29903898778ff5bec176dc952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f12a8d852d55e4cbc4fffc47eb3b1e5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a7f12a8d852d55e4cbc4fffc47eb3b1e5">mrf24j40_reg_read_short</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, const uint8_t addr)</td></tr>
+<tr class="memdesc:a7f12a8d852d55e4cbc4fffc47eb3b1e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from a register with a at address <code>addr</code> from device <code>dev</code>.  <a href="mrf24j40__internal_8h.html#a7f12a8d852d55e4cbc4fffc47eb3b1e5">More...</a><br /></td></tr>
+<tr class="separator:a7f12a8d852d55e4cbc4fffc47eb3b1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eb00e88ed0b5c5f4fe9457d946df002"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a4eb00e88ed0b5c5f4fe9457d946df002">mrf24j40_reg_write_short</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, const uint8_t addr, const uint8_t value)</td></tr>
+<tr class="memdesc:a4eb00e88ed0b5c5f4fe9457d946df002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to a register at address <code>addr</code> from device <code>dev</code>.  <a href="mrf24j40__internal_8h.html#a4eb00e88ed0b5c5f4fe9457d946df002">More...</a><br /></td></tr>
+<tr class="separator:a4eb00e88ed0b5c5f4fe9457d946df002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbf3c6317cc6dba414e82503e4fc92ad"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#abbf3c6317cc6dba414e82503e4fc92ad">mrf24j40_reg_read_long</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, const uint16_t addr)</td></tr>
+<tr class="memdesc:abbf3c6317cc6dba414e82503e4fc92ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from a register with a at address <code>addr</code> from device <code>dev</code>.  <a href="mrf24j40__internal_8h.html#abbf3c6317cc6dba414e82503e4fc92ad">More...</a><br /></td></tr>
+<tr class="separator:abbf3c6317cc6dba414e82503e4fc92ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086512a638cdd3bd6e0d1cf3e969cb25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a086512a638cdd3bd6e0d1cf3e969cb25">mrf24j40_reg_write_long</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, const uint16_t addr, const uint8_t value)</td></tr>
+<tr class="memdesc:a086512a638cdd3bd6e0d1cf3e969cb25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to a register at address <code>addr</code> from device <code>dev</code>.  <a href="mrf24j40__internal_8h.html#a086512a638cdd3bd6e0d1cf3e969cb25">More...</a><br /></td></tr>
+<tr class="separator:a086512a638cdd3bd6e0d1cf3e969cb25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ce53fc6cb2a226619ee242081330c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#ac8ce53fc6cb2a226619ee242081330c0">mrf24j40_tx_normal_fifo_write</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, const uint16_t offset, const uint8_t *data, const size_t len)</td></tr>
+<tr class="memdesc:ac8ce53fc6cb2a226619ee242081330c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a chunk of data into the TX Normal FIFO area of the given device.  <a href="mrf24j40__internal_8h.html#ac8ce53fc6cb2a226619ee242081330c0">More...</a><br /></td></tr>
+<tr class="separator:ac8ce53fc6cb2a226619ee242081330c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc7584c17be55b64d848b9ef02c690a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a2dc7584c17be55b64d848b9ef02c690a">mrf24j40_rx_fifo_read</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev, const uint16_t offset, uint8_t *data, const size_t len)</td></tr>
+<tr class="memdesc:a2dc7584c17be55b64d848b9ef02c690a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data from the RX_FIFO area of the given device.  <a href="mrf24j40__internal_8h.html#a2dc7584c17be55b64d848b9ef02c690a">More...</a><br /></td></tr>
+<tr class="separator:a2dc7584c17be55b64d848b9ef02c690a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b3530db3e66fe7a4f28b41f4fe574d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a3b3530db3e66fe7a4f28b41f4fe574d5">mrf24j40_reset_tasks</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:a3b3530db3e66fe7a4f28b41f4fe574d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the pending task list of a device.  <a href="mrf24j40__internal_8h.html#a3b3530db3e66fe7a4f28b41f4fe574d5">More...</a><br /></td></tr>
+<tr class="separator:a3b3530db3e66fe7a4f28b41f4fe574d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c1552331ab87b981e7e712f662ac09a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a6c1552331ab87b981e7e712f662ac09a">mrf24j40_update_tasks</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:a6c1552331ab87b981e7e712f662ac09a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for pending interrupts and update task list.  <a href="mrf24j40__internal_8h.html#a6c1552331ab87b981e7e712f662ac09a">More...</a><br /></td></tr>
+<tr class="separator:a6c1552331ab87b981e7e712f662ac09a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ce4273c75f8faed9122306b50330aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#ae9ce4273c75f8faed9122306b50330aa">mrf24j40_hardware_reset</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:ae9ce4273c75f8faed9122306b50330aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger a hardware reset.  <a href="mrf24j40__internal_8h.html#ae9ce4273c75f8faed9122306b50330aa">More...</a><br /></td></tr>
+<tr class="separator:ae9ce4273c75f8faed9122306b50330aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2fa422c6058d457f1556a1385107d3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a8d2fa422c6058d457f1556a1385107d3">mrf24j40_enable_auto_pa_lna</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:a8d2fa422c6058d457f1556a1385107d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable automatic External Power Amplifier &amp; Low Noise Amplifier control.  <a href="mrf24j40__internal_8h.html#a8d2fa422c6058d457f1556a1385107d3">More...</a><br /></td></tr>
+<tr class="separator:a8d2fa422c6058d457f1556a1385107d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae352e938ed8ec228a0c82a5629f37fcf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#ae352e938ed8ec228a0c82a5629f37fcf">mrf24j40_disable_auto_pa_lna</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:ae352e938ed8ec228a0c82a5629f37fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable automatic External Power Amplifier &amp; Low Noise Amplifier control.  <a href="mrf24j40__internal_8h.html#ae352e938ed8ec228a0c82a5629f37fcf">More...</a><br /></td></tr>
+<tr class="separator:ae352e938ed8ec228a0c82a5629f37fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92eb0509617c2949094a118a4a66c6e2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#a92eb0509617c2949094a118a4a66c6e2">mrf24j40_enable_lna</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:a92eb0509617c2949094a118a4a66c6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable only the External Low Noise Amplifier.  <a href="mrf24j40__internal_8h.html#a92eb0509617c2949094a118a4a66c6e2">More...</a><br /></td></tr>
+<tr class="separator:a92eb0509617c2949094a118a4a66c6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb1e547e855fb19fbefdd5cc51e49737"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mrf24j40__internal_8h.html#acb1e547e855fb19fbefdd5cc51e49737">mrf24j40_flush_rx</a> (<a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *dev)</td></tr>
+<tr class="memdesc:acb1e547e855fb19fbefdd5cc51e49737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush the RX FIFO.  <a href="mrf24j40__internal_8h.html#acb1e547e855fb19fbefdd5cc51e49737">More...</a><br /></td></tr>
+<tr class="separator:acb1e547e855fb19fbefdd5cc51e49737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ae352e938ed8ec228a0c82a5629f37fcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae352e938ed8ec228a0c82a5629f37fcf">&#9670;&nbsp;</a></span>mrf24j40_disable_auto_pa_lna()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void mrf24j40_disable_auto_pa_lna </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Disable automatic External Power Amplifier &amp; Low Noise Amplifier control. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to disable the PA &amp; LNA on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8d2fa422c6058d457f1556a1385107d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2fa422c6058d457f1556a1385107d3">&#9670;&nbsp;</a></span>mrf24j40_enable_auto_pa_lna()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void mrf24j40_enable_auto_pa_lna </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable automatic External Power Amplifier &amp; Low Noise Amplifier control. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to enable the PA &amp; LNA on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a92eb0509617c2949094a118a4a66c6e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92eb0509617c2949094a118a4a66c6e2">&#9670;&nbsp;</a></span>mrf24j40_enable_lna()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void mrf24j40_enable_lna </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable only the External Low Noise Amplifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device enable the LNA on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acb1e547e855fb19fbefdd5cc51e49737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb1e547e855fb19fbefdd5cc51e49737">&#9670;&nbsp;</a></span>mrf24j40_flush_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_flush_rx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flush the RX FIFO. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to flush the RX FIFO </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae9ce4273c75f8faed9122306b50330aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ce4273c75f8faed9122306b50330aa">&#9670;&nbsp;</a></span>mrf24j40_hardware_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_hardware_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger a hardware reset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to reset </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8834b3a29903898778ff5bec176dc952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8834b3a29903898778ff5bec176dc952">&#9670;&nbsp;</a></span>mrf24j40_init_hw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mrf24j40_init_hw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialization as described in datasheet </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to initialize</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, error otherwise </dd></dl>
+
+</div>
+</div>
+<a id="abbf3c6317cc6dba414e82503e4fc92ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbf3c6317cc6dba414e82503e4fc92ad">&#9670;&nbsp;</a></span>mrf24j40_reg_read_long()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t mrf24j40_reg_read_long </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read from a register with a at address <code>addr</code> from device <code>dev</code>. </p>
+<p>Register with 10bit address</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>address of the register to read</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the value of the specified register </dd></dl>
+
+</div>
+</div>
+<a id="a7f12a8d852d55e4cbc4fffc47eb3b1e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f12a8d852d55e4cbc4fffc47eb3b1e5">&#9670;&nbsp;</a></span>mrf24j40_reg_read_short()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t mrf24j40_reg_read_short </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read from a register with a at address <code>addr</code> from device <code>dev</code>. </p>
+<p>Register with 8bit address</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>address of the register to read</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the value of the specified register </dd></dl>
+
+</div>
+</div>
+<a id="a086512a638cdd3bd6e0d1cf3e969cb25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a086512a638cdd3bd6e0d1cf3e969cb25">&#9670;&nbsp;</a></span>mrf24j40_reg_write_long()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_reg_write_long </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write to a register at address <code>addr</code> from device <code>dev</code>. </p>
+<p>Register with 10bit address</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>address of the register to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to write to the given register </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4eb00e88ed0b5c5f4fe9457d946df002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb00e88ed0b5c5f4fe9457d946df002">&#9670;&nbsp;</a></span>mrf24j40_reg_write_short()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_reg_write_short </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write to a register at address <code>addr</code> from device <code>dev</code>. </p>
+<p>Register with 8bit address</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>address of the register to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to write to the given register </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3b3530db3e66fe7a4f28b41f4fe574d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b3530db3e66fe7a4f28b41f4fe574d5">&#9670;&nbsp;</a></span>mrf24j40_reset_tasks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_reset_tasks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the pending task list of a device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to reset tasks of </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2dc7584c17be55b64d848b9ef02c690a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc7584c17be55b64d848b9ef02c690a">&#9670;&nbsp;</a></span>mrf24j40_rx_fifo_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_rx_fifo_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data from the RX_FIFO area of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>starting address to read from [valid 0x00-0x1ff] </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>buffer to read data into </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to read from FIFO </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac8ce53fc6cb2a226619ee242081330c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8ce53fc6cb2a226619ee242081330c0">&#9670;&nbsp;</a></span>mrf24j40_tx_normal_fifo_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_tx_normal_fifo_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write a chunk of data into the TX Normal FIFO area of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>address in the TX Normal FIFO to write to [valid 0x00-0x1ff] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>data to copy into FIFO </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to write to FIFO </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6c1552331ab87b981e7e712f662ac09a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1552331ab87b981e7e712f662ac09a">&#9670;&nbsp;</a></span>mrf24j40_update_tasks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mrf24j40_update_tasks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmrf24j40__t.html">mrf24j40_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check for pending interrupts and update task list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_7de73d198ba15c814e015ab5e67eaf44.html">mrf24j40</a></li><li class="navelem"><a class="el" href="dir_1aa410a2dbdc7ffdc1890c67822528aa.html">include</a></li><li class="navelem"><a class="el" href="mrf24j40__internal_8h.html">mrf24j40_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

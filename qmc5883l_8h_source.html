@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/qmc5883l.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('qmc5883l_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">qmc5883l.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="qmc5883l_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2019 Freie Universität Berlin</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#ifndef QMC5883L_H</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define QMC5883L_H</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i2c_8h.html">periph/i2c.h</a>&quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gaaabcbdf1659e744611f2b0b476c91bf4">   71</a></span>&#160;<span class="preprocessor">#define QMC5883L_ADDR           (0x0d)</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaca91b7829c15c9e1cd9189c92a6a70ef">   77</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaca91b7829c15c9e1cd9189c92a6a70ef">QMC5883L_OK</a>,            </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaf91f3a59f3440457b2790f3f18c8c897">   78</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaf91f3a59f3440457b2790f3f18c8c897">QMC5883L_NODATA</a>,        </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaeaf4920b13c2454f1cca8c62bd221ba1">   79</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaeaf4920b13c2454f1cca8c62bd221ba1">QMC5883L_OVERFLOW</a>,      </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbda0c4ede693865a7cd9a2b0d7b7b3c56a4">   80</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbda0c4ede693865a7cd9a2b0d7b7b3c56a4">QMC5883L_BUSERR</a>,        </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaf5650a24c957dad9f00d9056d2e6293e">   81</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaf5650a24c957dad9f00d9056d2e6293e">QMC5883L_NOCFG</a>,         </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ga9b309fb78b36f074ed8b5b9ff07cd497">   93</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497add21c0a687ade247d4d92fced6235b94">   94</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497add21c0a687ade247d4d92fced6235b94">QMC5883L_ODR_10HZ</a>  = (0u &lt;&lt; 2),     </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497a79fce4d7797423703679f63f49234e3e">   95</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497a79fce4d7797423703679f63f49234e3e">QMC5883L_ODR_50HZ</a>  = (1u &lt;&lt; 2),     </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497a7eb4ac101a486307d887bd17fc04f561">   96</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497a7eb4ac101a486307d887bd17fc04f561">QMC5883L_ODR_100HZ</a> = (2u &lt;&lt; 2),     </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497afe1942a4f7cc8132a8b6a9760304f8e1">   97</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497afe1942a4f7cc8132a8b6a9760304f8e1">QMC5883L_ODR_200HZ</a> = (3u &lt;&lt; 2),     </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;} <a class="code" href="group__drivers__qmc5883l.html#ga9b309fb78b36f074ed8b5b9ff07cd497">qmc5883l_odr_t</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ga479a092e370a54f48e3bc7ee8fa23e02">  110</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga479a092e370a54f48e3bc7ee8fa23e02a0353d72bc41fd36789496e773a6d9cfa">  111</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga479a092e370a54f48e3bc7ee8fa23e02a0353d72bc41fd36789496e773a6d9cfa">QMC5883L_RNG_2G</a> = (0u &lt;&lt; 4),        </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga479a092e370a54f48e3bc7ee8fa23e02a11b2cedf4575639a324d7515516aaa3d">  112</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga479a092e370a54f48e3bc7ee8fa23e02a11b2cedf4575639a324d7515516aaa3d">QMC5883L_RNG_8G</a> = (1u &lt;&lt; 4),        </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;} <a class="code" href="group__drivers__qmc5883l.html#ga479a092e370a54f48e3bc7ee8fa23e02">qmc5883l_rng_t</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ga94bf5e3f282baf506fb7f9ad5a1d7f33">  124</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a933d3e23c89d96f490693c39fea71df0">  125</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a933d3e23c89d96f490693c39fea71df0">QMC5883L_OSR_512</a> = (0u &lt;&lt; 6),       </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a0ce82bb0cdceb8533cd87a97fa846bfc">  126</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a0ce82bb0cdceb8533cd87a97fa846bfc">QMC5883L_OSR_256</a> = (1u &lt;&lt; 6),       </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33aca7d9bed12848420ca2c81c51ad6fd0b">  127</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33aca7d9bed12848420ca2c81c51ad6fd0b">QMC5883L_OSR_128</a> = (2u &lt;&lt; 6),       </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a8bd7f98a03a572d96902d8fb45fe35fb">  128</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a8bd7f98a03a572d96902d8fb45fe35fb">QMC5883L_OSR_64</a>  = (3u &lt;&lt; 6),       </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;} <a class="code" href="group__drivers__qmc5883l.html#ga94bf5e3f282baf506fb7f9ad5a1d7f33">qmc5883l_osr_t</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="structqmc5883l__params__t.html">  134</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="structqmc5883l__params__t.html#ab1e3ec304707c873afd305fc7da4a6e8">  135</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structqmc5883l__params__t.html#ab1e3ec304707c873afd305fc7da4a6e8">i2c</a>;              </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="structqmc5883l__params__t.html#ad865558b50a59d9543038f16148360a6">  136</a></span>&#160;    gpio_t <a class="code" href="structqmc5883l__params__t.html#ad865558b50a59d9543038f16148360a6">pin_drdy</a>;        </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="structqmc5883l__params__t.html#a6212fe62757b76f15ad175e81cec36a2">  137</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ga9b309fb78b36f074ed8b5b9ff07cd497">qmc5883l_odr_t</a> <a class="code" href="structqmc5883l__params__t.html#a6212fe62757b76f15ad175e81cec36a2">odr</a>;     </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="structqmc5883l__params__t.html#a3c45c5789866947eb8a8f3a04b30a678">  138</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ga479a092e370a54f48e3bc7ee8fa23e02">qmc5883l_rng_t</a> <a class="code" href="structqmc5883l__params__t.html#a3c45c5789866947eb8a8f3a04b30a678">rng</a>;     </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="structqmc5883l__params__t.html#acd4b81157730f2f65a0d2761a6756886">  139</a></span>&#160;    <a class="code" href="group__drivers__qmc5883l.html#ga94bf5e3f282baf506fb7f9ad5a1d7f33">qmc5883l_osr_t</a> <a class="code" href="structqmc5883l__params__t.html#acd4b81157730f2f65a0d2761a6756886">osr</a>;     </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;} <a class="code" href="structqmc5883l__params__t.html">qmc5883l_params_t</a>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="structqmc5883l__t.html">  145</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="structqmc5883l__t.html#ade3f887881d6bab1b5972662ff1d69f1">  146</a></span>&#160;    <a class="code" href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a> <a class="code" href="structqmc5883l__t.html#ade3f887881d6bab1b5972662ff1d69f1">i2c</a>;              </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="structqmc5883l__t.html#ace585365a079d45d057ee6617e260cb2">  147</a></span>&#160;    gpio_t <a class="code" href="structqmc5883l__t.html#ace585365a079d45d057ee6617e260cb2">pin_drdy</a>;        </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="structqmc5883l__t.html#ad35b94d21ace50d3abb17acf00e1f6e7">  148</a></span>&#160;    uint8_t <a class="code" href="structqmc5883l__t.html#ad35b94d21ace50d3abb17acf00e1f6e7">cfg</a>;            </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;} <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gaefb5771db3d3891abb2f47dfe5f649b4">  164</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#gaefb5771db3d3891abb2f47dfe5f649b4">qmc5883l_init</a>(<a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structqmc5883l__params__t.html">qmc5883l_params_t</a> *params);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gafeb7738287859a3833797d55d7bed1e5">  177</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#gafeb7738287859a3833797d55d7bed1e5">qmc5883l_data_ready</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ga3b8601b6c68648eb00b8b57035628e5f">  196</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#ga3b8601b6c68648eb00b8b57035628e5f">qmc5883l_read</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev, int16_t *data_out);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ga05bd4875a906b03bb194c294282273ec">  218</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#ga05bd4875a906b03bb194c294282273ec">qmc5883l_read_raw</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev, int16_t *data_out);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ga9fdb19470f7f9811e3fbbc2483f67a26">  230</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#ga9fdb19470f7f9811e3fbbc2483f67a26">qmc5883l_poweron</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gacfdfb0e583a0ddf1d64ffba8706c2a0d">  242</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#gacfdfb0e583a0ddf1d64ffba8706c2a0d">qmc5883l_poweroff</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">#if defined(MODULE_QMC5883L_INT) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gad76786c21c71180d424f0d1d9ff35047">  273</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#gad76786c21c71180d424f0d1d9ff35047">qmc5883l_init_int</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev, <a class="code" href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#gab1cf62589a039f7c1bee1ab6959d7670">  287</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#gab1cf62589a039f7c1bee1ab6959d7670">qmc5883l_irq_enable</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="group__drivers__qmc5883l.html#ga3e13673fdbe6d77facc7c7d8a8f24ba0">  299</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__qmc5883l.html#ga3e13673fdbe6d77facc7c7d8a8f24ba0">qmc5883l_irq_disable</a>(<span class="keyword">const</span> <a class="code" href="structqmc5883l__t.html">qmc5883l_t</a> *dev);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(MODULE_QMC5883L_INT) || defined(DOXYGEN) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;}</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* QMC5883L_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="agroup__drivers__periph__gpio_html_ga06ceaaf4824f1504972babf0775dba92"><div class="ttname"><a href="group__drivers__periph__gpio.html#ga06ceaaf4824f1504972babf0775dba92">gpio_cb_t</a></div><div class="ttdeci">void(* gpio_cb_t)(void *arg)</div><div class="ttdoc">Signature of event callback functions triggered from interrupts.</div><div class="ttdef"><b>Definition:</b> gpio.h:147</div></div>
+<div class="ttc" id="agroup__drivers__periph__i2c_html_ga53bedf646ffe6ddd17f13b893a17fa74"><div class="ttname"><a href="group__drivers__periph__i2c.html#ga53bedf646ffe6ddd17f13b893a17fa74">i2c_t</a></div><div class="ttdeci">uint_fast8_t i2c_t</div><div class="ttdoc">Default i2c_t type definition.</div><div class="ttdef"><b>Definition:</b> i2c.h:151</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ga05bd4875a906b03bb194c294282273ec"><div class="ttname"><a href="group__drivers__qmc5883l.html#ga05bd4875a906b03bb194c294282273ec">qmc5883l_read_raw</a></div><div class="ttdeci">int qmc5883l_read_raw(const qmc5883l_t *dev, int16_t *data_out)</div><div class="ttdoc">Read RAW data from the device.</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ga3b8601b6c68648eb00b8b57035628e5f"><div class="ttname"><a href="group__drivers__qmc5883l.html#ga3b8601b6c68648eb00b8b57035628e5f">qmc5883l_read</a></div><div class="ttdeci">int qmc5883l_read(const qmc5883l_t *dev, int16_t *data_out)</div><div class="ttdoc">Read sampled data from the device [converted to milli-Gauss].</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ga3e13673fdbe6d77facc7c7d8a8f24ba0"><div class="ttname"><a href="group__drivers__qmc5883l.html#ga3e13673fdbe6d77facc7c7d8a8f24ba0">qmc5883l_irq_disable</a></div><div class="ttdeci">int qmc5883l_irq_disable(const qmc5883l_t *dev)</div><div class="ttdoc">Disable the data ready (DRDY) interrupt.</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ga479a092e370a54f48e3bc7ee8fa23e02"><div class="ttname"><a href="group__drivers__qmc5883l.html#ga479a092e370a54f48e3bc7ee8fa23e02">qmc5883l_rng_t</a></div><div class="ttdeci">qmc5883l_rng_t</div><div class="ttdoc">Output value range.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:110</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ga94bf5e3f282baf506fb7f9ad5a1d7f33"><div class="ttname"><a href="group__drivers__qmc5883l.html#ga94bf5e3f282baf506fb7f9ad5a1d7f33">qmc5883l_osr_t</a></div><div class="ttdeci">qmc5883l_osr_t</div><div class="ttdoc">Over sample rate (bandwidth of internal digital filter)</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:124</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ga9b309fb78b36f074ed8b5b9ff07cd497"><div class="ttname"><a href="group__drivers__qmc5883l.html#ga9b309fb78b36f074ed8b5b9ff07cd497">qmc5883l_odr_t</a></div><div class="ttdeci">qmc5883l_odr_t</div><div class="ttdoc">Output data rate.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:93</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ga9fdb19470f7f9811e3fbbc2483f67a26"><div class="ttname"><a href="group__drivers__qmc5883l.html#ga9fdb19470f7f9811e3fbbc2483f67a26">qmc5883l_poweron</a></div><div class="ttdeci">int qmc5883l_poweron(const qmc5883l_t *dev)</div><div class="ttdoc">Power on the sensor (put it into continuous sampling mode)</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gab1cf62589a039f7c1bee1ab6959d7670"><div class="ttname"><a href="group__drivers__qmc5883l.html#gab1cf62589a039f7c1bee1ab6959d7670">qmc5883l_irq_enable</a></div><div class="ttdeci">int qmc5883l_irq_enable(const qmc5883l_t *dev)</div><div class="ttdoc">Enable the data ready (DRDY) interrupt.</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gacfdfb0e583a0ddf1d64ffba8706c2a0d"><div class="ttname"><a href="group__drivers__qmc5883l.html#gacfdfb0e583a0ddf1d64ffba8706c2a0d">qmc5883l_poweroff</a></div><div class="ttdeci">int qmc5883l_poweroff(const qmc5883l_t *dev)</div><div class="ttdoc">Power off the sensor (put it into standby mode)</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gad76786c21c71180d424f0d1d9ff35047"><div class="ttname"><a href="group__drivers__qmc5883l.html#gad76786c21c71180d424f0d1d9ff35047">qmc5883l_init_int</a></div><div class="ttdeci">int qmc5883l_init_int(const qmc5883l_t *dev, gpio_cb_t cb, void *arg)</div><div class="ttdoc">Initialize data ready (DRDY) interrupt notifications.</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gaefb5771db3d3891abb2f47dfe5f649b4"><div class="ttname"><a href="group__drivers__qmc5883l.html#gaefb5771db3d3891abb2f47dfe5f649b4">qmc5883l_init</a></div><div class="ttdeci">int qmc5883l_init(qmc5883l_t *dev, const qmc5883l_params_t *params)</div><div class="ttdoc">Initialize the given QMC5883L magnetic sensor.</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gafeb7738287859a3833797d55d7bed1e5"><div class="ttname"><a href="group__drivers__qmc5883l.html#gafeb7738287859a3833797d55d7bed1e5">qmc5883l_data_ready</a></div><div class="ttdeci">int qmc5883l_data_ready(const qmc5883l_t *dev)</div><div class="ttdoc">Check if new data is available.</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga479a092e370a54f48e3bc7ee8fa23e02a0353d72bc41fd36789496e773a6d9cfa"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga479a092e370a54f48e3bc7ee8fa23e02a0353d72bc41fd36789496e773a6d9cfa">QMC5883L_RNG_2G</a></div><div class="ttdeci">@ QMC5883L_RNG_2G</div><div class="ttdoc">2 Gauss data output range</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:111</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga479a092e370a54f48e3bc7ee8fa23e02a11b2cedf4575639a324d7515516aaa3d"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga479a092e370a54f48e3bc7ee8fa23e02a11b2cedf4575639a324d7515516aaa3d">QMC5883L_RNG_8G</a></div><div class="ttdeci">@ QMC5883L_RNG_8G</div><div class="ttdoc">8 Gauss data output range</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:112</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga94bf5e3f282baf506fb7f9ad5a1d7f33a0ce82bb0cdceb8533cd87a97fa846bfc"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a0ce82bb0cdceb8533cd87a97fa846bfc">QMC5883L_OSR_256</a></div><div class="ttdeci">@ QMC5883L_OSR_256</div><div class="ttdoc">256 samples per reading</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:126</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga94bf5e3f282baf506fb7f9ad5a1d7f33a8bd7f98a03a572d96902d8fb45fe35fb"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a8bd7f98a03a572d96902d8fb45fe35fb">QMC5883L_OSR_64</a></div><div class="ttdeci">@ QMC5883L_OSR_64</div><div class="ttdoc">64 samples per reading</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:128</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga94bf5e3f282baf506fb7f9ad5a1d7f33a933d3e23c89d96f490693c39fea71df0"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33a933d3e23c89d96f490693c39fea71df0">QMC5883L_OSR_512</a></div><div class="ttdeci">@ QMC5883L_OSR_512</div><div class="ttdoc">512 samples per reading</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:125</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga94bf5e3f282baf506fb7f9ad5a1d7f33aca7d9bed12848420ca2c81c51ad6fd0b"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga94bf5e3f282baf506fb7f9ad5a1d7f33aca7d9bed12848420ca2c81c51ad6fd0b">QMC5883L_OSR_128</a></div><div class="ttdeci">@ QMC5883L_OSR_128</div><div class="ttdoc">128 samples per reading</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:127</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga9b309fb78b36f074ed8b5b9ff07cd497a79fce4d7797423703679f63f49234e3e"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497a79fce4d7797423703679f63f49234e3e">QMC5883L_ODR_50HZ</a></div><div class="ttdeci">@ QMC5883L_ODR_50HZ</div><div class="ttdoc">50Hz data output rate</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:95</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga9b309fb78b36f074ed8b5b9ff07cd497a7eb4ac101a486307d887bd17fc04f561"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497a7eb4ac101a486307d887bd17fc04f561">QMC5883L_ODR_100HZ</a></div><div class="ttdeci">@ QMC5883L_ODR_100HZ</div><div class="ttdoc">100Hz data output rate</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:96</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga9b309fb78b36f074ed8b5b9ff07cd497add21c0a687ade247d4d92fced6235b94"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497add21c0a687ade247d4d92fced6235b94">QMC5883L_ODR_10HZ</a></div><div class="ttdeci">@ QMC5883L_ODR_10HZ</div><div class="ttdoc">10Hz data output rate</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:94</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_gga9b309fb78b36f074ed8b5b9ff07cd497afe1942a4f7cc8132a8b6a9760304f8e1"><div class="ttname"><a href="group__drivers__qmc5883l.html#gga9b309fb78b36f074ed8b5b9ff07cd497afe1942a4f7cc8132a8b6a9760304f8e1">QMC5883L_ODR_200HZ</a></div><div class="ttdeci">@ QMC5883L_ODR_200HZ</div><div class="ttdoc">200Hz data output rate</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:97</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ggaa62371d642974c67a0c0efa77d54fcbda0c4ede693865a7cd9a2b0d7b7b3c56a4"><div class="ttname"><a href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbda0c4ede693865a7cd9a2b0d7b7b3c56a4">QMC5883L_BUSERR</a></div><div class="ttdeci">@ QMC5883L_BUSERR</div><div class="ttdoc">i2c bus error</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:80</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ggaa62371d642974c67a0c0efa77d54fcbdaca91b7829c15c9e1cd9189c92a6a70ef"><div class="ttname"><a href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaca91b7829c15c9e1cd9189c92a6a70ef">QMC5883L_OK</a></div><div class="ttdeci">@ QMC5883L_OK</div><div class="ttdoc">success</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:77</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ggaa62371d642974c67a0c0efa77d54fcbdaeaf4920b13c2454f1cca8c62bd221ba1"><div class="ttname"><a href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaeaf4920b13c2454f1cca8c62bd221ba1">QMC5883L_OVERFLOW</a></div><div class="ttdeci">@ QMC5883L_OVERFLOW</div><div class="ttdoc">at least one axis overflowed its range</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:79</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ggaa62371d642974c67a0c0efa77d54fcbdaf5650a24c957dad9f00d9056d2e6293e"><div class="ttname"><a href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaf5650a24c957dad9f00d9056d2e6293e">QMC5883L_NOCFG</a></div><div class="ttdeci">@ QMC5883L_NOCFG</div><div class="ttdoc">configuration error</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:81</div></div>
+<div class="ttc" id="agroup__drivers__qmc5883l_html_ggaa62371d642974c67a0c0efa77d54fcbdaf91f3a59f3440457b2790f3f18c8c897"><div class="ttname"><a href="group__drivers__qmc5883l.html#ggaa62371d642974c67a0c0efa77d54fcbdaf91f3a59f3440457b2790f3f18c8c897">QMC5883L_NODATA</a></div><div class="ttdeci">@ QMC5883L_NODATA</div><div class="ttdoc">no data are available</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:78</div></div>
+<div class="ttc" id="ai2c_8h_html"><div class="ttname"><a href="i2c_8h.html">i2c.h</a></div><div class="ttdoc">Low-level I2C peripheral driver interface definition.</div></div>
+<div class="ttc" id="astructqmc5883l__params__t_html"><div class="ttname"><a href="structqmc5883l__params__t.html">qmc5883l_params_t</a></div><div class="ttdoc">QMC5883L initialization parameters.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:134</div></div>
+<div class="ttc" id="astructqmc5883l__params__t_html_a3c45c5789866947eb8a8f3a04b30a678"><div class="ttname"><a href="structqmc5883l__params__t.html#a3c45c5789866947eb8a8f3a04b30a678">qmc5883l_params_t::rng</a></div><div class="ttdeci">qmc5883l_rng_t rng</div><div class="ttdoc">output data range</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:138</div></div>
+<div class="ttc" id="astructqmc5883l__params__t_html_a6212fe62757b76f15ad175e81cec36a2"><div class="ttname"><a href="structqmc5883l__params__t.html#a6212fe62757b76f15ad175e81cec36a2">qmc5883l_params_t::odr</a></div><div class="ttdeci">qmc5883l_odr_t odr</div><div class="ttdoc">output data rate</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:137</div></div>
+<div class="ttc" id="astructqmc5883l__params__t_html_ab1e3ec304707c873afd305fc7da4a6e8"><div class="ttname"><a href="structqmc5883l__params__t.html#ab1e3ec304707c873afd305fc7da4a6e8">qmc5883l_params_t::i2c</a></div><div class="ttdeci">i2c_t i2c</div><div class="ttdoc">I2C bus the sensor is connected to.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:135</div></div>
+<div class="ttc" id="astructqmc5883l__params__t_html_acd4b81157730f2f65a0d2761a6756886"><div class="ttname"><a href="structqmc5883l__params__t.html#acd4b81157730f2f65a0d2761a6756886">qmc5883l_params_t::osr</a></div><div class="ttdeci">qmc5883l_osr_t osr</div><div class="ttdoc">oversampling rate</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:139</div></div>
+<div class="ttc" id="astructqmc5883l__params__t_html_ad865558b50a59d9543038f16148360a6"><div class="ttname"><a href="structqmc5883l__params__t.html#ad865558b50a59d9543038f16148360a6">qmc5883l_params_t::pin_drdy</a></div><div class="ttdeci">gpio_t pin_drdy</div><div class="ttdoc">DRDY ISR pin, set to GPIO_UNDEF if unused.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:136</div></div>
+<div class="ttc" id="astructqmc5883l__t_html"><div class="ttname"><a href="structqmc5883l__t.html">qmc5883l_t</a></div><div class="ttdoc">QMC5883L device descriptor.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:145</div></div>
+<div class="ttc" id="astructqmc5883l__t_html_ace585365a079d45d057ee6617e260cb2"><div class="ttname"><a href="structqmc5883l__t.html#ace585365a079d45d057ee6617e260cb2">qmc5883l_t::pin_drdy</a></div><div class="ttdeci">gpio_t pin_drdy</div><div class="ttdoc">DRDY interrupt pin.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:147</div></div>
+<div class="ttc" id="astructqmc5883l__t_html_ad35b94d21ace50d3abb17acf00e1f6e7"><div class="ttname"><a href="structqmc5883l__t.html#ad35b94d21ace50d3abb17acf00e1f6e7">qmc5883l_t::cfg</a></div><div class="ttdeci">uint8_t cfg</div><div class="ttdoc">actual applied device configuration</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:148</div></div>
+<div class="ttc" id="astructqmc5883l__t_html_ade3f887881d6bab1b5972662ff1d69f1"><div class="ttname"><a href="structqmc5883l__t.html#ade3f887881d6bab1b5972662ff1d69f1">qmc5883l_t::i2c</a></div><div class="ttdeci">i2c_t i2c</div><div class="ttdoc">I2C bus the sensor is connected to.</div><div class="ttdef"><b>Definition:</b> qmc5883l.h:146</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="qmc5883l_8h.html">qmc5883l.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

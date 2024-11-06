@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: PCA9685 I2C PWM controller</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__drivers__pca9685.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">PCA9685 I2C PWM controller<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__actuators.html">Actuator Device Drivers</a> &#124; <a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__saul.html">[S]ensor [A]ctuator [U]ber [L]ayer</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Device driver for the NXP PCA9685. </p>
+<h2><a class="anchor" id="autotoc_md1700"></a>
+Overview</h2>
+<p>The driver supports the NXP PCA9685 16-channel, 12-bit PWM LED controller connected to I2C. Although the controller is optimized for LED control, the 12-bit resolution also allows the control of servos with a resolution of 4 us at 60 Hz refresh signal.</p>
+<p>The following features of the PCA9685 are supported by the driver:</p>
+<ul>
+<li>16 channels with 12-bit resolution</li>
+<li>Refresh rates from 24 Hz to 1526 Hz with internal 25 MHz oscillator</li>
+<li>Totem pole outputs with 25 mA as sink and 10 mA as source at 5V</li>
+<li>Software programmable open-drain output selection</li>
+<li>Inverted outputs</li>
+<li>Active LOW Output Enable (OE) input pin</li>
+<li>External clock input with max. 50 MHz</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md1701"></a>
+Usage</h2>
+<p>The driver interface is kept as compatible as possible with the peripheral PWM interface. The only differences are that</p>
+<ul>
+<li>functions have the prefix <code>pca9685_</code> and</li>
+<li>functions require an additional parameter, the pointer to the PWM device of type <a class="el" href="structpca9685__t.html" title="PCA9685 PWM device data structure type.">pca9685_t</a>.</li>
+</ul>
+<p>Please refer the test application in <code>tests/drivers/pca9685</code> for an example on how to use the driver.</p>
+<h2><a class="anchor" id="autotoc_md1702"></a>
+SAUL Capabilities</h2>
+<p>The driver provides SAUL capabilities that are compatible to the SAUL actuators of type <a class="el" href="group__drivers__saul.html#ggaa3dfb65ce3006aaab287357097352604aa837edbaeb82d77107eeba99a9bf19cd" title="actuator: servo motor">SAUL_ACT_SERVO</a>.</p>
+<p>Each PCA9685 channel can be mapped directly to SAUL by defining an according entry in <code>PCA9685_SAUL_PWM_PARAMS</code>. Please refer file <code>$RIOTBASE/drivers/pca9685/include/pca9685_params.h</code> for an example. </p><pre class="fragment"> pca9685_saul_pwm_params_t pca9685_saul_pwm_params[] = {
+     {
+         .name = "PCA9685-0:0",
+         .dev = 0,
+         .channel = 0,
+         .initial = (PCA9685_PARAM_RES &gt;&gt; 1),
+      },
+     {
+         .name = "PCA9685-0:1",
+         .dev = 0,
+         .channel = 1,
+         .initial = (PCA9685_PARAM_RES &gt;&gt; 2),
+      },
+     {
+         .name = "PCA9685-0:2",
+         .dev = 0,
+         .channel = 2,
+         .initial = (PCA9685_PARAM_RES &gt;&gt; 3),
+      },
+ };
+</pre><p> For each PWM channel that should be used with SAUL, an entry with a name, the device, the channel, and the initial value has to be defined as shown above.</p>
+<dl class="section author"><dt>Author</dt><dd>Gunar Schorcht <a href="#" onclick="location.href='mai'+'lto:'+'gun'+'ar'+'@sc'+'ho'+'rch'+'t.'+'net'; return false;">gunar<span style="display: none;">.nosp@m.</span>@sch<span style="display: none;">.nosp@m.</span>orcht<span style="display: none;">.nosp@m.</span>.net</a> </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:pca9685_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pca9685_8h.html">pca9685.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:pca9685__params_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pca9685__params_8h.html">pca9685_params.h</a></td></tr>
+<tr class="memdesc:pca9685__params_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default configuration for the PCA9685 I2C PWM controller. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:pca9685__regs_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pca9685__regs_8h.html">pca9685_regs.h</a></td></tr>
+<tr class="memdesc:pca9685__regs_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register definitions for the PCA9685 I2C PWM controller. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpca9685__params__t.html">pca9685_params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA9685 device initialization parameters.  <a href="structpca9685__params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpca9685__t.html">pca9685_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA9685 PWM device data structure type.  <a href="structpca9685__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpca9685__saul__pwm__params__t.html">pca9685_saul_pwm_params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA9685 configuration structure for mapping PWM channels to SAUL.  <a href="structpca9685__saul__pwm__params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga59f3280f535ca547bbde16443305568e"><td class="memItemLeft" align="right" valign="top"><a id="ga59f3280f535ca547bbde16443305568e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga59f3280f535ca547bbde16443305568e">PCA9685_CHANNEL_NUM</a>&#160;&#160;&#160;(16U)</td></tr>
+<tr class="memdesc:ga59f3280f535ca547bbde16443305568e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of PWM channels provided by PCA9685. <br /></td></tr>
+<tr class="separator:ga59f3280f535ca547bbde16443305568e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d38c6c9a13df01a8454be525c3ebf7e"><td class="memItemLeft" align="right" valign="top"><a id="ga6d38c6c9a13df01a8454be525c3ebf7e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga6d38c6c9a13df01a8454be525c3ebf7e">PCA9685_RESOLUTION</a>&#160;&#160;&#160;(1 &lt;&lt; 12)</td></tr>
+<tr class="memdesc:ga6d38c6c9a13df01a8454be525c3ebf7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal PCA9685 channel resolution is 12-bit. <br /></td></tr>
+<tr class="separator:ga6d38c6c9a13df01a8454be525c3ebf7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga712c59786ae09893d0aeb5acd105558a"><td class="memItemLeft" align="right" valign="top"><a id="ga712c59786ae09893d0aeb5acd105558a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga712c59786ae09893d0aeb5acd105558a">PCA9685_OSC_FREQ</a>&#160;&#160;&#160;(25000000)</td></tr>
+<tr class="memdesc:ga712c59786ae09893d0aeb5acd105558a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal PCA9685 oscillator frequency is 25 MHz. <br /></td></tr>
+<tr class="separator:ga712c59786ae09893d0aeb5acd105558a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa721fdd019a1cd1f41482b06ea8ce627"><td class="memItemLeft" align="right" valign="top"><a id="gaa721fdd019a1cd1f41482b06ea8ce627"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#gaa721fdd019a1cd1f41482b06ea8ce627">PCA9685_EXT_FERQ_MAX</a>&#160;&#160;&#160;(50000000)</td></tr>
+<tr class="memdesc:gaa721fdd019a1cd1f41482b06ea8ce627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum external clock frequency is 50 MHz. <br /></td></tr>
+<tr class="separator:gaa721fdd019a1cd1f41482b06ea8ce627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga810f1332042b1968497fe6d5c1ba5744"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga810f1332042b1968497fe6d5c1ba5744">pca9685_error_t</a> { <a class="el" href="group__drivers__pca9685.html#gga810f1332042b1968497fe6d5c1ba5744a9c9798d7cfbac14ef16cad56b330e2a4">PCA9685_OK</a> = 0
+, <a class="el" href="group__drivers__pca9685.html#gga810f1332042b1968497fe6d5c1ba5744a3cbc08e22b71dfbb66ba422193914a83">PCA9685_ERROR_I2C</a> = 1
+ }</td></tr>
+<tr class="memdesc:ga810f1332042b1968497fe6d5c1ba5744"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA9685 driver error codes.  <a href="group__drivers__pca9685.html#ga810f1332042b1968497fe6d5c1ba5744">More...</a><br /></td></tr>
+<tr class="separator:ga810f1332042b1968497fe6d5c1ba5744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5515d408b1527279a0de586363ca79e2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga5515d408b1527279a0de586363ca79e2">pca9685_out_drv_t</a> { <a class="el" href="group__drivers__pca9685.html#gga5515d408b1527279a0de586363ca79e2ae8c1366a8764b7b1b22460236572f60b">PCA9685_OPEN_DRAIN</a> = 0
+, <a class="el" href="group__drivers__pca9685.html#gga5515d408b1527279a0de586363ca79e2ac1e49091aceb0392ce1aae7028781b3f">PCA9685_TOTEM_POLE</a> = 1
+ }</td></tr>
+<tr class="memdesc:ga5515d408b1527279a0de586363ca79e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA9685 output driver mode.  <a href="group__drivers__pca9685.html#ga5515d408b1527279a0de586363ca79e2">More...</a><br /></td></tr>
+<tr class="separator:ga5515d408b1527279a0de586363ca79e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b102e5663fff29edee35dd7689f79b2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga2b102e5663fff29edee35dd7689f79b2">pca9685_out_ne_t</a> { <a class="el" href="group__drivers__pca9685.html#gga2b102e5663fff29edee35dd7689f79b2ab5fd7468b7aae08e45cd5d12d686a0ec">PCA9685_OFF</a> = 0
+, <a class="el" href="group__drivers__pca9685.html#gga2b102e5663fff29edee35dd7689f79b2a1a8d91d02f32ec6dfeed441521e4034c">PCA9685_OUT_DRV</a> = 1
+, <a class="el" href="group__drivers__pca9685.html#gga2b102e5663fff29edee35dd7689f79b2a2d565ecb692f43a6964f3ee330eccf3c">PCA9685_HIHGH_Z</a> = 2
+ }</td></tr>
+<tr class="memdesc:ga2b102e5663fff29edee35dd7689f79b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA9685 output-not-enabled mode.  <a href="group__drivers__pca9685.html#ga2b102e5663fff29edee35dd7689f79b2">More...</a><br /></td></tr>
+<tr class="separator:ga2b102e5663fff29edee35dd7689f79b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaefdb048c84197fad0de859f1ef489287"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#gaefdb048c84197fad0de859f1ef489287">pca9685_init</a> (<a class="el" href="structpca9685__t.html">pca9685_t</a> *dev, const <a class="el" href="structpca9685__params__t.html">pca9685_params_t</a> *params)</td></tr>
+<tr class="memdesc:gaefdb048c84197fad0de859f1ef489287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the PCA9685 PWM device driver.  <a href="group__drivers__pca9685.html#gaefdb048c84197fad0de859f1ef489287">More...</a><br /></td></tr>
+<tr class="separator:gaefdb048c84197fad0de859f1ef489287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93c50a9223394855c7fc72e4003e7b46"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga93c50a9223394855c7fc72e4003e7b46">pca9685_pwm_init</a> (<a class="el" href="structpca9685__t.html">pca9685_t</a> *dev, <a class="el" href="boards_2openlabs-kw41z-mini_2include_2periph__conf_8h.html#a562b5946a0edd6f5eebb63db7d154d56">pwm_mode_t</a> mode, uint32_t freq, uint16_t res)</td></tr>
+<tr class="memdesc:ga93c50a9223394855c7fc72e4003e7b46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the PCA9685 PWM device.  <a href="group__drivers__pca9685.html#ga93c50a9223394855c7fc72e4003e7b46">More...</a><br /></td></tr>
+<tr class="separator:ga93c50a9223394855c7fc72e4003e7b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d176e43fef69284d1de6e4da9106492"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga6d176e43fef69284d1de6e4da9106492">pca9685_pwm_set</a> (<a class="el" href="structpca9685__t.html">pca9685_t</a> *dev, uint8_t channel, uint16_t value)</td></tr>
+<tr class="memdesc:ga6d176e43fef69284d1de6e4da9106492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the duty-cycle for a given channel or all channels of the given PCA9685 PWM device.  <a href="group__drivers__pca9685.html#ga6d176e43fef69284d1de6e4da9106492">More...</a><br /></td></tr>
+<tr class="separator:ga6d176e43fef69284d1de6e4da9106492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6a1c921e8c9f4ffd8e66fba2afec86c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga6a1c921e8c9f4ffd8e66fba2afec86c8">pca9685_pwm_poweron</a> (<a class="el" href="structpca9685__t.html">pca9685_t</a> *dev)</td></tr>
+<tr class="memdesc:ga6a1c921e8c9f4ffd8e66fba2afec86c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resume PWM generation on the given PCA9685 device.  <a href="group__drivers__pca9685.html#ga6a1c921e8c9f4ffd8e66fba2afec86c8">More...</a><br /></td></tr>
+<tr class="separator:ga6a1c921e8c9f4ffd8e66fba2afec86c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga409ab0e4d56e96d3712bade834cd3368"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga409ab0e4d56e96d3712bade834cd3368">pca9685_pwm_poweroff</a> (<a class="el" href="structpca9685__t.html">pca9685_t</a> *dev)</td></tr>
+<tr class="memdesc:ga409ab0e4d56e96d3712bade834cd3368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the PWM generation on the given PCA9685 device.  <a href="group__drivers__pca9685.html#ga409ab0e4d56e96d3712bade834cd3368">More...</a><br /></td></tr>
+<tr class="separator:ga409ab0e4d56e96d3712bade834cd3368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae32bfa9387605e7363b3d0aa186a440d"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#gae32bfa9387605e7363b3d0aa186a440d">pca9685_pwm_channels</a> (<a class="el" href="structpca9685__t.html">pca9685_t</a> *dev)</td></tr>
+<tr class="memdesc:gae32bfa9387605e7363b3d0aa186a440d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of available channels of the given PCA9685 device.  <a href="group__drivers__pca9685.html#gae32bfa9387605e7363b3d0aa186a440d">More...</a><br /></td></tr>
+<tr class="separator:gae32bfa9387605e7363b3d0aa186a440d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">PCA9685 I2C slave addresses</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp7ac34aac7c750e771263a96e0a3c4495"></a>PCA9685 offers 64 possible hardware-programmable I2C slave addresses.</p>
+<p>Therefore the I2C slave address is defined as an offset in the range from 0 to 63 to a base address <a class="el" href="group__drivers__pca9685.html#gae006e1d30c4868b4d7a204e0a153d6c9" title="I2C slave base address.">PCA9685_I2C_BASE_ADDR</a>. PCA9685 I2C slave addresses are then in the range from <a class="el" href="group__drivers__pca9685.html#gae006e1d30c4868b4d7a204e0a153d6c9" title="I2C slave base address.">PCA9685_I2C_BASE_ADDR</a> + 0 to <a class="el" href="group__drivers__pca9685.html#gae006e1d30c4868b4d7a204e0a153d6c9" title="I2C slave base address.">PCA9685_I2C_BASE_ADDR</a> + 63</p>
+<p>Four I2C slave addresses have special meaning when they are enabled, the All Call address (enabled by default) and three Sub Call addresses disabled by default). These addresses can be used to address either all or sub groups of PCF9695 controllers at the same time. </p>
+</td></tr>
+<tr class="memitem:gae006e1d30c4868b4d7a204e0a153d6c9"><td class="memItemLeft" align="right" valign="top"><a id="gae006e1d30c4868b4d7a204e0a153d6c9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#gae006e1d30c4868b4d7a204e0a153d6c9">PCA9685_I2C_BASE_ADDR</a>&#160;&#160;&#160;(0x40)</td></tr>
+<tr class="memdesc:gae006e1d30c4868b4d7a204e0a153d6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C slave base address. <br /></td></tr>
+<tr class="separator:gae006e1d30c4868b4d7a204e0a153d6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4784926f4867d576357a6d2ced7f1c0a"><td class="memItemLeft" align="right" valign="top"><a id="ga4784926f4867d576357a6d2ced7f1c0a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga4784926f4867d576357a6d2ced7f1c0a">PCA9685_I2C_ALLCALLADDR</a>&#160;&#160;&#160;(0x70)</td></tr>
+<tr class="memdesc:ga4784926f4867d576357a6d2ced7f1c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default All Call address. <br /></td></tr>
+<tr class="separator:ga4784926f4867d576357a6d2ced7f1c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa23b3d254e98964eda7be21273230696"><td class="memItemLeft" align="right" valign="top"><a id="gaa23b3d254e98964eda7be21273230696"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#gaa23b3d254e98964eda7be21273230696">PCA9685_I2C_SUBADR1</a>&#160;&#160;&#160;(0x71)</td></tr>
+<tr class="memdesc:gaa23b3d254e98964eda7be21273230696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Sub Call address 1. <br /></td></tr>
+<tr class="separator:gaa23b3d254e98964eda7be21273230696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee2dc5336704adda9f36bf853af759d8"><td class="memItemLeft" align="right" valign="top"><a id="gaee2dc5336704adda9f36bf853af759d8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#gaee2dc5336704adda9f36bf853af759d8">PCA9685_I2C_SUBADR2</a>&#160;&#160;&#160;(0x72)</td></tr>
+<tr class="memdesc:gaee2dc5336704adda9f36bf853af759d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Sub Call address 2. <br /></td></tr>
+<tr class="separator:gaee2dc5336704adda9f36bf853af759d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga849019467a213f7b62ff77cd28260162"><td class="memItemLeft" align="right" valign="top"><a id="ga849019467a213f7b62ff77cd28260162"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__pca9685.html#ga849019467a213f7b62ff77cd28260162">PCA9685_I2C_SUBADR3</a>&#160;&#160;&#160;(0x73)</td></tr>
+<tr class="memdesc:ga849019467a213f7b62ff77cd28260162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Sub Call address 3. <br /></td></tr>
+<tr class="separator:ga849019467a213f7b62ff77cd28260162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga810f1332042b1968497fe6d5c1ba5744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga810f1332042b1968497fe6d5c1ba5744">&#9670;&nbsp;</a></span>pca9685_error_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__pca9685.html#ga810f1332042b1968497fe6d5c1ba5744">pca9685_error_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PCA9685 driver error codes. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga810f1332042b1968497fe6d5c1ba5744a9c9798d7cfbac14ef16cad56b330e2a4"></a>PCA9685_OK&#160;</td><td class="fielddoc"><p>Success. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga810f1332042b1968497fe6d5c1ba5744a3cbc08e22b71dfbb66ba422193914a83"></a>PCA9685_ERROR_I2C&#160;</td><td class="fielddoc"><p>I2C communication error. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga5515d408b1527279a0de586363ca79e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5515d408b1527279a0de586363ca79e2">&#9670;&nbsp;</a></span>pca9685_out_drv_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__pca9685.html#ga5515d408b1527279a0de586363ca79e2">pca9685_out_drv_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PCA9685 output driver mode. </p>
+<p>The output driver mode defines how the outputs are configured. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga5515d408b1527279a0de586363ca79e2ae8c1366a8764b7b1b22460236572f60b"></a>PCA9685_OPEN_DRAIN&#160;</td><td class="fielddoc"><p>Open-drain structure output. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5515d408b1527279a0de586363ca79e2ac1e49091aceb0392ce1aae7028781b3f"></a>PCA9685_TOTEM_POLE&#160;</td><td class="fielddoc"><p>Totem pole structure output. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga2b102e5663fff29edee35dd7689f79b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2b102e5663fff29edee35dd7689f79b2">&#9670;&nbsp;</a></span>pca9685_out_ne_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__pca9685.html#ga2b102e5663fff29edee35dd7689f79b2">pca9685_out_ne_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PCA9685 output-not-enabled mode. </p>
+<p>The output-not-enabled mode defines how the outputs behave when the active LOW output enable pin /OE is HIGH. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga2b102e5663fff29edee35dd7689f79b2ab5fd7468b7aae08e45cd5d12d686a0ec"></a>PCA9685_OFF&#160;</td><td class="fielddoc"><p>If /OE pin is HIGH, outputs are LOW. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2b102e5663fff29edee35dd7689f79b2a1a8d91d02f32ec6dfeed441521e4034c"></a>PCA9685_OUT_DRV&#160;</td><td class="fielddoc"><p>Outputs depend on the output driver mode <a class="el" href="structpca9685__params__t.html#ae41f0a28b377ae0f555e3ae1324a83d2" title="Output driver mode.">pca9685_params_t::out_drv</a>. </p>
+<p>If /OE pin is HIGH, it is high-impedance for PCA9685_OPEN_DRAIN, and HIGH for PCA9685_TOTEM_POLE </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2b102e5663fff29edee35dd7689f79b2a2d565ecb692f43a6964f3ee330eccf3c"></a>PCA9685_HIHGH_Z&#160;</td><td class="fielddoc"><p>If /OE pin is HIGH, outputs are high-impedance. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaefdb048c84197fad0de859f1ef489287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaefdb048c84197fad0de859f1ef489287">&#9670;&nbsp;</a></span>pca9685_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pca9685_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpca9685__t.html">pca9685_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structpca9685__params__t.html">pca9685_params_t</a> *&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the PCA9685 PWM device driver. </p>
+<p>The function initializes the driver. After calling this function, the PWM device is in low-power sleep mode (powered off), all outputs off. Before the PWM device can be used, it has to be initialized with <a class="el" href="group__drivers__pca9685.html#ga93c50a9223394855c7fc72e4003e7b46" title="Initialize the PCA9685 PWM device.">pca9685_pwm_init</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the PCA9685 to be initialized </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Configuration parameters, see <a class="el" href="structpca9685__params__t.html" title="PCA9685 device initialization parameters.">pca9685_params_t</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">PCA9685_OK</td><td>on success </td></tr>
+    <tr><td class="paramname">PCA9685_ERROR_*</td><td>a negative error code on error, see <a class="el" href="group__drivers__pca9685.html#ga810f1332042b1968497fe6d5c1ba5744" title="PCA9685 driver error codes.">pca9685_error_t</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae32bfa9387605e7363b3d0aa186a440d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae32bfa9387605e7363b3d0aa186a440d">&#9670;&nbsp;</a></span>pca9685_pwm_channels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t pca9685_pwm_channels </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpca9685__t.html">pca9685_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of available channels of the given PCA9685 device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the PCA9685 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of channels available </dd></dl>
+
+</div>
+</div>
+<a id="ga93c50a9223394855c7fc72e4003e7b46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga93c50a9223394855c7fc72e4003e7b46">&#9670;&nbsp;</a></span>pca9685_pwm_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t pca9685_pwm_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpca9685__t.html">pca9685_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="boards_2openlabs-kw41z-mini_2include_2periph__conf_8h.html#a562b5946a0edd6f5eebb63db7d154d56">pwm_mode_t</a>&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the PCA9685 PWM device. </p>
+<p>The function initializes the PWM device with the given parameters that are used for all channels. After calling this function, the PWM device is operational (powered on). That is, all outputs are active with the given parameters and the same duty cycle value as before the call.</p>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>PCA9685 works with internally with a resolution of 12 bit = 4096. Using a resolution that is not a power of two, will cause inaccuracy due to alignment errors when scaling down the internal resolution to the configured resolution.</li>
+<li>Frequencies from 24 Hz to 1526 Hz can be used with PCF9865.</li>
+</ul>
+</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the PCA9685 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>PWM mode, left, right or center aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">freq</td><td>PWM frequency in Hz [24...1526] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">res</td><td>PWM resolution [2...4096], should be a power of two</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">&gt;0</td><td>actual frequency on success </td></tr>
+    <tr><td class="paramname">0</td><td>on error </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga409ab0e4d56e96d3712bade834cd3368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga409ab0e4d56e96d3712bade834cd3368">&#9670;&nbsp;</a></span>pca9685_pwm_poweroff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pca9685_pwm_poweroff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpca9685__t.html">pca9685_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop the PWM generation on the given PCA9685 device. </p>
+<p>This function switches the PCA9685 into sleep mode which turns off the internal oscillator. This disables the PWM generation on all configured. If the active LOW output enable pin /OE is used, the signal is set to HIGH. Dependent on the <a class="el" href="structpca9685__params__t.html#ae41f0a28b377ae0f555e3ae1324a83d2" title="Output driver mode.">pca9685_params_t::out_drv</a> and <a class="el" href="structpca9685__params__t.html#adbcd2679208e06cd9addf3837e56bc11" title="Output-not-enabled mode.">pca9685_params_t::out_ne</a> parameters, the outputs are set 0, 1 or high-impedance. All channel duty-cycle values are preserved.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the PCA9685 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6a1c921e8c9f4ffd8e66fba2afec86c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6a1c921e8c9f4ffd8e66fba2afec86c8">&#9670;&nbsp;</a></span>pca9685_pwm_poweron()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pca9685_pwm_poweron </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpca9685__t.html">pca9685_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resume PWM generation on the given PCA9685 device. </p>
+<p>When this function is called, the given PWM device is powered on and continues its previously configured operation. The duty cycle of each channel will be the value that was last set.</p>
+<p>This function must not be called before the PWM device was initialized.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the PCA9685 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6d176e43fef69284d1de6e4da9106492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6d176e43fef69284d1de6e4da9106492">&#9670;&nbsp;</a></span>pca9685_pwm_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pca9685_pwm_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpca9685__t.html">pca9685_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the duty-cycle for a given channel or all channels of the given PCA9685 PWM device. </p>
+<p>The duty-cycle is set in relation to the chosen resolution of the given device. If value &gt; resolution, value is set to resolution.</p>
+<p>If the given channel is <a class="el" href="group__drivers__pca9685.html#ga59f3280f535ca547bbde16443305568e" title="Number of PWM channels provided by PCA9685.">PCA9685_CHANNEL_NUM</a>, all channels are set to the same duty cycle at the same time with only one I2C bus access.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>Device descriptor of the PCA9685 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">channel</td><td>Channel of PCA9685 to set, if <a class="el" href="group__drivers__pca9685.html#ga59f3280f535ca547bbde16443305568e" title="Number of PWM channels provided by PCA9685.">PCA9685_CHANNEL_NUM</a> all channels are set to the desired duty-cycle </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Desired duty-cycle to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

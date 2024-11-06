@@ -1,0 +1,25 @@
+var structdcf77__bits__t_1_1values =
+[
+    [ "buff", "structdcf77__bits__t_1_1values.html#a4ccdc731678a4c5c7fb34927ed4175b9", null ],
+    [ "calling", "structdcf77__bits__t_1_1values.html#a87d707dd80f766fdbf0f52f6257ad90f", null ],
+    [ "date_par", "structdcf77__bits__t_1_1values.html#a4169b6136459eca746be6371aad2d433", null ],
+    [ "day_h", "structdcf77__bits__t_1_1values.html#abb8aca27d1f552ea2382be2afd7c042e", null ],
+    [ "day_l", "structdcf77__bits__t_1_1values.html#a7238678c8037ba1994c4d60eff4fc2cb", null ],
+    [ "hour_h", "structdcf77__bits__t_1_1values.html#aa98b62939cba9f52ee35b37d1436698c", null ],
+    [ "hour_l", "structdcf77__bits__t_1_1values.html#a353d637e73bf0e0c5ba38fb49d68ddf8", null ],
+    [ "hour_par", "structdcf77__bits__t_1_1values.html#a7d30499ef385a31d02945cca5bbb669f", null ],
+    [ "mesz", "structdcf77__bits__t_1_1values.html#a26d70577ecb5b47bfe26475977424508", null ],
+    [ "mez_mesz_shift", "structdcf77__bits__t_1_1values.html#a66f81c1b13f4832cc83db4d2d3795269", null ],
+    [ "minute_h", "structdcf77__bits__t_1_1values.html#a3768657c33fca6dad19bf4106801b9c7", null ],
+    [ "minute_l", "structdcf77__bits__t_1_1values.html#a14c9d45b41f980027417c2e207b4d9ae", null ],
+    [ "minute_par", "structdcf77__bits__t_1_1values.html#a2ba0fef2101af82c772ae1f7201fdcae", null ],
+    [ "month_h", "structdcf77__bits__t_1_1values.html#ace603460ce6b6d59b544deda5d78f7e0", null ],
+    [ "month_l", "structdcf77__bits__t_1_1values.html#acae859dde8eed2be8f13c08830a3a954", null ],
+    [ "shift_sec", "structdcf77__bits__t_1_1values.html#a0fd0f6e62afafee5e01dfd220ba8bf41", null ],
+    [ "start", "structdcf77__bits__t_1_1values.html#ac0608389d784e93eb70d955bd345d735", null ],
+    [ "start_time", "structdcf77__bits__t_1_1values.html#a3b8ff33af0d051df46ffe3d675a427b6", null ],
+    [ "wday", "structdcf77__bits__t_1_1values.html#a046d7dbaf4cf3edb05b6a20c175bee7f", null ],
+    [ "wheater", "structdcf77__bits__t_1_1values.html#a425a54dc628555e5ffbc64acda457c5a", null ],
+    [ "year_h", "structdcf77__bits__t_1_1values.html#a31b166200549d7e3db7e57440b37cffa", null ],
+    [ "year_l", "structdcf77__bits__t_1_1values.html#a8191eb4429aab8eec04a3803a1f0e20c", null ]
+];

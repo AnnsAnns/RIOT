@@ -1,0 +1,26 @@
+var feather_nrf52840_sense_2include_2board_8h =
+[
+    [ "BMX280_PARAM_I2C_DEV", "feather-nrf52840-sense_2include_2board_8h.html#afc5a6635eae7757c1f35cdc59c1acfb3", null ],
+    [ "BTN0_MODE", "feather-nrf52840-sense_2include_2board_8h.html#a904884feea8e03c30c9a85ca6d7a8e5c", null ],
+    [ "BTN0_PIN", "feather-nrf52840-sense_2include_2board_8h.html#aab5c3eca54046333af52593b9e360270", null ],
+    [ "LED0_MASK", "feather-nrf52840-sense_2include_2board_8h.html#abfabde35a3e8b7ab50146a5e223bfead", null ],
+    [ "LED0_OFF", "feather-nrf52840-sense_2include_2board_8h.html#aef2e39b9fd343d0e437fac0463f3e02d", null ],
+    [ "LED0_ON", "feather-nrf52840-sense_2include_2board_8h.html#a1e48dc02333bfc2e6ad3e5bd466eecd4", null ],
+    [ "LED0_PIN", "feather-nrf52840-sense_2include_2board_8h.html#a3fc522fda449d6edde717d6a857429cf", null ],
+    [ "LED0_TOGGLE", "feather-nrf52840-sense_2include_2board_8h.html#aebc6389533d9fc8dcbe4d2129a4d5a45", null ],
+    [ "LED1_MASK", "feather-nrf52840-sense_2include_2board_8h.html#a669ed6e073140d069b30442bf4c08842", null ],
+    [ "LED1_OFF", "feather-nrf52840-sense_2include_2board_8h.html#a343fd2d3ce61b84f88ddfaea32c67c58", null ],
+    [ "LED1_ON", "feather-nrf52840-sense_2include_2board_8h.html#aadd4c7ae0cd4e9bbb17f7055dd51fe08", null ],
+    [ "LED1_PIN", "feather-nrf52840-sense_2include_2board_8h.html#a318aa17e5d40e2132d2c7f6269ce7f51", null ],
+    [ "LED1_TOGGLE", "feather-nrf52840-sense_2include_2board_8h.html#a267fdbba1d750146b73da35c1731fd17", null ],
+    [ "LED_MASK", "feather-nrf52840-sense_2include_2board_8h.html#ad0d0bdd5242aaa7aa76f00d47799d0ae", null ],
+    [ "LED_PORT", "feather-nrf52840-sense_2include_2board_8h.html#a663daa01e565aee93c6f20c5845b90b4", null ],
+    [ "LIS3MDL_PARAM_ADDR", "feather-nrf52840-sense_2include_2board_8h.html#a6807ca71896578b3923c2962775d95d9", null ],
+    [ "LIS3MDL_PARAM_I2C", "feather-nrf52840-sense_2include_2board_8h.html#ae08100c1f25ff6956142cd8b128390fc", null ],
+    [ "LSM6DSXX_PARAM_ADDR", "feather-nrf52840-sense_2include_2board_8h.html#acb6a053217df617da971be979f63bc53", null ],
+    [ "LSM6DSXX_PARAM_I2C", "feather-nrf52840-sense_2include_2board_8h.html#a0880daad50dc90c7fce423b532b7abf2", null ],
+    [ "SHT3X_PARAM_I2C_ADDR", "feather-nrf52840-sense_2include_2board_8h.html#afb92d97f135408bbe48941816fe63b6f", null ],
+    [ "SHT3X_PARAM_I2C_DEV", "feather-nrf52840-sense_2include_2board_8h.html#a3229c03afd60724a706e2408511d3fc9", null ],
+    [ "WS281X_PARAM_NUMOF", "feather-nrf52840-sense_2include_2board_8h.html#a97cf89b53426d6c27838bf0281d74c83", null ],
+    [ "WS281X_PARAM_PIN", "feather-nrf52840-sense_2include_2board_8h.html#a6bf2b3f1bbdf784782052e029020aef8", null ]
+];

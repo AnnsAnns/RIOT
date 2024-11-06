@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/at86rf215/include/at86rf215_internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('at86rf215__internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">at86rf215_internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a> &raquo; <a class="el" href="group__drivers__at86rf215.html">AT86RF215 based drivers</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Low-Level functions for the AT86RF215 driver.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Low-Level functions for the AT86RF215 driver. </p>
+<dl class="section author"><dt>Author</dt><dd>Benjamin Valentin <a href="#" onclick="location.href='mai'+'lto:'+'ben'+'ja'+'min'+'.v'+'ale'+'nt'+'in@'+'ml'+'-pa'+'.c'+'om'; return false;">benja<span style="display: none;">.nosp@m.</span>min.<span style="display: none;">.nosp@m.</span>valen<span style="display: none;">.nosp@m.</span>tin@<span style="display: none;">.nosp@m.</span>ml-pa<span style="display: none;">.nosp@m.</span>.com</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="at86rf215_8h_source.html">at86rf215.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="at86rf215__registers_8h_source.html">at86rf215_registers.h</a>&quot;</code><br />
+<code>#include &quot;board.h&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for at86rf215_internal.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="at86rf215__internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a0a4756d63d0af5850883abd65040c94d"><td class="memItemLeft" align="right" valign="top"><a id="a0a4756d63d0af5850883abd65040c94d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a0a4756d63d0af5850883abd65040c94d">AT86RF215_ACK_PSDU_BYTES</a>&#160;&#160;&#160;(5)</td></tr>
+<tr class="memdesc:a0a4756d63d0af5850883abd65040c94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">An ACK consists of 5 payload bytes. <br /></td></tr>
+<tr class="separator:a0a4756d63d0af5850883abd65040c94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2d283373b5646ea55f6f75a1df0a06f"><td class="memItemLeft" align="right" valign="top"><a id="ab2d283373b5646ea55f6f75a1df0a06f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#ab2d283373b5646ea55f6f75a1df0a06f">AT86RF215_OQPSK_MODE_LEGACY</a>&#160;&#160;&#160;(0x1)</td></tr>
+<tr class="memdesc:ab2d283373b5646ea55f6f75a1df0a06f"><td class="mdescLeft">&#160;</td><td class="mdescRight">legacy mode, 250 kbit/s <br /></td></tr>
+<tr class="separator:ab2d283373b5646ea55f6f75a1df0a06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02a9eea0eb46062a4e8d014c2663393a"><td class="memItemLeft" align="right" valign="top"><a id="a02a9eea0eb46062a4e8d014c2663393a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a02a9eea0eb46062a4e8d014c2663393a">AT86RF215_OQPSK_MODE_LEGACY_HDR</a>&#160;&#160;&#160;(0x3)</td></tr>
+<tr class="memdesc:a02a9eea0eb46062a4e8d014c2663393a"><td class="mdescLeft">&#160;</td><td class="mdescRight">legacy mode, high data rate <br /></td></tr>
+<tr class="separator:a02a9eea0eb46062a4e8d014c2663393a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3e1bfed20c8600b5b47907c916dd1b6"><td class="memItemLeft" align="right" valign="top"><a id="ac3e1bfed20c8600b5b47907c916dd1b6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#ac3e1bfed20c8600b5b47907c916dd1b6">AT86RF215_MR_OQPSK_MODE</a>(n)&#160;&#160;&#160;((n) &lt;&lt; OQPSKPHRTX_MOD_SHIFT)</td></tr>
+<tr class="memdesc:ac3e1bfed20c8600b5b47907c916dd1b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">MR-QPSK. <br /></td></tr>
+<tr class="separator:ac3e1bfed20c8600b5b47907c916dd1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a34637278d5ff2b49b9a7fe28798dfc20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a34637278d5ff2b49b9a7fe28798dfc20">at86rf215_hardware_reset</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:a34637278d5ff2b49b9a7fe28798dfc20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a reset of the entire chip.  <a href="at86rf215__internal_8h.html#a34637278d5ff2b49b9a7fe28798dfc20">More...</a><br /></td></tr>
+<tr class="separator:a34637278d5ff2b49b9a7fe28798dfc20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ae049655217ff34c5b9805942ea408"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a75ae049655217ff34c5b9805942ea408">at86rf215_reg_write</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg, uint8_t val)</td></tr>
+<tr class="memdesc:a75ae049655217ff34c5b9805942ea408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to a register at address <code>addr</code> from device <code>dev</code>.  <a href="at86rf215__internal_8h.html#a75ae049655217ff34c5b9805942ea408">More...</a><br /></td></tr>
+<tr class="separator:a75ae049655217ff34c5b9805942ea408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb492a53e609b6b2f0006f71b722587"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a9eb492a53e609b6b2f0006f71b722587">at86rf215_reg_write_bytes</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg, const void *data, size_t len)</td></tr>
+<tr class="memdesc:a9eb492a53e609b6b2f0006f71b722587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a chunk of data into the memory of the given device.  <a href="at86rf215__internal_8h.html#a9eb492a53e609b6b2f0006f71b722587">More...</a><br /></td></tr>
+<tr class="separator:a9eb492a53e609b6b2f0006f71b722587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab693c78fd6c050af0596f8e907f947b1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#ab693c78fd6c050af0596f8e907f947b1">at86rf215_reg_read</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg)</td></tr>
+<tr class="memdesc:ab693c78fd6c050af0596f8e907f947b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from a register at address <code>addr</code> from device <code>dev</code>.  <a href="at86rf215__internal_8h.html#ab693c78fd6c050af0596f8e907f947b1">More...</a><br /></td></tr>
+<tr class="separator:ab693c78fd6c050af0596f8e907f947b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fadfa996f9ed352eceb7e32c658543e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a4fadfa996f9ed352eceb7e32c658543e">at86rf215_reg_read_bytes</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg, void *data, size_t len)</td></tr>
+<tr class="memdesc:a4fadfa996f9ed352eceb7e32c658543e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data from the memory of the given device.  <a href="at86rf215__internal_8h.html#a4fadfa996f9ed352eceb7e32c658543e">More...</a><br /></td></tr>
+<tr class="separator:a4fadfa996f9ed352eceb7e32c658543e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198de1352a1fabc1916dee508f3f4c03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a198de1352a1fabc1916dee508f3f4c03">at86rf215_filter_ack</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, bool on)</td></tr>
+<tr class="memdesc:a198de1352a1fabc1916dee508f3f4c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable / Disable the ACK filter.  <a href="at86rf215__internal_8h.html#a198de1352a1fabc1916dee508f3f4c03">More...</a><br /></td></tr>
+<tr class="separator:a198de1352a1fabc1916dee508f3f4c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d8df43a4b7f4ce2076a04fc7676adf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a4d8df43a4b7f4ce2076a04fc7676adf0">at86rf215_get_random</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, void *data, size_t len)</td></tr>
+<tr class="memdesc:a4d8df43a4b7f4ce2076a04fc7676adf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read random data from the RNG.  <a href="at86rf215__internal_8h.html#a4d8df43a4b7f4ce2076a04fc7676adf0">More...</a><br /></td></tr>
+<tr class="separator:a4d8df43a4b7f4ce2076a04fc7676adf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf62d26fa75806841727b10fde8ec3b12"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#gaf62d26fa75806841727b10fde8ec3b12">at86rf215_configure_FSK</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t srate, uint8_t mod_idx, uint8_t mod_order, uint8_t fec)</td></tr>
+<tr class="memdesc:gaf62d26fa75806841727b10fde8ec3b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the radio to make use of FSK modulation.  <a href="group__drivers__at86rf215__fsk.html#gaf62d26fa75806841727b10fde8ec3b12">More...</a><br /></td></tr>
+<tr class="separator:gaf62d26fa75806841727b10fde8ec3b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffc66b045b98b65fbc1ab901b40dfd33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#gaffc66b045b98b65fbc1ab901b40dfd33">at86rf215_FSK_set_srate</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t srate)</td></tr>
+<tr class="memdesc:gaffc66b045b98b65fbc1ab901b40dfd33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the symbol rate of the FSK modulation.  <a href="group__drivers__at86rf215__fsk.html#gaffc66b045b98b65fbc1ab901b40dfd33">More...</a><br /></td></tr>
+<tr class="separator:gaffc66b045b98b65fbc1ab901b40dfd33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga85ac406912a9ccd7ff99c8fc5e876213"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga85ac406912a9ccd7ff99c8fc5e876213">at86rf215_FSK_get_srate</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga85ac406912a9ccd7ff99c8fc5e876213"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the symbol rate of the FSK modulation.  <a href="group__drivers__at86rf215__fsk.html#ga85ac406912a9ccd7ff99c8fc5e876213">More...</a><br /></td></tr>
+<tr class="separator:ga85ac406912a9ccd7ff99c8fc5e876213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a090e1ee5df090c92f97caf1059c350"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga8a090e1ee5df090c92f97caf1059c350">at86rf215_FSK_set_mod_idx</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t mod_idx)</td></tr>
+<tr class="memdesc:ga8a090e1ee5df090c92f97caf1059c350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the modulation index of the FSK modulation The modulation index is a fractional value, it is represented as fractions of 64.  <a href="group__drivers__at86rf215__fsk.html#ga8a090e1ee5df090c92f97caf1059c350">More...</a><br /></td></tr>
+<tr class="separator:ga8a090e1ee5df090c92f97caf1059c350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa863efa4ca783cbb42812e79f563085b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#gaa863efa4ca783cbb42812e79f563085b">at86rf215_FSK_get_mod_idx</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa863efa4ca783cbb42812e79f563085b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current modulation index of the FSK modulation The modulation index is a fractional value, it is represented as fractions of 64.  <a href="group__drivers__at86rf215__fsk.html#gaa863efa4ca783cbb42812e79f563085b">More...</a><br /></td></tr>
+<tr class="separator:gaa863efa4ca783cbb42812e79f563085b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab73fa2d07498250c908ca696bd6d888a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#gab73fa2d07498250c908ca696bd6d888a">at86rf215_FSK_set_fec</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t mode)</td></tr>
+<tr class="memdesc:gab73fa2d07498250c908ca696bd6d888a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the Forward Error Correction (coding) scheme for FSK modulation.  <a href="group__drivers__at86rf215__fsk.html#gab73fa2d07498250c908ca696bd6d888a">More...</a><br /></td></tr>
+<tr class="separator:gab73fa2d07498250c908ca696bd6d888a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa268fe5c562110dd7a6d33e906b9b064"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#gaa268fe5c562110dd7a6d33e906b9b064">at86rf215_FSK_get_fec</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa268fe5c562110dd7a6d33e906b9b064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Forward Error Correction (coding) scheme for FSK modulation.  <a href="group__drivers__at86rf215__fsk.html#gaa268fe5c562110dd7a6d33e906b9b064">More...</a><br /></td></tr>
+<tr class="separator:gaa268fe5c562110dd7a6d33e906b9b064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c55fe05735ab86ebfda6344c527ff8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga0c55fe05735ab86ebfda6344c527ff8d">at86rf215_FSK_set_channel_spacing</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t ch_space)</td></tr>
+<tr class="memdesc:ga0c55fe05735ab86ebfda6344c527ff8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the channel spacing for the FSK modulation.  <a href="group__drivers__at86rf215__fsk.html#ga0c55fe05735ab86ebfda6344c527ff8d">More...</a><br /></td></tr>
+<tr class="separator:ga0c55fe05735ab86ebfda6344c527ff8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42c5d6d01023dd964b80e11b4a082dbf"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga42c5d6d01023dd964b80e11b4a082dbf">at86rf215_get_channel_spacing</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga42c5d6d01023dd964b80e11b4a082dbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured channel spacing.  <a href="group__drivers__at86rf215__fsk.html#ga42c5d6d01023dd964b80e11b4a082dbf">More...</a><br /></td></tr>
+<tr class="separator:ga42c5d6d01023dd964b80e11b4a082dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadbea46c731785a3f1b293cf00a33401e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#gadbea46c731785a3f1b293cf00a33401e">at86rf215_FSK_set_mod_order</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t mod_order)</td></tr>
+<tr class="memdesc:gadbea46c731785a3f1b293cf00a33401e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the FSK modulation order.  <a href="group__drivers__at86rf215__fsk.html#gadbea46c731785a3f1b293cf00a33401e">More...</a><br /></td></tr>
+<tr class="separator:gadbea46c731785a3f1b293cf00a33401e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga243124375c4e8523e457418e676cf766"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga243124375c4e8523e457418e676cf766">at86rf215_FSK_get_mod_order</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga243124375c4e8523e457418e676cf766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current FSK modulation order.  <a href="group__drivers__at86rf215__fsk.html#ga243124375c4e8523e457418e676cf766">More...</a><br /></td></tr>
+<tr class="separator:ga243124375c4e8523e457418e676cf766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga801a9655230765c56ad8becc0f13132b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga801a9655230765c56ad8becc0f13132b">at86rf215_FSK_prepare_rx</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga801a9655230765c56ad8becc0f13132b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The FSK premable length needs to be switched between RX and TX This function takes care of putting FSK into RX mode.  <a href="group__drivers__at86rf215__fsk.html#ga801a9655230765c56ad8becc0f13132b">More...</a><br /></td></tr>
+<tr class="separator:ga801a9655230765c56ad8becc0f13132b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga433c58498de290ee5c2fa9a7476967df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga433c58498de290ee5c2fa9a7476967df">at86rf215_FSK_prepare_tx</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga433c58498de290ee5c2fa9a7476967df"><td class="mdescLeft">&#160;</td><td class="mdescRight">The FSK premable length needs to be switched between RX and TX This function takes care of putting FSK into TX mode.  <a href="group__drivers__at86rf215__fsk.html#ga433c58498de290ee5c2fa9a7476967df">More...</a><br /></td></tr>
+<tr class="separator:ga433c58498de290ee5c2fa9a7476967df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1c98934ac4b39a3c5aad33d6ea1ca38"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__ofdm.html#gad1c98934ac4b39a3c5aad33d6ea1ca38">at86rf215_configure_OFDM</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t option, uint8_t mcs)</td></tr>
+<tr class="memdesc:gad1c98934ac4b39a3c5aad33d6ea1ca38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the radio to make use of OFDM modulation.  <a href="group__drivers__at86rf215__ofdm.html#gad1c98934ac4b39a3c5aad33d6ea1ca38">More...</a><br /></td></tr>
+<tr class="separator:gad1c98934ac4b39a3c5aad33d6ea1ca38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab319ac8963c5cce7363f543da75347b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__ofdm.html#gab319ac8963c5cce7363f543da75347b9">at86rf215_OFDM_set_scheme</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t mcs)</td></tr>
+<tr class="memdesc:gab319ac8963c5cce7363f543da75347b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current modulation and coding scheme (MCS)  <a href="group__drivers__at86rf215__ofdm.html#gab319ac8963c5cce7363f543da75347b9">More...</a><br /></td></tr>
+<tr class="separator:gab319ac8963c5cce7363f543da75347b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga86b888e19ca5e0c64f202b7aff9cd3dc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__ofdm.html#ga86b888e19ca5e0c64f202b7aff9cd3dc">at86rf215_OFDM_get_scheme</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga86b888e19ca5e0c64f202b7aff9cd3dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current modulation and coding scheme (MCS)  <a href="group__drivers__at86rf215__ofdm.html#ga86b888e19ca5e0c64f202b7aff9cd3dc">More...</a><br /></td></tr>
+<tr class="separator:ga86b888e19ca5e0c64f202b7aff9cd3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0ddef6f1c5036a4e00cff1d8d81df4b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__ofdm.html#gaa0ddef6f1c5036a4e00cff1d8d81df4b">at86rf215_OFDM_set_option</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t option)</td></tr>
+<tr class="memdesc:gaa0ddef6f1c5036a4e00cff1d8d81df4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current OFDM option.  <a href="group__drivers__at86rf215__ofdm.html#gaa0ddef6f1c5036a4e00cff1d8d81df4b">More...</a><br /></td></tr>
+<tr class="separator:gaa0ddef6f1c5036a4e00cff1d8d81df4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga80cc1f4d2a906632591c7e05fe7fd175"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__ofdm.html#ga80cc1f4d2a906632591c7e05fe7fd175">at86rf215_OFDM_get_option</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga80cc1f4d2a906632591c7e05fe7fd175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current OFDM option.  <a href="group__drivers__at86rf215__ofdm.html#ga80cc1f4d2a906632591c7e05fe7fd175">More...</a><br /></td></tr>
+<tr class="separator:ga80cc1f4d2a906632591c7e05fe7fd175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb657944d29cd1f588ff693b39c5685c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#gacb657944d29cd1f588ff693b39c5685c">at86rf215_configure_legacy_OQPSK</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, bool high_rate)</td></tr>
+<tr class="memdesc:gacb657944d29cd1f588ff693b39c5685c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the radio to make use of O-QPSK modulation.  <a href="group__drivers__at86rf215__oqpsk.html#gacb657944d29cd1f588ff693b39c5685c">More...</a><br /></td></tr>
+<tr class="separator:gacb657944d29cd1f588ff693b39c5685c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d8a73e7ef71a262ec1b6ad9abdd2dfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#ga5d8a73e7ef71a262ec1b6ad9abdd2dfe">at86rf215_configure_OQPSK</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t chips, uint8_t rate)</td></tr>
+<tr class="memdesc:ga5d8a73e7ef71a262ec1b6ad9abdd2dfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the radio to make use of O-QPSK modulation.  <a href="group__drivers__at86rf215__oqpsk.html#ga5d8a73e7ef71a262ec1b6ad9abdd2dfe">More...</a><br /></td></tr>
+<tr class="separator:ga5d8a73e7ef71a262ec1b6ad9abdd2dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1eaccdd1b3fb2cb17de24c72367cad1c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#ga1eaccdd1b3fb2cb17de24c72367cad1c">at86rf215_OQPSK_get_chips</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga1eaccdd1b3fb2cb17de24c72367cad1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current O-QPSK chip rate.  <a href="group__drivers__at86rf215__oqpsk.html#ga1eaccdd1b3fb2cb17de24c72367cad1c">More...</a><br /></td></tr>
+<tr class="separator:ga1eaccdd1b3fb2cb17de24c72367cad1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf2a23b24457bb63a178525294c9b7c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#gadf2a23b24457bb63a178525294c9b7c3">at86rf215_OQPSK_set_chips</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t chips)</td></tr>
+<tr class="memdesc:gadf2a23b24457bb63a178525294c9b7c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current O-QPSK chip rate.  <a href="group__drivers__at86rf215__oqpsk.html#gadf2a23b24457bb63a178525294c9b7c3">More...</a><br /></td></tr>
+<tr class="separator:gadf2a23b24457bb63a178525294c9b7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga99e3f0493af62f55419ef44274feeade"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#ga99e3f0493af62f55419ef44274feeade">at86rf215_OQPSK_get_mode</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga99e3f0493af62f55419ef44274feeade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current O-QPSK rate mode.  <a href="group__drivers__at86rf215__oqpsk.html#ga99e3f0493af62f55419ef44274feeade">More...</a><br /></td></tr>
+<tr class="separator:ga99e3f0493af62f55419ef44274feeade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3efd8c259d355bfabd96d783cb8fc5a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#ga3efd8c259d355bfabd96d783cb8fc5a9">at86rf215_OQPSK_set_mode</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t mode)</td></tr>
+<tr class="memdesc:ga3efd8c259d355bfabd96d783cb8fc5a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current O-QPSK rate mode.  <a href="group__drivers__at86rf215__oqpsk.html#ga3efd8c259d355bfabd96d783cb8fc5a9">More...</a><br /></td></tr>
+<tr class="separator:ga3efd8c259d355bfabd96d783cb8fc5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c864baf4d253f88078374f8f8726fec"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#ga1c864baf4d253f88078374f8f8726fec">at86rf215_OQPSK_get_mode_legacy</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:ga1c864baf4d253f88078374f8f8726fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current legacy O-QPSK mode.  <a href="group__drivers__at86rf215__oqpsk.html#ga1c864baf4d253f88078374f8f8726fec">More...</a><br /></td></tr>
+<tr class="separator:ga1c864baf4d253f88078374f8f8726fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabb206792c7332d221ce40af1c3888f43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#gabb206792c7332d221ce40af1c3888f43">at86rf215_OQPSK_set_mode_legacy</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, bool high_rate)</td></tr>
+<tr class="memdesc:gabb206792c7332d221ce40af1c3888f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current legacy O-QPSK rate mode.  <a href="group__drivers__at86rf215__oqpsk.html#gabb206792c7332d221ce40af1c3888f43">More...</a><br /></td></tr>
+<tr class="separator:gabb206792c7332d221ce40af1c3888f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa460ee38069e59b68a17d7af19cf0158"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__oqpsk.html#gaa460ee38069e59b68a17d7af19cf0158">at86rf215_OQPSK_is_legacy</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:gaa460ee38069e59b68a17d7af19cf0158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if O-QPSK PHY operates in legacy mode.  <a href="group__drivers__at86rf215__oqpsk.html#gaa460ee38069e59b68a17d7af19cf0158">More...</a><br /></td></tr>
+<tr class="separator:gaa460ee38069e59b68a17d7af19cf0158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74a5f302dad2396e2b57cc7d40e06b52"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a74a5f302dad2396e2b57cc7d40e06b52">at86rf215_get_phy_mode</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:a74a5f302dad2396e2b57cc7d40e06b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current PHY modulation.  <a href="at86rf215__internal_8h.html#a74a5f302dad2396e2b57cc7d40e06b52">More...</a><br /></td></tr>
+<tr class="separator:a74a5f302dad2396e2b57cc7d40e06b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f5fa6f517cb3f6f10c29e1ab1afc587"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a6f5fa6f517cb3f6f10c29e1ab1afc587">at86rf215_chan_valid</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t chan)</td></tr>
+<tr class="memdesc:a6f5fa6f517cb3f6f10c29e1ab1afc587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a channel number is valid.  <a href="at86rf215__internal_8h.html#a6f5fa6f517cb3f6f10c29e1ab1afc587">More...</a><br /></td></tr>
+<tr class="separator:a6f5fa6f517cb3f6f10c29e1ab1afc587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3606400944eb4f542a2760c34c5c960b"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a3606400944eb4f542a2760c34c5c960b">at86rf215_hw_state2a</a> (uint8_t state)</td></tr>
+<tr class="memdesc:a3606400944eb4f542a2760c34c5c960b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts radio state into human readable string.  <a href="at86rf215__internal_8h.html#a3606400944eb4f542a2760c34c5c960b">More...</a><br /></td></tr>
+<tr class="separator:a3606400944eb4f542a2760c34c5c960b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758b5fe841908266625fbb40b4c97ae2"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a758b5fe841908266625fbb40b4c97ae2">at86rf215_sw_state2a</a> (<a class="el" href="group__drivers__at86rf215.html#gae786a900a57eb1856a10c2f01b05fc4a">at86rf215_state_t</a> state)</td></tr>
+<tr class="memdesc:a758b5fe841908266625fbb40b4c97ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts state machine state into human readable string.  <a href="at86rf215__internal_8h.html#a758b5fe841908266625fbb40b4c97ae2">More...</a><br /></td></tr>
+<tr class="separator:a758b5fe841908266625fbb40b4c97ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab5b592c8bb92b10db75b908676b249"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a4ab5b592c8bb92b10db75b908676b249">at86rf215_reg_and</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg, uint8_t val)</td></tr>
+<tr class="memdesc:a4ab5b592c8bb92b10db75b908676b249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the contents of <code>reg</code>, apply <code>val</code> with a bitwise AND and then writes the result back to <code>reg</code>.  <a href="at86rf215__internal_8h.html#a4ab5b592c8bb92b10db75b908676b249">More...</a><br /></td></tr>
+<tr class="separator:a4ab5b592c8bb92b10db75b908676b249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f7b3de039b40ce2107d2cf3aacfe8c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#ad9f7b3de039b40ce2107d2cf3aacfe8c">at86rf215_reg_or</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg, uint8_t val)</td></tr>
+<tr class="memdesc:ad9f7b3de039b40ce2107d2cf3aacfe8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the contents of <code>reg</code>, apply <code>val</code> with a bitwise OR and then writes the result back to <code>reg</code>.  <a href="at86rf215__internal_8h.html#ad9f7b3de039b40ce2107d2cf3aacfe8c">More...</a><br /></td></tr>
+<tr class="separator:ad9f7b3de039b40ce2107d2cf3aacfe8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebbe0829c0cbd9eae10edc0700aa680f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#aebbe0829c0cbd9eae10edc0700aa680f">at86rf215_reg_write16</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg, uint16_t val)</td></tr>
+<tr class="memdesc:aebbe0829c0cbd9eae10edc0700aa680f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a 16-bit word to a register at address <code>addr</code> from device <code>dev</code>.  <a href="at86rf215__internal_8h.html#aebbe0829c0cbd9eae10edc0700aa680f">More...</a><br /></td></tr>
+<tr class="separator:aebbe0829c0cbd9eae10edc0700aa680f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a094b872c7ac0eed9684057b1367f7050"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a094b872c7ac0eed9684057b1367f7050">at86rf215_reg_read16</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint16_t reg)</td></tr>
+<tr class="memdesc:a094b872c7ac0eed9684057b1367f7050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a 16-bit word from a register at address <code>addr</code> from device <code>dev</code>.  <a href="at86rf215__internal_8h.html#a094b872c7ac0eed9684057b1367f7050">More...</a><br /></td></tr>
+<tr class="separator:a094b872c7ac0eed9684057b1367f7050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec1e50b2692485408d353932e2fe0fe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#abec1e50b2692485408d353932e2fe0fe">at86rf215_rf_cmd</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t rf_cmd)</td></tr>
+<tr class="memdesc:abec1e50b2692485408d353932e2fe0fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Issue a radio command to the device.  <a href="at86rf215__internal_8h.html#abec1e50b2692485408d353932e2fe0fe">More...</a><br /></td></tr>
+<tr class="separator:abec1e50b2692485408d353932e2fe0fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae35d3be188245a50ab222e2d8e42d02"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#aae35d3be188245a50ab222e2d8e42d02">at86rf215_get_rf_state</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:aae35d3be188245a50ab222e2d8e42d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the radio state of the device.  <a href="at86rf215__internal_8h.html#aae35d3be188245a50ab222e2d8e42d02">More...</a><br /></td></tr>
+<tr class="separator:aae35d3be188245a50ab222e2d8e42d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc175a0639f9134b008fb48108469ffe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#afc175a0639f9134b008fb48108469ffe">at86rf215_await_state</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t state)</td></tr>
+<tr class="memdesc:afc175a0639f9134b008fb48108469ffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks until the device has reached the given state.  <a href="at86rf215__internal_8h.html#afc175a0639f9134b008fb48108469ffe">More...</a><br /></td></tr>
+<tr class="separator:afc175a0639f9134b008fb48108469ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965664716edc6c316ffa843ef1ae0ed8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a965664716edc6c316ffa843ef1ae0ed8">at86rf215_await_state_end</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t state)</td></tr>
+<tr class="memdesc:a965664716edc6c316ffa843ef1ae0ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks until the device has reached the given state.  <a href="at86rf215__internal_8h.html#a965664716edc6c316ffa843ef1ae0ed8">More...</a><br /></td></tr>
+<tr class="separator:a965664716edc6c316ffa843ef1ae0ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc9df1a48a3bb75cafd1050758bd2f97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#adc9df1a48a3bb75cafd1050758bd2f97">at86rf215_set_rx_from_idle</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t *old_state)</td></tr>
+<tr class="memdesc:adc9df1a48a3bb75cafd1050758bd2f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch device back to IDLE-RX from non-RX idle.  <a href="at86rf215__internal_8h.html#adc9df1a48a3bb75cafd1050758bd2f97">More...</a><br /></td></tr>
+<tr class="separator:adc9df1a48a3bb75cafd1050758bd2f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9beca407d9d04ce692ca683cf1a40115"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a9beca407d9d04ce692ca683cf1a40115">at86rf215_set_idle_from_rx</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t state)</td></tr>
+<tr class="memdesc:a9beca407d9d04ce692ca683cf1a40115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch device to non-RX idle state from RX.  <a href="at86rf215__internal_8h.html#a9beca407d9d04ce692ca683cf1a40115">More...</a><br /></td></tr>
+<tr class="separator:a9beca407d9d04ce692ca683cf1a40115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2c21d40e9d22b6a6fe68071d669a7e5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#aa2c21d40e9d22b6a6fe68071d669a7e5">at86rf215_enable_baseband</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:aa2c21d40e9d22b6a6fe68071d669a7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the baseband processor of the device.  <a href="at86rf215__internal_8h.html#aa2c21d40e9d22b6a6fe68071d669a7e5">More...</a><br /></td></tr>
+<tr class="separator:aa2c21d40e9d22b6a6fe68071d669a7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a217fc001121f113a613001746fef9e30"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a217fc001121f113a613001746fef9e30">at86rf215_disable_baseband</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:a217fc001121f113a613001746fef9e30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the baseband processor of the device.  <a href="at86rf215__internal_8h.html#a217fc001121f113a613001746fef9e30">More...</a><br /></td></tr>
+<tr class="separator:a217fc001121f113a613001746fef9e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce063c06dac83a6de094c8fc4f67391"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a4ce063c06dac83a6de094c8fc4f67391">at86rf215_enable_radio</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev, uint8_t modulation)</td></tr>
+<tr class="memdesc:a4ce063c06dac83a6de094c8fc4f67391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the radio hardware with a given modulation.  <a href="at86rf215__internal_8h.html#a4ce063c06dac83a6de094c8fc4f67391">More...</a><br /></td></tr>
+<tr class="separator:a4ce063c06dac83a6de094c8fc4f67391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2616f1a1b5d59fbc0b8dffe6b76e87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a0a2616f1a1b5d59fbc0b8dffe6b76e87">at86rf215_disable_rpc</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:a0a2616f1a1b5d59fbc0b8dffe6b76e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal convenience function to disable reduced power consumption (RPC) for energy detection.  <a href="at86rf215__internal_8h.html#a0a2616f1a1b5d59fbc0b8dffe6b76e87">More...</a><br /></td></tr>
+<tr class="separator:a0a2616f1a1b5d59fbc0b8dffe6b76e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb67f833a9b0b144b0efc5ac08a50ca9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#aeb67f833a9b0b144b0efc5ac08a50ca9">at86rf215_enable_rpc</a> (<a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:aeb67f833a9b0b144b0efc5ac08a50ca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal convenience function to re-enable reduced power consumption (RPC) after energy detection.  <a href="at86rf215__internal_8h.html#aeb67f833a9b0b144b0efc5ac08a50ca9">More...</a><br /></td></tr>
+<tr class="separator:aeb67f833a9b0b144b0efc5ac08a50ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24a0459b73aa1aded7a9d557c869b28b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a24a0459b73aa1aded7a9d557c869b28b">is_subGHz</a> (const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *dev)</td></tr>
+<tr class="memdesc:a24a0459b73aa1aded7a9d557c869b28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the device operates in the sub-GHz band.  <a href="at86rf215__internal_8h.html#a24a0459b73aa1aded7a9d557c869b28b">More...</a><br /></td></tr>
+<tr class="separator:a24a0459b73aa1aded7a9d557c869b28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga2b95e37bdca607b41b943c7842a2034a"><td class="memItemLeft" align="right" valign="top">
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga2b95e37bdca607b41b943c7842a2034a">_at86rf215_fsk_srate_10kHz</a> []</td></tr>
+<tr class="memdesc:ga2b95e37bdca607b41b943c7842a2034a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Symbol Rates for register values, in 10kHz. <br /></td></tr>
+<tr class="separator:ga2b95e37bdca607b41b943c7842a2034a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27936dccf201b2b8298a51f4cf700ead"><td class="memItemLeft" align="right" valign="top">
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__at86rf215__fsk.html#ga27936dccf201b2b8298a51f4cf700ead">_at86rf215_fsk_channel_spacing_25kHz</a> []</td></tr>
+<tr class="memdesc:ga27936dccf201b2b8298a51f4cf700ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel Spacing for register values, in 25kHz. <br /></td></tr>
+<tr class="separator:ga27936dccf201b2b8298a51f4cf700ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cb50d9a101fd00ac1f8b09657d44809"><td class="memItemLeft" align="right" valign="top"><a id="a9cb50d9a101fd00ac1f8b09657d44809"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a9cb50d9a101fd00ac1f8b09657d44809">CONFIG_AT86RF215_RESET_PULSE_WIDTH_US</a>&#160;&#160;&#160;(16U)</td></tr>
+<tr class="memdesc:a9cb50d9a101fd00ac1f8b09657d44809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum reset pulse width (tRST) in µs. <br /></td></tr>
+<tr class="separator:a9cb50d9a101fd00ac1f8b09657d44809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0c1065d5d6ac3085d0f308e36f5e0a0"><td class="memItemLeft" align="right" valign="top"><a id="af0c1065d5d6ac3085d0f308e36f5e0a0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#af0c1065d5d6ac3085d0f308e36f5e0a0">AT86RF215_RESET_DELAY_US</a>&#160;&#160;&#160;(16U)</td></tr>
+<tr class="memdesc:af0c1065d5d6ac3085d0f308e36f5e0a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The typical transition time to TRX_OFF after reset (tPOWERON) in µs. <br /></td></tr>
+<tr class="separator:af0c1065d5d6ac3085d0f308e36f5e0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a6a5feae0a75a0fa6458f70bc9a4e84"><td class="memItemLeft" align="right" valign="top"><a id="a2a6a5feae0a75a0fa6458f70bc9a4e84"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#a2a6a5feae0a75a0fa6458f70bc9a4e84">AT86RF215_EDT_DEFAULT</a>&#160;&#160;&#160;(-84) /* dBm */</td></tr>
+<tr class="memdesc:a2a6a5feae0a75a0fa6458f70bc9a4e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default energy detect threshold for CSMA (reset value) <br /></td></tr>
+<tr class="separator:a2a6a5feae0a75a0fa6458f70bc9a4e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfe9d985e46d6480522b4ce840bb9390"><td class="memItemLeft" align="right" valign="top"><a id="abfe9d985e46d6480522b4ce840bb9390"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf215__internal_8h.html#abfe9d985e46d6480522b4ce840bb9390">AT86RF215_RETRIES_MAX_DEFAULT</a>&#160;&#160;&#160;(3)</td></tr>
+<tr class="memdesc:abfe9d985e46d6480522b4ce840bb9390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Parameters for 802.15.4 retransmissions &amp; CSMA. <br /></td></tr>
+<tr class="separator:abfe9d985e46d6480522b4ce840bb9390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31bdba9a16efbf0b8c56382ea5b86e6d"><td class="memItemLeft" align="right" valign="top"><a id="a31bdba9a16efbf0b8c56382ea5b86e6d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AT86RF215_CSMA_RETRIES_MAX_DEFAULT</b>&#160;&#160;&#160;(4)</td></tr>
+<tr class="separator:a31bdba9a16efbf0b8c56382ea5b86e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6abe705c17ada5e3bb0d3e22d4dce91"><td class="memItemLeft" align="right" valign="top"><a id="ab6abe705c17ada5e3bb0d3e22d4dce91"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AT86RF215_CSMA_MIN_BE_DEFAULT</b>&#160;&#160;&#160;(3)</td></tr>
+<tr class="separator:ab6abe705c17ada5e3bb0d3e22d4dce91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c34c00253189d9e0015fd6aa2c46258"><td class="memItemLeft" align="right" valign="top"><a id="a6c34c00253189d9e0015fd6aa2c46258"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AT86RF215_CSMA_MAX_BE_DEFAULT</b>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:a6c34c00253189d9e0015fd6aa2c46258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="afc175a0639f9134b008fb48108469ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc175a0639f9134b008fb48108469ffe">&#9670;&nbsp;</a></span>at86rf215_await_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_await_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Blocks until the device has reached the given state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to poll </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>the expected state </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a965664716edc6c316ffa843ef1ae0ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965664716edc6c316ffa843ef1ae0ed8">&#9670;&nbsp;</a></span>at86rf215_await_state_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_await_state_end </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Blocks until the device has reached the given state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to poll </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>the expected state </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6f5fa6f517cb3f6f10c29e1ab1afc587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f5fa6f517cb3f6f10c29e1ab1afc587">&#9670;&nbsp;</a></span>at86rf215_chan_valid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t at86rf215_chan_valid </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>chan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a channel number is valid. </p>
+<p>The function takes the current frequency band and modulation into account to determine if <code>chan</code> would be a legal channel number. If so, it is returned unmodified. Otherwise the next closest legal channel number is returned.</p>
+<dl class="section note"><dt>Note</dt><dd>This function does not change the configuration.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to check against </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">chan</td><td>the channel number to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>If the channel number is legal, <code>chan</code> is returned. Otherwise the next closest legal channel number is returned. </dd></dl>
+
+</div>
+</div>
+<a id="a217fc001121f113a613001746fef9e30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a217fc001121f113a613001746fef9e30">&#9670;&nbsp;</a></span>at86rf215_disable_baseband()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_disable_baseband </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Disable the baseband processor of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to disable the baseband on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0a2616f1a1b5d59fbc0b8dffe6b76e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a2616f1a1b5d59fbc0b8dffe6b76e87">&#9670;&nbsp;</a></span>at86rf215_disable_rpc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf215_disable_rpc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Internal convenience function to disable reduced power consumption (RPC) for energy detection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to configure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa2c21d40e9d22b6a6fe68071d669a7e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2c21d40e9d22b6a6fe68071d669a7e5">&#9670;&nbsp;</a></span>at86rf215_enable_baseband()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_enable_baseband </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable the baseband processor of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to enable the baseband on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4ce063c06dac83a6de094c8fc4f67391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ce063c06dac83a6de094c8fc4f67391">&#9670;&nbsp;</a></span>at86rf215_enable_radio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_enable_radio </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>modulation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable the radio hardware with a given modulation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to enable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">modulation</td><td>modulation to configure on the radio </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeb67f833a9b0b144b0efc5ac08a50ca9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb67f833a9b0b144b0efc5ac08a50ca9">&#9670;&nbsp;</a></span>at86rf215_enable_rpc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf215_enable_rpc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Internal convenience function to re-enable reduced power consumption (RPC) after energy detection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to configure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a198de1352a1fabc1916dee508f3f4c03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a198de1352a1fabc1916dee508f3f4c03">&#9670;&nbsp;</a></span>at86rf215_filter_ack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf215_filter_ack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>on</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable / Disable the ACK filter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to configure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">on</td><td>if true, only ACK frames are received if false, only non-ACK frames are received </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74a5f302dad2396e2b57cc7d40e06b52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74a5f302dad2396e2b57cc7d40e06b52">&#9670;&nbsp;</a></span>at86rf215_get_phy_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t at86rf215_get_phy_mode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current PHY modulation. </p>
+<p>May be <a class="el" href="group__net__ieee802154__header.html#ggaa78b6fe7ff1bba2869970de4e9e4d79fa80a70d4d5c2b7e039cd8367c22ca10c8">IEEE802154_PHY_MR_FSK</a>, <a class="el" href="group__net__ieee802154__header.html#ggaa78b6fe7ff1bba2869970de4e9e4d79fa32d006624d3c8d28f67139db6703f39d">IEEE802154_PHY_MR_OFDM</a>, <a class="el" href="group__net__ieee802154__header.html#ggaa78b6fe7ff1bba2869970de4e9e4d79fa847d43a9b948dc11f05d73b88b609376">IEEE802154_PHY_MR_OQPSK</a>, <a class="el" href="group__net__ieee802154__header.html#ggaa78b6fe7ff1bba2869970de4e9e4d79fa3e8356c52495babf9c2e0709aad156dd">IEEE802154_PHY_OQPSK</a> or <a class="el" href="group__net__ieee802154__header.html#ggaa78b6fe7ff1bba2869970de4e9e4d79fa83584b40912d320fae7c83aa03bdb1c0">IEEE802154_PHY_DISABLED</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the current PHY mode the device is operating with </dd></dl>
+
+</div>
+</div>
+<a id="a4d8df43a4b7f4ce2076a04fc7676adf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d8df43a4b7f4ce2076a04fc7676adf0">&#9670;&nbsp;</a></span>at86rf215_get_random()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf215_get_random </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read random data from the RNG. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>The device has to be in state RX with PLL locked.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to configure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>buffer to copy the random data to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of random bytes to store in data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aae35d3be188245a50ab222e2d8e42d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae35d3be188245a50ab222e2d8e42d02">&#9670;&nbsp;</a></span>at86rf215_get_rf_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t at86rf215_get_rf_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the radio state of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the current radio state </dd></dl>
+
+</div>
+</div>
+<a id="a34637278d5ff2b49b9a7fe28798dfc20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34637278d5ff2b49b9a7fe28798dfc20">&#9670;&nbsp;</a></span>at86rf215_hardware_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int at86rf215_hardware_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform a reset of the entire chip. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>device to reset, will also reset sibling device </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, error if device is not available </dd></dl>
+
+</div>
+</div>
+<a id="a3606400944eb4f542a2760c34c5c960b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3606400944eb4f542a2760c34c5c960b">&#9670;&nbsp;</a></span>at86rf215_hw_state2a()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* at86rf215_hw_state2a </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts radio state into human readable string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>radio state</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>fixed string representation of the radio state </dd></dl>
+
+</div>
+</div>
+<a id="a4ab5b592c8bb92b10db75b908676b249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ab5b592c8bb92b10db75b908676b249">&#9670;&nbsp;</a></span>at86rf215_reg_and()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_reg_and </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads the contents of <code>reg</code>, apply <code>val</code> with a bitwise AND and then writes the result back to <code>reg</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>register to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value to bitwise AND with the register content </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad9f7b3de039b40ce2107d2cf3aacfe8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f7b3de039b40ce2107d2cf3aacfe8c">&#9670;&nbsp;</a></span>at86rf215_reg_or()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_reg_or </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads the contents of <code>reg</code>, apply <code>val</code> with a bitwise OR and then writes the result back to <code>reg</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>register to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value to bitwise OR with the register content </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab693c78fd6c050af0596f8e907f947b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab693c78fd6c050af0596f8e907f947b1">&#9670;&nbsp;</a></span>at86rf215_reg_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t at86rf215_reg_read </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read from a register at address <code>addr</code> from device <code>dev</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>address of the register to read</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the value of the specified register </dd></dl>
+
+</div>
+</div>
+<a id="a094b872c7ac0eed9684057b1367f7050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a094b872c7ac0eed9684057b1367f7050">&#9670;&nbsp;</a></span>at86rf215_reg_read16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint16_t at86rf215_reg_read16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read a 16-bit word from a register at address <code>addr</code> from device <code>dev</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>address of the register to read</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the value of the specified register </dd></dl>
+
+</div>
+</div>
+<a id="a4fadfa996f9ed352eceb7e32c658543e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fadfa996f9ed352eceb7e32c658543e">&#9670;&nbsp;</a></span>at86rf215_reg_read_bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf215_reg_read_bytes </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data from the memory of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>starting address to read from </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>buffer to read data into </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to read </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a75ae049655217ff34c5b9805942ea408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75ae049655217ff34c5b9805942ea408">&#9670;&nbsp;</a></span>at86rf215_reg_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf215_reg_write </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write to a register at address <code>addr</code> from device <code>dev</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>address of the register to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value to write to the given register </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aebbe0829c0cbd9eae10edc0700aa680f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebbe0829c0cbd9eae10edc0700aa680f">&#9670;&nbsp;</a></span>at86rf215_reg_write16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_reg_write16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a 16-bit word to a register at address <code>addr</code> from device <code>dev</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>address of the register to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value to write to the given register </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9eb492a53e609b6b2f0006f71b722587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb492a53e609b6b2f0006f71b722587">&#9670;&nbsp;</a></span>at86rf215_reg_write_bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf215_reg_write_bytes </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write a chunk of data into the memory of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>address in the device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>data to copy into the device </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to write into the device </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abec1e50b2692485408d353932e2fe0fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec1e50b2692485408d353932e2fe0fe">&#9670;&nbsp;</a></span>at86rf215_rf_cmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void at86rf215_rf_cmd </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>rf_cmd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Issue a radio command to the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to configure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rf_cmd</td><td>command to send </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9beca407d9d04ce692ca683cf1a40115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9beca407d9d04ce692ca683cf1a40115">&#9670;&nbsp;</a></span>at86rf215_set_idle_from_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool at86rf215_set_idle_from_rx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Switch device to non-RX idle state from RX. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to update </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">state</td><td>the new state (may be CMD_RF_TRXOFF or CMD_RF_SLEEP)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the operation was possible </dd></dl>
+
+</div>
+</div>
+<a id="adc9df1a48a3bb75cafd1050758bd2f97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9df1a48a3bb75cafd1050758bd2f97">&#9670;&nbsp;</a></span>at86rf215_set_rx_from_idle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool at86rf215_set_rx_from_idle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>old_state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Switch device back to IDLE-RX from non-RX idle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to update </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">old_state</td><td>pointer to store the previous state, may be NULL</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the operation was possible </dd></dl>
+
+</div>
+</div>
+<a id="a758b5fe841908266625fbb40b4c97ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a758b5fe841908266625fbb40b4c97ae2">&#9670;&nbsp;</a></span>at86rf215_sw_state2a()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* at86rf215_sw_state2a </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__at86rf215.html#gae786a900a57eb1856a10c2f01b05fc4a">at86rf215_state_t</a>&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts state machine state into human readable string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>state of the driver's state machine</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>fixed string representation of the state machine state </dd></dl>
+
+</div>
+</div>
+<a id="a24a0459b73aa1aded7a9d557c869b28b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24a0459b73aa1aded7a9d557c869b28b">&#9670;&nbsp;</a></span>is_subGHz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool is_subGHz </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__drivers__at86rf215.html#gac7c10ffc349068578f09e599785f82f4">at86rf215_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the device operates in the sub-GHz band. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the device operates in the sub-GHz band false if the device operates in the 2.4-GHz band </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_65ae045de305000bef20b9cadc2d2afb.html">at86rf215</a></li><li class="navelem"><a class="el" href="dir_0b08502ca8a2e79e76b4531f3032e3e8.html">include</a></li><li class="navelem"><a class="el" href="at86rf215__internal_8h.html">at86rf215_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/vl6180x.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('vl6180x_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">vl6180x.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__sensors.html">Sensor Device Drivers</a> &#124; <a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__saul.html">[S]ensor [A]ctuator [U]ber [L]ayer</a> &raquo; <a class="el" href="group__drivers__vl6180x.html">VL6180X Ranging and Ambient Light Sensing (ALS) module</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="drivers_2include_2periph_2gpio_8h_source.html">periph/gpio.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="i2c_8h_source.html">periph/i2c.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="vl6180x__regs_8h_source.html">vl6180x_regs.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for vl6180x.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="vl6180x_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt config.  <a href="structvl6180x__int__config__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvl6180x__int__thresh__t.html">vl6180x_int_thresh_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt threshold configuration.  <a href="structvl6180x__int__thresh__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvl6180x__params__t.html">vl6180x_params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">VL6180X device configuration.  <a href="structvl6180x__params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvl6180x__t.html">vl6180x_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">VL6180X sensor device data structure type.  <a href="structvl6180x__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga073f17f7fd9eaee55465373cd11c1eb7"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga073f17f7fd9eaee55465373cd11c1eb7">VL6180X_I2C_ADDR</a>&#160;&#160;&#160;(0x29)</td></tr>
+<tr class="memdesc:ga073f17f7fd9eaee55465373cd11c1eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">VNCL6180 default I2C slave address. <br /></td></tr>
+<tr class="separator:ga073f17f7fd9eaee55465373cd11c1eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gaeef583aa05ce818cc70d29a056989b25"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gaeef583aa05ce818cc70d29a056989b25">vl6180x_error_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7f6affab50fad3822de4282756dea121">VL6180X_OK</a> = 0
+, <a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25ac8d11d6d78c7381342f84dd0ba813e53">VL6180X_ERROR_I2C</a> = 1
+, <a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a61e428d8857ec8a0b0218edd9518b73c">VL6180X_ERROR_WRONG_ID</a> = 2
+, <a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a815c7accebbe4235c7160cc814eae1d7">VL6180X_ERROR_NO_PIN</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a360404e7faa85e16b7842f0035e08229">VL6180X_ERROR_NO_DATA</a> = 4
+, <a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a7e32432f2b999c80c3683c02afe5d578">VL6180X_ERROR_RNG</a> = 5
+, <a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a6b07aea008982c578ba2b76d5bd5f82a">VL6180X_ERROR_ALS</a> = 6
+, <a class="el" href="group__drivers__vl6180x.html#ggaeef583aa05ce818cc70d29a056989b25a33a04e3c71bf5225a814a000500ff985">VL6180X_ERROR_NOT_READY</a> = 7
+<br />
+ }</td></tr>
+<tr class="memdesc:gaeef583aa05ce818cc70d29a056989b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error codes.  <a href="group__drivers__vl6180x.html#gaeef583aa05ce818cc70d29a056989b25">More...</a><br /></td></tr>
+<tr class="separator:gaeef583aa05ce818cc70d29a056989b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba8bc8b0923dafee52fbe268058ea275"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">vl6180x_als_gain_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275abb4766eade555f1c832a5d9f89a5a3cd">VL6180X_ALS_GAIN_20</a> = 0
+, <a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ad102aa3ece443847a43dbb7f5eed47de">VL6180X_ALS_GAIN_10</a> = 1
+, <a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a1722fece787c98dbe56224b0af4a6938">VL6180X_ALS_GAIN_5</a> = 2
+, <a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a18c0beb22b85c171c728608b8471fca3">VL6180X_ALS_GAIN_2_5</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a360ec43a4a5affa52e4fb59aa71f071d">VL6180X_ALS_GAIN_1_67</a> = 4
+, <a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275ae73d105cf26af74bd0f65517b51f0a9a">VL6180X_ALS_GAIN_1_25</a> = 5
+, <a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a30dc67d0dcf42ae7375ddd926bd7b1df">VL6180X_ALS_GAIN_1</a> = 6
+, <a class="el" href="group__drivers__vl6180x.html#ggaba8bc8b0923dafee52fbe268058ea275a516c2b27941ff89cdeca19411641b652">VL6180X_ALS_GAIN_40</a> = 7
+<br />
+ }</td></tr>
+<tr class="memdesc:gaba8bc8b0923dafee52fbe268058ea275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analogue gain for ALS measurements.  <a href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">More...</a><br /></td></tr>
+<tr class="separator:gaba8bc8b0923dafee52fbe268058ea275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf95787a8409141ccad02463eba94fb8e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">vl6180x_rng_status_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eaf529b2e7c6f468dae80042b0348774ba">VL6180X_RNG_OK</a> = 0
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eac3af1ef5840e1c5950df30a78f9d039e">VL6180X_RNG_VCSEL_CONT_TEST</a> = 1
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7325a5f62800cd0385776c4e3339266a">VL6180X_RNG_VCSEL_WD_TEST</a> = 2
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae11d525e398576504ae072d9422ea11d">VL6180X_RNG_VCSEL_WD</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7538a1d0a68a76cd12e6e2f28a417b72">VL6180X_RNG_PLL1_LOCK</a> = 4
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eae094e64a6b04101812c390ebb0a0fbfa">VL6180X_RNG_PLL2_LOCK</a> = 5
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea1bd990a8309bceef123f087a0d694147">VL6180X_RNG_EARLY_CONV_EST</a> = 6
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea890b71c1e02d0856a371c96f22f11bbd">VL6180X_RNG_MAX_CONV</a> = 7
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea244e0dbd34747e92066ff11cbefab84b">VL6180X_RNG_NO_TARGET</a> = 8
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eab95933fd2c0beee955cfd20e93c8e841">VL6180X_RNG_MAX_SNR</a> = 11
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8eafab42d5dc696918491c1ed77530b2fae">VL6180X_RNG_RAW_ALGO_UNDERFLOW</a> = 12
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea7232d39365a099ee1725eaaecc698b7a">VL6180X_RNG_RAW_ALGO_OVERFLOW</a> = 13
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea000b6386e9838228b41ca781f0a60a89">VL6180X_RNG_ALGO_UNDERFLOW</a> = 14
+, <a class="el" href="group__drivers__vl6180x.html#ggaf95787a8409141ccad02463eba94fb8ea21749fc9a65249a45114ffe69fc1171c">VL6180X_RNG_ALGO_OVERFLOW</a> = 15
+<br />
+ }</td></tr>
+<tr class="memdesc:gaf95787a8409141ccad02463eba94fb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range measurement status.  <a href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">More...</a><br /></td></tr>
+<tr class="separator:gaf95787a8409141ccad02463eba94fb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2eadfeaf1f86a23885ef13eaa6885940"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">vl6180x_als_status_t</a> { <a class="el" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940ae2b103656afee5b5e09922be9948b1c4">VL6180X_ALS_OK</a> = 0
+, <a class="el" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a5f244a70dff3efb697060ebd74f6f7af">VL6180X_ALS_OVERFLOW</a> = 1
+, <a class="el" href="group__drivers__vl6180x.html#gga2eadfeaf1f86a23885ef13eaa6885940a8eaffb0eee7d6d8a7d0ac28ef5bf7144">VL6180X_ALS_UNDERFLOW</a> = 2
+ }</td></tr>
+<tr class="memdesc:ga2eadfeaf1f86a23885ef13eaa6885940"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ambient light sensing (ALS) status.  <a href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">More...</a><br /></td></tr>
+<tr class="separator:ga2eadfeaf1f86a23885ef13eaa6885940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga874149548c7fa6a80cca96600ddad635"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga874149548c7fa6a80cca96600ddad635">vl6180x_int_mode_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635aa1da06268b82284f56c46a567b27cf36">VL6180X_INT_NONE</a> = 0
+, <a class="el" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a1a15e75f9af5314f519dce07c3ce6b94">VL6180X_INT_LOW</a> = 1
+, <a class="el" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a778f44971d117f62cd3ff6d89de72c42">VL6180X_INT_HIGH</a> = 2
+, <a class="el" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635aa7c6f823016999877eaa91bc0f497217">VL6180X_INT_OUT</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__vl6180x.html#gga874149548c7fa6a80cca96600ddad635a45c7fc526e0383910d95e8d0de7757cc">VL6180X_INT_DRDY</a> = 4
+<br />
+ }</td></tr>
+<tr class="memdesc:ga874149548c7fa6a80cca96600ddad635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt mode.  <a href="group__drivers__vl6180x.html#ga874149548c7fa6a80cca96600ddad635">More...</a><br /></td></tr>
+<tr class="separator:ga874149548c7fa6a80cca96600ddad635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaee994b4e0d657f6504b8ecb779843977"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gaee994b4e0d657f6504b8ecb779843977">vl6180x_init</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, const <a class="el" href="structvl6180x__params__t.html">vl6180x_params_t</a> *params)</td></tr>
+<tr class="memdesc:gaee994b4e0d657f6504b8ecb779843977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the VL6180X sensor device.  <a href="group__drivers__vl6180x.html#gaee994b4e0d657f6504b8ecb779843977">More...</a><br /></td></tr>
+<tr class="separator:gaee994b4e0d657f6504b8ecb779843977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga36daffc23638118062efda0aacc7564e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga36daffc23638118062efda0aacc7564e">vl6180x_start_cont</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga36daffc23638118062efda0aacc7564e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start measurements in continuous mode.  <a href="group__drivers__vl6180x.html#ga36daffc23638118062efda0aacc7564e">More...</a><br /></td></tr>
+<tr class="separator:ga36daffc23638118062efda0aacc7564e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4567388bb1fcd88d01314d3a5da41291"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga4567388bb1fcd88d01314d3a5da41291">vl6180x_stop_cont</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga4567388bb1fcd88d01314d3a5da41291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop measurements in continuous mode.  <a href="group__drivers__vl6180x.html#ga4567388bb1fcd88d01314d3a5da41291">More...</a><br /></td></tr>
+<tr class="separator:ga4567388bb1fcd88d01314d3a5da41291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaec9a64cf95727d24706d55c7977c432c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gaec9a64cf95727d24706d55c7977c432c">vl6180x_rng_data_ready</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:gaec9a64cf95727d24706d55c7977c432c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range data ready status function.  <a href="group__drivers__vl6180x.html#gaec9a64cf95727d24706d55c7977c432c">More...</a><br /></td></tr>
+<tr class="separator:gaec9a64cf95727d24706d55c7977c432c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga04d126d28616bb47a0bed098d930c1d7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga04d126d28616bb47a0bed098d930c1d7">vl6180x_rng_read</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint8_t *mm)</td></tr>
+<tr class="memdesc:ga04d126d28616bb47a0bed098d930c1d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read one ranging data sample in mm.  <a href="group__drivers__vl6180x.html#ga04d126d28616bb47a0bed098d930c1d7">More...</a><br /></td></tr>
+<tr class="separator:ga04d126d28616bb47a0bed098d930c1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0bf5eaf912925fa7106b693410f150ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__drivers__vl6180x.html#gaf95787a8409141ccad02463eba94fb8e">vl6180x_rng_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga0bf5eaf912925fa7106b693410f150ee">vl6180x_rng_status</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga0bf5eaf912925fa7106b693410f150ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get status of last range measurement.  <a href="group__drivers__vl6180x.html#ga0bf5eaf912925fa7106b693410f150ee">More...</a><br /></td></tr>
+<tr class="separator:ga0bf5eaf912925fa7106b693410f150ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab36ea67b4f669e2e82c4edd510caf6bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gab36ea67b4f669e2e82c4edd510caf6bd">vl6180x_rng_start_single</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:gab36ea67b4f669e2e82c4edd510caf6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a single-shot range measurement.  <a href="group__drivers__vl6180x.html#gab36ea67b4f669e2e82c4edd510caf6bd">More...</a><br /></td></tr>
+<tr class="separator:gab36ea67b4f669e2e82c4edd510caf6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab19e36e6463c24128182f86fe04fdb09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gab19e36e6463c24128182f86fe04fdb09">vl6180x_rng_config</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint8_t period, uint8_t max_time)</td></tr>
+<tr class="memdesc:gab19e36e6463c24128182f86fe04fdb09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigure range measurements at runtime.  <a href="group__drivers__vl6180x.html#gab19e36e6463c24128182f86fe04fdb09">More...</a><br /></td></tr>
+<tr class="separator:gab19e36e6463c24128182f86fe04fdb09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c97236bab4af4fca7a2e5ba6f8e13d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga3c97236bab4af4fca7a2e5ba6f8e13d0">vl6180x_als_data_ready</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga3c97236bab4af4fca7a2e5ba6f8e13d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ALS data ready status function.  <a href="group__drivers__vl6180x.html#ga3c97236bab4af4fca7a2e5ba6f8e13d0">More...</a><br /></td></tr>
+<tr class="separator:ga3c97236bab4af4fca7a2e5ba6f8e13d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga794a9ed589a84d731dcba0dfb60f4bfd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga794a9ed589a84d731dcba0dfb60f4bfd">vl6180x_als_read</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint16_t *raw, uint16_t *lux)</td></tr>
+<tr class="memdesc:ga794a9ed589a84d731dcba0dfb60f4bfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read one ambient light sensing (ALS) data sample.  <a href="group__drivers__vl6180x.html#ga794a9ed589a84d731dcba0dfb60f4bfd">More...</a><br /></td></tr>
+<tr class="separator:ga794a9ed589a84d731dcba0dfb60f4bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4406e23b03d53454c097d09a8eb3957a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__drivers__vl6180x.html#ga2eadfeaf1f86a23885ef13eaa6885940">vl6180x_als_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga4406e23b03d53454c097d09a8eb3957a">vl6180x_als_status</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga4406e23b03d53454c097d09a8eb3957a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get status of last ALS measurement.  <a href="group__drivers__vl6180x.html#ga4406e23b03d53454c097d09a8eb3957a">More...</a><br /></td></tr>
+<tr class="separator:ga4406e23b03d53454c097d09a8eb3957a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga856a14eee3d85833d184d9d1627d82f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga856a14eee3d85833d184d9d1627d82f0">vl6180x_als_start_single</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga856a14eee3d85833d184d9d1627d82f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a single-shot ALS measurement.  <a href="group__drivers__vl6180x.html#ga856a14eee3d85833d184d9d1627d82f0">More...</a><br /></td></tr>
+<tr class="separator:ga856a14eee3d85833d184d9d1627d82f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf8b06aca582804624d3b46d4566e9e9a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gaf8b06aca582804624d3b46d4566e9e9a">vl6180x_als_config</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint8_t period, uint8_t int_time, <a class="el" href="group__drivers__vl6180x.html#gaba8bc8b0923dafee52fbe268058ea275">vl6180x_als_gain_t</a> gain)</td></tr>
+<tr class="memdesc:gaf8b06aca582804624d3b46d4566e9e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigure ambient light sensing (ALS) during runtime.  <a href="group__drivers__vl6180x.html#gaf8b06aca582804624d3b46d4566e9e9a">More...</a><br /></td></tr>
+<tr class="separator:gaf8b06aca582804624d3b46d4566e9e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf9985c866fb3a2269a892dac0deae36b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gaf9985c866fb3a2269a892dac0deae36b">vl6180x_power_down</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:gaf9985c866fb3a2269a892dac0deae36b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power down the sensor.  <a href="group__drivers__vl6180x.html#gaf9985c866fb3a2269a892dac0deae36b">More...</a><br /></td></tr>
+<tr class="separator:gaf9985c866fb3a2269a892dac0deae36b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84fcdfbc772be9c72fa09d0b28aac4f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga84fcdfbc772be9c72fa09d0b28aac4f1">vl6180x_power_up</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev)</td></tr>
+<tr class="memdesc:ga84fcdfbc772be9c72fa09d0b28aac4f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power down the sensor.  <a href="group__drivers__vl6180x.html#ga84fcdfbc772be9c72fa09d0b28aac4f1">More...</a><br /></td></tr>
+<tr class="separator:ga84fcdfbc772be9c72fa09d0b28aac4f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84c03e22d383cf539eb347b4766fbd12"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga84c03e22d383cf539eb347b4766fbd12">vl6180x_int_wait</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, <a class="el" href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a> *src)</td></tr>
+<tr class="memdesc:ga84c03e22d383cf539eb347b4766fbd12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for configured interrupts and return the interrupt sources.  <a href="group__drivers__vl6180x.html#ga84c03e22d383cf539eb347b4766fbd12">More...</a><br /></td></tr>
+<tr class="separator:ga84c03e22d383cf539eb347b4766fbd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d6047d9acfb6a16fd8034b965c859ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga0d6047d9acfb6a16fd8034b965c859ab">vl6180x_int_enable</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, <a class="el" href="structvl6180x__int__config__t.html">vl6180x_int_config_t</a> mode)</td></tr>
+<tr class="memdesc:ga0d6047d9acfb6a16fd8034b965c859ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable and disable interrupts.  <a href="group__drivers__vl6180x.html#ga0d6047d9acfb6a16fd8034b965c859ab">More...</a><br /></td></tr>
+<tr class="separator:ga0d6047d9acfb6a16fd8034b965c859ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3493c4777cea820dbf64e709265c95fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga3493c4777cea820dbf64e709265c95fd">vl6180x_int_config</a> (<a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, <a class="el" href="structvl6180x__int__thresh__t.html">vl6180x_int_thresh_t</a> thresh)</td></tr>
+<tr class="memdesc:ga3493c4777cea820dbf64e709265c95fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure thresholds for event interrupts at runtime.  <a href="group__drivers__vl6180x.html#ga3493c4777cea820dbf64e709265c95fd">More...</a><br /></td></tr>
+<tr class="separator:ga3493c4777cea820dbf64e709265c95fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Low level interface functions</h2></td></tr>
+<tr class="memitem:gac107470f68ea711cf0f65229a6b74a03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#gac107470f68ea711cf0f65229a6b74a03">vl6180x_reg_write</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint16_t reg, const uint8_t *data, uint8_t len)</td></tr>
+<tr class="memdesc:gac107470f68ea711cf0f65229a6b74a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct write to register.  <a href="group__drivers__vl6180x.html#gac107470f68ea711cf0f65229a6b74a03">More...</a><br /></td></tr>
+<tr class="separator:gac107470f68ea711cf0f65229a6b74a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0df80d924d4a6afdc89d5409dd8a28a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__vl6180x.html#ga0df80d924d4a6afdc89d5409dd8a28a4">vl6180x_reg_read</a> (const <a class="el" href="structvl6180x__t.html">vl6180x_t</a> *dev, uint16_t reg, uint8_t *data, uint8_t len)</td></tr>
+<tr class="memdesc:ga0df80d924d4a6afdc89d5409dd8a28a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct read from register.  <a href="group__drivers__vl6180x.html#ga0df80d924d4a6afdc89d5409dd8a28a4">More...</a><br /></td></tr>
+<tr class="separator:ga0df80d924d4a6afdc89d5409dd8a28a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="vl6180x_8h.html">vl6180x.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/net/gnrc/sock/include/gnrc_sock_internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('gnrc__sock__internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a>  </div>
+  <div class="headertitle">
+<div class="title">gnrc_sock_internal.h File Reference<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__network__layer.html">Network Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__transportlayer.html">Transport Layer</a> &raquo; <a class="el" href="group__net__gnrc.html">Generic (GNRC) network stack</a> &raquo; <a class="el" href="group__net__gnrc__sock.html">GNRC-specific implementation of the sock API</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Internal GNRC-specific types and function definitions.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internal GNRC-specific types and function definitions. </p>
+<dl class="section author"><dt>Author</dt><dd>Martine Lenders <a href="#" onclick="location.href='mai'+'lto:'+'mle'+'nd'+'ers'+'@i'+'nf.'+'fu'+'-be'+'rl'+'in.'+'de'; return false;">mlend<span style="display: none;">.nosp@m.</span>ers@<span style="display: none;">.nosp@m.</span>inf.f<span style="display: none;">.nosp@m.</span>u-be<span style="display: none;">.nosp@m.</span>rlin.<span style="display: none;">.nosp@m.</span>de</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="mbox_8h_source.html">mbox.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="af_8h_source.html">net/af.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gnrc_8h_source.html">net/gnrc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="netreg_8h_source.html">net/gnrc/netreg.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="portrange_8h_source.html">net/iana/portrange.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ip_8h_source.html">net/sock/ip.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sys_2net_2gnrc_2sock_2include_2sock__types_8h_source.html">sock_types.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for gnrc_sock_internal.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="gnrc__sock__internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgnrc__sock__recv__aux__t.html">gnrc_sock_recv_aux_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to retrieve auxiliary data from <a class="el" href="gnrc__sock__internal_8h.html#acc1b8353ac4ab6ddd1463f09e1110694">gnrc_sock_recv</a>.  <a href="structgnrc__sock__recv__aux__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b781c28930aee57210196299f9a73aa"><td class="memItemLeft" align="right" valign="top"><a id="a4b781c28930aee57210196299f9a73aa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a4b781c28930aee57210196299f9a73aa">GNRC_SOCK_DYN_PORTRANGE_MIN</a>&#160;&#160;&#160;(IANA_DYNAMIC_PORTRANGE_MIN)</td></tr>
+<tr class="memdesc:a4b781c28930aee57210196299f9a73aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum port number in the dynamic portrange. <br /></td></tr>
+<tr class="separator:a4b781c28930aee57210196299f9a73aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07323eb4a2bf30cca04cba662c8c0436"><td class="memItemLeft" align="right" valign="top"><a id="a07323eb4a2bf30cca04cba662c8c0436"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a07323eb4a2bf30cca04cba662c8c0436">GNRC_SOCK_DYN_PORTRANGE_MAX</a>&#160;&#160;&#160;(IANA_DYNAMIC_PORTRANGE_MAX)</td></tr>
+<tr class="memdesc:a07323eb4a2bf30cca04cba662c8c0436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum port number in the dynamic portrange. <br /></td></tr>
+<tr class="separator:a07323eb4a2bf30cca04cba662c8c0436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40b8e38475486103799cb08b5886ec5a"><td class="memItemLeft" align="right" valign="top"><a id="a40b8e38475486103799cb08b5886ec5a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a40b8e38475486103799cb08b5886ec5a">GNRC_SOCK_DYN_PORTRANGE_NUM</a>&#160;&#160;&#160;(<a class="el" href="gnrc__sock__internal_8h.html#a07323eb4a2bf30cca04cba662c8c0436">GNRC_SOCK_DYN_PORTRANGE_MAX</a> - <a class="el" href="gnrc__sock__internal_8h.html#a4b781c28930aee57210196299f9a73aa">GNRC_SOCK_DYN_PORTRANGE_MIN</a> + 1)</td></tr>
+<tr class="memdesc:a40b8e38475486103799cb08b5886ec5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available ports in the range for dynamic source port allocation. <br /></td></tr>
+<tr class="separator:a40b8e38475486103799cb08b5886ec5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a76218705c511962dbc26ea4b4c0d4"><td class="memItemLeft" align="right" valign="top"><a id="a35a76218705c511962dbc26ea4b4c0d4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a35a76218705c511962dbc26ea4b4c0d4">GNRC_SOCK_DYN_PORTRANGE_ERR</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:a35a76218705c511962dbc26ea4b4c0d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error value indicating that no free port could be found in the dynamic port range. <br /></td></tr>
+<tr class="separator:a35a76218705c511962dbc26ea4b4c0d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a467c0370b4da9dfbb123432c46c0171b"><td class="memItemLeft" align="right" valign="top"><a id="a467c0370b4da9dfbb123432c46c0171b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a467c0370b4da9dfbb123432c46c0171b">CONFIG_GNRC_SOCK_UDP_CHECK_REMOTE_ADDR</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:a467c0370b4da9dfbb123432c46c0171b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if remote address of a UDP packet matches the address the socket is bound to. <br /></td></tr>
+<tr class="separator:a467c0370b4da9dfbb123432c46c0171b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cb459030cd36dffa3f8b1b9de899e6a"><td class="memItemLeft" align="right" valign="top"><a id="a2cb459030cd36dffa3f8b1b9de899e6a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a2cb459030cd36dffa3f8b1b9de899e6a">GNRC_SOCK_RECV_AUX_FLAG_TIMESTAMP</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memdesc:a2cb459030cd36dffa3f8b1b9de899e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp valid. <br /></td></tr>
+<tr class="separator:a2cb459030cd36dffa3f8b1b9de899e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32b2286d4bc7a0a009fdb7f9279576a5"><td class="memItemLeft" align="right" valign="top"><a id="a32b2286d4bc7a0a009fdb7f9279576a5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a32b2286d4bc7a0a009fdb7f9279576a5">GNRC_SOCK_RECV_AUX_FLAG_RSSI</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memdesc:a32b2286d4bc7a0a009fdb7f9279576a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSSI valid. <br /></td></tr>
+<tr class="separator:a32b2286d4bc7a0a009fdb7f9279576a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa69a591d4be68618a69df17610086aad"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#aa69a591d4be68618a69df17610086aad">gnrc_af_not_supported</a> (int af)</td></tr>
+<tr class="memdesc:aa69a591d4be68618a69df17610086aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal helper functions for GNRC.  <a href="gnrc__sock__internal_8h.html#aa69a591d4be68618a69df17610086aad">More...</a><br /></td></tr>
+<tr class="separator:aa69a591d4be68618a69df17610086aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ba9598591e07f49dae165b04119a5fd"><td class="memItemLeft" align="right" valign="top"><a id="a8ba9598591e07f49dae165b04119a5fd"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#a8ba9598591e07f49dae165b04119a5fd">gnrc_ep_addr_any</a> (const <a class="el" href="structsock__ip__ep__t.html">sock_ip_ep_t</a> *ep)</td></tr>
+<tr class="memdesc:a8ba9598591e07f49dae165b04119a5fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if end point points to any address. <br /></td></tr>
+<tr class="separator:a8ba9598591e07f49dae165b04119a5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafc7cbf3e1bbe97d0599177dff8bff4c"><td class="memItemLeft" align="right" valign="top"><a id="aafc7cbf3e1bbe97d0599177dff8bff4c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#aafc7cbf3e1bbe97d0599177dff8bff4c">gnrc_ep_set</a> (<a class="el" href="structsock__ip__ep__t.html">sock_ip_ep_t</a> *out, const <a class="el" href="structsock__ip__ep__t.html">sock_ip_ep_t</a> *in, size_t in_size)</td></tr>
+<tr class="memdesc:aafc7cbf3e1bbe97d0599177dff8bff4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a sock end-point from a given and sets the network interface implicitly if there is only one potential interface. <br /></td></tr>
+<tr class="separator:aafc7cbf3e1bbe97d0599177dff8bff4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedd1d80e6b1250eeb32fddfdf23a7968"><td class="memItemLeft" align="right" valign="top"><a id="aedd1d80e6b1250eeb32fddfdf23a7968"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#aedd1d80e6b1250eeb32fddfdf23a7968">gnrc_sock_create</a> (<a class="el" href="group__net__gnrc__sock.html#ga0361f554346d114bf4129d0d95085ebb">gnrc_sock_reg_t</a> *reg, <a class="el" href="group__net__gnrc__nettype.html#ga2582fbb16a318806983c225a69460902">gnrc_nettype_t</a> type, uint32_t demux_ctx)</td></tr>
+<tr class="memdesc:aedd1d80e6b1250eeb32fddfdf23a7968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a sock internally. <br /></td></tr>
+<tr class="separator:aedd1d80e6b1250eeb32fddfdf23a7968"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc1b8353ac4ab6ddd1463f09e1110694"><td class="memItemLeft" align="right" valign="top"><a id="acc1b8353ac4ab6ddd1463f09e1110694"></a>
+ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#acc1b8353ac4ab6ddd1463f09e1110694">gnrc_sock_recv</a> (<a class="el" href="group__net__gnrc__sock.html#ga0361f554346d114bf4129d0d95085ebb">gnrc_sock_reg_t</a> *reg, <a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> **pkt, uint32_t timeout, <a class="el" href="structsock__ip__ep__t.html">sock_ip_ep_t</a> *remote, <a class="el" href="structgnrc__sock__recv__aux__t.html">gnrc_sock_recv_aux_t</a> *aux)</td></tr>
+<tr class="memdesc:acc1b8353ac4ab6ddd1463f09e1110694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive a packet internally. <br /></td></tr>
+<tr class="separator:acc1b8353ac4ab6ddd1463f09e1110694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa66a462ccc7944a7d4a14dd652005cc3"><td class="memItemLeft" align="right" valign="top"><a id="aa66a462ccc7944a7d4a14dd652005cc3"></a>
+ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gnrc__sock__internal_8h.html#aa66a462ccc7944a7d4a14dd652005cc3">gnrc_sock_send</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *payload, <a class="el" href="structsock__ip__ep__t.html">sock_ip_ep_t</a> *local, const <a class="el" href="structsock__ip__ep__t.html">sock_ip_ep_t</a> *remote, uint8_t nh)</td></tr>
+<tr class="memdesc:aa66a462ccc7944a7d4a14dd652005cc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a packet internally. <br /></td></tr>
+<tr class="separator:aa66a462ccc7944a7d4a14dd652005cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aa69a591d4be68618a69df17610086aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa69a591d4be68618a69df17610086aad">&#9670;&nbsp;</a></span>gnrc_af_not_supported()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool gnrc_af_not_supported </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>af</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Internal helper functions for GNRC. </p>
+<p>Checks if address family is not supported </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_8029da4437d789f4711f6586d7ee68bf.html">net</a></li><li class="navelem"><a class="el" href="dir_3441f3001dd6ccd78cd6b9a576f26623.html">gnrc</a></li><li class="navelem"><a class="el" href="dir_8af9268a6325be423ae063a37d10b36f.html">sock</a></li><li class="navelem"><a class="el" href="dir_11d944134df183adfe0b061d44b4f1dc.html">include</a></li><li class="navelem"><a class="el" href="gnrc__sock__internal_8h.html">gnrc_sock_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+var kw41zrf__getset_8h =
+[
+    [ "KW41ZRF_OPT_ACK_PENDING", "kw41zrf__getset_8h.html#a1d6dc7ff9899c1227f0fce3af31ef04a", null ],
+    [ "KW41ZRF_OPT_AUTOACK", "kw41zrf__getset_8h.html#a6b9424bdade495439dfac62dc95410f0", null ],
+    [ "KW41ZRF_OPT_CSMA", "kw41zrf__getset_8h.html#a1688e145eece44f6083cb5b787decf69", null ],
+    [ "KW41ZRF_OPT_PRELOADING", "kw41zrf__getset_8h.html#a5a9fb4aeb8ceff9a06d71038fe91a53a", null ],
+    [ "KW41ZRF_OPT_PROMISCUOUS", "kw41zrf__getset_8h.html#a947c2c38c8269ef2eed3a145863fa1dc", null ],
+    [ "kw41zrf_xcvseq", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213", [
+      [ "XCVSEQ_IDLE", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213af698267eab277ba1e91dac841af88dc7", null ],
+      [ "XCVSEQ_RECEIVE", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213a4170470af1dbdd380e1ae2eb0fdb8cb2", null ],
+      [ "XCVSEQ_TRANSMIT", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213a3074d3020b83d0247990d8f049f8c0c5", null ],
+      [ "XCVSEQ_CCA", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213a690ff8dbb2f4ea41f1c7d066f66ea298", null ],
+      [ "XCVSEQ_TX_RX", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213a5df663949953f417100ffba5eda11859", null ],
+      [ "XCVSEQ_CONTINUOUS_CCA", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213a0c7aa661ba0410a35ccc16cdb84e8ac9", null ],
+      [ "XCVSEQ_DSM_IDLE", "kw41zrf__getset_8h.html#aa89372d053675a775f667e3269416213a9b8ec09ccbbd8cde3e46823ce9ef2905", null ]
+    ] ],
+    [ "kw41zrf_cca", "kw41zrf__getset_8h.html#a8b30b6f93022ab4c960b7fcc78c264fc", null ],
+    [ "kw41zrf_get_addr_long", "kw41zrf__getset_8h.html#a34cc5fefdd1720ab1b573c50cc75f9e2", null ],
+    [ "kw41zrf_get_addr_short", "kw41zrf__getset_8h.html#a5dbed263eeac43080434ad6580bb3441", null ],
+    [ "kw41zrf_get_cca_mode", "kw41zrf__getset_8h.html#a1767daaeedbd336a4047e729cbbcf41a", null ],
+    [ "kw41zrf_get_cca_threshold", "kw41zrf__getset_8h.html#a6e65518df7b24b9599930393c821c5f3", null ],
+    [ "kw41zrf_get_channel", "kw41zrf__getset_8h.html#a0096130b23dd21d5245d088d7334d2ca", null ],
+    [ "kw41zrf_get_ed_level", "kw41zrf__getset_8h.html#a87487cde197e40054795bbfd27669f17", null ],
+    [ "kw41zrf_get_pan", "kw41zrf__getset_8h.html#ac342a2d377bad3aca1517c9f3eb74d2f", null ],
+    [ "kw41zrf_get_txpower", "kw41zrf__getset_8h.html#a05e22de9a75dfc44795f7b72fae27e05", null ],
+    [ "kw41zrf_set_addr_long", "kw41zrf__getset_8h.html#a618746474ec9c2a76372304195457276", null ],
+    [ "kw41zrf_set_addr_short", "kw41zrf__getset_8h.html#a9bfa0f07bf7282f7fd2f316ec0bab96c", null ],
+    [ "kw41zrf_set_cca_mode", "kw41zrf__getset_8h.html#adf13e19de7203c10256ea91f6112f7e6", null ],
+    [ "kw41zrf_set_cca_threshold", "kw41zrf__getset_8h.html#a3ff354619c71a5f75c64bad85bb11b5d", null ],
+    [ "kw41zrf_set_channel", "kw41zrf__getset_8h.html#a426d01114ade2f45b786cf4cb2c8a2c8", null ],
+    [ "kw41zrf_set_option", "kw41zrf__getset_8h.html#a539ab45cae1429af1e0e1902eac8e825", null ],
+    [ "kw41zrf_set_pan", "kw41zrf__getset_8h.html#a715c7870cf74dfa6d358d1ef6ccc1c78", null ],
+    [ "kw41zrf_set_rx_watermark", "kw41zrf__getset_8h.html#aa81c674144e00d4ce583c325af5ca6cc", null ],
+    [ "kw41zrf_set_tx_power", "kw41zrf__getset_8h.html#a3be396e357473ca397e2653c243de114", null ]
+];

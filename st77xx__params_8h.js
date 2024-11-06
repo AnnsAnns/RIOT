@@ -1,0 +1,27 @@
+var st77xx__params_8h =
+[
+    [ "ST77XX_NUMOF", "st77xx__params_8h.html#a49241452a3ac53aa0e9affa818f0df32", null ],
+    [ "ST77XX_PARAM_CNTRL", "st77xx__params_8h.html#af440faa3bfb48627e638d07f98743d4e", null ],
+    [ "ST77XX_PARAM_CS", "st77xx__params_8h.html#a81fa497c3140f027c0de8cd9bdaed2e1", null ],
+    [ "ST77XX_PARAM_DCX", "st77xx__params_8h.html#a018a3d77af80cc85cc8f8894be87edbc", null ],
+    [ "ST77XX_PARAM_IF_MODE", "st77xx__params_8h.html#a4d260fa9d078fd54ece70930bbe6f038", null ],
+    [ "ST77XX_PARAM_IF_PAR", "st77xx__params_8h.html#a9c01299b3cfbc9dced9928e8f2912038", null ],
+    [ "ST77XX_PARAM_IF_PAR_16BIT", "st77xx__params_8h.html#abbbe453e36dd843d7c075001ec91f245", null ],
+    [ "ST77XX_PARAM_IF_SPI", "st77xx__params_8h.html#a5cfffe0bfd5ecf0c917a61b750431b8f", null ],
+    [ "ST77XX_PARAM_INVERTED", "st77xx__params_8h.html#a76b7d987e8acf51085b8f89120e05f58", null ],
+    [ "ST77XX_PARAM_NUM_LINES", "st77xx__params_8h.html#acf95750f33d855476e4a5a9f880f18a4", null ],
+    [ "ST77XX_PARAM_OFFSET_X", "st77xx__params_8h.html#a566a0258d05633683ce59a070c76fbcc", null ],
+    [ "ST77XX_PARAM_OFFSET_Y", "st77xx__params_8h.html#a4770d02d3470c4822688419056f54e84", null ],
+    [ "ST77XX_PARAM_RGB", "st77xx__params_8h.html#aefb75ac24f9f4cc293bf8224fb6701d4", null ],
+    [ "ST77XX_PARAM_RGB_CHANNELS", "st77xx__params_8h.html#ade625d6bbdfd3d90ba3d35e6fbbf6977", null ],
+    [ "ST77XX_PARAM_ROTATION", "st77xx__params_8h.html#a3613db97736c000a802e665706d9868d", null ],
+    [ "ST77XX_PARAM_RST", "st77xx__params_8h.html#af160b18d3a16c85a96ead08fa18780a1", null ],
+    [ "ST77XX_PARAM_SCREEN_IDS", "st77xx__params_8h.html#ad284cb16891ad92ce613478b4f0f5bf4", null ],
+    [ "ST77XX_PARAM_SPI", "st77xx__params_8h.html#ac56fdf091c9c19b6930a9fd8b39fb0c3", null ],
+    [ "ST77XX_PARAM_SPI_CLK", "st77xx__params_8h.html#a5f6d9a78a5469fc31202c61ab25f9d2f", null ],
+    [ "ST77XX_PARAM_SPI_MODE", "st77xx__params_8h.html#ab4fe6453a01c736a48044ef4b0fcf147", null ],
+    [ "ST77XX_PARAMS", "st77xx__params_8h.html#adf80f421a8fd1ef3a69b129ffa7ccab7", null ],
+    [ "ST77XX_SCREEN_NUMOF", "st77xx__params_8h.html#a9fe158e995afc32d61b27af9f96d400a", null ],
+    [ "st77xx_params", "st77xx__params_8h.html#a20504cdc2e0cfb5743e2ac6f02b5ca3b", null ],
+    [ "st77xx_screen_ids", "st77xx__params_8h.html#a9d1279587af7097920afaad8cfcd4f5d", null ]
+];

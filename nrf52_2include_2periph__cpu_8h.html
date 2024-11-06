@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/nrf52/include/periph_cpu.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('nrf52_2include_2periph__cpu_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">periph_cpu.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__nrf52.html">Nordic nRF52 MCU</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>nRF52 specific definitions for handling peripherals  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>nRF52 specific definitions for handling peripherals </p>
+<dl class="section author"><dt>Author</dt><dd>Hauke Petersen <a href="#" onclick="location.href='mai'+'lto:'+'hau'+'ke'+'.pe'+'te'+'rse'+'n@'+'fu-'+'be'+'rli'+'n.'+'de'; return false;">hauke<span style="display: none;">.nosp@m.</span>.pet<span style="display: none;">.nosp@m.</span>ersen<span style="display: none;">.nosp@m.</span>@fu-<span style="display: none;">.nosp@m.</span>berli<span style="display: none;">.nosp@m.</span>n.de</a> </dd>
+<dd>
+Philipp-Alexander Blum <a href="#" onclick="location.href='mai'+'lto:'+'phi'+'li'+'pp-'+'bl'+'um@'+'ja'+'kik'+'u.'+'de'; return false;">phili<span style="display: none;">.nosp@m.</span>pp-b<span style="display: none;">.nosp@m.</span>lum@j<span style="display: none;">.nosp@m.</span>akik<span style="display: none;">.nosp@m.</span>u.de</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;periph_cpu_common.h&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for periph_cpu.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="nrf52_2include_2periph__cpu_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:afc465f12242e68f6c3695caa3ba0a169"><td class="memItemLeft" align="right" valign="top"><a id="afc465f12242e68f6c3695caa3ba0a169"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#afc465f12242e68f6c3695caa3ba0a169">CLOCK_CORECLOCK</a>&#160;&#160;&#160;(64000000U)</td></tr>
+<tr class="memdesc:afc465f12242e68f6c3695caa3ba0a169"><td class="mdescLeft">&#160;</td><td class="mdescRight">System core clock speed, fixed to 64MHz for all NRF52x CPUs. <br /></td></tr>
+<tr class="separator:afc465f12242e68f6c3695caa3ba0a169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Peripheral clock speed (fixed to 16MHz for nRF52 based CPUs)</h2></td></tr>
+<tr class="memitem:ab27691583b1a6b3095e4426e8523e954"><td class="memItemLeft" align="right" valign="top"><a id="ab27691583b1a6b3095e4426e8523e954"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_CLOCK</b>&#160;&#160;&#160;(16000000U)</td></tr>
+<tr class="separator:ab27691583b1a6b3095e4426e8523e954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f0c741db24aa2ccded869ba53f6a302"><td class="memItemLeft" align="right" valign="top"><a id="a2f0c741db24aa2ccded869ba53f6a302"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a2f0c741db24aa2ccded869ba53f6a302">ADC_NUMOF</a>&#160;&#160;&#160;(9U)</td></tr>
+<tr class="memdesc:a2f0c741db24aa2ccded869ba53f6a302"><td class="mdescLeft">&#160;</td><td class="mdescRight">The nRF52 family of CPUs provides a fixed number of 9 ADC lines. <br /></td></tr>
+<tr class="separator:a2f0c741db24aa2ccded869ba53f6a302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d6c77df27eaeba19a369cec7754bb30"><td class="memItemLeft" align="right" valign="top"><a id="a7d6c77df27eaeba19a369cec7754bb30"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a7d6c77df27eaeba19a369cec7754bb30">UART_TXBUF_SIZE</a>&#160;&#160;&#160;(64)</td></tr>
+<tr class="memdesc:a7d6c77df27eaeba19a369cec7754bb30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the UART TX buffer for non-blocking mode. <br /></td></tr>
+<tr class="separator:a7d6c77df27eaeba19a369cec7754bb30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a3be2d66956bd67c0b66c32d8b30f17"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17a7d8a6d6505b0654ad7af44d549392516">NRF52_AIN0</a> = 0
+, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17a7f12fce52b36e7bebd1a90b69d6bbd2c">NRF52_AIN1</a> = 1
+, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17a4b47df322eb44f6aeaac38c3157332c1">NRF52_AIN2</a> = 2
+, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17aa28b23ba837e9e7508c5837ab06dd5a9">NRF52_AIN3</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17a8c76437be012f9778c81dfe0dfd96f5a">NRF52_AIN4</a> = 4
+, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17adcd0f69a94f72ecaefe111cc556a17ab">NRF52_AIN5</a> = 5
+, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17a671ed4777b8a34db7e33edcacae6c705">NRF52_AIN6</a> = 6
+, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17acac5953d119e4b3d32814a599400b7e2">NRF52_AIN7</a> = 7
+, <br />
+&#160;&#160;<a class="el" href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17aa75e405cfd0772c9ed403068fe380bde">NRF52_VDD</a> = 8
+<br />
+ }</td></tr>
+<tr class="memdesc:a9a3be2d66956bd67c0b66c32d8b30f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">nRF52 specific naming of ADC lines (for convenience)  <a href="nrf52_2include_2periph__cpu_8h.html#a9a3be2d66956bd67c0b66c32d8b30f17">More...</a><br /></td></tr>
+<tr class="separator:a9a3be2d66956bd67c0b66c32d8b30f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d66493ff64294cb45ee0b5e34d3ca73"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a>) (void *arg)</td></tr>
+<tr class="memdesc:a5d66493ff64294cb45ee0b5e34d3ca73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common SPI/I2C interrupt callback.  <a href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">More...</a><br /></td></tr>
+<tr class="separator:a5d66493ff64294cb45ee0b5e34d3ca73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8565a1676ba53831f10fdf59117e0e05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a8565a1676ba53831f10fdf59117e0e05">spi_twi_irq_register_spi</a> (NRF_SPIM_Type *bus, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a> cb, void *arg)</td></tr>
+<tr class="memdesc:a8565a1676ba53831f10fdf59117e0e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a SPI IRQ handler for a shared I2C/SPI irq vector.  <a href="nrf52_2include_2periph__cpu_8h.html#a8565a1676ba53831f10fdf59117e0e05">More...</a><br /></td></tr>
+<tr class="separator:a8565a1676ba53831f10fdf59117e0e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a3007f4f21a176008a909a56c38a1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a19a3007f4f21a176008a909a56c38a1b">spi_twi_irq_register_i2c</a> (NRF_TWIM_Type *bus, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a> cb, void *arg)</td></tr>
+<tr class="memdesc:a19a3007f4f21a176008a909a56c38a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a I2C IRQ handler for a shared I2C/SPI irq vector.  <a href="nrf52_2include_2periph__cpu_8h.html#a19a3007f4f21a176008a909a56c38a1b">More...</a><br /></td></tr>
+<tr class="separator:a19a3007f4f21a176008a909a56c38a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa4cc49aa16ef8bd38d019a95560dd65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#aaa4cc49aa16ef8bd38d019a95560dd65">nrf5x_i2c_acquire</a> (NRF_TWIM_Type *bus, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a> cb, void *arg)</td></tr>
+<tr class="memdesc:aaa4cc49aa16ef8bd38d019a95560dd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquire the shared I2C/SPI peripheral in I2C mode.  <a href="nrf52_2include_2periph__cpu_8h.html#aaa4cc49aa16ef8bd38d019a95560dd65">More...</a><br /></td></tr>
+<tr class="separator:aaa4cc49aa16ef8bd38d019a95560dd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af575e35f42deab21bf603e8e2d6f2bfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#af575e35f42deab21bf603e8e2d6f2bfc">nrf5x_i2c_release</a> (NRF_TWIM_Type *bus)</td></tr>
+<tr class="memdesc:af575e35f42deab21bf603e8e2d6f2bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release the shared I2C/SPI peripheral in I2C mode.  <a href="nrf52_2include_2periph__cpu_8h.html#af575e35f42deab21bf603e8e2d6f2bfc">More...</a><br /></td></tr>
+<tr class="separator:af575e35f42deab21bf603e8e2d6f2bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41917a2be3f63474430bb57a4242beee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a41917a2be3f63474430bb57a4242beee">nrf5x_spi_acquire</a> (NRF_SPIM_Type *bus, <a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a> cb, void *arg)</td></tr>
+<tr class="memdesc:a41917a2be3f63474430bb57a4242beee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquire the shared I2C/SPI peripheral in SPI mode.  <a href="nrf52_2include_2periph__cpu_8h.html#a41917a2be3f63474430bb57a4242beee">More...</a><br /></td></tr>
+<tr class="separator:a41917a2be3f63474430bb57a4242beee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a365aa4ba166c294cb63edd596f40b889"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a365aa4ba166c294cb63edd596f40b889">nrf5x_spi_release</a> (NRF_SPIM_Type *bus)</td></tr>
+<tr class="memdesc:a365aa4ba166c294cb63edd596f40b889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquire the shared I2C/SPI peripheral in SPI mode.  <a href="nrf52_2include_2periph__cpu_8h.html#a365aa4ba166c294cb63edd596f40b889">More...</a><br /></td></tr>
+<tr class="separator:a365aa4ba166c294cb63edd596f40b889"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a5d66493ff64294cb45ee0b5e34d3ca73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d66493ff64294cb45ee0b5e34d3ca73">&#9670;&nbsp;</a></span>spi_twi_irq_cb_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* spi_twi_irq_cb_t) (void *arg)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Common SPI/I2C interrupt callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>Opaque context pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a9a3be2d66956bd67c0b66c32d8b30f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a3be2d66956bd67c0b66c32d8b30f17">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>nRF52 specific naming of ADC lines (for convenience) </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17a7d8a6d6505b0654ad7af44d549392516"></a>NRF52_AIN0&#160;</td><td class="fielddoc"><p>Analog Input 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17a7f12fce52b36e7bebd1a90b69d6bbd2c"></a>NRF52_AIN1&#160;</td><td class="fielddoc"><p>Analog Input 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17a4b47df322eb44f6aeaac38c3157332c1"></a>NRF52_AIN2&#160;</td><td class="fielddoc"><p>Analog Input 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17aa28b23ba837e9e7508c5837ab06dd5a9"></a>NRF52_AIN3&#160;</td><td class="fielddoc"><p>Analog Input 3. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17a8c76437be012f9778c81dfe0dfd96f5a"></a>NRF52_AIN4&#160;</td><td class="fielddoc"><p>Analog Input 4. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17adcd0f69a94f72ecaefe111cc556a17ab"></a>NRF52_AIN5&#160;</td><td class="fielddoc"><p>Analog Input 5. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17a671ed4777b8a34db7e33edcacae6c705"></a>NRF52_AIN6&#160;</td><td class="fielddoc"><p>Analog Input 6. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17acac5953d119e4b3d32814a599400b7e2"></a>NRF52_AIN7&#160;</td><td class="fielddoc"><p>Analog Input 7. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9a3be2d66956bd67c0b66c32d8b30f17aa75e405cfd0772c9ed403068fe380bde"></a>NRF52_VDD&#160;</td><td class="fielddoc"><p>VDD, not useful if VDD is reference... </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aaa4cc49aa16ef8bd38d019a95560dd65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa4cc49aa16ef8bd38d019a95560dd65">&#9670;&nbsp;</a></span>nrf5x_i2c_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nrf5x_i2c_acquire </td>
+          <td>(</td>
+          <td class="paramtype">NRF_TWIM_Type *&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a>&#160;</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Acquire the shared I2C/SPI peripheral in I2C mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>bus to acquire exclusive access on </td></tr>
+    <tr><td class="paramname">cb</td><td>ISR handler to call on IRQ </td></tr>
+    <tr><td class="paramname">arg</td><td>ISR handler argument </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af575e35f42deab21bf603e8e2d6f2bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af575e35f42deab21bf603e8e2d6f2bfc">&#9670;&nbsp;</a></span>nrf5x_i2c_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nrf5x_i2c_release </td>
+          <td>(</td>
+          <td class="paramtype">NRF_TWIM_Type *&#160;</td>
+          <td class="paramname"><em>bus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Release the shared I2C/SPI peripheral in I2C mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>bus to release exclusive access on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a41917a2be3f63474430bb57a4242beee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41917a2be3f63474430bb57a4242beee">&#9670;&nbsp;</a></span>nrf5x_spi_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nrf5x_spi_acquire </td>
+          <td>(</td>
+          <td class="paramtype">NRF_SPIM_Type *&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a>&#160;</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Acquire the shared I2C/SPI peripheral in SPI mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>bus to release exclusive access on </td></tr>
+    <tr><td class="paramname">cb</td><td>ISR handler to call on IRQ </td></tr>
+    <tr><td class="paramname">arg</td><td>ISR handler argument </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a365aa4ba166c294cb63edd596f40b889"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a365aa4ba166c294cb63edd596f40b889">&#9670;&nbsp;</a></span>nrf5x_spi_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nrf5x_spi_release </td>
+          <td>(</td>
+          <td class="paramtype">NRF_SPIM_Type *&#160;</td>
+          <td class="paramname"><em>bus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Acquire the shared I2C/SPI peripheral in SPI mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>bus to release exclusive access on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a19a3007f4f21a176008a909a56c38a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19a3007f4f21a176008a909a56c38a1b">&#9670;&nbsp;</a></span>spi_twi_irq_register_i2c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spi_twi_irq_register_i2c </td>
+          <td>(</td>
+          <td class="paramtype">NRF_TWIM_Type *&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a>&#160;</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register a I2C IRQ handler for a shared I2C/SPI irq vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>bus to register the IRQ handler on </td></tr>
+    <tr><td class="paramname">cb</td><td>callback to call on IRQ </td></tr>
+    <tr><td class="paramname">arg</td><td>Argument to pass to the handler </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8565a1676ba53831f10fdf59117e0e05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8565a1676ba53831f10fdf59117e0e05">&#9670;&nbsp;</a></span>spi_twi_irq_register_spi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spi_twi_irq_register_spi </td>
+          <td>(</td>
+          <td class="paramtype">NRF_SPIM_Type *&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="nrf52_2include_2periph__cpu_8h.html#a5d66493ff64294cb45ee0b5e34d3ca73">spi_twi_irq_cb_t</a>&#160;</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register a SPI IRQ handler for a shared I2C/SPI irq vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>bus to register the IRQ handler on </td></tr>
+    <tr><td class="paramname">cb</td><td>callback to call on IRQ </td></tr>
+    <tr><td class="paramname">arg</td><td>Argument to pass to the handler </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_a0cfb7d419cb0d0adc367489497db559.html">nrf52</a></li><li class="navelem"><a class="el" href="dir_5332a4dc0528cb87a823fe4d9bb65b03.html">include</a></li><li class="navelem"><a class="el" href="nrf52_2include_2periph__cpu_8h.html">periph_cpu.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

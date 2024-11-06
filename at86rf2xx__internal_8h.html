@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/at86rf2xx/include/at86rf2xx_internal.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('at86rf2xx__internal_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">at86rf2xx_internal.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__netdev.html">Network Device Drivers</a> &raquo; <a class="el" href="group__drivers__at86rf2xx.html">AT86RF2xx based drivers</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Internal interfaces for AT86RF2xx drivers.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internal interfaces for AT86RF2xx drivers. </p>
+<dl class="section author"><dt>Author</dt><dd>Alaeddine Weslati <a href="#" onclick="location.href='mai'+'lto:'+'ala'+'ed'+'din'+'e.'+'wes'+'la'+'ti@'+'in'+'ria'+'.f'+'r'; return false;">alaed<span style="display: none;">.nosp@m.</span>dine<span style="display: none;">.nosp@m.</span>.wesl<span style="display: none;">.nosp@m.</span>ati@<span style="display: none;">.nosp@m.</span>inria<span style="display: none;">.nosp@m.</span>.fr</a> </dd>
+<dd>
+Thomas Eichinger <a href="#" onclick="location.href='mai'+'lto:'+'tho'+'ma'+'s.e'+'ic'+'hin'+'ge'+'r@f'+'u-'+'ber'+'li'+'n.d'+'e'; return false;">thoma<span style="display: none;">.nosp@m.</span>s.ei<span style="display: none;">.nosp@m.</span>ching<span style="display: none;">.nosp@m.</span>er@f<span style="display: none;">.nosp@m.</span>u-ber<span style="display: none;">.nosp@m.</span>lin.<span style="display: none;">.nosp@m.</span>de</a> </dd>
+<dd>
+Hauke Petersen <a href="#" onclick="location.href='mai'+'lto:'+'hau'+'ke'+'.pe'+'te'+'rse'+'n@'+'fu-'+'be'+'rli'+'n.'+'de'; return false;">hauke<span style="display: none;">.nosp@m.</span>.pet<span style="display: none;">.nosp@m.</span>ersen<span style="display: none;">.nosp@m.</span>@fu-<span style="display: none;">.nosp@m.</span>berli<span style="display: none;">.nosp@m.</span>n.de</a> </dd>
+<dd>
+Sebastian Meiling <a href="#" onclick="location.href='mai'+'lto:'+'s@m'+'ln'+'g.n'+'et'; return false;">s@mln<span style="display: none;">.nosp@m.</span>g.ne<span style="display: none;">.nosp@m.</span>t</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="at86rf2xx_8h_source.html">at86rf2xx.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="at86rf2xx__registers_8h_source.html">at86rf2xx_registers.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for at86rf2xx_internal.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="at86rf2xx__internal_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="memitem:a3e9d9b8171e8d73877f40ee54c0a3845"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a3e9d9b8171e8d73877f40ee54c0a3845">AT86RF2XX_TXPOWER_MAX</a>&#160;&#160;&#160;(20)</td></tr>
+<tr class="memdesc:a3e9d9b8171e8d73877f40ee54c0a3845"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max.  <a href="at86rf2xx__internal_8h.html#a3e9d9b8171e8d73877f40ee54c0a3845">More...</a><br /></td></tr>
+<tr class="separator:a3e9d9b8171e8d73877f40ee54c0a3845"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b010f2856fbd1910485af5ce7b2c035"><td class="memItemLeft" align="right" valign="top"><a id="a1b010f2856fbd1910485af5ce7b2c035"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a1b010f2856fbd1910485af5ce7b2c035">AT86RF2XX_TXPOWER_OFF</a>&#160;&#160;&#160;(17)</td></tr>
+<tr class="memdesc:a1b010f2856fbd1910485af5ce7b2c035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit power offset. <br /></td></tr>
+<tr class="separator:a1b010f2856fbd1910485af5ce7b2c035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb65ee3325c7d35ad11bf1d36e48b96a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#aeb65ee3325c7d35ad11bf1d36e48b96a">AT86RF2XX_WAKEUP_DELAY</a>&#160;&#160;&#160;(306U)</td></tr>
+<tr class="memdesc:aeb65ee3325c7d35ad11bf1d36e48b96a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transition time from SLEEP to TRX_OFF in us, refer figure 7-4, p.42.  <a href="at86rf2xx__internal_8h.html#aeb65ee3325c7d35ad11bf1d36e48b96a">More...</a><br /></td></tr>
+<tr class="separator:aeb65ee3325c7d35ad11bf1d36e48b96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e6f0bb00194209a3810ec19b5f56377"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a7e6f0bb00194209a3810ec19b5f56377">AT86RF2XX_RESET_PULSE_WIDTH</a>&#160;&#160;&#160;(62U)</td></tr>
+<tr class="memdesc:a7e6f0bb00194209a3810ec19b5f56377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum reset pulse width, refer p.190.  <a href="at86rf2xx__internal_8h.html#a7e6f0bb00194209a3810ec19b5f56377">More...</a><br /></td></tr>
+<tr class="separator:a7e6f0bb00194209a3810ec19b5f56377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0135d8fc4b2e88b40549b358834964d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a0135d8fc4b2e88b40549b358834964d2">AT86RF2XX_RESET_DELAY</a>&#160;&#160;&#160;(62U)</td></tr>
+<tr class="memdesc:a0135d8fc4b2e88b40549b358834964d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The typical transition time to TRX_OFF after reset pulse is 26 us, refer to figure 7-8, p.  <a href="at86rf2xx__internal_8h.html#a0135d8fc4b2e88b40549b358834964d2">More...</a><br /></td></tr>
+<tr class="separator:a0135d8fc4b2e88b40549b358834964d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f3976945f18c590435a9d5871d70ef"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a75f3976945f18c590435a9d5871d70ef">at86rf2xx_reg_read</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, uint8_t addr)</td></tr>
+<tr class="memdesc:a75f3976945f18c590435a9d5871d70ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read from a register at address <code>addr</code> from device <code>dev</code>.  <a href="at86rf2xx__internal_8h.html#a75f3976945f18c590435a9d5871d70ef">More...</a><br /></td></tr>
+<tr class="separator:a75f3976945f18c590435a9d5871d70ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0cc591b2fc05a583847138c09642ffc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#ae0cc591b2fc05a583847138c09642ffc">at86rf2xx_reg_write</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, uint8_t addr, uint8_t value)</td></tr>
+<tr class="memdesc:ae0cc591b2fc05a583847138c09642ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write to a register at address <code>addr</code> from device <code>dev</code>.  <a href="at86rf2xx__internal_8h.html#ae0cc591b2fc05a583847138c09642ffc">More...</a><br /></td></tr>
+<tr class="separator:ae0cc591b2fc05a583847138c09642ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dac0250d7dfa840e3f4ce966c8c223f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a2dac0250d7dfa840e3f4ce966c8c223f">at86rf2xx_sram_read</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, uint8_t offset, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a2dac0250d7dfa840e3f4ce966c8c223f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data from the SRAM of the given device.  <a href="at86rf2xx__internal_8h.html#a2dac0250d7dfa840e3f4ce966c8c223f">More...</a><br /></td></tr>
+<tr class="separator:a2dac0250d7dfa840e3f4ce966c8c223f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d448880218cf7facb5efe4466938a4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a7d448880218cf7facb5efe4466938a4d">at86rf2xx_sram_write</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, uint8_t offset, const uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a7d448880218cf7facb5efe4466938a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a chunk of data into the SRAM of the given device.  <a href="at86rf2xx__internal_8h.html#a7d448880218cf7facb5efe4466938a4d">More...</a><br /></td></tr>
+<tr class="separator:a7d448880218cf7facb5efe4466938a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98edddaa5e3e48ab9b7f1ab7f7d71905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a98edddaa5e3e48ab9b7f1ab7f7d71905">at86rf2xx_fb_start</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev)</td></tr>
+<tr class="memdesc:a98edddaa5e3e48ab9b7f1ab7f7d71905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a read transaction internal frame buffer of the given device.  <a href="at86rf2xx__internal_8h.html#a98edddaa5e3e48ab9b7f1ab7f7d71905">More...</a><br /></td></tr>
+<tr class="separator:a98edddaa5e3e48ab9b7f1ab7f7d71905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3073d61c008c6293a908127c2cb222"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a3e3073d61c008c6293a908127c2cb222">at86rf2xx_fb_read</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:a3e3073d61c008c6293a908127c2cb222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the internal frame buffer of the given device.  <a href="at86rf2xx__internal_8h.html#a3e3073d61c008c6293a908127c2cb222">More...</a><br /></td></tr>
+<tr class="separator:a3e3073d61c008c6293a908127c2cb222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18407e8fc4bd2f9913ceba5915988be8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a18407e8fc4bd2f9913ceba5915988be8">at86rf2xx_fb_stop</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev)</td></tr>
+<tr class="memdesc:a18407e8fc4bd2f9913ceba5915988be8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop a read transaction internal frame buffer of the given device.  <a href="at86rf2xx__internal_8h.html#a18407e8fc4bd2f9913ceba5915988be8">More...</a><br /></td></tr>
+<tr class="separator:a18407e8fc4bd2f9913ceba5915988be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53d962dec8ca8d7b70c56de99cd3e22"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#af53d962dec8ca8d7b70c56de99cd3e22">at86rf2xx_get_status</a> (const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev)</td></tr>
+<tr class="memdesc:af53d962dec8ca8d7b70c56de99cd3e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function for reading the status of the given device.  <a href="at86rf2xx__internal_8h.html#af53d962dec8ca8d7b70c56de99cd3e22">More...</a><br /></td></tr>
+<tr class="separator:af53d962dec8ca8d7b70c56de99cd3e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316f4724969e8ffea82cec1eba3dcb28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a316f4724969e8ffea82cec1eba3dcb28">at86rf2xx_assert_awake</a> (<a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev)</td></tr>
+<tr class="memdesc:a316f4724969e8ffea82cec1eba3dcb28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make sure that device is not sleeping.  <a href="at86rf2xx__internal_8h.html#a316f4724969e8ffea82cec1eba3dcb28">More...</a><br /></td></tr>
+<tr class="separator:a316f4724969e8ffea82cec1eba3dcb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cc861ba9907aee506426e015810ec13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a3cc861ba9907aee506426e015810ec13">at86rf2xx_hardware_reset</a> (<a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev)</td></tr>
+<tr class="memdesc:a3cc861ba9907aee506426e015810ec13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger a hardware reset.  <a href="at86rf2xx__internal_8h.html#a3cc861ba9907aee506426e015810ec13">More...</a><br /></td></tr>
+<tr class="separator:a3cc861ba9907aee506426e015810ec13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6087d2da56e14430c3f37d01a13a8df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#af6087d2da56e14430c3f37d01a13a8df">at86rf2xx_configure_phy</a> (<a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, uint8_t chan, uint8_t page, int16_t txpower)</td></tr>
+<tr class="memdesc:af6087d2da56e14430c3f37d01a13a8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set PHY parameters based on channel and page number.  <a href="at86rf2xx__internal_8h.html#af6087d2da56e14430c3f37d01a13a8df">More...</a><br /></td></tr>
+<tr class="separator:af6087d2da56e14430c3f37d01a13a8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad26ac9582743b2c45f9b7f70f6da413f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#ad26ac9582743b2c45f9b7f70f6da413f">at86rf2xx_get_random</a> (<a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:ad26ac9582743b2c45f9b7f70f6da413f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read random data from the RNG.  <a href="at86rf2xx__internal_8h.html#ad26ac9582743b2c45f9b7f70f6da413f">More...</a><br /></td></tr>
+<tr class="separator:ad26ac9582743b2c45f9b7f70f6da413f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31e93554c8e8ce5976822dd397a051f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a31e93554c8e8ce5976822dd397a051f9">at86rf2xx_spi_init</a> (<a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev, void(*irq_handler)(void *arg))</td></tr>
+<tr class="memdesc:a31e93554c8e8ce5976822dd397a051f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize AT86RF2XX SPI communication.  <a href="at86rf2xx__internal_8h.html#a31e93554c8e8ce5976822dd397a051f9">More...</a><br /></td></tr>
+<tr class="separator:a31e93554c8e8ce5976822dd397a051f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d6ff6bb220dda555ab352f8ad9adc93"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#a9d6ff6bb220dda555ab352f8ad9adc93">at86rf2xx_get_rx_len</a> (<a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev)</td></tr>
+<tr class="memdesc:a9d6ff6bb220dda555ab352f8ad9adc93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the PSDU length of the received frame.  <a href="at86rf2xx__internal_8h.html#a9d6ff6bb220dda555ab352f8ad9adc93">More...</a><br /></td></tr>
+<tr class="separator:a9d6ff6bb220dda555ab352f8ad9adc93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2d09e98e4de9ca4afa841a7891e5c29"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at86rf2xx__internal_8h.html#ad2d09e98e4de9ca4afa841a7891e5c29">at86rf2xx_get_irq_flags</a> (<a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *dev)</td></tr>
+<tr class="memdesc:ad2d09e98e4de9ca4afa841a7891e5c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the IRQ flags.  <a href="at86rf2xx__internal_8h.html#ad2d09e98e4de9ca4afa841a7891e5c29">More...</a><br /></td></tr>
+<tr class="separator:ad2d09e98e4de9ca4afa841a7891e5c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a0135d8fc4b2e88b40549b358834964d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0135d8fc4b2e88b40549b358834964d2">&#9670;&nbsp;</a></span>AT86RF2XX_RESET_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AT86RF2XX_RESET_DELAY&#160;&#160;&#160;(62U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The typical transition time to TRX_OFF after reset pulse is 26 us, refer to figure 7-8, p. </p>
+<ol type="1">
+<li>We use 62 us so that it is at least one tick on platforms that use a 16384 Hz oscillator or have slow start up times due to parasitic capacitance on the oscillator </li>
+</ol>
+
+</div>
+</div>
+<a id="a7e6f0bb00194209a3810ec19b5f56377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e6f0bb00194209a3810ec19b5f56377">&#9670;&nbsp;</a></span>AT86RF2XX_RESET_PULSE_WIDTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AT86RF2XX_RESET_PULSE_WIDTH&#160;&#160;&#160;(62U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum reset pulse width, refer p.190. </p>
+<p>We use 62us so that it is at least one tick on platforms with coarse ztimers </p>
+
+</div>
+</div>
+<a id="a3e9d9b8171e8d73877f40ee54c0a3845"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e9d9b8171e8d73877f40ee54c0a3845">&#9670;&nbsp;</a></span>AT86RF2XX_TXPOWER_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AT86RF2XX_TXPOWER_MAX&#160;&#160;&#160;(20)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Max. </p>
+<p>allowed transmit power for the transceiver </p>
+
+</div>
+</div>
+<a id="aeb65ee3325c7d35ad11bf1d36e48b96a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb65ee3325c7d35ad11bf1d36e48b96a">&#9670;&nbsp;</a></span>AT86RF2XX_WAKEUP_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AT86RF2XX_WAKEUP_DELAY&#160;&#160;&#160;(306U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transition time from SLEEP to TRX_OFF in us, refer figure 7-4, p.42. </p>
+<p>For different environments refer figure 13-13, p.201 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a316f4724969e8ffea82cec1eba3dcb28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a316f4724969e8ffea82cec1eba3dcb28">&#9670;&nbsp;</a></span>at86rf2xx_assert_awake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_assert_awake </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Make sure that device is not sleeping. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>device to eventually wake up </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6087d2da56e14430c3f37d01a13a8df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6087d2da56e14430c3f37d01a13a8df">&#9670;&nbsp;</a></span>at86rf2xx_configure_phy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_configure_phy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>chan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>txpower</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set PHY parameters based on channel and page number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>device to configure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">chan</td><td>channel number to be set </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">page</td><td>channel page </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">txpower</td><td>TX power in dBm </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e3073d61c008c6293a908127c2cb222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e3073d61c008c6293a908127c2cb222">&#9670;&nbsp;</a></span>at86rf2xx_fb_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_fb_read </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the internal frame buffer of the given device. </p>
+<p>Each read advances the position in the buffer by <code>len</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>buffer to copy the data to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to read from the frame buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a98edddaa5e3e48ab9b7f1ab7f7d71905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98edddaa5e3e48ab9b7f1ab7f7d71905">&#9670;&nbsp;</a></span>at86rf2xx_fb_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_fb_start </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start a read transaction internal frame buffer of the given device. </p>
+<p>Reading the frame buffer returns some extra bytes that are not accessible through reading the RAM directly. This locks the used SPI.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to start read </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a18407e8fc4bd2f9913ceba5915988be8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18407e8fc4bd2f9913ceba5915988be8">&#9670;&nbsp;</a></span>at86rf2xx_fb_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_fb_stop </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop a read transaction internal frame buffer of the given device. </p>
+<p>Release the SPI device and unlock frame buffer protection.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to stop read </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad2d09e98e4de9ca4afa841a7891e5c29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d09e98e4de9ca4afa841a7891e5c29">&#9670;&nbsp;</a></span>at86rf2xx_get_irq_flags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t at86rf2xx_get_irq_flags </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the IRQ flags. </p>
+<p>This function clears the IRQ flags </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>pointer to the device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>IRQ flags </dd></dl>
+
+</div>
+</div>
+<a id="ad26ac9582743b2c45f9b7f70f6da413f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad26ac9582743b2c45f9b7f70f6da413f">&#9670;&nbsp;</a></span>at86rf2xx_get_random()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_get_random </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read random data from the RNG. </p>
+<dl class="section note"><dt>Note</dt><dd>According to the data sheet this function only works properly in Basic Operation Mode. However, sporadic testing has shown that even in Extended Operation Mode this returns random enough data to be used as a seed for <a class="el" href="group__sys__random.html">Random</a> if no cryptographically secure randomness is required. Any further use-case needs to be evaluated, especially if crypto-relevant randomness is required.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to configure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>buffer to copy the random data to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of random bytes to store in data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9d6ff6bb220dda555ab352f8ad9adc93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d6ff6bb220dda555ab352f8ad9adc93">&#9670;&nbsp;</a></span>at86rf2xx_get_rx_len()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint8_t at86rf2xx_get_rx_len </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the PSDU length of the received frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>pointer to the device descriptor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the PSDU length </dd></dl>
+
+</div>
+</div>
+<a id="af53d962dec8ca8d7b70c56de99cd3e22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af53d962dec8ca8d7b70c56de99cd3e22">&#9670;&nbsp;</a></span>at86rf2xx_get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t at86rf2xx_get_status </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convenience function for reading the status of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read the status from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>internal status of the given device </dd></dl>
+
+</div>
+</div>
+<a id="a3cc861ba9907aee506426e015810ec13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cc861ba9907aee506426e015810ec13">&#9670;&nbsp;</a></span>at86rf2xx_hardware_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_hardware_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger a hardware reset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>device to reset </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a75f3976945f18c590435a9d5871d70ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f3976945f18c590435a9d5871d70ef">&#9670;&nbsp;</a></span>at86rf2xx_reg_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t at86rf2xx_reg_read </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read from a register at address <code>addr</code> from device <code>dev</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>address of the register to read</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the value of the specified register </dd></dl>
+
+</div>
+</div>
+<a id="ae0cc591b2fc05a583847138c09642ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0cc591b2fc05a583847138c09642ffc">&#9670;&nbsp;</a></span>at86rf2xx_reg_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_reg_write </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write to a register at address <code>addr</code> from device <code>dev</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>address of the register to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to write to the given register </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a31e93554c8e8ce5976822dd397a051f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31e93554c8e8ce5976822dd397a051f9">&#9670;&nbsp;</a></span>at86rf2xx_spi_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_spi_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void *arg)&#160;</td>
+          <td class="paramname"><em>irq_handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize AT86RF2XX SPI communication. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dev</td><td>device to initialize </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irq_handler</td><td>IRQ handler </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2dac0250d7dfa840e3f4ce966c8c223f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dac0250d7dfa840e3f4ce966c8c223f">&#9670;&nbsp;</a></span>at86rf2xx_sram_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_sram_read </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data from the SRAM of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to read from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>starting address to read from [valid 0x00-0x7f] </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>buffer to read data into </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to read from SRAM </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7d448880218cf7facb5efe4466938a4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d448880218cf7facb5efe4466938a4d">&#9670;&nbsp;</a></span>at86rf2xx_sram_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at86rf2xx_sram_write </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structat86rf2xx__t.html">at86rf2xx_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write a chunk of data into the SRAM of the given device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>device to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>address in the SRAM to write to [valid 0x00-0x7f] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>data to copy into SRAM </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to write to SRAM </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_78fb0e98dae0f90aa483bb0fc506b319.html">at86rf2xx</a></li><li class="navelem"><a class="el" href="dir_6beecde753c6e3a8b03761e6345970d1.html">include</a></li><li class="navelem"><a class="el" href="at86rf2xx__internal_8h.html">at86rf2xx_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

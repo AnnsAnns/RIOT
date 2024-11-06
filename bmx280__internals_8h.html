@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/bmx280/include/bmx280_internals.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('bmx280__internals_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">bmx280_internals.h File Reference<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__sensors.html">Sensor Device Drivers</a> &raquo; <a class="el" href="group__drivers__bmx280.html">BMP280/BME280 temperature, pressure and humidity sensor</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Internal addresses, registers, constants for the BMX280 family sensors.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Internal addresses, registers, constants for the BMX280 family sensors. </p>
+<p>Internal addresses, registers, constants for the BMX280 family sensors.</p>
+<dl class="section author"><dt>Author</dt><dd>Kees Bakker <a href="#" onclick="location.href='mai'+'lto:'+'kee'+'s@'+'sod'+'aq'+'.co'+'m'; return false;">kees@<span style="display: none;">.nosp@m.</span>soda<span style="display: none;">.nosp@m.</span>q.com</a> </dd>
+<dd>
+Alexandre Abadie <a href="#" onclick="location.href='mai'+'lto:'+'ale'+'xa'+'ndr'+'e.'+'aba'+'di'+'e@i'+'nr'+'ia.'+'fr'; return false;">alexa<span style="display: none;">.nosp@m.</span>ndre<span style="display: none;">.nosp@m.</span>.abad<span style="display: none;">.nosp@m.</span>ie@i<span style="display: none;">.nosp@m.</span>nria.<span style="display: none;">.nosp@m.</span>fr</a> </dd></dl>
+</div>
+<p><a href="bmx280__internals_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Device specific chip ID</h2></td></tr>
+<tr class="memitem:abc5a429720195b87c770192b1da90f00"><td class="memItemLeft" align="right" valign="top"><a id="abc5a429720195b87c770192b1da90f00"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_CHIP_ID_VAL</b>&#160;&#160;&#160;(0x58)</td></tr>
+<tr class="separator:abc5a429720195b87c770192b1da90f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">BME280 registers</h2></td></tr>
+<tr class="memitem:a3b9bfdf3d25e2f3cd0d44e70e85adca7"><td class="memItemLeft" align="right" valign="top"><a id="a3b9bfdf3d25e2f3cd0d44e70e85adca7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_CHIP_ID_REG</b>&#160;&#160;&#160;(0xD0)</td></tr>
+<tr class="separator:a3b9bfdf3d25e2f3cd0d44e70e85adca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a785a72aca6a500c549bc01cb3658f895"><td class="memItemLeft" align="right" valign="top"><a id="a785a72aca6a500c549bc01cb3658f895"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMEX80_RST_REG</b>&#160;&#160;&#160;(0xE0)      /* Softreset Reg */</td></tr>
+<tr class="separator:a785a72aca6a500c549bc01cb3658f895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc86da5870bd9a67ba305b9804b697e1"><td class="memItemLeft" align="right" valign="top"><a id="adc86da5870bd9a67ba305b9804b697e1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_T1_LSB_REG</b>&#160;&#160;&#160;(0x88)</td></tr>
+<tr class="separator:adc86da5870bd9a67ba305b9804b697e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4999d33b982c9d3bc0a765c2bd17990"><td class="memItemLeft" align="right" valign="top"><a id="ad4999d33b982c9d3bc0a765c2bd17990"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_T1_MSB_REG</b>&#160;&#160;&#160;(0x89)</td></tr>
+<tr class="separator:ad4999d33b982c9d3bc0a765c2bd17990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7bd57eab05138cc91c56c31cd90d87d"><td class="memItemLeft" align="right" valign="top"><a id="ad7bd57eab05138cc91c56c31cd90d87d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_T2_LSB_REG</b>&#160;&#160;&#160;(0x8A)</td></tr>
+<tr class="separator:ad7bd57eab05138cc91c56c31cd90d87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cb4d02fcf0aa42f9bc0091f2abc6876"><td class="memItemLeft" align="right" valign="top"><a id="a3cb4d02fcf0aa42f9bc0091f2abc6876"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_T2_MSB_REG</b>&#160;&#160;&#160;(0x8B)</td></tr>
+<tr class="separator:a3cb4d02fcf0aa42f9bc0091f2abc6876"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e772b01e6580a2b11742ee914e34da8"><td class="memItemLeft" align="right" valign="top"><a id="a7e772b01e6580a2b11742ee914e34da8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_T3_LSB_REG</b>&#160;&#160;&#160;(0x8C)</td></tr>
+<tr class="separator:a7e772b01e6580a2b11742ee914e34da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3e3454605312b3105ff219f9c75f41e"><td class="memItemLeft" align="right" valign="top"><a id="ac3e3454605312b3105ff219f9c75f41e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_T3_MSB_REG</b>&#160;&#160;&#160;(0x8D)</td></tr>
+<tr class="separator:ac3e3454605312b3105ff219f9c75f41e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053bfbea5109e387bc01f794a8df7d91"><td class="memItemLeft" align="right" valign="top"><a id="a053bfbea5109e387bc01f794a8df7d91"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P1_LSB_REG</b>&#160;&#160;&#160;(0x8E)</td></tr>
+<tr class="separator:a053bfbea5109e387bc01f794a8df7d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a079bc04b3e24aa0ffe706d0768d92"><td class="memItemLeft" align="right" valign="top"><a id="a58a079bc04b3e24aa0ffe706d0768d92"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P1_MSB_REG</b>&#160;&#160;&#160;(0x8F)</td></tr>
+<tr class="separator:a58a079bc04b3e24aa0ffe706d0768d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0beb2b16a6e17dcf96487d8eeba3a764"><td class="memItemLeft" align="right" valign="top"><a id="a0beb2b16a6e17dcf96487d8eeba3a764"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P2_LSB_REG</b>&#160;&#160;&#160;(0x90)</td></tr>
+<tr class="separator:a0beb2b16a6e17dcf96487d8eeba3a764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4200132f60f27c8db1c5354c5294c7ab"><td class="memItemLeft" align="right" valign="top"><a id="a4200132f60f27c8db1c5354c5294c7ab"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P2_MSB_REG</b>&#160;&#160;&#160;(0x91)</td></tr>
+<tr class="separator:a4200132f60f27c8db1c5354c5294c7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f78b62ae2276069af66b35aefc5e70"><td class="memItemLeft" align="right" valign="top"><a id="a41f78b62ae2276069af66b35aefc5e70"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P3_LSB_REG</b>&#160;&#160;&#160;(0x92)</td></tr>
+<tr class="separator:a41f78b62ae2276069af66b35aefc5e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2687317257d80a5359144a579258102"><td class="memItemLeft" align="right" valign="top"><a id="aa2687317257d80a5359144a579258102"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P3_MSB_REG</b>&#160;&#160;&#160;(0x93)</td></tr>
+<tr class="separator:aa2687317257d80a5359144a579258102"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff6a16d843eceadc282f6618fcf6a13c"><td class="memItemLeft" align="right" valign="top"><a id="aff6a16d843eceadc282f6618fcf6a13c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P4_LSB_REG</b>&#160;&#160;&#160;(0x94)</td></tr>
+<tr class="separator:aff6a16d843eceadc282f6618fcf6a13c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7a87cf9cb137340590b3c14a3c315ba"><td class="memItemLeft" align="right" valign="top"><a id="ac7a87cf9cb137340590b3c14a3c315ba"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P4_MSB_REG</b>&#160;&#160;&#160;(0x95)</td></tr>
+<tr class="separator:ac7a87cf9cb137340590b3c14a3c315ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1513e29e988afd5afcabb52415ae75f"><td class="memItemLeft" align="right" valign="top"><a id="aa1513e29e988afd5afcabb52415ae75f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P5_LSB_REG</b>&#160;&#160;&#160;(0x96)</td></tr>
+<tr class="separator:aa1513e29e988afd5afcabb52415ae75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a812cc150e792b65f9169f4a533fbaebe"><td class="memItemLeft" align="right" valign="top"><a id="a812cc150e792b65f9169f4a533fbaebe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P5_MSB_REG</b>&#160;&#160;&#160;(0x97)</td></tr>
+<tr class="separator:a812cc150e792b65f9169f4a533fbaebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a1d7b99c55adc8db22d850058bb1569"><td class="memItemLeft" align="right" valign="top"><a id="a9a1d7b99c55adc8db22d850058bb1569"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P6_LSB_REG</b>&#160;&#160;&#160;(0x98)</td></tr>
+<tr class="separator:a9a1d7b99c55adc8db22d850058bb1569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3b82807f75a4b28e48f853ece1745d2"><td class="memItemLeft" align="right" valign="top"><a id="ad3b82807f75a4b28e48f853ece1745d2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P6_MSB_REG</b>&#160;&#160;&#160;(0x99)</td></tr>
+<tr class="separator:ad3b82807f75a4b28e48f853ece1745d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74a0b590318f62b5018e141fc1f672e8"><td class="memItemLeft" align="right" valign="top"><a id="a74a0b590318f62b5018e141fc1f672e8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P7_LSB_REG</b>&#160;&#160;&#160;(0x9A)</td></tr>
+<tr class="separator:a74a0b590318f62b5018e141fc1f672e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a736ae976c5be19ebec042090d7bbb03e"><td class="memItemLeft" align="right" valign="top"><a id="a736ae976c5be19ebec042090d7bbb03e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P7_MSB_REG</b>&#160;&#160;&#160;(0x9B)</td></tr>
+<tr class="separator:a736ae976c5be19ebec042090d7bbb03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdeb26a3b3245900037350bb8ef9dde4"><td class="memItemLeft" align="right" valign="top"><a id="acdeb26a3b3245900037350bb8ef9dde4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P8_LSB_REG</b>&#160;&#160;&#160;(0x9C)</td></tr>
+<tr class="separator:acdeb26a3b3245900037350bb8ef9dde4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b608e96e692c3933db3f8a0397f15d1"><td class="memItemLeft" align="right" valign="top"><a id="a2b608e96e692c3933db3f8a0397f15d1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P8_MSB_REG</b>&#160;&#160;&#160;(0x9D)</td></tr>
+<tr class="separator:a2b608e96e692c3933db3f8a0397f15d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae77a2979efd8388ba1e3fe28fd28b338"><td class="memItemLeft" align="right" valign="top"><a id="ae77a2979efd8388ba1e3fe28fd28b338"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P9_LSB_REG</b>&#160;&#160;&#160;(0x9E)</td></tr>
+<tr class="separator:ae77a2979efd8388ba1e3fe28fd28b338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93d948104b3fc37fbb76feec392407ce"><td class="memItemLeft" align="right" valign="top"><a id="a93d948104b3fc37fbb76feec392407ce"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_DIG_P9_MSB_REG</b>&#160;&#160;&#160;(0x9F)</td></tr>
+<tr class="separator:a93d948104b3fc37fbb76feec392407ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29dd403735dc3c3225c6838e5eed820"><td class="memItemLeft" align="right" valign="top"><a id="ad29dd403735dc3c3225c6838e5eed820"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H1_REG</b>&#160;&#160;&#160;(0xA1)</td></tr>
+<tr class="separator:ad29dd403735dc3c3225c6838e5eed820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260ba9aa4ae925ed4a76a2f45a62e1f2"><td class="memItemLeft" align="right" valign="top"><a id="a260ba9aa4ae925ed4a76a2f45a62e1f2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H2_LSB_REG</b>&#160;&#160;&#160;(0xE1)</td></tr>
+<tr class="separator:a260ba9aa4ae925ed4a76a2f45a62e1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf8b4172339b971f5a5b108c98d5d2fe"><td class="memItemLeft" align="right" valign="top"><a id="aaf8b4172339b971f5a5b108c98d5d2fe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H2_MSB_REG</b>&#160;&#160;&#160;(0xE2)</td></tr>
+<tr class="separator:aaf8b4172339b971f5a5b108c98d5d2fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbb9946cb6a096b6ff1f0226c0e7a659"><td class="memItemLeft" align="right" valign="top"><a id="adbb9946cb6a096b6ff1f0226c0e7a659"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H3_REG</b>&#160;&#160;&#160;(0xE3)</td></tr>
+<tr class="separator:adbb9946cb6a096b6ff1f0226c0e7a659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dc154fcd1e08088d289ce668c4d718a"><td class="memItemLeft" align="right" valign="top"><a id="a8dc154fcd1e08088d289ce668c4d718a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H4_MSB_REG</b>&#160;&#160;&#160;(0xE4)      /* H4[11:4] */</td></tr>
+<tr class="separator:a8dc154fcd1e08088d289ce668c4d718a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e90347753db5c857942da7bde8213d3"><td class="memItemLeft" align="right" valign="top"><a id="a5e90347753db5c857942da7bde8213d3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H4_H5_REG</b>&#160;&#160;&#160;(0xE5)      /* H5[3:0]  H4[3:0] */</td></tr>
+<tr class="separator:a5e90347753db5c857942da7bde8213d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e42b75f0268a4303b77699fb8be834"><td class="memItemLeft" align="right" valign="top"><a id="ae7e42b75f0268a4303b77699fb8be834"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H5_MSB_REG</b>&#160;&#160;&#160;(0xE6)      /* H5[11:4] */</td></tr>
+<tr class="separator:ae7e42b75f0268a4303b77699fb8be834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa53163d82db48577fdb9a83112226e2c"><td class="memItemLeft" align="right" valign="top"><a id="aa53163d82db48577fdb9a83112226e2c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_DIG_H6_REG</b>&#160;&#160;&#160;(0xE7)</td></tr>
+<tr class="separator:aa53163d82db48577fdb9a83112226e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af646f462e2f1527969b8421a277e904d"><td class="memItemLeft" align="right" valign="top"><a id="af646f462e2f1527969b8421a277e904d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_STAT_REG</b>&#160;&#160;&#160;(0xF3)      /* Status Reg */</td></tr>
+<tr class="separator:af646f462e2f1527969b8421a277e904d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab00ae719a7c3c62ce8eaf67b6d36f856"><td class="memItemLeft" align="right" valign="top"><a id="ab00ae719a7c3c62ce8eaf67b6d36f856"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_CTRL_MEAS_REG</b>&#160;&#160;&#160;(0xF4)      /* Ctrl Measure Reg */</td></tr>
+<tr class="separator:ab00ae719a7c3c62ce8eaf67b6d36f856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f901bf55077a99ef9431db65cbd272f"><td class="memItemLeft" align="right" valign="top"><a id="a9f901bf55077a99ef9431db65cbd272f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_CONFIG_REG</b>&#160;&#160;&#160;(0xF5)      /* Configuration Reg */</td></tr>
+<tr class="separator:a9f901bf55077a99ef9431db65cbd272f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93005d53cb0c51cf1fbcca563dff8cb0"><td class="memItemLeft" align="right" valign="top"><a id="a93005d53cb0c51cf1fbcca563dff8cb0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_PRESSURE_MSB_REG</b>&#160;&#160;&#160;(0xF7)      /* Pressure MSB */</td></tr>
+<tr class="separator:a93005d53cb0c51cf1fbcca563dff8cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd8d4b7429a7e320bb1b223c41accc2c"><td class="memItemLeft" align="right" valign="top"><a id="abd8d4b7429a7e320bb1b223c41accc2c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_PRESSURE_LSB_REG</b>&#160;&#160;&#160;(0xF8)      /* Pressure LSB */</td></tr>
+<tr class="separator:abd8d4b7429a7e320bb1b223c41accc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8eeb8dc6070ed9eb21aee7e91d9ca11"><td class="memItemLeft" align="right" valign="top"><a id="ad8eeb8dc6070ed9eb21aee7e91d9ca11"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_PRESSURE_XLSB_REG</b>&#160;&#160;&#160;(0xF9)      /* Pressure XLSB */</td></tr>
+<tr class="separator:ad8eeb8dc6070ed9eb21aee7e91d9ca11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86e312d695aa31125566f49be6a03f21"><td class="memItemLeft" align="right" valign="top"><a id="a86e312d695aa31125566f49be6a03f21"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_TEMPERATURE_MSB_REG</b>&#160;&#160;&#160;(0xFA)      /* Temperature MSB */</td></tr>
+<tr class="separator:a86e312d695aa31125566f49be6a03f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac639c3d1de25412c3826f6b5bb784716"><td class="memItemLeft" align="right" valign="top"><a id="ac639c3d1de25412c3826f6b5bb784716"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_TEMPERATURE_LSB_REG</b>&#160;&#160;&#160;(0xFB)      /* Temperature LSB */</td></tr>
+<tr class="separator:ac639c3d1de25412c3826f6b5bb784716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2ac3195b25107eb0794bbc8b8d07959"><td class="memItemLeft" align="right" valign="top"><a id="ae2ac3195b25107eb0794bbc8b8d07959"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BMX280_TEMPERATURE_XLSB_REG</b>&#160;&#160;&#160;(0xFC)      /* Temperature XLSB */</td></tr>
+<tr class="separator:ae2ac3195b25107eb0794bbc8b8d07959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44216431a5dcbcb9075cceda85b15c75"><td class="memItemLeft" align="right" valign="top"><a id="a44216431a5dcbcb9075cceda85b15c75"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_CTRL_HUM_REG</b>&#160;&#160;&#160;(0xF2)      /* Ctrl Humidity Reg */</td></tr>
+<tr class="separator:a44216431a5dcbcb9075cceda85b15c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a463b030450826d7a286b272753c7c91c"><td class="memItemLeft" align="right" valign="top"><a id="a463b030450826d7a286b272753c7c91c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_HUMIDITY_MSB_REG</b>&#160;&#160;&#160;(0xFD)      /* Humidity MSB */</td></tr>
+<tr class="separator:a463b030450826d7a286b272753c7c91c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477dde6d1d96211aff748215ea9cd4dc"><td class="memItemLeft" align="right" valign="top"><a id="a477dde6d1d96211aff748215ea9cd4dc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BME280_HUMIDITY_LSB_REG</b>&#160;&#160;&#160;(0xFE)      /* Humidity LSB */</td></tr>
+<tr class="separator:a477dde6d1d96211aff748215ea9cd4dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Bitmasks for selected registers</h2></td></tr>
+<tr class="memitem:a7c4418f9899c050e5b28c10db869c95a"><td class="memItemLeft" align="right" valign="top"><a id="a7c4418f9899c050e5b28c10db869c95a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MEAS_OSRS_T_POS</b>&#160;&#160;&#160;(5U)</td></tr>
+<tr class="separator:a7c4418f9899c050e5b28c10db869c95a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adddd04d9fada39e57c2f0da1154d101e"><td class="memItemLeft" align="right" valign="top"><a id="adddd04d9fada39e57c2f0da1154d101e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MEAS_OSRS_P_POS</b>&#160;&#160;&#160;(2U)</td></tr>
+<tr class="separator:adddd04d9fada39e57c2f0da1154d101e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62d5c14dae50af1c9bf79b675d9d8b0f"><td class="memItemLeft" align="right" valign="top"><a id="a62d5c14dae50af1c9bf79b675d9d8b0f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STAT_MEASURING</b>&#160;&#160;&#160;(1 &lt;&lt; 3)</td></tr>
+<tr class="separator:a62d5c14dae50af1c9bf79b675d9d8b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abca25884c67e3cf8c0dba61f0e1e9f2c"><td class="memItemLeft" align="right" valign="top"><a id="abca25884c67e3cf8c0dba61f0e1e9f2c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RESET_WORD</b>&#160;&#160;&#160;(0xB6)</td></tr>
+<tr class="separator:abca25884c67e3cf8c0dba61f0e1e9f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">The base address for the row of data registers</h2></td></tr>
+<tr class="memitem:a3c3b59f1ce84cdb39bb6e624512d4e1d"><td class="memItemLeft" align="right" valign="top"><a id="a3c3b59f1ce84cdb39bb6e624512d4e1d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DATA_BASE</b>&#160;&#160;&#160;BMX280_PRESSURE_MSB_REG</td></tr>
+<tr class="separator:a3c3b59f1ce84cdb39bb6e624512d4e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Calibration data base addresses, block sizes, and offsets</h2></td></tr>
+<tr class="memitem:aff3790bba161a9091f833289dd29b2bc"><td class="memItemLeft" align="right" valign="top"><a id="aff3790bba161a9091f833289dd29b2bc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CALIB_T_P_BASE</b>&#160;&#160;&#160;(BMX280_DIG_T1_LSB_REG)</td></tr>
+<tr class="separator:aff3790bba161a9091f833289dd29b2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeafa42c79df6679ff4ac78e7a4412b0d"><td class="memItemLeft" align="right" valign="top"><a id="aeafa42c79df6679ff4ac78e7a4412b0d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CALIB_T_P_LEN</b>&#160;&#160;&#160;(24U)</td></tr>
+<tr class="separator:aeafa42c79df6679ff4ac78e7a4412b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ce47c25159174acf654d08668ed06c"><td class="memItemLeft" align="right" valign="top"><a id="a15ce47c25159174acf654d08668ed06c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>OFFSET_T_P</b>(x)&#160;&#160;&#160;(x - CALIB_T_P_BASE)</td></tr>
+<tr class="separator:a15ce47c25159174acf654d08668ed06c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_67ea33c2e85050ed1ef31495126810d5.html">bmx280</a></li><li class="navelem"><a class="el" href="dir_6d5a52b8d49768822cebab208c35b467.html">include</a></li><li class="navelem"><a class="el" href="bmx280__internals_8h.html">bmx280_internals.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: Packet buffer</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__net__gnrc__pktbuf.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#files">Files</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Packet buffer<div class="ingroups"><a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__data__link__layer.html">Data Link Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__network__layer.html">Network Layer</a> &#124; <a class="el" href="group__network.html">Networking</a> &raquo; <a class="el" href="group__transportlayer.html">Transport Layer</a> &raquo; <a class="el" href="group__net__gnrc.html">Generic (GNRC) network stack</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>A global network packet buffer. </p>
+<dl class="section note"><dt>Note</dt><dd><b>WARNING!!</b> Do not store data structures that are not packed (defined with <code>__attribute__((packed))</code>) or enforce alignment in in any way in here if <a class="el" href="group__net__gnrc__pktbuf__conf.html#ga3d31ccb6c133c6c4c91d60f5e420a83c">CONFIG_GNRC_PKTBUF_SIZE</a> &gt; 0. On some RISC architectures this <em>will</em> lead to alignment problems and can potentially result in segmentation/hard faults and other unexpected behaviour. </dd></dl>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__net__gnrc__pktbuf__conf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf__conf.html">GNRC PKTBUF compile configurations</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__net__gnrc__pkt"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pkt.html">Packet</a></td></tr>
+<tr class="memdesc:group__net__gnrc__pkt"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structNetwork.html" title="Network struct within mqtt paho.">Network</a> packet abstraction type and helper functions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:pktbuf_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pktbuf_8h.html">pktbuf.h</a></td></tr>
+<tr class="memdesc:pktbuf_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface definition for the global network buffer. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:pktbuf__internal_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pktbuf__internal_8h.html">pktbuf_internal.h</a></td></tr>
+<tr class="memdesc:pktbuf__internal_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal stuff for gnrc_pktbuf. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:pktbuf__static_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pktbuf__static_8h.html">pktbuf_static.h</a></td></tr>
+<tr class="memdesc:pktbuf__static_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal definitions of the static implementation of <a class="el" href="group__net__gnrc__pktbuf.html">Packet buffer</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaab1dff47c0eecdad43f511425e1341e7"><td class="memItemLeft" align="right" valign="top"><a id="gaab1dff47c0eecdad43f511425e1341e7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#gaab1dff47c0eecdad43f511425e1341e7">gnrc_pktbuf_init</a> (void)</td></tr>
+<tr class="memdesc:gaab1dff47c0eecdad43f511425e1341e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes packet buffer module. <br /></td></tr>
+<tr class="separator:gaab1dff47c0eecdad43f511425e1341e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga658aed0ce2b31d784e32849eb0f60d27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga658aed0ce2b31d784e32849eb0f60d27">gnrc_pktbuf_add</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *next, const void *data, size_t size, <a class="el" href="group__net__gnrc__nettype.html#ga2582fbb16a318806983c225a69460902">gnrc_nettype_t</a> type)</td></tr>
+<tr class="memdesc:ga658aed0ce2b31d784e32849eb0f60d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new gnrc_pktsnip_t and its packet to the packet buffer.  <a href="group__net__gnrc__pktbuf.html#ga658aed0ce2b31d784e32849eb0f60d27">More...</a><br /></td></tr>
+<tr class="separator:ga658aed0ce2b31d784e32849eb0f60d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d7c5274101df3fa6eff69edf46f347f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga3d7c5274101df3fa6eff69edf46f347f">gnrc_pktbuf_mark</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt, size_t size, <a class="el" href="group__net__gnrc__nettype.html#ga2582fbb16a318806983c225a69460902">gnrc_nettype_t</a> type)</td></tr>
+<tr class="memdesc:ga3d7c5274101df3fa6eff69edf46f347f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks the first <code>size</code> bytes in a received packet with a new packet snip that is appended to the packet.  <a href="group__net__gnrc__pktbuf.html#ga3d7c5274101df3fa6eff69edf46f347f">More...</a><br /></td></tr>
+<tr class="separator:ga3d7c5274101df3fa6eff69edf46f347f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d9a8b1307f8971680299b2f86ac4a3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga3d9a8b1307f8971680299b2f86ac4a3e">gnrc_pktbuf_realloc_data</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt, size_t size)</td></tr>
+<tr class="memdesc:ga3d9a8b1307f8971680299b2f86ac4a3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocates <a class="el" href="structgnrc__pktsnip.html#a04ca47171b70901e55f4a5c67399f070" title="pointer to the data of the snip">gnrc_pktsnip_t::data</a> of <code>pkt</code> in the packet buffer, without changing the content.  <a href="group__net__gnrc__pktbuf.html#ga3d9a8b1307f8971680299b2f86ac4a3e">More...</a><br /></td></tr>
+<tr class="separator:ga3d9a8b1307f8971680299b2f86ac4a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac679dd478531a503852093f4c044c65c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#gac679dd478531a503852093f4c044c65c">gnrc_pktbuf_hold</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt, unsigned int num)</td></tr>
+<tr class="memdesc:gac679dd478531a503852093f4c044c65c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> atomically.  <a href="group__net__gnrc__pktbuf.html#gac679dd478531a503852093f4c044c65c">More...</a><br /></td></tr>
+<tr class="separator:gac679dd478531a503852093f4c044c65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39c4489933328ddabcf87d5940df9807"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga39c4489933328ddabcf87d5940df9807">gnrc_pktbuf_release_error</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt, uint32_t err)</td></tr>
+<tr class="memdesc:ga39c4489933328ddabcf87d5940df9807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decreases <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> atomically and removes it if it reaches 0 and reports a possible error through an error code, if <a class="el" href="group__net__gnrc__neterr.html">Error reporting</a> is included.  <a href="group__net__gnrc__pktbuf.html#ga39c4489933328ddabcf87d5940df9807">More...</a><br /></td></tr>
+<tr class="separator:ga39c4489933328ddabcf87d5940df9807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed632f849e2ae54b8ec22990967ca38a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#gaed632f849e2ae54b8ec22990967ca38a">gnrc_pktbuf_release</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt)</td></tr>
+<tr class="memdesc:gaed632f849e2ae54b8ec22990967ca38a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decreases <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> atomically and removes it if it reaches 0 and reports <a class="el" href="group__net__gnrc__neterr.html#ga6e512f593ce094228a5697d4d224dc0f">GNRC_NETERR_SUCCESS</a>.  <a href="group__net__gnrc__pktbuf.html#gaed632f849e2ae54b8ec22990967ca38a">More...</a><br /></td></tr>
+<tr class="separator:gaed632f849e2ae54b8ec22990967ca38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga640418467294ae3d408c109ab27bd617"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga640418467294ae3d408c109ab27bd617">gnrc_pktbuf_start_write</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt)</td></tr>
+<tr class="memdesc:ga640418467294ae3d408c109ab27bd617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Must be called once before there is a write operation on a <a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">packet snip</a> in a thread.  <a href="group__net__gnrc__pktbuf.html#ga640418467294ae3d408c109ab27bd617">More...</a><br /></td></tr>
+<tr class="separator:ga640418467294ae3d408c109ab27bd617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafbb055c2d0ef263bf0ed38b392761719"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#gafbb055c2d0ef263bf0ed38b392761719">gnrc_pktbuf_remove_snip</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt, <a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *snip)</td></tr>
+<tr class="memdesc:gafbb055c2d0ef263bf0ed38b392761719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a snip from a packet and the packet buffer.  <a href="group__net__gnrc__pktbuf.html#gafbb055c2d0ef263bf0ed38b392761719">More...</a><br /></td></tr>
+<tr class="separator:gafbb055c2d0ef263bf0ed38b392761719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f104a81ca707558dc5192e39ad7b5cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga7f104a81ca707558dc5192e39ad7b5cd">gnrc_pktbuf_reverse_snips</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt)</td></tr>
+<tr class="memdesc:ga7f104a81ca707558dc5192e39ad7b5cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses snip order of a packet in a write-protected manner.  <a href="group__net__gnrc__pktbuf.html#ga7f104a81ca707558dc5192e39ad7b5cd">More...</a><br /></td></tr>
+<tr class="separator:ga7f104a81ca707558dc5192e39ad7b5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae41835e987f693706a388a3d9e14f83a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#gae41835e987f693706a388a3d9e14f83a">gnrc_pktbuf_merge</a> (<a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *pkt)</td></tr>
+<tr class="memdesc:gae41835e987f693706a388a3d9e14f83a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge pktsnip chain to single pktsnip.  <a href="group__net__gnrc__pktbuf.html#gae41835e987f693706a388a3d9e14f83a">More...</a><br /></td></tr>
+<tr class="separator:gae41835e987f693706a388a3d9e14f83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4e7cccaa0d94f9ccaefdceab382d396"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#gaf4e7cccaa0d94f9ccaefdceab382d396">gnrc_pktbuf_stats</a> (void)</td></tr>
+<tr class="memdesc:gaf4e7cccaa0d94f9ccaefdceab382d396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints some statistics about the packet buffer to stdout.  <a href="group__net__gnrc__pktbuf.html#gaf4e7cccaa0d94f9ccaefdceab382d396">More...</a><br /></td></tr>
+<tr class="separator:gaf4e7cccaa0d94f9ccaefdceab382d396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c89a6668a1fae81ff8a37f011fadd12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga3c89a6668a1fae81ff8a37f011fadd12">gnrc_pktbuf_is_empty</a> (void)</td></tr>
+<tr class="memdesc:ga3c89a6668a1fae81ff8a37f011fadd12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if packet buffer is empty.  <a href="group__net__gnrc__pktbuf.html#ga3c89a6668a1fae81ff8a37f011fadd12">More...</a><br /></td></tr>
+<tr class="separator:ga3c89a6668a1fae81ff8a37f011fadd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga382dff5b57c2954c7dffbf3b37b4eee3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__net__gnrc__pktbuf.html#ga382dff5b57c2954c7dffbf3b37b4eee3">gnrc_pktbuf_is_sane</a> (void)</td></tr>
+<tr class="memdesc:ga382dff5b57c2954c7dffbf3b37b4eee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the implementation's internal invariants still uphold.  <a href="group__net__gnrc__pktbuf.html#ga382dff5b57c2954c7dffbf3b37b4eee3">More...</a><br /></td></tr>
+<tr class="separator:ga382dff5b57c2954c7dffbf3b37b4eee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga658aed0ce2b31d784e32849eb0f60d27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga658aed0ce2b31d784e32849eb0f60d27">&#9670;&nbsp;</a></span>gnrc_pktbuf_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a>* gnrc_pktbuf_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>next</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__nettype.html#ga2582fbb16a318806983c225a69460902">gnrc_nettype_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a new gnrc_pktsnip_t and its packet to the packet buffer. </p>
+<dl class="section warning"><dt>Warning</dt><dd><b>Do not</b> change the fields of the gnrc_pktsnip_t created by this function externally. This will most likely create memory leaks or not allowed memory access.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>size &lt; CONFIG_GNRC_PKTBUF_SIZE</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">next</td><td>Next gnrc_pktsnip_t in the packet. Leave NULL if you want to create a new packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Data of the new gnrc_pktsnip_t. If <code>data</code> is NULL no data will be inserted into <code>result</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Length of <code>data</code>. If this value is 0 the <a class="el" href="structgnrc__pktsnip.html#a04ca47171b70901e55f4a5c67399f070" title="pointer to the data of the snip">gnrc_pktsnip::data</a> field of the newly created snip will be NULL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>Protocol type of the gnrc_pktsnip_t.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the packet part that represents the new gnrc_pktsnip_t. </dd>
+<dd>
+NULL, if no space is left in the packet buffer. </dd></dl>
+
+</div>
+</div>
+<a id="gac679dd478531a503852093f4c044c65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac679dd478531a503852093f4c044c65c">&#9670;&nbsp;</a></span>gnrc_pktbuf_hold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gnrc_pktbuf_hold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increases <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> atomically. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>A packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>Number you want to increment <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga3c89a6668a1fae81ff8a37f011fadd12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c89a6668a1fae81ff8a37f011fadd12">&#9670;&nbsp;</a></span>gnrc_pktbuf_is_empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool gnrc_pktbuf_is_empty </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if packet buffer is empty. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, if packet buffer is empty </dd>
+<dd>
+false, if packet buffer is not empty </dd></dl>
+
+</div>
+</div>
+<a id="ga382dff5b57c2954c7dffbf3b37b4eee3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga382dff5b57c2954c7dffbf3b37b4eee3">&#9670;&nbsp;</a></span>gnrc_pktbuf_is_sane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool gnrc_pktbuf_is_sane </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the implementation's internal invariants still uphold. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, the packet buffer is sane. </dd>
+<dd>
+false, the packet buffer is insane. </dd></dl>
+
+</div>
+</div>
+<a id="ga3d7c5274101df3fa6eff69edf46f347f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3d7c5274101df3fa6eff69edf46f347f">&#9670;&nbsp;</a></span>gnrc_pktbuf_mark()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a>* gnrc_pktbuf_mark </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__nettype.html#ga2582fbb16a318806983c225a69460902">gnrc_nettype_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Marks the first <code>size</code> bytes in a received packet with a new packet snip that is appended to the packet. </p>
+<p>Graphically this can be represented as follows:</p>
+<div class="fragment"><div class="line">Before                                    After</div>
+<div class="line">======                                    =====</div>
+<div class="line">                                                      (next)</div>
+<div class="line"> pkt-&gt;data                                 result-&gt;data &lt;== pkt-&gt;data</div>
+<div class="line"> v                                         v                v</div>
+<div class="line">+--------------------------------+        +----------------+---------------+</div>
+<div class="line">+--------------------------------+        +----------------+---------------+</div>
+<div class="line"> \__________pkt-&gt;size___________/          \_result-&gt;size_/ \__pkt-&gt;size__/</div>
+</div><!-- fragment --><p>If <code>size == pkt-&gt;size</code> then the resulting snip will point to NULL in its <a class="el" href="structgnrc__pktsnip.html#a04ca47171b70901e55f4a5c67399f070" title="pointer to the data of the snip">gnrc_pktsnip_t::data</a> field and its <a class="el" href="structgnrc__pktsnip.html#a0718f2cde3411a4833f82c10f8ea8d71" title="the length of the snip in byte">gnrc_pktsnip_t::size</a> field will be 0.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>pkt</code> != NULL &amp;&amp; <code>size</code> != 0</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>A received packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The size of the new packet snip. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>The type of the new packet snip.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>It's not guaranteed that <code>result-&gt;data</code> points to the same address as the original <code>pkt-&gt;data</code>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The new packet snip in <code>pkt</code> on success. </dd>
+<dd>
+NULL, if pkt == NULL or size == 0 or size &gt; pkt-&gt;size or pkt-&gt;data == NULL. </dd>
+<dd>
+NULL, if no space is left in the packet buffer. </dd></dl>
+
+</div>
+</div>
+<a id="gae41835e987f693706a388a3d9e14f83a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae41835e987f693706a388a3d9e14f83a">&#9670;&nbsp;</a></span>gnrc_pktbuf_merge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gnrc_pktbuf_merge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Merge pktsnip chain to single pktsnip. </p>
+<p>Specifically it calls <a class="el" href="group__net__gnrc__pktbuf.html#ga3d9a8b1307f8971680299b2f86ac4a3e">gnrc_pktbuf_realloc_data()</a> on <code>pkt</code>, then copies the data of all following packet snips into that reallocated space, and removes the packet snip the data was copied from afterwards.</p>
+<h3><a class="anchor" id="autotoc_md2041"></a>
+Example</h3>
+<h4><a class="anchor" id="autotoc_md2042"></a>
+Input</h4>
+<pre class="fragment">                                                    buffer
++---------------------------+                      +------+
+| size = 8                  | data       +--------&gt;|      |
+| type = NETTYPE_IPV6       |------------+         +------+
++---------------------------+                      .      .
+      | next                                       .      .
+      v                                            .      .
++---------------------------+                      +------+
+| size = 40                 | data    +-----------&gt;|      |
+| type = NETTYPE_UDP        |---------+            +------+
++---------------------------+                      .      .
+      | next                                       .      .
+      v
++---------------------------+                      +------+
+| size = 14                 | data +--------------&gt;|      |
+| type = NETTYPE_UNDEF      |------+               +------+
++---------------------------+                      .      .
+</pre><h4><a class="anchor" id="autotoc_md2043"></a>
+Output</h4>
+<pre class="fragment">                                                    buffer
++---------------------------+                      +------+
+| size = 62                 | data       +--------&gt;|      |
+| type = NETTYPE_IPV6       |------------+         |      |
++---------------------------+                      |      |
+                                                   |      |
+                                                   |      |
+                                                   |      |
+                                                   +------+
+                                                            .      .
+</pre> <dl class="section warning"><dt>Warning</dt><dd><code>pkt</code> needs to write protected before calling this function. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Packets in receive order need to call <a class="el" href="group__net__gnrc__pktbuf.html#ga7f104a81ca707558dc5192e39ad7b5cd">gnrc_pktbuf_reverse_snips()</a> first to get the data in the correct order.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pkt</td><td>The snip to merge.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0, on success </dd>
+<dd>
+ENOMEM, if no space is left in the packet buffer. </dd></dl>
+
+</div>
+</div>
+<a id="ga3d9a8b1307f8971680299b2f86ac4a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3d9a8b1307f8971680299b2f86ac4a3e">&#9670;&nbsp;</a></span>gnrc_pktbuf_realloc_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gnrc_pktbuf_realloc_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reallocates <a class="el" href="structgnrc__pktsnip.html#a04ca47171b70901e55f4a5c67399f070" title="pointer to the data of the snip">gnrc_pktsnip_t::data</a> of <code>pkt</code> in the packet buffer, without changing the content. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>pkt != NULL</code> </dd>
+<dd>
+<code>(pkt-&gt;size &gt; 0) &lt;=&gt; (pkt-&gt;data != NULL)</code> </dd>
+<dd>
+<a class="el" href="structgnrc__pktsnip.html#a04ca47171b70901e55f4a5c67399f070" title="pointer to the data of the snip">gnrc_pktsnip_t::data</a> of <code>pkt</code> is in the packet buffer if it is not NULL.</dd></dl>
+<p>If enough memory is available behind it or <code>size</code> is smaller than the original size of the packet then <a class="el" href="structgnrc__pktsnip.html#a04ca47171b70901e55f4a5c67399f070" title="pointer to the data of the snip">gnrc_pktsnip_t::data</a> of <code>pkt</code> will not be moved. Otherwise, it will be moved. If no space is available nothing happens.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>A packet part. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The size for <code>pkt</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0, on success </dd>
+<dd>
+ENOMEM, if no space is left in the packet buffer. </dd></dl>
+
+</div>
+</div>
+<a id="gaed632f849e2ae54b8ec22990967ca38a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed632f849e2ae54b8ec22990967ca38a">&#9670;&nbsp;</a></span>gnrc_pktbuf_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void gnrc_pktbuf_release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decreases <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> atomically and removes it if it reaches 0 and reports <a class="el" href="group__net__gnrc__neterr.html#ga6e512f593ce094228a5697d4d224dc0f">GNRC_NETERR_SUCCESS</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>A packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga39c4489933328ddabcf87d5940df9807"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga39c4489933328ddabcf87d5940df9807">&#9670;&nbsp;</a></span>gnrc_pktbuf_release_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gnrc_pktbuf_release_error </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>err</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decreases <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> atomically and removes it if it reaches 0 and reports a possible error through an error code, if <a class="el" href="group__net__gnrc__neterr.html">Error reporting</a> is included. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>All snips of <code>pkt</code> must be in the packet buffer.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>A packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">err</td><td>An error code. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gafbb055c2d0ef263bf0ed38b392761719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafbb055c2d0ef263bf0ed38b392761719">&#9670;&nbsp;</a></span>gnrc_pktbuf_remove_snip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a>* gnrc_pktbuf_remove_snip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>snip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes a snip from a packet and the packet buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>A packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">snip</td><td>A snip in the packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new reference to <code>pkt</code>. </dd></dl>
+
+</div>
+</div>
+<a id="ga7f104a81ca707558dc5192e39ad7b5cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f104a81ca707558dc5192e39ad7b5cd">&#9670;&nbsp;</a></span>gnrc_pktbuf_reverse_snips()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a>* gnrc_pktbuf_reverse_snips </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reverses snip order of a packet in a write-protected manner. </p>
+<p>This can be used to change the send/receive order of a packet (see <a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a>)</p>
+<dl class="section note"><dt>Note</dt><dd><code>pkt</code> is released on failure.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>A packet. When this function fails (due to a full packet packet buffer) <code>pkt</code> will be released.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The reversed version of <code>pkt</code> on success </dd>
+<dd>
+NULL, when there is not enough space in the packet buffer to reverse the packet in a write-protected manner. <code>pkt</code> is released in that case. </dd></dl>
+
+</div>
+</div>
+<a id="ga640418467294ae3d408c109ab27bd617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga640418467294ae3d408c109ab27bd617">&#9670;&nbsp;</a></span>gnrc_pktbuf_start_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a>* gnrc_pktbuf_start_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">gnrc_pktsnip_t</a> *&#160;</td>
+          <td class="paramname"><em>pkt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Must be called once before there is a write operation on a <a class="el" href="group__net__gnrc__pkt.html#ga961e6ea05309a3d69a4d96f4a2dedb63">packet snip</a> in a thread. </p>
+<p>This function duplicates a packet snip in the packet buffer (both the instance of the gnrc_pktsnip_t and its data) if <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> &gt; 1.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pkt</td><td>The packet snip you want to write into.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The (new) pointer to the packet snip. </dd>
+<dd>
+NULL, if <a class="el" href="structgnrc__pktsnip.html#a4ccc7be825c7f5c449825676606921b3" title="Counter of threads currently having control over this packet.">gnrc_pktsnip_t::users</a> of <code>pkt</code> &gt; 1 and if there is not enough space in the packet buffer. </dd></dl>
+
+</div>
+</div>
+<a id="gaf4e7cccaa0d94f9ccaefdceab382d396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf4e7cccaa0d94f9ccaefdceab382d396">&#9670;&nbsp;</a></span>gnrc_pktbuf_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gnrc_pktbuf_stats </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints some statistics about the packet buffer to stdout. </p>
+<dl class="section note"><dt>Note</dt><dd>Only available with DEVELHELP defined.</dd></dl>
+<p>Statistics include maximum number of reserved bytes. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

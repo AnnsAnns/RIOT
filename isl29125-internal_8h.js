@@ -1,0 +1,28 @@
+var isl29125_internal_8h =
+[
+    [ "ISL29125_CMD_RESET", "isl29125-internal_8h.html#acdc6575a668b28cd830b9fafabfd4fb8", null ],
+    [ "ISL29125_CON1_MASK_MODE", "isl29125-internal_8h.html#a56b5e86a9708d435baab8634652c0c7a", null ],
+    [ "ISL29125_CON1_MASK_RANGE", "isl29125-internal_8h.html#ae37e77cbb5c3ff7871d13272a151976b", null ],
+    [ "ISL29125_CON1_MASK_RES", "isl29125-internal_8h.html#a9ae743315d93a545fc26f409f6f9bc69", null ],
+    [ "ISL29125_CON1_MASK_SYNC", "isl29125-internal_8h.html#a72cab06d3eb7dc7cf37706e8adc8b247", null ],
+    [ "ISL29125_CON1_SYNCOFF", "isl29125-internal_8h.html#abe37cca8f1c3200689df06c4404a4bfe", null ],
+    [ "ISL29125_CON1_SYNCON", "isl29125-internal_8h.html#a75d693772a0fa987a4939aa347ccaf3d", null ],
+    [ "ISL29125_I2C_ADDRESS", "isl29125-internal_8h.html#a5e720bf1ea78935587c7b856cbf90bcb", null ],
+    [ "ISL29125_ID", "isl29125-internal_8h.html#a3f38d6e201d0fe7240a064dd60133cca", null ],
+    [ "ISL29125_REG_BDHB", "isl29125-internal_8h.html#a03e7802695d49e1b6814d03d2ac73951", null ],
+    [ "ISL29125_REG_BDLB", "isl29125-internal_8h.html#a478c980867d68733cfa8fa97a41b2cee", null ],
+    [ "ISL29125_REG_CONF1", "isl29125-internal_8h.html#a5349188f32ffd6895ae20d04aeebf6de", null ],
+    [ "ISL29125_REG_CONF2", "isl29125-internal_8h.html#ac9501f69c8a184d07a69afd15bfd2f63", null ],
+    [ "ISL29125_REG_CONF3", "isl29125-internal_8h.html#a43e24573aeb98ec925bafc0c60570eb7", null ],
+    [ "ISL29125_REG_GDHB", "isl29125-internal_8h.html#a078e5dde5366c8da81c90402b85ed17a", null ],
+    [ "ISL29125_REG_GDLB", "isl29125-internal_8h.html#a802ed9aba3595dbcaa8225647680f40f", null ],
+    [ "ISL29125_REG_HTHHB", "isl29125-internal_8h.html#a879ec15cc6384976506be78aaa14c07e", null ],
+    [ "ISL29125_REG_HTHLB", "isl29125-internal_8h.html#a7fed6a18907bf5ec598a3782cd986bb0", null ],
+    [ "ISL29125_REG_ID", "isl29125-internal_8h.html#a24998ab6bb68b60ba9b5a9104053de53", null ],
+    [ "ISL29125_REG_LTHHB", "isl29125-internal_8h.html#a6b35cf751ac62b5b899e00bdddcd0691", null ],
+    [ "ISL29125_REG_LTHLB", "isl29125-internal_8h.html#ab377021ceaf0277ac4c27d570330705e", null ],
+    [ "ISL29125_REG_RDHB", "isl29125-internal_8h.html#abb5c9dac1947b6e2777bab9a8fcae9e4", null ],
+    [ "ISL29125_REG_RDLB", "isl29125-internal_8h.html#a757bc3b474a34b7fa25c1f83c94bdde4", null ],
+    [ "ISL29125_REG_RESET", "isl29125-internal_8h.html#a21a29b4b4785b7a82189bcfbfb369e9e", null ],
+    [ "ISL29125_REG_STATUS", "isl29125-internal_8h.html#a1096f201dd00d805ec39eb20a98d66f5", null ]
+];

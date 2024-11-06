@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: Soft SPI</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('group__drivers__soft__spi.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Modules</a> &#124;
+<a href="#files">Files</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">Soft SPI<div class="ingroups"><a class="el" href="group__drivers.html">Drivers</a> &raquo; <a class="el" href="group__drivers__soft__periph.html">Soft Peripheral Driver Interface</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Software implemented Serial Peripheral Interface bus. </p>
+<p>This module provides a software implemented Serial Peripheral Interface bus. It is intended to be used in situation where hardware spi is not available. The signatures of the functions are similar to the functions declared in <a class="el" href="spi_8h.html" title="Low-level SPI peripheral driver interface definition.">spi.h</a> The clock speed is approximated by using xtimer_usleep. Currently only the use of MOSI in master mode is implemented. Therefore receiving data from a slave is currently not possible. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__drivers__softspi__config"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__softspi__config.html">Software SPI driver compile configuration</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:soft__spi_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soft__spi_8h.html">soft_spi.h</a></td></tr>
+<tr class="memdesc:soft__spi_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software SPI port descriptor definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:soft__spi__params_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soft__spi__params_8h.html">soft_spi_params.h</a></td></tr>
+<tr class="memdesc:soft__spi__params_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software SPI configuration. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsoft__spi__conf__t.html">soft_spi_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software SPI port descriptor.  <a href="structsoft__spi__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga3673409c1743be03fbd6ad8ac8bdad2c"><td class="memItemLeft" align="right" valign="top"><a id="ga3673409c1743be03fbd6ad8ac8bdad2c"></a>
+typedef unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a></td></tr>
+<tr class="memdesc:ga3673409c1743be03fbd6ad8ac8bdad2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default type for SPI devices. <br /></td></tr>
+<tr class="separator:ga3673409c1743be03fbd6ad8ac8bdad2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d93b1294961ea929e354f99b976d1c1"><td class="memItemLeft" align="right" valign="top"><a id="ga6d93b1294961ea929e354f99b976d1c1"></a>
+typedef <a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a></td></tr>
+<tr class="memdesc:ga6d93b1294961ea929e354f99b976d1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chip select pin type overlaps with gpio_t so it can be casted to this. <br /></td></tr>
+<tr class="separator:ga6d93b1294961ea929e354f99b976d1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga5ae760a5c9b7253fc22419bcd09c6a5e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="group__drivers__soft__spi.html#gga5ae760a5c9b7253fc22419bcd09c6a5ea25f1a868f2f9ff764ed1aa3e9a7857c2">SOFT_SPI_OK</a> = 0
+, <a class="el" href="group__drivers__soft__spi.html#gga5ae760a5c9b7253fc22419bcd09c6a5eaef2aafc31075d8d494dc892998ba8af7">SOFT_SPI_NODEV</a> = -1
+, <a class="el" href="group__drivers__soft__spi.html#gga5ae760a5c9b7253fc22419bcd09c6a5eaee22c8181a36a1a730aa02928898efaa">SOFT_SPI_NOCS</a> = -2
+, <a class="el" href="group__drivers__soft__spi.html#gga5ae760a5c9b7253fc22419bcd09c6a5eab9e161f3fc51393bbc3e445177aecc58">SOFT_SPI_NOMODE</a> = -3
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__soft__spi.html#gga5ae760a5c9b7253fc22419bcd09c6a5ea8a57961b50302c8882bf8a963ef20c7e">SOFT_SPI_NOCLK</a> = -4
+<br />
+ }</td></tr>
+<tr class="memdesc:ga5ae760a5c9b7253fc22419bcd09c6a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status codes used by the SPI driver interface.  <a href="group__drivers__soft__spi.html#ga5ae760a5c9b7253fc22419bcd09c6a5e">More...</a><br /></td></tr>
+<tr class="separator:ga5ae760a5c9b7253fc22419bcd09c6a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0067f31877b2a3787c4de2a0413bac65"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga0067f31877b2a3787c4de2a0413bac65">soft_spi_mode_t</a> { <a class="el" href="group__drivers__soft__spi.html#gga0067f31877b2a3787c4de2a0413bac65a7d92c7f4ff6f3c2f59d96c1c2ead5a42">SOFT_SPI_MODE_0</a> = 0
+, <a class="el" href="group__drivers__soft__spi.html#gga0067f31877b2a3787c4de2a0413bac65a75c34f0571d249d034064d8a32a8aa22">SOFT_SPI_MODE_1</a>
+, <a class="el" href="group__drivers__soft__spi.html#gga0067f31877b2a3787c4de2a0413bac65a0312cfb6233021a796df6095d44b13c5">SOFT_SPI_MODE_2</a>
+, <a class="el" href="group__drivers__soft__spi.html#gga0067f31877b2a3787c4de2a0413bac65a363d2320db9b3124f1205da3e0108ab4">SOFT_SPI_MODE_3</a>
+ }</td></tr>
+<tr class="memdesc:ga0067f31877b2a3787c4de2a0413bac65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available SPI modes, defining the configuration of clock polarity and clock phase.  <a href="group__drivers__soft__spi.html#ga0067f31877b2a3787c4de2a0413bac65">More...</a><br /></td></tr>
+<tr class="separator:ga0067f31877b2a3787c4de2a0413bac65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab891c834ce3f8f77ce8daacef7a2498e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#gab891c834ce3f8f77ce8daacef7a2498e">soft_spi_clk_t</a> { <a class="el" href="group__drivers__soft__spi.html#ggab891c834ce3f8f77ce8daacef7a2498ea6c3c33d927a29fe51719f1484435ef58">SOFT_SPI_CLK_100KHZ</a> = 5
+, <a class="el" href="group__drivers__soft__spi.html#ggab891c834ce3f8f77ce8daacef7a2498ea487abf0414164f0088ec537dbb321bd4">SOFT_SPI_CLK_1MHZ</a> = 1
+, <a class="el" href="group__drivers__soft__spi.html#ggab891c834ce3f8f77ce8daacef7a2498ea9abd40091337ef15978ac96f579a73d7">SOFT_SPI_CLK_DEFAULT</a> = 0
+ }</td></tr>
+<tr class="memdesc:gab891c834ce3f8f77ce8daacef7a2498e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available SPI clock speeds.  <a href="group__drivers__soft__spi.html#gab891c834ce3f8f77ce8daacef7a2498e">More...</a><br /></td></tr>
+<tr class="separator:gab891c834ce3f8f77ce8daacef7a2498e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga3fba8676c9791f23c6abe5d5b5f7ed23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga3fba8676c9791f23c6abe5d5b5f7ed23">soft_spi_init</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus)</td></tr>
+<tr class="memdesc:ga3fba8676c9791f23c6abe5d5b5f7ed23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic initialization of the given SPI bus.  <a href="group__drivers__soft__spi.html#ga3fba8676c9791f23c6abe5d5b5f7ed23">More...</a><br /></td></tr>
+<tr class="separator:ga3fba8676c9791f23c6abe5d5b5f7ed23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6e280901c8cf33449914eade5fb286c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga6e280901c8cf33449914eade5fb286c4">soft_spi_init_pins</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus)</td></tr>
+<tr class="memdesc:ga6e280901c8cf33449914eade5fb286c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the used SPI bus pins, i.e.  <a href="group__drivers__soft__spi.html#ga6e280901c8cf33449914eade5fb286c4">More...</a><br /></td></tr>
+<tr class="separator:ga6e280901c8cf33449914eade5fb286c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga07c7ca4c0eb01f6549d703cf62721c4a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga07c7ca4c0eb01f6549d703cf62721c4a">soft_spi_init_cs</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus, <a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a> cs)</td></tr>
+<tr class="memdesc:ga07c7ca4c0eb01f6549d703cf62721c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the given chip select pin.  <a href="group__drivers__soft__spi.html#ga07c7ca4c0eb01f6549d703cf62721c4a">More...</a><br /></td></tr>
+<tr class="separator:ga07c7ca4c0eb01f6549d703cf62721c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa2c9bc86085aa365dea262ab5eb39db9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#gaa2c9bc86085aa365dea262ab5eb39db9">soft_spi_acquire</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus, <a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a> cs, <a class="el" href="group__drivers__soft__spi.html#ga0067f31877b2a3787c4de2a0413bac65">soft_spi_mode_t</a> mode, <a class="el" href="group__drivers__soft__spi.html#gab891c834ce3f8f77ce8daacef7a2498e">soft_spi_clk_t</a> clk)</td></tr>
+<tr class="memdesc:gaa2c9bc86085aa365dea262ab5eb39db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a new SPI transaction.  <a href="group__drivers__soft__spi.html#gaa2c9bc86085aa365dea262ab5eb39db9">More...</a><br /></td></tr>
+<tr class="separator:gaa2c9bc86085aa365dea262ab5eb39db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f0096dc0e43289840e1009a003b0964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga7f0096dc0e43289840e1009a003b0964">soft_spi_release</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus)</td></tr>
+<tr class="memdesc:ga7f0096dc0e43289840e1009a003b0964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finish an ongoing SPI transaction by releasing the given SPI bus.  <a href="group__drivers__soft__spi.html#ga7f0096dc0e43289840e1009a003b0964">More...</a><br /></td></tr>
+<tr class="separator:ga7f0096dc0e43289840e1009a003b0964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa87443cfb62417da0c536158852539b3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#gaa87443cfb62417da0c536158852539b3">soft_spi_transfer_byte</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus, <a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a> cs, bool cont, uint8_t out)</td></tr>
+<tr class="memdesc:gaa87443cfb62417da0c536158852539b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer one byte on the given SPI bus Currently only the use of MOSI in master mode is implemented.  <a href="group__drivers__soft__spi.html#gaa87443cfb62417da0c536158852539b3">More...</a><br /></td></tr>
+<tr class="separator:gaa87443cfb62417da0c536158852539b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaa5d55d3931d1d5a8f56ce3cfa872b06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#gaaa5d55d3931d1d5a8f56ce3cfa872b06">soft_spi_transfer_bytes</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus, <a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a> cs, bool cont, const void *out, void *in, size_t len)</td></tr>
+<tr class="memdesc:gaaa5d55d3931d1d5a8f56ce3cfa872b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer a number bytes using the given SPI bus.  <a href="group__drivers__soft__spi.html#gaaa5d55d3931d1d5a8f56ce3cfa872b06">More...</a><br /></td></tr>
+<tr class="separator:gaaa5d55d3931d1d5a8f56ce3cfa872b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa840ffea1885e473aee969c8f0d4aa33"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#gaa840ffea1885e473aee969c8f0d4aa33">soft_spi_transfer_reg</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus, <a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a> cs, uint8_t reg, uint8_t out)</td></tr>
+<tr class="memdesc:gaa840ffea1885e473aee969c8f0d4aa33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer one byte to/from a given register address.  <a href="group__drivers__soft__spi.html#gaa840ffea1885e473aee969c8f0d4aa33">More...</a><br /></td></tr>
+<tr class="separator:gaa840ffea1885e473aee969c8f0d4aa33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2617424a4549e30f61ceb90a7941725a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__drivers__soft__spi.html#ga2617424a4549e30f61ceb90a7941725a">soft_spi_transfer_regs</a> (<a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a> bus, <a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a> cs, uint8_t reg, const void *out, void *in, size_t len)</td></tr>
+<tr class="memdesc:ga2617424a4549e30f61ceb90a7941725a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer a number of bytes to/from a given register address.  <a href="group__drivers__soft__spi.html#ga2617424a4549e30f61ceb90a7941725a">More...</a><br /></td></tr>
+<tr class="separator:ga2617424a4549e30f61ceb90a7941725a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga5ae760a5c9b7253fc22419bcd09c6a5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ae760a5c9b7253fc22419bcd09c6a5e">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Status codes used by the SPI driver interface. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga5ae760a5c9b7253fc22419bcd09c6a5ea25f1a868f2f9ff764ed1aa3e9a7857c2"></a>SOFT_SPI_OK&#160;</td><td class="fielddoc"><p>everything went as planned </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ae760a5c9b7253fc22419bcd09c6a5eaef2aafc31075d8d494dc892998ba8af7"></a>SOFT_SPI_NODEV&#160;</td><td class="fielddoc"><p>invalid SPI bus specified </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ae760a5c9b7253fc22419bcd09c6a5eaee22c8181a36a1a730aa02928898efaa"></a>SOFT_SPI_NOCS&#160;</td><td class="fielddoc"><p>invalid chip select line specified </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ae760a5c9b7253fc22419bcd09c6a5eab9e161f3fc51393bbc3e445177aecc58"></a>SOFT_SPI_NOMODE&#160;</td><td class="fielddoc"><p>selected mode is not supported </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ae760a5c9b7253fc22419bcd09c6a5ea8a57961b50302c8882bf8a963ef20c7e"></a>SOFT_SPI_NOCLK&#160;</td><td class="fielddoc"><p>selected clock value is not supported </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gab891c834ce3f8f77ce8daacef7a2498e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab891c834ce3f8f77ce8daacef7a2498e">&#9670;&nbsp;</a></span>soft_spi_clk_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__soft__spi.html#gab891c834ce3f8f77ce8daacef7a2498e">soft_spi_clk_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available SPI clock speeds. </p>
+<p>The actual speed of the bus varies between CPUs and depends on the speed of the processing. The values of the enum entries represent the approximate delay between two clock edges. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggab891c834ce3f8f77ce8daacef7a2498ea6c3c33d927a29fe51719f1484435ef58"></a>SOFT_SPI_CLK_100KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with less than 100kHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab891c834ce3f8f77ce8daacef7a2498ea487abf0414164f0088ec537dbb321bd4"></a>SOFT_SPI_CLK_1MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with less than 1MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab891c834ce3f8f77ce8daacef7a2498ea9abd40091337ef15978ac96f579a73d7"></a>SOFT_SPI_CLK_DEFAULT&#160;</td><td class="fielddoc"><p>drive the SPI bus with maximum speed possible </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga0067f31877b2a3787c4de2a0413bac65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0067f31877b2a3787c4de2a0413bac65">&#9670;&nbsp;</a></span>soft_spi_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__drivers__soft__spi.html#ga0067f31877b2a3787c4de2a0413bac65">soft_spi_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available SPI modes, defining the configuration of clock polarity and clock phase. </p>
+<p>RIOT is using the mode numbers as commonly defined by most vendors (<a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus#Mode_numbers">https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus#Mode_numbers</a>):</p>
+<ul>
+<li>MODE_0: CPOL=0, CPHA=0 - The first data bit is sampled by the receiver on the first SCK rising SCK edge (this mode is used most often).</li>
+<li>MODE_1: CPOL=0, CPHA=1 - The first data bit is sampled by the receiver on the second rising SCK edge.</li>
+<li>MODE_2: CPOL=1, CPHA=0 - The first data bit is sampled by the receiver on the first falling SCK edge.</li>
+<li>MODE_3: CPOL=1, CPHA=1 - The first data bit is sampled by the receiver on the second falling SCK edge. </li>
+</ul>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga0067f31877b2a3787c4de2a0413bac65a7d92c7f4ff6f3c2f59d96c1c2ead5a42"></a>SOFT_SPI_MODE_0&#160;</td><td class="fielddoc"><p>CPOL=0, CPHA=0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0067f31877b2a3787c4de2a0413bac65a75c34f0571d249d034064d8a32a8aa22"></a>SOFT_SPI_MODE_1&#160;</td><td class="fielddoc"><p>CPOL=0, CPHA=1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0067f31877b2a3787c4de2a0413bac65a0312cfb6233021a796df6095d44b13c5"></a>SOFT_SPI_MODE_2&#160;</td><td class="fielddoc"><p>CPOL=1, CPHA=0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0067f31877b2a3787c4de2a0413bac65a363d2320db9b3124f1205da3e0108ab4"></a>SOFT_SPI_MODE_3&#160;</td><td class="fielddoc"><p>CPOL=1, CPHA=1. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaa2c9bc86085aa365dea262ab5eb39db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa2c9bc86085aa365dea262ab5eb39db9">&#9670;&nbsp;</a></span>soft_spi_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void soft_spi_acquire </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a>&#160;</td>
+          <td class="paramname"><em>cs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga0067f31877b2a3787c4de2a0413bac65">soft_spi_mode_t</a>&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#gab891c834ce3f8f77ce8daacef7a2498e">soft_spi_clk_t</a>&#160;</td>
+          <td class="paramname"><em>clk</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start a new SPI transaction. </p>
+<p>Starting a new SPI transaction will get exclusive access to the SPI bus and configure it according to the given values. If another SPI transaction is active when this function is called, this function will block until the other transaction is complete (soft_spi_relase was called).</p>
+<dl class="section note"><dt>Note</dt><dd>This function expects the <code>bus</code> and the <code>cs</code> parameters to be valid (they are checked in soft_spi_init and soft_spi_init_cs before)</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device to access </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cs</td><td>chip select pin/line to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>mode to use for the new transaction </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">clk</td><td>bus clock speed to use for the transaction </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga3fba8676c9791f23c6abe5d5b5f7ed23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3fba8676c9791f23c6abe5d5b5f7ed23">&#9670;&nbsp;</a></span>soft_spi_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void soft_spi_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Basic initialization of the given SPI bus. </p>
+<p>This function does the basic initialization including pin configuration for MISO, MOSI, and CLK pins.</p>
+<p>Errors (e.g. invalid <code>bus</code> parameter) are not signaled through a return value, but should be signaled using the <a class="el" href="assert_8h.html#a3153a272f18d0f805028fce7e4337b53" title="abort the program if assertion is false">assert()</a> function internally.</p>
+<dl class="section note"><dt>Note</dt><dd>This function MUST not be called more than once per bus!</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga07c7ca4c0eb01f6549d703cf62721c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga07c7ca4c0eb01f6549d703cf62721c4a">&#9670;&nbsp;</a></span>soft_spi_init_cs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int soft_spi_init_cs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a>&#160;</td>
+          <td class="paramname"><em>cs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the given chip select pin. </p>
+<p>The chip select must be any generic GPIO pin (e.g. <a class="el" href="group__drivers__periph__gpio.html#gae29846b3ecd19a0b7c44ff80a37ae7c1" title="Convert (port, pin) tuple to gpio_t value.">GPIO_PIN(x,y)</a>). It must be called once before the use of the chip select pin in transaction.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device that is used with the given CS line </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cs</td><td>chip select pin to initialize</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SOFT_SPI_OK on success </dd>
+<dd>
+SOFT_SPI_NODEV on invalid device </dd>
+<dd>
+SOFT_SPI_NOCS on invalid CS pin/line </dd></dl>
+
+</div>
+</div>
+<a id="ga6e280901c8cf33449914eade5fb286c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6e280901c8cf33449914eade5fb286c4">&#9670;&nbsp;</a></span>soft_spi_init_pins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void soft_spi_init_pins </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the used SPI bus pins, i.e. </p>
+<p>MISO, MOSI, and CLK</p>
+<p>After calling soft_spi_init, the pins must be initialized. In normal cases, this function will not be used.</p>
+<p>The pins used are configured in the board's periph_conf.h.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device the pins are configure for </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7f0096dc0e43289840e1009a003b0964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f0096dc0e43289840e1009a003b0964">&#9670;&nbsp;</a></span>soft_spi_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void soft_spi_release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finish an ongoing SPI transaction by releasing the given SPI bus. </p>
+<p>After release, the given SPI bus should be fully powered down until acquired again.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device to release </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa87443cfb62417da0c536158852539b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa87443cfb62417da0c536158852539b3">&#9670;&nbsp;</a></span>soft_spi_transfer_byte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t soft_spi_transfer_byte </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a>&#160;</td>
+          <td class="paramname"><em>cs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>cont</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transfer one byte on the given SPI bus Currently only the use of MOSI in master mode is implemented. </p>
+<p>Therefore receiving data from a slave is currently not possible.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cs</td><td>chip select pin/line to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cont</td><td>if true, keep device selected after transfer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>byte to send out, set NULL if only receiving</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the received byte </dd></dl>
+
+</div>
+</div>
+<a id="gaaa5d55d3931d1d5a8f56ce3cfa872b06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaa5d55d3931d1d5a8f56ce3cfa872b06">&#9670;&nbsp;</a></span>soft_spi_transfer_bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void soft_spi_transfer_bytes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a>&#160;</td>
+          <td class="paramname"><em>cs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>cont</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transfer a number bytes using the given SPI bus. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cs</td><td>chip select pin/line to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cont</td><td>if true, keep device selected after transfer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>buffer to send data from, set NULL if only receiving </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">in</td><td>buffer to read into, set NULL if only sending </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to transfer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa840ffea1885e473aee969c8f0d4aa33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa840ffea1885e473aee969c8f0d4aa33">&#9670;&nbsp;</a></span>soft_spi_transfer_reg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t soft_spi_transfer_reg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a>&#160;</td>
+          <td class="paramname"><em>cs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transfer one byte to/from a given register address. </p>
+<p>This function is a shortcut function for easier handling of SPI devices that implement a register based access scheme.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cs</td><td>chip select pin/line to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>register address to transfer data to/from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>byte to send, set NULL if only receiving data</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value that was read from the given register address </dd></dl>
+
+</div>
+</div>
+<a id="ga2617424a4549e30f61ceb90a7941725a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2617424a4549e30f61ceb90a7941725a">&#9670;&nbsp;</a></span>soft_spi_transfer_regs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void soft_spi_transfer_regs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga3673409c1743be03fbd6ad8ac8bdad2c">soft_spi_t</a>&#160;</td>
+          <td class="paramname"><em>bus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__drivers__soft__spi.html#ga6d93b1294961ea929e354f99b976d1c1">soft_spi_cs_t</a>&#160;</td>
+          <td class="paramname"><em>cs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transfer a number of bytes to/from a given register address. </p>
+<p>This function is a shortcut function for easier handling of SPI devices that implement a register based access scheme.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bus</td><td>SPI device to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cs</td><td>chip select pin/line to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>register address to transfer data to/from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>buffer to send data from, set NULL if only receiving </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">in</td><td>buffer to read into, set NULL if only sending </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>number of bytes to transfer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

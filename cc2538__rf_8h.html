@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/cc2538/include/cc2538_rf.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('cc2538__rf_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a>  </div>
+  <div class="headertitle">
+<div class="title">cc2538_rf.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__cc2538.html">TI CC2538</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Low-level radio driver for the CC2538.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Low-level radio driver for the CC2538. </p>
+<dl class="section author"><dt>Author</dt><dd>Aaron Sowry <a href="#" onclick="location.href='mai'+'lto:'+'aar'+'on'+'@mu'+'te'+'x.n'+'z'; return false;">aaron<span style="display: none;">.nosp@m.</span>@mut<span style="display: none;">.nosp@m.</span>ex.nz</a> </dd>
+<dd>
+Ian Martin <a href="#" onclick="location.href='mai'+'lto:'+'ian'+'@l'+'oci'+'co'+'ntr'+'ol'+'s.c'+'om'; return false;">ian@l<span style="display: none;">.nosp@m.</span>ocic<span style="display: none;">.nosp@m.</span>ontro<span style="display: none;">.nosp@m.</span>ls.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;board.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="cc2538__rfcore_8h_source.html">cc2538_rfcore.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sys_2include_2net_2ieee802154_8h_source.html">net/ieee802154.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kernel__defines_8h_source.html">kernel_defines.h</a>&quot;</code><br />
+<code>#include &quot;net/ieee802154/radio.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="netopt_8h_source.html">net/netopt.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for cc2538_rf.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="cc2538__rf_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcc2538__rf__t.html">cc2538_rf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device descriptor for CC2538 transceiver.  <a href="structcc2538__rf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac32f91cdff3fcd0b75d020b2ba2cc5bc"><td class="memItemLeft" align="right" valign="top"><a id="ac32f91cdff3fcd0b75d020b2ba2cc5bc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_AUTOCRC_LEN</b>&#160;&#160;&#160;(2)</td></tr>
+<tr class="separator:ac32f91cdff3fcd0b75d020b2ba2cc5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b50e0bd5185e44d98090073c0df1b9"><td class="memItemLeft" align="right" valign="top"><a id="af4b50e0bd5185e44d98090073c0df1b9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_RF_FIFO_SIZE</b>&#160;&#160;&#160;(128)</td></tr>
+<tr class="separator:af4b50e0bd5185e44d98090073c0df1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b159ecb03251a88b83c5c446eecf8c"><td class="memItemLeft" align="right" valign="top"><a id="a95b159ecb03251a88b83c5c446eecf8c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_PACKET_LENGTH_SIZE</b>&#160;&#160;&#160;(1)</td></tr>
+<tr class="separator:a95b159ecb03251a88b83c5c446eecf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2e878872f1f7054da4542b04406ca51"><td class="memItemLeft" align="right" valign="top"><a id="ae2e878872f1f7054da4542b04406ca51"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_RF_MAX_DATA_LEN</b>&#160;&#160;&#160;(CC2538_RF_FIFO_SIZE - CC2538_PACKET_LENGTH_SIZE)</td></tr>
+<tr class="separator:ae2e878872f1f7054da4542b04406ca51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2605a47cff9eea1bc74101a8d189ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a1a2605a47cff9eea1bc74101a8d189ca">IEEE802154_MIN_FREQ</a>&#160;&#160;&#160;(2405)</td></tr>
+<tr class="memdesc:a1a2605a47cff9eea1bc74101a8d189ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Min.  <a href="cc2538__rf_8h.html#a1a2605a47cff9eea1bc74101a8d189ca">More...</a><br /></td></tr>
+<tr class="separator:a1a2605a47cff9eea1bc74101a8d189ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52fc2e7050133f9404300f33dc4acc1d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a52fc2e7050133f9404300f33dc4acc1d">IEEE802154_MAX_FREQ</a>&#160;&#160;&#160;(2480)</td></tr>
+<tr class="memdesc:a52fc2e7050133f9404300f33dc4acc1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max.  <a href="cc2538__rf_8h.html#a52fc2e7050133f9404300f33dc4acc1d">More...</a><br /></td></tr>
+<tr class="separator:a52fc2e7050133f9404300f33dc4acc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d7b4323262a5c71d5d74ead004900a"><td class="memItemLeft" align="right" valign="top"><a id="a73d7b4323262a5c71d5d74ead004900a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a73d7b4323262a5c71d5d74ead004900a">IEEE802154_CHANNEL_SPACING</a>&#160;&#160;&#160;(5)</td></tr>
+<tr class="memdesc:a73d7b4323262a5c71d5d74ead004900a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel spacing in MHz <br  />
+ <br /></td></tr>
+<tr class="separator:a73d7b4323262a5c71d5d74ead004900a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b882c7c996b1f835c3943e056097169"><td class="memItemLeft" align="right" valign="top"><a id="a7b882c7c996b1f835c3943e056097169"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IEEE802154_CHAN2FREQ</b>(chan)&#160;&#160;&#160;( <a class="el" href="cc2538__rf_8h.html#a1a2605a47cff9eea1bc74101a8d189ca">IEEE802154_MIN_FREQ</a> + ((chan) - <a class="el" href="group__net__ieee802154__header.html#ga99a0b93f45c1d6d9f16996249a30a2d3">IEEE802154_CHANNEL_MIN</a>) * <a class="el" href="cc2538__rf_8h.html#a73d7b4323262a5c71d5d74ead004900a">IEEE802154_CHANNEL_SPACING</a> )</td></tr>
+<tr class="separator:a7b882c7c996b1f835c3943e056097169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59935a47b7bfa38c769bd04ee9b7a2b"><td class="memItemLeft" align="right" valign="top"><a id="ac59935a47b7bfa38c769bd04ee9b7a2b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IEEE802154_FREQ2CHAN</b>(freq)&#160;&#160;&#160;( <a class="el" href="group__net__ieee802154__header.html#ga99a0b93f45c1d6d9f16996249a30a2d3">IEEE802154_CHANNEL_MIN</a> + ((freq) - <a class="el" href="cc2538__rf_8h.html#a1a2605a47cff9eea1bc74101a8d189ca">IEEE802154_MIN_FREQ</a>) / <a class="el" href="cc2538__rf_8h.html#a73d7b4323262a5c71d5d74ead004900a">IEEE802154_CHANNEL_SPACING</a> )</td></tr>
+<tr class="separator:ac59935a47b7bfa38c769bd04ee9b7a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac84e7d7a646df222d7905e1b6fcde800"><td class="memItemLeft" align="right" valign="top"><a id="ac84e7d7a646df222d7905e1b6fcde800"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_MIN_FREQ</b>&#160;&#160;&#160;(2394)</td></tr>
+<tr class="separator:ac84e7d7a646df222d7905e1b6fcde800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fcf37848137030ff2164334318e39d1"><td class="memItemLeft" align="right" valign="top"><a id="a0fcf37848137030ff2164334318e39d1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_MAX_FREQ</b>&#160;&#160;&#160;(2507)</td></tr>
+<tr class="separator:a0fcf37848137030ff2164334318e39d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad656ebb825808599b95f60a3ca3d3dbc"><td class="memItemLeft" align="right" valign="top"><a id="ad656ebb825808599b95f60a3ca3d3dbc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ad656ebb825808599b95f60a3ca3d3dbc">CC2538_RF_POWER_DEFAULT</a>&#160;&#160;&#160;(<a class="el" href="group__net__ieee802154__conf.html#gad1056c7e3357b51a711f7a20a632c1af">CONFIG_IEEE802154_DEFAULT_TXPOWER</a>)</td></tr>
+<tr class="memdesc:ad656ebb825808599b95f60a3ca3d3dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default output power in dBm. <br /></td></tr>
+<tr class="separator:ad656ebb825808599b95f60a3ca3d3dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07152046eea2a4d0701f8fa9a9629cb8"><td class="memItemLeft" align="right" valign="top"><a id="a07152046eea2a4d0701f8fa9a9629cb8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_RF_CHANNEL_DEFAULT</b>&#160;&#160;&#160;(<a class="el" href="group__net__ieee802154__conf.html#gaaf010b48025ab9631e632c8ca936dc54">CONFIG_IEEE802154_DEFAULT_CHANNEL</a>)</td></tr>
+<tr class="separator:a07152046eea2a4d0701f8fa9a9629cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acba761c7a53afbdc365b5866b4c6ed"><td class="memItemLeft" align="right" valign="top"><a id="a1acba761c7a53afbdc365b5866b4c6ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a1acba761c7a53afbdc365b5866b4c6ed">OUTPUT_POWER_MIN</a>&#160;&#160;&#160;(-24)</td></tr>
+<tr class="memdesc:a1acba761c7a53afbdc365b5866b4c6ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Min output power in dBm. <br /></td></tr>
+<tr class="separator:a1acba761c7a53afbdc365b5866b4c6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71d628e93aac863e33c3410d6a7bbfc0"><td class="memItemLeft" align="right" valign="top"><a id="a71d628e93aac863e33c3410d6a7bbfc0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a71d628e93aac863e33c3410d6a7bbfc0">OUTPUT_POWER_MAX</a>&#160;&#160;&#160;(7)</td></tr>
+<tr class="memdesc:a71d628e93aac863e33c3410d6a7bbfc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max output power in dBm. <br /></td></tr>
+<tr class="separator:a71d628e93aac863e33c3410d6a7bbfc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97294880f6715e4660b555db2ae7af21"><td class="memItemLeft" align="right" valign="top"><a id="a97294880f6715e4660b555db2ae7af21"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>NUM_POWER_LEVELS</b>&#160;&#160;&#160;( <a class="el" href="cc2538__rf_8h.html#a71d628e93aac863e33c3410d6a7bbfc0">OUTPUT_POWER_MAX</a> - <a class="el" href="cc2538__rf_8h.html#a1acba761c7a53afbdc365b5866b4c6ed">OUTPUT_POWER_MIN</a> + 1 )</td></tr>
+<tr class="separator:a97294880f6715e4660b555db2ae7af21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ddbc9e7ff3e18789d9b4e0b5060b696"><td class="memItemLeft" align="right" valign="top"><a id="a2ddbc9e7ff3e18789d9b4e0b5060b696"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_CORR_VAL_MIN</b>&#160;&#160;&#160;(50U)</td></tr>
+<tr class="separator:a2ddbc9e7ff3e18789d9b4e0b5060b696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014531025deac7f5ca6609425955cf1d"><td class="memItemLeft" align="right" valign="top"><a id="a014531025deac7f5ca6609425955cf1d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_CORR_VAL_MAX</b>&#160;&#160;&#160;(110U)</td></tr>
+<tr class="separator:a014531025deac7f5ca6609425955cf1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52c337386a711dbe3cd917d75c878a62"><td class="memItemLeft" align="right" valign="top"><a id="a52c337386a711dbe3cd917d75c878a62"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_CORR_VAL_MASK</b>&#160;&#160;&#160;(0x7F)</td></tr>
+<tr class="separator:a52c337386a711dbe3cd917d75c878a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5959c7dbf0c8a80a1bfb9a1de09857ff"><td class="memItemLeft" align="right" valign="top"><a id="a5959c7dbf0c8a80a1bfb9a1de09857ff"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CC2538_CRC_BIT_MASK</b>&#160;&#160;&#160;(0x80)</td></tr>
+<tr class="separator:a5959c7dbf0c8a80a1bfb9a1de09857ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab72fcf615613b6b866ef447467346875"><td class="memItemLeft" align="right" valign="top"><a id="ab72fcf615613b6b866ef447467346875"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ab72fcf615613b6b866ef447467346875">CC2538_CCA_THR_MASK</a>&#160;&#160;&#160;(0x000000FF)</td></tr>
+<tr class="memdesc:ab72fcf615613b6b866ef447467346875"><td class="mdescLeft">&#160;</td><td class="mdescRight">CCA Threshold mask. <br /></td></tr>
+<tr class="separator:ab72fcf615613b6b866ef447467346875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8726ea5d7ab7ec11e1e652a068daebe"><td class="memItemLeft" align="right" valign="top"><a id="ab8726ea5d7ab7ec11e1e652a068daebe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ab8726ea5d7ab7ec11e1e652a068daebe">CC2538_CCA_MODE_MASK</a>&#160;&#160;&#160;(0x18)</td></tr>
+<tr class="memdesc:ab8726ea5d7ab7ec11e1e652a068daebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">CCA Mode mask. <br /></td></tr>
+<tr class="separator:ab8726ea5d7ab7ec11e1e652a068daebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b7853e45d8f0efa94a96d6f241b863"><td class="memItemLeft" align="right" valign="top"><a id="a78b7853e45d8f0efa94a96d6f241b863"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a78b7853e45d8f0efa94a96d6f241b863">CC2538_CCA_MODE_POS</a>&#160;&#160;&#160;(3U)</td></tr>
+<tr class="memdesc:a78b7853e45d8f0efa94a96d6f241b863"><td class="mdescLeft">&#160;</td><td class="mdescRight">CCA Mode pos. <br /></td></tr>
+<tr class="separator:a78b7853e45d8f0efa94a96d6f241b863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465dbd526e5edee4119faaaac3bb7eb9"><td class="memItemLeft" align="right" valign="top"><a id="a465dbd526e5edee4119faaaac3bb7eb9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a465dbd526e5edee4119faaaac3bb7eb9">CC2538_CSP_SKIP_INST_MASK</a>&#160;&#160;&#160;(0x70)</td></tr>
+<tr class="memdesc:a465dbd526e5edee4119faaaac3bb7eb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSP Skip instruction mask. <br /></td></tr>
+<tr class="separator:a465dbd526e5edee4119faaaac3bb7eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae1aade38f45705e5006f79597f874c3"><td class="memItemLeft" align="right" valign="top"><a id="aae1aade38f45705e5006f79597f874c3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#aae1aade38f45705e5006f79597f874c3">CC2538_CSP_SKIP_INST_POS</a>&#160;&#160;&#160;(4U)</td></tr>
+<tr class="memdesc:aae1aade38f45705e5006f79597f874c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSP Skip instruction pos. <br /></td></tr>
+<tr class="separator:aae1aade38f45705e5006f79597f874c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cff77deb5e94fe71d69aaa194897140"><td class="memItemLeft" align="right" valign="top"><a id="a8cff77deb5e94fe71d69aaa194897140"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a8cff77deb5e94fe71d69aaa194897140">CC2538_CSP_SKIP_N_MASK</a>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="memdesc:a8cff77deb5e94fe71d69aaa194897140"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSP Skip condition negation mask. <br /></td></tr>
+<tr class="separator:a8cff77deb5e94fe71d69aaa194897140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc2a32d3823205b2057f680b67dbda2b"><td class="memItemLeft" align="right" valign="top"><a id="adc2a32d3823205b2057f680b67dbda2b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#adc2a32d3823205b2057f680b67dbda2b">CC2538_CSP_SKIP_COND_CCA</a>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="memdesc:adc2a32d3823205b2057f680b67dbda2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSP Skip condition is valid CCA. <br /></td></tr>
+<tr class="separator:adc2a32d3823205b2057f680b67dbda2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09fa4461d4ba391386b7422af6d96fb"><td class="memItemLeft" align="right" valign="top"><a id="ad09fa4461d4ba391386b7422af6d96fb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ad09fa4461d4ba391386b7422af6d96fb">CC2538_CSP_SKIP_COND_CSPZ</a>&#160;&#160;&#160;(0x06)</td></tr>
+<tr class="memdesc:ad09fa4461d4ba391386b7422af6d96fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSP Skip condition is CSPZ is 0. <br /></td></tr>
+<tr class="separator:ad09fa4461d4ba391386b7422af6d96fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe26639b3bd5902fbca78ba04941eb9b"><td class="memItemLeft" align="right" valign="top"><a id="afe26639b3bd5902fbca78ba04941eb9b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#afe26639b3bd5902fbca78ba04941eb9b">CC2538_CSP_SKIP_COND_RSSI</a>&#160;&#160;&#160;(0x07)</td></tr>
+<tr class="memdesc:afe26639b3bd5902fbca78ba04941eb9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSP Skip condition is valid RSSI. <br /></td></tr>
+<tr class="separator:afe26639b3bd5902fbca78ba04941eb9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ced460782a9950d7a8c0cf64fd60d6"><td class="memItemLeft" align="right" valign="top"><a id="ac8ced460782a9950d7a8c0cf64fd60d6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ac8ced460782a9950d7a8c0cf64fd60d6">CC2538_SFR_MTMSEL_MASK</a>&#160;&#160;&#160;(0x7)</td></tr>
+<tr class="memdesc:ac8ced460782a9950d7a8c0cf64fd60d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAC <a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> selection mask. <br /></td></tr>
+<tr class="separator:ac8ced460782a9950d7a8c0cf64fd60d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22a663898d88a5e05d66b195da3011c2"><td class="memItemLeft" align="right" valign="top"><a id="a22a663898d88a5e05d66b195da3011c2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a22a663898d88a5e05d66b195da3011c2">CC2538_SFR_MTMSEL_TIMER_P</a>&#160;&#160;&#160;(0x2)</td></tr>
+<tr class="memdesc:a22a663898d88a5e05d66b195da3011c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects <a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> period. <br /></td></tr>
+<tr class="separator:a22a663898d88a5e05d66b195da3011c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb5ea154de18e655b6ac027c411484cf"><td class="memItemLeft" align="right" valign="top"><a id="adb5ea154de18e655b6ac027c411484cf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#adb5ea154de18e655b6ac027c411484cf">CC2538_MCTRL_SYNC_MASK</a>&#160;&#160;&#160;(0x2)</td></tr>
+<tr class="memdesc:adb5ea154de18e655b6ac027c411484cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sync MAC <a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> to external clock. <br /></td></tr>
+<tr class="separator:adb5ea154de18e655b6ac027c411484cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba65e884fac15d6159e0ae28722bd746"><td class="memItemLeft" align="right" valign="top"><a id="aba65e884fac15d6159e0ae28722bd746"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#aba65e884fac15d6159e0ae28722bd746">CC2538_MCTRL_RUN_MASK</a>&#160;&#160;&#160;(0x1)</td></tr>
+<tr class="memdesc:aba65e884fac15d6159e0ae28722bd746"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run MAC <a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a>. <br /></td></tr>
+<tr class="separator:aba65e884fac15d6159e0ae28722bd746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aede2324e2a08132ca9413add41fed40d"><td class="memItemLeft" align="right" valign="top"><a id="aede2324e2a08132ca9413add41fed40d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#aede2324e2a08132ca9413add41fed40d">CC2538_CSP_MCU_CTRL_MASK</a>&#160;&#160;&#160;(0x1)</td></tr>
+<tr class="memdesc:aede2324e2a08132ca9413add41fed40d"><td class="mdescLeft">&#160;</td><td class="mdescRight">MCU Ctrl mask. <br /></td></tr>
+<tr class="separator:aede2324e2a08132ca9413add41fed40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a1c230be78b1920579364a73bf32d6"><td class="memItemLeft" align="right" valign="top"><a id="ae2a1c230be78b1920579364a73bf32d6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ae2a1c230be78b1920579364a73bf32d6">CC2538_CSP_INCMAXY_MAX_MASK</a>&#160;&#160;&#160;(0x7)</td></tr>
+<tr class="memdesc:ae2a1c230be78b1920579364a73bf32d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSP INCMAXY instruction (increment Register CSPX without exceeding CSPY) <br /></td></tr>
+<tr class="separator:ae2a1c230be78b1920579364a73bf32d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d5998cfccda32e90a72b42f86d8361"><td class="memItemLeft" align="right" valign="top"><a id="a49d5998cfccda32e90a72b42f86d8361"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a49d5998cfccda32e90a72b42f86d8361">CC2538_RXENABLE_RXON_MASK</a>&#160;&#160;&#160;(0x80)</td></tr>
+<tr class="memdesc:a49d5998cfccda32e90a72b42f86d8361"><td class="mdescLeft">&#160;</td><td class="mdescRight">RX on mask. <br /></td></tr>
+<tr class="separator:a49d5998cfccda32e90a72b42f86d8361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba059ccaad2493ce1c9dce17a11cbd59"><td class="memItemLeft" align="right" valign="top"><a id="aba059ccaad2493ce1c9dce17a11cbd59"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#aba059ccaad2493ce1c9dce17a11cbd59">CC2538_RSSI_OFFSET</a>&#160;&#160;&#160;(-73)</td></tr>
+<tr class="memdesc:aba059ccaad2493ce1c9dce17a11cbd59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal strength offset value. <br /></td></tr>
+<tr class="separator:aba059ccaad2493ce1c9dce17a11cbd59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbe37675b8bac2d45ddb79ef4a4ccfb4"><td class="memItemLeft" align="right" valign="top"><a id="afbe37675b8bac2d45ddb79ef4a4ccfb4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#afbe37675b8bac2d45ddb79ef4a4ccfb4">CC2538_RF_SENSITIVITY</a>&#160;&#160;&#160;(-97)</td></tr>
+<tr class="memdesc:afbe37675b8bac2d45ddb79ef4a4ccfb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">dBm typical, normal conditions <br /></td></tr>
+<tr class="separator:afbe37675b8bac2d45ddb79ef4a4ccfb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbf1abf8bb053b4c73dcc49ea613c4dc"><td class="memItemLeft" align="right" valign="top"><a id="acbf1abf8bb053b4c73dcc49ea613c4dc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#acbf1abf8bb053b4c73dcc49ea613c4dc">CC2538_ACCEPT_FT_0_BEACON</a>&#160;&#160;&#160;(1 &lt;&lt; 3)</td></tr>
+<tr class="memdesc:acbf1abf8bb053b4c73dcc49ea613c4dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable or disable the BEACON filter <br /></td></tr>
+<tr class="separator:acbf1abf8bb053b4c73dcc49ea613c4dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97e7af215e861cfffd4c73aab3436dfa"><td class="memItemLeft" align="right" valign="top"><a id="a97e7af215e861cfffd4c73aab3436dfa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a97e7af215e861cfffd4c73aab3436dfa">CC2538_ACCEPT_FT_1_DATA</a>&#160;&#160;&#160;(1 &lt;&lt; 4)</td></tr>
+<tr class="memdesc:a97e7af215e861cfffd4c73aab3436dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable or disable the DATA filter <br /></td></tr>
+<tr class="separator:a97e7af215e861cfffd4c73aab3436dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac255c85eab86d809b1716a35b02af33f"><td class="memItemLeft" align="right" valign="top"><a id="ac255c85eab86d809b1716a35b02af33f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ac255c85eab86d809b1716a35b02af33f">CC2538_ACCEPT_FT_2_ACK</a>&#160;&#160;&#160;(1 &lt;&lt; 5)</td></tr>
+<tr class="memdesc:ac255c85eab86d809b1716a35b02af33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable or disable the ACK filter <br /></td></tr>
+<tr class="separator:ac255c85eab86d809b1716a35b02af33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5294d51185f28ec30320f3891c2420b4"><td class="memItemLeft" align="right" valign="top"><a id="a5294d51185f28ec30320f3891c2420b4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a5294d51185f28ec30320f3891c2420b4">CC2538_ACCEPT_FT_3_CMD</a>&#160;&#160;&#160;(1 &lt;&lt; 6)</td></tr>
+<tr class="memdesc:a5294d51185f28ec30320f3891c2420b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable or disable the CMD filter <br /></td></tr>
+<tr class="separator:a5294d51185f28ec30320f3891c2420b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac223edf9397cd6833d168617c7744f03"><td class="memItemLeft" align="right" valign="top"><a id="ac223edf9397cd6833d168617c7744f03"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ac223edf9397cd6833d168617c7744f03">CC2538_STATE_SFD_WAIT_RANGE_MIN</a>&#160;&#160;&#160;(0x03U)</td></tr>
+<tr class="memdesc:ac223edf9397cd6833d168617c7744f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">min range value of SFD wait state <br /></td></tr>
+<tr class="separator:ac223edf9397cd6833d168617c7744f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d01a0630b10f6b30b4800025626159"><td class="memItemLeft" align="right" valign="top"><a id="af0d01a0630b10f6b30b4800025626159"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#af0d01a0630b10f6b30b4800025626159">CC2538_STATE_SFD_WAIT_RANGE_MAX</a>&#160;&#160;&#160;(0x06U)</td></tr>
+<tr class="memdesc:af0d01a0630b10f6b30b4800025626159"><td class="mdescLeft">&#160;</td><td class="mdescRight">max range value of SFD wait state <br /></td></tr>
+<tr class="separator:af0d01a0630b10f6b30b4800025626159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84382eb977f98e244b67f391df81b15e"><td class="memItemLeft" align="right" valign="top"><a id="a84382eb977f98e244b67f391df81b15e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a84382eb977f98e244b67f391df81b15e">CC2538_FRMCTRL1_PENDING_OR_MASK</a>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="memdesc:a84382eb977f98e244b67f391df81b15e"><td class="mdescLeft">&#160;</td><td class="mdescRight">mask for enabling or disabling the frame pending bit <br /></td></tr>
+<tr class="separator:a84382eb977f98e244b67f391df81b15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9b53344b93e6bcdd64471d68e957a6"><td class="memItemLeft" align="right" valign="top"><a id="a6a9b53344b93e6bcdd64471d68e957a6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a6a9b53344b93e6bcdd64471d68e957a6">CC2538_FRMCTRL0_RX_MODE_DIS</a>&#160;&#160;&#160;(0xC)</td></tr>
+<tr class="memdesc:a6a9b53344b93e6bcdd64471d68e957a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">mask for disabling RX Chain during CCA <br /></td></tr>
+<tr class="separator:a6a9b53344b93e6bcdd64471d68e957a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af24ae8817b419f14ddbdab326a5b38f9"><td class="memItemLeft" align="right" valign="top"><a id="af24ae8817b419f14ddbdab326a5b38f9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RFCORE_ASSERT</b>(expr)&#160;&#160;&#160;(void)( (expr) || RFCORE_ASSERT_failure(#expr, __FUNCTION__, __LINE__) )</td></tr>
+<tr class="separator:af24ae8817b419f14ddbdab326a5b38f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1e18727821909d5284dde58ed7834b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>RFCORE_WAIT_UNTIL</b>(expr)</td></tr>
+<tr class="separator:aa1e18727821909d5284dde58ed7834b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b0b153e1a167d7e86a1810ce115cbc8"><td class="memItemLeft" align="right" valign="top"><a id="a6b0b153e1a167d7e86a1810ce115cbc8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RFCORE_FLUSH_RECEIVE_FIFO</b>()&#160;&#160;&#160;<a class="el" href="cc2538__rf__internal_8h.html#ae45905492bf5239cd78f99dc4418ea70">rfcore_strobe</a>(<a class="el" href="group__cpu__cc2538__rfcore.html#gga5d76b81b0ad4c19007a781d4edb8181fabf3ea990238f1091e78f97315b5b8b98">ISFLUSHRX</a>)</td></tr>
+<tr class="separator:a6b0b153e1a167d7e86a1810ce115cbc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ed278d0b27f57843a35faedaaee1f7a"><td class="memItemLeft" align="right" valign="top"><a id="a7ed278d0b27f57843a35faedaaee1f7a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ABS_DIFF</b>(x,  y)&#160;&#160;&#160;( ((x) &lt; (y))? ((y) - (x)) : ((x) - (y)) )</td></tr>
+<tr class="separator:a7ed278d0b27f57843a35faedaaee1f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a755b9c5bba2b27ad8ebb18e91ccc8d01"><td class="memItemLeft" align="right" valign="top"><a id="a755b9c5bba2b27ad8ebb18e91ccc8d01"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BOOLEAN</b>(x)&#160;&#160;&#160;( (x) != 0 )</td></tr>
+<tr class="separator:a755b9c5bba2b27ad8ebb18e91ccc8d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30c984add4da766f18737e88c810055b"><td class="memItemLeft" align="right" valign="top"><a id="a30c984add4da766f18737e88c810055b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>NOT</b>(x)&#160;&#160;&#160;( (x) == 0 )</td></tr>
+<tr class="separator:a30c984add4da766f18737e88c810055b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab08b2272f8fe0ddb29b1ba207958c07a"><td class="memItemLeft" align="right" valign="top"><a id="ab08b2272f8fe0ddb29b1ba207958c07a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>GET_BYTE</b>(buffer,  index)&#160;&#160;&#160;( (unsigned char*)(buffer) )[index]</td></tr>
+<tr class="separator:ab08b2272f8fe0ddb29b1ba207958c07a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a8ea58898cb58fc96013383d39f482c"><td class="memItemLeft" align="right" valign="top"><a id="a3a8ea58898cb58fc96013383d39f482c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BIT</b>(n)&#160;&#160;&#160;( 1 &lt;&lt; (n) )</td></tr>
+<tr class="separator:a3a8ea58898cb58fc96013383d39f482c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb49720dc49f7d4e4cf9adbf2948e409"><td class="memItemLeft" align="right" valign="top"><a id="adb49720dc49f7d4e4cf9adbf2948e409"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>FSM_STATE_IDLE</b> = 0
+, <b>FSM_STATE_RX_CALIBRATION</b> = 2
+, <b>FSM_STATE_TX_CALIBRATION</b> = 32
+ }</td></tr>
+<tr class="separator:adb49720dc49f7d4e4cf9adbf2948e409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae05225933a42f81e7c4a9fb286596f9"><td class="memItemLeft" align="right" valign="top"><a id="aae05225933a42f81e7c4a9fb286596f9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>STROBE_ERR</b> = BIT(6)
+, <b>TXUNDERF</b> = BIT(5)
+, <b>TXOVERF</b> = BIT(4)
+, <b>RXUNDERF</b> = BIT(3)
+, <br />
+&#160;&#160;<b>RXOVERF</b> = BIT(2)
+, <b>RXABO</b> = BIT(1)
+, <b>NLOCK</b> = BIT(0)
+<br />
+ }</td></tr>
+<tr class="memdesc:aae05225933a42f81e7c4a9fb286596f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">RFCORE_XREG_RFERRM bits. <br /></td></tr>
+<tr class="separator:aae05225933a42f81e7c4a9fb286596f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39fca1837c5ce7715cbf571669660c13"><td class="memItemLeft" align="right" valign="top"><a id="a39fca1837c5ce7715cbf571669660c13"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SET_RXENMASK_ON_TX</b> = BIT(0)
+, <b>IGNORE_TX_UNDERF</b> = BIT(1)
+, <b>PENDING_OR</b> = BIT(2)
+ }</td></tr>
+<tr class="memdesc:a39fca1837c5ce7715cbf571669660c13"><td class="mdescLeft">&#160;</td><td class="mdescRight">RFCORE_XREG_FRMCTRL0 bits. <br /></td></tr>
+<tr class="separator:a39fca1837c5ce7715cbf571669660c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf8fd5f0e57d456151c951e0f3715fc4"><td class="memItemLeft" align="right" valign="top"><a id="aaf8fd5f0e57d456151c951e0f3715fc4"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>ENERGY_SCAN</b> = BIT(4)
+, <b>AUTOACK</b> = BIT(5)
+, <b>AUTOCRC</b> = BIT(6)
+, <b>APPEND_DATA_MODE</b> = BIT(7)
+ }</td></tr>
+<tr class="memdesc:aaf8fd5f0e57d456151c951e0f3715fc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">RFCORE_XREG_FRMCTRL1 bits. <br /></td></tr>
+<tr class="separator:aaf8fd5f0e57d456151c951e0f3715fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94798fdadfbf49a7c658ace669a1d310"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>ACT_UNUSED</b> = BIT(0)
+, <a class="el" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aaee1f1a011603c0c6712d061776c2e94">SFD</a> = BIT(1)
+, <b>FIFOP</b> = BIT(2)
+, <b>SRC_MATCH_DONE</b> = BIT(3)
+, <br />
+&#160;&#160;<b>SRC_MATCH_FOUND</b> = BIT(4)
+, <b>FRAME_ACCEPTED</b> = BIT(5)
+, <a class="el" href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310aa0d55f120d999953660c1dd1707ed4ee">RXPKTDONE</a> = BIT(6)
+, <b>RXMASKZERO</b> = BIT(7)
+<br />
+ }</td></tr>
+<tr class="memdesc:a94798fdadfbf49a7c658ace669a1d310"><td class="mdescLeft">&#160;</td><td class="mdescRight">RFCORE_XREG_RFIRQM0 / RFCORE_XREG_RFIRQF0 bits.  <a href="cc2538__rf_8h.html#a94798fdadfbf49a7c658ace669a1d310">More...</a><br /></td></tr>
+<tr class="separator:a94798fdadfbf49a7c658ace669a1d310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4d5251432e1a9e6803c0240cc492e18"><td class="memItemLeft" align="right" valign="top"><a id="ae4d5251432e1a9e6803c0240cc492e18"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>TXACKDONE</b> = BIT(0)
+, <b>TXDONE</b> = BIT(1)
+, <b>RF_IDLE</b> = BIT(2)
+, <b>CSP_MANINT</b> = BIT(3)
+, <br />
+&#160;&#160;<b>CSP_STOP</b> = BIT(4)
+, <b>CSP_WAIT</b> = BIT(5)
+<br />
+ }</td></tr>
+<tr class="memdesc:ae4d5251432e1a9e6803c0240cc492e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">RFCORE_XREG_RFIRQM1 / RFCORE_XREG_RFIRQF1 bits. <br /></td></tr>
+<tr class="separator:ae4d5251432e1a9e6803c0240cc492e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ff5f2dff38e7639981794c43dc9167b"><td class="memItemLeft" align="right" valign="top"><a id="a7ff5f2dff38e7639981794c43dc9167b"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>rfc_obs_sig0</b> = 0
+, <b>rfc_obs_sig1</b> = 1
+, <b>rfc_obs_sig2</b> = 2
+ }</td></tr>
+<tr class="memdesc:a7ff5f2dff38e7639981794c43dc9167b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Values for use with CCTEST_OBSSELx registers. <br /></td></tr>
+<tr class="separator:a7ff5f2dff38e7639981794c43dc9167b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabfcbcb5ac86a1edac4035264bc7d2b8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a25cd3d32d6664dacd93e7fd4e967c2be">constant_value_0</a> = 0x00
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad20691a0614d7a5910fd6345354cf3ca">constant_value_1</a> = 0x01
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a7d07f933739549421065d5f7ba7c117d">rfc_sniff_data</a> = 0x08
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af2403c22e3787d6fb4ca2f7b2e5e630a">rfc_sniff_clk</a> = 0x09
+, <br />
+&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a0665f9ef2a151f2edcfa0e342783f790">rssi_valid</a> = 0x0c
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad1de7ea82a913c037c6a32541cb27f3d">demod_cca</a> = 0x0d
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a559afa1136a79016de3b0f7b56342ce9">sampled_cca</a> = 0x0e
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ab0a9b29ac1b6695793f57f131bfd8426">sfd_sync</a> = 0x0f
+, <br />
+&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af00086e0caf71da683b2a29c6b37a63a">tx_active</a> = 0x10
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a15d3bee6d7471f4f2c31675dcb05b444">rx_active</a> = 0x11
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af06c96be923d75d21d34e0edb7d5e414">ffctrl_fifo</a> = 0x12
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a8c798862fd8b21f272c6db6de1cb203d">ffctrl_fifop</a> = 0x13
+, <br />
+&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a09b77bfb5836e32d5a1ed7823a4ffca1">packet_done</a> = 0x14
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a7565984c49959e43ef718da7280d4a0d">rfc_xor_rand_i_q</a> = 0x16
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af187e9c79f69dede5aeb8cb3f433575d">rfc_rand_q</a> = 0x17
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a00a58141c36fa40ba3a72232ebdfbe89">rfc_rand_i</a> = 0x18
+, <br />
+&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af97e982ac28022601db4259c3c6d4382">lock_status</a> = 0x19
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8aab0256e7b1a7f24b4a6d5ccecb300089">pa_pd</a> = 0x20
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a05fe49d555f8f0a8a5385a8690f02c82">lna_pd</a> = 0x2a
+, <a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a18b72413eef3b883fe2e6e15d6373c6d">disabled</a> = 0xff
+<br />
+ }</td></tr>
+<tr class="memdesc:aabfcbcb5ac86a1edac4035264bc7d2b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Values for RFCORE_XREG_RFC_OBS_CTRLx registers.  <a href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8">More...</a><br /></td></tr>
+<tr class="separator:aabfcbcb5ac86a1edac4035264bc7d2b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RF CORE observable signals settings</h2></td></tr>
+<tr class="memitem:a320b0968e22fb05d99a7fea272b9bb8e"><td class="memItemLeft" align="right" valign="top"><a id="a320b0968e22fb05d99a7fea272b9bb8e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_CC2538_RF_OBS_0</b>&#160;&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8af00086e0caf71da683b2a29c6b37a63a">tx_active</a></td></tr>
+<tr class="separator:a320b0968e22fb05d99a7fea272b9bb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af84ef67fd5e5bc6788d7a679ffa65f0a"><td class="memItemLeft" align="right" valign="top"><a id="af84ef67fd5e5bc6788d7a679ffa65f0a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_CC2538_RF_OBS_1</b>&#160;&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a15d3bee6d7471f4f2c31675dcb05b444">rx_active</a></td></tr>
+<tr class="separator:af84ef67fd5e5bc6788d7a679ffa65f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bc4ab19bb75eaf112ece7f8535bb2e9"><td class="memItemLeft" align="right" valign="top"><a id="a3bc4ab19bb75eaf112ece7f8535bb2e9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_CC2538_RF_OBS_2</b>&#160;&#160;&#160;<a class="el" href="cc2538__rf_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a0665f9ef2a151f2edcfa0e342783f790">rssi_valid</a></td></tr>
+<tr class="separator:a3bc4ab19bb75eaf112ece7f8535bb2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a118145a14c9862d40630b3f7709d5d2a"><td class="memItemLeft" align="right" valign="top"><a id="a118145a14c9862d40630b3f7709d5d2a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_CC2538_RF_OBS_SIG_0_PCX</b>&#160;&#160;&#160;0   /* PC0 = LED_1 (red) */</td></tr>
+<tr class="separator:a118145a14c9862d40630b3f7709d5d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9faaa57dd819f94baad139b8c6e1b054"><td class="memItemLeft" align="right" valign="top"><a id="a9faaa57dd819f94baad139b8c6e1b054"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_CC2538_RF_OBS_SIG_1_PCX</b>&#160;&#160;&#160;1   /* PC0 = LED_2 (red) */</td></tr>
+<tr class="separator:a9faaa57dd819f94baad139b8c6e1b054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e796504ffad53a23beed3978c7e2e30"><td class="memItemLeft" align="right" valign="top"><a id="a0e796504ffad53a23beed3978c7e2e30"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_CC2538_RF_OBS_SIG_2_PCX</b>&#160;&#160;&#160;2   /* PC0 = LED_3 (red) */</td></tr>
+<tr class="separator:a0e796504ffad53a23beed3978c7e2e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a4e4f80376a68ef3ad750d03ebca596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a2a4e4f80376a68ef3ad750d03ebca596">cc2538_rf_hal_setup</a> (<a class="el" href="group__drivers__ieee802154__hal.html#ga4715febafac1cf09aab1cc3cdeb1460e">ieee802154_dev_t</a> *hal)</td></tr>
+<tr class="memdesc:a2a4e4f80376a68ef3ad750d03ebca596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup CC2538 in order to be used with the IEEE 802.15.4 Radio HAL.  <a href="cc2538__rf_8h.html#a2a4e4f80376a68ef3ad750d03ebca596">More...</a><br /></td></tr>
+<tr class="separator:a2a4e4f80376a68ef3ad750d03ebca596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a530a981b64d516e1cd3db486feeeac1d"><td class="memItemLeft" align="right" valign="top"><a id="a530a981b64d516e1cd3db486feeeac1d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a530a981b64d516e1cd3db486feeeac1d">cc2538_rf_enable_irq</a> (void)</td></tr>
+<tr class="memdesc:a530a981b64d516e1cd3db486feeeac1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable CC2538 RF IRQs. <br /></td></tr>
+<tr class="separator:a530a981b64d516e1cd3db486feeeac1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b84e9385b8173da18485ca6876ad0a3"><td class="memItemLeft" align="right" valign="top"><a id="a9b84e9385b8173da18485ca6876ad0a3"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a9b84e9385b8173da18485ca6876ad0a3">cc2538_rf_disable_irq</a> (void)</td></tr>
+<tr class="memdesc:a9b84e9385b8173da18485ca6876ad0a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable CC2538 RF IRQs. <br /></td></tr>
+<tr class="separator:a9b84e9385b8173da18485ca6876ad0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34909fde9d6674c0ee8004f99448bdf5"><td class="memItemLeft" align="right" valign="top"><a id="a34909fde9d6674c0ee8004f99448bdf5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a34909fde9d6674c0ee8004f99448bdf5">cc2538_irq_handler</a> (void)</td></tr>
+<tr class="memdesc:a34909fde9d6674c0ee8004f99448bdf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">IRQ handler for RF events. <br /></td></tr>
+<tr class="separator:a34909fde9d6674c0ee8004f99448bdf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ddc7753d61ea25b1fff7b1f6342f6e2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a3ddc7753d61ea25b1fff7b1f6342f6e2">cc2538_channel_clear</a> (void)</td></tr>
+<tr class="memdesc:a3ddc7753d61ea25b1fff7b1f6342f6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger a clear channel assessment.  <a href="cc2538__rf_8h.html#a3ddc7753d61ea25b1fff7b1f6342f6e2">More...</a><br /></td></tr>
+<tr class="separator:a3ddc7753d61ea25b1fff7b1f6342f6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1ca972b29e9a19a14b73d44671d3431"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ac1ca972b29e9a19a14b73d44671d3431">cc2538_get_addr_long</a> (uint8_t *addr)</td></tr>
+<tr class="memdesc:ac1ca972b29e9a19a14b73d44671d3431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured long address of the device.  <a href="cc2538__rf_8h.html#ac1ca972b29e9a19a14b73d44671d3431">More...</a><br /></td></tr>
+<tr class="separator:ac1ca972b29e9a19a14b73d44671d3431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99383a4343c6e2cae7eed187238595a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a99383a4343c6e2cae7eed187238595a9">cc2538_get_addr_short</a> (uint8_t *addr)</td></tr>
+<tr class="memdesc:a99383a4343c6e2cae7eed187238595a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured short address of the device.  <a href="cc2538__rf_8h.html#a99383a4343c6e2cae7eed187238595a9">More...</a><br /></td></tr>
+<tr class="separator:a99383a4343c6e2cae7eed187238595a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1371ec054f5647c073af3b2ae1cb680a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a1371ec054f5647c073af3b2ae1cb680a">cc2538_get_chan</a> (void)</td></tr>
+<tr class="memdesc:a1371ec054f5647c073af3b2ae1cb680a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured channel number of the device.  <a href="cc2538__rf_8h.html#a1371ec054f5647c073af3b2ae1cb680a">More...</a><br /></td></tr>
+<tr class="separator:a1371ec054f5647c073af3b2ae1cb680a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3af86647aeea6c7c25dcf2f064cefd9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#aa3af86647aeea6c7c25dcf2f064cefd9">cc2538_get_monitor</a> (void)</td></tr>
+<tr class="memdesc:aa3af86647aeea6c7c25dcf2f064cefd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if device is in monitor (promiscuous) mode.  <a href="cc2538__rf_8h.html#aa3af86647aeea6c7c25dcf2f064cefd9">More...</a><br /></td></tr>
+<tr class="separator:aa3af86647aeea6c7c25dcf2f064cefd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c220bd72a12667b37fa47ff1a122f40"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a6c220bd72a12667b37fa47ff1a122f40">cc2538_get_pan</a> (void)</td></tr>
+<tr class="memdesc:a6c220bd72a12667b37fa47ff1a122f40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured PAN ID of the device.  <a href="cc2538__rf_8h.html#a6c220bd72a12667b37fa47ff1a122f40">More...</a><br /></td></tr>
+<tr class="separator:a6c220bd72a12667b37fa47ff1a122f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f12118d0309ecb534f1172def074b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ae3f12118d0309ecb534f1172def074b8">cc2538_get_tx_power</a> (void)</td></tr>
+<tr class="memdesc:ae3f12118d0309ecb534f1172def074b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured transmission power of the device.  <a href="cc2538__rf_8h.html#ae3f12118d0309ecb534f1172def074b8">More...</a><br /></td></tr>
+<tr class="separator:ae3f12118d0309ecb534f1172def074b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c62669daed88843d2ad9d3e8794d0b1"><td class="memItemLeft" align="right" valign="top"><a id="a5c62669daed88843d2ad9d3e8794d0b1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a5c62669daed88843d2ad9d3e8794d0b1">cc2538_init</a> (void)</td></tr>
+<tr class="memdesc:a5c62669daed88843d2ad9d3e8794d0b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the CC2538 radio hardware. <br /></td></tr>
+<tr class="separator:a5c62669daed88843d2ad9d3e8794d0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d5c833f8a70e538eb6c43ccc8b16f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#aa0d5c833f8a70e538eb6c43ccc8b16f7">cc2538_is_on</a> (void)</td></tr>
+<tr class="memdesc:aa0d5c833f8a70e538eb6c43ccc8b16f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if device is active.  <a href="cc2538__rf_8h.html#aa0d5c833f8a70e538eb6c43ccc8b16f7">More...</a><br /></td></tr>
+<tr class="separator:aa0d5c833f8a70e538eb6c43ccc8b16f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cc22965870d6d55dc55eb812746498d"><td class="memItemLeft" align="right" valign="top"><a id="a1cc22965870d6d55dc55eb812746498d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a1cc22965870d6d55dc55eb812746498d">cc2538_off</a> (void)</td></tr>
+<tr class="memdesc:a1cc22965870d6d55dc55eb812746498d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivate the CC2538 radio device. <br /></td></tr>
+<tr class="separator:a1cc22965870d6d55dc55eb812746498d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d22aa35df304e9275d9d1fb83d3cfb"><td class="memItemLeft" align="right" valign="top"><a id="a23d22aa35df304e9275d9d1fb83d3cfb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a23d22aa35df304e9275d9d1fb83d3cfb">cc2538_on</a> (void)</td></tr>
+<tr class="memdesc:a23d22aa35df304e9275d9d1fb83d3cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate the CC2538 radio device. <br /></td></tr>
+<tr class="separator:a23d22aa35df304e9275d9d1fb83d3cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae5d370a453ba0c031df072f016eaa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#afae5d370a453ba0c031df072f016eaa0">cc2538_setup</a> (<a class="el" href="structcc2538__rf__t.html">cc2538_rf_t</a> *dev)</td></tr>
+<tr class="memdesc:afae5d370a453ba0c031df072f016eaa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup a CC2538 radio device.  <a href="cc2538__rf_8h.html#afae5d370a453ba0c031df072f016eaa0">More...</a><br /></td></tr>
+<tr class="separator:afae5d370a453ba0c031df072f016eaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fd5d635aa7597a5fc7080b9846d6246"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a3fd5d635aa7597a5fc7080b9846d6246">cc2538_set_addr_short</a> (const uint8_t *addr)</td></tr>
+<tr class="memdesc:a3fd5d635aa7597a5fc7080b9846d6246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the short address of the device.  <a href="cc2538__rf_8h.html#a3fd5d635aa7597a5fc7080b9846d6246">More...</a><br /></td></tr>
+<tr class="separator:a3fd5d635aa7597a5fc7080b9846d6246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec6aaee98184e643d348e3061578cfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a0ec6aaee98184e643d348e3061578cfc">cc2538_set_addr_long</a> (const uint8_t *addr)</td></tr>
+<tr class="memdesc:a0ec6aaee98184e643d348e3061578cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the long address of the device.  <a href="cc2538__rf_8h.html#a0ec6aaee98184e643d348e3061578cfc">More...</a><br /></td></tr>
+<tr class="separator:a0ec6aaee98184e643d348e3061578cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f3b4aff7aa2379af856129c586c6a05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a4f3b4aff7aa2379af856129c586c6a05">cc2538_set_chan</a> (unsigned int chan)</td></tr>
+<tr class="memdesc:a4f3b4aff7aa2379af856129c586c6a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the channel number of the device.  <a href="cc2538__rf_8h.html#a4f3b4aff7aa2379af856129c586c6a05">More...</a><br /></td></tr>
+<tr class="separator:a4f3b4aff7aa2379af856129c586c6a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab15ea1dd97c76e4d9d05438b8034159d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#ab15ea1dd97c76e4d9d05438b8034159d">cc2538_set_freq</a> (unsigned int MHz)</td></tr>
+<tr class="memdesc:ab15ea1dd97c76e4d9d05438b8034159d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the frequency of the device.  <a href="cc2538__rf_8h.html#ab15ea1dd97c76e4d9d05438b8034159d">More...</a><br /></td></tr>
+<tr class="separator:ab15ea1dd97c76e4d9d05438b8034159d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3377695a72994f27bf99c8a95a46d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a8e3377695a72994f27bf99c8a95a46d6">cc2538_set_monitor</a> (bool mode)</td></tr>
+<tr class="memdesc:a8e3377695a72994f27bf99c8a95a46d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable/disable monitor (promiscuous) mode for the device.  <a href="cc2538__rf_8h.html#a8e3377695a72994f27bf99c8a95a46d6">More...</a><br /></td></tr>
+<tr class="separator:a8e3377695a72994f27bf99c8a95a46d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a075dcfe2169c62559003081bd3c8c9cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a075dcfe2169c62559003081bd3c8c9cb">cc2538_set_pan</a> (uint16_t pan)</td></tr>
+<tr class="memdesc:a075dcfe2169c62559003081bd3c8c9cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the PAN ID of the device.  <a href="cc2538__rf_8h.html#a075dcfe2169c62559003081bd3c8c9cb">More...</a><br /></td></tr>
+<tr class="separator:a075dcfe2169c62559003081bd3c8c9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9930905a7483a3f2f6d90edfd81b05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#aab9930905a7483a3f2f6d90edfd81b05">cc2538_set_state</a> (<a class="el" href="structcc2538__rf__t.html">cc2538_rf_t</a> *dev, <a class="el" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a> state)</td></tr>
+<tr class="memdesc:aab9930905a7483a3f2f6d90edfd81b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the state of the device.  <a href="cc2538__rf_8h.html#aab9930905a7483a3f2f6d90edfd81b05">More...</a><br /></td></tr>
+<tr class="separator:aab9930905a7483a3f2f6d90edfd81b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0ec680bbeca76e6be1e421de2f0b34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cc2538__rf_8h.html#a6d0ec680bbeca76e6be1e421de2f0b34">cc2538_set_tx_power</a> (int dBm)</td></tr>
+<tr class="memdesc:a6d0ec680bbeca76e6be1e421de2f0b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the transmission power for the device.  <a href="cc2538__rf_8h.html#a6d0ec680bbeca76e6be1e421de2f0b34">More...</a><br /></td></tr>
+<tr class="separator:a6d0ec680bbeca76e6be1e421de2f0b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a52fc2e7050133f9404300f33dc4acc1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52fc2e7050133f9404300f33dc4acc1d">&#9670;&nbsp;</a></span>IEEE802154_MAX_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IEEE802154_MAX_FREQ&#160;&#160;&#160;(2480)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Max. </p>
+<p>frequency (2480 MHz) </p>
+
+</div>
+</div>
+<a id="a1a2605a47cff9eea1bc74101a8d189ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a2605a47cff9eea1bc74101a8d189ca">&#9670;&nbsp;</a></span>IEEE802154_MIN_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IEEE802154_MIN_FREQ&#160;&#160;&#160;(2405)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Min. </p>
+<p>frequency (2405 MHz) </p>
+
+</div>
+</div>
+<a id="aa1e18727821909d5284dde58ed7834b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e18727821909d5284dde58ed7834b2">&#9670;&nbsp;</a></span>RFCORE_WAIT_UNTIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RFCORE_WAIT_UNTIL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">expr</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">while</span> (!(expr)) {                                        \</div>
+<div class="line">    DEBUG(<span class="stringliteral">&quot;RFCORE_WAIT_UNTIL(%s) at line %u in %s()\n&quot;</span>, #expr, __LINE__, __FUNCTION__);  \</div>
+<div class="line">    thread_yield();                                                                      \</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a94798fdadfbf49a7c658ace669a1d310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94798fdadfbf49a7c658ace669a1d310">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RFCORE_XREG_RFIRQM0 / RFCORE_XREG_RFIRQF0 bits. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a94798fdadfbf49a7c658ace669a1d310aaee1f1a011603c0c6712d061776c2e94"></a>SFD&#160;</td><td class="fielddoc"><p>Start of frame event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a94798fdadfbf49a7c658ace669a1d310aa0d55f120d999953660c1dd1707ed4ee"></a>RXPKTDONE&#160;</td><td class="fielddoc"><p>End of frame event. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="aabfcbcb5ac86a1edac4035264bc7d2b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabfcbcb5ac86a1edac4035264bc7d2b8">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Values for RFCORE_XREG_RFC_OBS_CTRLx registers. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a25cd3d32d6664dacd93e7fd4e967c2be"></a>constant_value_0&#160;</td><td class="fielddoc"><p>Constant value 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8ad20691a0614d7a5910fd6345354cf3ca"></a>constant_value_1&#160;</td><td class="fielddoc"><p>Constant value 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a7d07f933739549421065d5f7ba7c117d"></a>rfc_sniff_data&#160;</td><td class="fielddoc"><p>Data from packet sniffer. </p>
+<p>Sample data on rising edges of sniff_clk. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8af2403c22e3787d6fb4ca2f7b2e5e630a"></a>rfc_sniff_clk&#160;</td><td class="fielddoc"><p>250kHz clock for packet sniffer data. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a0665f9ef2a151f2edcfa0e342783f790"></a>rssi_valid&#160;</td><td class="fielddoc"><p>Pin is high when the RSSI value has been updated at least once since RX was started. </p>
+<p>Cleared when leaving RX. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8ad1de7ea82a913c037c6a32541cb27f3d"></a>demod_cca&#160;</td><td class="fielddoc"><p>Clear channel assessment. </p>
+<p>See FSMSTAT1 register for details on how to configure the behavior of this signal. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a559afa1136a79016de3b0f7b56342ce9"></a>sampled_cca&#160;</td><td class="fielddoc"><p>A sampled version of the CCA bit from demodulator. </p>
+<p>The value is updated whenever a SSAMPLECCA or STXONCCA strobe is issued. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8ab0a9b29ac1b6695793f57f131bfd8426"></a>sfd_sync&#160;</td><td class="fielddoc"><p>Pin is high when a SFD has been received or transmitted. </p>
+<p>Cleared when leaving RX/TX respectively. Not to be confused with the SFD exception. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8af00086e0caf71da683b2a29c6b37a63a"></a>tx_active&#160;</td><td class="fielddoc"><p>Indicates that FFCTRL is in one of the TX states. </p>
+<p>Active-high. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a15d3bee6d7471f4f2c31675dcb05b444"></a>rx_active&#160;</td><td class="fielddoc"><p>Indicates that FFCTRL is in one of the RX states. </p>
+<p>Active-high. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8af06c96be923d75d21d34e0edb7d5e414"></a>ffctrl_fifo&#160;</td><td class="fielddoc"><p>Pin is high when one or more bytes are in the RXFIFO. </p>
+<p>Low during RXFIFO overflow. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a8c798862fd8b21f272c6db6de1cb203d"></a>ffctrl_fifop&#160;</td><td class="fielddoc"><p>Pin is high when the number of bytes in the RXFIFO exceeds the programmable threshold or at least one complete frame is in the RXFIFO. </p>
+<p>Also highduring RXFIFO overflow. Not to be confused with the FIFOP exception. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a09b77bfb5836e32d5a1ed7823a4ffca1"></a>packet_done&#160;</td><td class="fielddoc"><p>A complete frame has been received. </p>
+<p>I.e., the number of bytes set by the frame-length field has been received. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a7565984c49959e43ef718da7280d4a0d"></a>rfc_xor_rand_i_q&#160;</td><td class="fielddoc"><p>XOR between I and Q random outputs. </p>
+<p>Updated at 8 MHz. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8af187e9c79f69dede5aeb8cb3f433575d"></a>rfc_rand_q&#160;</td><td class="fielddoc"><p>Random data output from the Q channel of the receiver. </p>
+<p>Updated at 8 MHz. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a00a58141c36fa40ba3a72232ebdfbe89"></a>rfc_rand_i&#160;</td><td class="fielddoc"><p>Random data output from the I channel of the receiver. </p>
+<p>Updated at 8 MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8af97e982ac28022601db4259c3c6d4382"></a>lock_status&#160;</td><td class="fielddoc"><p>1 when PLL is in lock, otherwise 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8aab0256e7b1a7f24b4a6d5ccecb300089"></a>pa_pd&#160;</td><td class="fielddoc"><p>Power amplifier power-down signal. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a05fe49d555f8f0a8a5385a8690f02c82"></a>lna_pd&#160;</td><td class="fielddoc"><p>LNA power-down signal. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aabfcbcb5ac86a1edac4035264bc7d2b8a18b72413eef3b883fe2e6e15d6373c6d"></a>disabled&#160;</td><td class="fielddoc"><p>disabled </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a3ddc7753d61ea25b1fff7b1f6342f6e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ddc7753d61ea25b1fff7b1f6342f6e2">&#9670;&nbsp;</a></span>cc2538_channel_clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cc2538_channel_clear </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trigger a clear channel assessment. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if channel is clear </dd>
+<dd>
+False if channel is busy </dd></dl>
+
+</div>
+</div>
+<a id="ac1ca972b29e9a19a14b73d44671d3431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ca972b29e9a19a14b73d44671d3431">&#9670;&nbsp;</a></span>cc2538_get_addr_long()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_get_addr_long </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured long address of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">addr</td><td>The currently set (8-byte) long address </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a99383a4343c6e2cae7eed187238595a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99383a4343c6e2cae7eed187238595a9">&#9670;&nbsp;</a></span>cc2538_get_addr_short()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_get_addr_short </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured short address of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">addr</td><td>The currently set (2-byte) short address </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1371ec054f5647c073af3b2ae1cb680a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1371ec054f5647c073af3b2ae1cb680a">&#9670;&nbsp;</a></span>cc2538_get_chan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cc2538_get_chan </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured channel number of the device. </p>
+<dl class="section return"><dt>Returns</dt><dd>The currently set channel number </dd></dl>
+
+</div>
+</div>
+<a id="aa3af86647aeea6c7c25dcf2f064cefd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3af86647aeea6c7c25dcf2f064cefd9">&#9670;&nbsp;</a></span>cc2538_get_monitor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cc2538_get_monitor </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if device is in monitor (promiscuous) mode. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if device is in monitor mode </dd>
+<dd>
+False if device is not in monitor mode </dd></dl>
+
+</div>
+</div>
+<a id="a6c220bd72a12667b37fa47ff1a122f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c220bd72a12667b37fa47ff1a122f40">&#9670;&nbsp;</a></span>cc2538_get_pan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t cc2538_get_pan </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured PAN ID of the device. </p>
+<dl class="section return"><dt>Returns</dt><dd>The currently set PAN ID </dd></dl>
+
+</div>
+</div>
+<a id="ae3f12118d0309ecb534f1172def074b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f12118d0309ecb534f1172def074b8">&#9670;&nbsp;</a></span>cc2538_get_tx_power()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cc2538_get_tx_power </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the configured transmission power of the device. </p>
+<dl class="section return"><dt>Returns</dt><dd>The currently configured transmission power in dBm </dd></dl>
+
+</div>
+</div>
+<a id="aa0d5c833f8a70e538eb6c43ccc8b16f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d5c833f8a70e538eb6c43ccc8b16f7">&#9670;&nbsp;</a></span>cc2538_is_on()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cc2538_is_on </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if device is active. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if device is active </dd>
+<dd>
+False if device is not active </dd></dl>
+
+</div>
+</div>
+<a id="a2a4e4f80376a68ef3ad750d03ebca596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a4e4f80376a68ef3ad750d03ebca596">&#9670;&nbsp;</a></span>cc2538_rf_hal_setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_rf_hal_setup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__drivers__ieee802154__hal.html#ga4715febafac1cf09aab1cc3cdeb1460e">ieee802154_dev_t</a> *&#160;</td>
+          <td class="paramname"><em>hal</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setup CC2538 in order to be used with the IEEE 802.15.4 Radio HAL. </p>
+<dl class="section note"><dt>Note</dt><dd>This functions MUST be called before <a class="el" href="cc2538__rf_8h.html#a5c62669daed88843d2ad9d3e8794d0b1">cc2538_init</a>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hal</td><td>pointer to the HAL descriptor associated to the device. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0ec6aaee98184e643d348e3061578cfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ec6aaee98184e643d348e3061578cfc">&#9670;&nbsp;</a></span>cc2538_set_addr_long()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_addr_long </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the long address of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>(8-byte) short address to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3fd5d635aa7597a5fc7080b9846d6246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fd5d635aa7597a5fc7080b9846d6246">&#9670;&nbsp;</a></span>cc2538_set_addr_short()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_addr_short </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the short address of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>(2-byte) short address to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4f3b4aff7aa2379af856129c586c6a05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f3b4aff7aa2379af856129c586c6a05">&#9670;&nbsp;</a></span>cc2538_set_chan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_chan </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>chan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the channel number of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">chan</td><td>Channel number to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab15ea1dd97c76e4d9d05438b8034159d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab15ea1dd97c76e4d9d05438b8034159d">&#9670;&nbsp;</a></span>cc2538_set_freq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_freq </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>MHz</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the frequency of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">MHz</td><td>Frequency to set in MHz </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8e3377695a72994f27bf99c8a95a46d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e3377695a72994f27bf99c8a95a46d6">&#9670;&nbsp;</a></span>cc2538_set_monitor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_monitor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable/disable monitor (promiscuous) mode for the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>True for enable, false for disable </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a075dcfe2169c62559003081bd3c8c9cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a075dcfe2169c62559003081bd3c8c9cb">&#9670;&nbsp;</a></span>cc2538_set_pan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_pan </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>pan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the PAN ID of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pan</td><td>PAN ID to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aab9930905a7483a3f2f6d90edfd81b05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab9930905a7483a3f2f6d90edfd81b05">&#9670;&nbsp;</a></span>cc2538_set_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2538__rf__t.html">cc2538_rf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__net__netopt.html#ga796283228e6d45c83479d4c9cc83374f">netopt_state_t</a>&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the state of the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dev</td><td>Device descriptor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>State to set device to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6d0ec680bbeca76e6be1e421de2f0b34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d0ec680bbeca76e6be1e421de2f0b34">&#9670;&nbsp;</a></span>cc2538_set_tx_power()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_set_tx_power </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dBm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the transmission power for the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dBm</td><td>Transmission power to set in dBm </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afae5d370a453ba0c031df072f016eaa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afae5d370a453ba0c031df072f016eaa0">&#9670;&nbsp;</a></span>cc2538_setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cc2538_setup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcc2538__rf__t.html">cc2538_rf_t</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setup a CC2538 radio device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dev</td><td>Device descriptor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_7a001c762ad797b9c41c11fadba7b7c6.html">cc2538</a></li><li class="navelem"><a class="el" href="dir_75b790e88f67ebc1b667ef8a22fb9ef0.html">include</a></li><li class="navelem"><a class="el" href="cc2538__rf_8h.html">cc2538_rf.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

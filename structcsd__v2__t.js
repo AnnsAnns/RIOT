@@ -1,0 +1,27 @@
+var structcsd__v2__t =
+[
+    [ "C_SIZE", "structcsd__v2__t.html#a01a8e05ebb4f60b5d4d53ff5cb3ca52a", null ],
+    [ "CCC", "structcsd__v2__t.html#a92d72909802d1be72bce406c46baaa7e", null ],
+    [ "COPY", "structcsd__v2__t.html#a901475e713b6a9594712d93ddac5f273", null ],
+    [ "CSD_CRC", "structcsd__v2__t.html#a8f9ade6e824891c61f258c8cca1e0808", null ],
+    [ "CSD_STRUCTURE", "structcsd__v2__t.html#a38b0529d1db73a379ce6767fabe17586", null ],
+    [ "DSR_IMP", "structcsd__v2__t.html#afe4b7421783d33e6c6fddf6648cc6931", null ],
+    [ "ERASE_BLK_EN", "structcsd__v2__t.html#a6bf6a73a94e2f678ce0e73883793fe84", null ],
+    [ "FILE_FORMAT", "structcsd__v2__t.html#ae8c4e7d6b8f7cee0e6979a6778db2d8e", null ],
+    [ "FILE_FORMAT_GRP", "structcsd__v2__t.html#a4bcf9f27d7ec44fd59e785e43b32318c", null ],
+    [ "NSAC", "structcsd__v2__t.html#aa78b660c7bb7654bdc66d92a4aeb39a3", null ],
+    [ "PERM_WRITE_PROTECT", "structcsd__v2__t.html#ac7b327c5e297b52f473ea272fe70b70b", null ],
+    [ "R2W_FACTOR", "structcsd__v2__t.html#a3024edeb549fb42bbebc9400d80d8bcf", null ],
+    [ "READ_BL_LEN", "structcsd__v2__t.html#a4899eccb2b3ca9e4e55976e03e51ce54", null ],
+    [ "READ_BL_PARTIAL", "structcsd__v2__t.html#a391dd8b04ec4bc21441ea09d82927649", null ],
+    [ "READ_BLK_MISALIGN", "structcsd__v2__t.html#a00319acef7af3819d29b7b5486cc4065", null ],
+    [ "SECTOR_SIZE", "structcsd__v2__t.html#ad5c7f56213da22656d1746bb35f4ba67", null ],
+    [ "TAAC", "structcsd__v2__t.html#a2963d69570f831b7801eccb6066252b8", null ],
+    [ "TMP_WRITE_PROTECT", "structcsd__v2__t.html#aa35043b78f507da84abd087927f09329", null ],
+    [ "TRAN_SPEED", "structcsd__v2__t.html#a50171e91ea7df314e76444649c980903", null ],
+    [ "WP_GRP_ENABLE", "structcsd__v2__t.html#a15db4d751377a00e6f5e342b065f9d6a", null ],
+    [ "WP_GRP_SIZE", "structcsd__v2__t.html#ac9b15eff19ee9164c9629547f713aaac", null ],
+    [ "WRITE_BL_LEN", "structcsd__v2__t.html#a787eebb5074e58abffbabcd4fd80e411", null ],
+    [ "WRITE_BL_PARTIAL", "structcsd__v2__t.html#adc7dfd11b2e4cd9aa3076d1ed2011305", null ],
+    [ "WRITE_BLK_MISALIGN", "structcsd__v2__t.html#a7d7bad3389c11e2c9f40f7ce70e27ce5", null ]
+];

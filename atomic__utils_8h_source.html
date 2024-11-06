@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: sys/include/atomic_utils.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('atomic__utils_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">atomic_utils.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="atomic__utils_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2020 Otto-von-Guericke-Universität Magdeburg</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser General</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Public License v2.1. See the file LICENSE in the top level directory for more</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#ifndef ATOMIC_UTILS_H</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#define ATOMIC_UTILS_H</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="irq_8h.html">irq.h</a>&quot;</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="core_2lib_2include_2macros_2utils_8h.html">macros/utils.h</a>&quot;</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sched_8h.html">sched.h</a>&quot;</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#include &quot;atomic_utils_arch.h&quot;</span> <span class="comment">/* IWYU pragma: export */</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">/* Declarations and documentation: */</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#if !defined(HAS_ATOMIC_BIT) || defined(DOXYGEN)</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="structatomic__bit__u8__t.html">  173</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="structatomic__bit__u8__t.html#aa097a4651c0d347170fe4b52042c5352">  174</a></span>&#160;    <span class="keyword">volatile</span> uint8_t *<a class="code" href="structatomic__bit__u8__t.html#aa097a4651c0d347170fe4b52042c5352">dest</a>;     </div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="structatomic__bit__u8__t.html#a5f186fa960a9d5c5118d768d9fe4f69b">  175</a></span>&#160;    uint8_t <a class="code" href="structatomic__bit__u8__t.html#a5f186fa960a9d5c5118d768d9fe4f69b">mask</a>;               </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;} <a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="structatomic__bit__u16__t.html">  183</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="structatomic__bit__u16__t.html#affd2e3903fb6095a55e44af43e42c8e3">  184</a></span>&#160;    <span class="keyword">volatile</span> uint16_t *<a class="code" href="structatomic__bit__u16__t.html#affd2e3903fb6095a55e44af43e42c8e3">dest</a>;    </div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="structatomic__bit__u16__t.html#a14477df4a4e9b040809976731cc7317b">  185</a></span>&#160;    uint16_t <a class="code" href="structatomic__bit__u16__t.html#a14477df4a4e9b040809976731cc7317b">mask</a>;              </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;} <a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a>;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="structatomic__bit__u32__t.html">  193</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="structatomic__bit__u32__t.html#acfd20f77e8b7612211c609ac9231bbd3">  194</a></span>&#160;    <span class="keyword">volatile</span> uint32_t *<a class="code" href="structatomic__bit__u32__t.html#acfd20f77e8b7612211c609ac9231bbd3">dest</a>;    </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="structatomic__bit__u32__t.html#adc13faf3fcc123da102c87e28854fdb4">  195</a></span>&#160;    uint32_t <a class="code" href="structatomic__bit__u32__t.html#adc13faf3fcc123da102c87e28854fdb4">mask</a>;              </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;} <a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a>;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="structatomic__bit__u64__t.html">  203</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="structatomic__bit__u64__t.html#a4383f143d7698b01d18a6c14e2d41e84">  204</a></span>&#160;    <span class="keyword">volatile</span> uint64_t *<a class="code" href="structatomic__bit__u64__t.html#a4383f143d7698b01d18a6c14e2d41e84">dest</a>;    </div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="structatomic__bit__u64__t.html#a9d27c39752574d59addef4a7aa0c14ec">  205</a></span>&#160;    uint64_t <a class="code" href="structatomic__bit__u64__t.html#a9d27c39752574d59addef4a7aa0c14ec">mask</a>;              </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;} <a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_BIT */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">  220</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">atomic_load_u8</a>(<span class="keyword">const</span> <span class="keyword">volatile</span> uint8_t *var);</div>
+<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">  227</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>(<span class="keyword">const</span> <span class="keyword">volatile</span> uint16_t *var);</div>
+<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">  234</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a>(<span class="keyword">const</span> <span class="keyword">volatile</span> uint32_t *var);</div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">  241</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">atomic_load_u64</a>(<span class="keyword">const</span> <span class="keyword">volatile</span> uint64_t *var);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaa6f3fc66add15028f5f1922ab3194ee6">  249</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t <a class="code" href="group__sys__atomic__utils.html#gaa6f3fc66add15028f5f1922ab3194ee6">atomic_load_uintptr</a>(<span class="keyword">const</span> <span class="keyword">volatile</span> uintptr_t *var) {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(uintptr_t) == 2) {</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>((<span class="keyword">const</span> <span class="keyword">volatile</span> uint16_t *)var);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    }</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(uintptr_t) == 4) {</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a>((<span class="keyword">const</span> <span class="keyword">volatile</span> uint32_t *)(uintptr_t)var);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">atomic_load_u64</a>((<span class="keyword">const</span> <span class="keyword">volatile</span> uint64_t *)(uintptr_t)var);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    }</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
+<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga56ebe57c50cfc76f3461e63d3791f939">  266</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> * <a class="code" href="group__sys__atomic__utils.html#ga56ebe57c50cfc76f3461e63d3791f939">atomic_load_ptr</a>(<span class="keywordtype">void</span> **ptr_addr) {</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordflow">return</span> (<span class="keywordtype">void</span> *)<a class="code" href="group__sys__atomic__utils.html#gaa6f3fc66add15028f5f1922ab3194ee6">atomic_load_uintptr</a>((<span class="keyword">const</span> <span class="keyword">volatile</span> uintptr_t *)ptr_addr);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;}</div>
+<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga3c423b52838e51949e622d8577236821">  275</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> <a class="code" href="group__sys__atomic__utils.html#ga3c423b52838e51949e622d8577236821">atomic_load_kernel_pid</a>(<span class="keyword">const</span> <span class="keyword">volatile</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> *var)</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;{</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>((<span class="keyword">const</span> <span class="keyword">volatile</span> uint16_t *)var);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;}</div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">  290</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">atomic_store_u8</a>(<span class="keyword">volatile</span> uint8_t *dest, uint8_t val);</div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">  296</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>(<span class="keyword">volatile</span> uint16_t *dest, uint16_t val);</div>
+<div class="line"><a name="l00302"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">  302</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a>(<span class="keyword">volatile</span> uint32_t *dest, uint32_t val);</div>
+<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">  308</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a>(<span class="keyword">volatile</span> uint64_t *dest, uint64_t val);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga050dee0814fa06784ebfc607964d522e">  316</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga050dee0814fa06784ebfc607964d522e">atomic_store_uintptr</a>(<span class="keyword">volatile</span> uintptr_t *dest, uintptr_t val)</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;{</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(uintptr_t) == 2) {</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>((<span class="keyword">volatile</span> uint16_t *)dest, (uint16_t)val);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    }</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(uintptr_t) == 4) {</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <a class="code" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a>((<span class="keyword">volatile</span> uint32_t *)(uintptr_t)dest, (uint32_t)val);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <a class="code" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a>((<span class="keyword">volatile</span> uint64_t *)(uintptr_t)dest, (uint64_t)val);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    }</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;}</div>
+<div class="line"><a name="l00334"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga499cca9d5c4a62eb2539f58889aaa195">  334</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga499cca9d5c4a62eb2539f58889aaa195">atomic_store_ptr</a>(<span class="keywordtype">void</span> **dest, <span class="keyword">const</span> <span class="keywordtype">void</span> *val) {</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga050dee0814fa06784ebfc607964d522e">atomic_store_uintptr</a>((<span class="keyword">volatile</span> uintptr_t *)dest, (uintptr_t)val);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;}</div>
+<div class="line"><a name="l00343"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaa3ffc256f5f691dd7c4bc4b228b0218c">  343</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gaa3ffc256f5f691dd7c4bc4b228b0218c">atomic_store_kernel_pid</a>(<span class="keyword">volatile</span> <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> *dest,</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                                           <a class="code" href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a> val)</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;{</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>((<span class="keyword">volatile</span> uint16_t *)dest, (uint16_t)val);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;}</div>
+<div class="line"><a name="l00360"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga98d8779c91048dc4bbf7b013534de56b">  360</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga98d8779c91048dc4bbf7b013534de56b">atomic_fetch_add_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                                          uint8_t summand);</div>
+<div class="line"><a name="l00368"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gacdd7092311ea266639aa45ae71c98def">  368</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gacdd7092311ea266639aa45ae71c98def">atomic_fetch_add_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                                            uint16_t summand);</div>
+<div class="line"><a name="l00376"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gadf0beb3d334bde60c06fb4e330fbf9a5">  376</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#gadf0beb3d334bde60c06fb4e330fbf9a5">atomic_fetch_add_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                                            uint32_t summand);</div>
+<div class="line"><a name="l00384"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaca63bbb25b6f67bc47d044b410290c30">  384</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gaca63bbb25b6f67bc47d044b410290c30">atomic_fetch_add_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                                            uint64_t summand);</div>
+<div class="line"><a name="l00399"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga9128f941b4e585d1b4a1a86eb5f663d0">  399</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga9128f941b4e585d1b4a1a86eb5f663d0">atomic_fetch_sub_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                                          uint8_t subtrahend);</div>
+<div class="line"><a name="l00408"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga8d79c3d9eb890a7575da196048ba0205">  408</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#ga8d79c3d9eb890a7575da196048ba0205">atomic_fetch_sub_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                                            uint16_t subtrahend);</div>
+<div class="line"><a name="l00417"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gab7a5bfe11b8ea7e308e8f9744a2331da">  417</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#gab7a5bfe11b8ea7e308e8f9744a2331da">atomic_fetch_sub_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                                            uint32_t subtrahend);</div>
+<div class="line"><a name="l00426"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga0af54addb942385ed3176716bc006966">  426</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga0af54addb942385ed3176716bc006966">atomic_fetch_sub_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                                            uint64_t subtrahend);</div>
+<div class="line"><a name="l00441"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaec0f6c89e898663b9049cff77d6ddf16">  441</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gaec0f6c89e898663b9049cff77d6ddf16">atomic_fetch_or_u8</a>(<span class="keyword">volatile</span> uint8_t *dest, uint8_t val);</div>
+<div class="line"><a name="l00449"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gab183daad2d00ed25784f205ec915f573">  449</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gab183daad2d00ed25784f205ec915f573">atomic_fetch_or_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;                                           uint16_t val);</div>
+<div class="line"><a name="l00458"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga131c08de50a9e23e20a4788f8e26ccde">  458</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga131c08de50a9e23e20a4788f8e26ccde">atomic_fetch_or_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                                           uint32_t val);</div>
+<div class="line"><a name="l00467"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gad5c54834f49694d0b1fa5869e008344d">  467</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gad5c54834f49694d0b1fa5869e008344d">atomic_fetch_or_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;                                           uint64_t val);</div>
+<div class="line"><a name="l00482"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga55f41fe2356aa8bfd80aad7ac7b7cac6">  482</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga55f41fe2356aa8bfd80aad7ac7b7cac6">atomic_fetch_xor_u8</a>(<span class="keyword">volatile</span> uint8_t *dest, uint8_t val);</div>
+<div class="line"><a name="l00490"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga715457fef2f6e24fe86dbd36daa05019">  490</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#ga715457fef2f6e24fe86dbd36daa05019">atomic_fetch_xor_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;                                            uint16_t val);</div>
+<div class="line"><a name="l00499"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga2339ca165daf44204a2070a0e3f82f22">  499</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga2339ca165daf44204a2070a0e3f82f22">atomic_fetch_xor_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;                                            uint32_t val);</div>
+<div class="line"><a name="l00508"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga791456f405637a456f2b85b16b846a81">  508</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga791456f405637a456f2b85b16b846a81">atomic_fetch_xor_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;                                            uint64_t val);</div>
+<div class="line"><a name="l00523"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaff50a0b7e25e6d10b6d95dc7f5435488">  523</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gaff50a0b7e25e6d10b6d95dc7f5435488">atomic_fetch_and_u8</a>(<span class="keyword">volatile</span> uint8_t *dest, uint8_t val);</div>
+<div class="line"><a name="l00531"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga405d85816ea2c0c3b03820050031960d">  531</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#ga405d85816ea2c0c3b03820050031960d">atomic_fetch_and_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;                                            uint16_t val);</div>
+<div class="line"><a name="l00540"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga3f2485e762f436c20331cef755fb2c13">  540</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga3f2485e762f436c20331cef755fb2c13">atomic_fetch_and_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;                                            uint32_t val);</div>
+<div class="line"><a name="l00549"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga698263e6cced0de707029b6042c6f1e6">  549</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga698263e6cced0de707029b6042c6f1e6">atomic_fetch_and_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;                                            uint64_t val);</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a> <a class="code" href="group__sys__atomic__utils.html#ga86a1367995c36e9729a2ecda96ea9f66">atomic_bit_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;                                            uint8_t bit);</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160; </div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a> <a class="code" href="group__sys__atomic__utils.html#gaa9f37b941acf90692d08eb13146f819a">atomic_bit_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;                                              uint8_t bit);</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160; </div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a> <a class="code" href="group__sys__atomic__utils.html#ga0a784356c75ac1f43ba2fc6599aa5e6c">atomic_bit_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                                              uint8_t bit);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160; </div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a> <a class="code" href="group__sys__atomic__utils.html#ga21b59a4c9479506ca74ac9d8e8f3ddd4">atomic_bit_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                                              uint8_t bit);</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga199980adf140101189b6a0fa8dcc5283">atomic_set_bit_u8</a>(<a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a> bit);</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gad3c3152a9d61224300de93287d4cda0a">atomic_set_bit_u16</a>(<a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a> bit);</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gab2c4ea2f473b15fbdce32d0654831b65">atomic_set_bit_u32</a>(<a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a> bit);</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga7cb3b9469378572cbfe18aa64f30561b">atomic_set_bit_u64</a>(<a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a> bit);</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga7f7f2bb48633374855ee6b6701ecd01e">atomic_clear_bit_u8</a>(<a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a> bit);</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga996dea957e70fb0cb1da9a116a820936">atomic_clear_bit_u16</a>(<a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a> bit);</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga33683b1894e54fa1b9eb36ef796c804a">atomic_clear_bit_u32</a>(<a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a> bit);</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gac98e301876d6808872bc2088963473f8">atomic_clear_bit_u64</a>(<a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a> bit);</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga1d1d34bb953fe45fcc2e43dd8ddc3885">semi_atomic_fetch_add_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;                                               uint8_t summand);</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gabe61cf356b6c127884460cb987508171">semi_atomic_fetch_add_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;                                                 uint16_t summand);</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga39901421b9bf6b359bb0257e832880c1">semi_atomic_fetch_add_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                                                 uint32_t summand);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gac2a836839136a59ef03251075bd19ba8">semi_atomic_fetch_add_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;                                                 uint64_t summand);</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gad26b0339207074a0ad49b81c391c0e41">semi_atomic_fetch_sub_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;                                               uint8_t subtrahend);</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#ga8263e544da4d654b1c206e1c58989d92">semi_atomic_fetch_sub_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;                                                 uint16_t subtrahend);</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga92dac574e84e35e00251c3061984caf1">semi_atomic_fetch_sub_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;                                                 uint32_t subtrahend);</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gaa305db700cfc9829ab7567b2017a8d8b">semi_atomic_fetch_sub_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;                                                 uint64_t subtrahend);</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gad55c9178f7728789b5df488e0d072feb">semi_atomic_fetch_or_u8</a>(<span class="keyword">volatile</span> uint8_t *dest, uint8_t val);</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gad489e4aa47a7a2b65e98f92e7db5ddf4">semi_atomic_fetch_or_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;                                                uint16_t val);</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga8b6186ee820769a8690fa54c1ef20114">semi_atomic_fetch_or_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;                                                uint32_t val);</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga7a43827df551608a6f4752a0a39e35cc">semi_atomic_fetch_or_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                                                uint64_t val);</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga356c847e59bc2b77a21812ad3e802b1a">semi_atomic_fetch_xor_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;                                               uint8_t val);</div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gadfe6287272762d09665c32b2aea96f0f">semi_atomic_fetch_xor_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;                                                 uint16_t val);</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#gaaf5d40badca1890c02a0699b9b503fa7">semi_atomic_fetch_xor_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;                                                 uint32_t val);</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga7c8d72a0badde44bc11b9277c20853eb">semi_atomic_fetch_xor_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;                                                 uint64_t val);</div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gafb10eaf4983b5c6108b0b07cd792df68">semi_atomic_fetch_and_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                                               uint8_t val);</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gab670e8a4f1c30a82ca700e4ade75fd68">semi_atomic_fetch_and_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                                                 uint16_t val);</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga16650133d95d6bca9411e418174d7f0c">semi_atomic_fetch_and_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;                                                 uint32_t val);</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga9675deeb65ba867c180c1771978dc83d">semi_atomic_fetch_and_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;                                                 uint64_t val);</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;<span class="comment">/* Fallback implementations of atomic utility functions: */</span></div>
+<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160; </div>
+<div class="line"><a name="l00860"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga32397410318abfee61e671826748e6dd">  860</a></span>&#160;<span class="preprocessor">#define ATOMIC_LOAD_IMPL(name, type)                                           \</span></div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;<span class="preprocessor">    static inline type CONCAT(atomic_load_, name)(const volatile type *var)    \</span></div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;<span class="preprocessor">    {                                                                          \</span></div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;<span class="preprocessor">        unsigned state = irq_disable();                                        \</span></div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;<span class="preprocessor">        type result = *var;                                                    \</span></div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;<span class="preprocessor">        irq_restore(state);                                                    \</span></div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;<span class="preprocessor">        return result;                                                         \</span></div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160; </div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_LOAD_U8</span></div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga32397410318abfee61e671826748e6dd">ATOMIC_LOAD_IMPL</a>(u8, uint8_t)</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_LOAD_U16</span></div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga32397410318abfee61e671826748e6dd">ATOMIC_LOAD_IMPL</a>(u16, uint16_t)</div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_LOAD_U32</span></div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga32397410318abfee61e671826748e6dd">ATOMIC_LOAD_IMPL</a>(u32, uint32_t)</div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_LOAD_U64</span></div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga32397410318abfee61e671826748e6dd">ATOMIC_LOAD_IMPL</a>(u64, uint64_t)</div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160; </div>
+<div class="line"><a name="l00889"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaaeb8122ae7b12f7ae585b3b2a1940fbf">  889</a></span>&#160;<span class="preprocessor">#define ATOMIC_STORE_IMPL(name, type)                                          \</span></div>
+<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;<span class="preprocessor">    static inline void CONCAT(atomic_store_, name)                             \</span></div>
+<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;<span class="preprocessor">            (volatile type *dest, type val)                                    \</span></div>
+<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;<span class="preprocessor">    {                                                                          \</span></div>
+<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;<span class="preprocessor">        unsigned state = irq_disable();                                        \</span></div>
+<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;<span class="preprocessor">        *dest = val;                                                           \</span></div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;<span class="preprocessor">        irq_restore(state);                                                    \</span></div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160; </div>
+<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_STORE_U8</span></div>
+<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;<a class="code" href="group__sys__atomic__utils.html#gaaeb8122ae7b12f7ae585b3b2a1940fbf">ATOMIC_STORE_IMPL</a>(u8, uint8_t)</div>
+<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_STORE_U16</span></div>
+<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;<a class="code" href="group__sys__atomic__utils.html#gaaeb8122ae7b12f7ae585b3b2a1940fbf">ATOMIC_STORE_IMPL</a>(u16, uint16_t)</div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_STORE_U32</span></div>
+<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;<a class="code" href="group__sys__atomic__utils.html#gaaeb8122ae7b12f7ae585b3b2a1940fbf">ATOMIC_STORE_IMPL</a>(u32, uint32_t)</div>
+<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_STORE_U64</span></div>
+<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;<a class="code" href="group__sys__atomic__utils.html#gaaeb8122ae7b12f7ae585b3b2a1940fbf">ATOMIC_STORE_IMPL</a>(u64, uint64_t)</div>
+<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160; </div>
+<div class="line"><a name="l00920"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">  920</a></span>&#160;<span class="preprocessor">#define ATOMIC_FETCH_OP_IMPL(opname, op, name, type)                           \</span></div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;<span class="preprocessor">    static inline type CONCAT4(atomic_fetch_, opname, _, name)                 \</span></div>
+<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;<span class="preprocessor">            (volatile type *dest, type val)                                    \</span></div>
+<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;<span class="preprocessor">    {                                                                          \</span></div>
+<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;<span class="preprocessor">        unsigned state = irq_disable();                                        \</span></div>
+<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;<span class="preprocessor">        const type result = *dest;                                             \</span></div>
+<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;<span class="preprocessor">        *dest = result op val;                                                 \</span></div>
+<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;<span class="preprocessor">        irq_restore(state);                                                    \</span></div>
+<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;<span class="preprocessor">        return result;                                                         \</span></div>
+<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160; </div>
+<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_ADD_U8</span></div>
+<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(add, +, u8, uint8_t)</div>
+<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_ADD_U16</span></div>
+<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(add, +, u16, uint16_t)</div>
+<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_ADD_U32</span></div>
+<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(add, +, u32, uint32_t)</div>
+<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_ADD_U64</span></div>
+<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(add, +, u64, uint64_t)</div>
+<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160; </div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_SUB_U8</span></div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(sub, -, u8, uint8_t)</div>
+<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_SUB_U16</span></div>
+<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(sub, -, u16, uint16_t)</div>
+<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_SUB_U32</span></div>
+<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(sub, -, u32, uint32_t)</div>
+<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_SUB_U64</span></div>
+<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(sub, -, u64, uint64_t)</div>
+<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160; </div>
+<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_OR_U8</span></div>
+<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(or, |, u8, uint8_t)</div>
+<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_OR_U16</span></div>
+<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(or, |, u16, uint16_t)</div>
+<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_OR_U32</span></div>
+<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(or, |, u32, uint32_t)</div>
+<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_OR_U64</span></div>
+<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(or, |, u64, uint64_t)</div>
+<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160; </div>
+<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_XOR_U8</span></div>
+<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(xor, ^, u8, uint8_t)</div>
+<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_XOR_U16</span></div>
+<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(xor, ^, u16, uint16_t)</div>
+<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_XOR_U32</span></div>
+<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(xor, ^, u32, uint32_t)</div>
+<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_XOR_U64</span></div>
+<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(xor, ^, u64, uint64_t)</div>
+<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160; </div>
+<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_AND_U8</span></div>
+<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(and, &amp;, u8, uint8_t)</div>
+<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_AND_U16</span></div>
+<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(and, &amp;, u16, uint16_t)</div>
+<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_AND_U32</span></div>
+<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(and, &amp;, u32, uint32_t)</div>
+<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_FETCH_AND_U64</span></div>
+<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;<a class="code" href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a>(and, &amp;, u64, uint64_t)</div>
+<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160; </div>
+<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;<span class="preprocessor">#ifndef HAS_ATOMIC_BIT</span></div>
+<div class="line"><a name="l00997"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga86a1367995c36e9729a2ecda96ea9f66">  997</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a> <a class="code" href="group__sys__atomic__utils.html#ga86a1367995c36e9729a2ecda96ea9f66">atomic_bit_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;                                            uint8_t bit)</div>
+<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;{</div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;    <a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a> result = { .<a class="code" href="structatomic__bit__u8__t.html#aa097a4651c0d347170fe4b52042c5352">dest</a> = dest, .mask = 1U &lt;&lt; bit };</div>
+<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;}</div>
+<div class="line"><a name="l01003"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaa9f37b941acf90692d08eb13146f819a"> 1003</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a> <a class="code" href="group__sys__atomic__utils.html#gaa9f37b941acf90692d08eb13146f819a">atomic_bit_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;                                              uint8_t bit)</div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;{</div>
+<div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;    <a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a> result = { .<a class="code" href="structatomic__bit__u16__t.html#affd2e3903fb6095a55e44af43e42c8e3">dest</a> = dest, .mask = 1U &lt;&lt; bit };</div>
+<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;}</div>
+<div class="line"><a name="l01009"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga0a784356c75ac1f43ba2fc6599aa5e6c"> 1009</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a> <a class="code" href="group__sys__atomic__utils.html#ga0a784356c75ac1f43ba2fc6599aa5e6c">atomic_bit_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;                                              uint8_t bit)</div>
+<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;{</div>
+<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;    <a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a> result = { .<a class="code" href="structatomic__bit__u32__t.html#acfd20f77e8b7612211c609ac9231bbd3">dest</a> = dest, .mask = 1UL &lt;&lt; bit };</div>
+<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;}</div>
+<div class="line"><a name="l01015"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga21b59a4c9479506ca74ac9d8e8f3ddd4"> 1015</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a> <a class="code" href="group__sys__atomic__utils.html#ga21b59a4c9479506ca74ac9d8e8f3ddd4">atomic_bit_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;                                              uint8_t bit)</div>
+<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;{</div>
+<div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160;    <a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a> result = { .<a class="code" href="structatomic__bit__u64__t.html#a4383f143d7698b01d18a6c14e2d41e84">dest</a> = dest, .mask = 1ULL &lt;&lt; bit };</div>
+<div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;}</div>
+<div class="line"><a name="l01021"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga199980adf140101189b6a0fa8dcc5283"> 1021</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga199980adf140101189b6a0fa8dcc5283">atomic_set_bit_u8</a>(<a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a> bit)</div>
+<div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;{</div>
+<div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaec0f6c89e898663b9049cff77d6ddf16">atomic_fetch_or_u8</a>(bit.<a class="code" href="structatomic__bit__u8__t.html#aa097a4651c0d347170fe4b52042c5352">dest</a>, bit.<a class="code" href="structatomic__bit__u8__t.html#a5f186fa960a9d5c5118d768d9fe4f69b">mask</a>);</div>
+<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;}</div>
+<div class="line"><a name="l01025"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gad3c3152a9d61224300de93287d4cda0a"> 1025</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gad3c3152a9d61224300de93287d4cda0a">atomic_set_bit_u16</a>(<a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a> bit)</div>
+<div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160;{</div>
+<div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gab183daad2d00ed25784f205ec915f573">atomic_fetch_or_u16</a>(bit.<a class="code" href="structatomic__bit__u16__t.html#affd2e3903fb6095a55e44af43e42c8e3">dest</a>, bit.<a class="code" href="structatomic__bit__u16__t.html#a14477df4a4e9b040809976731cc7317b">mask</a>);</div>
+<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;}</div>
+<div class="line"><a name="l01029"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gab2c4ea2f473b15fbdce32d0654831b65"> 1029</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gab2c4ea2f473b15fbdce32d0654831b65">atomic_set_bit_u32</a>(<a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a> bit)</div>
+<div class="line"><a name="l01030"></a><span class="lineno"> 1030</span>&#160;{</div>
+<div class="line"><a name="l01031"></a><span class="lineno"> 1031</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga131c08de50a9e23e20a4788f8e26ccde">atomic_fetch_or_u32</a>(bit.<a class="code" href="structatomic__bit__u32__t.html#acfd20f77e8b7612211c609ac9231bbd3">dest</a>, bit.<a class="code" href="structatomic__bit__u32__t.html#adc13faf3fcc123da102c87e28854fdb4">mask</a>);</div>
+<div class="line"><a name="l01032"></a><span class="lineno"> 1032</span>&#160;}</div>
+<div class="line"><a name="l01033"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga7cb3b9469378572cbfe18aa64f30561b"> 1033</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga7cb3b9469378572cbfe18aa64f30561b">atomic_set_bit_u64</a>(<a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a> bit)</div>
+<div class="line"><a name="l01034"></a><span class="lineno"> 1034</span>&#160;{</div>
+<div class="line"><a name="l01035"></a><span class="lineno"> 1035</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gad5c54834f49694d0b1fa5869e008344d">atomic_fetch_or_u64</a>(bit.<a class="code" href="structatomic__bit__u64__t.html#a4383f143d7698b01d18a6c14e2d41e84">dest</a>, bit.<a class="code" href="structatomic__bit__u64__t.html#a9d27c39752574d59addef4a7aa0c14ec">mask</a>);</div>
+<div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;}</div>
+<div class="line"><a name="l01037"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga7f7f2bb48633374855ee6b6701ecd01e"> 1037</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga7f7f2bb48633374855ee6b6701ecd01e">atomic_clear_bit_u8</a>(<a class="code" href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a> bit)</div>
+<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;{</div>
+<div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaff50a0b7e25e6d10b6d95dc7f5435488">atomic_fetch_and_u8</a>(bit.<a class="code" href="structatomic__bit__u8__t.html#aa097a4651c0d347170fe4b52042c5352">dest</a>, ~bit.<a class="code" href="structatomic__bit__u8__t.html#a5f186fa960a9d5c5118d768d9fe4f69b">mask</a>);</div>
+<div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;}</div>
+<div class="line"><a name="l01041"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga996dea957e70fb0cb1da9a116a820936"> 1041</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga996dea957e70fb0cb1da9a116a820936">atomic_clear_bit_u16</a>(<a class="code" href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a> bit)</div>
+<div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160;{</div>
+<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga405d85816ea2c0c3b03820050031960d">atomic_fetch_and_u16</a>(bit.<a class="code" href="structatomic__bit__u16__t.html#affd2e3903fb6095a55e44af43e42c8e3">dest</a>, ~bit.<a class="code" href="structatomic__bit__u16__t.html#a14477df4a4e9b040809976731cc7317b">mask</a>);</div>
+<div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160;}</div>
+<div class="line"><a name="l01045"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga33683b1894e54fa1b9eb36ef796c804a"> 1045</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#ga33683b1894e54fa1b9eb36ef796c804a">atomic_clear_bit_u32</a>(<a class="code" href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a> bit)</div>
+<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;{</div>
+<div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga3f2485e762f436c20331cef755fb2c13">atomic_fetch_and_u32</a>(bit.<a class="code" href="structatomic__bit__u32__t.html#acfd20f77e8b7612211c609ac9231bbd3">dest</a>, ~bit.<a class="code" href="structatomic__bit__u32__t.html#adc13faf3fcc123da102c87e28854fdb4">mask</a>);</div>
+<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;}</div>
+<div class="line"><a name="l01049"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gac98e301876d6808872bc2088963473f8"> 1049</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__sys__atomic__utils.html#gac98e301876d6808872bc2088963473f8">atomic_clear_bit_u64</a>(<a class="code" href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a> bit)</div>
+<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;{</div>
+<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga698263e6cced0de707029b6042c6f1e6">atomic_fetch_and_u64</a>(bit.<a class="code" href="structatomic__bit__u64__t.html#a4383f143d7698b01d18a6c14e2d41e84">dest</a>, ~bit.<a class="code" href="structatomic__bit__u64__t.html#a9d27c39752574d59addef4a7aa0c14ec">mask</a>);</div>
+<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;}</div>
+<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160; </div>
+<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;<span class="comment">/* Provide semi_atomic_*() functions on top.</span></div>
+<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;<span class="comment"> * - If atomic_&lt;FOO&gt;() is provided: Use this for semi_atomic_&lt;FOO&gt;() as well</span></div>
+<div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;<span class="comment"> * - Else:</span></div>
+<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;<span class="comment"> *      - If matching `atomic_store_u&lt;BITS&gt;()` is provided: Only make final</span></div>
+<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;<span class="comment"> *        store atomic, as we can avoid touching the IRQ state register that</span></div>
+<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;<span class="comment"> *        way</span></div>
+<div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;<span class="comment"> *      - Else: We need to disable and re-enable IRQs anyway, we just use the</span></div>
+<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;<span class="comment"> *        fallback implementation of `atomic_&lt;FOO&gt;()` for `semi_atomic&lt;FOO&gt;()`</span></div>
+<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;<span class="comment"> *        as well</span></div>
+<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160; </div>
+<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;<span class="comment">/* FETCH_ADD */</span></div>
+<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_ADD_U8) || !defined(HAS_ATOMIC_STORE_U8)</span></div>
+<div class="line"><a name="l01069"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga1d1d34bb953fe45fcc2e43dd8ddc3885"> 1069</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga1d1d34bb953fe45fcc2e43dd8ddc3885">semi_atomic_fetch_add_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;{</div>
+<div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga98d8779c91048dc4bbf7b013534de56b">atomic_fetch_add_u8</a>(dest, val);</div>
+<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;}</div>
+<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga1d1d34bb953fe45fcc2e43dd8ddc3885">semi_atomic_fetch_add_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;{</div>
+<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;    uint8_t result = <a class="code" href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">atomic_load_u8</a>(dest);</div>
+<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">atomic_store_u8</a>(dest, result + val);</div>
+<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;}</div>
+<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_ADD_U8 || !HAS_ATOMIC_STORE_U8 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160; </div>
+<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_ADD_U16) || !defined(HAS_ATOMIC_STORE_U16)</span></div>
+<div class="line"><a name="l01085"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gabe61cf356b6c127884460cb987508171"> 1085</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gabe61cf356b6c127884460cb987508171">semi_atomic_fetch_add_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;{</div>
+<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gacdd7092311ea266639aa45ae71c98def">atomic_fetch_add_u16</a>(dest, val);</div>
+<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;}</div>
+<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gabe61cf356b6c127884460cb987508171">semi_atomic_fetch_add_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;{</div>
+<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;    uint16_t result = <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>(dest);</div>
+<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>(dest, result + val);</div>
+<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;}</div>
+<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_ADD_U16 || !HAS_ATOMIC_STORE_U16 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160; </div>
+<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_ADD_U32) || !defined(HAS_ATOMIC_STORE_U32)</span></div>
+<div class="line"><a name="l01101"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga39901421b9bf6b359bb0257e832880c1"> 1101</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga39901421b9bf6b359bb0257e832880c1">semi_atomic_fetch_add_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;{</div>
+<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gadf0beb3d334bde60c06fb4e330fbf9a5">atomic_fetch_add_u32</a>(dest, val);</div>
+<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;}</div>
+<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga39901421b9bf6b359bb0257e832880c1">semi_atomic_fetch_add_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;{</div>
+<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;    uint32_t result = <a class="code" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a>(dest);</div>
+<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a>(dest, result + val);</div>
+<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;}</div>
+<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_ADD_U32 || !HAS_ATOMIC_STORE_U32 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160; </div>
+<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_ADD_U64) || !defined(HAS_ATOMIC_STORE_U64)</span></div>
+<div class="line"><a name="l01117"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gac2a836839136a59ef03251075bd19ba8"> 1117</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gac2a836839136a59ef03251075bd19ba8">semi_atomic_fetch_add_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;{</div>
+<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gaca63bbb25b6f67bc47d044b410290c30">atomic_fetch_add_u64</a>(dest, val);</div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;}</div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gac2a836839136a59ef03251075bd19ba8">semi_atomic_fetch_add_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;{</div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a>(dest, *dest + val);</div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;}</div>
+<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_ADD_U32 || !HAS_ATOMIC_STORE_U32 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160; </div>
+<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;<span class="comment">/* FETCH_SUB */</span></div>
+<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_SUB_U8) || !defined(HAS_ATOMIC_STORE_U8)</span></div>
+<div class="line"><a name="l01132"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gad26b0339207074a0ad49b81c391c0e41"> 1132</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gad26b0339207074a0ad49b81c391c0e41">semi_atomic_fetch_sub_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;{</div>
+<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga9128f941b4e585d1b4a1a86eb5f663d0">atomic_fetch_sub_u8</a>(dest, val);</div>
+<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;}</div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gad26b0339207074a0ad49b81c391c0e41">semi_atomic_fetch_sub_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;{</div>
+<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;    uint8_t result = <a class="code" href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">atomic_load_u8</a>(dest);</div>
+<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">atomic_store_u8</a>(dest, result - val);</div>
+<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;}</div>
+<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_SUB_U8 || !HAS_ATOMIC_STORE_U8 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160; </div>
+<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_SUB_U16) || !defined(HAS_ATOMIC_STORE_U16)</span></div>
+<div class="line"><a name="l01148"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga8263e544da4d654b1c206e1c58989d92"> 1148</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#ga8263e544da4d654b1c206e1c58989d92">semi_atomic_fetch_sub_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;{</div>
+<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga8d79c3d9eb890a7575da196048ba0205">atomic_fetch_sub_u16</a>(dest, val);</div>
+<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;}</div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#ga8263e544da4d654b1c206e1c58989d92">semi_atomic_fetch_sub_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;{</div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;    uint16_t result = <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>(dest);</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>(dest, result - val);</div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;}</div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_SUB_U16 || !HAS_ATOMIC_STORE_U16 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160; </div>
+<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_SUB_U32) || !defined(HAS_ATOMIC_STORE_U32)</span></div>
+<div class="line"><a name="l01164"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga92dac574e84e35e00251c3061984caf1"> 1164</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga92dac574e84e35e00251c3061984caf1">semi_atomic_fetch_sub_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;{</div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gab7a5bfe11b8ea7e308e8f9744a2331da">atomic_fetch_sub_u32</a>(dest, val);</div>
+<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;}</div>
+<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga92dac574e84e35e00251c3061984caf1">semi_atomic_fetch_sub_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160;{</div>
+<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160;    uint32_t result = <a class="code" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a>(dest);</div>
+<div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a>(dest, result - val);</div>
+<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;}</div>
+<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_SUB_U32 || !HAS_ATOMIC_STORE_U64 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160; </div>
+<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_SUB_U64) || !defined(HAS_ATOMIC_STORE_U64)</span></div>
+<div class="line"><a name="l01180"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaa305db700cfc9829ab7567b2017a8d8b"> 1180</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gaa305db700cfc9829ab7567b2017a8d8b">semi_atomic_fetch_sub_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;{</div>
+<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga0af54addb942385ed3176716bc006966">atomic_fetch_sub_u64</a>(dest, val);</div>
+<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;}</div>
+<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#gaa305db700cfc9829ab7567b2017a8d8b">semi_atomic_fetch_sub_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;{</div>
+<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;    uint64_t result = <a class="code" href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">atomic_load_u64</a>(dest);</div>
+<div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a>(dest, result - val);</div>
+<div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;}</div>
+<div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_SUB_U64 || !HAS_ATOMIC_STORE_U64 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160; </div>
+<div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;<span class="comment">/* FETCH_OR */</span></div>
+<div class="line"><a name="l01196"></a><span class="lineno"> 1196</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_OR_U8) || !defined(HAS_ATOMIC_STORE_U8)</span></div>
+<div class="line"><a name="l01197"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gad55c9178f7728789b5df488e0d072feb"> 1197</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gad55c9178f7728789b5df488e0d072feb">semi_atomic_fetch_or_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;                                              uint8_t val)</div>
+<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;{</div>
+<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gaec0f6c89e898663b9049cff77d6ddf16">atomic_fetch_or_u8</a>(dest, val);</div>
+<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;}</div>
+<div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gad55c9178f7728789b5df488e0d072feb">semi_atomic_fetch_or_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;                                              uint8_t val)</div>
+<div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160;{</div>
+<div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;    uint8_t result = <a class="code" href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">atomic_load_u8</a>(dest);</div>
+<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">atomic_store_u8</a>(dest, result | val);</div>
+<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01209"></a><span class="lineno"> 1209</span>&#160;}</div>
+<div class="line"><a name="l01210"></a><span class="lineno"> 1210</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_OR_U8 || !HAS_ATOMIC_STORE_U8 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160; </div>
+<div class="line"><a name="l01212"></a><span class="lineno"> 1212</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_OR_U16) || !defined(HAS_ATOMIC_STORE_U16)</span></div>
+<div class="line"><a name="l01213"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gad489e4aa47a7a2b65e98f92e7db5ddf4"> 1213</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gad489e4aa47a7a2b65e98f92e7db5ddf4">semi_atomic_fetch_or_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01214"></a><span class="lineno"> 1214</span>&#160;                                                uint16_t val)</div>
+<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;{</div>
+<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gab183daad2d00ed25784f205ec915f573">atomic_fetch_or_u16</a>(dest, val);</div>
+<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;}</div>
+<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gad489e4aa47a7a2b65e98f92e7db5ddf4">semi_atomic_fetch_or_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;                                                uint16_t val)</div>
+<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;{</div>
+<div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;    uint16_t result = <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>(dest);</div>
+<div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>(dest, result | val);</div>
+<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;}</div>
+<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_OR_U16 || !HAS_ATOMIC_STORE_U16 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160; </div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_OR_U32) || !defined(HAS_ATOMIC_STORE_U32)</span></div>
+<div class="line"><a name="l01229"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga8b6186ee820769a8690fa54c1ef20114"> 1229</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga8b6186ee820769a8690fa54c1ef20114">semi_atomic_fetch_or_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;                                                uint32_t val)</div>
+<div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;{</div>
+<div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga131c08de50a9e23e20a4788f8e26ccde">atomic_fetch_or_u32</a>(dest, val);</div>
+<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;}</div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga8b6186ee820769a8690fa54c1ef20114">semi_atomic_fetch_or_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;                                                uint32_t val)</div>
+<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;{</div>
+<div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160;    uint32_t result = <a class="code" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a>(dest);</div>
+<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a>(dest, result | val);</div>
+<div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;}</div>
+<div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_OR_U32 || !HAS_ATOMIC_STORE_U32 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160; </div>
+<div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_OR_U64) || !defined(HAS_ATOMIC_STORE_U64)</span></div>
+<div class="line"><a name="l01245"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga7a43827df551608a6f4752a0a39e35cc"> 1245</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga7a43827df551608a6f4752a0a39e35cc">semi_atomic_fetch_or_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160;                                                uint64_t val)</div>
+<div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;{</div>
+<div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gad5c54834f49694d0b1fa5869e008344d">atomic_fetch_or_u64</a>(dest, val);</div>
+<div class="line"><a name="l01249"></a><span class="lineno"> 1249</span>&#160;}</div>
+<div class="line"><a name="l01250"></a><span class="lineno"> 1250</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01251"></a><span class="lineno"> 1251</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga7a43827df551608a6f4752a0a39e35cc">semi_atomic_fetch_or_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;                                                uint64_t val)</div>
+<div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;{</div>
+<div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;    uint64_t result = <a class="code" href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">atomic_load_u64</a>(dest);</div>
+<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a>(dest, result | val);</div>
+<div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160;}</div>
+<div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_OR_U64 || !HAS_ATOMIC_STORE_U64 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01259"></a><span class="lineno"> 1259</span>&#160; </div>
+<div class="line"><a name="l01260"></a><span class="lineno"> 1260</span>&#160;<span class="comment">/* FETCH_XOR */</span></div>
+<div class="line"><a name="l01261"></a><span class="lineno"> 1261</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_XOR_U8) || !defined(HAS_ATOMIC_STORE_U8)</span></div>
+<div class="line"><a name="l01262"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga356c847e59bc2b77a21812ad3e802b1a"> 1262</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga356c847e59bc2b77a21812ad3e802b1a">semi_atomic_fetch_xor_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01263"></a><span class="lineno"> 1263</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01264"></a><span class="lineno"> 1264</span>&#160;{</div>
+<div class="line"><a name="l01265"></a><span class="lineno"> 1265</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga55f41fe2356aa8bfd80aad7ac7b7cac6">atomic_fetch_xor_u8</a>(dest, val);</div>
+<div class="line"><a name="l01266"></a><span class="lineno"> 1266</span>&#160;}</div>
+<div class="line"><a name="l01267"></a><span class="lineno"> 1267</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01268"></a><span class="lineno"> 1268</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#ga356c847e59bc2b77a21812ad3e802b1a">semi_atomic_fetch_xor_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01269"></a><span class="lineno"> 1269</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01270"></a><span class="lineno"> 1270</span>&#160;{</div>
+<div class="line"><a name="l01271"></a><span class="lineno"> 1271</span>&#160;    uint8_t result = <a class="code" href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">atomic_load_u8</a>(dest);</div>
+<div class="line"><a name="l01272"></a><span class="lineno"> 1272</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">atomic_store_u8</a>(dest, result ^ val);</div>
+<div class="line"><a name="l01273"></a><span class="lineno"> 1273</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01274"></a><span class="lineno"> 1274</span>&#160;}</div>
+<div class="line"><a name="l01275"></a><span class="lineno"> 1275</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_XOR_U8 || !HAS_ATOMIC_STORE_U8 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01276"></a><span class="lineno"> 1276</span>&#160; </div>
+<div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_XOR_U16) || !defined(HAS_ATOMIC_STORE_U16)</span></div>
+<div class="line"><a name="l01278"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gadfe6287272762d09665c32b2aea96f0f"> 1278</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gadfe6287272762d09665c32b2aea96f0f">semi_atomic_fetch_xor_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01279"></a><span class="lineno"> 1279</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;{</div>
+<div class="line"><a name="l01281"></a><span class="lineno"> 1281</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga715457fef2f6e24fe86dbd36daa05019">atomic_fetch_xor_u16</a>(dest, val);</div>
+<div class="line"><a name="l01282"></a><span class="lineno"> 1282</span>&#160;}</div>
+<div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01284"></a><span class="lineno"> 1284</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gadfe6287272762d09665c32b2aea96f0f">semi_atomic_fetch_xor_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01285"></a><span class="lineno"> 1285</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;{</div>
+<div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160;    uint16_t result = <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>(dest);</div>
+<div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>(dest, result ^ val);</div>
+<div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01290"></a><span class="lineno"> 1290</span>&#160;}</div>
+<div class="line"><a name="l01291"></a><span class="lineno"> 1291</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_XOR_U16 || !HAS_ATOMIC_STORE_U16 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01292"></a><span class="lineno"> 1292</span>&#160; </div>
+<div class="line"><a name="l01293"></a><span class="lineno"> 1293</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_XOR_U32) || !defined(HAS_ATOMIC_STORE_U32)</span></div>
+<div class="line"><a name="l01294"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gaaf5d40badca1890c02a0699b9b503fa7"> 1294</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#gaaf5d40badca1890c02a0699b9b503fa7">semi_atomic_fetch_xor_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01295"></a><span class="lineno"> 1295</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01296"></a><span class="lineno"> 1296</span>&#160;{</div>
+<div class="line"><a name="l01297"></a><span class="lineno"> 1297</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga2339ca165daf44204a2070a0e3f82f22">atomic_fetch_xor_u32</a>(dest, val);</div>
+<div class="line"><a name="l01298"></a><span class="lineno"> 1298</span>&#160;}</div>
+<div class="line"><a name="l01299"></a><span class="lineno"> 1299</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01300"></a><span class="lineno"> 1300</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#gaaf5d40badca1890c02a0699b9b503fa7">semi_atomic_fetch_xor_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01301"></a><span class="lineno"> 1301</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;{</div>
+<div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160;    uint32_t result = <a class="code" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a>(dest);</div>
+<div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a>(dest, result ^ val);</div>
+<div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;}</div>
+<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_XOR_U32 || !HAS_ATOMIC_STORE_U32 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160; </div>
+<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_XOR_U64) || !defined(HAS_ATOMIC_STORE_U64)</span></div>
+<div class="line"><a name="l01310"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga7c8d72a0badde44bc11b9277c20853eb"> 1310</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga7c8d72a0badde44bc11b9277c20853eb">semi_atomic_fetch_xor_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;{</div>
+<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga791456f405637a456f2b85b16b846a81">atomic_fetch_xor_u64</a>(dest, val);</div>
+<div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;}</div>
+<div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga7c8d72a0badde44bc11b9277c20853eb">semi_atomic_fetch_xor_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;{</div>
+<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;    uint64_t result = <a class="code" href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">atomic_load_u64</a>(dest);</div>
+<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a>(dest, result ^ val);</div>
+<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;}</div>
+<div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_XOR_U64 || !HAS_ATOMIC_STORE_U64 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160; </div>
+<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;<span class="comment">/* FETCH_AND */</span></div>
+<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_AND_U8) || !defined(HAS_ATOMIC_STORE_U8)</span></div>
+<div class="line"><a name="l01327"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gafb10eaf4983b5c6108b0b07cd792df68"> 1327</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gafb10eaf4983b5c6108b0b07cd792df68">semi_atomic_fetch_and_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;{</div>
+<div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#gaff50a0b7e25e6d10b6d95dc7f5435488">atomic_fetch_and_u8</a>(dest, val);</div>
+<div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160;}</div>
+<div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint8_t <a class="code" href="group__sys__atomic__utils.html#gafb10eaf4983b5c6108b0b07cd792df68">semi_atomic_fetch_and_u8</a>(<span class="keyword">volatile</span> uint8_t *dest,</div>
+<div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160;                                               uint8_t val)</div>
+<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;{</div>
+<div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;    uint8_t result = <a class="code" href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">atomic_load_u8</a>(dest);</div>
+<div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">atomic_store_u8</a>(dest, result &amp; val);</div>
+<div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01339"></a><span class="lineno"> 1339</span>&#160;}</div>
+<div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_AND_U8 || !HAS_ATOMIC_STORE_U8 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160; </div>
+<div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_AND_U16) || !defined(HAS_ATOMIC_STORE_U16)</span></div>
+<div class="line"><a name="l01343"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#gab670e8a4f1c30a82ca700e4ade75fd68"> 1343</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gab670e8a4f1c30a82ca700e4ade75fd68">semi_atomic_fetch_and_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;{</div>
+<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga405d85816ea2c0c3b03820050031960d">atomic_fetch_and_u16</a>(dest, val);</div>
+<div class="line"><a name="l01347"></a><span class="lineno"> 1347</span>&#160;}</div>
+<div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01349"></a><span class="lineno"> 1349</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint16_t <a class="code" href="group__sys__atomic__utils.html#gab670e8a4f1c30a82ca700e4ade75fd68">semi_atomic_fetch_and_u16</a>(<span class="keyword">volatile</span> uint16_t *dest,</div>
+<div class="line"><a name="l01350"></a><span class="lineno"> 1350</span>&#160;                                                 uint16_t val)</div>
+<div class="line"><a name="l01351"></a><span class="lineno"> 1351</span>&#160;{</div>
+<div class="line"><a name="l01352"></a><span class="lineno"> 1352</span>&#160;    uint16_t result = <a class="code" href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a>(dest);</div>
+<div class="line"><a name="l01353"></a><span class="lineno"> 1353</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a>(dest, result &amp; val);</div>
+<div class="line"><a name="l01354"></a><span class="lineno"> 1354</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01355"></a><span class="lineno"> 1355</span>&#160;}</div>
+<div class="line"><a name="l01356"></a><span class="lineno"> 1356</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_AND_U16 || !HAS_ATOMIC_STORE_U16 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01357"></a><span class="lineno"> 1357</span>&#160; </div>
+<div class="line"><a name="l01358"></a><span class="lineno"> 1358</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_AND_U32) || !defined(HAS_ATOMIC_STORE_U32)</span></div>
+<div class="line"><a name="l01359"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga16650133d95d6bca9411e418174d7f0c"> 1359</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga16650133d95d6bca9411e418174d7f0c">semi_atomic_fetch_and_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01360"></a><span class="lineno"> 1360</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01361"></a><span class="lineno"> 1361</span>&#160;{</div>
+<div class="line"><a name="l01362"></a><span class="lineno"> 1362</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga3f2485e762f436c20331cef755fb2c13">atomic_fetch_and_u32</a>(dest, val);</div>
+<div class="line"><a name="l01363"></a><span class="lineno"> 1363</span>&#160;}</div>
+<div class="line"><a name="l01364"></a><span class="lineno"> 1364</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01365"></a><span class="lineno"> 1365</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint32_t <a class="code" href="group__sys__atomic__utils.html#ga16650133d95d6bca9411e418174d7f0c">semi_atomic_fetch_and_u32</a>(<span class="keyword">volatile</span> uint32_t *dest,</div>
+<div class="line"><a name="l01366"></a><span class="lineno"> 1366</span>&#160;                                                 uint32_t val)</div>
+<div class="line"><a name="l01367"></a><span class="lineno"> 1367</span>&#160;{</div>
+<div class="line"><a name="l01368"></a><span class="lineno"> 1368</span>&#160;    uint32_t result = <a class="code" href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a>(dest);</div>
+<div class="line"><a name="l01369"></a><span class="lineno"> 1369</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a>(dest, result &amp; val);</div>
+<div class="line"><a name="l01370"></a><span class="lineno"> 1370</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01371"></a><span class="lineno"> 1371</span>&#160;}</div>
+<div class="line"><a name="l01372"></a><span class="lineno"> 1372</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_AND_U32 || !HAS_ATOMIC_STORE_U32 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01373"></a><span class="lineno"> 1373</span>&#160; </div>
+<div class="line"><a name="l01374"></a><span class="lineno"> 1374</span>&#160;<span class="preprocessor">#if defined(HAS_ATOMIC_FETCH_AND_U64) || !defined(HAS_ATOMIC_STORE_U64)</span></div>
+<div class="line"><a name="l01375"></a><span class="lineno"><a class="line" href="group__sys__atomic__utils.html#ga9675deeb65ba867c180c1771978dc83d"> 1375</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga9675deeb65ba867c180c1771978dc83d">semi_atomic_fetch_and_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01376"></a><span class="lineno"> 1376</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01377"></a><span class="lineno"> 1377</span>&#160;{</div>
+<div class="line"><a name="l01378"></a><span class="lineno"> 1378</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__sys__atomic__utils.html#ga698263e6cced0de707029b6042c6f1e6">atomic_fetch_and_u64</a>(dest, val);</div>
+<div class="line"><a name="l01379"></a><span class="lineno"> 1379</span>&#160;}</div>
+<div class="line"><a name="l01380"></a><span class="lineno"> 1380</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l01381"></a><span class="lineno"> 1381</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> uint64_t <a class="code" href="group__sys__atomic__utils.html#ga9675deeb65ba867c180c1771978dc83d">semi_atomic_fetch_and_u64</a>(<span class="keyword">volatile</span> uint64_t *dest,</div>
+<div class="line"><a name="l01382"></a><span class="lineno"> 1382</span>&#160;                                                 uint64_t val)</div>
+<div class="line"><a name="l01383"></a><span class="lineno"> 1383</span>&#160;{</div>
+<div class="line"><a name="l01384"></a><span class="lineno"> 1384</span>&#160;    uint64_t result = <a class="code" href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">atomic_load_u64</a>(dest);</div>
+<div class="line"><a name="l01385"></a><span class="lineno"> 1385</span>&#160;    <a class="code" href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a>(dest, result &amp; val);</div>
+<div class="line"><a name="l01386"></a><span class="lineno"> 1386</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l01387"></a><span class="lineno"> 1387</span>&#160;}</div>
+<div class="line"><a name="l01388"></a><span class="lineno"> 1388</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HAS_ATOMIC_FETCH_AND_U64 || !HAS_ATOMIC_STORE_U64 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01389"></a><span class="lineno"> 1389</span>&#160; </div>
+<div class="line"><a name="l01390"></a><span class="lineno"> 1390</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l01391"></a><span class="lineno"> 1391</span>&#160;}</div>
+<div class="line"><a name="l01392"></a><span class="lineno"> 1392</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01393"></a><span class="lineno"> 1393</span>&#160; </div>
+<div class="line"><a name="l01394"></a><span class="lineno"> 1394</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ATOMIC_UTILS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acore_2lib_2include_2macros_2utils_8h_html"><div class="ttname"><a href="core_2lib_2include_2macros_2utils_8h.html">utils.h</a></div><div class="ttdoc">Various helper macros.</div></div>
+<div class="ttc" id="agroup__core__sched_html_ga8375139300d7cbf23bd8bd89ddddbe84"><div class="ttname"><a href="group__core__sched.html#ga8375139300d7cbf23bd8bd89ddddbe84">kernel_pid_t</a></div><div class="ttdeci">int16_t kernel_pid_t</div><div class="ttdoc">Unique process identifier.</div><div class="ttdef"><b>Definition:</b> sched.h:139</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga050dee0814fa06784ebfc607964d522e"><div class="ttname"><a href="group__sys__atomic__utils.html#ga050dee0814fa06784ebfc607964d522e">atomic_store_uintptr</a></div><div class="ttdeci">static void atomic_store_uintptr(volatile uintptr_t *dest, uintptr_t val)</div><div class="ttdoc">Store an uintptr_t atomically.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:316</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga0a784356c75ac1f43ba2fc6599aa5e6c"><div class="ttname"><a href="group__sys__atomic__utils.html#ga0a784356c75ac1f43ba2fc6599aa5e6c">atomic_bit_u32</a></div><div class="ttdeci">static atomic_bit_u32_t atomic_bit_u32(volatile uint32_t *dest, uint8_t bit)</div><div class="ttdoc">Create a reference to a bit in an uint32_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1009</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga0af54addb942385ed3176716bc006966"><div class="ttname"><a href="group__sys__atomic__utils.html#ga0af54addb942385ed3176716bc006966">atomic_fetch_sub_u64</a></div><div class="ttdeci">static uint64_t atomic_fetch_sub_u64(volatile uint64_t *dest, uint64_t subtrahend)</div><div class="ttdoc">Atomically subtract a value from a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga0db129499ac65230ff2ff03212e959f4"><div class="ttname"><a href="group__sys__atomic__utils.html#ga0db129499ac65230ff2ff03212e959f4">atomic_store_u8</a></div><div class="ttdeci">static void atomic_store_u8(volatile uint8_t *dest, uint8_t val)</div><div class="ttdoc">Store an uint8_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga131c08de50a9e23e20a4788f8e26ccde"><div class="ttname"><a href="group__sys__atomic__utils.html#ga131c08de50a9e23e20a4788f8e26ccde">atomic_fetch_or_u32</a></div><div class="ttdeci">static uint32_t atomic_fetch_or_u32(volatile uint32_t *dest, uint32_t val)</div><div class="ttdoc">Atomic version of *dest |= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga16650133d95d6bca9411e418174d7f0c"><div class="ttname"><a href="group__sys__atomic__utils.html#ga16650133d95d6bca9411e418174d7f0c">semi_atomic_fetch_and_u32</a></div><div class="ttdeci">static uint32_t semi_atomic_fetch_and_u32(volatile uint32_t *dest, uint32_t val)</div><div class="ttdoc">Semi-atomic version of *dest &amp;= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1359</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga199980adf140101189b6a0fa8dcc5283"><div class="ttname"><a href="group__sys__atomic__utils.html#ga199980adf140101189b6a0fa8dcc5283">atomic_set_bit_u8</a></div><div class="ttdeci">static void atomic_set_bit_u8(atomic_bit_u8_t bit)</div><div class="ttdoc">Atomic version of *dest |= (1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1021</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga1b761cea579753804788001139cf123f"><div class="ttname"><a href="group__sys__atomic__utils.html#ga1b761cea579753804788001139cf123f">ATOMIC_FETCH_OP_IMPL</a></div><div class="ttdeci">#define ATOMIC_FETCH_OP_IMPL(opname, op, name, type)</div><div class="ttdoc">Generates a static inline function implementing atomic_fecth_&lt;op&gt;_u&lt;width&gt;()</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:920</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga1d1d34bb953fe45fcc2e43dd8ddc3885"><div class="ttname"><a href="group__sys__atomic__utils.html#ga1d1d34bb953fe45fcc2e43dd8ddc3885">semi_atomic_fetch_add_u8</a></div><div class="ttdeci">static uint8_t semi_atomic_fetch_add_u8(volatile uint8_t *dest, uint8_t summand)</div><div class="ttdoc">Semi-atomically add a value onto a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1069</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga21b59a4c9479506ca74ac9d8e8f3ddd4"><div class="ttname"><a href="group__sys__atomic__utils.html#ga21b59a4c9479506ca74ac9d8e8f3ddd4">atomic_bit_u64</a></div><div class="ttdeci">static atomic_bit_u64_t atomic_bit_u64(volatile uint64_t *dest, uint8_t bit)</div><div class="ttdoc">Create a reference to a bit in an uint64_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1015</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga2339ca165daf44204a2070a0e3f82f22"><div class="ttname"><a href="group__sys__atomic__utils.html#ga2339ca165daf44204a2070a0e3f82f22">atomic_fetch_xor_u32</a></div><div class="ttdeci">static uint32_t atomic_fetch_xor_u32(volatile uint32_t *dest, uint32_t val)</div><div class="ttdoc">Atomic version of *dest ^= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga32397410318abfee61e671826748e6dd"><div class="ttname"><a href="group__sys__atomic__utils.html#ga32397410318abfee61e671826748e6dd">ATOMIC_LOAD_IMPL</a></div><div class="ttdeci">#define ATOMIC_LOAD_IMPL(name, type)</div><div class="ttdoc">Generates a static inline function implementing atomic_load_u&lt;width&gt;()</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:860</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga33683b1894e54fa1b9eb36ef796c804a"><div class="ttname"><a href="group__sys__atomic__utils.html#ga33683b1894e54fa1b9eb36ef796c804a">atomic_clear_bit_u32</a></div><div class="ttdeci">static void atomic_clear_bit_u32(atomic_bit_u32_t bit)</div><div class="ttdoc">Atomic version of *dest &amp;= ~(1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1045</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga356c847e59bc2b77a21812ad3e802b1a"><div class="ttname"><a href="group__sys__atomic__utils.html#ga356c847e59bc2b77a21812ad3e802b1a">semi_atomic_fetch_xor_u8</a></div><div class="ttdeci">static uint8_t semi_atomic_fetch_xor_u8(volatile uint8_t *dest, uint8_t val)</div><div class="ttdoc">Semi-atomic version of *dest ^= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1262</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga398731da7ac71e7cee0fc749c74e33cf"><div class="ttname"><a href="group__sys__atomic__utils.html#ga398731da7ac71e7cee0fc749c74e33cf">atomic_load_u32</a></div><div class="ttdeci">static uint32_t atomic_load_u32(const volatile uint32_t *var)</div><div class="ttdoc">Load an uint32_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga39901421b9bf6b359bb0257e832880c1"><div class="ttname"><a href="group__sys__atomic__utils.html#ga39901421b9bf6b359bb0257e832880c1">semi_atomic_fetch_add_u32</a></div><div class="ttdeci">static uint32_t semi_atomic_fetch_add_u32(volatile uint32_t *dest, uint32_t summand)</div><div class="ttdoc">Semi-atomically add a value onto a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1101</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga3c423b52838e51949e622d8577236821"><div class="ttname"><a href="group__sys__atomic__utils.html#ga3c423b52838e51949e622d8577236821">atomic_load_kernel_pid</a></div><div class="ttdeci">static kernel_pid_t atomic_load_kernel_pid(const volatile kernel_pid_t *var)</div><div class="ttdoc">Load an kernel_pid_t atomically.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:275</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga3f2485e762f436c20331cef755fb2c13"><div class="ttname"><a href="group__sys__atomic__utils.html#ga3f2485e762f436c20331cef755fb2c13">atomic_fetch_and_u32</a></div><div class="ttdeci">static uint32_t atomic_fetch_and_u32(volatile uint32_t *dest, uint32_t val)</div><div class="ttdoc">Atomic version of *dest &amp;= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga405d85816ea2c0c3b03820050031960d"><div class="ttname"><a href="group__sys__atomic__utils.html#ga405d85816ea2c0c3b03820050031960d">atomic_fetch_and_u16</a></div><div class="ttdeci">static uint16_t atomic_fetch_and_u16(volatile uint16_t *dest, uint16_t val)</div><div class="ttdoc">Atomic version of *dest &amp;= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga499cca9d5c4a62eb2539f58889aaa195"><div class="ttname"><a href="group__sys__atomic__utils.html#ga499cca9d5c4a62eb2539f58889aaa195">atomic_store_ptr</a></div><div class="ttdeci">static void atomic_store_ptr(void **dest, const void *val)</div><div class="ttdoc">Store an void * atomically.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:334</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga55f41fe2356aa8bfd80aad7ac7b7cac6"><div class="ttname"><a href="group__sys__atomic__utils.html#ga55f41fe2356aa8bfd80aad7ac7b7cac6">atomic_fetch_xor_u8</a></div><div class="ttdeci">static uint8_t atomic_fetch_xor_u8(volatile uint8_t *dest, uint8_t val)</div><div class="ttdoc">Atomic version of *dest ^= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga56bc477d9860fdb46e3c00725f1b200a"><div class="ttname"><a href="group__sys__atomic__utils.html#ga56bc477d9860fdb46e3c00725f1b200a">atomic_store_u64</a></div><div class="ttdeci">static void atomic_store_u64(volatile uint64_t *dest, uint64_t val)</div><div class="ttdoc">Store an uint64_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga56ebe57c50cfc76f3461e63d3791f939"><div class="ttname"><a href="group__sys__atomic__utils.html#ga56ebe57c50cfc76f3461e63d3791f939">atomic_load_ptr</a></div><div class="ttdeci">static void * atomic_load_ptr(void **ptr_addr)</div><div class="ttdoc">Load an void * atomically.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:266</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga65f8975edd06bb8837441ba793557deb"><div class="ttname"><a href="group__sys__atomic__utils.html#ga65f8975edd06bb8837441ba793557deb">atomic_load_u16</a></div><div class="ttdeci">static uint16_t atomic_load_u16(const volatile uint16_t *var)</div><div class="ttdoc">Load an uint16_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga698263e6cced0de707029b6042c6f1e6"><div class="ttname"><a href="group__sys__atomic__utils.html#ga698263e6cced0de707029b6042c6f1e6">atomic_fetch_and_u64</a></div><div class="ttdeci">static uint64_t atomic_fetch_and_u64(volatile uint64_t *dest, uint64_t val)</div><div class="ttdoc">Atomic version of *dest &amp;= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga715457fef2f6e24fe86dbd36daa05019"><div class="ttname"><a href="group__sys__atomic__utils.html#ga715457fef2f6e24fe86dbd36daa05019">atomic_fetch_xor_u16</a></div><div class="ttdeci">static uint16_t atomic_fetch_xor_u16(volatile uint16_t *dest, uint16_t val)</div><div class="ttdoc">Atomic version of *dest ^= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga791456f405637a456f2b85b16b846a81"><div class="ttname"><a href="group__sys__atomic__utils.html#ga791456f405637a456f2b85b16b846a81">atomic_fetch_xor_u64</a></div><div class="ttdeci">static uint64_t atomic_fetch_xor_u64(volatile uint64_t *dest, uint64_t val)</div><div class="ttdoc">Atomic version of *dest ^= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga7a43827df551608a6f4752a0a39e35cc"><div class="ttname"><a href="group__sys__atomic__utils.html#ga7a43827df551608a6f4752a0a39e35cc">semi_atomic_fetch_or_u64</a></div><div class="ttdeci">static uint64_t semi_atomic_fetch_or_u64(volatile uint64_t *dest, uint64_t val)</div><div class="ttdoc">Semi-atomic version of *dest |= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1245</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga7c8d72a0badde44bc11b9277c20853eb"><div class="ttname"><a href="group__sys__atomic__utils.html#ga7c8d72a0badde44bc11b9277c20853eb">semi_atomic_fetch_xor_u64</a></div><div class="ttdeci">static uint64_t semi_atomic_fetch_xor_u64(volatile uint64_t *dest, uint64_t val)</div><div class="ttdoc">Semi-atomic version of *dest ^= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1310</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga7cb3b9469378572cbfe18aa64f30561b"><div class="ttname"><a href="group__sys__atomic__utils.html#ga7cb3b9469378572cbfe18aa64f30561b">atomic_set_bit_u64</a></div><div class="ttdeci">static void atomic_set_bit_u64(atomic_bit_u64_t bit)</div><div class="ttdoc">Atomic version of *dest |= (1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1033</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga7f7f2bb48633374855ee6b6701ecd01e"><div class="ttname"><a href="group__sys__atomic__utils.html#ga7f7f2bb48633374855ee6b6701ecd01e">atomic_clear_bit_u8</a></div><div class="ttdeci">static void atomic_clear_bit_u8(atomic_bit_u8_t bit)</div><div class="ttdoc">Atomic version of *dest &amp;= ~(1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1037</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga8263e544da4d654b1c206e1c58989d92"><div class="ttname"><a href="group__sys__atomic__utils.html#ga8263e544da4d654b1c206e1c58989d92">semi_atomic_fetch_sub_u16</a></div><div class="ttdeci">static uint16_t semi_atomic_fetch_sub_u16(volatile uint16_t *dest, uint16_t subtrahend)</div><div class="ttdoc">Semi-atomically subtract a value from a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1148</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga8616a09c88eb59cd547c4909c0276308"><div class="ttname"><a href="group__sys__atomic__utils.html#ga8616a09c88eb59cd547c4909c0276308">atomic_load_u8</a></div><div class="ttdeci">static uint8_t atomic_load_u8(const volatile uint8_t *var)</div><div class="ttdoc">Load an uint8_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga86a1367995c36e9729a2ecda96ea9f66"><div class="ttname"><a href="group__sys__atomic__utils.html#ga86a1367995c36e9729a2ecda96ea9f66">atomic_bit_u8</a></div><div class="ttdeci">static atomic_bit_u8_t atomic_bit_u8(volatile uint8_t *dest, uint8_t bit)</div><div class="ttdoc">Create a reference to a bit in an uint8_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:997</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga8b6186ee820769a8690fa54c1ef20114"><div class="ttname"><a href="group__sys__atomic__utils.html#ga8b6186ee820769a8690fa54c1ef20114">semi_atomic_fetch_or_u32</a></div><div class="ttdeci">static uint32_t semi_atomic_fetch_or_u32(volatile uint32_t *dest, uint32_t val)</div><div class="ttdoc">Semi-atomic version of *dest |= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1229</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga8d79c3d9eb890a7575da196048ba0205"><div class="ttname"><a href="group__sys__atomic__utils.html#ga8d79c3d9eb890a7575da196048ba0205">atomic_fetch_sub_u16</a></div><div class="ttdeci">static uint16_t atomic_fetch_sub_u16(volatile uint16_t *dest, uint16_t subtrahend)</div><div class="ttdoc">Atomically subtract a value from a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga9128f941b4e585d1b4a1a86eb5f663d0"><div class="ttname"><a href="group__sys__atomic__utils.html#ga9128f941b4e585d1b4a1a86eb5f663d0">atomic_fetch_sub_u8</a></div><div class="ttdeci">static uint8_t atomic_fetch_sub_u8(volatile uint8_t *dest, uint8_t subtrahend)</div><div class="ttdoc">Atomically subtract a value from a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga92dac574e84e35e00251c3061984caf1"><div class="ttname"><a href="group__sys__atomic__utils.html#ga92dac574e84e35e00251c3061984caf1">semi_atomic_fetch_sub_u32</a></div><div class="ttdeci">static uint32_t semi_atomic_fetch_sub_u32(volatile uint32_t *dest, uint32_t subtrahend)</div><div class="ttdoc">Semi-atomically subtract a value from a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1164</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga9675deeb65ba867c180c1771978dc83d"><div class="ttname"><a href="group__sys__atomic__utils.html#ga9675deeb65ba867c180c1771978dc83d">semi_atomic_fetch_and_u64</a></div><div class="ttdeci">static uint64_t semi_atomic_fetch_and_u64(volatile uint64_t *dest, uint64_t val)</div><div class="ttdoc">Semi-atomic version of *dest &amp;= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1375</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga98d8779c91048dc4bbf7b013534de56b"><div class="ttname"><a href="group__sys__atomic__utils.html#ga98d8779c91048dc4bbf7b013534de56b">atomic_fetch_add_u8</a></div><div class="ttdeci">static uint8_t atomic_fetch_add_u8(volatile uint8_t *dest, uint8_t summand)</div><div class="ttdoc">Atomically add a value onto a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_ga996dea957e70fb0cb1da9a116a820936"><div class="ttname"><a href="group__sys__atomic__utils.html#ga996dea957e70fb0cb1da9a116a820936">atomic_clear_bit_u16</a></div><div class="ttdeci">static void atomic_clear_bit_u16(atomic_bit_u16_t bit)</div><div class="ttdoc">Atomic version of *dest &amp;= ~(1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1041</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaa305db700cfc9829ab7567b2017a8d8b"><div class="ttname"><a href="group__sys__atomic__utils.html#gaa305db700cfc9829ab7567b2017a8d8b">semi_atomic_fetch_sub_u64</a></div><div class="ttdeci">static uint64_t semi_atomic_fetch_sub_u64(volatile uint64_t *dest, uint64_t subtrahend)</div><div class="ttdoc">Semi-atomically subtract a value from a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1180</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaa3ffc256f5f691dd7c4bc4b228b0218c"><div class="ttname"><a href="group__sys__atomic__utils.html#gaa3ffc256f5f691dd7c4bc4b228b0218c">atomic_store_kernel_pid</a></div><div class="ttdeci">static void atomic_store_kernel_pid(volatile kernel_pid_t *dest, kernel_pid_t val)</div><div class="ttdoc">Store an kernel_pid_t atomically.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:343</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaa63fbb7b3b70789826fed331b9ebb839"><div class="ttname"><a href="group__sys__atomic__utils.html#gaa63fbb7b3b70789826fed331b9ebb839">atomic_store_u16</a></div><div class="ttdeci">static void atomic_store_u16(volatile uint16_t *dest, uint16_t val)</div><div class="ttdoc">Store an uint16_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaa662e27310799fc5aabd6d625fb274bc"><div class="ttname"><a href="group__sys__atomic__utils.html#gaa662e27310799fc5aabd6d625fb274bc">atomic_store_u32</a></div><div class="ttdeci">static void atomic_store_u32(volatile uint32_t *dest, uint32_t val)</div><div class="ttdoc">Store an uint32_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaa6f3fc66add15028f5f1922ab3194ee6"><div class="ttname"><a href="group__sys__atomic__utils.html#gaa6f3fc66add15028f5f1922ab3194ee6">atomic_load_uintptr</a></div><div class="ttdeci">static uintptr_t atomic_load_uintptr(const volatile uintptr_t *var)</div><div class="ttdoc">Load an uintptr_t atomically.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:249</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaa9f37b941acf90692d08eb13146f819a"><div class="ttname"><a href="group__sys__atomic__utils.html#gaa9f37b941acf90692d08eb13146f819a">atomic_bit_u16</a></div><div class="ttdeci">static atomic_bit_u16_t atomic_bit_u16(volatile uint16_t *dest, uint8_t bit)</div><div class="ttdoc">Create a reference to a bit in an uint16_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1003</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaaeb8122ae7b12f7ae585b3b2a1940fbf"><div class="ttname"><a href="group__sys__atomic__utils.html#gaaeb8122ae7b12f7ae585b3b2a1940fbf">ATOMIC_STORE_IMPL</a></div><div class="ttdeci">#define ATOMIC_STORE_IMPL(name, type)</div><div class="ttdoc">Generates a static inline function implementing atomic_store_u&lt;width&gt;()</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:889</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaaf5d40badca1890c02a0699b9b503fa7"><div class="ttname"><a href="group__sys__atomic__utils.html#gaaf5d40badca1890c02a0699b9b503fa7">semi_atomic_fetch_xor_u32</a></div><div class="ttdeci">static uint32_t semi_atomic_fetch_xor_u32(volatile uint32_t *dest, uint32_t val)</div><div class="ttdoc">Semi-atomic version of *dest ^= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1294</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gab183daad2d00ed25784f205ec915f573"><div class="ttname"><a href="group__sys__atomic__utils.html#gab183daad2d00ed25784f205ec915f573">atomic_fetch_or_u16</a></div><div class="ttdeci">static uint16_t atomic_fetch_or_u16(volatile uint16_t *dest, uint16_t val)</div><div class="ttdoc">Atomic version of *dest |= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gab2c4ea2f473b15fbdce32d0654831b65"><div class="ttname"><a href="group__sys__atomic__utils.html#gab2c4ea2f473b15fbdce32d0654831b65">atomic_set_bit_u32</a></div><div class="ttdeci">static void atomic_set_bit_u32(atomic_bit_u32_t bit)</div><div class="ttdoc">Atomic version of *dest |= (1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1029</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gab670e8a4f1c30a82ca700e4ade75fd68"><div class="ttname"><a href="group__sys__atomic__utils.html#gab670e8a4f1c30a82ca700e4ade75fd68">semi_atomic_fetch_and_u16</a></div><div class="ttdeci">static uint16_t semi_atomic_fetch_and_u16(volatile uint16_t *dest, uint16_t val)</div><div class="ttdoc">Semi-atomic version of *dest &amp;= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1343</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gab7a5bfe11b8ea7e308e8f9744a2331da"><div class="ttname"><a href="group__sys__atomic__utils.html#gab7a5bfe11b8ea7e308e8f9744a2331da">atomic_fetch_sub_u32</a></div><div class="ttdeci">static uint32_t atomic_fetch_sub_u32(volatile uint32_t *dest, uint32_t subtrahend)</div><div class="ttdoc">Atomically subtract a value from a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gabe61cf356b6c127884460cb987508171"><div class="ttname"><a href="group__sys__atomic__utils.html#gabe61cf356b6c127884460cb987508171">semi_atomic_fetch_add_u16</a></div><div class="ttdeci">static uint16_t semi_atomic_fetch_add_u16(volatile uint16_t *dest, uint16_t summand)</div><div class="ttdoc">Semi-atomically add a value onto a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1085</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gac2a836839136a59ef03251075bd19ba8"><div class="ttname"><a href="group__sys__atomic__utils.html#gac2a836839136a59ef03251075bd19ba8">semi_atomic_fetch_add_u64</a></div><div class="ttdeci">static uint64_t semi_atomic_fetch_add_u64(volatile uint64_t *dest, uint64_t summand)</div><div class="ttdoc">Semi-atomically add a value onto a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1117</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gac98e301876d6808872bc2088963473f8"><div class="ttname"><a href="group__sys__atomic__utils.html#gac98e301876d6808872bc2088963473f8">atomic_clear_bit_u64</a></div><div class="ttdeci">static void atomic_clear_bit_u64(atomic_bit_u64_t bit)</div><div class="ttdoc">Atomic version of *dest &amp;= ~(1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1049</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaca63bbb25b6f67bc47d044b410290c30"><div class="ttname"><a href="group__sys__atomic__utils.html#gaca63bbb25b6f67bc47d044b410290c30">atomic_fetch_add_u64</a></div><div class="ttdeci">static uint64_t atomic_fetch_add_u64(volatile uint64_t *dest, uint64_t summand)</div><div class="ttdoc">Atomically add a value onto a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gacdd7092311ea266639aa45ae71c98def"><div class="ttname"><a href="group__sys__atomic__utils.html#gacdd7092311ea266639aa45ae71c98def">atomic_fetch_add_u16</a></div><div class="ttdeci">static uint16_t atomic_fetch_add_u16(volatile uint16_t *dest, uint16_t summand)</div><div class="ttdoc">Atomically add a value onto a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gad26b0339207074a0ad49b81c391c0e41"><div class="ttname"><a href="group__sys__atomic__utils.html#gad26b0339207074a0ad49b81c391c0e41">semi_atomic_fetch_sub_u8</a></div><div class="ttdeci">static uint8_t semi_atomic_fetch_sub_u8(volatile uint8_t *dest, uint8_t subtrahend)</div><div class="ttdoc">Semi-atomically subtract a value from a given value.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1132</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gad3c3152a9d61224300de93287d4cda0a"><div class="ttname"><a href="group__sys__atomic__utils.html#gad3c3152a9d61224300de93287d4cda0a">atomic_set_bit_u16</a></div><div class="ttdeci">static void atomic_set_bit_u16(atomic_bit_u16_t bit)</div><div class="ttdoc">Atomic version of *dest |= (1 &lt;&lt; bit)</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1025</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gad489e4aa47a7a2b65e98f92e7db5ddf4"><div class="ttname"><a href="group__sys__atomic__utils.html#gad489e4aa47a7a2b65e98f92e7db5ddf4">semi_atomic_fetch_or_u16</a></div><div class="ttdeci">static uint16_t semi_atomic_fetch_or_u16(volatile uint16_t *dest, uint16_t val)</div><div class="ttdoc">Semi-atomic version of *dest |= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1213</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gad55c9178f7728789b5df488e0d072feb"><div class="ttname"><a href="group__sys__atomic__utils.html#gad55c9178f7728789b5df488e0d072feb">semi_atomic_fetch_or_u8</a></div><div class="ttdeci">static uint8_t semi_atomic_fetch_or_u8(volatile uint8_t *dest, uint8_t val)</div><div class="ttdoc">Semi-atomic version of *dest |= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1197</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gad5c54834f49694d0b1fa5869e008344d"><div class="ttname"><a href="group__sys__atomic__utils.html#gad5c54834f49694d0b1fa5869e008344d">atomic_fetch_or_u64</a></div><div class="ttdeci">static uint64_t atomic_fetch_or_u64(volatile uint64_t *dest, uint64_t val)</div><div class="ttdoc">Atomic version of *dest |= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gadbe688c570ef2efbf862cc299aee8ac8"><div class="ttname"><a href="group__sys__atomic__utils.html#gadbe688c570ef2efbf862cc299aee8ac8">atomic_load_u64</a></div><div class="ttdeci">static uint64_t atomic_load_u64(const volatile uint64_t *var)</div><div class="ttdoc">Load an uint64_t atomically.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gadf0beb3d334bde60c06fb4e330fbf9a5"><div class="ttname"><a href="group__sys__atomic__utils.html#gadf0beb3d334bde60c06fb4e330fbf9a5">atomic_fetch_add_u32</a></div><div class="ttdeci">static uint32_t atomic_fetch_add_u32(volatile uint32_t *dest, uint32_t summand)</div><div class="ttdoc">Atomically add a value onto a given value.</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gadfe6287272762d09665c32b2aea96f0f"><div class="ttname"><a href="group__sys__atomic__utils.html#gadfe6287272762d09665c32b2aea96f0f">semi_atomic_fetch_xor_u16</a></div><div class="ttdeci">static uint16_t semi_atomic_fetch_xor_u16(volatile uint16_t *dest, uint16_t val)</div><div class="ttdoc">Semi-atomic version of *dest ^= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1278</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaec0f6c89e898663b9049cff77d6ddf16"><div class="ttname"><a href="group__sys__atomic__utils.html#gaec0f6c89e898663b9049cff77d6ddf16">atomic_fetch_or_u8</a></div><div class="ttdeci">static uint8_t atomic_fetch_or_u8(volatile uint8_t *dest, uint8_t val)</div><div class="ttdoc">Atomic version of *dest |= val</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gafb10eaf4983b5c6108b0b07cd792df68"><div class="ttname"><a href="group__sys__atomic__utils.html#gafb10eaf4983b5c6108b0b07cd792df68">semi_atomic_fetch_and_u8</a></div><div class="ttdeci">static uint8_t semi_atomic_fetch_and_u8(volatile uint8_t *dest, uint8_t val)</div><div class="ttdoc">Semi-atomic version of *dest &amp;= val</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:1327</div></div>
+<div class="ttc" id="agroup__sys__atomic__utils_html_gaff50a0b7e25e6d10b6d95dc7f5435488"><div class="ttname"><a href="group__sys__atomic__utils.html#gaff50a0b7e25e6d10b6d95dc7f5435488">atomic_fetch_and_u8</a></div><div class="ttdeci">static uint8_t atomic_fetch_and_u8(volatile uint8_t *dest, uint8_t val)</div><div class="ttdoc">Atomic version of *dest &amp;= val</div></div>
+<div class="ttc" id="airq_8h_html"><div class="ttname"><a href="irq_8h.html">irq.h</a></div><div class="ttdoc">IRQ driver interface.</div></div>
+<div class="ttc" id="asched_8h_html"><div class="ttname"><a href="sched_8h.html">sched.h</a></div><div class="ttdoc">Scheduler API definition.</div></div>
+<div class="ttc" id="astructatomic__bit__u16__t_html"><div class="ttname"><a href="structatomic__bit__u16__t.html">atomic_bit_u16_t</a></div><div class="ttdoc">Type specifying a bit in an uint16_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:183</div></div>
+<div class="ttc" id="astructatomic__bit__u16__t_html_a14477df4a4e9b040809976731cc7317b"><div class="ttname"><a href="structatomic__bit__u16__t.html#a14477df4a4e9b040809976731cc7317b">atomic_bit_u16_t::mask</a></div><div class="ttdeci">uint16_t mask</div><div class="ttdoc">Bitmask used for setting the bit.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:185</div></div>
+<div class="ttc" id="astructatomic__bit__u16__t_html_affd2e3903fb6095a55e44af43e42c8e3"><div class="ttname"><a href="structatomic__bit__u16__t.html#affd2e3903fb6095a55e44af43e42c8e3">atomic_bit_u16_t::dest</a></div><div class="ttdeci">volatile uint16_t * dest</div><div class="ttdoc">Memory containing the bit to set/clear.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:184</div></div>
+<div class="ttc" id="astructatomic__bit__u32__t_html"><div class="ttname"><a href="structatomic__bit__u32__t.html">atomic_bit_u32_t</a></div><div class="ttdoc">Type specifying a bit in an uint32_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:193</div></div>
+<div class="ttc" id="astructatomic__bit__u32__t_html_acfd20f77e8b7612211c609ac9231bbd3"><div class="ttname"><a href="structatomic__bit__u32__t.html#acfd20f77e8b7612211c609ac9231bbd3">atomic_bit_u32_t::dest</a></div><div class="ttdeci">volatile uint32_t * dest</div><div class="ttdoc">Memory containing the bit to set/clear.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:194</div></div>
+<div class="ttc" id="astructatomic__bit__u32__t_html_adc13faf3fcc123da102c87e28854fdb4"><div class="ttname"><a href="structatomic__bit__u32__t.html#adc13faf3fcc123da102c87e28854fdb4">atomic_bit_u32_t::mask</a></div><div class="ttdeci">uint32_t mask</div><div class="ttdoc">Bitmask used for setting the bit.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:195</div></div>
+<div class="ttc" id="astructatomic__bit__u64__t_html"><div class="ttname"><a href="structatomic__bit__u64__t.html">atomic_bit_u64_t</a></div><div class="ttdoc">Type specifying a bit in an uint64_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:203</div></div>
+<div class="ttc" id="astructatomic__bit__u64__t_html_a4383f143d7698b01d18a6c14e2d41e84"><div class="ttname"><a href="structatomic__bit__u64__t.html#a4383f143d7698b01d18a6c14e2d41e84">atomic_bit_u64_t::dest</a></div><div class="ttdeci">volatile uint64_t * dest</div><div class="ttdoc">Memory containing the bit to set/clear.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:204</div></div>
+<div class="ttc" id="astructatomic__bit__u64__t_html_a9d27c39752574d59addef4a7aa0c14ec"><div class="ttname"><a href="structatomic__bit__u64__t.html#a9d27c39752574d59addef4a7aa0c14ec">atomic_bit_u64_t::mask</a></div><div class="ttdeci">uint64_t mask</div><div class="ttdoc">Bitmask used for setting the bit.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:205</div></div>
+<div class="ttc" id="astructatomic__bit__u8__t_html"><div class="ttname"><a href="structatomic__bit__u8__t.html">atomic_bit_u8_t</a></div><div class="ttdoc">Type specifying a bit in an uint8_t</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:173</div></div>
+<div class="ttc" id="astructatomic__bit__u8__t_html_a5f186fa960a9d5c5118d768d9fe4f69b"><div class="ttname"><a href="structatomic__bit__u8__t.html#a5f186fa960a9d5c5118d768d9fe4f69b">atomic_bit_u8_t::mask</a></div><div class="ttdeci">uint8_t mask</div><div class="ttdoc">Bitmask used for setting the bit.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:175</div></div>
+<div class="ttc" id="astructatomic__bit__u8__t_html_aa097a4651c0d347170fe4b52042c5352"><div class="ttname"><a href="structatomic__bit__u8__t.html#aa097a4651c0d347170fe4b52042c5352">atomic_bit_u8_t::dest</a></div><div class="ttdeci">volatile uint8_t * dest</div><div class="ttdoc">Memory containing the bit to set/clear.</div><div class="ttdef"><b>Definition:</b> atomic_utils.h:174</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e9e107fc86bbb4b6a326076a6808b9f5.html">include</a></li><li class="navelem"><a class="el" href="atomic__utils_8h.html">atomic_utils.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

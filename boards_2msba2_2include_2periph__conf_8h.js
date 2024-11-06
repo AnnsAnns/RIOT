@@ -1,0 +1,28 @@
+var boards_2msba2_2include_2periph__conf_8h =
+[
+    [ "ADC_NUMOF", "boards_2msba2_2include_2periph__conf_8h.html#a2f0c741db24aa2ccded869ba53f6a302", null ],
+    [ "CLOCK_CORECLOCK", "boards_2msba2_2include_2periph__conf_8h.html#afc465f12242e68f6c3695caa3ba0a169", null ],
+    [ "CLOCK_PCLK", "boards_2msba2_2include_2periph__conf_8h.html#a486a87ce89721f7cfb9d7017cd9e1ee8", null ],
+    [ "I2C_NUMOF", "boards_2msba2_2include_2periph__conf_8h.html#abce62e16a6e3b3205801fed93c51692d", null ],
+    [ "PWM_CH0", "boards_2msba2_2include_2periph__conf_8h.html#a3ce05ed0c4b23d9fd3257b49fec3b751", null ],
+    [ "PWM_CH0_MR", "boards_2msba2_2include_2periph__conf_8h.html#aa3ac9902bf2b855d4e36f2702835516a", null ],
+    [ "PWM_CH0_PIN", "boards_2msba2_2include_2periph__conf_8h.html#a53dbfce86e2fad48ab50b4ad6d8f6d21", null ],
+    [ "PWM_CH1", "boards_2msba2_2include_2periph__conf_8h.html#aa762d631e9794aaecce90826faf4f402", null ],
+    [ "PWM_CH1_MR", "boards_2msba2_2include_2periph__conf_8h.html#a779b43b273025a1c1272ae1fbeca76b6", null ],
+    [ "PWM_CH1_PIN", "boards_2msba2_2include_2periph__conf_8h.html#a302d280cb31d85700bf4e4012c3cea11", null ],
+    [ "PWM_CH2", "boards_2msba2_2include_2periph__conf_8h.html#a6b50c0d5e200636bca31f4689760136e", null ],
+    [ "PWM_CH2_MR", "boards_2msba2_2include_2periph__conf_8h.html#afb29fe728ccc7a70ce6c1ec2db56112f", null ],
+    [ "PWM_CH2_PIN", "boards_2msba2_2include_2periph__conf_8h.html#abbc4e5b907aa9b44a1004d72dbba9e48", null ],
+    [ "PWM_CHANNELS", "boards_2msba2_2include_2periph__conf_8h.html#a312588cf680d50931666643dea45bb13", null ],
+    [ "PWM_FUNC", "boards_2msba2_2include_2periph__conf_8h.html#ae723489f2d8761e606aa1cddd9750482", null ],
+    [ "PWM_NUMOF", "boards_2msba2_2include_2periph__conf_8h.html#a44adbd579bb180f3cfe8ec78932eb7a1", null ],
+    [ "PWM_PORT", "boards_2msba2_2include_2periph__conf_8h.html#adba65af49b5bab952693d914ec888b7b", null ],
+    [ "SPI_NUMOF", "boards_2msba2_2include_2periph__conf_8h.html#ab35a2b79568128efef74adf1ba1910a8", null ],
+    [ "TIMER_NUMOF", "boards_2msba2_2include_2periph__conf_8h.html#a6e2f66f5b6f5c835dd11f9766c4ed897", null ],
+    [ "UART_NUMOF", "boards_2msba2_2include_2periph__conf_8h.html#a850405f2aaa352ad264346531f0e6230", null ],
+    [ "XTAL_HZ", "boards_2msba2_2include_2periph__conf_8h.html#aacc152097167f8f91779619107dc6f91", null ],
+    [ "adc_config", "boards_2msba2_2include_2periph__conf_8h.html#a160c7b1c3bc13c7cb5ac4ed375f4e21d", null ],
+    [ "i2c_config", "boards_2msba2_2include_2periph__conf_8h.html#aa9dcbfbe7aa5baf027d834e5bca62a47", null ],
+    [ "spi_config", "boards_2msba2_2include_2periph__conf_8h.html#a873188d7292e07499dcde9674b1e849c", null ],
+    [ "uart_config", "boards_2msba2_2include_2periph__conf_8h.html#a1643cfc64589407fb96b4cbf908689a5", null ]
+];

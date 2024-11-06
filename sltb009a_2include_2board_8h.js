@@ -1,0 +1,25 @@
+var sltb009a_2include_2board_8h =
+[
+    [ "CORETEMP_ADC", "sltb009a_2include_2board_8h.html#a07beea92e8e32cd1732e7a8e035ecbbb", null ],
+    [ "LED0_OFF", "sltb009a_2include_2board_8h.html#aef2e39b9fd343d0e437fac0463f3e02d", null ],
+    [ "LED0_ON", "sltb009a_2include_2board_8h.html#a1e48dc02333bfc2e6ad3e5bd466eecd4", null ],
+    [ "LED0_PIN", "sltb009a_2include_2board_8h.html#a3fc522fda449d6edde717d6a857429cf", null ],
+    [ "LED0_TOGGLE", "sltb009a_2include_2board_8h.html#aebc6389533d9fc8dcbe4d2129a4d5a45", null ],
+    [ "LED0B_PIN", "sltb009a_2include_2board_8h.html#a9aae3e7514e33995338c8335f19346cb", null ],
+    [ "LED0G_PIN", "sltb009a_2include_2board_8h.html#a19c080e8fb7684cfc46c839bde04da15", null ],
+    [ "LED0R_PIN", "sltb009a_2include_2board_8h.html#a66f927538943e8db2af5aee360086045", null ],
+    [ "LED1_OFF", "sltb009a_2include_2board_8h.html#a343fd2d3ce61b84f88ddfaea32c67c58", null ],
+    [ "LED1_ON", "sltb009a_2include_2board_8h.html#aadd4c7ae0cd4e9bbb17f7055dd51fe08", null ],
+    [ "LED1_PIN", "sltb009a_2include_2board_8h.html#a318aa17e5d40e2132d2c7f6269ce7f51", null ],
+    [ "LED1_TOGGLE", "sltb009a_2include_2board_8h.html#a267fdbba1d750146b73da35c1731fd17", null ],
+    [ "LED1B_PIN", "sltb009a_2include_2board_8h.html#a64a4f90f1d03b366c867c8624e9d846b", null ],
+    [ "LED1G_PIN", "sltb009a_2include_2board_8h.html#aeaa7e30bdc420436e691db125750f736", null ],
+    [ "LED1R_PIN", "sltb009a_2include_2board_8h.html#a8776b10b8cd24591c7c9cc087999a9f3", null ],
+    [ "PB0_PIN", "sltb009a_2include_2board_8h.html#aea39132b18ce668ed815d13c3153323b", null ],
+    [ "PB1_PIN", "sltb009a_2include_2board_8h.html#aa33c970f051ff2f38a217f39f00599c1", null ],
+    [ "VCOM_EN_PIN", "sltb009a_2include_2board_8h.html#afea47fa6d56d7049a4b3976b3ed14766", null ],
+    [ "XTIMER_CHAN", "sltb009a_2include_2board_8h.html#a8b747b85d4d5f2e1be910cdbc72a01de", null ],
+    [ "XTIMER_DEV", "sltb009a_2include_2board_8h.html#a5e48bb301c732e044b08f336fb851d5e", null ],
+    [ "XTIMER_HZ", "sltb009a_2include_2board_8h.html#af68fde6b7d5b362834e6a8d382c6c0d7", null ],
+    [ "XTIMER_WIDTH", "sltb009a_2include_2board_8h.html#afea1be2406d45b8fbb1dca1a318ac2dc", null ]
+];

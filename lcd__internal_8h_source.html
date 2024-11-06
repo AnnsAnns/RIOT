@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/lcd/include/lcd_internal.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('lcd__internal_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">lcd_internal.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="lcd__internal_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2018 Koen Zandberg</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *               2021 Francisco Molina</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LCD_INTERNAL_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define LCD_INTERNAL_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ac00d8e81fe283b0f7e46095eaf3758f8">   36</a></span>&#160;<span class="preprocessor">#define LCD_CMD_SWRESET         0x01    </span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#aa84d3c343715c5be93bb0f20ffcf9e45">   37</a></span>&#160;<span class="preprocessor">#define LCD_CMD_RDDIDIF         0x04    </span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ae88d71637bd42077b126141be0568af5">   38</a></span>&#160;<span class="preprocessor">#define LCD_CMD_RDDST           0x09    </span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a9076c7bdd92391142050682cc66da8b8">   39</a></span>&#160;<span class="preprocessor">#define LCD_CMD_SLPIN           0x10    </span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a9030786994f14df26dd3c99a79516e0a">   40</a></span>&#160;<span class="preprocessor">#define LCD_CMD_SLPOUT          0x11    </span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#adaf83724b59ecc7af5ab6364c51b1c90">   41</a></span>&#160;<span class="preprocessor">#define LCD_CMD_NORON           0x13    </span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a94910d70286cdcfb296371ffccc71375">   42</a></span>&#160;<span class="preprocessor">#define LCD_CMD_DINVOFF         0x20    </span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#afcec67da127c5e962fc4d2328fbea974">   43</a></span>&#160;<span class="preprocessor">#define LCD_CMD_DINVON          0x21    </span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a62ede99e78cd5074d1bf6190af7eefc7">   45</a></span>&#160;<span class="preprocessor">#define LCD_CMD_GAMSET          0x26    </span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ad0e5be6fec8653a3cdeedf27571d5c44">   46</a></span>&#160;<span class="preprocessor">#define LCD_CMD_DISPOFF         0x28    </span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a8b84344a88624e8f9b52b5790241f6e6">   47</a></span>&#160;<span class="preprocessor">#define LCD_CMD_DISPON          0x29    </span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a67adb85097e3a6eb07ce0f4a1f56dcec">   48</a></span>&#160;<span class="preprocessor">#define LCD_CMD_CASET           0x2A    </span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a9bcd85022fdc74ea73cd8b28db1dc795">   49</a></span>&#160;<span class="preprocessor">#define LCD_CMD_PASET           0x2b    </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a493311a7392e46c1b0f39b16f7a74257">   50</a></span>&#160;<span class="preprocessor">#define LCD_CMD_RAMWR           0x2c    </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a90ae533cf76b746273a59b439aea2161">   51</a></span>&#160;<span class="preprocessor">#define LCD_CMD_RAMRD           0x2e    </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ace4d3f9b442bfebc11d6071897ebbb72">   52</a></span>&#160;<span class="preprocessor">#define LCD_CMD_MADCTL          0x36    </span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a26e7eef7f2be7c5c5c4c116e35c40106">   53</a></span>&#160;<span class="preprocessor">#define LCD_CMD_IDMOFF          0x38    </span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ad839cf435f53c1f546e644f8d84ae40b">   54</a></span>&#160;<span class="preprocessor">#define LCD_CMD_IDMON           0x39    </span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ab4ae9557a4b6fdb97a067d57c2a2250c">   55</a></span>&#160;<span class="preprocessor">#define LCD_CMD_TEOFF           0x34    </span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a34d827baf6326e3688dae8e7d9647ab9">   56</a></span>&#160;<span class="preprocessor">#define LCD_CMD_TEON            0x35    </span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ad96215614e2bd3434cd161cf8543bd9c">   57</a></span>&#160;<span class="preprocessor">#define LCD_CMD_COLMOD          0x3A    </span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a7ab04e12b7a992201a50d0e3c972de59">   58</a></span>&#160;<span class="preprocessor">#define LCD_CMD_PIXSET          0x3A    </span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a8b115d80b86ae8e63055a34247927bdd">   59</a></span>&#160;<span class="preprocessor">#define LCD_CMD_RAMWRC          0x3c    </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ab17a6c5749af7ee4ec4dcbd8a353d26c">   60</a></span>&#160;<span class="preprocessor">#define LCD_CMD_RAMRDC          0x3e    </span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a2d9c379b5d904eee99aedb80218bb6e1">   61</a></span>&#160;<span class="preprocessor">#define LCD_CMD_WRDISBV         0x51    </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ad8b125a3bb63cc380ce94f8a88d610b3">   62</a></span>&#160;<span class="preprocessor">#define LCD_CMD_WRCTRLD         0x53    </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ac15eaca8a715f0d036a6fa3c7df41721">   63</a></span>&#160;<span class="preprocessor">#define LCD_CMD_RDCTRLD         0x54    </span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a68a6717ef4c2da335bafc17ba6cb31a4">   64</a></span>&#160;<span class="preprocessor">#define LCD_CMD_FRAMECTL1       0xb1    </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a76bdc2a0d30a60189e183595fb6f1317">   65</a></span>&#160;<span class="preprocessor">#define LCD_CMD_FRAMECTL2       0xb2    </span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a0f53b5f20469e894e58762090c88782a">   66</a></span>&#160;<span class="preprocessor">#define LCD_CMD_FRAMECTL3       0xb3    </span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a4a257b36e68ed94f06a920a5e0b244f9">   67</a></span>&#160;<span class="preprocessor">#define LCD_CMD_DFUNC           0xb6    </span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a2a472529afccbeb9779e2a34aef32552">   68</a></span>&#160;<span class="preprocessor">#define LCD_CMD_PWCTRL1         0xc0    </span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a7b8d0213f746a38801d032e223c27527">   69</a></span>&#160;<span class="preprocessor">#define LCD_CMD_PWCTRL2         0xc1    </span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#addccff52b04bf588f3d73e987b7afce0">   70</a></span>&#160;<span class="preprocessor">#define LCD_CMD_VMCTRL1         0xc5    </span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#ade36e420a66f63cb36ab8155183ad134">   71</a></span>&#160;<span class="preprocessor">#define LCD_CMD_VMCTRL2         0xc7    </span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#acbcaa030649a8264927ef5a14b3d906d">   72</a></span>&#160;<span class="preprocessor">#define LCD_CMD_PGAMCTRL        0xe0    </span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a29add4fd2fa3faec65f1a02387183cda">   73</a></span>&#160;<span class="preprocessor">#define LCD_CMD_NGAMCTRL        0xe1    </span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a54903f22d137d58f4513a2a3df5a5686">   74</a></span>&#160;<span class="preprocessor">#define LCD_CMD_IFCTL           0xf6    </span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#a126ca4141ba3fe2c0899fb34b9984b95">   77</a></span>&#160;<span class="preprocessor">#define LCD_PIXSET_16BIT        0x55    </span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="lcd__internal_8h.html#acfa2036ceb9379320b38f41d3cbb8d71">   78</a></span>&#160;<span class="preprocessor">#define LCD_PIXSET_18BIT        0x66    </span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LCD_INTERNAL_H */</span><span class="preprocessor"></span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ba1d07ed4d5aa49bdda527e4db347ebf.html">lcd</a></li><li class="navelem"><a class="el" href="dir_c2b74b9fe919768062932e150ae2280e.html">include</a></li><li class="navelem"><a class="el" href="lcd__internal_8h.html">lcd_internal.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

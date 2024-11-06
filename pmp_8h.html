@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/riscv_common/include/pmp.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('pmp_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">pmp.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__riscv__common.html">RISC-V common</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>RISC-V PMP configuration options.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>RISC-V PMP configuration options. </p>
+<p>RISCV implementations using this peripheral must define the <code>NUM_PMP_ENTRIES</code> <code>NUM_PMP_ENTRIES</code> must be 16 or 64.</p>
+<dl class="section author"><dt>Author</dt><dd>Bennet Blischke </dd></dl>
+</div><div class="textblock"><code>#include &lt;<a class="el" href="assert_8h_source.html">assert.h</a>&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for pmp.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="pmp_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aedc84e46ba21c0d832c212d3b6d41810"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#aedc84e46ba21c0d832c212d3b6d41810">make_napot</a> (uint32_t addr, uint32_t size)</td></tr>
+<tr class="memdesc:aedc84e46ba21c0d832c212d3b6d41810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NAPOT formatted address.  <a href="pmp_8h.html#aedc84e46ba21c0d832c212d3b6d41810">More...</a><br /></td></tr>
+<tr class="separator:aedc84e46ba21c0d832c212d3b6d41810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94e730d581bb2b168d08a2bea477e718"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a94e730d581bb2b168d08a2bea477e718">write_pmpcfg</a> (uint8_t reg_num, uint32_t value)</td></tr>
+<tr class="memdesc:a94e730d581bb2b168d08a2bea477e718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a complete pmpcfg register.  <a href="pmp_8h.html#a94e730d581bb2b168d08a2bea477e718">More...</a><br /></td></tr>
+<tr class="separator:a94e730d581bb2b168d08a2bea477e718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addc3f72a5c11f1d8b736186cd4015a29"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#addc3f72a5c11f1d8b736186cd4015a29">read_pmpcfg</a> (uint8_t reg_num)</td></tr>
+<tr class="memdesc:addc3f72a5c11f1d8b736186cd4015a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a complete pmpcfg register.  <a href="pmp_8h.html#addc3f72a5c11f1d8b736186cd4015a29">More...</a><br /></td></tr>
+<tr class="separator:addc3f72a5c11f1d8b736186cd4015a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3d18b6c13056ecbc677f5df98bbb188"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#ac3d18b6c13056ecbc677f5df98bbb188">write_pmpaddr</a> (uint8_t reg_num, uint32_t value)</td></tr>
+<tr class="memdesc:ac3d18b6c13056ecbc677f5df98bbb188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a complete pmpaddr register.  <a href="pmp_8h.html#ac3d18b6c13056ecbc677f5df98bbb188">More...</a><br /></td></tr>
+<tr class="separator:ac3d18b6c13056ecbc677f5df98bbb188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e26b206cc08a89a81eb74d0e894f74"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a07e26b206cc08a89a81eb74d0e894f74">read_pmpaddr</a> (uint8_t reg_num)</td></tr>
+<tr class="memdesc:a07e26b206cc08a89a81eb74d0e894f74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a complete pmpaddr register.  <a href="pmp_8h.html#a07e26b206cc08a89a81eb74d0e894f74">More...</a><br /></td></tr>
+<tr class="separator:a07e26b206cc08a89a81eb74d0e894f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89934850a2d82470597a588c742a7e86"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a89934850a2d82470597a588c742a7e86">get_pmpcfg</a> (uint8_t entry)</td></tr>
+<tr class="memdesc:a89934850a2d82470597a588c742a7e86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a single pmpcfg sub-register.  <a href="pmp_8h.html#a89934850a2d82470597a588c742a7e86">More...</a><br /></td></tr>
+<tr class="separator:a89934850a2d82470597a588c742a7e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457da696b765b45f34600b19cc56c944"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a457da696b765b45f34600b19cc56c944">set_pmpcfg</a> (uint8_t entry, uint8_t value)</td></tr>
+<tr class="memdesc:a457da696b765b45f34600b19cc56c944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set's a single pmpcfg sub-register.  <a href="pmp_8h.html#a457da696b765b45f34600b19cc56c944">More...</a><br /></td></tr>
+<tr class="separator:a457da696b765b45f34600b19cc56c944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a842f31186c356e2f42d9d935b4a58707"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a842f31186c356e2f42d9d935b4a58707">print_pmpcfg</a> (uint8_t entry)</td></tr>
+<tr class="memdesc:a842f31186c356e2f42d9d935b4a58707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a single pmpcfg sub-register human readable.  <a href="pmp_8h.html#a842f31186c356e2f42d9d935b4a58707">More...</a><br /></td></tr>
+<tr class="separator:a842f31186c356e2f42d9d935b4a58707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Bit masks for the PMP configuration register</h2></td></tr>
+<tr class="memitem:a731d1e42caecdca57949f770f3e82e32"><td class="memItemLeft" align="right" valign="top"><a id="a731d1e42caecdca57949f770f3e82e32"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a731d1e42caecdca57949f770f3e82e32">PMP_NONE</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:a731d1e42caecdca57949f770f3e82e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">No access allowed at all. <br /></td></tr>
+<tr class="separator:a731d1e42caecdca57949f770f3e82e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a383d3ee4d5727ef3fb4437d954be3b21"><td class="memItemLeft" align="right" valign="top"><a id="a383d3ee4d5727ef3fb4437d954be3b21"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a383d3ee4d5727ef3fb4437d954be3b21">PMP_R</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memdesc:a383d3ee4d5727ef3fb4437d954be3b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow read access. <br /></td></tr>
+<tr class="separator:a383d3ee4d5727ef3fb4437d954be3b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f34c98b252436e69ad95e766abf8482"><td class="memItemLeft" align="right" valign="top"><a id="a5f34c98b252436e69ad95e766abf8482"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a5f34c98b252436e69ad95e766abf8482">PMP_W</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memdesc:a5f34c98b252436e69ad95e766abf8482"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow write access. <br /></td></tr>
+<tr class="separator:a5f34c98b252436e69ad95e766abf8482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabfce7f7dde3e93eb596074b4d107bec"><td class="memItemLeft" align="right" valign="top"><a id="aabfce7f7dde3e93eb596074b4d107bec"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#aabfce7f7dde3e93eb596074b4d107bec">PMP_X</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memdesc:aabfce7f7dde3e93eb596074b4d107bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow execution. <br /></td></tr>
+<tr class="separator:aabfce7f7dde3e93eb596074b4d107bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47df3f6548f6106ad54d3def500db71f"><td class="memItemLeft" align="right" valign="top"><a id="a47df3f6548f6106ad54d3def500db71f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a47df3f6548f6106ad54d3def500db71f">PMP_A</a>&#160;&#160;&#160;0x18</td></tr>
+<tr class="memdesc:a47df3f6548f6106ad54d3def500db71f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addressing mode mask. <br /></td></tr>
+<tr class="separator:a47df3f6548f6106ad54d3def500db71f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abef2cdf8c356ee4212e3cc5568941eb8"><td class="memItemLeft" align="right" valign="top"><a id="abef2cdf8c356ee4212e3cc5568941eb8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#abef2cdf8c356ee4212e3cc5568941eb8">PMP_OFF</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:abef2cdf8c356ee4212e3cc5568941eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable this pmp entry. <br /></td></tr>
+<tr class="separator:abef2cdf8c356ee4212e3cc5568941eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c34c467a11c27392fdaa5901d8b6361"><td class="memItemLeft" align="right" valign="top"><a id="a0c34c467a11c27392fdaa5901d8b6361"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a0c34c467a11c27392fdaa5901d8b6361">PMP_TOR</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memdesc:a0c34c467a11c27392fdaa5901d8b6361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Top-of-range addressing mode. <br /></td></tr>
+<tr class="separator:a0c34c467a11c27392fdaa5901d8b6361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1530fe241c9693a40ba2d54f97757d28"><td class="memItemLeft" align="right" valign="top"><a id="a1530fe241c9693a40ba2d54f97757d28"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a1530fe241c9693a40ba2d54f97757d28">PMP_NA4</a>&#160;&#160;&#160;0x10</td></tr>
+<tr class="memdesc:a1530fe241c9693a40ba2d54f97757d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Naturally aligned four-byte region. <br /></td></tr>
+<tr class="separator:a1530fe241c9693a40ba2d54f97757d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ebfc3724e055e0777d3d3562d9c6367"><td class="memItemLeft" align="right" valign="top"><a id="a2ebfc3724e055e0777d3d3562d9c6367"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a2ebfc3724e055e0777d3d3562d9c6367">PMP_NAPOT</a>&#160;&#160;&#160;0x18</td></tr>
+<tr class="memdesc:a2ebfc3724e055e0777d3d3562d9c6367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Naturally aligned power-of-two region, ≥8 bytes. <br /></td></tr>
+<tr class="separator:a2ebfc3724e055e0777d3d3562d9c6367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68f26499e9a07ee23940bcd1ff49e51d"><td class="memItemLeft" align="right" valign="top"><a id="a68f26499e9a07ee23940bcd1ff49e51d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmp_8h.html#a68f26499e9a07ee23940bcd1ff49e51d">PMP_L</a>&#160;&#160;&#160;0x80</td></tr>
+<tr class="memdesc:a68f26499e9a07ee23940bcd1ff49e51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock; read-only config &amp; applies to machine-mode. <br /></td></tr>
+<tr class="separator:a68f26499e9a07ee23940bcd1ff49e51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a89934850a2d82470597a588c742a7e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89934850a2d82470597a588c742a7e86">&#9670;&nbsp;</a></span>get_pmpcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t get_pmpcfg </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a single pmpcfg sub-register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">entry</td><td>Sub-register number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Contents of the specified sub-register </dd></dl>
+
+</div>
+</div>
+<a id="aedc84e46ba21c0d832c212d3b6d41810"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedc84e46ba21c0d832c212d3b6d41810">&#9670;&nbsp;</a></span>make_napot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint32_t make_napot </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a NAPOT formatted address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>Base address, must be aligned to the size of the region </td></tr>
+    <tr><td class="paramname">size</td><td>Size of the region in bytes </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a842f31186c356e2f42d9d935b4a58707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a842f31186c356e2f42d9d935b4a58707">&#9670;&nbsp;</a></span>print_pmpcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_pmpcfg </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a single pmpcfg sub-register human readable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entry</td><td>Register number to print </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a07e26b206cc08a89a81eb74d0e894f74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07e26b206cc08a89a81eb74d0e894f74">&#9670;&nbsp;</a></span>read_pmpaddr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t read_pmpaddr </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg_num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a complete pmpaddr register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg_num</td><td>Register number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Contents of the specified register </dd></dl>
+
+</div>
+</div>
+<a id="addc3f72a5c11f1d8b736186cd4015a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addc3f72a5c11f1d8b736186cd4015a29">&#9670;&nbsp;</a></span>read_pmpcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t read_pmpcfg </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg_num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a complete pmpcfg register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg_num</td><td>Register number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Contents of the specified register </dd></dl>
+
+</div>
+</div>
+<a id="a457da696b765b45f34600b19cc56c944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a457da696b765b45f34600b19cc56c944">&#9670;&nbsp;</a></span>set_pmpcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_pmpcfg </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>entry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set's a single pmpcfg sub-register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entry</td><td>Sub-register number </td></tr>
+    <tr><td class="paramname">value</td><td>Value to write </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac3d18b6c13056ecbc677f5df98bbb188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3d18b6c13056ecbc677f5df98bbb188">&#9670;&nbsp;</a></span>write_pmpaddr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void write_pmpaddr </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes a complete pmpaddr register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg_num</td><td>Register number </td></tr>
+    <tr><td class="paramname">value</td><td>Value to write </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a94e730d581bb2b168d08a2bea477e718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94e730d581bb2b168d08a2bea477e718">&#9670;&nbsp;</a></span>write_pmpcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void write_pmpcfg </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>reg_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes a complete pmpcfg register. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg_num</td><td>Register number </td></tr>
+    <tr><td class="paramname">value</td><td>Value to write </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_7a65efae10740b50b94440f94c0bfe16.html">riscv_common</a></li><li class="navelem"><a class="el" href="dir_06a14049c6918ca945db813a43b15ac2.html">include</a></li><li class="navelem"><a class="el" href="pmp_8h.html">pmp.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/qn908x/include/periph_cpu.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('qn908x_2include_2periph__cpu_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
+  <div class="headertitle">
+<div class="title">periph_cpu.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__qn908x.html">NXP QN908x</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>CPU specific definitions for internal peripheral handling.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>CPU specific definitions for internal peripheral handling. </p>
+<dl class="section author"><dt>Author</dt><dd>iosabi <a href="#" onclick="location.href='mai'+'lto:'+'ios'+'ab'+'i@p'+'ro'+'ton'+'ma'+'il.'+'co'+'m'; return false;">iosab<span style="display: none;">.nosp@m.</span>i@pr<span style="display: none;">.nosp@m.</span>otonm<span style="display: none;">.nosp@m.</span>ail.<span style="display: none;">.nosp@m.</span>com</a> </dd></dl>
+</div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;cpu.h&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for periph_cpu.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 -->
+</div>
+</div>
+</div>
+<p><a href="qn908x_2include_2periph__cpu_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structi2c__conf__t.html">i2c_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C configuration structure.  <a href="structi2c__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__conf__t.html">uart_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART device configuration.  <a href="structuart__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3969ce1e494a72d3c2925b10ddeb4604"><td class="memItemLeft" align="right" valign="top"><a id="a3969ce1e494a72d3c2925b10ddeb4604"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a>&#160;&#160;&#160;(0xffff)</td></tr>
+<tr class="memdesc:a3969ce1e494a72d3c2925b10ddeb4604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of a fitting UNDEF value. <br /></td></tr>
+<tr class="separator:a3969ce1e494a72d3c2925b10ddeb4604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29846b3ecd19a0b7c44ff80a37ae7c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae29846b3ecd19a0b7c44ff80a37ae7c1">GPIO_PIN</a>(x,  y)&#160;&#160;&#160;(((x) &lt;&lt; 12u) | (y))</td></tr>
+<tr class="memdesc:ae29846b3ecd19a0b7c44ff80a37ae7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a CPU specific GPIO pin generator macro.  <a href="qn908x_2include_2periph__cpu_8h.html#ae29846b3ecd19a0b7c44ff80a37ae7c1">More...</a><br /></td></tr>
+<tr class="separator:ae29846b3ecd19a0b7c44ff80a37ae7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d3fc6a1a30b894ce55d50e7eac993b2"><td class="memItemLeft" align="right" valign="top"><a id="a0d3fc6a1a30b894ce55d50e7eac993b2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a0d3fc6a1a30b894ce55d50e7eac993b2">CPUID_ADDR</a>&#160;&#160;&#160;(FSL_FEATURE_FLASH_ADDR_OF_VENDOR_BD_ADDR)</td></tr>
+<tr class="memdesc:a0d3fc6a1a30b894ce55d50e7eac993b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starting offset of CPU_ID. <br /></td></tr>
+<tr class="separator:a0d3fc6a1a30b894ce55d50e7eac993b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1943715eaeaa63e28b7b4e207f655fca"><td class="memItemLeft" align="right" valign="top"><a id="a1943715eaeaa63e28b7b4e207f655fca"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a1943715eaeaa63e28b7b4e207f655fca">CPUID_LEN</a>&#160;&#160;&#160;(6U)</td></tr>
+<tr class="memdesc:a1943715eaeaa63e28b7b4e207f655fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the CPU_ID in octets. <br /></td></tr>
+<tr class="separator:a1943715eaeaa63e28b7b4e207f655fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb358111eba1eb3ba04b65fe1fad0749"><td class="memItemLeft" align="right" valign="top"><a id="aeb358111eba1eb3ba04b65fe1fad0749"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#aeb358111eba1eb3ba04b65fe1fad0749">WDT_HAS_STOP</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:aeb358111eba1eb3ba04b65fe1fad0749"><td class="mdescLeft">&#160;</td><td class="mdescRight">Watchdog clock can be stopped independently of other clocks. <br /></td></tr>
+<tr class="separator:aeb358111eba1eb3ba04b65fe1fad0749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092f1ec89efc2444ec80c3bf1792cf2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">GPIO_MODE</a>(open_drain,  out_enabled,  pull_mode)&#160;&#160;&#160;    ((open_drain) | ((out_enabled) &lt;&lt; 1) | ((pull_mode) &lt;&lt; 4))</td></tr>
+<tr class="memdesc:a092f1ec89efc2444ec80c3bf1792cf2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate GPIO mode bitfields.  <a href="qn908x_2include_2periph__cpu_8h.html#a092f1ec89efc2444ec80c3bf1792cf2b">More...</a><br /></td></tr>
+<tr class="separator:a092f1ec89efc2444ec80c3bf1792cf2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae03968f461a0e5a772c574b13bf456b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae03968f461a0e5a772c574b13bf456b7">QN908X_ADC_CLOCK</a></td></tr>
+<tr class="memdesc:ae03968f461a0e5a772c574b13bf456b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selected ADC oversample clock.  <a href="qn908x_2include_2periph__cpu_8h.html#ae03968f461a0e5a772c574b13bf456b7">More...</a><br /></td></tr>
+<tr class="separator:ae03968f461a0e5a772c574b13bf456b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eec9ae0c58babedd37c1ea59e8472cc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a0eec9ae0c58babedd37c1ea59e8472cc">ADC_VREF_GAIN_X15</a>&#160;&#160;&#160;(0x100u)</td></tr>
+<tr class="memdesc:a0eec9ae0c58babedd37c1ea59e8472cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC Vref x1.5 multiplier flag.  <a href="qn908x_2include_2periph__cpu_8h.html#a0eec9ae0c58babedd37c1ea59e8472cc">More...</a><br /></td></tr>
+<tr class="separator:a0eec9ae0c58babedd37c1ea59e8472cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac478beb12ce9fd2efcefb70c28c08e38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac478beb12ce9fd2efcefb70c28c08e38">ADC_PGA_ENABLE</a>&#160;&#160;&#160;(0x08u)</td></tr>
+<tr class="memdesc:ac478beb12ce9fd2efcefb70c28c08e38"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC PGA Enabled flag.  <a href="qn908x_2include_2periph__cpu_8h.html#ac478beb12ce9fd2efcefb70c28c08e38">More...</a><br /></td></tr>
+<tr class="separator:ac478beb12ce9fd2efcefb70c28c08e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa068c642c84fcc4f2f9a6ec5b8e1d9b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">UART_INVALID_MODE</a>&#160;&#160;&#160;(0x80)</td></tr>
+<tr class="memdesc:aa068c642c84fcc4f2f9a6ec5b8e1d9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalid UART mode mask.  <a href="qn908x_2include_2periph__cpu_8h.html#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">More...</a><br /></td></tr>
+<tr class="separator:aa068c642c84fcc4f2f9a6ec5b8e1d9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ab636ea834aed270181eda1dc92d10dad"><td class="memItemLeft" align="right" valign="top">typedef uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#ab636ea834aed270181eda1dc92d10dad">adc_conf_t</a></td></tr>
+<tr class="memdesc:ab636ea834aed270181eda1dc92d10dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPU specific ADC configuration.  <a href="qn908x_2include_2periph__cpu_8h.html#ab636ea834aed270181eda1dc92d10dad">More...</a><br /></td></tr>
+<tr class="separator:ab636ea834aed270181eda1dc92d10dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a84fe57ba52f8e237004a413b27ea4db8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a84fe57ba52f8e237004a413b27ea4db8aeb6782d9dfedf3c6a78ffdb1624fa454">PORT_A</a> = 0
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a84fe57ba52f8e237004a413b27ea4db8a16ada472d473fbd0207b99e9e4d68f4a">PORT_B</a> = 1
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a84fe57ba52f8e237004a413b27ea4db8a4d49325393abe5e1e70765070a4049f6">GPIO_PORTS_NUMOF</a>
+ }</td></tr>
+<tr class="memdesc:a84fe57ba52f8e237004a413b27ea4db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available ports on the QN908x.  <a href="qn908x_2include_2periph__cpu_8h.html#a84fe57ba52f8e237004a413b27ea4db8">More...</a><br /></td></tr>
+<tr class="separator:a84fe57ba52f8e237004a413b27ea4db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21464439451b8a8c40d23c258dca324a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324a">qn908x_adc_clock_t</a> { <br />
+&#160;&#160;<a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aabb2ff12dc29409282534af5931ae6b2e">ADC_CLOCK_4M</a>
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6271ba979020bfbe30259b517855aaa7">ADC_CLOCK_2M</a>
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa397f9cb4c41a066c4a1ac1b1a76c5e7f">ADC_CLOCK_1M</a>
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa16a7dcbe9148ffbcc02d254a8697198b">ADC_CLOCK_500K</a>
+, <br />
+&#160;&#160;<a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aacf214361e6c5dad09c05dabdb7a3ca4a">ADC_CLOCK_250K</a>
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa5e2b9b08f7ea18a0491271cbb8f6e6a7">ADC_CLOCK_125K</a>
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa49e531d72bd342708b2489642d97f7f2">ADC_CLOCK_62K5</a>
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aa6acd4f3b4cb61a5c8d2b21558f17f613">ADC_CLOCK_31K25</a>
+, <br />
+&#160;&#160;<a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324aaac1da961117d72d3806d235e3e58f884">ADC_CLOCK_32K</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a21464439451b8a8c40d23c258dca324a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC oversample clock configuration.  <a href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324a">More...</a><br /></td></tr>
+<tr class="separator:a21464439451b8a8c40d23c258dca324a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f11c2a2596f24bf17ef128da122b83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83">qn908x_adc_channel_t</a> { <br />
+&#160;&#160;<a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a234761e1364685d0f539800f1740b4f0">ADC_CHANNEL_ADC0_ADC1</a> = 0u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a46da03b1e00d04486b4e1ac54b42df11">ADC_CHANNEL_ADC2_ADC3</a> = 1u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a78f9d0122810029a5152109a34f6d159">ADC_CHANNEL_ADC4_ADC5</a> = 2u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83acd308b77afc64c07049b457391342f85">ADC_CHANNEL_ADC6_ADC7</a> = 3u &lt;&lt; 9u
+, <br />
+&#160;&#160;<a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3e9bedd83bc99c3cf388dbf0c1252f7b">ADC_CHANNEL_ADC0_VINN</a> = 4u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a33762cf1e5e094d678e02e9c08efde20">ADC_CHANNEL_ADC1_VINN</a> = 5u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a705c4018230791af45b930cec7dbfa39">ADC_CHANNEL_ADC2_VINN</a> = 6u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a303f19f4e4cfc50cd410f026f34b92f8">ADC_CHANNEL_ADC3_VINN</a> = 7u &lt;&lt; 9u
+, <br />
+&#160;&#160;<a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a07f72a28307611cb60ea07040c1a612a">ADC_CHANNEL_ADC4_VINN</a> = 8u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a0a8e19b03ad1eafde3bc4520e6290bb7">ADC_CHANNEL_ADC5_VINN</a> = 9u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a374a25b2d0422702d642269ce7acc126">ADC_CHANNEL_ADC6_VINN</a> = 10u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adb495d448e06e06dbce8730438e08bbf">ADC_CHANNEL_ADC7_VINN</a> = 11u &lt;&lt; 9u
+, <br />
+&#160;&#160;<a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a1ed27e96d73bc3032ec54d2738163cf4">ADC_CHANNEL_TEMP</a> = 13u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adec41259cf2fb1202ca482acea0a46ed">ADC_CHANNEL_VCC4_VINN</a> = 14u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a3bc37532ec67b866f474cfcb6b356872">ADC_CHANNEL_VINN_VINN</a> = 15u &lt;&lt; 9u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a96d6351d7924cdaf34236232407641b6">ADC_CHANNEL_VINN_VSS</a> = 20u &lt;&lt; 9u
+<br />
+ }</td></tr>
+<tr class="memdesc:ae4f11c2a2596f24bf17ef128da122b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC channel pair configuration.  <a href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83">More...</a><br /></td></tr>
+<tr class="separator:ae4f11c2a2596f24bf17ef128da122b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ef56804a626b9072d0578747d941cae"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941cae">qn908x_adc_vref_t</a> { <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea4482b9252474689fbce51a78f0b83017">ADC_VREF_1V2</a> = 0x0000u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caeae71285cc44a32aeeff00b4f9a4b84bb2">ADC_VREF_VREF</a> = 0x4000u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea0e643947958e711f34bf78ec3dd569be">ADC_VREF_VEXT</a> = 0x8000u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941caea3e938c7d8b8982434e9ff3842bc92c28">ADC_VREF_VCC</a> = 0xC000u
+ }</td></tr>
+<tr class="memdesc:a3ef56804a626b9072d0578747d941cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC Vref configuration.  <a href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941cae">More...</a><br /></td></tr>
+<tr class="separator:a3ef56804a626b9072d0578747d941cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac72f8dbacd89a0bd6c33654409d938f6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">qn908x_adc_vinn_t</a> { <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a7b8519eec1e1567de422522a0f81e470">ADC_VINN_VREF</a> = 0x30u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6ab9f4091fd43868ea922fae1d7940162e">ADC_VINN_VREF_3_4</a> = 0x20u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a36cdfa63a92b19ef0a36055c9db348ad">ADC_VINN_VREF_2</a> = 0x10u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6a92882959d3d802af594615bfc271ffb9">ADC_VINN_AVSS</a> = 0x00u
+ }</td></tr>
+<tr class="memdesc:ac72f8dbacd89a0bd6c33654409d938f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC Vinn configuration.  <a href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">More...</a><br /></td></tr>
+<tr class="separator:ac72f8dbacd89a0bd6c33654409d938f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aace28180461989db4b23d823b84db093"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093">qn908x_adc_gain_t</a> { <a class="el" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a313e50cb93381bfb00bf3aa81d837a5d">ADC_GAIN_X05</a> = 0x40u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093a972b22ff9a6796ca5c8587184de7898f">ADC_GAIN_X1</a> = 0x00u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093afb4498214e9bd864b35685a507d1a564">ADC_GAIN_X15</a> = 0xC0u
+, <a class="el" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093ac25a1a3d61247b16eb8ad748482527d7">ADC_GAIN_X20</a> = 0x80u
+ }</td></tr>
+<tr class="memdesc:aace28180461989db4b23d823b84db093"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC SD Gain configuration.  <a href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093">More...</a><br /></td></tr>
+<tr class="separator:aace28180461989db4b23d823b84db093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">CPU specific gpio_t type definition</h2></td></tr>
+<tr class="memitem:a759f553fbddd2915b49e50c967661fb1"><td class="memItemLeft" align="right" valign="top"><a id="a759f553fbddd2915b49e50c967661fb1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HAVE_GPIO_T</b></td></tr>
+<tr class="separator:a759f553fbddd2915b49e50c967661fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340fb45a8ca27fb692ea5172513130bb"><td class="memItemLeft" align="right" valign="top"><a id="a340fb45a8ca27fb692ea5172513130bb"></a>
+typedef uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>gpio_t</b></td></tr>
+<tr class="separator:a340fb45a8ca27fb692ea5172513130bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">WDT upper and lower bound times in ms</h2></td></tr>
+<tr class="memitem:a5265674ed64e5865196727196ef8265b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a5265674ed64e5865196727196ef8265b">NWDT_TIME_LOWER_LIMIT</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:a5265674ed64e5865196727196ef8265b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The WDT clock can run up to 16MHz (via CLK_APB) and the WDT counter is 32-bit so the maximum value in ms we can wait is ((1 &lt;&lt; 32) - 1) / 16000.  <a href="qn908x_2include_2periph__cpu_8h.html#a5265674ed64e5865196727196ef8265b">More...</a><br /></td></tr>
+<tr class="separator:a5265674ed64e5865196727196ef8265b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d8ac7c09912d8ac89d5ba4cc06b08c"><td class="memItemLeft" align="right" valign="top"><a id="a04d8ac7c09912d8ac89d5ba4cc06b08c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>NWDT_TIME_UPPER_LIMIT</b>&#160;&#160;&#160;(268435U)</td></tr>
+<tr class="separator:a04d8ac7c09912d8ac89d5ba4cc06b08c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2adfbe7779c27a649bc67f4b09280d7f"><td class="memItemLeft" align="right" valign="top"><a id="a2adfbe7779c27a649bc67f4b09280d7f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>WWDT_TIME_LOWER_LIMIT</b>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="separator:a2adfbe7779c27a649bc67f4b09280d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cba16c50cd54b51b13a96077461b8b2"><td class="memItemLeft" align="right" valign="top"><a id="a6cba16c50cd54b51b13a96077461b8b2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>WWDT_TIME_UPPER_LIMIT</b>&#160;&#160;&#160;(268435U)</td></tr>
+<tr class="separator:a6cba16c50cd54b51b13a96077461b8b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">ADC CPU configuration</h2></td></tr>
+<tr class="memitem:adc9a97bf5a0e574a944b4f75b0999f34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#adc9a97bf5a0e574a944b4f75b0999f34">BOARD_HAS_ADC_PA06_CAP</a></td></tr>
+<tr class="memdesc:adc9a97bf5a0e574a944b4f75b0999f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define if ADC external capacitor is connected to PA06 pin.  <a href="qn908x_2include_2periph__cpu_8h.html#adc9a97bf5a0e574a944b4f75b0999f34">More...</a><br /></td></tr>
+<tr class="separator:adc9a97bf5a0e574a944b4f75b0999f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b87241cfc8f0eb706ef97888f30ed0d"><td class="memItemLeft" align="right" valign="top"><a id="a4b87241cfc8f0eb706ef97888f30ed0d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a4b87241cfc8f0eb706ef97888f30ed0d">TIMER_CHANNEL_NUMOF</a>&#160;&#160;&#160;(4)</td></tr>
+<tr class="memdesc:a4b87241cfc8f0eb706ef97888f30ed0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPU specific timer Counter/Timers (CTIMER) configuration. <br /></td></tr>
+<tr class="separator:a4b87241cfc8f0eb706ef97888f30ed0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ba68f62b52b73c91ed948087a5f3df"><td class="memItemLeft" align="right" valign="top"><a id="a00ba68f62b52b73c91ed948087a5f3df"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TIMER_MAX_VALUE</b>&#160;&#160;&#160;(0xffffffff)</td></tr>
+<tr class="separator:a00ba68f62b52b73c91ed948087a5f3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd04a76b55e9fef358e904400cde4db7"><td class="memItemLeft" align="right" valign="top"><a id="afd04a76b55e9fef358e904400cde4db7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#afd04a76b55e9fef358e904400cde4db7">PERIPH_TIMER_PROVIDES_SET</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:afd04a76b55e9fef358e904400cde4db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The nRF5x periph_timer implements <a class="el" href="group__drivers__periph__timer.html#gaccff2ca33cca64411015f808369cb919" title="Set a given timer channel for the given timer device.">timer_set()</a> <br /></td></tr>
+<tr class="separator:afd04a76b55e9fef358e904400cde4db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1229320c595db94034f9fec9efcd46a3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a1229320c595db94034f9fec9efcd46a3">HAVE_I2C_SPEED_T</a></td></tr>
+<tr class="memdesc:a1229320c595db94034f9fec9efcd46a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C bus speed values in kbit/s.  <a href="qn908x_2include_2periph__cpu_8h.html#a1229320c595db94034f9fec9efcd46a3">More...</a><br /></td></tr>
+<tr class="separator:a1229320c595db94034f9fec9efcd46a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e6a870f98abb8cffa95373b69fb8243"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a6e6a870f98abb8cffa95373b69fb8243">i2c_speed_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a> = 10000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a> = 100000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a> = 400000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a> = 1000000ul
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a> = 3400000ul
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a> = 10000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a> = 100000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a> = 400000u
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a> = 400000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a> = 400000u
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0">I2C_SPEED_LOW</a> = 0
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583">I2C_SPEED_NORMAL</a>
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca">I2C_SPEED_FAST</a>
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e">I2C_SPEED_FAST_PLUS</a>
+, <a class="el" href="group__drivers__periph__i2c.html#gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48">I2C_SPEED_HIGH</a>
+<br />
+ }</td></tr>
+<tr class="separator:a6e6a870f98abb8cffa95373b69fb8243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Define macros for sda and scl pins.</h2></td></tr>
+<tr class="memitem:aaa8cfa1d1047cc34efc2cb186177d44c"><td class="memItemLeft" align="right" valign="top"><a id="aaa8cfa1d1047cc34efc2cb186177d44c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_pin_sda</b>(dev)&#160;&#160;&#160;<a class="el" href="boards_2gd32vf103c-start_2include_2periph__conf_8h.html#aa9dcbfbe7aa5baf027d834e5bca62a47">i2c_config</a>[dev].pin_sda</td></tr>
+<tr class="separator:aaa8cfa1d1047cc34efc2cb186177d44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd3c7d01cdc12c239e09f8cda46332c1"><td class="memItemLeft" align="right" valign="top"><a id="abd3c7d01cdc12c239e09f8cda46332c1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>i2c_pin_scl</b>(dev)&#160;&#160;&#160;<a class="el" href="boards_2gd32vf103c-start_2include_2periph__conf_8h.html#aa9dcbfbe7aa5baf027d834e5bca62a47">i2c_config</a>[dev].pin_scl</td></tr>
+<tr class="separator:abd3c7d01cdc12c239e09f8cda46332c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d9c2b9cf24ed0b13807d63f5e9b11f"><td class="memItemLeft" align="right" valign="top"><a id="af3d9c2b9cf24ed0b13807d63f5e9b11f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#af3d9c2b9cf24ed0b13807d63f5e9b11f">PERIPH_SPI_NEEDS_TRANSFER_BYTE</a></td></tr>
+<tr class="memdesc:af3d9c2b9cf24ed0b13807d63f5e9b11f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use some common SPI functions. <br /></td></tr>
+<tr class="separator:af3d9c2b9cf24ed0b13807d63f5e9b11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac68c30cec18f4abf11cc4bb09c13df17"><td class="memItemLeft" align="right" valign="top"><a id="ac68c30cec18f4abf11cc4bb09c13df17"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_REG</b></td></tr>
+<tr class="separator:ac68c30cec18f4abf11cc4bb09c13df17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeb6291046cbd0102e8c87af75e4200d"><td class="memItemLeft" align="right" valign="top"><a id="afeb6291046cbd0102e8c87af75e4200d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_REGS</b></td></tr>
+<tr class="separator:afeb6291046cbd0102e8c87af75e4200d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47184036e4f188bf3e53d54f0c58041e"><td class="memItemLeft" align="right" valign="top"><a id="a47184036e4f188bf3e53d54f0c58041e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HAVE_UART_PARITY_T</b></td></tr>
+<tr class="separator:a47184036e4f188bf3e53d54f0c58041e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bcc37e31dd40c204b4ac6f6189e8878"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a6bcc37e31dd40c204b4ac6f6189e8878">uart_parity_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d">UART_PARITY_NONE</a> = 0
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8">UART_PARITY_EVEN</a> = 2
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2">UART_PARITY_ODD</a> = 3
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e">UART_PARITY_MARK</a> = 0x10 | UART_INVALID_MODE
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030">UART_PARITY_SPACE</a> = 0x20 | UART_INVALID_MODE
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d">UART_PARITY_NONE</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8">UART_PARITY_EVEN</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2">UART_PARITY_ODD</a>
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e">UART_PARITY_MARK</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030">UART_PARITY_SPACE</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a6bcc37e31dd40c204b4ac6f6189e8878"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of possible parity modes.  <a href="qn908x_2include_2periph__cpu_8h.html#a6bcc37e31dd40c204b4ac6f6189e8878">More...</a><br /></td></tr>
+<tr class="separator:a6bcc37e31dd40c204b4ac6f6189e8878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a45a547b6ee01db6fe87e40b758f448"><td class="memItemLeft" align="right" valign="top"><a id="a5a45a547b6ee01db6fe87e40b758f448"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HAVE_UART_DATA_BITS_T</b></td></tr>
+<tr class="separator:a5a45a547b6ee01db6fe87e40b758f448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc68b8fd9ded3990f84129df23fee798"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#adc68b8fd9ded3990f84129df23fee798">uart_data_bits_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01">UART_DATA_BITS_5</a> = 0x10 | UART_INVALID_MODE
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405">UART_DATA_BITS_6</a> = 0x20 | UART_INVALID_MODE
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545">UART_DATA_BITS_7</a> = 0
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">UART_DATA_BITS_8</a> = 1
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01">UART_DATA_BITS_5</a>
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405">UART_DATA_BITS_6</a>
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545">UART_DATA_BITS_7</a>
+, <a class="el" href="group__drivers__periph__uart.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">UART_DATA_BITS_8</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:adc68b8fd9ded3990f84129df23fee798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of possible data bits lengths in a UART frame.  <a href="qn908x_2include_2periph__cpu_8h.html#adc68b8fd9ded3990f84129df23fee798">More...</a><br /></td></tr>
+<tr class="separator:adc68b8fd9ded3990f84129df23fee798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24577f90411c2ed3d145d62122e4a4a8"><td class="memItemLeft" align="right" valign="top"><a id="a24577f90411c2ed3d145d62122e4a4a8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HAVE_UART_STOP_BITS_T</b></td></tr>
+<tr class="separator:a24577f90411c2ed3d145d62122e4a4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6da57a73bbdbf830b845d4116f8341d7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="qn908x_2include_2periph__cpu_8h.html#a6da57a73bbdbf830b845d4116f8341d7">uart_stop_bits_t</a> { <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc">UART_STOP_BITS_1</a> = 0
+, <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3">UART_STOP_BITS_2</a> = 1
+, <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc">UART_STOP_BITS_1</a>
+, <a class="el" href="group__drivers__periph__uart.html#gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3">UART_STOP_BITS_2</a>
+ }</td></tr>
+<tr class="memdesc:a6da57a73bbdbf830b845d4116f8341d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of possible stop bits lengths.  <a href="qn908x_2include_2periph__cpu_8h.html#a6da57a73bbdbf830b845d4116f8341d7">More...</a><br /></td></tr>
+<tr class="separator:a6da57a73bbdbf830b845d4116f8341d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ac478beb12ce9fd2efcefb70c28c08e38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac478beb12ce9fd2efcefb70c28c08e38">&#9670;&nbsp;</a></span>ADC_PGA_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ADC_PGA_ENABLE&#160;&#160;&#160;(0x08u)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC PGA Enabled flag. </p>
+<p>Flag to enable the Programmable Gain Amplifier (PGA) with a gain of 1x. This is only useful if the source signal doesn't have any driving capability since the gain is set to 1x. The hardware supports other gain combinations but those are not supported by the driver.</p>
+<p>Note: this value is defined as the inverse of ADC_CFG_PGA_BP_MASK which is defined if the PGA is bypassed. </p>
+
+</div>
+</div>
+<a id="a0eec9ae0c58babedd37c1ea59e8472cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eec9ae0c58babedd37c1ea59e8472cc">&#9670;&nbsp;</a></span>ADC_VREF_GAIN_X15</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ADC_VREF_GAIN_X15&#160;&#160;&#160;(0x100u)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC Vref x1.5 multiplier flag. </p>
+<p>Note, this is the same value as ADC_CFG_VREF_GAIN_MASK. When enabled the Vref voltage will be multiplied by 1.5x. </p>
+
+</div>
+</div>
+<a id="adc9a97bf5a0e574a944b4f75b0999f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9a97bf5a0e574a944b4f75b0999f34">&#9670;&nbsp;</a></span>BOARD_HAS_ADC_PA06_CAP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BOARD_HAS_ADC_PA06_CAP</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define if ADC external capacitor is connected to PA06 pin. </p>
+<p>The ADC block can use an external capacitor to better stabilize the reference voltage. This capacitor is optional, but if it is present on the board this macro should be defined by the board to make the ADC block use it. </p>
+
+</div>
+</div>
+<a id="a092f1ec89efc2444ec80c3bf1792cf2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a092f1ec89efc2444ec80c3bf1792cf2b">&#9670;&nbsp;</a></span>GPIO_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a201df5e2845212d28c89e2cf3fdaa642">GPIO_MODE</a></td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">open_drain, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">out_enabled, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">pull_mode&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;    ((open_drain) | ((out_enabled) &lt;&lt; 1) | ((pull_mode) &lt;&lt; 4))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate GPIO mode bitfields. </p>
+<p>The GPIO_MODE has the following structure:</p><ul>
+<li>bit 0: open-drain: 1 for enabled (open-drain mode) and 0 for disabled.</li>
+<li>bit 1: output-enabled: 1 output mode, 0 input mode.</li>
+<li>bit 4-5: pull_mode: 0 for hi-z (no pull-up or down), 1 for pull-down and 2 for pull-up. These correspond to the IOCON_MODE macros. </li>
+</ul>
+
+</div>
+</div>
+<a id="ae29846b3ecd19a0b7c44ff80a37ae7c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae29846b3ecd19a0b7c44ff80a37ae7c1">&#9670;&nbsp;</a></span>GPIO_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GPIO_PIN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((x) &lt;&lt; 12u) | (y))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a CPU specific GPIO pin generator macro. </p>
+<p>This generates the GPIO port base address with a mask of the GPIO_PIN value to avoid a memory access. The value 12 here is selected as an optimization to be able to derive the GPIO port address with a simple mask of the GPIO_PIN value. </p>
+
+</div>
+</div>
+<a id="a1229320c595db94034f9fec9efcd46a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1229320c595db94034f9fec9efcd46a3">&#9670;&nbsp;</a></span>HAVE_I2C_SPEED_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HAVE_I2C_SPEED_T</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I2C bus speed values in kbit/s. </p>
+<dl class="section note"><dt>Note</dt><dd>We support arbitrary speed values up to 400 kbit/s. </dd></dl>
+
+</div>
+</div>
+<a id="a5265674ed64e5865196727196ef8265b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5265674ed64e5865196727196ef8265b">&#9670;&nbsp;</a></span>NWDT_TIME_LOWER_LIMIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NWDT_TIME_LOWER_LIMIT&#160;&#160;&#160;(1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The WDT clock can run up to 16MHz (via CLK_APB) and the WDT counter is 32-bit so the maximum value in ms we can wait is ((1 &lt;&lt; 32) - 1) / 16000. </p>
+<p>TODO: A much larger limit (~1.5 days) can be set if the WDT runs from the 32 KHz clock. However, this is likely decided by the board and depends on the clocks installed on the board. Figure out a way to configure this limit based on the clock used. </p>
+
+</div>
+</div>
+<a id="ae03968f461a0e5a772c574b13bf456b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae03968f461a0e5a772c574b13bf456b7">&#9670;&nbsp;</a></span>QN908X_ADC_CLOCK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define QN908X_ADC_CLOCK</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Selected ADC oversample clock. </p>
+<p>Define to one of the qn908x_adc_clock_t values. </p>
+
+</div>
+</div>
+<a id="aa068c642c84fcc4f2f9a6ec5b8e1d9b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa068c642c84fcc4f2f9a6ec5b8e1d9b2">&#9670;&nbsp;</a></span>UART_INVALID_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UART_INVALID_MODE&#160;&#160;&#160;(0x80)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalid UART mode mask. </p>
+<p>Signals that the mode is invalid or not supported by the CPU. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ab636ea834aed270181eda1dc92d10dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab636ea834aed270181eda1dc92d10dad">&#9670;&nbsp;</a></span>adc_conf_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint16_t <a class="el" href="structadc__conf__t.html">adc_conf_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CPU specific ADC configuration. </p>
+<p>ADC Channel, Vinn, Vref and gain configuration.</p>
+<p>This value should be set to the logic or between the following values:</p><ul>
+<li>bit 3: the optional flag <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac478beb12ce9fd2efcefb70c28c08e38">ADC_PGA_ENABLE</a>,</li>
+<li>bits 4-5: a <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">qn908x_adc_vinn_t</a> value defining Vinn if needed,</li>
+<li>bits 6-7: a <a class="el" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093">qn908x_adc_gain_t</a> optional gain value,</li>
+<li>bit 8: the optional flag <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a0eec9ae0c58babedd37c1ea59e8472cc">ADC_VREF_GAIN_X15</a>,</li>
+<li>bits 9-13: the selected <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83">qn908x_adc_channel_t</a>, and</li>
+<li>bits 14-15: the <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941cae">qn908x_adc_vref_t</a> value defining Vref.</li>
+</ul>
+<p>The same channels with different settings can be configured as different ADC lines in the board, just using different <a class="el" href="structadc__conf__t.html" title="ADC device configuration.">adc_conf_t</a> entries. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a84fe57ba52f8e237004a413b27ea4db8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84fe57ba52f8e237004a413b27ea4db8">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available ports on the QN908x. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a84fe57ba52f8e237004a413b27ea4db8aeb6782d9dfedf3c6a78ffdb1624fa454"></a>PORT_A&#160;</td><td class="fielddoc"><p>port A </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a84fe57ba52f8e237004a413b27ea4db8a16ada472d473fbd0207b99e9e4d68f4a"></a>PORT_B&#160;</td><td class="fielddoc"><p>port B </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a84fe57ba52f8e237004a413b27ea4db8a4d49325393abe5e1e70765070a4049f6"></a>GPIO_PORTS_NUMOF&#160;</td><td class="fielddoc"><p>overall number of available ports </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6e6a870f98abb8cffa95373b69fb8243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e6a870f98abb8cffa95373b69fb8243">&#9670;&nbsp;</a></span>i2c_speed_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a6e6a870f98abb8cffa95373b69fb8243">i2c_speed_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0"></a>I2C_SPEED_LOW&#160;</td><td class="fielddoc"><p>low speed mode: ~10 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583"></a>I2C_SPEED_NORMAL&#160;</td><td class="fielddoc"><p>normal mode: ~100 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca"></a>I2C_SPEED_FAST&#160;</td><td class="fielddoc"><p>fast mode: ~400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e"></a>I2C_SPEED_FAST_PLUS&#160;</td><td class="fielddoc"><p>fast plus mode: ~1000 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48"></a>I2C_SPEED_HIGH&#160;</td><td class="fielddoc"><p>high speed mode: ~3400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0"></a>I2C_SPEED_LOW&#160;</td><td class="fielddoc"><p>low speed mode: ~10 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583"></a>I2C_SPEED_NORMAL&#160;</td><td class="fielddoc"><p>normal mode: ~100 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca"></a>I2C_SPEED_FAST&#160;</td><td class="fielddoc"><p>fast mode: ~400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e"></a>I2C_SPEED_FAST_PLUS&#160;</td><td class="fielddoc"><p>not supported, capped at 400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48"></a>I2C_SPEED_HIGH&#160;</td><td class="fielddoc"><p>not supported, capped at 400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a6b350d376580872bb53bdfc4ff41d9b0"></a>I2C_SPEED_LOW&#160;</td><td class="fielddoc"><p>low speed mode: ~10 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a0826bf5711e82ba26b4ada6104260583"></a>I2C_SPEED_NORMAL&#160;</td><td class="fielddoc"><p>normal mode: ~100 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a8dc6cae939d20d56a78d123365caa4ca"></a>I2C_SPEED_FAST&#160;</td><td class="fielddoc"><p>fast mode: ~400 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a42e708fe61f237d88f6cf53f32e17e8e"></a>I2C_SPEED_FAST_PLUS&#160;</td><td class="fielddoc"><p>fast plus mode: ~1000 kbit/s </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6e6a870f98abb8cffa95373b69fb8243a745e792241485f11092fabd600fd6b48"></a>I2C_SPEED_HIGH&#160;</td><td class="fielddoc"><p>high speed mode: ~3400 kbit/s </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ae4f11c2a2596f24bf17ef128da122b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f11c2a2596f24bf17ef128da122b83">&#9670;&nbsp;</a></span>qn908x_adc_channel_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83">qn908x_adc_channel_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC channel pair configuration. </p>
+<p>The following are the possible combinations of + and - inputs to the ADC sigma delta. Some of these combinations reference the "Vinn" signal which can be independently selected, see <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">qn908x_adc_vinn_t</a> for details.</p>
+<p>The first signal is connected to the positive side while the second one is connected to the negative side. For example, ADC_CHANNEL_ADC0_ADC1 will read a positive value if ADC0 voltage is higher than ADC1.</p>
+<p>The <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83a1ed27e96d73bc3032ec54d2738163cf4">ADC_CHANNEL_TEMP</a> uses the internal temperature signal and <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ae4f11c2a2596f24bf17ef128da122b83adec41259cf2fb1202ca482acea0a46ed">ADC_CHANNEL_VCC4_VINN</a> connects the + side to Vcc/4, which is useful to measure the battery level when Vcc is directly connected to a battery. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a234761e1364685d0f539800f1740b4f0"></a>ADC_CHANNEL_ADC0_ADC1&#160;</td><td class="fielddoc"><p>Sample ADC0 / ADC1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a46da03b1e00d04486b4e1ac54b42df11"></a>ADC_CHANNEL_ADC2_ADC3&#160;</td><td class="fielddoc"><p>Sample ADC2 / ADC3. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a78f9d0122810029a5152109a34f6d159"></a>ADC_CHANNEL_ADC4_ADC5&#160;</td><td class="fielddoc"><p>Sample ADC4 / ADC5. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83acd308b77afc64c07049b457391342f85"></a>ADC_CHANNEL_ADC6_ADC7&#160;</td><td class="fielddoc"><p>Sample ADC6 / ADC7. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a3e9bedd83bc99c3cf388dbf0c1252f7b"></a>ADC_CHANNEL_ADC0_VINN&#160;</td><td class="fielddoc"><p>Sample ADC0 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a33762cf1e5e094d678e02e9c08efde20"></a>ADC_CHANNEL_ADC1_VINN&#160;</td><td class="fielddoc"><p>Sample ADC1 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a705c4018230791af45b930cec7dbfa39"></a>ADC_CHANNEL_ADC2_VINN&#160;</td><td class="fielddoc"><p>Sample ADC2 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a303f19f4e4cfc50cd410f026f34b92f8"></a>ADC_CHANNEL_ADC3_VINN&#160;</td><td class="fielddoc"><p>Sample ADC3 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a07f72a28307611cb60ea07040c1a612a"></a>ADC_CHANNEL_ADC4_VINN&#160;</td><td class="fielddoc"><p>Sample ADC4 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a0a8e19b03ad1eafde3bc4520e6290bb7"></a>ADC_CHANNEL_ADC5_VINN&#160;</td><td class="fielddoc"><p>Sample ADC5 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a374a25b2d0422702d642269ce7acc126"></a>ADC_CHANNEL_ADC6_VINN&#160;</td><td class="fielddoc"><p>Sample ADC6 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83adb495d448e06e06dbce8730438e08bbf"></a>ADC_CHANNEL_ADC7_VINN&#160;</td><td class="fielddoc"><p>Sample ADC7 / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a1ed27e96d73bc3032ec54d2738163cf4"></a>ADC_CHANNEL_TEMP&#160;</td><td class="fielddoc"><p>Sample internal temperature. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83adec41259cf2fb1202ca482acea0a46ed"></a>ADC_CHANNEL_VCC4_VINN&#160;</td><td class="fielddoc"><p>Sample 1/4 Vcc / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a3bc37532ec67b866f474cfcb6b356872"></a>ADC_CHANNEL_VINN_VINN&#160;</td><td class="fielddoc"><p>Sample Vinn / Vinn. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae4f11c2a2596f24bf17ef128da122b83a96d6351d7924cdaf34236232407641b6"></a>ADC_CHANNEL_VINN_VSS&#160;</td><td class="fielddoc"><p>Sample Vinn / Vss. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a21464439451b8a8c40d23c258dca324a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21464439451b8a8c40d23c258dca324a">&#9670;&nbsp;</a></span>qn908x_adc_clock_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a21464439451b8a8c40d23c258dca324a">qn908x_adc_clock_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC oversample clock configuration. </p>
+<p>The ADC runs at a given ADC clock frequency which is derived from either the high frequency clock (16 or 32 MHz) or the low frequency one (32 or 32.768 KHz). Running the ADC from the 32 KHz source can be useful in low power applications where the high speed clock is not running.</p>
+<p>The ADC sample rate for <a class="el" href="group__drivers__periph__adc.html#ga0ffa20b26f649b1879b487f9aa0aa4b4" title="Sample a value from the given ADC line.">adc_sample()</a> will be about 128 times slower than the ADC clock, due to the decimation filter, meaning that the maximum sampling rate is 31.25 KHz. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aabb2ff12dc29409282534af5931ae6b2e"></a>ADC_CLOCK_4M&#160;</td><td class="fielddoc"><p>4 MHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aa6271ba979020bfbe30259b517855aaa7"></a>ADC_CLOCK_2M&#160;</td><td class="fielddoc"><p>2 MHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aa397f9cb4c41a066c4a1ac1b1a76c5e7f"></a>ADC_CLOCK_1M&#160;</td><td class="fielddoc"><p>1 MHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aa16a7dcbe9148ffbcc02d254a8697198b"></a>ADC_CLOCK_500K&#160;</td><td class="fielddoc"><p>500 KHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aacf214361e6c5dad09c05dabdb7a3ca4a"></a>ADC_CLOCK_250K&#160;</td><td class="fielddoc"><p>250 KHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aa5e2b9b08f7ea18a0491271cbb8f6e6a7"></a>ADC_CLOCK_125K&#160;</td><td class="fielddoc"><p>125 KHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aa49e531d72bd342708b2489642d97f7f2"></a>ADC_CLOCK_62K5&#160;</td><td class="fielddoc"><p>62.5 KHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aa6acd4f3b4cb61a5c8d2b21558f17f613"></a>ADC_CLOCK_31K25&#160;</td><td class="fielddoc"><p>31.25 KHz from the high speed clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a21464439451b8a8c40d23c258dca324aaac1da961117d72d3806d235e3e58f884"></a>ADC_CLOCK_32K&#160;</td><td class="fielddoc"><p>32 KHz or 32.768 KHz from the low speed clock. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="aace28180461989db4b23d823b84db093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aace28180461989db4b23d823b84db093">&#9670;&nbsp;</a></span>qn908x_adc_gain_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#aace28180461989db4b23d823b84db093">qn908x_adc_gain_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC SD Gain configuration. </p>
+<p>This multiplies the sampled value (difference between +/- signals) by the given value.</p>
+<p>Note: these values logic xor 0x40 match the values for ADC_CFG_ADC_GAIN field. This is selected so that omitting this flag in the config field defaults to x1.0 gain but it can still be converted to the ADC_GAIN field with a simple logic xor. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aace28180461989db4b23d823b84db093a313e50cb93381bfb00bf3aa81d837a5d"></a>ADC_GAIN_X05&#160;</td><td class="fielddoc"><p>Use gain := 0.5. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aace28180461989db4b23d823b84db093a972b22ff9a6796ca5c8587184de7898f"></a>ADC_GAIN_X1&#160;</td><td class="fielddoc"><p>Use gain := 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aace28180461989db4b23d823b84db093afb4498214e9bd864b35685a507d1a564"></a>ADC_GAIN_X15&#160;</td><td class="fielddoc"><p>Use gain := 1.5. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aace28180461989db4b23d823b84db093ac25a1a3d61247b16eb8ad748482527d7"></a>ADC_GAIN_X20&#160;</td><td class="fielddoc"><p>Use gain := 2. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ac72f8dbacd89a0bd6c33654409d938f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac72f8dbacd89a0bd6c33654409d938f6">&#9670;&nbsp;</a></span>qn908x_adc_vinn_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">qn908x_adc_vinn_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC Vinn configuration. </p>
+<p>This value is only relevant for the channels that reference Vinn. The value is the same as the PGA_VINN in ADC CFG register with a logic xor 0x30u to make the default AVSS (analog Vss pad). </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac72f8dbacd89a0bd6c33654409d938f6a7b8519eec1e1567de422522a0f81e470"></a>ADC_VINN_VREF&#160;</td><td class="fielddoc"><p>Use Vinn := Vref. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac72f8dbacd89a0bd6c33654409d938f6ab9f4091fd43868ea922fae1d7940162e"></a>ADC_VINN_VREF_3_4&#160;</td><td class="fielddoc"><p>Use Vinn := 3/4 * Vref. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac72f8dbacd89a0bd6c33654409d938f6a36cdfa63a92b19ef0a36055c9db348ad"></a>ADC_VINN_VREF_2&#160;</td><td class="fielddoc"><p>Use Vinn := 1/2 * Vref. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac72f8dbacd89a0bd6c33654409d938f6a92882959d3d802af594615bfc271ffb9"></a>ADC_VINN_AVSS&#160;</td><td class="fielddoc"><p>Use Vinn := Vss. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a3ef56804a626b9072d0578747d941cae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ef56804a626b9072d0578747d941cae">&#9670;&nbsp;</a></span>qn908x_adc_vref_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a3ef56804a626b9072d0578747d941cae">qn908x_adc_vref_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC Vref configuration. </p>
+<p>This value affects the reference voltage used by the ADC as the full range. It is also used in some cases to generate the Vinn signal are is only relevant for the channels that reference Vinn when it was set by <a class="el" href="qn908x_2include_2periph__cpu_8h.html#ac72f8dbacd89a0bd6c33654409d938f6">qn908x_adc_vinn_t</a> to use Vref. The actual values match the field VREF_SEL in ADC CTRL register. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3ef56804a626b9072d0578747d941caea4482b9252474689fbce51a78f0b83017"></a>ADC_VREF_1V2&#160;</td><td class="fielddoc"><p>Vref := internal 1.2V. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3ef56804a626b9072d0578747d941caeae71285cc44a32aeeff00b4f9a4b84bb2"></a>ADC_VREF_VREF&#160;</td><td class="fielddoc"><p>Vref := external ADC_VREFI pin. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3ef56804a626b9072d0578747d941caea0e643947958e711f34bf78ec3dd569be"></a>ADC_VREF_VEXT&#160;</td><td class="fielddoc"><p>Vref := external ADC_VREFI with the driver. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3ef56804a626b9072d0578747d941caea3e938c7d8b8982434e9ff3842bc92c28"></a>ADC_VREF_VCC&#160;</td><td class="fielddoc"><p>Vref := Vcc. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="adc68b8fd9ded3990f84129df23fee798"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc68b8fd9ded3990f84129df23fee798">&#9670;&nbsp;</a></span>uart_data_bits_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#adc68b8fd9ded3990f84129df23fee798">uart_data_bits_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition of possible data bits lengths in a UART frame. </p>
+<p>These are defined to match the values of the USART-&gt;CFG : DATALEN bit field. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01"></a>UART_DATA_BITS_5&#160;</td><td class="fielddoc"><p>5 data bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405"></a>UART_DATA_BITS_6&#160;</td><td class="fielddoc"><p>6 data bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545"></a>UART_DATA_BITS_7&#160;</td><td class="fielddoc"><p>7 data bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db"></a>UART_DATA_BITS_8&#160;</td><td class="fielddoc"><p>8 data bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798a20932d2daf15a9ac33d71d9d91550e01"></a>UART_DATA_BITS_5&#160;</td><td class="fielddoc"><p>5 data bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798a12ee42f7fd9804e1315391151603d405"></a>UART_DATA_BITS_6&#160;</td><td class="fielddoc"><p>6 data bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798a317e473e32315f1632829d176fbfd545"></a>UART_DATA_BITS_7&#160;</td><td class="fielddoc"><p>7 data bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db"></a>UART_DATA_BITS_8&#160;</td><td class="fielddoc"><p>8 data bits </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6bcc37e31dd40c204b4ac6f6189e8878"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bcc37e31dd40c204b4ac6f6189e8878">&#9670;&nbsp;</a></span>uart_parity_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a6bcc37e31dd40c204b4ac6f6189e8878">uart_parity_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition of possible parity modes. </p>
+<p>These are defined to match the values of the USART-&gt;CFG : PARITYSEL bit field. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d"></a>UART_PARITY_NONE&#160;</td><td class="fielddoc"><p>no parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8"></a>UART_PARITY_EVEN&#160;</td><td class="fielddoc"><p>even parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2"></a>UART_PARITY_ODD&#160;</td><td class="fielddoc"><p>odd parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e"></a>UART_PARITY_MARK&#160;</td><td class="fielddoc"><p>mark parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030"></a>UART_PARITY_SPACE&#160;</td><td class="fielddoc"><p>space parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878aa80d2d8ea61454045ebe71d155e85b3d"></a>UART_PARITY_NONE&#160;</td><td class="fielddoc"><p>no parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878ad908a637b1dd23f93b149dd2d8bdfdb8"></a>UART_PARITY_EVEN&#160;</td><td class="fielddoc"><p>even parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878ad90cc425f5ba447773a44a75be6593e2"></a>UART_PARITY_ODD&#160;</td><td class="fielddoc"><p>odd parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878ae7cf865add5930722843f1caf6f30d3e"></a>UART_PARITY_MARK&#160;</td><td class="fielddoc"><p>mark parity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6bcc37e31dd40c204b4ac6f6189e8878a9866e632545cc7de127aee8071528030"></a>UART_PARITY_SPACE&#160;</td><td class="fielddoc"><p>space parity </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6da57a73bbdbf830b845d4116f8341d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6da57a73bbdbf830b845d4116f8341d7">&#9670;&nbsp;</a></span>uart_stop_bits_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="qn908x_2include_2periph__cpu_8h.html#a6da57a73bbdbf830b845d4116f8341d7">uart_stop_bits_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition of possible stop bits lengths. </p>
+<p>These are defined to match the values of the USART-&gt;CFG : STOPLEN bit field. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc"></a>UART_STOP_BITS_1&#160;</td><td class="fielddoc"><p>1 stop bit </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3"></a>UART_STOP_BITS_2&#160;</td><td class="fielddoc"><p>2 stop bits </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6da57a73bbdbf830b845d4116f8341d7a44b3bfbe90aebe2b23227f5c011f41cc"></a>UART_STOP_BITS_1&#160;</td><td class="fielddoc"><p>1 stop bit </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6da57a73bbdbf830b845d4116f8341d7a00c73c92b3d624bc86cfa63636dd99b3"></a>UART_STOP_BITS_2&#160;</td><td class="fielddoc"><p>2 stop bits </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_157461c8b34e67414276dd466865c17a.html">qn908x</a></li><li class="navelem"><a class="el" href="dir_0cd03abdfb880e5ba643be3e9a7ce660.html">include</a></li><li class="navelem"><a class="el" href="qn908x_2include_2periph__cpu_8h.html">periph_cpu.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

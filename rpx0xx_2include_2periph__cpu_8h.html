@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: cpu/rpx0xx/include/periph_cpu.h File Reference</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('rpx0xx_2include_2periph__cpu_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">periph_cpu.h File Reference<div class="ingroups"><a class="el" href="group__cpu.html">CPU</a> &raquo; <a class="el" href="group__cpu__rpx0xx.html">RPx0xx MCUs</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>RP2040 specific definitions for handling peripherals.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>RP2040 specific definitions for handling peripherals. </p>
+<dl class="section author"><dt>Author</dt><dd>Fabian Hüßler <a href="#" onclick="location.href='mai'+'lto:'+'fab'+'ia'+'n.h'+'ue'+'ssl'+'er'+'@ov'+'gu'+'.de'; return false;">fabia<span style="display: none;">.nosp@m.</span>n.hu<span style="display: none;">.nosp@m.</span>essle<span style="display: none;">.nosp@m.</span>r@ov<span style="display: none;">.nosp@m.</span>gu.de</a> </dd>
+<dd>
+Marian Buschsieweke <a href="#" onclick="location.href='mai'+'lto:'+'mar'+'ia'+'n.b'+'us'+'chs'+'ie'+'wek'+'e@'+'ovg'+'u.'+'de'; return false;">maria<span style="display: none;">.nosp@m.</span>n.bu<span style="display: none;">.nosp@m.</span>schsi<span style="display: none;">.nosp@m.</span>ewek<span style="display: none;">.nosp@m.</span>e@ovg<span style="display: none;">.nosp@m.</span>u.de</a> </dd></dl>
+</div><div class="textblock"><code>#include &quot;cpu.h&quot;</code><br />
+<code>#include &quot;vendor/RP2040.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="io__reg_8h_source.html">io_reg.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="units_8h_source.html">macros/units.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="drivers_2include_2periph_2pio_8h_source.html">periph/pio.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for periph_cpu.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 -->
+</div>
+</div>
+</div>
+<p><a href="rpx0xx_2include_2periph__cpu_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgpio__pad__ctrl__t.html">gpio_pad_ctrl_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory layout of GPIO control register in pads bank 0.  <a href="structgpio__pad__ctrl__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgpio__io__ctrl__t.html">gpio_io_ctrl_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory layout of GPIO control register in IO bank 0.  <a href="structgpio__io__ctrl__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structadc__conf__t.html">adc_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC device configuration.  <a href="structadc__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpwm__chan__t.html">pwm_chan_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PWM channel.  <a href="structpwm__chan__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpwm__conf__t.html">pwm_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PWM device configuration.  <a href="structpwm__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__conf__t.html">uart_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART device configuration.  <a href="structuart__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtimer__channel__conf__t.html">timer_channel_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration type of a timer channel.  <a href="structtimer__channel__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtimer__conf__t.html">timer_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structTimer.html" title="struct to get time references within mqtt paho">Timer</a> device configuration.  <a href="structtimer__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpio__conf__t.html">pio_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PIO configuration type.  <a href="structpio__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpio__i2c__conf__t.html">pio_i2c_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PIO I2C configuration type.  <a href="structpio__i2c__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspi__conf__t.html">spi_conf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI device configuration.  <a href="structspi__conf__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a14fa94db7a11f576b197fa8693c534c0"><td class="memItemLeft" align="right" valign="top"><a id="a14fa94db7a11f576b197fa8693c534c0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a14fa94db7a11f576b197fa8693c534c0">CLOCK_PERIPH_SOURCE</a>&#160;&#160;&#160;CLOCKS_CLK_PERI_CTRL_AUXSRC_clk_sys</td></tr>
+<tr class="memdesc:a14fa94db7a11f576b197fa8693c534c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">How to source the peripheral clock (default: 125 MHz system clock) <br /></td></tr>
+<tr class="separator:a14fa94db7a11f576b197fa8693c534c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc806cd360a3caadaebe7f375deb061"><td class="memItemLeft" align="right" valign="top"><a id="a7fc806cd360a3caadaebe7f375deb061"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7fc806cd360a3caadaebe7f375deb061">CLOCK_PERIPH</a>&#160;&#160;&#160;<a class="el" href="boards_2yarm_2include_2periph__conf_8h.html#afc465f12242e68f6c3695caa3ba0a169">CLOCK_CORECLOCK</a></td></tr>
+<tr class="memdesc:a7fc806cd360a3caadaebe7f375deb061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peripheral clock (by default source from system clock) <br /></td></tr>
+<tr class="separator:a7fc806cd360a3caadaebe7f375deb061"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29332f24cc45d01043814fbfbfb7bf54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a29332f24cc45d01043814fbfbfb7bf54">RESETS_RESET_MASK</a></td></tr>
+<tr class="memdesc:a29332f24cc45d01043814fbfbfb7bf54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periphery blocks that can be reset.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a29332f24cc45d01043814fbfbfb7bf54">More...</a><br /></td></tr>
+<tr class="separator:a29332f24cc45d01043814fbfbfb7bf54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b0c9354bf108ecd55012a617a91456"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a36b0c9354bf108ecd55012a617a91456">GPIO_PIN</a>(port,  pin)&#160;&#160;&#160;((((port) &amp; 0)) | (pin))</td></tr>
+<tr class="memdesc:a36b0c9354bf108ecd55012a617a91456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert (port, pin) tuple to a <a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a> value.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a36b0c9354bf108ecd55012a617a91456">More...</a><br /></td></tr>
+<tr class="separator:a36b0c9354bf108ecd55012a617a91456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3969ce1e494a72d3c2925b10ddeb4604"><td class="memItemLeft" align="right" valign="top"><a id="a3969ce1e494a72d3c2925b10ddeb4604"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a3969ce1e494a72d3c2925b10ddeb4604">GPIO_UNDEF</a>&#160;&#160;&#160;UINT32_MAX</td></tr>
+<tr class="memdesc:a3969ce1e494a72d3c2925b10ddeb4604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of a fitting UNDEF value. <br /></td></tr>
+<tr class="separator:a3969ce1e494a72d3c2925b10ddeb4604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d6ccaea2985db27ff41f79754f13a89"><td class="memItemLeft" align="right" valign="top"><a id="a2d6ccaea2985db27ff41f79754f13a89"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2d6ccaea2985db27ff41f79754f13a89">PWM_SLICE_NUMOF</a>&#160;&#160;&#160;(8)</td></tr>
+<tr class="memdesc:a2d6ccaea2985db27ff41f79754f13a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of slices available per PWM device. <br /></td></tr>
+<tr class="separator:a2d6ccaea2985db27ff41f79754f13a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61035f07b3234b43d51f030588804e1c"><td class="memItemLeft" align="right" valign="top"><a id="a61035f07b3234b43d51f030588804e1c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a61035f07b3234b43d51f030588804e1c">PWM_CHANNEL_NUMOF</a>&#160;&#160;&#160;(2)</td></tr>
+<tr class="memdesc:a61035f07b3234b43d51f030588804e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of channels available per slice. <br /></td></tr>
+<tr class="separator:a61035f07b3234b43d51f030588804e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd04a76b55e9fef358e904400cde4db7"><td class="memItemLeft" align="right" valign="top"><a id="afd04a76b55e9fef358e904400cde4db7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#afd04a76b55e9fef358e904400cde4db7">PERIPH_TIMER_PROVIDES_SET</a></td></tr>
+<tr class="memdesc:afd04a76b55e9fef358e904400cde4db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prevent shared timer functions from being used. <br /></td></tr>
+<tr class="separator:afd04a76b55e9fef358e904400cde4db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac68c30cec18f4abf11cc4bb09c13df17"><td class="memItemLeft" align="right" valign="top"><a id="ac68c30cec18f4abf11cc4bb09c13df17"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_REG</b></td></tr>
+<tr class="separator:ac68c30cec18f4abf11cc4bb09c13df17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeb6291046cbd0102e8c87af75e4200d"><td class="memItemLeft" align="right" valign="top"><a id="afeb6291046cbd0102e8c87af75e4200d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_REGS</b></td></tr>
+<tr class="separator:afeb6291046cbd0102e8c87af75e4200d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d9c2b9cf24ed0b13807d63f5e9b11f"><td class="memItemLeft" align="right" valign="top"><a id="af3d9c2b9cf24ed0b13807d63f5e9b11f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PERIPH_SPI_NEEDS_TRANSFER_BYTE</b></td></tr>
+<tr class="separator:af3d9c2b9cf24ed0b13807d63f5e9b11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a4dceb8e525d121010c55a20575cf5695"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a4dceb8e525d121010c55a20575cf5695">gpio_pad_register</a> (uint8_t pin)</td></tr>
+<tr class="memdesc:a4dceb8e525d121010c55a20575cf5695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the PAD control register for the given GPIO pin as word.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a4dceb8e525d121010c55a20575cf5695">More...</a><br /></td></tr>
+<tr class="separator:a4dceb8e525d121010c55a20575cf5695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a523fdc61c3d13d305e7a2db56a1dc8"><td class="memItemLeft" align="right" valign="top"><a id="a1a523fdc61c3d13d305e7a2db56a1dc8"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1a523fdc61c3d13d305e7a2db56a1dc8">gpio_set_pad_config</a> (uint8_t pin, <a class="el" href="structgpio__pad__ctrl__t.html">gpio_pad_ctrl_t</a> config)</td></tr>
+<tr class="memdesc:a1a523fdc61c3d13d305e7a2db56a1dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to set the pad configuration of the given pin using the bit-field convenience type. <br /></td></tr>
+<tr class="separator:a1a523fdc61c3d13d305e7a2db56a1dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cf915814b8ef89aa672a9743883e81c"><td class="memItemLeft" align="right" valign="top"><a id="a0cf915814b8ef89aa672a9743883e81c"></a>
+static volatile uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a0cf915814b8ef89aa672a9743883e81c">gpio_io_register</a> (uint8_t pin)</td></tr>
+<tr class="memdesc:a0cf915814b8ef89aa672a9743883e81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the IO control register for the given GPIO pin as word. <br /></td></tr>
+<tr class="separator:a0cf915814b8ef89aa672a9743883e81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a715ddd152ddab62bcd689392dde85c75"><td class="memItemLeft" align="right" valign="top"><a id="a715ddd152ddab62bcd689392dde85c75"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a715ddd152ddab62bcd689392dde85c75">gpio_set_io_config</a> (uint8_t pin, <a class="el" href="structgpio__io__ctrl__t.html">gpio_io_ctrl_t</a> config)</td></tr>
+<tr class="memdesc:a715ddd152ddab62bcd689392dde85c75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to set the I/O configuration of the given pin using the bit-field convenience type. <br /></td></tr>
+<tr class="separator:a715ddd152ddab62bcd689392dde85c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a516a86a6e952d3f0b006c52271678e2c"><td class="memItemLeft" align="right" valign="top"><a id="a516a86a6e952d3f0b006c52271678e2c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a516a86a6e952d3f0b006c52271678e2c">gpio_set_function_select</a> (uint8_t pin, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9">gpio_function_select_t</a> funcsel)</td></tr>
+<tr class="memdesc:a516a86a6e952d3f0b006c52271678e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the function select subregister for the given pin to the given value. <br /></td></tr>
+<tr class="separator:a516a86a6e952d3f0b006c52271678e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a67dbb81875f51b0c23dddf10c542ee"><td class="memItemLeft" align="right" valign="top"><a id="a3a67dbb81875f51b0c23dddf10c542ee"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a3a67dbb81875f51b0c23dddf10c542ee">gpio_reset_all_config</a> (uint8_t pin)</td></tr>
+<tr class="memdesc:a3a67dbb81875f51b0c23dddf10c542ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the default I/O and PAD configuration of the given GPIO pin. <br /></td></tr>
+<tr class="separator:a3a67dbb81875f51b0c23dddf10c542ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc89aa65ed8bdba0fc7e4eb7548fed75"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#afc89aa65ed8bdba0fc7e4eb7548fed75">periph_reset</a> (uint32_t components)</td></tr>
+<tr class="memdesc:afc89aa65ed8bdba0fc7e4eb7548fed75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset hardware components.  <a href="rpx0xx_2include_2periph__cpu_8h.html#afc89aa65ed8bdba0fc7e4eb7548fed75">More...</a><br /></td></tr>
+<tr class="separator:afc89aa65ed8bdba0fc7e4eb7548fed75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeae569eca3db7e4fca5ea920df88848e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#aeae569eca3db7e4fca5ea920df88848e">periph_reset_done</a> (uint32_t components)</td></tr>
+<tr class="memdesc:aeae569eca3db7e4fca5ea920df88848e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until hardware components have been reset.  <a href="rpx0xx_2include_2periph__cpu_8h.html#aeae569eca3db7e4fca5ea920df88848e">More...</a><br /></td></tr>
+<tr class="separator:aeae569eca3db7e4fca5ea920df88848e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9e454625d432b89c4d48d8ee247c0b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#af9e454625d432b89c4d48d8ee247c0b7">PLL_SYS_REF_DIV</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:af9e454625d432b89c4d48d8ee247c0b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">For generating the system clock via PLL, the XOSC reference clock can be divided.  <a href="rpx0xx_2include_2periph__cpu_8h.html#af9e454625d432b89c4d48d8ee247c0b7">More...</a><br /></td></tr>
+<tr class="separator:af9e454625d432b89c4d48d8ee247c0b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80e4c2bb5fc3f5380e19a2443512f8c9"><td class="memItemLeft" align="right" valign="top"><a id="a80e4c2bb5fc3f5380e19a2443512f8c9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a80e4c2bb5fc3f5380e19a2443512f8c9">PLL_USB_REF_DIV</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a80e4c2bb5fc3f5380e19a2443512f8c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#af9e454625d432b89c4d48d8ee247c0b7">PLL_SYS_REF_DIV</a> but for the PLL generating the USB clock. <br /></td></tr>
+<tr class="separator:a80e4c2bb5fc3f5380e19a2443512f8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cf7cace775569d60080d81edc66d444"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a0cf7cace775569d60080d81edc66d444">PLL_SYS_VCO_FEEDBACK_SCALE</a>&#160;&#160;&#160;125</td></tr>
+<tr class="memdesc:a0cf7cace775569d60080d81edc66d444"><td class="mdescLeft">&#160;</td><td class="mdescRight">VCO feedback scale used for system clock.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a0cf7cace775569d60080d81edc66d444">More...</a><br /></td></tr>
+<tr class="separator:a0cf7cace775569d60080d81edc66d444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4414f07a72536b37bfaac3bb183cf173"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a4414f07a72536b37bfaac3bb183cf173">PLL_SYS_POSTDIV1</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memdesc:a4414f07a72536b37bfaac3bb183cf173"><td class="mdescLeft">&#160;</td><td class="mdescRight">First post-PLL clock divider for system clock.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a4414f07a72536b37bfaac3bb183cf173">More...</a><br /></td></tr>
+<tr class="separator:a4414f07a72536b37bfaac3bb183cf173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaef7ec64d93487ee6ed3213ca229c340"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#aaef7ec64d93487ee6ed3213ca229c340">PLL_SYS_POSTDIV2</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:aaef7ec64d93487ee6ed3213ca229c340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second post-PLL clock divider for system clock.  <a href="rpx0xx_2include_2periph__cpu_8h.html#aaef7ec64d93487ee6ed3213ca229c340">More...</a><br /></td></tr>
+<tr class="separator:aaef7ec64d93487ee6ed3213ca229c340"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3245405ea013c5657758f599edfd5f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ad3245405ea013c5657758f599edfd5f4">PLL_USB_VCO_FEEDBACK_SCALE</a>&#160;&#160;&#160;40</td></tr>
+<tr class="memdesc:ad3245405ea013c5657758f599edfd5f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">VCO feedback scale used for USB clock.  <a href="rpx0xx_2include_2periph__cpu_8h.html#ad3245405ea013c5657758f599edfd5f4">More...</a><br /></td></tr>
+<tr class="separator:ad3245405ea013c5657758f599edfd5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14712da21832bf9b912172eb5394eca3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a14712da21832bf9b912172eb5394eca3">PLL_USB_POSTDIV1</a>&#160;&#160;&#160;5</td></tr>
+<tr class="memdesc:a14712da21832bf9b912172eb5394eca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">First post-PLL clock divider for USB clock.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a14712da21832bf9b912172eb5394eca3">More...</a><br /></td></tr>
+<tr class="separator:a14712da21832bf9b912172eb5394eca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8cde27040712311fb83f0d6e3aa284"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2c8cde27040712311fb83f0d6e3aa284">PLL_USB_POSTDIV2</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a2c8cde27040712311fb83f0d6e3aa284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second post-PLL clock divider for USB clock.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a2c8cde27040712311fb83f0d6e3aa284">More...</a><br /></td></tr>
+<tr class="separator:a2c8cde27040712311fb83f0d6e3aa284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1178645b8ab461f2bdb959b6b3e00ca4"><td class="memItemLeft" align="right" valign="top"><a id="a1178645b8ab461f2bdb959b6b3e00ca4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1178645b8ab461f2bdb959b6b3e00ca4">CLOCK_XOSC</a>&#160;&#160;&#160;<a class="el" href="units_8h.html#ab7b18750ddf0850461f926ae151ca7fa">MHZ</a>(12)</td></tr>
+<tr class="memdesc:a1178645b8ab461f2bdb959b6b3e00ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RP2040 reference design attaches a 12 MHz crystal to the MCU, so we take this value as default. <br /></td></tr>
+<tr class="separator:a1178645b8ab461f2bdb959b6b3e00ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a554033e5b287a0138ce846af5c24fb66"><td class="memItemLeft" align="right" valign="top"><a id="a554033e5b287a0138ce846af5c24fb66"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a554033e5b287a0138ce846af5c24fb66">PLL_CLOCK</a>(vco_feedback,  postdiv1,  postdiv2)&#160;&#160;&#160;    (<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1178645b8ab461f2bdb959b6b3e00ca4">CLOCK_XOSC</a> * (vco_feedback) / (postdiv1) / (postdiv2))</td></tr>
+<tr class="memdesc:a554033e5b287a0138ce846af5c24fb66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the resulting PLL clock frequency for the given parameters. <br /></td></tr>
+<tr class="separator:a554033e5b287a0138ce846af5c24fb66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc465f12242e68f6c3695caa3ba0a169"><td class="memItemLeft" align="right" valign="top"><a id="afc465f12242e68f6c3695caa3ba0a169"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#afc465f12242e68f6c3695caa3ba0a169">CLOCK_CORECLOCK</a>&#160;&#160;&#160;    <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a554033e5b287a0138ce846af5c24fb66">PLL_CLOCK</a>(<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a0cf7cace775569d60080d81edc66d444">PLL_SYS_VCO_FEEDBACK_SCALE</a>, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a4414f07a72536b37bfaac3bb183cf173">PLL_SYS_POSTDIV1</a>, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#aaef7ec64d93487ee6ed3213ca229c340">PLL_SYS_POSTDIV2</a>)</td></tr>
+<tr class="memdesc:afc465f12242e68f6c3695caa3ba0a169"><td class="mdescLeft">&#160;</td><td class="mdescRight">System core clock speed, 125 MHz unless board changes parameters. <br /></td></tr>
+<tr class="separator:afc465f12242e68f6c3695caa3ba0a169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4356c693bccfa428b505db8b668bfe2b"><td class="memItemLeft" align="right" valign="top"><a id="a4356c693bccfa428b505db8b668bfe2b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a4356c693bccfa428b505db8b668bfe2b">CLOCK_USB</a>&#160;&#160;&#160;    <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a554033e5b287a0138ce846af5c24fb66">PLL_CLOCK</a>(<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ad3245405ea013c5657758f599edfd5f4">PLL_USB_VCO_FEEDBACK_SCALE</a>, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a14712da21832bf9b912172eb5394eca3">PLL_USB_POSTDIV1</a>, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2c8cde27040712311fb83f0d6e3aa284">PLL_USB_POSTDIV2</a>)</td></tr>
+<tr class="memdesc:a4356c693bccfa428b505db8b668bfe2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">USB clock speed. <br /></td></tr>
+<tr class="separator:a4356c693bccfa428b505db8b668bfe2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Ranges for clock frequencies and clock settings</h2></td></tr>
+<tr class="memitem:abf0d66adfc3a153702bef5979dce0562"><td class="memItemLeft" align="right" valign="top"><a id="abf0d66adfc3a153702bef5979dce0562"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#abf0d66adfc3a153702bef5979dce0562">CLOCK_XOSC_MAX</a>&#160;&#160;&#160;<a class="el" href="units_8h.html#ab7b18750ddf0850461f926ae151ca7fa">MHZ</a>(15)</td></tr>
+<tr class="memdesc:abf0d66adfc3a153702bef5979dce0562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum crystal frequency. <br /></td></tr>
+<tr class="separator:abf0d66adfc3a153702bef5979dce0562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bede5e8164e8afa20fe790513be3a55"><td class="memItemLeft" align="right" valign="top"><a id="a8bede5e8164e8afa20fe790513be3a55"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a8bede5e8164e8afa20fe790513be3a55">CLOCK_XOSC_MIN</a>&#160;&#160;&#160;<a class="el" href="units_8h.html#ab7b18750ddf0850461f926ae151ca7fa">MHZ</a>(5)</td></tr>
+<tr class="memdesc:a8bede5e8164e8afa20fe790513be3a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum crystal frequency. <br /></td></tr>
+<tr class="separator:a8bede5e8164e8afa20fe790513be3a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af91c4c6eefaa65415ff55c2735da1fd1"><td class="memItemLeft" align="right" valign="top"><a id="af91c4c6eefaa65415ff55c2735da1fd1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#af91c4c6eefaa65415ff55c2735da1fd1">PLL_POSTDIV_MIN</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:af91c4c6eefaa65415ff55c2735da1fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value of the post PLL clock divers. <br /></td></tr>
+<tr class="separator:af91c4c6eefaa65415ff55c2735da1fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac47029c864b339ef4f2608c21766b45d"><td class="memItemLeft" align="right" valign="top"><a id="ac47029c864b339ef4f2608c21766b45d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ac47029c864b339ef4f2608c21766b45d">PLL_POSTDIV_MAX</a>&#160;&#160;&#160;(7U)</td></tr>
+<tr class="memdesc:ac47029c864b339ef4f2608c21766b45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value of the post PLL clock divers. <br /></td></tr>
+<tr class="separator:ac47029c864b339ef4f2608c21766b45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7503f02f7c666342c42cb46afc47831c"><td class="memItemLeft" align="right" valign="top"><a id="a7503f02f7c666342c42cb46afc47831c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7503f02f7c666342c42cb46afc47831c">PLL_VCO_FEEDBACK_SCALE_MIN</a>&#160;&#160;&#160;(16U)</td></tr>
+<tr class="memdesc:a7503f02f7c666342c42cb46afc47831c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value of the PLL VCO feedback scaler. <br /></td></tr>
+<tr class="separator:a7503f02f7c666342c42cb46afc47831c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a512f197359284b5e479b4ebd30eb73d3"><td class="memItemLeft" align="right" valign="top"><a id="a512f197359284b5e479b4ebd30eb73d3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a512f197359284b5e479b4ebd30eb73d3">PLL_VCO_FEEDBACK_SCALE_MAX</a>&#160;&#160;&#160;(320U)</td></tr>
+<tr class="memdesc:a512f197359284b5e479b4ebd30eb73d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value of the PLL VCO feedback scaler. <br /></td></tr>
+<tr class="separator:a512f197359284b5e479b4ebd30eb73d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb7eea42ecc307e5674e773fc79f65ab"><td class="memItemLeft" align="right" valign="top"><a id="abb7eea42ecc307e5674e773fc79f65ab"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#abb7eea42ecc307e5674e773fc79f65ab">PLL_REF_DIV_MIN</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:abb7eea42ecc307e5674e773fc79f65ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value of the clock divider applied before feeding in the reference clock into the PLL. <br /></td></tr>
+<tr class="separator:abb7eea42ecc307e5674e773fc79f65ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a771e719023f2811fd61047873ad0dc1d"><td class="memItemLeft" align="right" valign="top"><a id="a771e719023f2811fd61047873ad0dc1d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a771e719023f2811fd61047873ad0dc1d">PLL_REF_DIV_MAX</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:a771e719023f2811fd61047873ad0dc1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value of the clock divider applied before feeding in the reference clock into the PLL. <br /></td></tr>
+<tr class="separator:a771e719023f2811fd61047873ad0dc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a759f553fbddd2915b49e50c967661fb1"><td class="memItemLeft" align="right" valign="top"><a id="a759f553fbddd2915b49e50c967661fb1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a759f553fbddd2915b49e50c967661fb1">HAVE_GPIO_T</a></td></tr>
+<tr class="memdesc:a759f553fbddd2915b49e50c967661fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overwrite the default gpio_t type definition. <br /></td></tr>
+<tr class="separator:a759f553fbddd2915b49e50c967661fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0133bf7f8e7484ac0088145cd051ec"><td class="memItemLeft" align="right" valign="top"><a id="a8e0133bf7f8e7484ac0088145cd051ec"></a>
+typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>gpio_t</b></td></tr>
+<tr class="separator:a8e0133bf7f8e7484ac0088145cd051ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03000d4ca3380cfec50959c0434c6337"><td class="memItemLeft" align="right" valign="top"><a id="a03000d4ca3380cfec50959c0434c6337"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a03000d4ca3380cfec50959c0434c6337">HAVE_GPIO_FLANK_T</a></td></tr>
+<tr class="memdesc:a03000d4ca3380cfec50959c0434c6337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override GPIO active flank values. <br /></td></tr>
+<tr class="separator:a03000d4ca3380cfec50959c0434c6337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e8c3f46deb150e48acaa79fe26b2e86"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a> { <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a4f2388ac8e1f57263037c3ff4b3a7b39">GPIO_ISC_BOTH</a> = (0 &lt;&lt; 4)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86aa66eac98d2fbcbacb1b23ddbd12fcd54">GPIO_ISC_RISING</a> = (1 &lt;&lt; 4)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a22848bc017239d7e836ca1413df283c5">GPIO_ISC_FALLING</a> = (2 &lt;&lt; 4)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a42b7fa195b4013eaf4be4c50883b9350">GPIO_ISC_LOW_LEVEL</a> = (3 &lt;&lt; 4)
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6cac6d4846100fdf6d4d9affdb336e4d">GPIO_INT_DISABLED_ALL</a> = (1 &lt;&lt; 3)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a2625cbb8746c5e09a2c83b5b49a2e0ab">GPIO_INT0_VCT</a> = (0 &lt;&lt; 2)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a400889a65566bc4d027e54ea9f767191">GPIO_INT1_VCT</a> = (1 &lt;&lt; 2)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6fafbe2898ba18deab0ad13f6cecce98">GPIO_LVL_OFF</a> = (0 &lt;&lt; 0)
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a66164b69c11c5d7a9eacb0478a339661">GPIO_LVL_LOW</a> = (1 &lt;&lt; 0)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86ac7b0a93bb4c7b95c479f6bd86963b5f4">GPIO_LVL_MID</a> = (2 &lt;&lt; 0)
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a979c7d9eac057c54c96dbe96853bc24c">GPIO_LVL_HIGH</a> = (3 &lt;&lt; 0)
+, <b>GPIO_FALLING</b> = GPIO_ISC_FALLING | GPIO_LVL_LOW
+, <br />
+&#160;&#160;<b>GPIO_RISING</b> = GPIO_ISC_RISING | GPIO_LVL_LOW
+, <b>GPIO_BOTH</b> = GPIO_ISC_BOTH | GPIO_LVL_LOW
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = 0xff
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = 0x00
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = 0xab
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = GPIOEVENT_EVENT_FALLING_EDGE
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = GPIOEVENT_EVENT_RISING_EDGE
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = GPIO_FALLING | GPIO_RISING
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a0227e43a6201c3330b2e6e9f71b74d6f">GPIO_LEVEL_LOW</a> = 0x1
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5a87f4701da8987969657f9ffb2563e0">GPIO_LEVEL_HIGH</a> = 0x2
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = 0x4
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = 0x8
+, <br />
+&#160;&#160;<a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = 0xc
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f">GPIO_FALLING</a> = 0
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7">GPIO_RISING</a> = 1
+, <a class="el" href="group__drivers__periph__gpio.html#gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf">GPIO_BOTH</a> = 2
+<br />
+ }</td></tr>
+<tr class="separator:a0e8c3f46deb150e48acaa79fe26b2e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">GPIO pad configuration register defines and types</h2></td></tr>
+<tr class="memitem:a5b501312ce2bedef14d36aded80c1d9e"><td class="memItemLeft" align="right" valign="top"><a id="a5b501312ce2bedef14d36aded80c1d9e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a5b501312ce2bedef14d36aded80c1d9e">GPIO_PAD_REGISTER_RESET_VALUE</a>&#160;&#160;&#160;(0x00000056)</td></tr>
+<tr class="memdesc:a5b501312ce2bedef14d36aded80c1d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset value of the GPIO pad configuration register. <br /></td></tr>
+<tr class="separator:a5b501312ce2bedef14d36aded80c1d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78372742882dccd1c13323dbd66c25c5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a78372742882dccd1c13323dbd66c25c5adf191f9dfcb7f155e45032ddc058f38b">DRIVE_STRENGTH_2MA</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a78372742882dccd1c13323dbd66c25c5a72ccb5a978ffe5311bbb290f1a979905">DRIVE_STRENGTH_4MA</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a78372742882dccd1c13323dbd66c25c5a8337b93ca4cfda4f627eee671d0923fc">DRIVE_STRENGTH_8MA</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a78372742882dccd1c13323dbd66c25c5abf6390c9541d6ff56f484f0268abc792">DRIVE_STRENGTH_12MA</a>
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a78372742882dccd1c13323dbd66c25c5a220b140d9e056fa7a631517cd47cbd94">DRIVE_STRENGTH_NUMOF</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a78372742882dccd1c13323dbd66c25c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible drive strength values for <a class="el" href="structgpio__pad__ctrl__t.html#ab88787507651295d45f413705db95685">gpio_pad_ctrl_t::drive_strength</a>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a78372742882dccd1c13323dbd66c25c5">More...</a><br /></td></tr>
+<tr class="separator:a78372742882dccd1c13323dbd66c25c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">GPIO I/O configuration register defines and types</h2></td></tr>
+<tr class="memitem:af40b72a0ccdf7cfcb88e2537b5d717a5"><td class="memItemLeft" align="right" valign="top"><a id="af40b72a0ccdf7cfcb88e2537b5d717a5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#af40b72a0ccdf7cfcb88e2537b5d717a5">GPIO_IO_REGISTER_RESET_VALUE</a>&#160;&#160;&#160;(0x0000001f)</td></tr>
+<tr class="memdesc:af40b72a0ccdf7cfcb88e2537b5d717a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset value of the GPIO I/O configuration register. <br /></td></tr>
+<tr class="separator:af40b72a0ccdf7cfcb88e2537b5d717a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cfccb54279d00cd362d676d3d46bab9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9">gpio_function_select_t</a> { <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9ad76a78a43210a80a138e8cfa867d523c">FUNCTION_SELECT_SPI</a> = 1
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a65a8acd38d4d81c050fa537e045266f3">FUNCTION_SELECT_UART</a> = 2
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a394fae3d027432d7dea1383edf09af18">FUNCTION_SELECT_I2C</a> = 3
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a4593d43be9b938222f1d71acae6ba3d0">FUNCTION_SELECT_PWM</a> = 4
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a93966ce910874ab7abd2c75ff09ccb6e">FUNCTION_SELECT_SIO</a> = 5
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a2035d0d3c8ce36df8d5441f43b01ce24">FUNCTION_SELECT_PIO0</a> = 6
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a2b17cbe09623d449beeeadcfa0dabe2d">FUNCTION_SELECT_PIO1</a> = 7
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a2a54a48f6ce6871fcd35e9c722f27fd3">FUNCTION_SELECT_CLOCK</a> = 8
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9a8b637539bbd5e4cf51ab80900c107bd7">FUNCTION_SELECT_USB</a> = 9
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9adf0658e88fb76cbdecec1e8c687c9eb4">FUNCTION_SELECT_NONE</a> = 31
+<br />
+ }</td></tr>
+<tr class="memdesc:a1cfccb54279d00cd362d676d3d46bab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#aee054db4dfc2443e017d75cafd50ec84">gpio_io_ctrl_t::function_select</a>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9">More...</a><br /></td></tr>
+<tr class="separator:a1cfccb54279d00cd362d676d3d46bab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d5492e116eebd5075f247d21fb9db26"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2d5492e116eebd5075f247d21fb9db26a1106c64d937671c2aead57b192b1556c">OUTPUT_OVERRIDE_NORMAL</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2d5492e116eebd5075f247d21fb9db26a8e9a2749afd0d92aa56bb0263a321495">OUTPUT_OVERRIDE_INVERT</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2d5492e116eebd5075f247d21fb9db26a5c537183950f4bd35ee0666713c5df5a">OUTPUT_OVERRIDE_LOW</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2d5492e116eebd5075f247d21fb9db26a011d6f576a126a3eccb8395d1dd87419">OUTPUT_OVERRIDE_HIGH</a>
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a2d5492e116eebd5075f247d21fb9db26a6be01d0d47f24f4517325e2463ebf2fa">OUTPUT_OVERRIDE_NUMOF</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a2d5492e116eebd5075f247d21fb9db26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a7cb532226663e3a17e5d3ab8fb949724">gpio_io_ctrl_t::output_override</a>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a2d5492e116eebd5075f247d21fb9db26">More...</a><br /></td></tr>
+<tr class="separator:a2d5492e116eebd5075f247d21fb9db26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73c53bacb25588538843a1dcfe5f382b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a73c53bacb25588538843a1dcfe5f382ba603959f20606420feb9970ebd045232d">OUTPUT_ENABLE_OVERRIDE_NOMARL</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a73c53bacb25588538843a1dcfe5f382ba9a71dc79c1dcfbf012e902aa5c177931">OUTPUT_ENABLE_OVERRIDE_INVERT</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a73c53bacb25588538843a1dcfe5f382ba5cecab766fc959a529f0dbf8585b5a1d">OUTPUT_ENABLE_OVERRIDE_DISABLE</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a73c53bacb25588538843a1dcfe5f382ba7dd97308b53ed1d37bb2f1db0ed86936">OUTPUT_ENABLE_OVERRIDE_ENABLE</a>
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a73c53bacb25588538843a1dcfe5f382ba4829993e8f0130fd7bcd411422a4dae2">OUTPUT_ENABLE_OVERRIDE_NUMOF</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a73c53bacb25588538843a1dcfe5f382b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a1d43ade48baa97eebfa49bc0cf43efba">gpio_io_ctrl_t::output_enable_override</a>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a73c53bacb25588538843a1dcfe5f382b">More...</a><br /></td></tr>
+<tr class="separator:a73c53bacb25588538843a1dcfe5f382b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26e1124d33b4acdb532c49f6498df549"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a26e1124d33b4acdb532c49f6498df549af418f4b93e38ac1c4007a4967835e76b">INPUT_OVERRIDE_NOMARL</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a26e1124d33b4acdb532c49f6498df549a50666652d28ebc20bb06ff7ee2a97912">INPUT_OVERRIDE_INVERT</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a26e1124d33b4acdb532c49f6498df549a0acc7a26b084ad9c4222c8d37fcdd05a">INPUT_OVERRIDE_LOW</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a26e1124d33b4acdb532c49f6498df549af524c76337c7c38f3ed029163642f18e">INPUT_OVERRIDE_HIGH</a>
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a26e1124d33b4acdb532c49f6498df549ae4381f17774ad10f61b8eeddd83660cc">INPUT_OVERRIDE_NUMOF</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a26e1124d33b4acdb532c49f6498df549"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a217c377e82acdef3e653fe62ca0392bb">gpio_io_ctrl_t::input_override</a>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a26e1124d33b4acdb532c49f6498df549">More...</a><br /></td></tr>
+<tr class="separator:a26e1124d33b4acdb532c49f6498df549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee8d0f117a79ca7eb1e0076a9182bcb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7ee8d0f117a79ca7eb1e0076a9182bcba73acae5143cbb265f4c18068d4cffdfb">IRQ_OVERRIDE_NORMAL</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7ee8d0f117a79ca7eb1e0076a9182bcba2bfaf2a6bc6d0b01d03cc6f5bf666f1e">IRQ_OVERRIDE_INVERT</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7ee8d0f117a79ca7eb1e0076a9182bcba5f7c37fb953e1da14af710d884636b30">IRQ_OVERRIDE_LOW</a>
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7ee8d0f117a79ca7eb1e0076a9182bcbabb1b8b2a1ef1a93d301567e0e35e00f7">IRQ_OVERRIDE_HIGH</a>
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7ee8d0f117a79ca7eb1e0076a9182bcbae294f0f403aaa4720a7e7a758f74ee8b">IRQ_OVERRIDE_NUMOF</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a7ee8d0f117a79ca7eb1e0076a9182bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a66f984647baf218d54601aeab639308c">gpio_io_ctrl_t::irq_override</a>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a7ee8d0f117a79ca7eb1e0076a9182bcb">More...</a><br /></td></tr>
+<tr class="separator:a7ee8d0f117a79ca7eb1e0076a9182bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6d9d193934d2c1c598837398369a197"><td class="memItemLeft" align="right" valign="top"><a id="ad6d9d193934d2c1c598837398369a197"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ad6d9d193934d2c1c598837398369a197">HAVE_SPI_CLK_T</a></td></tr>
+<tr class="memdesc:ad6d9d193934d2c1c598837398369a197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override SPI clock speed values. <br /></td></tr>
+<tr class="separator:ad6d9d193934d2c1c598837398369a197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac34c4c978f4130a92a5068f9e21ea9fc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ac34c4c978f4130a92a5068f9e21ea9fcae6cc2c3387e4da1c7cb83aefb10f5d27">SPI_CLK_100KHZ</a> = KHZ(100)
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ac34c4c978f4130a92a5068f9e21ea9fca8db155bff416a59ca71ce9b2a2568bf3">SPI_CLK_400KHZ</a> = KHZ(400)
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ac34c4c978f4130a92a5068f9e21ea9fcabf727d641e5cceb12a58d29dc954c111">SPI_CLK_1MHZ</a> = MHZ(1)
+, <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ac34c4c978f4130a92a5068f9e21ea9fca4105210aa902203502e4392d4a3fbe58">SPI_CLK_5MHZ</a> = MHZ(5)
+, <br />
+&#160;&#160;<a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ac34c4c978f4130a92a5068f9e21ea9fca1693f88bef873b11f7b85ce0bba8175d">SPI_CLK_10MHZ</a> = MHZ(10)
+<br />
+ }</td></tr>
+<tr class="separator:ac34c4c978f4130a92a5068f9e21ea9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17adf016c33fa2f2e36c9bec898bc0c8"><td class="memItemLeft" align="right" valign="top"><a id="a17adf016c33fa2f2e36c9bec898bc0c8"></a>
+typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a17adf016c33fa2f2e36c9bec898bc0c8">spi_clk_t</a></td></tr>
+<tr class="memdesc:a17adf016c33fa2f2e36c9bec898bc0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI clock type. <br /></td></tr>
+<tr class="separator:a17adf016c33fa2f2e36c9bec898bc0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RP2040 clock configuration</h2></td></tr>
+<tr class="memitem:ac3d1dd4b785e1e60d8ec34ba19056b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ac3d1dd4b785e1e60d8ec34ba19056b99">clock_sys_configure_source</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_SYS_CTRL_SRC_Enum source)</td></tr>
+<tr class="memdesc:ac3d1dd4b785e1e60d8ec34ba19056b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the system clock to run from the reference clock, which is the default on boot.  <a href="rpx0xx_2include_2periph__cpu_8h.html#ac3d1dd4b785e1e60d8ec34ba19056b99">More...</a><br /></td></tr>
+<tr class="separator:ac3d1dd4b785e1e60d8ec34ba19056b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8017e29ac6c597a5dcb4d68983346708"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a8017e29ac6c597a5dcb4d68983346708">clock_sys_configure_aux_source</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_SYS_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:a8017e29ac6c597a5dcb4d68983346708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the system clock to run from an auxiliary clock source, like PLL.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a8017e29ac6c597a5dcb4d68983346708">More...</a><br /></td></tr>
+<tr class="separator:a8017e29ac6c597a5dcb4d68983346708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766846d58c82ef21e216792fad4e5e47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a766846d58c82ef21e216792fad4e5e47">clock_ref_configure_source</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_REF_CTRL_SRC_Enum source)</td></tr>
+<tr class="memdesc:a766846d58c82ef21e216792fad4e5e47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the reference clock to run from a clock source, which is either the ROSC or the XOSC.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a766846d58c82ef21e216792fad4e5e47">More...</a><br /></td></tr>
+<tr class="separator:a766846d58c82ef21e216792fad4e5e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d463fd5a7155d428261a42d99250acf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a5d463fd5a7155d428261a42d99250acf">clock_ref_configure_aux_source</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_REF_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:a5d463fd5a7155d428261a42d99250acf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the reference clock to run from an auxiliary clock source, like PLL.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a5d463fd5a7155d428261a42d99250acf">More...</a><br /></td></tr>
+<tr class="separator:a5d463fd5a7155d428261a42d99250acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2802ec0e4486ceb44ad3d47eadc2004"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#af2802ec0e4486ceb44ad3d47eadc2004">clock_periph_configure</a> (CLOCKS_CLK_PERI_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:af2802ec0e4486ceb44ad3d47eadc2004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the peripheral clock to run from a dedicated auxiliary clock source.  <a href="rpx0xx_2include_2periph__cpu_8h.html#af2802ec0e4486ceb44ad3d47eadc2004">More...</a><br /></td></tr>
+<tr class="separator:af2802ec0e4486ceb44ad3d47eadc2004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2c7eddefab74df2a1bd4e507a8d160b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ad2c7eddefab74df2a1bd4e507a8d160b">clock_gpout0_configure</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_GPOUT0_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:ad2c7eddefab74df2a1bd4e507a8d160b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure gpio21 as clock output pin.  <a href="rpx0xx_2include_2periph__cpu_8h.html#ad2c7eddefab74df2a1bd4e507a8d160b">More...</a><br /></td></tr>
+<tr class="separator:ad2c7eddefab74df2a1bd4e507a8d160b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acec9165a15dc39ae3e64b72c6089d589"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#acec9165a15dc39ae3e64b72c6089d589">clock_gpout1_configure</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_GPOUT1_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:acec9165a15dc39ae3e64b72c6089d589"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure gpio23 as clock output pin.  <a href="rpx0xx_2include_2periph__cpu_8h.html#acec9165a15dc39ae3e64b72c6089d589">More...</a><br /></td></tr>
+<tr class="separator:acec9165a15dc39ae3e64b72c6089d589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09d771cfbed83cafc96b98c95060701d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a09d771cfbed83cafc96b98c95060701d">clock_gpout2_configure</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_GPOUT2_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:a09d771cfbed83cafc96b98c95060701d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure gpio24 as clock output pin.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a09d771cfbed83cafc96b98c95060701d">More...</a><br /></td></tr>
+<tr class="separator:a09d771cfbed83cafc96b98c95060701d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a3354fc0d9ed3469650e802c1564a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a14a3354fc0d9ed3469650e802c1564a4">clock_gpout3_configure</a> (uint32_t f_in, uint32_t f_out, CLOCKS_CLK_GPOUT3_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:a14a3354fc0d9ed3469650e802c1564a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure gpio25 as clock output pin.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a14a3354fc0d9ed3469650e802c1564a4">More...</a><br /></td></tr>
+<tr class="separator:a14a3354fc0d9ed3469650e802c1564a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b8a709bae5ecfb22e340221231bcf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a49b8a709bae5ecfb22e340221231bcf9">clock_adc_configure</a> (CLOCKS_CLK_ADC_CTRL_AUXSRC_Enum aux)</td></tr>
+<tr class="memdesc:a49b8a709bae5ecfb22e340221231bcf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the ADC clock to run from a dedicated auxiliary clock source.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a49b8a709bae5ecfb22e340221231bcf9">More...</a><br /></td></tr>
+<tr class="separator:a49b8a709bae5ecfb22e340221231bcf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RP2040 PLL configuration</h2></td></tr>
+<tr class="memitem:ae4300bf9effe8b5fe951b1c58269edff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#ae4300bf9effe8b5fe951b1c58269edff">pll_start_sys</a> (uint8_t ref_div, uint16_t vco_feedback_scale, uint8_t post_div_1, uint8_t post_div_2)</td></tr>
+<tr class="memdesc:ae4300bf9effe8b5fe951b1c58269edff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the PLL for the system clock output[MHz] = f_ref / <code>ref_div</code> * <code>vco_feedback_scale</code> / <code>post_div_1</code> / <code>post_div_2</code>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#ae4300bf9effe8b5fe951b1c58269edff">More...</a><br /></td></tr>
+<tr class="separator:ae4300bf9effe8b5fe951b1c58269edff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4227b110988bca8da3d34660d80ab410"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a4227b110988bca8da3d34660d80ab410">pll_start_usb</a> (uint8_t ref_div, uint16_t vco_feedback_scale, uint8_t post_div_1, uint8_t post_div_2)</td></tr>
+<tr class="memdesc:a4227b110988bca8da3d34660d80ab410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the PLL for the USB clock output[MHz] = f_ref / <code>ref_div</code> * <code>vco_feedback_scale</code> / <code>post_div_1</code> / <code>post_div_2</code>.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a4227b110988bca8da3d34660d80ab410">More...</a><br /></td></tr>
+<tr class="separator:a4227b110988bca8da3d34660d80ab410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f6334d2ca54a94be4bb40900c77338"><td class="memItemLeft" align="right" valign="top"><a id="a44f6334d2ca54a94be4bb40900c77338"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a44f6334d2ca54a94be4bb40900c77338">pll_stop_sys</a> (void)</td></tr>
+<tr class="memdesc:a44f6334d2ca54a94be4bb40900c77338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the PLL of the system clock. <br /></td></tr>
+<tr class="separator:a44f6334d2ca54a94be4bb40900c77338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7771218489d9c86ab6caf94ec77013ae"><td class="memItemLeft" align="right" valign="top"><a id="a7771218489d9c86ab6caf94ec77013ae"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a7771218489d9c86ab6caf94ec77013ae">pll_stop_usb</a> (void)</td></tr>
+<tr class="memdesc:a7771218489d9c86ab6caf94ec77013ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the PLL of the USB clock. <br /></td></tr>
+<tr class="separator:a7771218489d9c86ab6caf94ec77013ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba145408085491c7216b0ad5b3c8e192"><td class="memItemLeft" align="right" valign="top"><a id="aba145408085491c7216b0ad5b3c8e192"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#aba145408085491c7216b0ad5b3c8e192">pll_reset_sys</a> (void)</td></tr>
+<tr class="memdesc:aba145408085491c7216b0ad5b3c8e192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the PLL of the system clock. <br /></td></tr>
+<tr class="separator:aba145408085491c7216b0ad5b3c8e192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba2bb48589cf2962a22b7c72ae8fd051"><td class="memItemLeft" align="right" valign="top"><a id="aba2bb48589cf2962a22b7c72ae8fd051"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#aba2bb48589cf2962a22b7c72ae8fd051">pll_reset_usb</a> (void)</td></tr>
+<tr class="memdesc:aba2bb48589cf2962a22b7c72ae8fd051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the PLL of the USB clock. <br /></td></tr>
+<tr class="separator:aba2bb48589cf2962a22b7c72ae8fd051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RP2040 XOSC configuration</h2></td></tr>
+<tr class="memitem:a35f267934280953db4afe98ecc743943"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a35f267934280953db4afe98ecc743943">xosc_start</a> (uint32_t f_ref)</td></tr>
+<tr class="memdesc:a35f267934280953db4afe98ecc743943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the Crystal to run.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a35f267934280953db4afe98ecc743943">More...</a><br /></td></tr>
+<tr class="separator:a35f267934280953db4afe98ecc743943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b5bcefe7dbe0df5d11ac880a11b581"><td class="memItemLeft" align="right" valign="top"><a id="a58b5bcefe7dbe0df5d11ac880a11b581"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a58b5bcefe7dbe0df5d11ac880a11b581">xosc_stop</a> (void)</td></tr>
+<tr class="memdesc:a58b5bcefe7dbe0df5d11ac880a11b581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the crystal. <br /></td></tr>
+<tr class="separator:a58b5bcefe7dbe0df5d11ac880a11b581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RP2040 ROSC configuration</h2></td></tr>
+<tr class="memitem:a0549fba74e1d9a9532fcd08ad29cf82a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a0549fba74e1d9a9532fcd08ad29cf82a">rosc_start</a> (void)</td></tr>
+<tr class="memdesc:a0549fba74e1d9a9532fcd08ad29cf82a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the ring oscillator in default mode.  <a href="rpx0xx_2include_2periph__cpu_8h.html#a0549fba74e1d9a9532fcd08ad29cf82a">More...</a><br /></td></tr>
+<tr class="separator:a0549fba74e1d9a9532fcd08ad29cf82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9a126d0d94d960394a93f941cc2a132"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#af9a126d0d94d960394a93f941cc2a132">rosc_stop</a> (void)</td></tr>
+<tr class="memdesc:af9a126d0d94d960394a93f941cc2a132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn off the ROSC to save power.  <a href="rpx0xx_2include_2periph__cpu_8h.html#af9a126d0d94d960394a93f941cc2a132">More...</a><br /></td></tr>
+<tr class="separator:af9a126d0d94d960394a93f941cc2a132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a36b0c9354bf108ecd55012a617a91456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b0c9354bf108ecd55012a617a91456">&#9670;&nbsp;</a></span>GPIO_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GPIO_PIN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">port, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">pin&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((((port) &amp; 0)) | (pin))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert (port, pin) tuple to a <a class="el" href="group__drivers__periph__gpio.html#gadacfc0deb08affff1e88f9549c8e2823">gpio_t</a> value. </p>
+<dl class="section note"><dt>Note</dt><dd>The RPX0XX MCU family only has a single GPIO port. Still the API requires a port parameter, which is currently ignored. </dd></dl>
+
+</div>
+</div>
+<a id="a4414f07a72536b37bfaac3bb183cf173"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4414f07a72536b37bfaac3bb183cf173">&#9670;&nbsp;</a></span>PLL_SYS_POSTDIV1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLL_SYS_POSTDIV1&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>First post-PLL clock divider for system clock. </p>
+<dl class="section note"><dt>Note</dt><dd>Must be in rage 1..7 </dd></dl>
+
+</div>
+</div>
+<a id="aaef7ec64d93487ee6ed3213ca229c340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaef7ec64d93487ee6ed3213ca229c340">&#9670;&nbsp;</a></span>PLL_SYS_POSTDIV2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLL_SYS_POSTDIV2&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Second post-PLL clock divider for system clock. </p>
+<dl class="section note"><dt>Note</dt><dd>Must be in rage 1..7 </dd></dl>
+
+</div>
+</div>
+<a id="af9e454625d432b89c4d48d8ee247c0b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e454625d432b89c4d48d8ee247c0b7">&#9670;&nbsp;</a></span>PLL_SYS_REF_DIV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLL_SYS_REF_DIV&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For generating the system clock via PLL, the XOSC reference clock can be divided. </p>
+<p>The datasheet says for the supported frequency range of the crystal, only a divider of 1 is reasonable. </p>
+
+</div>
+</div>
+<a id="a0cf7cace775569d60080d81edc66d444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf7cace775569d60080d81edc66d444">&#9670;&nbsp;</a></span>PLL_SYS_VCO_FEEDBACK_SCALE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLL_SYS_VCO_FEEDBACK_SCALE&#160;&#160;&#160;125</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>VCO feedback scale used for system clock. </p>
+<dl class="section note"><dt>Note</dt><dd>The result of <code>PLL_SYS_VCO_FEEDBACK_SCALE * CLOCK_XOSC</code> must be in the range of 400 MHz to 1600 MHz </dd></dl>
+
+</div>
+</div>
+<a id="a14712da21832bf9b912172eb5394eca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14712da21832bf9b912172eb5394eca3">&#9670;&nbsp;</a></span>PLL_USB_POSTDIV1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLL_USB_POSTDIV1&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>First post-PLL clock divider for USB clock. </p>
+<dl class="section note"><dt>Note</dt><dd>Must be in rage 1..7 </dd></dl>
+
+</div>
+</div>
+<a id="a2c8cde27040712311fb83f0d6e3aa284"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c8cde27040712311fb83f0d6e3aa284">&#9670;&nbsp;</a></span>PLL_USB_POSTDIV2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLL_USB_POSTDIV2&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Second post-PLL clock divider for USB clock. </p>
+<dl class="section note"><dt>Note</dt><dd>Must be in rage 1..7 </dd></dl>
+
+</div>
+</div>
+<a id="ad3245405ea013c5657758f599edfd5f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3245405ea013c5657758f599edfd5f4">&#9670;&nbsp;</a></span>PLL_USB_VCO_FEEDBACK_SCALE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLL_USB_VCO_FEEDBACK_SCALE&#160;&#160;&#160;40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>VCO feedback scale used for USB clock. </p>
+<dl class="section note"><dt>Note</dt><dd>The result of <code>PLL_USB_VCO_FEEDBACK_SCALE * CLOCK_XOSC</code> must be in the range of 400 MHz to 1600 MHz </dd></dl>
+
+</div>
+</div>
+<a id="a29332f24cc45d01043814fbfbfb7bf54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29332f24cc45d01043814fbfbfb7bf54">&#9670;&nbsp;</a></span>RESETS_RESET_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RESETS_RESET_MASK</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    (RESETS_RESET_usbctrl_Msk       |   \</div>
+<div class="line">     RESETS_RESET_uart1_Msk         |   \</div>
+<div class="line">     RESETS_RESET_uart0_Msk         |   \</div>
+<div class="line">     RESETS_RESET_timer_Msk         |   \</div>
+<div class="line">     RESETS_RESET_tbman_Msk         |   \</div>
+<div class="line">     RESETS_RESET_sysinfo_Msk       |   \</div>
+<div class="line">     RESETS_RESET_syscfg_Msk        |   \</div>
+<div class="line">     RESETS_RESET_spi1_Msk          |   \</div>
+<div class="line">     RESETS_RESET_spi0_Msk          |   \</div>
+<div class="line">     RESETS_RESET_rtc_Msk           |   \</div>
+<div class="line">     RESETS_RESET_pwm_Msk           |   \</div>
+<div class="line">     RESETS_RESET_pll_usb_Msk       |   \</div>
+<div class="line">     RESETS_RESET_pll_sys_Msk       |   \</div>
+<div class="line">     RESETS_RESET_pio1_Msk          |   \</div>
+<div class="line">     RESETS_RESET_pio0_Msk          |   \</div>
+<div class="line">     RESETS_RESET_pads_qspi_Msk     |   \</div>
+<div class="line">     RESETS_RESET_pads_bank0_Msk    |   \</div>
+<div class="line">     RESETS_RESET_jtag_Msk          |   \</div>
+<div class="line">     RESETS_RESET_io_qspi_Msk       |   \</div>
+<div class="line">     RESETS_RESET_io_bank0_Msk      |   \</div>
+<div class="line">     RESETS_RESET_i2c1_Msk          |   \</div>
+<div class="line">     RESETS_RESET_i2c0_Msk          |   \</div>
+<div class="line">     RESETS_RESET_dma_Msk           |   \</div>
+<div class="line">     RESETS_RESET_busctrl_Msk       |   \</div>
+<div class="line">     RESETS_RESET_adc_Msk)</div>
+</div><!-- fragment -->
+<p>Periphery blocks that can be reset. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a73c53bacb25588538843a1dcfe5f382b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73c53bacb25588538843a1dcfe5f382b">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a1d43ade48baa97eebfa49bc0cf43efba">gpio_io_ctrl_t::output_enable_override</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a73c53bacb25588538843a1dcfe5f382ba603959f20606420feb9970ebd045232d"></a>OUTPUT_ENABLE_OVERRIDE_NOMARL&#160;</td><td class="fielddoc"><p>enable output as specified by connected peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a73c53bacb25588538843a1dcfe5f382ba9a71dc79c1dcfbf012e902aa5c177931"></a>OUTPUT_ENABLE_OVERRIDE_INVERT&#160;</td><td class="fielddoc"><p>invert output enable setting of peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a73c53bacb25588538843a1dcfe5f382ba5cecab766fc959a529f0dbf8585b5a1d"></a>OUTPUT_ENABLE_OVERRIDE_DISABLE&#160;</td><td class="fielddoc"><p>disable output, overriding peripheral signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a73c53bacb25588538843a1dcfe5f382ba7dd97308b53ed1d37bb2f1db0ed86936"></a>OUTPUT_ENABLE_OVERRIDE_ENABLE&#160;</td><td class="fielddoc"><p>enable output, overriding peripheral signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a73c53bacb25588538843a1dcfe5f382ba4829993e8f0130fd7bcd411422a4dae2"></a>OUTPUT_ENABLE_OVERRIDE_NUMOF&#160;</td><td class="fielddoc"><p>number of possible output enable override settings </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a26e1124d33b4acdb532c49f6498df549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26e1124d33b4acdb532c49f6498df549">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a217c377e82acdef3e653fe62ca0392bb">gpio_io_ctrl_t::input_override</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a26e1124d33b4acdb532c49f6498df549af418f4b93e38ac1c4007a4967835e76b"></a>INPUT_OVERRIDE_NOMARL&#160;</td><td class="fielddoc"><p>don't mess with peripheral input signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a26e1124d33b4acdb532c49f6498df549a50666652d28ebc20bb06ff7ee2a97912"></a>INPUT_OVERRIDE_INVERT&#160;</td><td class="fielddoc"><p>invert signal to connected peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a26e1124d33b4acdb532c49f6498df549a0acc7a26b084ad9c4222c8d37fcdd05a"></a>INPUT_OVERRIDE_LOW&#160;</td><td class="fielddoc"><p>signal low to connected peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a26e1124d33b4acdb532c49f6498df549af524c76337c7c38f3ed029163642f18e"></a>INPUT_OVERRIDE_HIGH&#160;</td><td class="fielddoc"><p>signal high to connected peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a26e1124d33b4acdb532c49f6498df549ae4381f17774ad10f61b8eeddd83660cc"></a>INPUT_OVERRIDE_NUMOF&#160;</td><td class="fielddoc"><p>number of possible input override settings </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a7ee8d0f117a79ca7eb1e0076a9182bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee8d0f117a79ca7eb1e0076a9182bcb">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a66f984647baf218d54601aeab639308c">gpio_io_ctrl_t::irq_override</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7ee8d0f117a79ca7eb1e0076a9182bcba73acae5143cbb265f4c18068d4cffdfb"></a>IRQ_OVERRIDE_NORMAL&#160;</td><td class="fielddoc"><p>don't mess with IRQ signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a7ee8d0f117a79ca7eb1e0076a9182bcba2bfaf2a6bc6d0b01d03cc6f5bf666f1e"></a>IRQ_OVERRIDE_INVERT&#160;</td><td class="fielddoc"><p>invert IRQ signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a7ee8d0f117a79ca7eb1e0076a9182bcba5f7c37fb953e1da14af710d884636b30"></a>IRQ_OVERRIDE_LOW&#160;</td><td class="fielddoc"><p>set IRQ signal to low </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a7ee8d0f117a79ca7eb1e0076a9182bcbabb1b8b2a1ef1a93d301567e0e35e00f7"></a>IRQ_OVERRIDE_HIGH&#160;</td><td class="fielddoc"><p>set IRQ signal to high </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a7ee8d0f117a79ca7eb1e0076a9182bcbae294f0f403aaa4720a7e7a758f74ee8b"></a>IRQ_OVERRIDE_NUMOF&#160;</td><td class="fielddoc"><p>number of possible IRQ override settings </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ac34c4c978f4130a92a5068f9e21ea9fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac34c4c978f4130a92a5068f9e21ea9fc">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac34c4c978f4130a92a5068f9e21ea9fcae6cc2c3387e4da1c7cb83aefb10f5d27"></a>SPI_CLK_100KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 100KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac34c4c978f4130a92a5068f9e21ea9fca8db155bff416a59ca71ce9b2a2568bf3"></a>SPI_CLK_400KHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 400KHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac34c4c978f4130a92a5068f9e21ea9fcabf727d641e5cceb12a58d29dc954c111"></a>SPI_CLK_1MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 1MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac34c4c978f4130a92a5068f9e21ea9fca4105210aa902203502e4392d4a3fbe58"></a>SPI_CLK_5MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 5MHz </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac34c4c978f4130a92a5068f9e21ea9fca1693f88bef873b11f7b85ce0bba8175d"></a>SPI_CLK_10MHZ&#160;</td><td class="fielddoc"><p>drive the SPI bus with 10MHz </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a78372742882dccd1c13323dbd66c25c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78372742882dccd1c13323dbd66c25c5">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible drive strength values for <a class="el" href="structgpio__pad__ctrl__t.html#ab88787507651295d45f413705db95685">gpio_pad_ctrl_t::drive_strength</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a78372742882dccd1c13323dbd66c25c5adf191f9dfcb7f155e45032ddc058f38b"></a>DRIVE_STRENGTH_2MA&#160;</td><td class="fielddoc"><p>set driver strength to 2 mA </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a78372742882dccd1c13323dbd66c25c5a72ccb5a978ffe5311bbb290f1a979905"></a>DRIVE_STRENGTH_4MA&#160;</td><td class="fielddoc"><p>set driver strength to 4 mA </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a78372742882dccd1c13323dbd66c25c5a8337b93ca4cfda4f627eee671d0923fc"></a>DRIVE_STRENGTH_8MA&#160;</td><td class="fielddoc"><p>set driver strength to 8 mA </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a78372742882dccd1c13323dbd66c25c5abf6390c9541d6ff56f484f0268abc792"></a>DRIVE_STRENGTH_12MA&#160;</td><td class="fielddoc"><p>set driver strength to 12 mA </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a78372742882dccd1c13323dbd66c25c5a220b140d9e056fa7a631517cd47cbd94"></a>DRIVE_STRENGTH_NUMOF&#160;</td><td class="fielddoc"><p>number of different drive strength options </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a2d5492e116eebd5075f247d21fb9db26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d5492e116eebd5075f247d21fb9db26">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#a7cb532226663e3a17e5d3ab8fb949724">gpio_io_ctrl_t::output_override</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2d5492e116eebd5075f247d21fb9db26a1106c64d937671c2aead57b192b1556c"></a>OUTPUT_OVERRIDE_NORMAL&#160;</td><td class="fielddoc"><p>drive pin from connected peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2d5492e116eebd5075f247d21fb9db26a8e9a2749afd0d92aa56bb0263a321495"></a>OUTPUT_OVERRIDE_INVERT&#160;</td><td class="fielddoc"><p>drive pin from connected peripheral, but invert output </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2d5492e116eebd5075f247d21fb9db26a5c537183950f4bd35ee0666713c5df5a"></a>OUTPUT_OVERRIDE_LOW&#160;</td><td class="fielddoc"><p>drive pin low, overriding peripheral signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2d5492e116eebd5075f247d21fb9db26a011d6f576a126a3eccb8395d1dd87419"></a>OUTPUT_OVERRIDE_HIGH&#160;</td><td class="fielddoc"><p>drive pin high, overriding peripheral signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2d5492e116eebd5075f247d21fb9db26a6be01d0d47f24f4517325e2463ebf2fa"></a>OUTPUT_OVERRIDE_NUMOF&#160;</td><td class="fielddoc"><p>number of possible output override settings </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0e8c3f46deb150e48acaa79fe26b2e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e8c3f46deb150e48acaa79fe26b2e86">&#9670;&nbsp;</a></span>gpio_flank_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="atxmega_2include_2periph__cpu_8h.html#a0e8c3f46deb150e48acaa79fe26b2e86">gpio_flank_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a4f2388ac8e1f57263037c3ff4b3a7b39"></a>GPIO_ISC_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks (default) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86aa66eac98d2fbcbacb1b23ddbd12fcd54"></a>GPIO_ISC_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a22848bc017239d7e836ca1413df283c5"></a>GPIO_ISC_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a42b7fa195b4013eaf4be4c50883b9350"></a>GPIO_ISC_LOW_LEVEL&#160;</td><td class="fielddoc"><p>emit interrupt on low level </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6cac6d4846100fdf6d4d9affdb336e4d"></a>GPIO_INT_DISABLED_ALL&#160;</td><td class="fielddoc"><p>disable all interrupts </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a2625cbb8746c5e09a2c83b5b49a2e0ab"></a>GPIO_INT0_VCT&#160;</td><td class="fielddoc"><p>enable interrupt on Vector 0 (default) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a400889a65566bc4d027e54ea9f767191"></a>GPIO_INT1_VCT&#160;</td><td class="fielddoc"><p>enable interrupt on Vector 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6fafbe2898ba18deab0ad13f6cecce98"></a>GPIO_LVL_OFF&#160;</td><td class="fielddoc"><p>interrupt disabled (default) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a66164b69c11c5d7a9eacb0478a339661"></a>GPIO_LVL_LOW&#160;</td><td class="fielddoc"><p>interrupt low level </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86ac7b0a93bb4c7b95c479f6bd86963b5f4"></a>GPIO_LVL_MID&#160;</td><td class="fielddoc"><p>interrupt medium level </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a979c7d9eac057c54c96dbe96853bc24c"></a>GPIO_LVL_HIGH&#160;</td><td class="fielddoc"><p>interrupt higher </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>not supported -&gt; random value </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a0227e43a6201c3330b2e6e9f71b74d6f"></a>GPIO_LEVEL_LOW&#160;</td><td class="fielddoc"><p>emit interrupt level-triggered on low input </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5a87f4701da8987969657f9ffb2563e0"></a>GPIO_LEVEL_HIGH&#160;</td><td class="fielddoc"><p>emit interrupt level-triggered on low input </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a1c87b67b13afe4418ae93fcf15989e8f"></a>GPIO_FALLING&#160;</td><td class="fielddoc"><p>emit interrupt on falling flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a5aa93b5cade41c8d41e61fbf69f3a2d7"></a>GPIO_RISING&#160;</td><td class="fielddoc"><p>emit interrupt on rising flank </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0e8c3f46deb150e48acaa79fe26b2e86a6c64bb6c299ea83e50f4a3e7513eaadf"></a>GPIO_BOTH&#160;</td><td class="fielddoc"><p>emit interrupt on both flanks </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a1cfccb54279d00cd362d676d3d46bab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cfccb54279d00cd362d676d3d46bab9">&#9670;&nbsp;</a></span>gpio_function_select_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a1cfccb54279d00cd362d676d3d46bab9">gpio_function_select_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible function values for <a class="el" href="structgpio__io__ctrl__t.html#aee054db4dfc2443e017d75cafd50ec84">gpio_io_ctrl_t::function_select</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9ad76a78a43210a80a138e8cfa867d523c"></a>FUNCTION_SELECT_SPI&#160;</td><td class="fielddoc"><p>connect pin to the SPI peripheral (MISO/MOSI/SCK depends on pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a65a8acd38d4d81c050fa537e045266f3"></a>FUNCTION_SELECT_UART&#160;</td><td class="fielddoc"><p>connect pin to the UART peripheral (TXD/RXD depends on pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a394fae3d027432d7dea1383edf09af18"></a>FUNCTION_SELECT_I2C&#160;</td><td class="fielddoc"><p>connect pin to the I2C peripheral (SCL/SDA depends on pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a4593d43be9b938222f1d71acae6ba3d0"></a>FUNCTION_SELECT_PWM&#160;</td><td class="fielddoc"><p>connect pin to the timer for PWM (channel depends on pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a93966ce910874ab7abd2c75ff09ccb6e"></a>FUNCTION_SELECT_SIO&#160;</td><td class="fielddoc"><p>use pin as vanilla GPIO </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a2035d0d3c8ce36df8d5441f43b01ce24"></a>FUNCTION_SELECT_PIO0&#160;</td><td class="fielddoc"><p>connect pin to the first PIO peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a2b17cbe09623d449beeeadcfa0dabe2d"></a>FUNCTION_SELECT_PIO1&#160;</td><td class="fielddoc"><p>connect pin to the second PIO peripheral </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a2a54a48f6ce6871fcd35e9c722f27fd3"></a>FUNCTION_SELECT_CLOCK&#160;</td><td class="fielddoc"><p>connect pin to the timer (depending on pin: external clock, clock output, or not supported) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9a8b637539bbd5e4cf51ab80900c107bd7"></a>FUNCTION_SELECT_USB&#160;</td><td class="fielddoc"><p>connect pin to the USB peripheral (function depends on pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1cfccb54279d00cd362d676d3d46bab9adf0658e88fb76cbdecec1e8c687c9eb4"></a>FUNCTION_SELECT_NONE&#160;</td><td class="fielddoc"><p>Reset value, pin unconnected. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a49b8a709bae5ecfb22e340221231bcf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49b8a709bae5ecfb22e340221231bcf9">&#9670;&nbsp;</a></span>clock_adc_configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_adc_configure </td>
+          <td>(</td>
+          <td class="paramtype">CLOCKS_CLK_ADC_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure the ADC clock to run from a dedicated auxiliary clock source. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aux</td><td>Auxiliary clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad2c7eddefab74df2a1bd4e507a8d160b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2c7eddefab74df2a1bd4e507a8d160b">&#9670;&nbsp;</a></span>clock_gpout0_configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_gpout0_configure </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_GPOUT0_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure gpio21 as clock output pin. </p>
+<p>Can be used as an external clock source for another circuit or to check the expected signal with a logic analyzer</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency </td></tr>
+    <tr><td class="paramname">aux</td><td>Auxiliary clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acec9165a15dc39ae3e64b72c6089d589"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acec9165a15dc39ae3e64b72c6089d589">&#9670;&nbsp;</a></span>clock_gpout1_configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_gpout1_configure </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_GPOUT1_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure gpio23 as clock output pin. </p>
+<p>Can be used as an external clock source for another circuit or to check the expected signal with a logic analyzer</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency </td></tr>
+    <tr><td class="paramname">aux</td><td>Auxiliary clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a09d771cfbed83cafc96b98c95060701d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09d771cfbed83cafc96b98c95060701d">&#9670;&nbsp;</a></span>clock_gpout2_configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_gpout2_configure </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_GPOUT2_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure gpio24 as clock output pin. </p>
+<p>Can be used as an external clock source for another circuit or to check the expected signal with a logic analyzer</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency </td></tr>
+    <tr><td class="paramname">aux</td><td>Auxiliary clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a14a3354fc0d9ed3469650e802c1564a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a3354fc0d9ed3469650e802c1564a4">&#9670;&nbsp;</a></span>clock_gpout3_configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_gpout3_configure </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_GPOUT3_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure gpio25 as clock output pin. </p>
+<p>Can be used as an external clock source for another circuit or to check the expected signal with a logic analyzer</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency </td></tr>
+    <tr><td class="paramname">aux</td><td>Auxiliary clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af2802ec0e4486ceb44ad3d47eadc2004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2802ec0e4486ceb44ad3d47eadc2004">&#9670;&nbsp;</a></span>clock_periph_configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_periph_configure </td>
+          <td>(</td>
+          <td class="paramtype">CLOCKS_CLK_PERI_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure the peripheral clock to run from a dedicated auxiliary clock source. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aux</td><td>Auxiliary clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5d463fd5a7155d428261a42d99250acf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d463fd5a7155d428261a42d99250acf">&#9670;&nbsp;</a></span>clock_ref_configure_aux_source()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_ref_configure_aux_source </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_REF_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure the reference clock to run from an auxiliary clock source, like PLL. </p>
+<dl class="section note"><dt>Note</dt><dd>The auxiliary must have been configured beforehand</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency of the auxiliary clock source </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency of the reference clock </td></tr>
+    <tr><td class="paramname">aux</td><td>Which auxiliary clock source to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a766846d58c82ef21e216792fad4e5e47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a766846d58c82ef21e216792fad4e5e47">&#9670;&nbsp;</a></span>clock_ref_configure_source()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_ref_configure_source </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_REF_CTRL_SRC_Enum&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure the reference clock to run from a clock source, which is either the ROSC or the XOSC. </p>
+<dl class="section note"><dt>Note</dt><dd>Make sure that ROSC or XOSC are properly set up</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency of the reference clock </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency of the system clock </td></tr>
+    <tr><td class="paramname">source</td><td>Clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8017e29ac6c597a5dcb4d68983346708"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8017e29ac6c597a5dcb4d68983346708">&#9670;&nbsp;</a></span>clock_sys_configure_aux_source()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_sys_configure_aux_source </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_SYS_CTRL_AUXSRC_Enum&#160;</td>
+          <td class="paramname"><em>aux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure the system clock to run from an auxiliary clock source, like PLL. </p>
+<dl class="section note"><dt>Note</dt><dd>The auxiliary must have been configured beforehand</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency of the auxiliary clock source </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency of the system clock </td></tr>
+    <tr><td class="paramname">aux</td><td>Which auxiliary clock source to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac3d1dd4b785e1e60d8ec34ba19056b99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3d1dd4b785e1e60d8ec34ba19056b99">&#9670;&nbsp;</a></span>clock_sys_configure_source()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clock_sys_configure_source </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CLOCKS_CLK_SYS_CTRL_SRC_Enum&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure the system clock to run from the reference clock, which is the default on boot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_in</td><td>Input frequency of the reference clock </td></tr>
+    <tr><td class="paramname">f_out</td><td>Output frequency of the system clock </td></tr>
+    <tr><td class="paramname">source</td><td>Clock source </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4dceb8e525d121010c55a20575cf5695"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dceb8e525d121010c55a20575cf5695">&#9670;&nbsp;</a></span>gpio_pad_register()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static volatile uint32_t* gpio_pad_register </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the PAD control register for the given GPIO pin as word. </p>
+<p>Note: Only perform 32-bit writes to I/O registers. </p>
+
+</div>
+</div>
+<a id="afc89aa65ed8bdba0fc7e4eb7548fed75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc89aa65ed8bdba0fc7e4eb7548fed75">&#9670;&nbsp;</a></span>periph_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void periph_reset </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>components</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset hardware components. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>bitmask of components to be reset, </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a29332f24cc45d01043814fbfbfb7bf54" title="Periphery blocks that can be reset.">RESETS_RESET_MASK</a> </dd></dl>
+
+</div>
+</div>
+<a id="aeae569eca3db7e4fca5ea920df88848e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeae569eca3db7e4fca5ea920df88848e">&#9670;&nbsp;</a></span>periph_reset_done()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void periph_reset_done </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>components</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Waits until hardware components have been reset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>bitmask of components that must have reset, </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html#a29332f24cc45d01043814fbfbfb7bf54" title="Periphery blocks that can be reset.">RESETS_RESET_MASK</a> </dd></dl>
+
+</div>
+</div>
+<a id="ae4300bf9effe8b5fe951b1c58269edff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4300bf9effe8b5fe951b1c58269edff">&#9670;&nbsp;</a></span>pll_start_sys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pll_start_sys </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ref_div</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>vco_feedback_scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>post_div_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>post_div_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the PLL for the system clock output[MHz] = f_ref / <code>ref_div</code> * <code>vco_feedback_scale</code> / <code>post_div_1</code> / <code>post_div_2</code>. </p>
+<dl class="section note"><dt>Note</dt><dd>Usual setting should be (12 MHz, 1, 125, 6, 2) to get a 125 MHz system clock signal</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ref_div</td><td>Input clock divisor </td></tr>
+    <tr><td class="paramname">vco_feedback_scale</td><td>VCO feedback scales </td></tr>
+    <tr><td class="paramname">post_div_1</td><td>Output post divider factor 1 </td></tr>
+    <tr><td class="paramname">post_div_2</td><td>Output post divider factor 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4227b110988bca8da3d34660d80ab410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4227b110988bca8da3d34660d80ab410">&#9670;&nbsp;</a></span>pll_start_usb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pll_start_usb </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ref_div</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>vco_feedback_scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>post_div_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>post_div_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the PLL for the USB clock output[MHz] = f_ref / <code>ref_div</code> * <code>vco_feedback_scale</code> / <code>post_div_1</code> / <code>post_div_2</code>. </p>
+<dl class="section note"><dt>Note</dt><dd>Usual setting should be (12 MHz, 1, 40, 5, 2) to get a 48 MHz USB clock signal</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ref_div</td><td>Input clock divisor </td></tr>
+    <tr><td class="paramname">vco_feedback_scale</td><td>VCO feedback scales </td></tr>
+    <tr><td class="paramname">post_div_1</td><td>Output post divider factor 1 </td></tr>
+    <tr><td class="paramname">post_div_2</td><td>Output post divider factor 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0549fba74e1d9a9532fcd08ad29cf82a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0549fba74e1d9a9532fcd08ad29cf82a">&#9670;&nbsp;</a></span>rosc_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rosc_start </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the ring oscillator in default mode. </p>
+<p>The ROSC is running at boot time but may be turned off to save power when switching to the accurate XOSC. The default ROSC provides an instable frequency of 1.8 MHz to 12 MHz. </p>
+
+</div>
+</div>
+<a id="af9a126d0d94d960394a93f941cc2a132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9a126d0d94d960394a93f941cc2a132">&#9670;&nbsp;</a></span>rosc_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rosc_stop </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Turn off the ROSC to save power. </p>
+<p>The system clock must be switched to to another lock source before the ROSC is stopped, other wise the chip will be lock up. </p>
+
+</div>
+</div>
+<a id="a35f267934280953db4afe98ecc743943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f267934280953db4afe98ecc743943">&#9670;&nbsp;</a></span>xosc_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xosc_start </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>f_ref</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configures the Crystal to run. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f_ref</td><td>Desired frequency in Hz</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>1 MHz &lt;= <code>f_ref</code> &lt;= 15 MHz.</dd></dl>
+<p>The reference hardware manual suggests to use a 12 MHz crystal. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c433b04169c945a1c7f0848f853d4379.html">cpu</a></li><li class="navelem"><a class="el" href="dir_51c24c621e5e0a29f190f93edfd603ea.html">rpx0xx</a></li><li class="navelem"><a class="el" href="dir_d1bed448e11ac3cf8dfa01d71c0d1f6d.html">include</a></li><li class="navelem"><a class="el" href="rpx0xx_2include_2periph__cpu_8h.html">periph_cpu.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

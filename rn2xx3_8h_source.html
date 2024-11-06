@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="generator" content="Doxygen 1.9.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>RIOT OS: drivers/include/rn2xx3.h Source File</title>
+    <!--BEGIN PROJECT_ICON-->
+    <link rel="icon" href="$projecticon" type="image/x-icon" />
+    <!--END PROJECT_ICON-->
+    <link href="tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <!--BEGIN COPY_CLIPBOARD-->
+    <script type="text/javascript" src="clipboard.js"></script>
+    <!--END COPY_CLIPBOARD-->
+    <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+    $darkmode
+    <link href="doxygen.css" rel="stylesheet" type="text/css" />
+    <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="global.css" rel="stylesheet" type="text/css"/>
+    <!-- ... other metadata & script includes ... -->
+    <script
+      type="text/javascript"
+      src="doxygen-awesome-paragraph-link.js"
+    ></script>
+      <script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+    <!-- <link href="pagefind/pagefind-ui.css" rel="stylesheet"> -->
+    <script src="pagefind/pagefind-ui.js"></script>
+    <script>
+      // Check whether the PagefindUI class is available
+      if (typeof PagefindUI === "undefined") {
+        console.warn("PagefindUI class is not available | Dev Build");
+      } else {
+        // // Remove the "searchstub" element and initialize the PagefindUI class
+        // document.getElementById("#searchstub").remove();
+        // Initialize the PagefindUI class with the element id "search"
+        window.addEventListener("DOMContentLoaded", (event) => {
+          new PagefindUI({
+            element: "#pagefindsearch",
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            mergeFilter: {
+              "Information Source": "API Documentation",
+            },
+            mergeIndex: [{
+              bundlePath: "https://riot.annsann.eu/pagefind",
+              mergeFilter: {
+                "Information Source": "Guides",
+              }
+          }], 
+          });
+        });
+      }
+    </script>
+    <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+  </head>
+  <body>
+    <div>
+        <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+        <script type="text/javascript">
+            DoxygenAwesomeDarkModeToggle.init()
+        </script>
+          <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr id="projectrow">
+                  <td id="projectlogo">
+                    <img alt="Logo" src="riot-logo.svg" $logosize />
+                  </td>
+                  <td id="projectalign">
+                    <div id="projectname">
+                      RIOT OS
+                    </div>
+                    <div id="projectbrief">The friendly OS for the IoT</div>
+                  </td>
+                </tr>
+                <!--BEGIN FULL_SIDEBAR-->
+                <tr>
+                  <td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+                </tr>
+                <!--END FULL_SIDEBAR-->
+              </tbody>
+            </table>
+            <div
+              id="searchbox"
+              class="searchboxui"
+            >
+                <button
+                id="enable-search-box"
+                class="searchbutton"
+                >
+                <h3>🐸🔎</h3>
+                <h4>Search</h4>
+              </button>
+              <div id="pagefindsearch" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+        <script>
+          /* When the user clicks on the button, toggle between hiding and showing the search box content */
+          document.getElementById("enable-search-box").addEventListener("click", function () {
+            var searchbox = document.getElementById("pagefindsearch");
+            if (searchbox.classList.contains("hidden")) {
+              searchbox.classList.remove("hidden");
+              /* Focus on the search input field (classname pagefind-ui__search-input) */
+              searchbox.querySelector(".pagefind-ui__search-input").focus();
+            } else {
+              searchbox.classList.add("hidden");
+            }
+          });
+        </script>
+        <!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('rn2xx3_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">rn2xx3.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="rn2xx3_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2017 Inria</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * This file is subject to the terms and conditions of the GNU Lesser</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * General Public License v2.1. See the file LICENSE in the top level</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * directory for more details.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef RN2XX3_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define RN2XX3_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ztimer_8h.html">ztimer.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2uart_8h.html">periph/uart.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2periph_2gpio_8h.html">periph/gpio.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="drivers_2include_2net_2netdev_8h.html">net/netdev.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="loramac_8h.html">net/loramac.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga3e5c9a257f53cf68353744596f487943">   40</a></span>&#160;<span class="preprocessor">#define RN2XX3_MAX_BUF                  (40U)</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaad474822fe67bdd6026cb799756a31c2">   47</a></span>&#160;<span class="preprocessor">#define RN2XX3_RX_MAX_BUF               (250U)</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gace96debd6cf5f4e9911f69392b60f233">   52</a></span>&#160;<span class="preprocessor">#define RN2XX3_REPLY_DELAY_TIMEOUT      (60U)</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga3870a425f0068b0bd19b74030616058a">   57</a></span>&#160;<span class="preprocessor">#define RN2XX3_SLEEP_MIN                (100U)</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#ifndef CONFIG_RN2XX3_DEFAULT_SLEEP</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3__config.html#gadd7376444564d382ef80f0eff0fedc83">   68</a></span>&#160;<span class="preprocessor">#define CONFIG_RN2XX3_DEFAULT_SLEEP            (5000U)</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#ifdef DOXYGEN</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3__config.html#ga9a240a07688d679545f9a84b519df1b8">   85</a></span>&#160;<span class="preprocessor">#define CONFIG_RN2XX3_DEFAULT_AR</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#if defined(MODULE_RN2903)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#define RN2XX3_FREQ_BAND                (915U)</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#elif defined(MODULE_RN2483)</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#define RN2XX3_FREQ_BAND                (868U)</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#error &quot;Unsupported module type, use either RN2483 or RN2903&quot;</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a76cbdf67e2e4e799ffcea0d885051b76">  101</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a76cbdf67e2e4e799ffcea0d885051b76">RN2XX3_OK</a>,                         </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5affcbe867837e71fd02ade5a710ec0026">  102</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5affcbe867837e71fd02ade5a710ec0026">RN2XX3_DATA</a>,                       </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a7bb9df06492497ade10959ff0bbcb4f5">  103</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a7bb9df06492497ade10959ff0bbcb4f5">RN2XX3_TIMEOUT</a>,                    </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">/* all other error codes */</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a5f1f6860e4b93d241d10a9ac46be9c93">  105</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a5f1f6860e4b93d241d10a9ac46be9c93">RN2XX3_ERR_MAC_INIT</a>,               </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5afdca778e918854a51237f90cf37022ea">  106</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5afdca778e918854a51237f90cf37022ea">RN2XX3_ERR_INVALID_PARAM</a>,          </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5adbe51cfdc0b98f5b8cf82e12966b3c69">  107</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5adbe51cfdc0b98f5b8cf82e12966b3c69">RN2XX3_ERR_NOT_JOINED</a>,             </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ae13dbb0055793e8220f8bfcbe0b0ee19">  108</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ae13dbb0055793e8220f8bfcbe0b0ee19">RN2XX3_ERR_NO_FREE_CH</a>,             </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a70561098b8b35a4fb321701e35d3ade3">  109</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a70561098b8b35a4fb321701e35d3ade3">RN2XX3_ERR_SILENT</a>,                 </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a5ff3ab61b79382bd5f5a93c445df74b1">  110</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a5ff3ab61b79382bd5f5a93c445df74b1">RN2XX3_ERR_FR_CNT_REJOIN_NEEDED</a>,   </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a888e007c0180f86a73be873ac79a3fde">  111</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a888e007c0180f86a73be873ac79a3fde">RN2XX3_ERR_BUSY</a>,                   </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ad24dd14490de060619d07771087fea27">  112</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ad24dd14490de060619d07771087fea27">RN2XX3_ERR_MAC_PAUSED</a>,             </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5aa8f2bd8da8c36947c6a5b5f279f2304a">  113</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5aa8f2bd8da8c36947c6a5b5f279f2304a">RN2XX3_ERR_INVALID_DATA_LENGTH</a>,    </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5afbc23955bfdc90fcf911e428c3d9c955">  114</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5afbc23955bfdc90fcf911e428c3d9c955">RN2XX3_ERR_KEYS_NOT_INIT</a>,          </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a20a5e3b1327575a24472f8f088f306ed">  115</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a20a5e3b1327575a24472f8f088f306ed">RN2XX3_ERR_SLEEP_MODE</a>,             </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">/* all other reply codes */</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a9d15628f911a72c58a02539574d3d859">  117</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a9d15628f911a72c58a02539574d3d859">RN2XX3_REPLY_TX_MAC_OK</a>,            </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ad77887db7735949f399d26c869c8b56c">  118</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ad77887db7735949f399d26c869c8b56c">RN2XX3_REPLY_TX_MAC_ERR</a>,           </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a82250a4dbd3dc744435ca842c8bfbddb">  119</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a82250a4dbd3dc744435ca842c8bfbddb">RN2XX3_REPLY_TX_INVALID_DATA_LEN</a>,  </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a53b3bea18ae8a6f72e1d83ee69c3d2b7">  120</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a53b3bea18ae8a6f72e1d83ee69c3d2b7">RN2XX3_REPLY_TX_MAC_RX</a>,            </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5abb25e3fce1910e7424bfead13eb71869">  121</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5abb25e3fce1910e7424bfead13eb71869">RN2XX3_REPLY_JOIN_ACCEPTED</a>,        </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a24f477b29a6490bd1fdb1b7330d6489d">  122</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a24f477b29a6490bd1fdb1b7330d6489d">RN2XX3_REPLY_JOIN_DENIED</a>,          </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a8c706272afa863ac4d913e6d0ba43443">  123</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a8c706272afa863ac4d913e6d0ba43443">RN2XX3_REPLY_TIMEOUT</a>,              </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a44c2a6bf18692913a25fe81c8d803fdb">  124</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a44c2a6bf18692913a25fe81c8d803fdb">RN2XX3_REPLY_OTHER</a>,                </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a22e6a402c535e6aa765d50fa2a738a2c">  131</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a22e6a402c535e6aa765d50fa2a738a2c">RN2XX3_INT_STATE_RESET</a>,            </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a125be64e5a89ccf066ee806aa5bc0a77">  132</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a125be64e5a89ccf066ee806aa5bc0a77">RN2XX3_INT_STATE_CMD</a>,              </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a52a771130fa87b4bef71383158ad9558">  133</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a52a771130fa87b4bef71383158ad9558">RN2XX3_INT_STATE_IDLE</a>,             </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a3729477729ddb4841773ecaa5679a7ff">  134</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a3729477729ddb4841773ecaa5679a7ff">RN2XX3_INT_STATE_SLEEP</a>,            </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a81b27617bf2f48422ed6dce7cd291929">  135</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a81b27617bf2f48422ed6dce7cd291929">RN2XX3_INT_STATE_MAC_JOIN</a>,         </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a4e40c194aba7e350a4cdbab08f667465">  136</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a4e40c194aba7e350a4cdbab08f667465">RN2XX3_INT_STATE_MAC_TX</a>,           </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a708c38f385d9cedaa7e22170faed9bb0">  137</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a708c38f385d9cedaa7e22170faed9bb0">RN2XX3_INT_STATE_MAC_RX_PORT</a>,      </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a594a66a3b06a7ca588ed2b0fbc64a179">  138</a></span>&#160;    <a class="code" href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a594a66a3b06a7ca588ed2b0fbc64a179">RN2XX3_INT_STATE_MAC_RX_MESSAGE</a>,   </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;};</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="structloramac__settings__t.html">  144</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="structloramac__settings__t.html#a6de533b11e2fbbc35bad8cd4c2ce7218">  145</a></span>&#160;    uint32_t <a class="code" href="structloramac__settings__t.html#a6de533b11e2fbbc35bad8cd4c2ce7218">rx2_freq</a>;                 </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="structloramac__settings__t.html#a2fe1296886fb992a7af85f7e5b64a342">  146</a></span>&#160;    <a class="code" href="group__net__loramac.html#ga979972ade63b4ee4ab64ac44d7b90261">loramac_dr_idx_t</a> <a class="code" href="structloramac__settings__t.html#a2fe1296886fb992a7af85f7e5b64a342">rx2_dr</a>;           </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="structloramac__settings__t.html#a7d4df1ea8665adfc1fed180d558a9b16">  147</a></span>&#160;    uint8_t <a class="code" href="structloramac__settings__t.html#a7d4df1ea8665adfc1fed180d558a9b16">tx_port</a>;                   </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="structloramac__settings__t.html#a89163ba88dde3f9f6b8f6fb5fc5333b3">  148</a></span>&#160;    <a class="code" href="group__net__loramac.html#ga3c94d1636de66b1617aa3433ff9127ee">loramac_tx_mode_t</a> <a class="code" href="structloramac__settings__t.html#a89163ba88dde3f9f6b8f6fb5fc5333b3">tx_mode</a>;         </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="structloramac__settings__t.html#aae0d7cfd58227183d9209c879ee9de3e">  149</a></span>&#160;    uint8_t <a class="code" href="structloramac__settings__t.html#aae0d7cfd58227183d9209c879ee9de3e">rx_port</a>;                   </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;} <a class="code" href="structloramac__settings__t.html">loramac_settings_t</a>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="structrn2xx3__params__t.html">  155</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="structrn2xx3__params__t.html#a8763449bca65e8b255b456963d51add6">  156</a></span>&#160;    <a class="code" href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a> <a class="code" href="structrn2xx3__params__t.html#a8763449bca65e8b255b456963d51add6">uart</a>;                       </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structrn2xx3__params__t.html#ac591027acc7c5386fbb88d5aae65e284">  157</a></span>&#160;    uint32_t <a class="code" href="structrn2xx3__params__t.html#ac591027acc7c5386fbb88d5aae65e284">baudrate</a>;                 </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structrn2xx3__params__t.html#acdc56c195c77a59e8d45526273761e46">  158</a></span>&#160;    gpio_t <a class="code" href="structrn2xx3__params__t.html#acdc56c195c77a59e8d45526273761e46">pin_reset</a>;                  </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;} <a class="code" href="structrn2xx3__params__t.html">rn2xx3_params_t</a>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html">  165</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#ab8884f67e9f820a376b18d3a0535b71c">  166</a></span>&#160;    <a class="code" href="structnetdev.html">netdev_t</a> <a class="code" href="structrn2xx3__t.html#ab8884f67e9f820a376b18d3a0535b71c">netdev</a>;                   </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">/* device driver specific fields */</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#ab211301f5fd33d5e0ddc053384f812c8">  168</a></span>&#160;    <a class="code" href="structrn2xx3__params__t.html">rn2xx3_params_t</a> <a class="code" href="structrn2xx3__t.html#ab211301f5fd33d5e0ddc053384f812c8">p</a>;                 </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a6023fe355d9eb2fa48f150e15ff27195">  169</a></span>&#160;    <a class="code" href="structloramac__settings__t.html">loramac_settings_t</a> <a class="code" href="structrn2xx3__t.html#a6023fe355d9eb2fa48f150e15ff27195">loramac</a>;        </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">/* values for the UART TX state machine  */</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a6f483babcfa4ea1af8ff7e04a1045428">  172</a></span>&#160;    <span class="keywordtype">char</span> cmd_buf[<a class="code" href="group__drivers__rn2xx3.html#ga3e5c9a257f53cf68353744596f487943">RN2XX3_MAX_BUF</a>];      </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a93bc3ba755d9f76373067a1a228bd4d7">  173</a></span>&#160;    <a class="code" href="structmutex__t.html">mutex_t</a> <a class="code" href="structrn2xx3__t.html#a93bc3ba755d9f76373067a1a228bd4d7">cmd_lock</a>;                  </div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#ad89041ed2b7d9fc967df32e185981393">  175</a></span>&#160;    uint8_t <a class="code" href="structrn2xx3__t.html#ad89041ed2b7d9fc967df32e185981393">int_state</a>;                 </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="comment">/* buffer and synchronization for command responses */</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a3b3bed851de2f5153bb70b823fcd2771">  178</a></span>&#160;    <a class="code" href="structmutex__t.html">mutex_t</a> <a class="code" href="structrn2xx3__t.html#a3b3bed851de2f5153bb70b823fcd2771">resp_lock</a>;                 </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a07de30244639b274b1ab88506a4379fd">  180</a></span>&#160;    <span class="keywordtype">char</span> resp_buf[<a class="code" href="group__drivers__rn2xx3.html#ga3e5c9a257f53cf68353744596f487943">RN2XX3_MAX_BUF</a>];     </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a64e79faae21b13de0b13b335736b58b1">  181</a></span>&#160;    uint16_t <a class="code" href="structrn2xx3__t.html#a64e79faae21b13de0b13b335736b58b1">resp_size</a>;                </div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#add9287411a774002f765da39a277ef35">  182</a></span>&#160;    uint8_t <a class="code" href="structrn2xx3__t.html#add9287411a774002f765da39a277ef35">resp_done</a>;                 </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">/* buffer for RX messages */</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a83cbb135bf6e918e53f12ca8927653db">  185</a></span>&#160;    <span class="keywordtype">char</span> rx_tmp_buf[2];                </div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a8142191827a546a8f7e9c7b366330c2b">  188</a></span>&#160;    uint8_t rx_buf[<a class="code" href="group__drivers__rn2xx3.html#gaad474822fe67bdd6026cb799756a31c2">RN2XX3_RX_MAX_BUF</a>]; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a1c2e2cfc41ec278a5db330e095c19898">  189</a></span>&#160;    uint16_t <a class="code" href="structrn2xx3__t.html#a1c2e2cfc41ec278a5db330e095c19898">rx_size</a>;                  </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="comment">/* timers */</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a2970c2c8a7f48f7a9ace16922db02c61">  192</a></span>&#160;    <a class="code" href="structztimer__t.html">ztimer_t</a> <a class="code" href="structrn2xx3__t.html#a2970c2c8a7f48f7a9ace16922db02c61">sleep_timer</a>;              </div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="structrn2xx3__t.html#a0b49037eef7fc81d151eea0a9b040a0a">  193</a></span>&#160;    uint32_t <a class="code" href="structrn2xx3__t.html#a0b49037eef7fc81d151eea0a9b040a0a">sleep</a>;                    </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;} <a class="code" href="structrn2xx3__t.html">rn2xx3_t</a>;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gae3425eaa5c29f0ac9fdf24aeca29da1d">  202</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gae3425eaa5c29f0ac9fdf24aeca29da1d">rn2xx3_setup</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keyword">const</span> <a class="code" href="structrn2xx3__params__t.html">rn2xx3_params_t</a> *params);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gafd3fbeea4994c79f4f59f1f43fece6eb">  213</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#gafd3fbeea4994c79f4f59f1f43fece6eb">rn2xx3_init</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga9456dcfaa9d53cde59222786ab182e04">  226</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga9456dcfaa9d53cde59222786ab182e04">rn2xx3_sys_reset</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga8534d598e2a5f8864a37370072e4003d">  242</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga8534d598e2a5f8864a37370072e4003d">rn2xx3_sys_factory_reset</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga2c4e11faa940231be20cc835753d431b">  252</a></span>&#160; <span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga2c4e11faa940231be20cc835753d431b">rn2xx3_sys_sleep</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gac55ddb973f8c7fd2693f6e3775a3fef2">  262</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#gac55ddb973f8c7fd2693f6e3775a3fef2">rn2xx3_mac_init</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00283"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga3ae0530e361709ba4bd29b204d846578">  283</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga3ae0530e361709ba4bd29b204d846578">rn2xx3_write_cmd</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00295"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaac58b133a00a554c9b92471649bc20ab">  295</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#gaac58b133a00a554c9b92471649bc20ab">rn2xx3_write_cmd_no_wait</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga0d6905ac400d30a00f5e7864c003e626">  313</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga0d6905ac400d30a00f5e7864c003e626">rn2xx3_wait_response</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga8eae183d6f00868b00f6ddbb03ec4bcb">  330</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga8eae183d6f00868b00f6ddbb03ec4bcb">rn2xx3_wait_reply</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t timeout);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga5a3f665f2f28ccc9e62e397d404bd5e0">  349</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga5a3f665f2f28ccc9e62e397d404bd5e0">rn2xx3_mac_tx</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t *payload, uint8_t payload_len);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00365"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaf96bd68d657d16076069736c7d46ecb4">  365</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#gaf96bd68d657d16076069736c7d46ecb4">rn2xx3_mac_join_network</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <a class="code" href="group__net__loramac.html#ga0ec6851e0578ec1270e16e3faa54f4cd">loramac_join_mode_t</a> mode);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga2a6f6ae7871f0dce14c775676b1f3748">  379</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__drivers__rn2xx3.html#ga2a6f6ae7871f0dce14c775676b1f3748">rn2xx3_mac_save</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">/* Get/Set functions definitions */</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
+<div class="line"><a name="l00391"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gac88f506a84a786f74486e71a0cbab6e2">  391</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gac88f506a84a786f74486e71a0cbab6e2">rn2xx3_mac_get_deveui</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t *eui);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
+<div class="line"><a name="l00401"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga1ae65b2d5d131da3644f048e488825d4">  401</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga1ae65b2d5d131da3644f048e488825d4">rn2xx3_mac_set_deveui</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keyword">const</span> uint8_t *eui);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; </div>
+<div class="line"><a name="l00411"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gacf89c15cacb3e194f44398e0c0be696a">  411</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gacf89c15cacb3e194f44398e0c0be696a">rn2xx3_mac_get_appeui</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t *eui);</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
+<div class="line"><a name="l00421"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gacc50e8c05b909333258d3f7d529b3c03">  421</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gacc50e8c05b909333258d3f7d529b3c03">rn2xx3_mac_set_appeui</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keyword">const</span> uint8_t *eui);</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160; </div>
+<div class="line"><a name="l00431"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga6e4f1c1c915037d839e8c669785b4f1f">  431</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga6e4f1c1c915037d839e8c669785b4f1f">rn2xx3_mac_set_appkey</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keyword">const</span> uint8_t *key);</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160; </div>
+<div class="line"><a name="l00441"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga3ec8fd9b28a034e3570d8f389475412d">  441</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga3ec8fd9b28a034e3570d8f389475412d">rn2xx3_mac_set_appskey</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keyword">const</span> uint8_t *key);</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160; </div>
+<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga167adece764ab7ace53e08953a33192b">  451</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga167adece764ab7ace53e08953a33192b">rn2xx3_mac_set_nwkskey</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keyword">const</span> uint8_t *key);</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160; </div>
+<div class="line"><a name="l00461"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga70bf867ac1598fd65fcb934645196347">  461</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga70bf867ac1598fd65fcb934645196347">rn2xx3_mac_get_devaddr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t *addr);</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160; </div>
+<div class="line"><a name="l00471"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gae6d3e375cfc5af168108f28215e538b0">  471</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gae6d3e375cfc5af168108f28215e538b0">rn2xx3_mac_set_devaddr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keyword">const</span> uint8_t *addr);</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160; </div>
+<div class="line"><a name="l00480"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaa4f8c24ff620f69a1f38b91caa4fbd4f">  480</a></span>&#160;<a class="code" href="group__net__loramac.html#gaefcaeb98180176fc844a5cd02689c400">loramac_tx_pwr_idx_t</a> <a class="code" href="group__drivers__rn2xx3.html#gaa4f8c24ff620f69a1f38b91caa4fbd4f">rn2xx3_mac_get_tx_power</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160; </div>
+<div class="line"><a name="l00488"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga041fb21483852b194d473d8d41b92ba9">  488</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga041fb21483852b194d473d8d41b92ba9">rn2xx3_mac_set_tx_power</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <a class="code" href="group__net__loramac.html#gaefcaeb98180176fc844a5cd02689c400">loramac_tx_pwr_idx_t</a> power);</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
+<div class="line"><a name="l00497"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gae7d325f4c4472a88a0ff603f4e66b1ee">  497</a></span>&#160;<a class="code" href="group__net__loramac.html#ga979972ade63b4ee4ab64ac44d7b90261">loramac_dr_idx_t</a> <a class="code" href="group__drivers__rn2xx3.html#gae7d325f4c4472a88a0ff603f4e66b1ee">rn2xx3_mac_get_dr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160; </div>
+<div class="line"><a name="l00505"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaf2ffb068cd860702d3a7959ddc0f9b5d">  505</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gaf2ffb068cd860702d3a7959ddc0f9b5d">rn2xx3_mac_set_dr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <a class="code" href="group__net__loramac.html#ga979972ade63b4ee4ab64ac44d7b90261">loramac_dr_idx_t</a> dr);</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160; </div>
+<div class="line"><a name="l00514"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaec8e7758dcf0ff72fdedf982e99b7d62">  514</a></span>&#160; uint16_t <a class="code" href="group__drivers__rn2xx3.html#gaec8e7758dcf0ff72fdedf982e99b7d62">rn2xx3_mac_get_band</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160; </div>
+<div class="line"><a name="l00524"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga841f63e598b8cc18c4a230f6ec49b821">  524</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__rn2xx3.html#ga841f63e598b8cc18c4a230f6ec49b821">rn2xx3_mac_get_adr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160; </div>
+<div class="line"><a name="l00532"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gad73733dae1fcd3c87056e089f39b44cb">  532</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gad73733dae1fcd3c87056e089f39b44cb">rn2xx3_mac_set_adr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keywordtype">bool</span> adr);</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160; </div>
+<div class="line"><a name="l00545"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga51bb72eab91bdee9ab0f63b52813e781">  545</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga51bb72eab91bdee9ab0f63b52813e781">rn2xx3_mac_set_battery</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t battery);</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160; </div>
+<div class="line"><a name="l00554"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga66332c3af9dd7863ee2311502311b168">  554</a></span>&#160;uint8_t <a class="code" href="group__drivers__rn2xx3.html#ga66332c3af9dd7863ee2311502311b168">rn2xx3_mac_get_retx</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160; </div>
+<div class="line"><a name="l00562"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga2cc8fcaa87d85f2a1886802645d1c630">  562</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga2cc8fcaa87d85f2a1886802645d1c630">rn2xx3_mac_set_retx</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t retx);</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160; </div>
+<div class="line"><a name="l00570"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaec67f7c1e3794ffe981ef8b0359c4ddb">  570</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gaec67f7c1e3794ffe981ef8b0359c4ddb">rn2xx3_mac_set_linkchk_interval</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint16_t linkchk);</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160; </div>
+<div class="line"><a name="l00579"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga11a48932bad4fd9c197717cd6f3648cc">  579</a></span>&#160;uint16_t <a class="code" href="group__drivers__rn2xx3.html#ga11a48932bad4fd9c197717cd6f3648cc">rn2xx3_mac_get_rx1_delay</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160; </div>
+<div class="line"><a name="l00587"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga159563f787104aa20a88fc5292590133">  587</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga159563f787104aa20a88fc5292590133">rn2xx3_mac_set_rx1_delay</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint16_t rx1);</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160; </div>
+<div class="line"><a name="l00596"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga6f808d669891e962b2bae2eb9a97cf8b">  596</a></span>&#160;uint16_t <a class="code" href="group__drivers__rn2xx3.html#ga6f808d669891e962b2bae2eb9a97cf8b">rn2xx3_mac_get_rx2_delay</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160; </div>
+<div class="line"><a name="l00605"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga902ecbee47d61dc5c73fea7c8e12050a">  605</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__drivers__rn2xx3.html#ga902ecbee47d61dc5c73fea7c8e12050a">rn2xx3_mac_get_ar</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160; </div>
+<div class="line"><a name="l00613"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gacdf1affb4d7f0c032846567d48cfad6b">  613</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gacdf1affb4d7f0c032846567d48cfad6b">rn2xx3_mac_set_ar</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <span class="keywordtype">bool</span> ar);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160; </div>
+<div class="line"><a name="l00622"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga65ecda6d8fae9dba8048d61aabbb04ce">  622</a></span>&#160;<a class="code" href="group__net__loramac.html#ga979972ade63b4ee4ab64ac44d7b90261">loramac_dr_idx_t</a> <a class="code" href="group__drivers__rn2xx3.html#ga65ecda6d8fae9dba8048d61aabbb04ce">rn2xx3_mac_get_rx2_dr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160; </div>
+<div class="line"><a name="l00630"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gade4ba80bd5d4274edf2cbbe1618bc30a">  630</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gade4ba80bd5d4274edf2cbbe1618bc30a">rn2xx3_mac_set_rx2_dr</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <a class="code" href="group__net__loramac.html#ga979972ade63b4ee4ab64ac44d7b90261">loramac_dr_idx_t</a> dr);</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160; </div>
+<div class="line"><a name="l00639"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga628b8641be4aed2ac03a6912d24e85ef">  639</a></span>&#160;uint32_t <a class="code" href="group__drivers__rn2xx3.html#ga628b8641be4aed2ac03a6912d24e85ef">rn2xx3_mac_get_rx2_freq</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160; </div>
+<div class="line"><a name="l00647"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga9091b987f715ec64223225326c7dcd44">  647</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga9091b987f715ec64223225326c7dcd44">rn2xx3_mac_set_rx2_freq</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint32_t freq);</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160; </div>
+<div class="line"><a name="l00656"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gae1d88431dcab3234a0de6bf65d6c9f8a">  656</a></span>&#160;uint8_t <a class="code" href="group__drivers__rn2xx3.html#gae1d88431dcab3234a0de6bf65d6c9f8a">rn2xx3_mac_get_tx_port</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160; </div>
+<div class="line"><a name="l00664"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gabd033bfc113b0614b050bcef213fe932">  664</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gabd033bfc113b0614b050bcef213fe932">rn2xx3_mac_set_tx_port</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint8_t port);</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160; </div>
+<div class="line"><a name="l00673"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaa6174e19f1451469d292187ff4c73d44">  673</a></span>&#160;<a class="code" href="group__net__loramac.html#ga3c94d1636de66b1617aa3433ff9127ee">loramac_tx_mode_t</a> <a class="code" href="group__drivers__rn2xx3.html#gaa6174e19f1451469d292187ff4c73d44">rn2xx3_mac_get_tx_mode</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160; </div>
+<div class="line"><a name="l00681"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#ga2f7e3ccb7b4184af7dbfb1098df50a09">  681</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#ga2f7e3ccb7b4184af7dbfb1098df50a09">rn2xx3_mac_set_tx_mode</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, <a class="code" href="group__net__loramac.html#ga3c94d1636de66b1617aa3433ff9127ee">loramac_tx_mode_t</a> mode);</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160; </div>
+<div class="line"><a name="l00690"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gaa117a2c419afef8eedd205d03f7d5e00">  690</a></span>&#160;uint8_t <a class="code" href="group__drivers__rn2xx3.html#gaa117a2c419afef8eedd205d03f7d5e00">rn2xx3_mac_get_rx_port</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev);</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160; </div>
+<div class="line"><a name="l00698"></a><span class="lineno"><a class="line" href="group__drivers__rn2xx3.html#gada6e2f2f212a0844d055e7229d427323">  698</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__drivers__rn2xx3.html#gada6e2f2f212a0844d055e7229d427323">rn2xx3_sys_set_sleep_duration</a>(<a class="code" href="structrn2xx3__t.html">rn2xx3_t</a> *dev, uint32_t sleep);</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160; </div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;}</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160; </div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* RN2XX3_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adrivers_2include_2net_2netdev_8h_html"><div class="ttname"><a href="drivers_2include_2net_2netdev_8h.html">netdev.h</a></div><div class="ttdoc">Definitions low-level network driver interface.</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2gpio_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Low-level GPIO peripheral driver interface definitions.</div></div>
+<div class="ttc" id="adrivers_2include_2periph_2uart_8h_html"><div class="ttname"><a href="drivers_2include_2periph_2uart_8h.html">uart.h</a></div><div class="ttdoc">Low-level UART peripheral driver interface definition.</div></div>
+<div class="ttc" id="agroup__drivers__periph__uart_html_ga83a92464bff5eb42f085e06e553d52b1"><div class="ttname"><a href="group__drivers__periph__uart.html#ga83a92464bff5eb42f085e06e553d52b1">uart_t</a></div><div class="ttdeci">uint_fast8_t uart_t</div><div class="ttdoc">Define default UART type identifier.</div><div class="ttdef"><b>Definition:</b> uart.h:85</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga041fb21483852b194d473d8d41b92ba9"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga041fb21483852b194d473d8d41b92ba9">rn2xx3_mac_set_tx_power</a></div><div class="ttdeci">void rn2xx3_mac_set_tx_power(rn2xx3_t *dev, loramac_tx_pwr_idx_t power)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC transmission power index.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga0d6905ac400d30a00f5e7864c003e626"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga0d6905ac400d30a00f5e7864c003e626">rn2xx3_wait_response</a></div><div class="ttdeci">int rn2xx3_wait_response(rn2xx3_t *dev)</div><div class="ttdoc">Waits for a response to a command from the device.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga11a48932bad4fd9c197717cd6f3648cc"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga11a48932bad4fd9c197717cd6f3648cc">rn2xx3_mac_get_rx1_delay</a></div><div class="ttdeci">uint16_t rn2xx3_mac_get_rx1_delay(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC interval delay before the first reception window (in ms)</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga159563f787104aa20a88fc5292590133"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga159563f787104aa20a88fc5292590133">rn2xx3_mac_set_rx1_delay</a></div><div class="ttdeci">void rn2xx3_mac_set_rx1_delay(rn2xx3_t *dev, uint16_t rx1)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC interval delay before the first reception window (in ms)</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga167adece764ab7ace53e08953a33192b"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga167adece764ab7ace53e08953a33192b">rn2xx3_mac_set_nwkskey</a></div><div class="ttdeci">void rn2xx3_mac_set_nwkskey(rn2xx3_t *dev, const uint8_t *key)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC network session key.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga1ae65b2d5d131da3644f048e488825d4"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga1ae65b2d5d131da3644f048e488825d4">rn2xx3_mac_set_deveui</a></div><div class="ttdeci">void rn2xx3_mac_set_deveui(rn2xx3_t *dev, const uint8_t *eui)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC device EUI.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga2a6f6ae7871f0dce14c775676b1f3748"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga2a6f6ae7871f0dce14c775676b1f3748">rn2xx3_mac_save</a></div><div class="ttdeci">int rn2xx3_mac_save(rn2xx3_t *dev)</div><div class="ttdoc">Saves current LoRaMAC configuration to internal EEPROM.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga2c4e11faa940231be20cc835753d431b"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga2c4e11faa940231be20cc835753d431b">rn2xx3_sys_sleep</a></div><div class="ttdeci">int rn2xx3_sys_sleep(rn2xx3_t *dev)</div><div class="ttdoc">Puts the RN2XX2 device in sleep mode.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga2cc8fcaa87d85f2a1886802645d1c630"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga2cc8fcaa87d85f2a1886802645d1c630">rn2xx3_mac_set_retx</a></div><div class="ttdeci">void rn2xx3_mac_set_retx(rn2xx3_t *dev, uint8_t retx)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC uplink retransmission retries number.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga2f7e3ccb7b4184af7dbfb1098df50a09"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga2f7e3ccb7b4184af7dbfb1098df50a09">rn2xx3_mac_set_tx_mode</a></div><div class="ttdeci">void rn2xx3_mac_set_tx_mode(rn2xx3_t *dev, loramac_tx_mode_t mode)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC TX mode.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga3ae0530e361709ba4bd29b204d846578"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga3ae0530e361709ba4bd29b204d846578">rn2xx3_write_cmd</a></div><div class="ttdeci">int rn2xx3_write_cmd(rn2xx3_t *dev)</div><div class="ttdoc">Writes a command to the RN2XX3 device.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga3e5c9a257f53cf68353744596f487943"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga3e5c9a257f53cf68353744596f487943">RN2XX3_MAX_BUF</a></div><div class="ttdeci">#define RN2XX3_MAX_BUF</div><div class="ttdoc">Maximum length of an exchanged messages with commands.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:40</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga3ec8fd9b28a034e3570d8f389475412d"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga3ec8fd9b28a034e3570d8f389475412d">rn2xx3_mac_set_appskey</a></div><div class="ttdeci">void rn2xx3_mac_set_appskey(rn2xx3_t *dev, const uint8_t *key)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC application session key.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga51bb72eab91bdee9ab0f63b52813e781"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga51bb72eab91bdee9ab0f63b52813e781">rn2xx3_mac_set_battery</a></div><div class="ttdeci">void rn2xx3_mac_set_battery(rn2xx3_t *dev, uint8_t battery)</div><div class="ttdoc">Sets the rn2xx3 battery level measured by the end device.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga5a3f665f2f28ccc9e62e397d404bd5e0"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga5a3f665f2f28ccc9e62e397d404bd5e0">rn2xx3_mac_tx</a></div><div class="ttdeci">int rn2xx3_mac_tx(rn2xx3_t *dev, uint8_t *payload, uint8_t payload_len)</div><div class="ttdoc">Sends data to LoRaWAN server.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga628b8641be4aed2ac03a6912d24e85ef"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga628b8641be4aed2ac03a6912d24e85ef">rn2xx3_mac_get_rx2_freq</a></div><div class="ttdeci">uint32_t rn2xx3_mac_get_rx2_freq(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC frequency used during second receive window (in Hz)</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga65ecda6d8fae9dba8048d61aabbb04ce"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga65ecda6d8fae9dba8048d61aabbb04ce">rn2xx3_mac_get_rx2_dr</a></div><div class="ttdeci">loramac_dr_idx_t rn2xx3_mac_get_rx2_dr(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC datarate used for second receive window.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga66332c3af9dd7863ee2311502311b168"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga66332c3af9dd7863ee2311502311b168">rn2xx3_mac_get_retx</a></div><div class="ttdeci">uint8_t rn2xx3_mac_get_retx(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC uplink retransmission retries number.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga6e4f1c1c915037d839e8c669785b4f1f"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga6e4f1c1c915037d839e8c669785b4f1f">rn2xx3_mac_set_appkey</a></div><div class="ttdeci">void rn2xx3_mac_set_appkey(rn2xx3_t *dev, const uint8_t *key)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC application key.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga6f808d669891e962b2bae2eb9a97cf8b"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga6f808d669891e962b2bae2eb9a97cf8b">rn2xx3_mac_get_rx2_delay</a></div><div class="ttdeci">uint16_t rn2xx3_mac_get_rx2_delay(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC interval delay before the second reception window (in ms)</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga70bf867ac1598fd65fcb934645196347"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga70bf867ac1598fd65fcb934645196347">rn2xx3_mac_get_devaddr</a></div><div class="ttdeci">void rn2xx3_mac_get_devaddr(rn2xx3_t *dev, uint8_t *addr)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC device address.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga841f63e598b8cc18c4a230f6ec49b821"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga841f63e598b8cc18c4a230f6ec49b821">rn2xx3_mac_get_adr</a></div><div class="ttdeci">bool rn2xx3_mac_get_adr(rn2xx3_t *dev)</div><div class="ttdoc">Checks if the rn2xx3 LoRaMAC adaptive datarate is enabled/disabled.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga8534d598e2a5f8864a37370072e4003d"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga8534d598e2a5f8864a37370072e4003d">rn2xx3_sys_factory_reset</a></div><div class="ttdeci">int rn2xx3_sys_factory_reset(rn2xx3_t *dev)</div><div class="ttdoc">Performs a factory reset of the module.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga8eae183d6f00868b00f6ddbb03ec4bcb"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga8eae183d6f00868b00f6ddbb03ec4bcb">rn2xx3_wait_reply</a></div><div class="ttdeci">int rn2xx3_wait_reply(rn2xx3_t *dev, uint8_t timeout)</div><div class="ttdoc">Waits for a reply from the LoRaWAN network.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga902ecbee47d61dc5c73fea7c8e12050a"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga902ecbee47d61dc5c73fea7c8e12050a">rn2xx3_mac_get_ar</a></div><div class="ttdeci">bool rn2xx3_mac_get_ar(rn2xx3_t *dev)</div><div class="ttdoc">Checks the rn2xx3 LoRaMAC automatic reply state.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga9091b987f715ec64223225326c7dcd44"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga9091b987f715ec64223225326c7dcd44">rn2xx3_mac_set_rx2_freq</a></div><div class="ttdeci">void rn2xx3_mac_set_rx2_freq(rn2xx3_t *dev, uint32_t freq)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC frequency used during second receive window (in Hz)</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_ga9456dcfaa9d53cde59222786ab182e04"><div class="ttname"><a href="group__drivers__rn2xx3.html#ga9456dcfaa9d53cde59222786ab182e04">rn2xx3_sys_reset</a></div><div class="ttdeci">int rn2xx3_sys_reset(rn2xx3_t *dev)</div><div class="ttdoc">Restarts the RN2XX2 device.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaa117a2c419afef8eedd205d03f7d5e00"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaa117a2c419afef8eedd205d03f7d5e00">rn2xx3_mac_get_rx_port</a></div><div class="ttdeci">uint8_t rn2xx3_mac_get_rx_port(rn2xx3_t *dev)</div><div class="ttdoc">Parses the response buffer to get the LoRaWAN RX port.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaa4f8c24ff620f69a1f38b91caa4fbd4f"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaa4f8c24ff620f69a1f38b91caa4fbd4f">rn2xx3_mac_get_tx_power</a></div><div class="ttdeci">loramac_tx_pwr_idx_t rn2xx3_mac_get_tx_power(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC TX radio power index.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaa6174e19f1451469d292187ff4c73d44"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaa6174e19f1451469d292187ff4c73d44">rn2xx3_mac_get_tx_mode</a></div><div class="ttdeci">loramac_tx_mode_t rn2xx3_mac_get_tx_mode(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC TX mode.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaac58b133a00a554c9b92471649bc20ab"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaac58b133a00a554c9b92471649bc20ab">rn2xx3_write_cmd_no_wait</a></div><div class="ttdeci">int rn2xx3_write_cmd_no_wait(rn2xx3_t *dev)</div><div class="ttdoc">Writes a command to the RN2XX3 device but don't wait for timeout or response.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaad474822fe67bdd6026cb799756a31c2"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaad474822fe67bdd6026cb799756a31c2">RN2XX3_RX_MAX_BUF</a></div><div class="ttdeci">#define RN2XX3_RX_MAX_BUF</div><div class="ttdoc">Maximum length of an RX message.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:47</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gabd033bfc113b0614b050bcef213fe932"><div class="ttname"><a href="group__drivers__rn2xx3.html#gabd033bfc113b0614b050bcef213fe932">rn2xx3_mac_set_tx_port</a></div><div class="ttdeci">void rn2xx3_mac_set_tx_port(rn2xx3_t *dev, uint8_t port)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC TX port.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gac55ddb973f8c7fd2693f6e3775a3fef2"><div class="ttname"><a href="group__drivers__rn2xx3.html#gac55ddb973f8c7fd2693f6e3775a3fef2">rn2xx3_mac_init</a></div><div class="ttdeci">int rn2xx3_mac_init(rn2xx3_t *dev)</div><div class="ttdoc">Initializes the RN2XX3 device MAC layer.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gac88f506a84a786f74486e71a0cbab6e2"><div class="ttname"><a href="group__drivers__rn2xx3.html#gac88f506a84a786f74486e71a0cbab6e2">rn2xx3_mac_get_deveui</a></div><div class="ttdeci">void rn2xx3_mac_get_deveui(rn2xx3_t *dev, uint8_t *eui)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC device EUI.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gacc50e8c05b909333258d3f7d529b3c03"><div class="ttname"><a href="group__drivers__rn2xx3.html#gacc50e8c05b909333258d3f7d529b3c03">rn2xx3_mac_set_appeui</a></div><div class="ttdeci">void rn2xx3_mac_set_appeui(rn2xx3_t *dev, const uint8_t *eui)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC application EUI.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gacdf1affb4d7f0c032846567d48cfad6b"><div class="ttname"><a href="group__drivers__rn2xx3.html#gacdf1affb4d7f0c032846567d48cfad6b">rn2xx3_mac_set_ar</a></div><div class="ttdeci">void rn2xx3_mac_set_ar(rn2xx3_t *dev, bool ar)</div><div class="ttdoc">Enables/disables LoRaMAC rn2xx3 MAC automatic reply state.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gacf89c15cacb3e194f44398e0c0be696a"><div class="ttname"><a href="group__drivers__rn2xx3.html#gacf89c15cacb3e194f44398e0c0be696a">rn2xx3_mac_get_appeui</a></div><div class="ttdeci">void rn2xx3_mac_get_appeui(rn2xx3_t *dev, uint8_t *eui)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC application EUI.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gad73733dae1fcd3c87056e089f39b44cb"><div class="ttname"><a href="group__drivers__rn2xx3.html#gad73733dae1fcd3c87056e089f39b44cb">rn2xx3_mac_set_adr</a></div><div class="ttdeci">void rn2xx3_mac_set_adr(rn2xx3_t *dev, bool adr)</div><div class="ttdoc">Enables/disables the rn2xx3 LoRaMAC adaptive datarate.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gada6e2f2f212a0844d055e7229d427323"><div class="ttname"><a href="group__drivers__rn2xx3.html#gada6e2f2f212a0844d055e7229d427323">rn2xx3_sys_set_sleep_duration</a></div><div class="ttdeci">void rn2xx3_sys_set_sleep_duration(rn2xx3_t *dev, uint32_t sleep)</div><div class="ttdoc">Sets the rn2xx3 sleep mode duration (in ms)</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gade4ba80bd5d4274edf2cbbe1618bc30a"><div class="ttname"><a href="group__drivers__rn2xx3.html#gade4ba80bd5d4274edf2cbbe1618bc30a">rn2xx3_mac_set_rx2_dr</a></div><div class="ttdeci">void rn2xx3_mac_set_rx2_dr(rn2xx3_t *dev, loramac_dr_idx_t dr)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC datarate used for second receive window.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gae1d88431dcab3234a0de6bf65d6c9f8a"><div class="ttname"><a href="group__drivers__rn2xx3.html#gae1d88431dcab3234a0de6bf65d6c9f8a">rn2xx3_mac_get_tx_port</a></div><div class="ttdeci">uint8_t rn2xx3_mac_get_tx_port(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC TX port.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gae3425eaa5c29f0ac9fdf24aeca29da1d"><div class="ttname"><a href="group__drivers__rn2xx3.html#gae3425eaa5c29f0ac9fdf24aeca29da1d">rn2xx3_setup</a></div><div class="ttdeci">void rn2xx3_setup(rn2xx3_t *dev, const rn2xx3_params_t *params)</div><div class="ttdoc">Prepares the given RN2XX3 device.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gae6d3e375cfc5af168108f28215e538b0"><div class="ttname"><a href="group__drivers__rn2xx3.html#gae6d3e375cfc5af168108f28215e538b0">rn2xx3_mac_set_devaddr</a></div><div class="ttdeci">void rn2xx3_mac_set_devaddr(rn2xx3_t *dev, const uint8_t *addr)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC device address.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gae7d325f4c4472a88a0ff603f4e66b1ee"><div class="ttname"><a href="group__drivers__rn2xx3.html#gae7d325f4c4472a88a0ff603f4e66b1ee">rn2xx3_mac_get_dr</a></div><div class="ttdeci">loramac_dr_idx_t rn2xx3_mac_get_dr(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC datarate.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaec67f7c1e3794ffe981ef8b0359c4ddb"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaec67f7c1e3794ffe981ef8b0359c4ddb">rn2xx3_mac_set_linkchk_interval</a></div><div class="ttdeci">void rn2xx3_mac_set_linkchk_interval(rn2xx3_t *dev, uint16_t linkchk)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC link check interval (in seconds)</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaec8e7758dcf0ff72fdedf982e99b7d62"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaec8e7758dcf0ff72fdedf982e99b7d62">rn2xx3_mac_get_band</a></div><div class="ttdeci">uint16_t rn2xx3_mac_get_band(rn2xx3_t *dev)</div><div class="ttdoc">Gets the rn2xx3 LoRaMAC frequency band in operation.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaf2ffb068cd860702d3a7959ddc0f9b5d"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaf2ffb068cd860702d3a7959ddc0f9b5d">rn2xx3_mac_set_dr</a></div><div class="ttdeci">void rn2xx3_mac_set_dr(rn2xx3_t *dev, loramac_dr_idx_t dr)</div><div class="ttdoc">Sets the rn2xx3 LoRaMAC datarate.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gaf96bd68d657d16076069736c7d46ecb4"><div class="ttname"><a href="group__drivers__rn2xx3.html#gaf96bd68d657d16076069736c7d46ecb4">rn2xx3_mac_join_network</a></div><div class="ttdeci">int rn2xx3_mac_join_network(rn2xx3_t *dev, loramac_join_mode_t mode)</div><div class="ttdoc">Starts network activation procedure.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gafd3fbeea4994c79f4f59f1f43fece6eb"><div class="ttname"><a href="group__drivers__rn2xx3.html#gafd3fbeea4994c79f4f59f1f43fece6eb">rn2xx3_init</a></div><div class="ttdeci">int rn2xx3_init(rn2xx3_t *dev)</div><div class="ttdoc">Initializes the RN2XX3 device.</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a125be64e5a89ccf066ee806aa5bc0a77"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a125be64e5a89ccf066ee806aa5bc0a77">RN2XX3_INT_STATE_CMD</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_CMD</div><div class="ttdoc">waiting command response</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:132</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a22e6a402c535e6aa765d50fa2a738a2c"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a22e6a402c535e6aa765d50fa2a738a2c">RN2XX3_INT_STATE_RESET</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_RESET</div><div class="ttdoc">the device is being reset or initialized</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:131</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a3729477729ddb4841773ecaa5679a7ff"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a3729477729ddb4841773ecaa5679a7ff">RN2XX3_INT_STATE_SLEEP</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_SLEEP</div><div class="ttdoc">sleep mode</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:134</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a4e40c194aba7e350a4cdbab08f667465"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a4e40c194aba7e350a4cdbab08f667465">RN2XX3_INT_STATE_MAC_TX</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_MAC_TX</div><div class="ttdoc">waiting for mac tx reply</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:136</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a52a771130fa87b4bef71383158ad9558"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a52a771130fa87b4bef71383158ad9558">RN2XX3_INT_STATE_IDLE</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_IDLE</div><div class="ttdoc">waiting for incoming commands</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:133</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a594a66a3b06a7ca588ed2b0fbc64a179"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a594a66a3b06a7ca588ed2b0fbc64a179">RN2XX3_INT_STATE_MAC_RX_MESSAGE</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_MAC_RX_MESSAGE</div><div class="ttdoc">waiting for mac rx message</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:138</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a708c38f385d9cedaa7e22170faed9bb0"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a708c38f385d9cedaa7e22170faed9bb0">RN2XX3_INT_STATE_MAC_RX_PORT</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_MAC_RX_PORT</div><div class="ttdoc">waiting for mac rx port</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:137</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga25f1c885c7f5230ea4c9bc48dde88fe1a81b27617bf2f48422ed6dce7cd291929"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga25f1c885c7f5230ea4c9bc48dde88fe1a81b27617bf2f48422ed6dce7cd291929">RN2XX3_INT_STATE_MAC_JOIN</a></div><div class="ttdeci">@ RN2XX3_INT_STATE_MAC_JOIN</div><div class="ttdoc">waiting for mac join procedure reply</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:135</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a20a5e3b1327575a24472f8f088f306ed"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a20a5e3b1327575a24472f8f088f306ed">RN2XX3_ERR_SLEEP_MODE</a></div><div class="ttdeci">@ RN2XX3_ERR_SLEEP_MODE</div><div class="ttdoc">Failure because device is in sleep mode.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:115</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a24f477b29a6490bd1fdb1b7330d6489d"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a24f477b29a6490bd1fdb1b7330d6489d">RN2XX3_REPLY_JOIN_DENIED</a></div><div class="ttdeci">@ RN2XX3_REPLY_JOIN_DENIED</div><div class="ttdoc">Join procedure failed.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:122</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a44c2a6bf18692913a25fe81c8d803fdb"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a44c2a6bf18692913a25fe81c8d803fdb">RN2XX3_REPLY_OTHER</a></div><div class="ttdeci">@ RN2XX3_REPLY_OTHER</div><div class="ttdoc">Unknown reply.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:124</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a53b3bea18ae8a6f72e1d83ee69c3d2b7"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a53b3bea18ae8a6f72e1d83ee69c3d2b7">RN2XX3_REPLY_TX_MAC_RX</a></div><div class="ttdeci">@ RN2XX3_REPLY_TX_MAC_RX</div><div class="ttdoc">Data received from server.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:120</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a5f1f6860e4b93d241d10a9ac46be9c93"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a5f1f6860e4b93d241d10a9ac46be9c93">RN2XX3_ERR_MAC_INIT</a></div><div class="ttdeci">@ RN2XX3_ERR_MAC_INIT</div><div class="ttdoc">Device mac initialization failed.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:105</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a5ff3ab61b79382bd5f5a93c445df74b1"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a5ff3ab61b79382bd5f5a93c445df74b1">RN2XX3_ERR_FR_CNT_REJOIN_NEEDED</a></div><div class="ttdeci">@ RN2XX3_ERR_FR_CNT_REJOIN_NEEDED</div><div class="ttdoc">Frame counter rolled over.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:110</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a70561098b8b35a4fb321701e35d3ade3"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a70561098b8b35a4fb321701e35d3ade3">RN2XX3_ERR_SILENT</a></div><div class="ttdeci">@ RN2XX3_ERR_SILENT</div><div class="ttdoc">Device is in Silent Immediately state.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:109</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a76cbdf67e2e4e799ffcea0d885051b76"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a76cbdf67e2e4e799ffcea0d885051b76">RN2XX3_OK</a></div><div class="ttdeci">@ RN2XX3_OK</div><div class="ttdoc">Command is valid.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:101</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a7bb9df06492497ade10959ff0bbcb4f5"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a7bb9df06492497ade10959ff0bbcb4f5">RN2XX3_TIMEOUT</a></div><div class="ttdeci">@ RN2XX3_TIMEOUT</div><div class="ttdoc">Command timeout.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:103</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a82250a4dbd3dc744435ca842c8bfbddb"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a82250a4dbd3dc744435ca842c8bfbddb">RN2XX3_REPLY_TX_INVALID_DATA_LEN</a></div><div class="ttdeci">@ RN2XX3_REPLY_TX_INVALID_DATA_LEN</div><div class="ttdoc">Application payload too large.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:119</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a888e007c0180f86a73be873ac79a3fde"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a888e007c0180f86a73be873ac79a3fde">RN2XX3_ERR_BUSY</a></div><div class="ttdeci">@ RN2XX3_ERR_BUSY</div><div class="ttdoc">MAC is not in Idle state.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:111</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a8c706272afa863ac4d913e6d0ba43443"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a8c706272afa863ac4d913e6d0ba43443">RN2XX3_REPLY_TIMEOUT</a></div><div class="ttdeci">@ RN2XX3_REPLY_TIMEOUT</div><div class="ttdoc">No MAC reply received from server.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:123</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5a9d15628f911a72c58a02539574d3d859"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5a9d15628f911a72c58a02539574d3d859">RN2XX3_REPLY_TX_MAC_OK</a></div><div class="ttdeci">@ RN2XX3_REPLY_TX_MAC_OK</div><div class="ttdoc">MAC transmission successful.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:117</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5aa8f2bd8da8c36947c6a5b5f279f2304a"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5aa8f2bd8da8c36947c6a5b5f279f2304a">RN2XX3_ERR_INVALID_DATA_LENGTH</a></div><div class="ttdeci">@ RN2XX3_ERR_INVALID_DATA_LENGTH</div><div class="ttdoc">Wrong payload given.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:113</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5abb25e3fce1910e7424bfead13eb71869"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5abb25e3fce1910e7424bfead13eb71869">RN2XX3_REPLY_JOIN_ACCEPTED</a></div><div class="ttdeci">@ RN2XX3_REPLY_JOIN_ACCEPTED</div><div class="ttdoc">Join procedure successful.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:121</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5ad24dd14490de060619d07771087fea27"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ad24dd14490de060619d07771087fea27">RN2XX3_ERR_MAC_PAUSED</a></div><div class="ttdeci">@ RN2XX3_ERR_MAC_PAUSED</div><div class="ttdoc">MAC was paused.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:112</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5ad77887db7735949f399d26c869c8b56c"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ad77887db7735949f399d26c869c8b56c">RN2XX3_REPLY_TX_MAC_ERR</a></div><div class="ttdeci">@ RN2XX3_REPLY_TX_MAC_ERR</div><div class="ttdoc">MAC transmission failed.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:118</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5adbe51cfdc0b98f5b8cf82e12966b3c69"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5adbe51cfdc0b98f5b8cf82e12966b3c69">RN2XX3_ERR_NOT_JOINED</a></div><div class="ttdeci">@ RN2XX3_ERR_NOT_JOINED</div><div class="ttdoc">Network is not joined.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:107</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5ae13dbb0055793e8220f8bfcbe0b0ee19"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5ae13dbb0055793e8220f8bfcbe0b0ee19">RN2XX3_ERR_NO_FREE_CH</a></div><div class="ttdeci">@ RN2XX3_ERR_NO_FREE_CH</div><div class="ttdoc">All channels are busy.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:108</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5afbc23955bfdc90fcf911e428c3d9c955"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5afbc23955bfdc90fcf911e428c3d9c955">RN2XX3_ERR_KEYS_NOT_INIT</a></div><div class="ttdeci">@ RN2XX3_ERR_KEYS_NOT_INIT</div><div class="ttdoc">Keys not configured (&quot;mac join&quot; command)</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:114</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5afdca778e918854a51237f90cf37022ea"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5afdca778e918854a51237f90cf37022ea">RN2XX3_ERR_INVALID_PARAM</a></div><div class="ttdeci">@ RN2XX3_ERR_INVALID_PARAM</div><div class="ttdoc">Wrong command given.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:106</div></div>
+<div class="ttc" id="agroup__drivers__rn2xx3_html_gga82f2c6e4d47f62f6b65c5887eb096fd5affcbe867837e71fd02ade5a710ec0026"><div class="ttname"><a href="group__drivers__rn2xx3.html#gga82f2c6e4d47f62f6b65c5887eb096fd5affcbe867837e71fd02ade5a710ec0026">RN2XX3_DATA</a></div><div class="ttdeci">@ RN2XX3_DATA</div><div class="ttdoc">Command returned data.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:102</div></div>
+<div class="ttc" id="agroup__net__loramac_html_ga0ec6851e0578ec1270e16e3faa54f4cd"><div class="ttname"><a href="group__net__loramac.html#ga0ec6851e0578ec1270e16e3faa54f4cd">loramac_join_mode_t</a></div><div class="ttdeci">loramac_join_mode_t</div><div class="ttdoc">LoRaMAC network join procedure type.</div><div class="ttdef"><b>Definition:</b> loramac.h:672</div></div>
+<div class="ttc" id="agroup__net__loramac_html_ga3c94d1636de66b1617aa3433ff9127ee"><div class="ttname"><a href="group__net__loramac.html#ga3c94d1636de66b1617aa3433ff9127ee">loramac_tx_mode_t</a></div><div class="ttdeci">loramac_tx_mode_t</div><div class="ttdoc">LoRaMAC transmission mode.</div><div class="ttdef"><b>Definition:</b> loramac.h:680</div></div>
+<div class="ttc" id="agroup__net__loramac_html_ga979972ade63b4ee4ab64ac44d7b90261"><div class="ttname"><a href="group__net__loramac.html#ga979972ade63b4ee4ab64ac44d7b90261">loramac_dr_idx_t</a></div><div class="ttdeci">loramac_dr_idx_t</div><div class="ttdoc">LoRaMAC datarate indexes.</div><div class="ttdef"><b>Definition:</b> loramac.h:691</div></div>
+<div class="ttc" id="agroup__net__loramac_html_gaefcaeb98180176fc844a5cd02689c400"><div class="ttname"><a href="group__net__loramac.html#gaefcaeb98180176fc844a5cd02689c400">loramac_tx_pwr_idx_t</a></div><div class="ttdeci">loramac_tx_pwr_idx_t</div><div class="ttdoc">LoRaMAC transmission power indexes.</div><div class="ttdef"><b>Definition:</b> loramac.h:878</div></div>
+<div class="ttc" id="aloramac_8h_html"><div class="ttname"><a href="loramac_8h.html">loramac.h</a></div><div class="ttdoc">LoRaMAC header definitions.</div></div>
+<div class="ttc" id="astructloramac__settings__t_html"><div class="ttname"><a href="structloramac__settings__t.html">loramac_settings_t</a></div><div class="ttdoc">LoRaMAC communication settings.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:144</div></div>
+<div class="ttc" id="astructloramac__settings__t_html_a2fe1296886fb992a7af85f7e5b64a342"><div class="ttname"><a href="structloramac__settings__t.html#a2fe1296886fb992a7af85f7e5b64a342">loramac_settings_t::rx2_dr</a></div><div class="ttdeci">loramac_dr_idx_t rx2_dr</div><div class="ttdoc">Datarate used for second receive window.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:146</div></div>
+<div class="ttc" id="astructloramac__settings__t_html_a6de533b11e2fbbc35bad8cd4c2ce7218"><div class="ttname"><a href="structloramac__settings__t.html#a6de533b11e2fbbc35bad8cd4c2ce7218">loramac_settings_t::rx2_freq</a></div><div class="ttdeci">uint32_t rx2_freq</div><div class="ttdoc">Center frequency used for second receive window.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:145</div></div>
+<div class="ttc" id="astructloramac__settings__t_html_a7d4df1ea8665adfc1fed180d558a9b16"><div class="ttname"><a href="structloramac__settings__t.html#a7d4df1ea8665adfc1fed180d558a9b16">loramac_settings_t::tx_port</a></div><div class="ttdeci">uint8_t tx_port</div><div class="ttdoc">Application TX port (between 1 and 223)</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:147</div></div>
+<div class="ttc" id="astructloramac__settings__t_html_a89163ba88dde3f9f6b8f6fb5fc5333b3"><div class="ttname"><a href="structloramac__settings__t.html#a89163ba88dde3f9f6b8f6fb5fc5333b3">loramac_settings_t::tx_mode</a></div><div class="ttdeci">loramac_tx_mode_t tx_mode</div><div class="ttdoc">TX mode, either confirmable of unconfirmable.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:148</div></div>
+<div class="ttc" id="astructloramac__settings__t_html_aae0d7cfd58227183d9209c879ee9de3e"><div class="ttname"><a href="structloramac__settings__t.html#aae0d7cfd58227183d9209c879ee9de3e">loramac_settings_t::rx_port</a></div><div class="ttdeci">uint8_t rx_port</div><div class="ttdoc">RX port (between 1 and 223)</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:149</div></div>
+<div class="ttc" id="astructmutex__t_html"><div class="ttname"><a href="structmutex__t.html">mutex_t</a></div><div class="ttdoc">Mutex structure.</div><div class="ttdef"><b>Definition:</b> mutex.h:146</div></div>
+<div class="ttc" id="astructnetdev_html"><div class="ttname"><a href="structnetdev.html">netdev</a></div><div class="ttdoc">Structure to hold driver state.</div><div class="ttdef"><b>Definition:</b> netdev.h:363</div></div>
+<div class="ttc" id="astructrn2xx3__params__t_html"><div class="ttname"><a href="structrn2xx3__params__t.html">rn2xx3_params_t</a></div><div class="ttdoc">Configuration parameters for RN2483/RN2903 devices.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:155</div></div>
+<div class="ttc" id="astructrn2xx3__params__t_html_a8763449bca65e8b255b456963d51add6"><div class="ttname"><a href="structrn2xx3__params__t.html#a8763449bca65e8b255b456963d51add6">rn2xx3_params_t::uart</a></div><div class="ttdeci">uart_t uart</div><div class="ttdoc">UART interfaced the device is connected to.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:156</div></div>
+<div class="ttc" id="astructrn2xx3__params__t_html_ac591027acc7c5386fbb88d5aae65e284"><div class="ttname"><a href="structrn2xx3__params__t.html#ac591027acc7c5386fbb88d5aae65e284">rn2xx3_params_t::baudrate</a></div><div class="ttdeci">uint32_t baudrate</div><div class="ttdoc">baudrate to use</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:157</div></div>
+<div class="ttc" id="astructrn2xx3__params__t_html_acdc56c195c77a59e8d45526273761e46"><div class="ttname"><a href="structrn2xx3__params__t.html#acdc56c195c77a59e8d45526273761e46">rn2xx3_params_t::pin_reset</a></div><div class="ttdeci">gpio_t pin_reset</div><div class="ttdoc">GPIO pin that is connected to the STATUS pin set to GPIO_UNDEF if not used.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:158</div></div>
+<div class="ttc" id="astructrn2xx3__t_html"><div class="ttname"><a href="structrn2xx3__t.html">rn2xx3_t</a></div><div class="ttdoc">RN2483/RN2903 device descriptor.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:165</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_a0b49037eef7fc81d151eea0a9b040a0a"><div class="ttname"><a href="structrn2xx3__t.html#a0b49037eef7fc81d151eea0a9b040a0a">rn2xx3_t::sleep</a></div><div class="ttdeci">uint32_t sleep</div><div class="ttdoc">module sleep duration</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:193</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_a1c2e2cfc41ec278a5db330e095c19898"><div class="ttname"><a href="structrn2xx3__t.html#a1c2e2cfc41ec278a5db330e095c19898">rn2xx3_t::rx_size</a></div><div class="ttdeci">uint16_t rx_size</div><div class="ttdoc">counter for received char in RX</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:189</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_a2970c2c8a7f48f7a9ace16922db02c61"><div class="ttname"><a href="structrn2xx3__t.html#a2970c2c8a7f48f7a9ace16922db02c61">rn2xx3_t::sleep_timer</a></div><div class="ttdeci">ztimer_t sleep_timer</div><div class="ttdoc">Timer used to count module sleep time.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:192</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_a3b3bed851de2f5153bb70b823fcd2771"><div class="ttname"><a href="structrn2xx3__t.html#a3b3bed851de2f5153bb70b823fcd2771">rn2xx3_t::resp_lock</a></div><div class="ttdeci">mutex_t resp_lock</div><div class="ttdoc">mutex for waiting for command response</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:178</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_a6023fe355d9eb2fa48f150e15ff27195"><div class="ttname"><a href="structrn2xx3__t.html#a6023fe355d9eb2fa48f150e15ff27195">rn2xx3_t::loramac</a></div><div class="ttdeci">loramac_settings_t loramac</div><div class="ttdoc">loramac communication settings</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:169</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_a64e79faae21b13de0b13b335736b58b1"><div class="ttname"><a href="structrn2xx3__t.html#a64e79faae21b13de0b13b335736b58b1">rn2xx3_t::resp_size</a></div><div class="ttdeci">uint16_t resp_size</div><div class="ttdoc">counter for received char in response</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:181</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_a93bc3ba755d9f76373067a1a228bd4d7"><div class="ttname"><a href="structrn2xx3__t.html#a93bc3ba755d9f76373067a1a228bd4d7">rn2xx3_t::cmd_lock</a></div><div class="ttdeci">mutex_t cmd_lock</div><div class="ttdoc">mutex to allow only one command at a time</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:173</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_ab211301f5fd33d5e0ddc053384f812c8"><div class="ttname"><a href="structrn2xx3__t.html#ab211301f5fd33d5e0ddc053384f812c8">rn2xx3_t::p</a></div><div class="ttdeci">rn2xx3_params_t p</div><div class="ttdoc">configuration parameters</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:168</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_ab8884f67e9f820a376b18d3a0535b71c"><div class="ttname"><a href="structrn2xx3__t.html#ab8884f67e9f820a376b18d3a0535b71c">rn2xx3_t::netdev</a></div><div class="ttdeci">netdev_t netdev</div><div class="ttdoc">Netdev parent struct.</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:166</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_ad89041ed2b7d9fc967df32e185981393"><div class="ttname"><a href="structrn2xx3__t.html#ad89041ed2b7d9fc967df32e185981393">rn2xx3_t::int_state</a></div><div class="ttdeci">uint8_t int_state</div><div class="ttdoc">current state of the device</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:175</div></div>
+<div class="ttc" id="astructrn2xx3__t_html_add9287411a774002f765da39a277ef35"><div class="ttname"><a href="structrn2xx3__t.html#add9287411a774002f765da39a277ef35">rn2xx3_t::resp_done</a></div><div class="ttdeci">uint8_t resp_done</div><div class="ttdoc">check if response has completed</div><div class="ttdef"><b>Definition:</b> rn2xx3.h:182</div></div>
+<div class="ttc" id="astructztimer__t_html"><div class="ttname"><a href="structztimer__t.html">ztimer_t</a></div><div class="ttdoc">ztimer structure</div><div class="ttdef"><b>Definition:</b> ztimer.h:318</div></div>
+<div class="ttc" id="aztimer_8h_html"><div class="ttname"><a href="ztimer_8h.html">ztimer.h</a></div><div class="ttdoc">ztimer API</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.12.0-->
+<!-- start footer part -->
+<div>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ee023d43c33bfccc31aa50a48a76892b.html">include</a></li><li class="navelem"><a class="el" href="rn2xx3_8h.html">rn2xx3.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>
