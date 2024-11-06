@@ -1,6 +1,6 @@
 # Examples
 
-RIOT provides a wide range of examples to demonstrate the capabilities of the OS and its modules. 
+RIOT provides a wide range of examples to demonstrate the capabilities of the OS and its modules.
 
 The examples are organized in subdirectories of the `examples` directory. Each example directory contains a `README.md` file that provides information about the example and how to run it.
 
@@ -33,18 +33,23 @@ Here is a quick overview of the examples available in the RIOT repository:
 #### RIOT Language Bindings
 
 ##### Officially Supported/Targeted
-###### *Rust*
+
+###### _Rust_
+
 - [rust-hello-world](./rust-hello-world)
   - This example demonstrates how to write a simple RIOT application in Rust.
 - [rust-gcoap](./rust-gcoap)
   - This example demonstrates how to write a simple RIOT application in Rust using the gcoap module.
 - [rust-async](./rust-async)
   - This example demonstrates how to write a simple RIOT application in Rust using the async/await syntax.
-###### *C++*
+
+###### _C++_
+
 - [riot_and_cpp](./riot_and_cpp)
   - Example of using C++ in RIOT applications.
 
 ##### Community Supported
+
 - [javascript](./javascript)
   - How to write IoT applications using javascript using JerryScript.
 - [lua_basic](./lua_basic)
@@ -65,7 +70,7 @@ Here is a quick overview of the examples available in the RIOT repository:
 - [gcoap_block_server](./gcoap_block_server)
   - CoAP server handling for Block requests, build with gcoap using nanocoap block handling functions.
 - [gcoap_fileserver](./gcoap_fileserver)
-  - This example demonstrates the usage of the `gcoap` 
+  - This example demonstrates the usage of the `gcoap`
     module to serve files over CoAP.
 - [gcoap_dtls](./gcoap_dtls)
   - This example demonstrates the usage of the `gcoap` module with DTLS.
@@ -82,7 +87,7 @@ Here is a quick overview of the examples available in the RIOT repository:
   - This example demonstrates the usage of `Skald` for creating an Apple `iBeacon`.
 - [nimble_gatt](./nimble_gatt)
   - This example application configures and runs the NimBLE BLE stack as simple GATT
-    server. 
+    server.
 - [nimble_heart_rate_sensor](./nimble_heart_rate_sensor)
   - This example demonstrates how to implement asynchronous data transfer using GATT
     notifications by implementing a mock-up BLE heart rate sensor.
@@ -97,6 +102,7 @@ Here is a quick overview of the examples available in the RIOT repository:
   - This example demonstrates the usage of the Paho MQTT client library in RIOT.
 
 #### CoRE Resource Directory
+
 - [cord_ep](./cord_ep)
   - Example of RIOT's Resource Directory (RD) endpoint module, called `cord_ep`
 - [cord_lc](./cord_lc)
@@ -164,9 +170,10 @@ Here is a quick overview of the examples available in the RIOT repository:
 - [posix_select](./posix_select)
   - This example is a showcase for RIOT's POSIX select support
 - [psa_crypto](./psa_crypto)
+
   - Basic functions of the PSA Crypto API- [nimble_heart_rate_sensor](./nimble_heart_rate_sensor)
   - This example demonstrates how to implement asynchronous data transfer using GATT
-notifications by implementing a mock-up BLE heart rate sensor.
+    notifications by implementing a mock-up BLE heart rate sensor.
 
 - [pio_blink](./pio_blink)
   - How to use the PIO peripheral on the RaspberryPi Pico to blink an LED.
