@@ -225,7 +225,7 @@ void gpio_toggle(gpio_t pin)
     }
 }
 
-void gpio_write(gpio_t pin, int value)
+void gpio_write(gpio_t pin, bool value)
 {
     if (value) {
         _port(pin)->PIO_SODR = (1 << _pin_num(pin));
@@ -244,7 +244,7 @@ void gpio_irq_disable(gpio_t pin)
     NVIC_DisableIRQ((1 << (_port_num(pin) + PIOA_IRQn)));
 }
 
-int gpio_read(gpio_t pin)
+bool gpio_read(gpio_t pin)
 {
     Pio *port = _port(pin);
     int pin_num = _pin_num(pin);

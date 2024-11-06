@@ -195,7 +195,7 @@ int gpio_init(gpio_t pin, gpio_mode_t mode)
     return 0;
 }
 
-int gpio_read(gpio_t pin)
+bool gpio_read(gpio_t pin)
 {
     PortGroup *port;
     int mask = _pin_mask(pin);
@@ -230,7 +230,7 @@ void gpio_toggle(gpio_t pin)
     _port_iobus(pin)->OUTTGL.reg = _pin_mask(pin);
 }
 
-void gpio_write(gpio_t pin, int value)
+void gpio_write(gpio_t pin, bool value)
 {
     if (value) {
         _port_iobus(pin)->OUTSET.reg = _pin_mask(pin);

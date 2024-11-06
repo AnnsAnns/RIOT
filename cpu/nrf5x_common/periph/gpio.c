@@ -126,7 +126,7 @@ int gpio_init(gpio_t pin, gpio_mode_t mode)
     return 0;
 }
 
-int gpio_read(gpio_t pin)
+bool gpio_read(gpio_t pin)
 {
     if (port(pin)->DIR & (1 << pin_num(pin))) {
         return (port(pin)->OUT & (1 << pin_num(pin))) ? 1 : 0;
@@ -151,7 +151,7 @@ void gpio_toggle(gpio_t pin)
     port(pin)->OUT ^= (1 << pin_num(pin));
 }
 
-void gpio_write(gpio_t pin, int value)
+void gpio_write(gpio_t pin, bool value)
 {
     if (value) {
         port(pin)->OUTSET = (1 << pin_num(pin));

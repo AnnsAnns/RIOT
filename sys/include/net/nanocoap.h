@@ -583,18 +583,6 @@ static inline void *coap_get_token(const coap_pkt_t *pkt)
 }
 
 /**
- * @brief   Get the total header length (4-byte header + token length)
- *
- * @param[in]   pkt   CoAP packet
- *
- * @returns     total header length
- */
-static inline unsigned coap_get_total_hdr_len(const coap_pkt_t *pkt)
-{
-    return sizeof(coap_hdr_t) + coap_get_token_len(pkt);
-}
-
-/**
  * @brief   Get the total length of a CoAP packet in the packet buffer
  *
  * @note This does not include possible payload snips.
@@ -677,6 +665,35 @@ static inline uint8_t *coap_hdr_data_ptr(const coap_hdr_t *hdr)
 }
 
 /**
+ * @brief   Get the total header length (4-byte header + token length)
+ *
+ * @param[in]   pkt   CoAP packet
+ *
+ * @returns     total header length
+ */
+static inline unsigned coap_get_total_hdr_len(const coap_pkt_t *pkt)
+{
+    return sizeof(coap_hdr_t) + coap_hdr_tkl_ext_len(pkt->hdr) +
+           coap_get_token_len(pkt);
+}
+
+/**
+ * @brief   Get the header length a response to the given packet will have
+ *
+ * @param[in]   pkt     CoAP packet to reply to
+ * @return      Length of the response header including token excluding
+ *              CoAP options and any payload marker
+ *
+ * @note    The main use case is the use of @ref coap_block2_build_reply, which
+ *          is building the CoAP header of the response after options and
+ *          payload have been added.
+ */
+static inline unsigned coap_get_response_hdr_len(const coap_pkt_t *pkt)
+{
+    return coap_get_total_hdr_len(pkt);
+}
+
+/**
  * @brief   Write the given raw message code to given CoAP header
  *
  * @param[out]  hdr     CoAP header to write to
@@ -685,6 +702,17 @@ static inline uint8_t *coap_hdr_data_ptr(const coap_hdr_t *hdr)
 static inline void coap_hdr_set_code(coap_hdr_t *hdr, uint8_t code)
 {
     hdr->code = code;
+}
+
+/**
+ * @brief   Write the given raw message code to given CoAP pkt
+ *
+ * @param[out]  pkt     CoAP packet to write to
+ * @param[in]   code    raw message code
+ */
+static inline void coap_pkt_set_code(coap_pkt_t *pkt, uint8_t code)
+{
+    coap_hdr_set_code(pkt->hdr, code);
 }
 
 /**
@@ -1927,6 +1955,9 @@ static inline size_t coap_put_option_ct(uint8_t *buf, uint16_t lastonum,
  * @param[in]   payload_len length of payload
  * @param[in]   slicer      slicer to use
  *
+ * @warning Use @ref coap_get_response_hdr_len to determine the size of the
+ *          header this will write.
+ *
  * @returns     size of reply packet on success
  * @returns     <0 on error
  */
@@ -1945,6 +1976,11 @@ ssize_t coap_block2_build_reply(coap_pkt_t *pkt, unsigned code,
  * @param[in]    token_len  length of @p token
  * @param[in]    code       CoAP code (e.g., COAP_CODE_204, ...)
  * @param[in]    id         CoAP request id
+ *
+ * @pre     @p token is either not overlapping with the memory buffer
+ *          @p hdr points to, or is already at the right offset (e.g.
+ *          when building the response inside the buffer the contained
+ *          the request).
  *
  * @returns      length of resulting header
  */
