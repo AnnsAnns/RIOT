@@ -2,7 +2,7 @@
 
 RIOT provides a wide range of examples to demonstrate the capabilities of the OS and its modules.
 
-The examples are organized in subdirectories of the `examples` directory. Each example directory contains a `README.md` file that provides information about the example and how to run it.
+Each example contains a `README.md` that provides information and instructions how to run it.
 
 Here is a quick overview of the examples available in the RIOT repository:
 
