@@ -41,7 +41,7 @@ Here is a quick overview of the examples available in the RIOT repository:
 - [rust-gcoap](./rust-gcoap)
   - This example demonstrates how to write a simple RIOT application in Rust using the gcoap module.
 - [rust-async](./rust-async)
-  - This example demonstrates how to write a simple RIOT application in Rust using the async/await syntax.
+  - This example demonstrates how to use Rusts async/await syntax in a RIOT application.
 
 ###### _C++_
 
