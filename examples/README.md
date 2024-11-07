@@ -4,7 +4,7 @@ RIOT provides a wide range of examples to demonstrate the capabilities of the OS
 
 Each example contains a `README.md` that provides information and instructions how to run it.
 
-Here is a quick overview of the examples available in the RIOT repository:
+Here is a quick overview of the examples available in the RIOT:
 
 ### The Essentials
 
