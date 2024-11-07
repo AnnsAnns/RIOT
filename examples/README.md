@@ -39,7 +39,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [rust-hello-world](./rust-hello-world)
   - This example demonstrates how to write a simple RIOT application in Rust.
 - [rust-gcoap](./rust-gcoap)
-  - This example demonstrates how to write a simple RIOT application in Rust using the gcoap module.
+  - This example demonstrates how to write a coap server application in Rust using the RIOTs gcoap module.
 - [rust-async](./rust-async)
   - This example demonstrates how to use Rusts async/await syntax in a RIOT application.
 
