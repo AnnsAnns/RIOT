@@ -72,8 +72,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [gcoap_fileserver](./gcoap_fileserver/README.md)
   - This example demonstrates the usage of the `gcoap`
     module to serve files over CoAP.
-- [gcoap_dtls](./gcoap_dtls/README.md)
-  - This example demonstrates the usage of the `gcoap` module with DTLS.
+^
 - [nanocoap_server](./nanocoap_server/README.md)
   - This example demonstrates the usage of the `nanocoap` module, a low-level API for CoAP (Constrained Application Protocol) messaging.
 
@@ -131,6 +130,15 @@ Here is a quick overview of the examples available in the RIOT:
 - [gnrc_networking_mac](./gnrc_networking_mac/README.md)
   - This example shows you how to try out communications between RIOT instances with duty-cycled MAC layer protocols
 
+### DTLS
+
+- [dtls-sock](./dtls-sock/README.md)
+  - This example shows how to use DTLS sock `sock_dtls_t`
+- [dtls-echo](./dtls-echo/README.md)
+  - This example shows how to use TinyDTLS with sock_udp.
+- [dtls-wolfssl](./dtls-wolfssl/README.md)
+  - This example demonstrates the usage of the DTLS module with the wolfSSL library.^
+
 ### Misc
 
 - [lorawan](./lorawan/README.md)
@@ -151,12 +159,6 @@ Here is a quick overview of the examples available in the RIOT:
 - [sniffer](./sniffer/README.md)
   - This application is built to run together with the script `./tools/sniffer.py`
     as a sniffer for (wireless) data traffic.
-- [dtls-sock](./dtls-sock/README.md)
-  - This example shows how to use DTLS sock `sock_dtls_t`
-- [dtls-echo](./dtls-echo/README.md)
-  - This example shows how to use TinyDTLS with sock_udp.
-- [dtls-wolfssl](./dtls-wolfssl/README.md)
-  - This example demonstrates the usage of the DTLS module with the wolfSSL library.
 
 ## Advanced Examples
 
