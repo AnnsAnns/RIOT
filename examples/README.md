@@ -88,6 +88,9 @@ Here is a quick overview of the examples available in the RIOT:
 - [nimble_heart_rate_sensor](./nimble_heart_rate_sensor/README.md)
   - This example demonstrates how to implement asynchronous data transfer using GATT
     notifications by implementing a mock-up BLE heart rate sensor.
+- [nimble_heart_rate_sensor](./nimble_heart_rate_sensor/README.md)
+  - This example demonstrates how to implement asynchronous data transfer using GATT
+    notifications by implementing a mock-up BLE heart rate sensor.
 
 #### Misc BLE Examples
 
@@ -177,11 +180,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [posix_select](./posix_select/README.md)
   - This example is a showcase for RIOT's POSIX select support
 - [psa_crypto](./psa_crypto)
-
-  - Basic functions of the PSA Crypto API- [nimble_heart_rate_sensor](./nimble_heart_rate_sensor/README.md)
-  - This example demonstrates how to implement asynchronous data transfer using GATT
-    notifications by implementing a mock-up BLE heart rate sensor.
-
+  - Basic functions of the PSA Crypto API
 - [pio_blink](./pio_blink/README.md)
   - How to use the PIO peripheral on the RaspberryPi Pico to blink an LED.
 - [arduino_hello-world](./arduino_hello-world/README.md)
