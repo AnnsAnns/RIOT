@@ -61,7 +61,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [wasm](./wasm/README.md)
   - How to use WebAssembly in RIOT.
 
-## Networking & BLE Examples
+## Networking
 
 ### Constraint Application Protocol (CoAP)
 
