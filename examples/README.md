@@ -79,18 +79,23 @@ Here is a quick overview of the examples available in the RIOT:
 
 ### Bluetooth Low Energy (BLE)
 
+#### NimBLE
+
 - [nimble_scanner](./nimble_scanner/README.md)
   - This example showcases the usage of the `NimBLE` BLE stack as a scanner.
-- [skald_eddystone](./skald_eddystone/README.md)
-  - This example demonstrates the usage of `Skald` for creating an Google `Eddystone` beacon.
-- [skald_ibeacon](./skald_ibeacon/README.md)
-  - This example demonstrates the usage of `Skald` for creating an Apple `iBeacon`.
 - [nimble_gatt](./nimble_gatt/README.md)
   - This example application configures and runs the NimBLE BLE stack as simple GATT
     server.
 - [nimble_heart_rate_sensor](./nimble_heart_rate_sensor/README.md)
   - This example demonstrates how to implement asynchronous data transfer using GATT
     notifications by implementing a mock-up BLE heart rate sensor.
+
+#### Misc BLE Examples
+
+- [skald_eddystone](./skald_eddystone/README.md)
+  - This example demonstrates the usage of `Skald` for creating an Google `Eddystone` beacon.
+- [skald_ibeacon](./skald_ibeacon/README.md)
+  - This example demonstrates the usage of `Skald` for creating an Apple `iBeacon`.
 
 ### MQTT
 
