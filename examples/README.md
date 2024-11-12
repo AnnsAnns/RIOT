@@ -22,7 +22,7 @@ Here is a quick overview of the examples available in the RIOT:
     devices (for e.g. additional LEDs, relay, motors - via dedicated drivers, etc.)
     via the shell.
 - [saul](./saul)
-  - This example demonstrates the usage of the SAUL (Sensor Abstraction Layer User) module.
+  - This example demonstrates the usage of the SAUL (Sensor Actuator Uber Layer) module.
 - [timer_periodic_wakeup](./timer_periodic_wakeup)
   - How to set up a periodic wakeup timer using the RIOT operating system.
 - [ipc_pingpong](./ipc_pingpong)
