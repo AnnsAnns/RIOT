@@ -74,6 +74,8 @@ Here is a quick overview of the examples available in the RIOT:
 - [gcoap_fileserver](./gcoap_fileserver/README.md)
   - This example demonstrates the usage of the `gcoap`
     module to serve files over CoAP.
+- [gcoap_dtls](./gcoap_dtls/README.md)
+  - This example demonstrates the usage of the `gcoap` module with DTLS.
 - [nanocoap_server](./nanocoap_server/README.md)
   - This example demonstrates the usage of the `nanocoap` module, a high-level API for CoAP (Constrained Application Protocol) messaging.
 
@@ -163,6 +165,8 @@ Here is a quick overview of the examples available in the RIOT:
 - [sniffer](./sniffer/README.md)
   - This application is built to run together with the script `./tools/sniffer.py`
     as a sniffer for (wireless) data traffic.
+- [benckmark_udp](./benchmark_udp/README.md)
+  - This example uses the `benchmark_udp` module to create a stress-test for the RIOT network stack.
 
 ## Advanced Examples
 
@@ -188,3 +192,7 @@ Here is a quick overview of the examples available in the RIOT:
   - This example allows testing different two-way ranging algorithms between
     two boards supporting a dw1000 device. This makes use of the uwb-core
     pkg.
+- [senml_saul](./senml_saul/README.md)
+  - This example demonstrates the usage of the SAUL (Sensor Actuator Uber Layer) module with the SenML (Sensor Measurement Lists) format.
+- [opendsme](./opendsme/README.md)
+  - This example demonstrates the usage of the OpenDSME module in RIOT.
