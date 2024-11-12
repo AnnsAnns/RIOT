@@ -74,9 +74,8 @@ Here is a quick overview of the examples available in the RIOT:
 - [gcoap_fileserver](./gcoap_fileserver/README.md)
   - This example demonstrates the usage of the `gcoap`
     module to serve files over CoAP.
-^
 - [nanocoap_server](./nanocoap_server/README.md)
-  - This example demonstrates the usage of the `nanocoap` module, a low-level API for CoAP (Constrained Application Protocol) messaging.
+  - This example demonstrates the usage of the `nanocoap` module, a high-level API for CoAP (Constrained Application Protocol) messaging.
 
 ### Bluetooth Low Energy (BLE)
 
