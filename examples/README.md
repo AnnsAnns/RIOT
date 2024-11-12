@@ -60,6 +60,8 @@ Here is a quick overview of the examples available in the RIOT:
   - How to use the MicroPython port for RIOT.
 - [wasm](./wasm/README.md)
   - How to use WebAssembly in RIOT.
+- [arduino_hello-world](./arduino_hello-world/README.md)
+  - This application demonstrates the usage of Arduino sketches in RIOT.
 
 ## Networking
 
@@ -183,8 +185,6 @@ Here is a quick overview of the examples available in the RIOT:
   - Basic functions of the PSA Crypto API
 - [pio_blink](./pio_blink/README.md)
   - How to use the PIO peripheral on the RaspberryPi Pico to blink an LED.
-- [arduino_hello-world](./arduino_hello-world/README.md)
-  - This application demonstrates the usage of Arduino sketches in RIOT.
 - [twr_aloha](./twr_aloha/README.md)
   - This example allows testing different two-way ranging algorithms between
     two boards supporting a dw1000 device. This makes use of the uwb-core
