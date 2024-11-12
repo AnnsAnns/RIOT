@@ -6,7 +6,7 @@ Each example contains a `README.md` that provides information and instructions h
 
 Here is a quick overview of the examples available in the RIOT:
 
-### The Essentials
+## The Essentials
 
 - [default](./default/README.md)
   - This application is a showcase for RIOT's hardware support. Using it
@@ -30,11 +30,11 @@ Here is a quick overview of the examples available in the RIOT:
 - [filesystem](./filesystem/README.md)
   - This example showcases ways to interact/manage the filesystem in RIOT.
 
-#### RIOT Language Bindings
+### RIOT Language Bindings
 
-##### Officially Supported/Targeted
+#### Officially Supported/Targeted
 
-###### _Rust_
+##### _Rust_
 
 - [rust-hello-world](./rust-hello-world/README.md)
   - This example demonstrates how to write a simple RIOT application in Rust.
@@ -43,12 +43,12 @@ Here is a quick overview of the examples available in the RIOT:
 - [rust-async](./rust-async/README.md)
   - This example demonstrates how to use Rusts async/await syntax in a RIOT application.
 
-###### _C++_
+##### _C++_
 
 - [riot_and_cpp](./riot_and_cpp/README.md)
   - Example of using C++ in RIOT applications.
 
-##### Community Supported
+#### Community Supported
 
 - [javascript](./javascript/README.md)
   - How to write IoT applications using javascript using JerryScript.
@@ -61,9 +61,9 @@ Here is a quick overview of the examples available in the RIOT:
 - [wasm](./wasm/README.md)
   - How to use WebAssembly in RIOT.
 
-### Networking & BLE Examples
+## Networking & BLE Examples
 
-#### Constraint Application Protocol (CoAP)
+### Constraint Application Protocol (CoAP)
 
 - [gcoap](./gcoap/README.md)
   - This example demonstrates the usage of the `gcoap` module, a high-level API for CoAP (Constrained Application Protocol) messaging.
@@ -77,7 +77,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [nanocoap_server](./nanocoap_server/README.md)
   - This example demonstrates the usage of the `nanocoap` module, a low-level API for CoAP (Constrained Application Protocol) messaging.
 
-#### Bluetooth Low Energy (BLE)
+### Bluetooth Low Energy (BLE)
 
 - [nimble_scanner](./nimble_scanner/README.md)
   - This example showcases the usage of the `NimBLE` BLE stack as a scanner.
@@ -92,7 +92,7 @@ Here is a quick overview of the examples available in the RIOT:
   - This example demonstrates how to implement asynchronous data transfer using GATT
     notifications by implementing a mock-up BLE heart rate sensor.
 
-#### MQTT
+### MQTT
 
 - [asymcute_mqttsn](./asymcute_mqttsn/README.md)
   - This application demonstrates the usage of the Asymcute (MQTT-SN) module in RIOT.
@@ -101,7 +101,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [paho-mqtt](./paho-mqtt/README.md)
   - This example demonstrates the usage of the Paho MQTT client library in RIOT.
 
-#### CoRE Resource Directory
+### CoRE Resource Directory
 
 - [cord_ep](./cord_ep/README.md)
   - Example of RIOT's Resource Directory (RD) endpoint module, called `cord_ep`
@@ -110,7 +110,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [cord_epsim](./cord_epsim/README.md)
   - This example shows how a node can register with a CoRE resource directory
 
-#### GNRC Networking
+### GNRC Networking
 
 - [gnrc_minimal](./gnrc_minimal/README.md)
   - This is a minimalistic example for RIOT's gnrc network stack.
@@ -126,7 +126,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [gnrc_networking_mac](./gnrc_networking_mac/README.md)
   - This example shows you how to try out communications between RIOT instances with duty-cycled MAC layer protocols
 
-#### Misc
+### Misc
 
 - [lorawan](./lorawan/README.md)
   - This application shows a basic LoRaWAN use-case with RIOT.
@@ -153,7 +153,7 @@ Here is a quick overview of the examples available in the RIOT:
 - [dtls-wolfssl](./dtls-wolfssl/README.md)
   - This example demonstrates the usage of the DTLS module with the wolfSSL library.
 
-### Advanced Examples
+## Advanced Examples
 
 - [bindist](./bindist/README.md)
   - RIOT allows for creating a "binary distribution", which can be used to ship
