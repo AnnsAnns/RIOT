@@ -5,7 +5,7 @@ APPLICATION = micropython
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 # select MicroPython package
 USEPKG += micropython

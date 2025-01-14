@@ -5,7 +5,7 @@ APPLICATION = benchmark_udp
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 # use GNRC by default
 LWIP ?= 0

@@ -5,7 +5,7 @@ APPLICATION = gnrc_networking-subnets
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 # Include packages that pull up and auto-init the link layer.
 USEMODULE += netdev_default

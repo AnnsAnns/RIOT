@@ -1,5 +1,5 @@
 APPLICATION = timer_periodic_wakeup
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../..
 
 BOARD ?= native
 

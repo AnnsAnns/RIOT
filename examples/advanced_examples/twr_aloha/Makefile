@@ -4,7 +4,7 @@ APPLICATION = twr-aloha
 BOARD ?= dwm1001
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../..
 
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1

@@ -5,7 +5,7 @@ APPLICATION = thread_duel
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../..
 
 # This defaults to build with round_robin using ztimer
 RR ?= 1

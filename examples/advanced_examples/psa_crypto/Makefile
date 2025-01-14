@@ -1,5 +1,5 @@
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../..
 
 APPLICATION = example_psa_crypto
 

@@ -10,7 +10,7 @@ BOARD ?= nrf52840dk
 FEATURES_REQUIRED += cpu_nrf52
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../..
 
 # Uncomment these lines if you want to use platform support from external
 # repositories:

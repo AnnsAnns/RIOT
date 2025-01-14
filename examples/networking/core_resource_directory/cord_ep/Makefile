@@ -5,7 +5,7 @@ APPLICATION = cord_ep
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 USEMODULE += netdev_default
 USEMODULE += auto_init_gnrc_netif

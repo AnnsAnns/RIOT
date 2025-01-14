@@ -5,7 +5,7 @@ APPLICATION = riot_and_cpp
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 # Uncomment these lines if you want to use platform support from external
 # repositories:

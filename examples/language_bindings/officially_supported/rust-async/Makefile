@@ -5,7 +5,7 @@ APPLICATION = rust-async
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 # Some timers for the example
 USEMODULE += ztimer_msec

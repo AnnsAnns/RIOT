@@ -7,7 +7,7 @@ APPLICATION = arduino_hello-world
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 USEMODULE += arduino
 USEMODULE += stdin

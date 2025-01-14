@@ -5,7 +5,7 @@ APPLICATION = saul_example
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../..
 
 # we want to use SAUL:
 USEMODULE += saul_default

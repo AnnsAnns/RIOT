@@ -8,7 +8,7 @@ BOARD ?= native
 LWIP ?= 0
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 USEMODULE += sock_tcp
 USEMODULE += netdev_default

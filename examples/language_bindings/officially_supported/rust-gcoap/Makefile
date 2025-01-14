@@ -5,7 +5,7 @@ APPLICATION = rust_gcoap
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../..
 
 # Basic networking, and gcoap
 USEMODULE += gcoap
