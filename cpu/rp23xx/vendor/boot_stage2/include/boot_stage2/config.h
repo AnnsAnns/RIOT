@@ -9,7 +9,9 @@
 
 // NOTE THIS HEADER IS INCLUDED FROM ASSEMBLY
 
-// PICO_CONFIG: PICO_BUILD_BOOT_STAGE2_NAME, The name of the boot stage 2 if selected by the build, group=boot_stage2
+#include "pico/config.h"
+
+// PICO_CONFIG: PICO_BUILD_BOOT_STAGE2_NAME, Name of the boot stage 2 if selected in the build system, group=boot_stage2
 #ifdef PICO_BUILD_BOOT_STAGE2_NAME
     #define _BOOT_STAGE2_SELECTED
 #else
@@ -68,12 +70,15 @@
 #else
     // boot stage 2 is selected by board config header, so we have to do some work
     #if PICO_BOOT_STAGE2_CHOOSE_IS25LP080
+        #error "IS25LP080 boot2 is broken (FIXME)"
         #define _BOOT_STAGE2 boot2_is25lp080
     #elif PICO_BOOT_STAGE2_CHOOSE_W25Q080
         #define _BOOT_STAGE2 boot2_w25q080
     #elif PICO_BOOT_STAGE2_CHOOSE_W25X10CL
+        #error "W25X10CL boot2 is broken (FIXME)"
         #define _BOOT_STAGE2 boot2_w25x10cl
     #elif PICO_BOOT_STAGE2_CHOOSE_AT25SF128A
+        #error "AT25SF128A boot2 is broken (FIXME)"
         #define _BOOT_STAGE2 boot2_at25sf128a
     #elif !defined(PICO_BOOT_STAGE2_CHOOSE_GENERIC_03H) || PICO_BOOT_STAGE2_CHOOSE_GENERIC_03H
         #undef PICO_BOOT_STAGE2_CHOOSE_GENERIC_03H
