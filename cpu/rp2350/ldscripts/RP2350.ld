@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Otto-von-Guericke-Universität Magdeburg
+ * Copyright (C) 2021 Ishraq Ibne Ashraf
  *
  * This file is subject to the terms and conditions of the GNU Lesser
  * General Public License v2.1. See the file LICENSE in the top level
@@ -7,40 +7,36 @@
  */
 
 /**
- * @ingroup         cpu_rp2040
+ * @addtogroup      cpu_rp2040
  * @{
  *
  * @file
- * @brief           Memory definitions for the RP2040 MCU
+ * @brief           Sections definitions for the Raspberry Pi rp2040 MCU
  *
- * @author          Marian Buschsieweke <marian.buschsieweke@ovgu.de>
+ * @author          Ishraq Ibne Ashraf <ishraq.i.ashraf@gmail.com>
  *
  * @}
  */
 
-INCLUDE cortexm.ld
+INCLUDE cortexm_rom_offset.ld
 
 MEMORY
 {
-    boot_loader (rx)    : ORIGIN = 0x10000000, LENGTH = 0x100
+    ram       (rwx) : ORIGIN = _ram_start_addr,               LENGTH = 520k
+    /*rom       (rx)   : ORIGIN = _rom_start_addr + _rom_offset, LENGTH = _fw_rom_length /* XIP flash code. */
+    /*rom_boot2 (rx)   : ORIGIN = _ram_start_addr + _ram_length - _rom_offset, LENGTH = _rom_offset /* Stage-2 bootloader is copied to RAM from flash and then executed. */
+    rom       (rx)   : ORIGIN = _rom_start_addr, LENGTH = 2048k /* XIP flash code. */
+    /*rom_boot2 (rx)   : ORIGIN = 0x20041f00, LENGTH = 256*/
 }
 
-SECTIONS {
-    .boot_loader :
-    {
-        __boot_loader_start__ = .;
-        KEEP(*(.boot2));
-        __boot_loader_end__ = .;
-        KEEP(*(.boot2));
-    } > boot_loader
+SECTIONS
+{
+    /* Second stage bootloader is prepended to the image.0x20041f00
 
-    ASSERT(__boot_loader_end__ - __boot_loader_start__ == 256,
-           "ERROR: RP2350 second stage bootloader must be 256 bytes in size")
-
-    /* Reserve 16 KiB of RAM for virtual CMSIS-DAP on-chip debugging adapter
-     * running on the second core */
-    .pico-debug 0x2003C000:
-    {
-        . = . + 16K;
-    } > ram
+    ASSERT(
+        __boot2_end__ - __boot2_start__ == 256,
+        "ERROR: Pico second stage bootloader must be 256 bytes in size"
+    )
 }
+
+INCLUDE cortexm_base.ld
