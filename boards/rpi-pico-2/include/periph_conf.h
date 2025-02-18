@@ -51,28 +51,6 @@
  
  #define NUM_UART ((unsigned int) 2)
  
- #define STDIO_UART_DEV (0)
- #define STDIO_UART_BAUDRATE (115200U)
- 
- static const uart_conf_t uart_config[] = {
-     {
-         .stop_bits = 1,
-         .data_bits = 8,
-         .parity = false,
-         .dev = uart0_hw,
-         .rx_pin = GPIO_PIN(GPIO_BANK_USER, 2),
-         .tx_pin = GPIO_PIN(GPIO_BANK_USER, 3),
-     },
-     {
-         .stop_bits = 1,
-         .data_bits = 8,
-         .parity = false,
-         .dev = uart1_hw,
-         .rx_pin = GPIO_PIN(GPIO_BANK_USER, 4),
-         .tx_pin = GPIO_PIN(GPIO_BANK_USER, 5),
-     }
- };
- 
  #ifdef __cplusplus
  }
  #endif
