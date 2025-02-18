@@ -35,7 +35,7 @@ SECTIONS {
     } > boot_loader
 
     ASSERT(__boot_loader_end__ - __boot_loader_start__ == 256,
-           "ERROR: RP2040 second stage bootloader must be 256 bytes in size")
+           "ERROR: RP2350 second stage bootloader must be 256 bytes in size")
 
     /* Reserve 16 KiB of RAM for virtual CMSIS-DAP on-chip debugging adapter
      * running on the second core */
