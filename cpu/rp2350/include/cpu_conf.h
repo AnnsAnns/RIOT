@@ -31,7 +31,7 @@ typedef enum {
   TIMER1_IRQ_0 = 4,      /*!< 4  TIMER1_IRQ_0 */
   TIMER1_IRQ_1 = 5,      /*!< 5  TIMER1_IRQ_1 */
   TIMER1_IRQ_2 = 6,      /*!< 6  TIMER1_IRQ_2 */
-  TIMER1_IRQ_3 = 7,      /*!< 7  TIMER1_IRQ_3 */
+  TIMER1_IRQ_3 = 7,      /*!< 7Vectors   TIMER1_IRQ_3 */
   PWM_IRQ_WRAP_0 = 8,    /*!< 8  PWM_IRQ_WRAP_0 */
   PWM_IRQ_WRAP_1 = 9,    /*!< 9  PWM_IRQ_WRAP_1 */
   DMA_IRQ_0 = 10,        /*!< 10 DMA_IRQ_0 */
@@ -78,7 +78,6 @@ typedef enum {
   SPAREIRQ_IRQ_5 = 51    /*!< 51 SPAREIRQ_IRQ_5 */
 } IRQn_Type;
 
-#include "core_cm0plus.h"
 #include "cpu_conf_common.h"
 
 #ifdef __cplusplus

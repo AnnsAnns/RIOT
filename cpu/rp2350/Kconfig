@@ -5,11 +5,22 @@
 # directory for more details.
 #
 
-config CPU_FAM_RP23XX
+config CPU_FAM_RP2350
     bool
     select CPU_CORE_CORTEX_M33
 
 config CPU_FAM
-    default "RP23XX" if CPU_FAM_RP23XX
+    default "RP2350" if CPU_FAM_RP2350
+
+config CPU_MODEL_RP2350
+    bool
+    select CPU_FAM_RP2350
+
+config CPU_MODEL
+    default "RP2350" if CPU_MODEL_RP2350
+
+config CPU
+    default "rp2350" if CPU_FAM_RP2350
+
 
 source "$(RIOTCPU)/cortexm_common/Kconfig"
