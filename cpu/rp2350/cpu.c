@@ -31,8 +31,17 @@ static void _cpu_reset(void)
 {
 }
 
+/**
+ * @brief Configure the clock system
+ */
+ static void cpu_clock_init(void)
+ {
+ }
+
 void cpu_init(void)
 {
+    cpu_clock_init();
+
     /* initialize the Cortex-M core */
     cortexm_init();
 
