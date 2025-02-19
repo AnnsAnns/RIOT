@@ -21,7 +21,6 @@
 #include "cpu.h"
 #include "kernel_init.h"
 #include "macros/units.h"
-#include "io_reg.h"
 #include "stdio_base.h"
 
 #define ENABLE_DEBUG        0

@@ -1,17 +1,21 @@
 #ifndef CPU_CONF_H
 #define CPU_CONF_H
 
-#define __CM0PLUS_REV 1    /*!< Core revision r0p1 */
-#define __MPU_PRESENT 0    /*!< MPU present or not */
-#define __NVIC_PRIO_BITS 2 /*!< Number of bits used for Priority Levels */
-#define __VTOR_PRESENT 1   /*!< VTOR present or not */
-#define __Vendor_SysTickConfig \
-  0 /*!< Set to 1 if different SysTick Config is used */
+#define __CM33_REV                     0x0000U /*!< I couldn't find the revision of the CM33 core */
+#define __NVIC_PRIO_BITS               2        /*!< Number of Bits used for Priority Levels                                   */
+#define __Vendor_SysTickConfig         0        /*!< Set to 1 if different SysTick Config is used                              */
+#define __VTOR_PRESENT                 1        /*!< Set to 1 if CPU supports Vector Table Offset Register                     */
+#define __MPU_PRESENT                  1        /*!< MPU present                                                               */
+#define __FPU_PRESENT                  1        /*!< FPU present      */
+#define __FPU_DP                       1        /*!< Double precision FPU present                                               */
+#define __DSP_PRESENT                  1        /*!< DSP present            @TODO: Is this correct?                            */
+#define __SAUREGION_PRESENT            1        /*!< SAU region present     @TODO: Check if correct                                                   */
 
 #define __CHECK_DEVICE_DEFINES
 
 #define CPU_DEFAULT_IRQ_PRIO (1U)
 #define CPU_IRQ_NUMOF (26U)
+
 
 typedef enum {
   /* =  ARM Cortex-M0 Specific Interrupt Numbers  = */
