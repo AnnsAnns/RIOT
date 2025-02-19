@@ -79,6 +79,7 @@ typedef enum {
 } IRQn_Type;
 
 #include "cpu_conf_common.h"
+#include "core_cm33.h"
 
 #ifdef __cplusplus
 extern "C" {
