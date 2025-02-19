@@ -14,7 +14,7 @@
 #define __CHECK_DEVICE_DEFINES
 
 #define CPU_DEFAULT_IRQ_PRIO (1U)
-#define CPU_IRQ_NUMOF (26U)
+#define CPU_IRQ_NUMOF (52U)
 
 
 typedef enum {
