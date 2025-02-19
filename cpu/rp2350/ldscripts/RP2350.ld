@@ -31,7 +31,7 @@ MEMORY
 
 SECTIONS
 {
-    /* Second stage bootloader is prepended to the image.0x20041f00
+    /* Second stage bootloader is prepended to the image.0x20041f00 */
 
     ASSERT(
         __boot2_end__ - __boot2_start__ == 256,
