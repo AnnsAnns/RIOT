@@ -528,7 +528,8 @@ ssize_t coap_handle_req(coap_pkt_t *pkt, uint8_t *resp_buf, unsigned resp_buf_le
     if (retval < 0) {
         /* handlers were not able to process this, so we reply with a RST,
          * unless we got a multicast message */
-        if (!sock_udp_ep_is_multicast(coap_request_ctx_get_local_udp(ctx))) {
+        const sock_udp_ep_t *local = coap_request_ctx_get_local_udp(ctx);
+        if (!local || !sock_udp_ep_is_multicast(local)) {
             return coap_build_reply(pkt, COAP_CODE_EMPTY, resp_buf, resp_buf_len, 0);
         }
     }
@@ -577,7 +578,7 @@ ssize_t coap_tree_handler(coap_pkt_t *pkt, uint8_t *resp_buf, unsigned resp_buf_
 
 ssize_t coap_build_reply_header(coap_pkt_t *pkt, unsigned code,
                                 void *buf, size_t len,
-                                int ct,
+                                uint16_t ct,
                                 void **payload, size_t *payload_len_max)
 {
     uint8_t *bufpos = buf;
@@ -630,7 +631,7 @@ ssize_t coap_build_reply_header(coap_pkt_t *pkt, unsigned code,
     }
 
     if (payload) {
-        if (ct >= 0) {
+        if (ct != COAP_FORMAT_NONE) {
             bufpos += coap_put_option_ct(bufpos, 0, ct);
         }
         *bufpos++ = COAP_PAYLOAD_MARKER;
@@ -648,7 +649,7 @@ ssize_t coap_build_reply_header(coap_pkt_t *pkt, unsigned code,
 ssize_t coap_reply_simple(coap_pkt_t *pkt,
                           unsigned code,
                           uint8_t *buf, size_t len,
-                          unsigned ct,
+                          uint16_t ct,
                           const void *payload, size_t payload_len)
 {
     void *payload_start;
