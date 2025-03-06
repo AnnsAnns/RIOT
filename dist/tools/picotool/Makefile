@@ -23,7 +23,7 @@ include $(RIOTBASE)/pkg/pkg.mk
 # Create a dependency on the picosdk build
 $(CURDIR)/picotool: $(PKG_PREPARED) $(PICOSDK_DIR)/.prepared
 	echo "[INFO] compiling picotool from source now"
-	cd $(PKG_SOURCE_DIR) && cmake -B build -S . -DPICO_SDK_PATH=$(PICO_SDK_PATH)
+	cd $(PKG_SOURCE_DIR) && cmake -B build -S . -DPICO_SDK_PATH=$(PICO_SDK_PATH) -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 	cd $(PKG_SOURCE_DIR)/build && $(MAKE)
 	cp $(PKG_SOURCE_DIR)/build/picotool $(CURDIR)/picotool
 
@@ -35,4 +35,3 @@ $(PICOSDK_DIR)/.prepared:
 	$(MAKE) -C $(RIOTBASE)/dist/tools//picosdk
 
 all: $(CURDIR)/picotool
-

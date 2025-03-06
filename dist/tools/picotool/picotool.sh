@@ -4,8 +4,12 @@
 
 ELFFILE="$1"
 UF2FILE="${UF2FILE:-${ELFFILE%%.elf}.uf2}"
-PICOTOOL_MOUNT_PATH="${PICOTOOL_MOUNT_PATH:-/media/$USER/RPI-RP2}"
 
+echo "[INFO] Converting $ELFFILE to $UF2FILE"
 "$(dirname "$0")"/picotool uf2 convert "$ELFFILE" "$UF2FILE"
 
-cp "$UF2FILE" "$PICOTOOL_MOUNT_PATH"
+echo "[INFO] Loading $UF2FILE onto Pico"
+"$(dirname "$0")"/picotool load "$UF2FILE"
+
+echo "[INFO] Verifying $UF2FILE on Pico"
+"$(dirname "$0")"/picotool verify "$UF2FILE"
