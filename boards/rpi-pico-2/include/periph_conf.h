@@ -1,21 +1,3 @@
-/*
- * Copyright (C) 2021 Ishraq Ibne Ashraf
- *
- * This file is subject to the terms and conditions of the GNU Lesser
- * General Public License v2.1. See the file LICENSE in the top level
- * directory for more details.
- */
-
-/**
- * @ingroup     boards_raspberry-pi-pico
- * @{
- *
- * @file
- * @brief       Configuration of CPU peripherals for Raspberry Pi Pico board
- *
- * @author      Ishraq Ibne Ashraf <ishraq.i.ashraf@gmail.com>
- */
-
  #ifndef PERIPH_CONF_H
  #define PERIPH_CONF_H
  
@@ -27,19 +9,6 @@
  #ifdef __cplusplus
  extern "C" {
  #endif
- 
- /* put here the board peripherals definitions:
- - Available clocks
- - Timers
- - UARTs
- - PWMs
- - SPIs
- - I2C
- - ADC
- - RTC
- - RTT
- etc
-  */
  
  #define CLK_XTAL_FREQ (12000000) // 12MHz.
  
