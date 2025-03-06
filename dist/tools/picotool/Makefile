@@ -35,4 +35,3 @@ $(PICOSDK_DIR)/.prepared:
 	$(MAKE) -C $(RIOTBASE)/dist/tools//picosdk
 
 all: $(CURDIR)/picotool
-
