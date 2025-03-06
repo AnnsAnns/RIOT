@@ -37,6 +37,23 @@ static void _cpu_reset(void)
  {
  }
 
+#define LED_PIN 25
+
+#define pico_default_asm_volatile(...) __asm volatile (".syntax unified\n" __VA_ARGS__)
+
+// ----------------------------------------------------------------------------
+// Single-bit write instructions
+
+// Write a 1-bit value to any output. Equivalent to:
+//
+//     if (val)
+//         gpioc_hilo_out_set(1ull << pin);
+//     else
+//         gpioc_hilo_out_clr(1ull << pin);
+__always_inline static void gpioc_bit_out_put(int pin, bool val) {
+    pico_default_asm_volatile ("mcrr p0, #4, %0, %1, c0" : : "r" (pin), "r" (val));
+}
+
 void cpu_init(void)
 {
     cpu_clock_init();
@@ -48,4 +65,6 @@ void cpu_init(void)
 
     /* initialize stdio prior to periph_init() to allow use of DEBUG() there */
     early_init();
+
+    gpioc_bit_out_put(LED_PIN, 1);
 }

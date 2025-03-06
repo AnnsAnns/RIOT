@@ -18,7 +18,7 @@
 
 
 typedef enum {
-  /* =  ARM Cortex-M0 Specific Interrupt Numbers  = */
+  /* =  ARM Cortex-M33 Specific Interrupt Numbers  = */
   Reset_IRQn =
       -15, /*!< -15  Reset Vector, invoked on Power up and warm reset */
   NonMaskableInt_IRQn =
