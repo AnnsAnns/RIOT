@@ -1,4 +1,3 @@
-PICO_DEBUG      ?=
 ROM_LEN         ?= 2097152 # = 2 MiB used in the RPi Pico 0x1fffffff - 0x10000000 would be 268435455, doesnt seem to be correct but also not too important
 ROM_OFFSET      := 256 # bootloader size Cant find source for this? I think this might be 0x00007fff-0x00007e00 = 512
 # Yet I cant really find why its 256 on the pico2040 so I dont really want to change it
@@ -11,6 +10,8 @@ CFLAGS += -DROM_START_ADDR=$(ROM_START_ADDR)
 CFLAGS += -DRAM_START_ADDR=$(RAM_START_ADDR)
 
 INCLUDES += -I$(RIOTCPU)/rp2350/include
+INCLUDES += -I$(RIOTBASE)/dist/picosdk/src/rp2_common/cmsis/stub/CMSIS/Core/Include 
+INCLUDES += -I$(RIOTBASE)/dist/picosdk/src/rp2_common/cmsis/stub/CMSIS/Device/RP2350/Include
 
 VECTORS_O       ?= $(BINDIR)/cpu/vectors.o
 VECTORS_FILE    := $(RIOTCPU)/rp2350/vectors.c
