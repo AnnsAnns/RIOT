@@ -67,4 +67,8 @@ void cpu_init(void)
     early_init();
 
     gpioc_bit_out_put(LED_PIN, 1);
+
+    // This will cause our program to never return
+    // but also means that we can be sure nothing else is running
+    while (1){}
 }
