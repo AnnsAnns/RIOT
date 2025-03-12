@@ -22,6 +22,7 @@
 #include "kernel_init.h"
 #include "macros/units.h"
 #include "stdio_base.h"
+#include "RP2350.h"
 
 #define ENABLE_DEBUG        0
 #include "debug.h"
@@ -37,22 +38,29 @@ static void _cpu_reset(void)
  {
  }
 
-#define LED_PIN 25
-
-#define pico_default_asm_volatile(...) __asm volatile (".syntax unified\n" __VA_ARGS__)
-
-// ----------------------------------------------------------------------------
-// Single-bit write instructions
-
-// Write a 1-bit value to any output. Equivalent to:
-//
-//     if (val)
-//         gpioc_hilo_out_set(1ull << pin);
-//     else
-//         gpioc_hilo_out_clr(1ull << pin);
-__always_inline static void gpioc_bit_out_put(int pin, bool val) {
-    pico_default_asm_volatile ("mcrr p0, #4, %0, %1, c0" : : "r" (pin), "r" (val));
-}
+ __STATIC_FORCEINLINE void configure_led()
+ {
+   // function 5 = SIO 
+   IO_BANK0->GPIO25_CTRL = 0x05;
+   PADS_BANK0->GPIO25 = 0x34;
+   // enable output
+   SIO->GPIO_OE_SET = 0x01U << 25;
+ }
+ 
+ __STATIC_FORCEINLINE void turn_led_on()
+ {
+   SIO->GPIO_OUT_SET = 0x01U << 25;
+ }
+ 
+ __STATIC_FORCEINLINE void turn_led_off()
+ {
+   SIO->GPIO_OUT_CLR = 0x01U << 25;
+ }
+ 
+ __STATIC_FORCEINLINE void flip_led()
+ {
+   SIO->GPIO_OUT_XOR = 0x01U << 25;
+ }
 
 void cpu_init(void)
 {
@@ -61,14 +69,18 @@ void cpu_init(void)
     /* initialize the Cortex-M core */
     cortexm_init();
 
+    configure_led();
+    turn_led_on();
+
     _cpu_reset();
 
     /* initialize stdio prior to periph_init() to allow use of DEBUG() there */
     early_init();
 
-    gpioc_bit_out_put(LED_PIN, 1);
-
     // This will cause our program to never return
     // but also means that we can be sure nothing else is running
-    while (1){}
+    while (1) {
+        for (int i = 0; i < 1000000; i++) __NOP();
+        flip_led();
+      }
 }

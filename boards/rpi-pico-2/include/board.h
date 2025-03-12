@@ -1,9 +1,9 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "cpu.h"
 #include "periph_conf.h"
 #include "periph_cpu.h"
+#include "cpu_conf.h"
 
 #ifdef __cplusplus
 extern "C" {

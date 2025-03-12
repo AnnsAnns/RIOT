@@ -15,7 +15,7 @@
     // 11 -> 0 (Reserved)
     // 8-10 -> 000 (EXE_CPU_ARM = 0), **WARNING** if I ever want to support RISC-V this needs to be 001 (EXE_CPU_RISCV)
     // 6-7 -> 00 (Reserved)
-    // 4-5 -> 10 (2) EXE Security (As far as I understand we cant run in EXE_SECURITY_NS on the RP2350) thus EXE_SECURITY_S = 2
+    // 4-5 -> 10 (2) EXE Security (As far as I understand we cant run in EXE_SECURITY_NS on the RP2350 [Appears to be correct]) thus EXE_SECURITY_S = 2
     // 0-3 // 0001 IMAGE_TYPE_EXE
     .hword 0b0001000000100001
     // ITEM 0 END see 5.1.5.1 for explanation and 5.9.5.1 for the value / structure

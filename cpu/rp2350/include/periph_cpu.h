@@ -1,9 +1,8 @@
 #ifndef PERIPH_CPU_H
 #define PERIPH_CPU_H
 
+#include <stdbool.h>
 #include <stdint.h>
-
-#include "cpu.h"
 
 #ifdef __cplusplus
 extern "C" {

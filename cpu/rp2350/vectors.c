@@ -21,6 +21,7 @@
 
 #include "cpu_conf.h"
 #include "vectors_cortexm.h"
+#include "RP2350.h"
 
 /* define a local dummy handler as it needs to be in the same compilation unit
  * as the alias definition */
