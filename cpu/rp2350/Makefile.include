@@ -1,23 +1,59 @@
-ROM_LEN         ?= 2097152 # = 2 MiB used in the RPi Pico 0x1fffffff - 0x10000000 would be 268435455, doesnt seem to be correct but also not too important
-ROM_OFFSET      := 256 # bootloader size Cant find source for this? I think this might be 0x00007fff-0x00007e00 = 512
-# Yet I cant really find why its 256 on the pico2040 so I dont really want to change it
-RAM_LEN         := 0x82000 # 520kB = 532479 used in the RPi Pico 2350 0x20081fff - 0x20000000
-ROM_START_ADDR  := 0x10000000 # Appears to be correct for rp2350 XIP Non-Secure
-RAM_START_ADDR  := 0x20000000 # Appears to be correct for rp2350 Non-Secure
+ROM_LEN         ?= 2097152 # = 2 MiB used in the RPi Pico 
+ROM_OFFSET      := 256 # bootloader size
+RAM_LEN         := 0x82000 # 520kB = 532479 used in the RPi Pico 2350
+ROM_START_ADDR  := 0x10000000 # XIP Non-Secure address for rp2350
+RAM_START_ADDR  := 0x20000000 # Non-Secure RAM address for rp2350
 
+# Specify CPU and FPU options
+CPU_ARCH = cortex-m33
+CPU_MODEL ?= rp2350
+
+# Set FPU options (default to soft)
+FPU ?= soft
+
+# Configure FPU flags based on the FPU setting
+ifeq ($(FPU), softfp)
+  CFLAGS += -mfloat-abi=softfp -mfpu=fpv5-sp-d16
+else ifeq ($(FPU), hard)
+  CFLAGS += -mfloat-abi=hard -mfpu=fpv5-sp-d16
+else
+  CFLAGS += -mfloat-abi=soft
+endif
+
+# CPU and architecture specific flags
 CFLAGS += -D$(CPU_MODEL)
 CFLAGS += -DROM_START_ADDR=$(ROM_START_ADDR)
 CFLAGS += -DRAM_START_ADDR=$(RAM_START_ADDR)
-
+CFLAGS += -Wno-error
+# Include paths
 INCLUDES += -I$(RIOTCPU)/rp2350/include
-INCLUDES += -I$(RIOTBASE)/dist/picosdk/src/rp2_common/cmsis/stub/CMSIS/Core/Include 
-INCLUDES += -I$(RIOTBASE)/dist/picosdk/src/rp2_common/cmsis/stub/CMSIS/Device/RP2350/Include
+INCLUDES += -I$(RIOTBASE)/dist/tools/picosdk/picosdk/src/rp2_common/cmsis/stub/CMSIS/Core/Include 
+INCLUDES += -I$(RIOTBASE)/dist/tools/picosdk/picosdk/src/rp2_common/cmsis/stub/CMSIS/Device/RP2350/Include
 
+# Linker flags
+LINKFLAGS += -mcpu=$(CPU_ARCH) -mthumb
+LINKFLAGS += -Wl,--gc-sections
+LINKFLAGS += -Wl,--start-group -lc -lm -Wl,--end-group
+
+# Vector table configuration
 VECTORS_O       ?= $(BINDIR)/cpu/vectors.o
 VECTORS_FILE    := $(RIOTCPU)/rp2350/vectors.c
 
-PROGRAMMERS_SUPPORTED   := picotool openocd jlink
+# Supported programmers and debuggers
+PROGRAMMERS_SUPPORTED := picotool openocd jlink
 PROGRAMMER ?= picotool
-OPENOCD_DEBUG_ADAPTER   ?= dap
+OPENOCD_DEBUG_ADAPTER ?= dap
+OPENOCD_CONFIG = interface/cmsis-dap.cfg -f target/rp2350.cfg
+OPENOCD_RESET_HALT = -c "adapter speed 5000" -c "init; reset; exit;"
 
+# Include the base Cortex-M makefile
 include $(RIOTMAKE)/arch/cortexm.inc.mk
+
+# Ensure we have picosdk
+ifneq (,$(filter picosdk,$(USEPKG)))
+  PICOSDK_DIR = $(PKGDIRBASE)/picosdk
+  
+  # Make picotool depend on picosdk
+  $(RIOTTOOLS)/picotool/picotool: $(PICOSDK_DIR)/.prepared
+    $(Q)cd $(RIOTTOOLS)/picotool && $(MAKE)
+endif
