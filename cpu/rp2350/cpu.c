@@ -76,11 +76,4 @@ void cpu_init(void)
 
     /* initialize stdio prior to periph_init() to allow use of DEBUG() there */
     early_init();
-
-    // This will cause our program to never return
-    // but also means that we can be sure nothing else is running
-    while (1) {
-        for (int i = 0; i < 1000000; i++) __NOP();
-        flip_led();
-      }
 }
