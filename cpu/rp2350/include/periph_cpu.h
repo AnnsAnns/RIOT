@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define PROVIDES_PM_SET_LOWEST
+
 #ifdef __cplusplus
 extern "C" {
 #endif

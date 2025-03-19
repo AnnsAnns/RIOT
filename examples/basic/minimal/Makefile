@@ -1,6 +1,8 @@
 # name of your application
 APPLICATION = minimal
 
+USEMODULE += stdio_null
+
 # If no BOARD is found in the environment, use this default:
 BOARD ?= native
 
