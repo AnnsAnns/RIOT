@@ -1,4 +1,4 @@
-
+#include <stdio.h>
 #include "RP2350.h"
 
 __STATIC_FORCEINLINE void configure_led()
@@ -32,6 +32,7 @@ int main(void) {
     while (1) {
         for (int i = 0; i < 75000000; i++) __NOP();
         flip_led();
+        printf("Hello, World!\n");
     }
     
     volatile int i = 1;
