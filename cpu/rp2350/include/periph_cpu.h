@@ -3,9 +3,11 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+
+#include "cpu.h"
 #include "RP2350.h"
 #include "io_reg.h"
-#include "cpu.h"
+#include "pll_conf.h"
 
 #define PROVIDES_PM_SET_LOWEST
 
