@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include "RP2350.h"
 #include "io_reg.h"
+#include "cpu.h"
 
 #define PROVIDES_PM_SET_LOWEST
 
@@ -65,7 +66,37 @@ typedef struct {
     IRQn_Type irqn;     /**< IRQ number of the UART interface */
 } uart_conf_t;
 
+/**
+ * @brief   Memory layout of GPIO control register in pads bank 0
+ */
+typedef struct {
+    uint32_t slew_rate_fast         : 1;    /**< set slew rate control to fast */
+    uint32_t schmitt_trig_enable    : 1;    /**< enable Schmitt trigger */
+    uint32_t pull_down_enable       : 1;    /**< enable pull down resistor */
+    uint32_t pull_up_enable         : 1;    /**< enable pull up resistor */
+    uint32_t drive_strength         : 2;    /**< GPIO driver strength */
+    uint32_t input_enable           : 1;    /**< enable as input */
+    uint32_t output_disable         : 1;    /**< disable output, overwrite output enable from
+                                             *   peripherals */
+    uint32_t                        : 24;   /**< 24 bits reserved for future use */
+} gpio_pad_ctrl_t;
+/** @} */
 
+/**
+ * @brief   Possible drive strength values for @ref gpio_pad_ctrl_t::drive_strength
+ */
+enum {
+    DRIVE_STRENGTH_2MA,         /**< set driver strength to 2 mA */
+    DRIVE_STRENGTH_4MA,         /**< set driver strength to 4 mA */
+    DRIVE_STRENGTH_8MA,         /**< set driver strength to 8 mA */
+    DRIVE_STRENGTH_12MA,        /**< set driver strength to 12 mA */
+    DRIVE_STRENGTH_NUMOF        /**< number of different drive strength options */
+};
+
+#define RESETS_RESET_uart1_Pos            (23UL)                    /*!< uart1 (Bit 23)                                        */
+#define RESETS_RESET_uart1_Msk            (0x800000UL)              /*!< uart1 (Bitfield-Mask: 0x01)                           */
+#define RESETS_RESET_uart0_Pos            (22UL)                    /*!< uart0 (Bit 22)                                        */
+#define RESETS_RESET_uart0_Msk            (0x400000UL)              /*!< uart0 (Bitfield-Mask: 0x01)                           */
 /* =========================================================================================================================== */
 /* ================                                           UART0                                           ================ */
 /* =========================================================================================================================== */
