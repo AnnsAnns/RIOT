@@ -8,24 +8,13 @@
 #include "RP2350.h"
 #include "io_reg.h"
 #include "pll_conf.h"
+#include "uart_conf.h"
 
 #define PROVIDES_PM_SET_LOWEST
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#ifndef PICO_DEFAULT_UART
-#define PICO_DEFAULT_UART 0
-#endif
-#ifndef PICO_DEFAULT_UART_TX_PIN
-#define PICO_DEFAULT_UART_TX_PIN 16
-#endif
-#ifndef PICO_DEFAULT_UART_RX_PIN
-#define PICO_DEFAULT_UART_RX_PIN 17
-#endif
-
-
 
 #ifdef __cplusplus
 }
