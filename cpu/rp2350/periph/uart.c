@@ -34,9 +34,6 @@
 #define ENABLE_DEBUG    0
 #include "debug.h"
 
-/**
- * @brief   UART device configurations
- */
 static uart_isr_ctx_t ctx[UART_NUMOF];
 
 /* back up values of registers used during uart_poweroff() / uart_poweron() */
@@ -45,25 +42,14 @@ static uint32_t uartfbrd;
 static uint32_t uartlcr_h;
 static uint32_t uartcr;
 
-/**
- * @brief   Enable UART interrupt for RX
- *
- * @param[in] uart      UART device to enable interrupts for
- */
-static void _irq_enable(uart_t uart)
+void _irq_enable(uart_t uart)
 {
     UART0_Type *dev = uart_config[uart].dev;
     dev->UARTIMSC = UART0_UARTIMSC_RXIM_Msk;
     NVIC_EnableIRQ(uart_config[uart].irqn);
 }
 
-/**
- * @brief   Set UART symbol rate
- *
- * @param[in] uart      UART device
- * @param[in] baud      Desired baud rate
- */
-static void _set_symbolrate(uart_t uart, uint32_t baud)
+void _set_symbolrate(uart_t uart, uint32_t baud)
 {
     assert(baud != 0);
     UART0_Type *dev = uart_config[uart].dev;
@@ -87,18 +73,6 @@ static void _set_symbolrate(uart_t uart, uint32_t baud)
     dev->UARTFBRD = baud_fbrd;
 }
 
-/**
- * @brief   Reset and enable UART peripheral
- *
- * @param[in] uart      UART device to power on
- */
-static void _poweron(uart_t uart)
-{
-    uint32_t reset_bit_mask = (uart) ? RESETS_RESET_uart1_Msk : RESETS_RESET_uart0_Msk;
-    periph_reset(reset_bit_mask);
-    periph_reset_done(reset_bit_mask);
-}
-
 int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t uart_parity,
               uart_stop_bits_t stop_bits)
 {
@@ -108,15 +82,18 @@ int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t uart_parity
     io_reg_atomic_clear(&dev->UARTCR,
                         UART0_UARTCR_UARTEN_Msk | UART0_UARTCR_TXE_Msk | UART0_UARTCR_RXE_Msk);
 
-    /* Set data bits */
+    /* Beware of strange hardware bug: If the configuration bitmask is prepared in register and
+     * transferred with a single 32 bit write (updating both parity and number of data bits at the
+     * same time), the configuration change of the parity bits will not take place until after the
+     * next char send out. If the configuration is updated in multiple bus accesses, it will apply
+     * directly to the next char. So: Double check e.g. with tests/periph/uart_mode after touching
+     * the initialization code here */
     dev->UARTLCR_H = (uint32_t)data_bits << UART0_UARTLCR_H_WLEN_Pos;
 
-    /* Set stop bits */
     if (stop_bits == UART_STOP_BITS_2) {
         io_reg_atomic_set(&dev->UARTLCR_H, UART0_UARTLCR_H_STP2_Msk);
     }
 
-    /* Set parity mode */
     switch (uart_parity) {
     case UART_PARITY_NONE:
         break;
@@ -130,7 +107,6 @@ int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t uart_parity
         return UART_NOMODE;
     }
 
-    /* Enable UART, transmitter and receiver */
     io_reg_atomic_set(&dev->UARTCR,
                       UART0_UARTCR_UARTEN_Msk | UART0_UARTCR_TXE_Msk | UART0_UARTCR_RXE_Msk);
 
@@ -140,56 +116,46 @@ int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t uart_parity
 void uart_init_pins(uart_t uart)
 {
     assert((unsigned)uart < UART_NUMOF);
-    
-    /* Configure TX pin */
-    /* Set pad control register for TX pin */
-    gpio_pad_ctrl_t tx_pad_config = {
+    /* not reusing gpio_init() here to not send a char of garbage upon init. Also, we
+     * can use a lower drive strength here, hopefully limiting the current a bit when TX is
+     * connected to the recipients TX by accident. */
+    const gpio_pad_ctrl_t tx_pad_config = {
         .drive_strength = DRIVE_STRENGTH_2MA,
-        .output_disable = 0,
-        .slew_rate_fast = 0,
     };
-    
-    /* Configure RX pin if needed */
+    const gpio_io_ctrl_t tx_io_config = {
+        .function_select = FUNCTION_SELECT_UART,
+    };
+    const gpio_pad_ctrl_t rx_pad_config = {
+        .pull_up_enable = 1,
+        .input_enable = 1,
+        .schmitt_trig_enable = 1,
+    };
+    const gpio_io_ctrl_t rx_io_config = {
+        .function_select = FUNCTION_SELECT_UART,
+    };
+    gpio_set_pad_config(uart_config[uart].tx_pin, tx_pad_config);
+    gpio_set_io_config(uart_config[uart].tx_pin, tx_io_config);
     if (ctx[uart].rx_cb) {
-        gpio_pad_ctrl_t rx_pad_config = {
-            .pull_up_enable = 1,
-            .input_enable = 1,
-            .schmitt_trig_enable = 1,
-        };
-        
-        /* Connect RX pin to UART function */
-        IO_BANK0->GPIO_CTRL[uart_config[uart].rx_pin].CTRL = (2 << 0); /* Function 2 is UART */
-        
-        /* Set pad control registers */
-        PADS_BANK0->GPIO[uart_config[uart].rx_pin] = 
-            (rx_pad_config.pull_up_enable << 3) |
-            (rx_pad_config.input_enable << 6) |
-            (rx_pad_config.schmitt_trig_enable << 1);
+        gpio_set_pad_config(uart_config[uart].rx_pin, rx_pad_config);
+        gpio_set_io_config(uart_config[uart].rx_pin, rx_io_config);
     }
-    
-    /* Connect TX pin to UART function */
-    IO_BANK0->GPIO_CTRL[uart_config[uart].tx_pin].CTRL = (2 << 0); /* Function 2 is UART */
-    
-    /* Set pad control registers */
-    PADS_BANK0->GPIO[uart_config[uart].tx_pin] = 
-        (tx_pad_config.drive_strength << 4) |
-        (tx_pad_config.slew_rate_fast << 0);
 }
 
 void uart_deinit_pins(uart_t uart)
 {
     assert((unsigned)uart < UART_NUMOF);
-    
-    /* Reset TX pin configuration */
-    IO_BANK0->GPIO_CTRL[uart_config[uart].tx_pin].CTRL = 0; /* Function 0 is SIO (GPIO) */
-    PADS_BANK0->GPIO[uart_config[uart].tx_pin] = 0;
-    SIO->GPIO_OE_CLR = 1UL << uart_config[uart].tx_pin;
-    
-    /* Reset RX pin configuration if needed */
+    gpio_reset_all_config(uart_config[uart].tx_pin);
+    SIO->GPIO_OE_CLR = 1LU << uart_config[uart].tx_pin;
     if (ctx[uart].rx_cb) {
-        IO_BANK0->GPIO_CTRL[uart_config[uart].rx_pin].CTRL = 0; /* Function 0 is SIO (GPIO) */
-        PADS_BANK0->GPIO[uart_config[uart].rx_pin] = 0;
+        gpio_reset_all_config(uart_config[uart].rx_pin);
     }
+}
+
+static void _poweron(uart_t uart)
+{
+    uint32_t reset_bit_mask = (uart) ? RESETS_RESET_uart1_Msk : RESETS_RESET_uart0_Msk;
+    periph_reset(reset_bit_mask);
+    periph_reset_done(reset_bit_mask);
 }
 
 void uart_poweron(uart_t uart)
@@ -197,18 +163,15 @@ void uart_poweron(uart_t uart)
     assert((unsigned)uart < UART_NUMOF);
     _poweron(uart);
     UART0_Type *dev = uart_config[uart].dev;
-    
-    /* Restore configuration registers */
+    /* restore configuration registers */
     dev->UARTIBRD = uartibrd;
     dev->UARTFBRD = uartfbrd;
     dev->UARTLCR_H = uartlcr_h;
     dev->UARTCR = uartcr;
-    
-    /* Restore IRQs if needed */
+    /* restore IRQs, if needed */
     if (ctx[uart].rx_cb != NULL) {
         _irq_enable(uart);
     }
-    
     uart_init_pins(uart);
 }
 
@@ -216,14 +179,12 @@ void uart_poweroff(uart_t uart)
 {
     assert((unsigned)uart < UART_NUMOF);
     UART0_Type *dev = uart_config[uart].dev;
-    
-    /* Backup configuration registers */
+    /* backup configuration registers */
     uartibrd = dev->UARTIBRD;
     uartfbrd = dev->UARTFBRD;
     uartlcr_h = dev->UARTLCR_H;
     uartcr = dev->UARTCR;
-    
-    /* Disconnect GPIOs and power off peripheral */
+    /* disconnect GPIOs and power off peripheral */
     uart_deinit_pins(uart);
     periph_reset((uart) ? RESETS_RESET_uart1_Msk : RESETS_RESET_uart0_Msk);
 }
@@ -241,19 +202,18 @@ int uart_init(uart_t uart, uint32_t baud, uart_rx_cb_t rx_cb, void *arg)
     _poweron(uart);
     uart_init_pins(uart);
 
-    /* Set baud rate */
+    /* Beware: Changes to the symbol rate only take affect after touching the UARTLCR_H register,
+     * which is done in uart_mode(). */
     _set_symbolrate(uart, baud);
 
-    /* Configure UART mode: 8N1 by default */
     if (uart_mode(uart, UART_DATA_BITS_8, UART_PARITY_NONE, UART_STOP_BITS_1) != UART_OK) {
         return UART_NOMODE;
     }
 
-    /* Enable RX and IRQs if callback is provided */
+    /* enable RX and IRQs, if needed */
     if (rx_cb != NULL) {
         _irq_enable(uart);
-        
-        /* Clear any pending data and IRQ to avoid receiving garbage */
+        /* clear any pending data and IRQ to avoid receiving a garbage char */
         uint32_t status = dev->UARTRIS;
         dev->UARTICR = status;
         (void)dev->UARTDR;
@@ -269,18 +229,11 @@ void uart_write(uart_t uart, const uint8_t *data, size_t len)
     UART0_Type *dev = uart_config[uart].dev;
 
     for (size_t i = 0; i < len; i++) {
-        /* Wait for TX FIFO to have space */
-        while (dev->UARTFR & UART0_UARTFR_TXFF_Msk) { }
-        
-        /* Write data */
         dev->UARTDR = data[i];
-        
-        /* Wait for TX to complete */
         while (!(dev->UARTRIS & UART0_UARTRIS_TXRIS_Msk)) { }
     }
 }
 
-#ifdef MODULE_PERIPH_UART_RECONFIGURE
 gpio_t uart_pin_rx(uart_t uart)
 {
     assert((unsigned)uart < UART_NUMOF);
@@ -292,14 +245,8 @@ gpio_t uart_pin_tx(uart_t uart)
     assert((unsigned)uart < UART_NUMOF);
     return uart_config[uart].tx_pin;
 }
-#endif
 
-/**
- * @brief Common UART IRQ handler
- *
- * @param[in] num       UART device number
- */
-static void isr_handler(uint8_t num)
+void isr_handler(uint8_t num)
 {
     UART0_Type *dev = uart_config[num].dev;
 
@@ -309,7 +256,7 @@ static void isr_handler(uint8_t num)
     if (status & UART0_UARTMIS_RXMIS_Msk) {
         uint32_t data = dev->UARTDR;
         if (data & (UART0_UARTDR_BE_Msk | UART0_UARTDR_PE_Msk | UART0_UARTDR_FE_Msk)) {
-            DEBUG_PUTS("[rp2350] UART RX error (parity, break, or framing error)");
+            DEBUG_PUTS("[rpx0xx] uart RX error (parity, break, or framing error");
         }
         else {
             ctx[num].rx_cb(ctx[num].arg, (uint8_t)data);
@@ -317,18 +264,12 @@ static void isr_handler(uint8_t num)
     }
 }
 
-/**
- * @brief UART0 IRQ handler
- */
 void isr_uart0(void)
 {
     isr_handler(0);
     cortexm_isr_end();
 }
 
-/**
- * @brief UART1 IRQ handler
- */
 void isr_uart1(void)
 {
     isr_handler(1);
