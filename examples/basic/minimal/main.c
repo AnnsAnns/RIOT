@@ -27,17 +27,10 @@ __STATIC_FORCEINLINE void flip_led()
 
 
 int main(void) {
-    // This will cause our program to never return
-    // but also means that we can be sure nothing else is running
     while (1) {
         for (int i = 0; i < 75000000; i++) __NOP();
         flip_led();
         printf("Hello, World!\n");
-    }
-    
-    volatile int i = 1;
-    
-    while (i) {
     }
 
     return 0;
