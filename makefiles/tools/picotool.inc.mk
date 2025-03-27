@@ -1,4 +1,3 @@
-
 FLASHER ?= $(RIOTTOOLS)/picotool/picotool.sh
 
 FLASHFILE ?= $(ELFFILE)
