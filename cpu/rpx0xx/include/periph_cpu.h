@@ -527,6 +527,11 @@ static inline void gpio_set_function_select(uint8_t pin, gpio_function_select_t 
 }
 
 /**
+ * @brief   Reset value of the GPIO pad configuration register
+ */
+#define GPIO_PAD_REGISTER_RESET_VALUE    (0x00000056)
+
+/**
  * @brief   Restore the default I/O and PAD configuration of the given GPIO pin
  */
 static inline void gpio_reset_all_config(uint8_t pin)
