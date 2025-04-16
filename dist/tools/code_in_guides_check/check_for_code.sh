@@ -62,14 +62,16 @@ markdown_files=$(find "$GUIDES_DIR" -type f \( -name "*.md" -o -name "*.mdx" \))
 
 # Find and process all .md and .mdx files
 for file in $markdown_files; do
+    echo "🧐 Processing file: $file"
+
     # Check if there is a code_folder defined in the markdown file
     code_folder=$(grep -oP 'code_folder:\s*\K.+' "$file")
     if [ -z "$code_folder" ]; then
+        echo "✔️ $file does not specify code_folder, skipping ..."
         continue
     fi
     SOURCE_DIR="$BASE_DIR/$code_folder"
 
-    echo "🧐 Processing file: $file"
     echo "🔍 Looking for code in $SOURCE_DIR"
 
     # Get all code block start lines
