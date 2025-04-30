@@ -14,6 +14,7 @@ PICO_SDK_PATH ?= $(PICOSDK_DIR)/picosdk
 USEPKG += picosdk
 
 PKG_SOURCE_DIR = $(CURDIR)/source
+PKG_BUILD_DIR = $(PKG_SOURCE_DIR)/build
 
 # Include pkg.mk after setting RIOTBASE otherwise it is not found when this
 # Makefile is called stand-alone
@@ -23,8 +24,8 @@ include $(RIOTBASE)/pkg/pkg.mk
 $(CURDIR)/picotool: $(PKG_PREPARED) $(PICOSDK_DIR)/.prepared
 	@echo "[INFO] compiling picotool from source now"
 	@cd $(PKG_SOURCE_DIR) && cmake -B build -S . -DPICO_SDK_PATH=$(PICO_SDK_PATH) -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-	@cd $(PKG_SOURCE_DIR)/build && env --unset=CC --unset=CXX $(MAKE)
-	@cp $(PKG_SOURCE_DIR)/build/picotool $(CURDIR)/picotool
+	@cd $(PKG_BUILD_DIR) && env --unset=CC --unset=CXX $(MAKE)
+	@cp $(PKG_BUILD_DIR)/picotool $(CURDIR)/picotool
 
 # Create a phony target to ensure picosdk is built
 .PHONY: picosdk
@@ -34,3 +35,6 @@ $(PICOSDK_DIR)/.prepared:
 	$(MAKE) -C $(RIOTBASE)/dist/tools/picosdk
 
 all: $(CURDIR)/picotool
+
+clean::
+	rm -f $(CURDIR)/picotool

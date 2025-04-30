@@ -274,15 +274,6 @@ PSEUDOMODULES += lwext4_vfs_format
 ##
 PSEUDOMODULES += libc_gettimeofday
 
-## @defgroup pseudomodule_malloc_tracing malloc_tracing
-## @brief Debug dynamic memory management by hooking in a print into each call
-##        of malloc(), calloc(), realloc() and free
-## @{
-## @deprecated  Use module `malloc_monitor` with verbous configuration instead;
-##              will be removed after 2024.07 release.
-PSEUDOMODULES += malloc_tracing
-## @}
-
 ## @defgroup pseudomodule_mpu_stack_guard mpu_stack_guard
 ## @brief MPU based stack guard
 ##
@@ -351,7 +342,20 @@ PSEUDOMODULES += picolibc
 PSEUDOMODULES += picolibc_stdout_buffered
 PSEUDOMODULES += pktqueue
 PSEUDOMODULES += posix_headers
+## @defgroup sys_stdio_printf_float         Support for printing floats
+## @ingroup sys_stdio
+## @{
+## This module enables printing of floats, if the printf implementation has
+## configurable features.
 PSEUDOMODULES += printf_float
+## @}
+## @defgroup sys_stdio_printf_long_long     Support for printing long long
+## @ingroup sys_stdio
+## @{
+## This module enables printing of long long / unsigned long long, if the printf
+##  implementation has configurable features.
+PSEUDOMODULES += printf_long_long
+## @}
 PSEUDOMODULES += prng
 PSEUDOMODULES += prng_%
 PSEUDOMODULES += psa_riot_cipher_aes_common
@@ -469,6 +473,7 @@ PSEUDOMODULES += shell_cmds_default
 PSEUDOMODULES += shell_hooks
 PSEUDOMODULES += shell_lock_auto_locking
 PSEUDOMODULES += shield_llcc68
+PSEUDOMODULES += shield_sx1262
 PSEUDOMODULES += shield_w5100
 PSEUDOMODULES += slipdev_stdio
 PSEUDOMODULES += slipdev_l2addr

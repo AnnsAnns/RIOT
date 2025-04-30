@@ -48,6 +48,8 @@ LOW_MEMORY_BOARDS := \
   bluepill-stm32f103c8 \
   derfmega128 \
   im880b \
+  nucleo-f070rb \
+  nucleo-f072rb \
   nucleo-f302r8 \
   saml10-xpro \
   saml11-xpro \
@@ -63,6 +65,7 @@ ifeq (,$(filter $(BOARD),$(LOW_MEMORY_BOARDS)))
   USEMODULE += nanocoap_dtls
   USEMODULE += prng_sha256prng
 
+  USEMODULE += nanocoap_sock_observe
   USEMODULE += nanocoap_vfs
   USEMODULE += vfs_default
   # USEMODULE += vfs_auto_format
@@ -72,7 +75,7 @@ ifeq (,$(filter $(BOARD),$(LOW_MEMORY_BOARDS)))
   CFLAGS += -DTHREAD_STACKSIZE_MAIN=\(3*THREAD_STACKSIZE_DEFAULT\)
 
   # always enable auto-format for native
-  ifneq (,$(filter native native64,$(BOARD)))
+  ifneq (,$(filter native native32 native64,$(BOARD)))
     USEMODULE += vfs_auto_format
   endif
 endif

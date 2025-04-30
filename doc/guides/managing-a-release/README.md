@@ -1,3 +1,8 @@
+---
+title: Managing a Release
+description: This page describes the process of managing a release.
+---
+
 # Contents
 
 1. [Checklist](https://github.com/RIOT-OS/RIOT/wiki/Managing-a-Release#1-checklist)
@@ -16,6 +21,9 @@ Steps marked with a :scroll: icon can also be automated with the release manager
 
 **Preparation**
 - [ ] Read “Managing a release” guide
+- [ ] Have an eye on the [release tests](https://github.com/RIOT-OS/RIOT/actions/workflows/release-test.yml) in the weeks up to the soft feature freeze.
+      They might allow you to spot bugs the normal nightly builds do not reveal.
+      They run automatically once a week on Saturday morning.
 - [ ] Gather improvements and tips from previous release manager
 - [ ] Decide and announce feature freeze dates
 - [ ] Create milestone label :scream_cat:, and label PRs that have been already merged

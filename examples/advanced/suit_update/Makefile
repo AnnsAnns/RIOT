@@ -56,7 +56,7 @@ CFLAGS += -DSUIT_MANIFEST_RESOURCE=\"$(SUIT_COAP_ROOT)/$(SUIT_NOTIFY_MANIFEST)\"
 # Enable test_utils_interactive_sync, only used when running automatic test
 DEFAULT_MODULE += test_utils_interactive_sync
 
-ifneq (,$(filter native native64,$(BOARD)))
+ifneq (,$(filter native native32 native64,$(BOARD)))
   USE_ETHOS ?= 0
   IFACE ?= tapbr0
   # Configure two RAM regions with 2K each
@@ -107,10 +107,11 @@ TESTRUNNER_RESET_AFTER_TERM ?= 1
 # with ed25519 support.
 TEST_ON_CI_BLACKLIST = all
 
+# Include global Makefile.include first to apply board aliasses
+include $(RIOTBASE)/Makefile.include
+
 # Add custom SUIT targets
 include $(CURDIR)/Makefile.suit.custom
-
-include $(RIOTBASE)/Makefile.include
 
 # export IFACE for test
 $(call target-export-variables,test-with-config test-with-config/check-config,IFACE)
