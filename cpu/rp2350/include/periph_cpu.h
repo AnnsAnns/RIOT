@@ -24,11 +24,8 @@ extern "C" {
 
 /**
  * @brief   Convert (port, pin) tuple to a @ref gpio_t value
- *
- * @note    The RPX0XX MCU family only has a single GPIO port. Still the API requires a
- *          port parameter, which is currently ignored.
  */
-#define GPIO_PIN(port, pin)     ((((port) & 0)) | (pin))
+#define GPIO_PIN(port, pin)     ((((port) & port)) | (pin))
 
 /**
  * @brief   Reset hardware components
@@ -79,7 +76,7 @@ typedef struct {
     uint32_t schmitt_trig_enable    : 1;    /**< enable Schmitt trigger */
     uint32_t pull_down_enable       : 1;    /**< enable pull down resistor */
     uint32_t pull_up_enable         : 1;    /**< enable pull up resistor */
-    uint32_t drive_strength         : DRIVE_STRENGTH_8MA;    /**< GPIO driver strength */
+    uint32_t drive_strength         : 2;    /**< GPIO driver strength */
     uint32_t input_enable           : 1;    /**< enable as input */
     uint32_t output_disable         : 1;    /**< disable output, overwrite output enable from
                                              *   peripherals */
