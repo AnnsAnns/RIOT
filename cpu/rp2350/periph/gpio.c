@@ -53,7 +53,7 @@
                  .schmitt_trig_enable = 1
              };
              gpio_io_ctrl_t io_config = {
-                 .function_select = FUNCTION_SELECT_SIO,
+                 .function_select = FUNCTION_SELECT_SIO_0,
              };
              gpio_set_pad_config(pin, pad_config);
              gpio_set_io_config(pin, io_config);
@@ -67,7 +67,7 @@
                  .schmitt_trig_enable = 1
              };
              gpio_io_ctrl_t io_config = {
-                 .function_select = FUNCTION_SELECT_SIO,
+                 .function_select = FUNCTION_SELECT_SIO_0,
              };
              gpio_set_pad_config(pin, pad_config);
              gpio_set_io_config(pin, io_config);
@@ -81,7 +81,7 @@
                  .schmitt_trig_enable = 1
              };
              gpio_io_ctrl_t io_config = {
-                 .function_select = FUNCTION_SELECT_SIO,
+                 .function_select = FUNCTION_SELECT_SIO_0,
              };
              gpio_set_pad_config(pin, pad_config);
              gpio_set_io_config(pin, io_config);
@@ -93,7 +93,7 @@
                  .drive_strength = DRIVE_STRENGTH_12MA,
              };
              gpio_io_ctrl_t io_config = {
-                 .function_select = FUNCTION_SELECT_SIO,
+                 .function_select = FUNCTION_SELECT_SIO_0,
              };
              gpio_set_pad_config(pin, pad_config);
              gpio_set_io_config(pin, io_config);

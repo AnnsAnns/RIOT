@@ -123,7 +123,7 @@ void uart_init_pins(uart_t uart) {
       .drive_strength = DRIVE_STRENGTH_2MA,
   };
   const gpio_io_ctrl_t tx_io_config = {
-      .function_select = FUNCTION_SELECT_UART,
+      .function_select = FUNCTION_SELECT_UART0_TX,
   };
   const gpio_pad_ctrl_t rx_pad_config = {
       .pull_up_enable = 1,
@@ -131,7 +131,7 @@ void uart_init_pins(uart_t uart) {
       .schmitt_trig_enable = 1,
   };
   const gpio_io_ctrl_t rx_io_config = {
-      .function_select = FUNCTION_SELECT_UART,
+      .function_select = FUNCTION_SELECT_UART0_TX,
   };
   gpio_set_pad_config(uart_config[uart].tx_pin, tx_pad_config);
   gpio_set_io_config(uart_config[uart].tx_pin, tx_io_config);
