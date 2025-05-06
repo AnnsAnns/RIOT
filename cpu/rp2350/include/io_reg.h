@@ -14,8 +14,8 @@
  * @brief           RP2040 atomic register access macros
  * @details         This allows individual fields of a control register to be
  *                  modified without performing a read-modify-write sequence.
- *                  See section "2.1.2. Atomic Register Access" in
- *                  https://datasheets.raspberrypi.org/rpx0xx/rpx0xx-datasheet.pdf
+ *                  See section "2.1.3. Atomic Register Access" in
+ *                  https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf#%5B%7B%22num%22%3A29%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C115%2C841.89%2Cnull%5D
  *
  * @warning         The Single-cycle IO block (SIO), which contains the GPIO, does not support
  *                  atomic access using these aliases.

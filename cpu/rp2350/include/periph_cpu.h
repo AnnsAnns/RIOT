@@ -72,17 +72,19 @@ typedef struct {
 
 /**
  * @brief   Memory layout of GPIO control register in pads bank 0
+ * As seen in https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf#tab-registerlist_pads_bank0
  */
 typedef struct {
     uint32_t slew_rate_fast         : 1;    /**< set slew rate control to fast */
     uint32_t schmitt_trig_enable    : 1;    /**< enable Schmitt trigger */
     uint32_t pull_down_enable       : 1;    /**< enable pull down resistor */
     uint32_t pull_up_enable         : 1;    /**< enable pull up resistor */
-    uint32_t drive_strength         : 2;    /**< GPIO driver strength */
+    uint32_t drive_strength         : DRIVE_STRENGTH_8MA;    /**< GPIO driver strength */
     uint32_t input_enable           : 1;    /**< enable as input */
     uint32_t output_disable         : 1;    /**< disable output, overwrite output enable from
                                              *   peripherals */
-    uint32_t                        : 24;   /**< 24 bits reserved for future use */
+    uint32_t pad_isolation_control :  1;    /**< isolate pad from chip */
+    uint32_t                        : 23;   /**< 24 bits reserved for future use */
 } gpio_pad_ctrl_t;
 /** @} */
 
@@ -99,38 +101,41 @@ enum {
 
 /**
  * @brief   Memory layout of GPIO control register in IO bank 0
+ * https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf#tab-registerlist_io_bank0
  */
 typedef struct {
-    uint32_t function_select        : 5;    /**< select GPIO function */
-    uint32_t                        : 3;    /**< 3 bits reserved for future use */
-    uint32_t output_override        : 2;    /**< output value override */
-    uint32_t                        : 2;    /**< 2 bits reserved for future use */
-    uint32_t output_enable_override : 2;    /**< output enable override */
-    uint32_t                        : 2;    /**< 2 bits reserved for future use */
-    uint32_t input_override         : 2;    /**< input value override */
-    uint32_t                        : 10;   /**< 10 bits reserved for future use */
-    uint32_t irq_override           : 2;    /**< interrupt inversion override */
-    uint32_t                        : 2;    /**< 2 bits reserved for future use */
+    uint32_t function_select        : 5;    /**< select GPIO function (4:0) */
+    uint32_t                        : 7;    /**< 7 bits reserved (11:5) */
+    uint32_t output_override        : 2;    /**< output value override (13:12) */
+    uint32_t output_enable_override : 2;    /**< output enable override (15:14)*/
+    uint32_t input_override         : 2;    /**< input value override  (17:16)*/
+    uint32_t                        : 10;   /**< 10 bits reserved for future use (27:18) */
+    uint32_t irq_override           : 2;    /**< interrupt override (29:28)*/
+    uint32_t                        : 2;    /**< 2 bits reserved for future use (31:30) */
 } gpio_io_ctrl_t;
 /** @} */
 
 typedef enum {
-    FUNCTION_SELECT_SPI     = 1,    /**< connect pin to the SPI peripheral
-                                     *   (MISO/MOSI/SCK depends on pin) */
-    FUNCTION_SELECT_UART    = 2,    /**< connect pin to the UART peripheral
-                                     *   (TXD/RXD depends on pin) */
-    FUNCTION_SELECT_I2C     = 3,    /**< connect pin to the I2C peripheral
-                                     *   (SCL/SDA depends on pin) */
-    FUNCTION_SELECT_PWM     = 4,    /**< connect pin to the timer for PWM
-                                     *   (channel depends on pin) */
-    FUNCTION_SELECT_SIO     = 5,    /**< use pin as vanilla GPIO */
-    FUNCTION_SELECT_PIO0    = 6,    /**< connect pin to the first PIO peripheral */
-    FUNCTION_SELECT_PIO1    = 7,    /**< connect pin to the second PIO peripheral */
-    FUNCTION_SELECT_CLOCK   = 8,    /**< connect pin to the timer (depending on pin: external clock,
-                                     *   clock output, or not supported) */
-    FUNCTION_SELECT_USB     = 9,    /**< connect pin to the USB peripheral
-                                     *   (function depends on pin) */
-    FUNCTION_SELECT_NONE    = 31,   /**< Reset value, pin unconnected */
+    GPIO_OUTOVER_NORMAL   = 0,    /**< normal operation */
+    GPIO_OUTOVER_INVERT = 1,    /**< inverted output */
+    GPIO_OUTOVER_LOW    = 2,    /**< low output */
+    GPIO_OUTOVER_HIGH   = 3,    /**< high output */
+} gpio_over_options_t;
+
+// Also within the IO_BANK_0 table (not on rp2040 for some reason though? Weird choice)
+typedef enum {
+    FUNCTION_SELECT_JTAG_TCK                 = 0x00,  /**< connect pin to JTAG TCK */
+    FUNCTION_SELECT_SPI0_RX                  = 0x01,  /**< connect pin to SPI0 RX */
+    FUNCTION_SELECT_UART0_TX                 = 0x02,  /**< connect pin to UART0 TX */
+    FUNCTION_SELECT_I2C0_SDA                 = 0x03,  /**< connect pin to I2C0 SDA */
+    FUNCTION_SELECT_PWM_A_0                  = 0x04,  /**< connect pin to PWM_A_0 */
+    FUNCTION_SELECT_SIO_0                    = 0x05,  /**< use pin as vanilla GPIO (SIO) */
+    FUNCTION_SELECT_PIO0_0                   = 0x06,  /**< connect pin to the first PIO peripheral */
+    FUNCTION_SELECT_PIO1_0                   = 0x07,  /**< connect pin to the second PIO peripheral */
+    FUNCTION_SELECT_PIO2_0                   = 0x08,  /**< connect pin to the third PIO peripheral */
+    FUNCTION_SELECT_XIP_SS_N_1               = 0x09,  /**< connect pin to XIP SS_N_1 */
+    FUNCTION_SELECT_USB_MUXING_OVERCURR_DETECT = 0x0a, /**< connect pin to USB muxing overcurrent detection */
+    FUNCTION_SELECT_NULL                     = 0x1f,  /**< Reset value, pin unconnected */
 } gpio_function_select_t;
 
 /**
