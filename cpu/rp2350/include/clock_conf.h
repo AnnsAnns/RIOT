@@ -12,7 +12,6 @@
 #define XOSC_CTRL_ENABLE_VALUE_ENABLE 0xfabu
 #define XOSC_CTRL_ENABLE_LSB    12u
 #define XOSC_STATUS_STABLE_BITS   0x80000000u
-
 /**
  * @brief   Configures the Crystal to run.
  *
@@ -22,11 +21,16 @@
  *
  * The reference hardware manual suggests to use a 12 MHz crystal.
  */
-void xosc_start(uint32_t f_ref);
+void xosc_start(void);
 
 /**
  * @brief   Stop the crystal.
  */
 void xosc_stop(void);
+
+/**
+ * @brief   Sleep for a given number of cycles.
+ */
+void xosc_sleep(int32_t cycles);
 
 #endif

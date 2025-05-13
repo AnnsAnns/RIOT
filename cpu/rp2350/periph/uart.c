@@ -187,10 +187,7 @@ void uart_poweroff(uart_t uart) {
 }
 
 int uart_init(uart_t uart, uint32_t baud, uart_rx_cb_t rx_cb, void *arg) {
-    LED0_ON;
-
   if (uart >= UART_NUMOF) {
-    LED0_OFF;
     return UART_NODEV;
   }
 
@@ -207,7 +204,6 @@ int uart_init(uart_t uart, uint32_t baud, uart_rx_cb_t rx_cb, void *arg) {
 
   if (uart_mode(uart, UART_DATA_BITS_8, UART_PARITY_NONE, UART_STOP_BITS_1) !=
       UART_OK) {
-        LED0_OFF;
     return UART_NOMODE;
   }
 
@@ -231,15 +227,10 @@ void uart_write(uart_t uart, const uint8_t *data, size_t len) {
   UART0_Type *dev = uart_config[uart].dev;
 
   for (size_t i = 0; i < len; i++) {
-    LED0_ON;
     dev->UARTDR = data[i];
     while (!(dev->UARTRIS & UART0_UARTRIS_TXRIS_Msk)) {
-        for (int i = 0; i < 750000; i++) __NOP();
-        LED0_TOGGLE;
     }
   }
-
-  LED0_ON;
 }
 
 gpio_t uart_pin_rx(uart_t uart) {

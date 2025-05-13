@@ -1,7 +1,7 @@
 # name of your application
 APPLICATION = minimal
 
-USEMODULE += stdio_uart
+USEMODULE += stdio_null
 
 # If no BOARD is found in the environment, use this default:
 BOARD ?= rpi-pico-2
