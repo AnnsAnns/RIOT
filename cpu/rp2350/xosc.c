@@ -24,37 +24,26 @@
 #include "macros/units.h"
 #include "RP2350.h"
 #include "io_reg.h"
+#include "periph_cpu.h"
 
-static inline uint32_t _xosc_conf_sartup_delay(uint32_t f_crystal_mhz, uint32_t t_stable_ms)
-{
-    return (((f_crystal_mhz / 1000) * t_stable_ms) + 128) / 256;
-}
-
-
-#define XOSC_STARTUP_DELAY_Pos            (0UL)                     /*!< DELAY (Bit 0)                                         */
-#define XOSC_CTRL_ENABLE_Msk              (0xfff000UL)              /*!< ENABLE (Bitfield-Mask: 0xfff)                         */
-#define XOSC_STARTUP_DELAY_Msk            (0x3fffUL)                /*!< DELAY (Bitfield-Mask: 0x3fff)                         */
-typedef enum {                                  /*!< XOSC_CTRL_ENABLE                                                          */
-    XOSC_CTRL_ENABLE_DISABLE             = 3358,  /*!< DISABLE : DISABLE                                                         */
-    XOSC_CTRL_ENABLE_ENABLE              = 4011,  /*!< ENABLE : ENABLE                                                           */
-  } XOSC_CTRL_ENABLE_Enum;
-
-  #define XOSC_CTRL_ENABLE_Pos              (12UL)                    /*!< ENABLE (Bit 12)                                       */
-  #define XOSC_STATUS_STABLE_Msk            (0x80000000UL)            /*!< STABLE (Bitfield-Mask: 0x01)                          */
+// Based on datasheet 8.2.4 (1ms wait time)
+#define STARTUP_DELAY 47
 
 void xosc_start(uint32_t f_ref)
 {
-    assert(f_ref == MHZ(12));
-    uint32_t delay = _xosc_conf_sartup_delay(f_ref, 1);
-    io_reg_write_dont_corrupt(&XOSC->STARTUP, delay << XOSC_STARTUP_DELAY_Pos,
-                              XOSC_STARTUP_DELAY_Msk);
-    io_reg_write_dont_corrupt(&XOSC->CTRL, XOSC_CTRL_ENABLE_ENABLE << XOSC_CTRL_ENABLE_Pos,
-                              XOSC_CTRL_ENABLE_Msk);
-    while (!(XOSC->STATUS & XOSC_STATUS_STABLE_Msk)) { }
+    // Set the FREQ_RANGE
+    XOSC->CTRL = f_ref;
+    // Set the startup delay (default 1ms)
+    XOSC->STARTUP  = STARTUP_DELAY;
+    // set enable bit
+    io_reg_atomic_set(&XOSC->CTRL, XOSC_CTRL_ENABLE_VALUE_ENABLE << XOSC_CTRL_ENABLE_LSB);
+
+    while (!(XOSC->STATUS & XOSC_STATUS_STABLE_BITS)) {
+        // Wait for the crystal to stabilize
+    }
 }
 
 void xosc_stop(void)
 {
-    io_reg_write_dont_corrupt(&XOSC->CTRL, XOSC_CTRL_ENABLE_DISABLE << XOSC_CTRL_ENABLE_Pos,
-                              XOSC_CTRL_ENABLE_Msk);
+    // @TODO
 }

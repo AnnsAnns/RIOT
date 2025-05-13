@@ -8,10 +8,12 @@
 
 #include "cpu.h"
 #include "RP2350.h"
+
 #include "io_reg.h"
 #include "pll_conf.h"
 #include "uart_conf.h"
 #include "timer_conf.h"
+#include "clock_conf.h"
 
 #define PROVIDES_PM_SET_LOWEST
 
@@ -191,90 +193,5 @@ static inline void gpio_reset_all_config(uint8_t pin)
     *gpio_io_register(pin) = GPIO_IO_REGISTER_RESET_VALUE;
     *gpio_pad_register(pin) = GPIO_PAD_REGISTER_RESET_VALUE;
 }
-
-typedef enum {                                  /*!< CLOCKS_CLK_REF_CTRL_SRC                                                   */
-    CLOCKS_CLK_REF_CTRL_SRC_rosc_clksrc_ph = 0,   /*!< rosc_clksrc_ph : rosc_clksrc_ph                                           */
-    CLOCKS_CLK_REF_CTRL_SRC_clksrc_clk_ref_aux = 1,/*!< clksrc_clk_ref_aux : clksrc_clk_ref_aux                                  */
-    CLOCKS_CLK_REF_CTRL_SRC_xosc_clksrc  = 2,     /*!< xosc_clksrc : xosc_clksrc                                                 */
-  } CLOCKS_CLK_REF_CTRL_SRC_Enum;
-
-  typedef enum {                                  /*!< CLOCKS_CLK_SYS_CTRL_SRC                                                   */
-    CLOCKS_CLK_SYS_CTRL_SRC_clk_ref      = 0,     /*!< clk_ref : clk_ref                                                         */
-    CLOCKS_CLK_SYS_CTRL_SRC_clksrc_clk_sys_aux = 1,/*!< clksrc_clk_sys_aux : clksrc_clk_sys_aux                                  */
-  } CLOCKS_CLK_SYS_CTRL_SRC_Enum;
-
-#define CLOCKS_CLK_SYS_CTRL_SRC_Pos       (0UL)                     /*!< SRC (Bit 0)                                           */
-#define CLOCKS_CLK_REF_CTRL_SRC_Pos       (0UL)                     /*!< SRC (Bit 0)                                           */
-#define CLOCKS_CLK_SYS_CTRL_SRC_Msk       (0x1UL)                   /*!< SRC (Bitfield-Mask: 0x01)                             */
-#define CLOCKS_CLK_SYS_DIV_INT_Pos        (8UL)                     /*!< INT (Bit 8)                                           */
-#define CLOCKS_CLK_REF_DIV_INT_Pos        (8UL)                     /*!< INT (Bit 8)                                           */
-#define CLOCKS_CLK_REF_CTRL_SRC_Msk       (0x3UL)                   /*!< SRC (Bitfield-Mask: 0x03)                             */
-#define CLOCKS_CLK_REF_DIV_INT_Msk        (0x300UL)                 /*!< INT (Bitfield-Mask: 0x03)                             */
-typedef enum {                                  /*!< CLOCKS_CLK_PERI_CTRL_AUXSRC                                               */
-    CLOCKS_CLK_PERI_CTRL_AUXSRC_clk_sys  = 0,     /*!< clk_sys : clk_sys                                                         */
-    CLOCKS_CLK_PERI_CTRL_AUXSRC_clksrc_pll_sys = 1,/*!< clksrc_pll_sys : clksrc_pll_sys                                          */
-    CLOCKS_CLK_PERI_CTRL_AUXSRC_clksrc_pll_usb = 2,/*!< clksrc_pll_usb : clksrc_pll_usb                                          */
-    CLOCKS_CLK_PERI_CTRL_AUXSRC_rosc_clksrc_ph = 3,/*!< rosc_clksrc_ph : rosc_clksrc_ph                                          */
-    CLOCKS_CLK_PERI_CTRL_AUXSRC_xosc_clksrc = 4,  /*!< xosc_clksrc : xosc_clksrc                                                 */
-    CLOCKS_CLK_PERI_CTRL_AUXSRC_clksrc_gpin0 = 5, /*!< clksrc_gpin0 : clksrc_gpin0                                               */
-    CLOCKS_CLK_PERI_CTRL_AUXSRC_clksrc_gpin1 = 6, /*!< clksrc_gpin1 : clksrc_gpin1                                               */
-  } CLOCKS_CLK_PERI_CTRL_AUXSRC_Enum;
-  #define CLOCKS_CLK_PERI_CTRL_ENABLE_Pos   (11UL)                    /*!< ENABLE (Bit 11)                                       */  
-#define CLOCKS_CLK_PERI_CTRL_AUXSRC_Msk   (0xe0UL)                  /*!< AUXSRC (Bitfield-Mask: 0x07)                          */
-#define CLOCKS_CLK_PERI_CTRL_AUXSRC_Pos   (5UL)                     /*!< AUXSRC (Bit 5)                                        */
-
-/**
-* @brief   Configure the system clock to run from the reference clock,
-*          which is the default on boot
-*
-* @param   f_in        Input frequency of the reference clock
-* @param   f_out       Output frequency of the system clock
-* @param   source      Clock source
-*/
-void clock_sys_configure_source(uint32_t f_in, uint32_t f_out,
-                               CLOCKS_CLK_SYS_CTRL_SRC_Enum source);
-
-/**
-* @brief   Configure the reference clock to run from a clock source,
-*          which is either the ROSC or the XOSC
-*
-* @note    Make sure that ROSC or XOSC are properly set up
-*
-* @param   f_in        Input frequency of the reference clock
-* @param   f_out       Output frequency of the system clock
-* @param   source      Clock source
-*/
-void clock_ref_configure_source(uint32_t f_in, uint32_t f_out,
-                               CLOCKS_CLK_REF_CTRL_SRC_Enum source);
-
-                               
-/**
- * @name    RP2040 XOSC configuration
- * @{
- */
-/**
- * @brief   Configures the Crystal to run.
- *
- * @param   f_ref       Desired frequency in Hz
- *
- * @pre     1 MHz <= @p f_ref <= 15 MHz.
- *
- * The reference hardware manual suggests to use a 12 MHz crystal.
- */
-void xosc_start(uint32_t f_ref);
-
-/**
- * @brief   Stop the crystal.
- */
-void xosc_stop(void);
-
-/**
- * @brief   Configure the peripheral clock to run from a dedicated auxiliary
- *          clock source
- *
- * @param   aux     Auxiliary clock source
- */
-void clock_periph_configure(CLOCKS_CLK_PERI_CTRL_AUXSRC_Enum aux);
-
 
 #endif
