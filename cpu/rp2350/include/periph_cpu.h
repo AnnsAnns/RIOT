@@ -89,7 +89,7 @@ typedef struct {
 /** @} */
 
 /**
- * @brief   Possible drive strength values for @ref gpio_pad_ctrl_t::drive_strength
+ * @brief   Possible drive strength values for @ref gpio_pad_ctrl_t::drive_strengthio_reg_atomic_set
  */
 enum {
     DRIVE_STRENGTH_2MA,         /**< set driver strength to 2 mA */

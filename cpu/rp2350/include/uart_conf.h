@@ -1,5 +1,4 @@
-#ifndef UART_CONF_H
-#define UART_CONF_H
+#pragma once
 
 #include "periph_cpu.h"
 #include "macros/units.h"
@@ -50,5 +49,3 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-#endif /* UART_CONF_H */

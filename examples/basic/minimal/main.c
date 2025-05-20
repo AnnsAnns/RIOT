@@ -4,11 +4,10 @@
 #include "periph_conf.h"
 
 int main(void) {
-    while (1) {
-        // Sleep for 12MHz
-        LED0_ON;
-        xosc_sleep(12000000000);
-    }
-
-    return 0;
+  while (true) {
+    xosc_sleep(100);
+    SIO->GPIO_OUT_XOR = 1 << 15;
+    LED0_TOGGLE;
+  }
+  return 0;
 }

@@ -6,6 +6,7 @@
 #include "periph_cpu.h"
 #include "cpu_conf.h"
 #include "periph/gpio.h"
+#include "RP2350.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,6 +21,10 @@ extern "C" {
 #define LED0_OFF        do {SIO->GPIO_OUT_CLR = 1UL << 25;} while (0)
 #define LED0_TOGGLE     do {SIO->GPIO_OUT_XOR = 1UL << 25;} while (0)
 #define LED0_NAME       "LED(Green)"
+
+#define PIN_OUT_ON         do {SIO->GPIO_OUT_SET = 1UL << 15;} while (0)
+#define PIN_OUT_OFF        do {SIO->GPIO_OUT_CLR = 1UL << 15;} while (0)
+#define PIN_OUT_TOGGLE     do {SIO->GPIO_OUT_XOR = 1UL << 15;} while (0)
 /** @} */
 
 #ifdef __cplusplus
