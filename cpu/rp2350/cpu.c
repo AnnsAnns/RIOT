@@ -50,6 +50,15 @@
 #define PLL_PRIM_POSTDIV2_LSB 12u
 #define PLL_PWR_POSTDIVPD_BITS   0x00000008u
 #define CLK_PERI_CTRL_ENABLE_BIT 1 << 11
+#define XOSC_FREQ 12000000
+#define POSTDIV1 6
+#define POSTDIV2 2
+#define CPUFREQ 125000000
+#define FBDIV (CPUFREQ*POSTDIV1*POSTDIV2/XOSC_FREQ)
+
+#define BAUDRATE 921600
+#define IBRD ((8*CPUFREQ + BAUDRATE)/(2*BAUDRATE))/64
+#define FBRD ((8*CPUFREQ + BAUDRATE)/(2*BAUDRATE))%64
 
 /**
  * @name    Ranges for clock frequencies and clock settings
@@ -66,6 +75,10 @@
 #define PLL_REF_DIV_MAX             (1U)    /**< Minimum value of the clock divider applied before
                                              *   feeding in the reference clock into the PLL */
 /** @} */
+#define UART_UARTCR_UARTEN_BITS 1<<0
+#define UART_UARTCR_RXE_BITS 1<<9
+#define UART_UARTCR_TXE_BITS 1<<8
+#define     PADS_BANK0_GPIO0_IE_BITS 1<<6
 
 #if (PD1 < PLL_POSTDIV_MIN) || (PD1 > PLL_POSTDIV_MAX)
 #error "Value for PLL_PRIM_POSTDIV1 out of range, check config"
@@ -153,15 +166,41 @@ static void cpu_clock_init(void) {
 }
 
 #define GPIO_FUNC_SIO 5
+#define GPIO_FUNC_UART 2
 #define PADS_BANK0_ISO_BITS 1<<8
 
+// Get it, Pin + Init, hahahaha
 void pinit(void) {
+    // Set LED (25) and Pin 15 so we can debug with them
     IO_BANK0->GPIO15_CTRL = GPIO_FUNC_SIO;
     IO_BANK0->GPIO25_CTRL = GPIO_FUNC_SIO;
     PADS_BANK0->GPIO25 = PADS_BANK0->GPIO25 & ~PADS_BANK0_ISO_BITS;
     PADS_BANK0->GPIO15 = PADS_BANK0->GPIO15 & ~PADS_BANK0_ISO_BITS;
     SIO->GPIO_OE_SET = 1<<15 | 1<<25;
     SIO->GPIO_OUT = 1<<15;
+}
+
+void uartinit(void) {
+    // Set the UART pins to the correct function
+    IO_BANK0->GPIO0_CTRL = GPIO_FUNC_UART;
+    IO_BANK0->GPIO1_CTRL = GPIO_FUNC_UART;
+    // Clear the ISO bits
+    PADS_BANK0->GPIO0 = PADS_BANK0->GPIO0 & ~PADS_BANK0_ISO_BITS;
+    PADS_BANK0->GPIO1 = PADS_BANK0->GPIO1 & ~PADS_BANK0_ISO_BITS;
+    // Set IE bit for gpio1
+    PADS_BANK0->GPIO1 = PADS_BANK0->GPIO1 | PADS_BANK0_GPIO0_IE_BITS;
+
+    RESETS->RESET = RESETS->RESET & ~RESET_UART0;
+
+    while (!(RESETS->RESET_DONE & RESET_UART0)) {
+    }
+
+    UART0->UARTIBRD = IBRD;
+    UART0->UARTFBRD = FBRD;
+    // 8bits, no parity, 1 stop bit
+    UART0->UARTLCR_H = 0b11<<5;
+    UART0->UARTCR = UART_UARTCR_RXE_BITS | UART_UARTCR_TXE_BITS | UART_UARTCR_UARTEN_BITS;
+
 }
 
 void cpu_init(void) {
