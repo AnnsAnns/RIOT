@@ -5,7 +5,6 @@
 #include "periph_conf.h"
 #include "periph_cpu.h"
 #include "cpu_conf.h"
-#include "periph/gpio.h"
 #include "RP2350.h"
 
 #ifdef __cplusplus

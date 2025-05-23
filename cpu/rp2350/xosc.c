@@ -23,7 +23,6 @@
 
 #include "RP2350.h"
 #include "board.h"
-#include "io_reg.h"
 #include "macros/units.h"
 #include "periph_cpu.h"
 

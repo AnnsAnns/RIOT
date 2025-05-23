@@ -66,6 +66,7 @@
  */
 #define CLOCK_XOSC_MAX              MHZ(15) /**< Maximum crystal frequency */
 #define CLOCK_XOSC_MIN              MHZ(5)  /**< Minimum crystal frequency */
+#define CLOCK_XOSC              (XOSC_HZ) /**< Crystal frequency */
 #define PLL_POSTDIV_MIN             (1U)    /**< Minimum value of the post PLL clock divers */
 #define PLL_POSTDIV_MAX             (7U)    /**< Maximum value of the post PLL clock divers */
 #define PLL_VCO_FEEDBACK_SCALE_MIN  (16U)   /**< Minimum value of the PLL VCO feedback scaler */
