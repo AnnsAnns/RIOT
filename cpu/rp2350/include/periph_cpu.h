@@ -11,6 +11,7 @@
 
 #include "uart_conf.h"
 #include "clock_conf.h"
+#include "helpers.h"
 
 #ifdef __cplusplus
 extern "C" {
