@@ -1,10 +1,10 @@
 # name of your application
-APPLICATION = blinky
+APPLICATION = minimal
 
-USEMODULE += stdio_uart
+USEMODULE += stdio_null
 
 # If no BOARD is found in the environment, use this default:
-BOARD ?= native
+BOARD ?= rpi-pico-2
 
 # This has to be the absolute path to the RIOT base directory:
 RIOTBASE ?= $(CURDIR)/../../..
@@ -15,9 +15,6 @@ RIOTBASE ?= $(CURDIR)/../../..
 DEVELHELP ?= 1
 
 # Change this to 0 show compiler invocation lines by default:
-QUIET ?= 1
-
-# Use a peripheral timer for the delay, if available
-FEATURES_OPTIONAL += periph_timer
+QUIET ?= 0
 
 include $(RIOTBASE)/Makefile.include
