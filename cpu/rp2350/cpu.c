@@ -56,7 +56,7 @@
 #define CPUFREQ 125000000
 #define FBDIV (CPUFREQ*POSTDIV1*POSTDIV2/XOSC_FREQ)
 
-#define BAUDRATE 921600
+#define BAUDRATE 115200
 #define IBRD ((8*CPUFREQ + BAUDRATE)/(2*BAUDRATE))/64
 #define FBRD ((8*CPUFREQ + BAUDRATE)/(2*BAUDRATE))%64
 
@@ -123,8 +123,10 @@ static void _cpu_reset(void) {
 }
 
 /**
- * @brief Configure the clock system
- */
+ * @brief Configures the XOSC and then sets CLK_SYS, PLL_SYS and CLK_PERI to it
+ * @warning Make sure to call clock_reset() before this function to reset the clock system
+ * @note RP2350 Docs Chapter 8, mostly 8.2 for more details
+*/
 static void cpu_clock_init(void) { 
     // Enable the XOSC
     xosc_start(); 
@@ -135,14 +137,12 @@ static void cpu_clock_init(void) {
     //PLL_SYS->CS = REF_DIV; // Set the reference divider
     PLL_SYS->FBDIV_INT = 125; // Set the feedback divider
 
-    uint32_t power = PLL_PWR_PD_BITS | PLL_PWR_VCOPD_BITS | PLL_PWR_POSTDIVPD_BITS;
-
     /**
      * Set the post-dividers for the PLL output.
      */
     PLL_SYS->PRIM = PDIV;
     // Turn on PLL
-    PLL_SYS->PWR = PLL_SYS->PWR & ~power;
+    atomic_bitmask_clear(&PLL_SYS->PWR, PLL_PWR_PD_BITS | PLL_PWR_VCOPD_BITS | PLL_PWR_POSTDIVPD_BITS);
 
     // sleep 20ms
     xosc_sleep(20);
@@ -159,6 +159,7 @@ static void cpu_clock_init(void) {
     // This register contains one decoded bit for each of the clock sources enumerated in the CTRL SRC field.
     // The bit does not directly correlate with the value of the SRC field
     // For example 0x0 is the first bit while 0x1 is the second bit
+    // In some way this makes sense, in some way I lost too much time on this
     while (CLOCKS->CLK_SYS_SELECTED != 2) {}
 
     // src: CLOCKS: CLK_PERI_CTRL 
@@ -204,15 +205,13 @@ void uartinit(void) {
     IO_BANK0->GPIO0_CTRL = GPIO_FUNC_UART;
     IO_BANK0->GPIO1_CTRL = GPIO_FUNC_UART;
     // Clear the ISO bits
-    PADS_BANK0->GPIO0 = PADS_BANK0->GPIO0 & ~PADS_BANK0_ISO_BITS;
-    PADS_BANK0->GPIO1 = PADS_BANK0->GPIO1 & ~PADS_BANK0_ISO_BITS;
+    atomic_bitmask_clear(&PADS_BANK0->GPIO0, PADS_BANK0_ISO_BITS);
+    atomic_bitmask_clear(&PADS_BANK0->GPIO1, PADS_BANK0_ISO_BITS);
     // Set IE bit for gpio1
     PADS_BANK0->GPIO1 = PADS_BANK0->GPIO1 | PADS_BANK0_GPIO0_IE_BITS;
 
-    RESETS->RESET = RESETS->RESET & ~RESET_UART0;
-
-    while (!(RESETS->RESET_DONE & RESET_UART0)) {
-    }
+    // We reset UART0 here, so we can be sure it is in a known state
+    reset_component(RESET_UART0, RESET_UART0);
 
     UART0->UARTIBRD = IBRD;
     UART0->UARTFBRD = FBRD;
@@ -225,14 +224,18 @@ void uartinit(void) {
 void cpu_init(void) {
   /* initialize the Cortex-M core */
   //cortexm_init();
-  pinit();
+  gpio_reset();
+  pinit(); // Init LED + Oscilloscope Pin
 
   //_cpu_reset();
 
   /* initialize stdio prior to periph_init() to allow use of DEBUG() there */
   early_init();
 
+  clock_reset();
   cpu_clock_init();
+
+  uartinit();
 
   /* trigger static peripheral initialization */
   periph_init();
