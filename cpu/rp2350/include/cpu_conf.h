@@ -1,5 +1,4 @@
-#ifndef CPU_CONF_H
-#define CPU_CONF_H
+#pragma once
 
 #include "cpu_conf_common.h"
 #include "RP2350.h"
@@ -17,6 +16,3 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-#endif /* CPU_CONF_H */
-/** @} */

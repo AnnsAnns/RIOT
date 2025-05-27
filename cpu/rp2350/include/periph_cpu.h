@@ -1,5 +1,4 @@
-#ifndef PERIPH_CPU_H
-#define PERIPH_CPU_H
+#pragma once
 
 #define HAVE_GPIO_T
 
@@ -38,4 +37,3 @@ typedef uint32_t gpio_t;
 }
 #endif
 
-#endif

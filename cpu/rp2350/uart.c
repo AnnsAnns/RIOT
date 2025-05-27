@@ -1,5 +1,5 @@
 #include "periph_cpu.h"
-
+#include "uart_conf.h"
 void uartinit(void) {
     // Set the UART pins to the correct function
     IO_BANK0->GPIO0_CTRL = GPIO_FUNC_UART;
@@ -18,5 +18,17 @@ void uartinit(void) {
     // 8bits, no parity, 1 stop bit
     UART0->UARTLCR_H = 0b11<<5;
     UART0->UARTCR = UART_UARTCR_RXE_BITS | UART_UARTCR_TXE_BITS | UART_UARTCR_UARTEN_BITS;
-
 }
+
+void uart_send_char(char c) {
+    while(!(UART0->UARTFR & UART_UARTFR_RXFF_BITS));
+    UART0->UARTDR = c;
+    while(!(UART0->UARTFR & UART_UARTFR_TXFE_BITS));
+}
+
+void uart_send_string(const char *str) {
+    while (*str) {
+        uart_send_char(*str++);
+    }
+}
+

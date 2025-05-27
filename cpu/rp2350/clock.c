@@ -27,8 +27,8 @@ void cpu_clock_init(void) {
     // Turn on PLL
     atomic_clear(&PLL_SYS->PWR, PLL_PWR_PD_BITS | PLL_PWR_VCOPD_BITS | PLL_PWR_POSTDIVPD_BITS);
 
-    // sleep 20ms
-    xosc_sleep(20);
+    // sleep 10ms to allow the PLL to stabilize
+    xosc_sleep(10);
 
     // // Wait for lock
     // while (!(PLL_SYS->CS & PLL_CS_LOCK_BITS)) {

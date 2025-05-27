@@ -16,8 +16,13 @@ extern "C" {
 #define UART_UARTCR_UARTEN_BITS 1<<0
 #define UART_UARTCR_RXE_BITS 1<<9
 #define UART_UARTCR_TXE_BITS 1<<8
+#define UART_UARTFR_RXFF_BITS 1<<6
+#define UART_UARTFR_TXFE_BITS 1<<7
 
 void uartinit(void);
+
+void uart_send_char(char c);
+void uart_send_string(const char *str);
 
 #ifdef __cplusplus
 }
