@@ -6,11 +6,6 @@
 #define ATOMIC_BITMASK_SET_WRITE 0x2000
 #define ATOMIC_BITMASK_CLEAR_WRITE 0x3000
 
-static inline void write_register(volatile uint32_t *reg, uint32_t val)
-{
-    *(volatile uint32_t *)reg = val;
-}
-
 /**
  * @brief Perform an atomic XOR write to a register
  *
@@ -42,4 +37,12 @@ static inline void atomic_bitmask_set(volatile uint32_t *reg, uint32_t val)
 static inline void atomic_bitmask_clear(volatile uint32_t *reg, uint32_t val)
 {
     *(volatile uint32_t *)((uintptr_t)reg | ATOMIC_BITMASK_CLEAR_WRITE) = val;
+}
+
+static inline void reset_component(uint32_t reset_value, uint32_t reset_done_value)
+{
+    atomic_bitmask_clear(&RESETS->RESET, reset_value);
+    while(~RESETS->RESET_DONE & reset_done_value) {
+        // Wait for the reset to complete
+    }
 }

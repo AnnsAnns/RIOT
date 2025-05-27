@@ -170,15 +170,33 @@ static void cpu_clock_init(void) {
 #define GPIO_FUNC_UART 2
 #define PADS_BANK0_ISO_BITS 1<<8
 
+void clock_reset(void) {
+    // Reset the clock system
+    reset_component(RESET_PLL_SYS, RESET_PLL_SYS);
+}
+
+void gpio_reset(void) {
+    reset_component(RESET_PADS_BANK0, RESET_PADS_BANK0);
+    reset_component(RESET_IO_BANK0, RESET_IO_BANK0);
+}
+
 // Get it, Pin + Init, hahahaha
 void pinit(void) {
     // Set LED (25) and Pin 15 so we can debug with them
     IO_BANK0->GPIO15_CTRL = GPIO_FUNC_SIO;
     IO_BANK0->GPIO25_CTRL = GPIO_FUNC_SIO;
-    PADS_BANK0->GPIO25 = PADS_BANK0->GPIO25 & ~PADS_BANK0_ISO_BITS;
-    PADS_BANK0->GPIO15 = PADS_BANK0->GPIO15 & ~PADS_BANK0_ISO_BITS;
+
+    // Clear the ISO bits for GPIO15 and GPIO25
+    // Otherwise the GPIOs will not work
+    atomic_bitmask_clear(&PADS_BANK0->GPIO15, PADS_BANK0_ISO_BITS);
+    atomic_bitmask_clear(&PADS_BANK0->GPIO15, PADS_BANK0_GPIO0_IE_BITS);
+    atomic_bitmask_clear(&PADS_BANK0->GPIO25, PADS_BANK0_ISO_BITS);
+    
+    // Set the GPIO function for GPIO15 and GPIO25
+    // GPIO25 is used for the LED
+    // GPIO15 is used for debugging via Oscilloscope
     SIO->GPIO_OE_SET = 1<<15 | 1<<25;
-    SIO->GPIO_OUT = 1<<15;
+    SIO->GPIO_OUT = 1<<15 | 1<<25;
 }
 
 void uartinit(void) {
@@ -206,7 +224,7 @@ void uartinit(void) {
 
 void cpu_init(void) {
   /* initialize the Cortex-M core */
-  cortexm_init();
+  //cortexm_init();
   pinit();
 
   //_cpu_reset();
