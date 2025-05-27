@@ -103,25 +103,6 @@
 #define PDIV ((PD1 << PLL_PRIM_POSTDIV1_LSB) | (PD2 << PLL_PRIM_POSTDIV2_LSB))
 #define FBDIV ((VCO_FREQ / XOSC_HZ) / REF_DIV)
 
-static void _cpu_reset(void) {
-  LED0_OFF;
-
-    uint32_t mask = RESET_PLL_SYS | RESET_PADS_BANK0 | RESET_IO_BANK0 | RESET_UART0 | RESET_UART1;
-
-
-  // Reset based on 7.5.2
-  RESETS->RESET = mask;
-    RESETS->RESET = RESETS->RESET & ~mask;
-
-  // Wait for the reset to complete
-  while (!((RESETS->RESET_DONE & RESET_PLL_SYS) &&
-           (RESETS->RESET_DONE & RESET_PADS_BANK0) &&
-           (RESETS->RESET_DONE & RESET_IO_BANK0) &&
-           (RESETS->RESET_DONE & RESET_UART0) &&
-           (RESETS->RESET_DONE & RESET_UART1))) {
-  }
-}
-
 /**
  * @brief Configures the XOSC and then sets CLK_SYS, PLL_SYS and CLK_PERI to it
  * @warning Make sure to call clock_reset() before this function to reset the clock system
