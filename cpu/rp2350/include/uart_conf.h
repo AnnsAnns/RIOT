@@ -8,6 +8,17 @@
 extern "C" {
 #endif
 
+#define BAUDRATE 115200
+#define IBRD ((8*CPUFREQ + BAUDRATE)/(2*BAUDRATE))/64
+#define FBRD ((8*CPUFREQ + BAUDRATE)/(2*BAUDRATE))%64
+
+
+#define UART_UARTCR_UARTEN_BITS 1<<0
+#define UART_UARTCR_RXE_BITS 1<<9
+#define UART_UARTCR_TXE_BITS 1<<8
+
+void uartinit(void);
+
 #ifdef __cplusplus
 }
 #endif
