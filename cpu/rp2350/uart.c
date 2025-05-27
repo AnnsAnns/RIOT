@@ -5,8 +5,8 @@ void uartinit(void) {
     IO_BANK0->GPIO0_CTRL = GPIO_FUNC_UART;
     IO_BANK0->GPIO1_CTRL = GPIO_FUNC_UART;
     // Clear the ISO bits
-    atomic_bitmask_clear(&PADS_BANK0->GPIO0, PADS_BANK0_ISO_BITS);
-    atomic_bitmask_clear(&PADS_BANK0->GPIO1, PADS_BANK0_ISO_BITS);
+    atomic_clear(&PADS_BANK0->GPIO0, PADS_BANK0_ISO_BITS);
+    atomic_clear(&PADS_BANK0->GPIO1, PADS_BANK0_ISO_BITS);
     // Set IE bit for gpio1
     PADS_BANK0->GPIO1 = PADS_BANK0->GPIO1 | PADS_BANK0_GPIO0_IE_BITS;
 

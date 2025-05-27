@@ -38,7 +38,7 @@ void xosc_start(void) {
   // Set the startup delay (default 1ms)
   XOSC->STARTUP = STARTUP_DELAY;
   // set enable bit
-  XOSC->CTRL |= (XOSC_CTRL_ENABLE_VALUE_ENABLE << XOSC_CTRL_ENABLE_LSB);
+  atomic_set(&XOSC->CTRL, XOSC_CTRL_ENABLE_VALUE_ENABLE << XOSC_CTRL_ENABLE_LSB);
 
   while (!(XOSC->STATUS & XOSC_STATUS_STABLE_BITS)) {
     // Wait for the crystal to stabilize

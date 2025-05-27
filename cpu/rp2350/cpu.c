@@ -42,9 +42,9 @@ void pinit(void) {
 
     // Clear the ISO bits for GPIO15 and GPIO25
     // Otherwise the GPIOs will not work
-    atomic_bitmask_clear(&PADS_BANK0->GPIO15, PADS_BANK0_ISO_BITS);
-    atomic_bitmask_clear(&PADS_BANK0->GPIO15, PADS_BANK0_GPIO0_IE_BITS);
-    atomic_bitmask_clear(&PADS_BANK0->GPIO25, PADS_BANK0_ISO_BITS);
+    atomic_clear(&PADS_BANK0->GPIO15, PADS_BANK0_ISO_BITS);
+    atomic_clear(&PADS_BANK0->GPIO15, PADS_BANK0_GPIO0_IE_BITS);
+    atomic_clear(&PADS_BANK0->GPIO25, PADS_BANK0_ISO_BITS);
     
     // Set the GPIO function for GPIO15 and GPIO25
     // GPIO25 is used for the LED

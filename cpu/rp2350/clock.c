@@ -25,7 +25,7 @@ void cpu_clock_init(void) {
      */
     PLL_SYS->PRIM = PDIV;
     // Turn on PLL
-    atomic_bitmask_clear(&PLL_SYS->PWR, PLL_PWR_PD_BITS | PLL_PWR_VCOPD_BITS | PLL_PWR_POSTDIVPD_BITS);
+    atomic_clear(&PLL_SYS->PWR, PLL_PWR_PD_BITS | PLL_PWR_VCOPD_BITS | PLL_PWR_POSTDIVPD_BITS);
 
     // sleep 20ms
     xosc_sleep(20);
