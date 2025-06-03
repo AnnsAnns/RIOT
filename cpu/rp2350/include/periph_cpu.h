@@ -15,8 +15,8 @@
 #define HAVE_GPIO_T
 typedef uint32_t gpio_t;
 
-#define LED0_PIN 15
-#define OSC_DEBUG_PIN 25
+#define LED0_PIN_ID 25
+#define OSC_DEBUG_PIN_ID 15
 
 #define RESET_PLL_SYS 1 << 14
 #define RESET_PADS_BANK0 1 << 9

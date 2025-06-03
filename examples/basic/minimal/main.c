@@ -11,10 +11,13 @@
 int main(void) {
     xosc_sleep(1000); // Sleep for 3 secs to connect
 
+    gpio_init(LED0_PIN_ID, GPIO_OUT); // Initialize the LED pin
+    gpio_init(OSC_DEBUG_PIN_ID, GPIO_OUT); // Initialize the debug pin
+
     uint32_t i = 0;
     while (true) {
-        gpio_toggle(15); // Toggle the LED
-        gpio_toggle(OSC_DEBUG_PIN); // Toggle the debug pin
+        gpio_toggle(LED0_PIN_ID); // Toggle the LED
+        gpio_toggle(OSC_DEBUG_PIN_ID); // Toggle the debug pin
         uart_send_string("Hello, RP2350!\n");
         xosc_sleep(300); // Sleep for 1 sec
     }

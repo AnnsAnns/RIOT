@@ -17,17 +17,23 @@ int gpio_init(gpio_t pin, gpio_mode_t mode) {
     // Check if we exceed the maximum number of GPIO pins
     assert(pin < GPIO_PIN_NUMOF);
 
+    // Clear the pin's output enable and output state
+    SIO->GPIO_OE_CLR = 1LU << pin;
+    SIO->GPIO_OUT_CLR = 1LU << pin;
+
     switch (mode) {
         case GPIO_OUT:
             *(uint32_t*)calculate_gpio_io_ctrl_register_addr(pin) = FUNCTION_SELECT_SIO;
 
             volatile uint32_t* pad_reg = (uint32_t*)calculate_gpio_pad_register_addr(pin);
 
-            // Clear the IE Bite to disable input
-            *pad_reg = 0; // We dont want to set anything here, just clear the register
+            // We clear all bits except the drive strength bit
+            // We set that to the highest one possible (12mA)
+            // to mimic the behavior of the pico1 GPIO driver
+            // (Not too sure why we do this, but it seems to be the standard)
+            *pad_reg = 0x3 << 4;
 
             SIO->GPIO_OE_SET = 1 << pin; // Set the pin as output
-            SIO->GPIO_OUT = 1 << pin; // Initialize the pin to HIGH
 
             break;
         default:
