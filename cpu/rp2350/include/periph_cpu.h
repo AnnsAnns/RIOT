@@ -38,18 +38,16 @@ static inline volatile uint32_t calculate_gpio_pad_register_addr(gpio_t pin) {
     return PADS_BANK0_BASE + 4 * (pin + 1);
 }
 
-static inline volatile uint32_t calculate_gpio_io_ctrl_register_addr(gpio_t pin) {
-    // Each pin has a 8 byte register (4 Bytes of CTRL, 4 Bytes of Status),
-    // so we can calculate the address by adding 8 bytes for each pin,
-    // starting at the base address of IO_BANK0
+static volatile uint32_t calculate_gpio_io_status_register_addr(gpio_t pin) {
+    // Each status register is followed by a ctrl register,
     return IO_BANK0_BASE + 8 * pin;
 }
 
-static volatile uint32_t calculate_gpio_io_status_register_addr(gpio_t pin) {
-    // Each ctrl register is followed by a status register,
-    // so we can simply add 4 bytes to the addr calculated by
-    // calculate_gpio_io_ctrl_register_addr
-    return calculate_gpio_io_ctrl_register_addr(pin) + 4;
+static inline volatile uint32_t calculate_gpio_io_ctrl_register_addr(gpio_t pin) {
+    // Each pin has a 8 byte register (4 Bytes of Status, 4 Bytes of CTRL),
+    // so we can calculate the address by adding 8 bytes for each pin,
+    // starting at the base address of IO_BANK0
+    return calculate_gpio_io_status_register_addr(pin) + 4;
 }
 
 #ifdef __cplusplus
