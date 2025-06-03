@@ -2,8 +2,8 @@
 #include "uart_conf.h"
 void uartinit(void) {
   // Set the UART pins to the correct function
-  IO_BANK0->GPIO0_CTRL = GPIO_FUNC_UART;
-  IO_BANK0->GPIO1_CTRL = GPIO_FUNC_UART;
+  IO_BANK0->GPIO0_CTRL = FUNCTION_SELECT_UART;
+  IO_BANK0->GPIO1_CTRL = FUNCTION_SELECT_UART;
   // Clear the ISO bits
   atomic_clear(&PADS_BANK0->GPIO0, PADS_BANK0_ISO_BITS);
   atomic_clear(&PADS_BANK0->GPIO1, PADS_BANK0_ISO_BITS);
