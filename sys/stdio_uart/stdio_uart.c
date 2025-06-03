@@ -35,6 +35,7 @@
 #include "periph/uart.h"
 #include "stdio_base.h"
 #include "stdio_uart.h"
+#include "periph_conf.h"
 
 #define ENABLE_DEBUG 0
 #include "debug.h"

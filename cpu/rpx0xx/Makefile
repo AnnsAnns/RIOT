@@ -1,5 +1,6 @@
 MODULE = cpu
 
+USEPKG += picosdk
 DIRS = $(RIOTCPU)/cortexm_common periph
 
 ifneq (,$(filter pio_i2c,$(USEMODULE)))
