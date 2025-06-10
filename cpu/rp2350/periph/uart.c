@@ -21,20 +21,31 @@ int uart_init(uart_t uart, uint32_t baud, uart_rx_cb_t rx_cb, void *arg) {
 
 int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t parity,
               uart_stop_bits_t stop_bits) {
-  // 8bits, no parity, 1 stop bit
-  UART0->UARTLCR_H = 0b11 << 5;
+  atomic_clear(&UART0->UARTCR, UART_UARTCR_UARTEN_BITS | UART_UARTCR_RXE_BITS |
+                                   UART_UARTCR_TXE_BITS);
+  // Set the data bits, parity, and stop bits
+  UART0->UARTLCR_H = (uint32_t)data_bits << 5;
+
+  switch (parity) {
+    case UART_PARITY_NONE:
+      break;
+    default:
+      // @todo: Implement other parity modes lel
+      return UART_NOMODE;
+  }
+
   UART0->UARTCR =
       UART_UARTCR_RXE_BITS | UART_UARTCR_TXE_BITS | UART_UARTCR_UARTEN_BITS;
+
+  return UART_OK;
 }
 
 void uart_write(uart_t uart, const uint8_t *data, size_t len) {
-    for (size_t i = 0; i < len; i++) {
-        // Wait until RX FIFO is clear before sending the next byte
-        while (!(UART0->UARTFR & UART_UARTFR_RXFF_BITS));
-        UART0->UARTDR = data[i];
-            // Wait until the TX FIFO is empty before sending the next byte
-        while (!(UART0->UARTFR & UART_UARTFR_TXFE_BITS));
-    }
+  for (size_t i = 0; i < len; i++) {
+    UART0->UARTDR = data[i];
+    // Wait until the TX FIFO is empty before sending the next byte
+    while (!(UART0->UARTFR & UART_UARTFR_TXFE_BITS));
+  }
 }
 
 void uart_poweron(uart_t uart) {}
