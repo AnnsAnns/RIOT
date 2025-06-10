@@ -18,7 +18,7 @@ int main(void) {
     while (true) {
         gpio_toggle(LED0_PIN_ID); // Toggle the LED
         gpio_toggle(OSC_DEBUG_PIN_ID); // Toggle the debug pin
-        uart_send_string("Hello, RP2350!\n");
+        printf("Hello World! %u\n", i++); // Print a message to the console
         xosc_sleep(300); // Sleep for 1 sec
     }
   return 0;
