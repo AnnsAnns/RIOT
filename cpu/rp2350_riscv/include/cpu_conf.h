@@ -14,10 +14,9 @@
  *
  * @author          Tom Hert <git@annsann.eu>
  */
-
+#include "cpu.h"
 #include "RP2350.h"
-#include "core_cm33.h"
-#include "cpu_conf_common.h"
+#include "cpu_common.h"
 
 #define CPU_DEFAULT_IRQ_PRIO 1u
 #define CPU_IRQ_NUMOF 52u
@@ -25,6 +24,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define CLIC_NUM_INTERRUPTS CPU_IRQ_NUMOF
 
 /* Table 37 FIFO_ST, 1 if not empty*/
 #define SIO_FIFO_READ_VALID_BIT 0
@@ -35,7 +36,7 @@ extern "C" {
 /**
  * The stack used by core 1, 16 times the thread stack size
  */
-static uint32_t core_1_stack[16*THREAD_STACKSIZE_DEFAULT];
+static volatile uint32_t core_1_stack[16*THREAD_STACKSIZE_DEFAULT];
 
 /**
  * The function signature used for any function passed onto
