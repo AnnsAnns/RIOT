@@ -16,7 +16,7 @@ INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2_common/cmsis/stub/CMSI
 INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2_common/cmsis/stub/CMSIS/Device/RP2350/Include
 INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2350/hardware_regs/include/hardware
 # Linker flags
-LINKFLAGS += -mcpu=$(CPU_ARCH) -mthumb
+LINKFLAGS += -mcpu=$(CPU_ARCH)
 LINKFLAGS += -Wl,--gc-sections
 LINKFLAGS += -Wl,--start-group -lc -lm -Wl,--end-group
 
@@ -29,5 +29,4 @@ PROGRAMMERS_SUPPORTED := picotool openocd jlink
 PROGRAMMER ?= picotool
 OPENOCD_DEBUG_ADAPTER ?= dap
 
-# Include the base Cortex-M makefile
-include $(RIOTMAKE)/arch/cortexm.inc.mk
+include $(RIOTCPU)/riscv_common/Makefile.include

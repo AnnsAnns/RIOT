@@ -2,22 +2,22 @@
 # SPDX-FileCopyrightText: 2025 HAW Hamburg
 # SPDX-License-Identifier: LGPL-2.1-only
 
-config CPU_FAM_RP2350
+config CPU_FAM_RP2350_RISCV
     bool
-    select CPU_CORE_CORTEX_M33
+    select CPU_CORE_RV32IMAC
 
 config CPU_FAM
-    default "RP2350" if CPU_FAM_RP2350
+    default "RP2350_RISCV" if CPU_FAM_RP2350_RISCV
 
-config CPU_MODEL_RP2350
+config CPU_MODEL_RP2350_RISCV
     bool
-    select CPU_FAM_RP2350
+    select CPU_FAM_RP2350_RISCV
 
 config CPU_MODEL
-    default "RP2350" if CPU_MODEL_RP2350
+    default "RP2350_RISCV" if CPU_MODEL_RP2350_RISCV
 
 config CPU
-    default "rp2350" if CPU_FAM_RP2350
+    default "rp2350_riscv" if CPU_FAM_RP2350_RISCV
 
 
-source "$(RIOTCPU)/cortexm_common/Kconfig"
+source "$(RIOTCPU)/riscv_common/Kconfig"
