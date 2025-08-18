@@ -24,7 +24,6 @@
 #include "kernel_init.h"
 #include "macros/units.h"
 #include "periph/gpio.h"
-#include "periph/uart.h"
 #include "periph/init.h"
 #include "periph_cpu.h"
 #include "stdio_base.h"
@@ -39,21 +38,7 @@ void gpio_reset(void) {
     reset_component(RESET_IO_BANK0, RESET_IO_BANK0);
 }
 
-void* core1_main(void* arg) {
-    (void) arg;
-
-    while (1) {
-        for (volatile int i = 0; i < 500; i++) {
-            __NOP();
-        };
-        gpio_toggle(OSC_DEBUG_PIN_ID);
-    }
-}
-
 void cpu_init(void) {
-    /* initialize the Cortex-M core, once UART support is moved
-     * to shared driver as currently this will cause unhandled interrupts */
-    cortexm_init();
 
     /* Reset GPIO state */
     gpio_reset();
@@ -72,10 +57,6 @@ void cpu_init(void) {
 
     /* initialize the board */
     board_init();
-
-    /* Init Core 1 */
-    core1_init(&core1_main, NULL);
-    core1_init(&core1_main, NULL);
 
     while (1) {
         for (volatile int i = 0; i < 500; i++) {

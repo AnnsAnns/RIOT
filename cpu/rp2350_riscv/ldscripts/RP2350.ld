@@ -1,1 +1,1 @@
-INCLUDE cortexm.ld
+INCLUDE riscv.ld

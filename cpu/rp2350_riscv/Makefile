@@ -1,6 +1,6 @@
 MODULE = cpu
 
-DIRS += $(RIOTCPU)/cortexm_common
+DIRS += $(RIOTCPU)/riscv_common
 DIRS += periph
 
 include $(RIOTBASE)/Makefile.base
