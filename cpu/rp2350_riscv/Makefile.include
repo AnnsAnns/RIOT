@@ -9,9 +9,11 @@ CFLAGS += -D$(CPU_MODEL)
 CFLAGS += -DROM_START_ADDR=$(ROM_START_ADDR)
 CFLAGS += -DRAM_START_ADDR=$(RAM_START_ADDR)
 CFLAGS += -Wno-error
+CFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs
+CFLAGS += -mabi=lp64
 
 # Include paths
-INCLUDES += -I$(RIOTCPU)/rp2350/include
+INCLUDES += -I$(RIOTCPU)/rp2350_riscv/include
 INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2_common/cmsis/stub/CMSIS/Core/Include
 INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2_common/cmsis/stub/CMSIS/Device/RP2350/Include
 INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2350/hardware_regs/include/hardware
@@ -19,10 +21,9 @@ INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2350/hardware_regs/inclu
 LINKFLAGS += -mcpu=$(CPU_ARCH)
 LINKFLAGS += -Wl,--gc-sections
 LINKFLAGS += -Wl,--start-group -lc -lm -Wl,--end-group
+LINKFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs
 
-# Vector table configuration
-VECTORS_O       ?= $(BINDIR)/cpu/vectors.o
-VECTORS_FILE    := $(RIOTCPU)/rp2350/vectors.c
+LINKER_SCRIPT ?= riscv.ld
 
 # Supported programmers and debuggers
 PROGRAMMERS_SUPPORTED := picotool openocd jlink

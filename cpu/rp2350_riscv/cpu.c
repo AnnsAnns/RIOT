@@ -22,14 +22,9 @@
 #include "cpu_conf_common.h"
 #include "helpers.h"
 #include "kernel_init.h"
-#include "macros/units.h"
 #include "periph/gpio.h"
 #include "periph/init.h"
 #include "periph_cpu.h"
-#include "stdio_base.h"
-
-#include <stdint.h>
-#include <stdio.h>
 
 #define DEBUG_WITH_OSC
 
@@ -39,6 +34,7 @@ void gpio_reset(void) {
 }
 
 void cpu_init(void) {
+    riscv_init();
 
     /* Reset GPIO state */
     gpio_reset();
@@ -60,7 +56,7 @@ void cpu_init(void) {
 
     while (1) {
         for (volatile int i = 0; i < 500; i++) {
-            __NOP();
+            /* None */
         };
         gpio_toggle(OSC_DEBUG_PIN_ID_2);
     }

@@ -14,12 +14,13 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-#include "periph/uart.h"
-
-#include "periph_cpu.h"
+ #include "cpu.h"
+ #include "periph_cpu.h"
 
 #include "regs/uart.h"
 #include <RP2350.h>
+
+#include "periph/uart.h"
 
 #define ENABLE_DEBUG 0
 #include "debug.h"
@@ -44,7 +45,9 @@ void _irq_enable(uart_t uart) {
     /* We set the UART Receive Interrupt Mask (Bit 4) [See p979 UART 12.1]*/
     dev->UARTIMSC = UART0_UARTIMSC_RXIM_Msk;
     /* Enable the IRQ in the NVIC */
+    #ifdef PICO_ARM
     NVIC_EnableIRQ(uart_config[uart].irqn);
+    #endif
 }
 
 int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t parity,
@@ -217,12 +220,16 @@ void isr_handler(uint8_t num) {
 void isr_uart0(void) {
     isr_handler(0);
     /* @todo ARM SPECIFIC CODE (also below)*/
+    #ifdef PICO_ARM
     cortexm_isr_end();
+    #endif
 }
 
 void isr_uart1(void) {
     isr_handler(1);
+    #ifdef PICO_ARM
     cortexm_isr_end();
+    #endif
 }
 
 /** @} */
