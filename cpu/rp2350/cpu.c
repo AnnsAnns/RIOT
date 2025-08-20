@@ -72,17 +72,6 @@ void cpu_init(void) {
 
     /* initialize the board */
     board_init();
-
-    /* Init Core 1 */
-    core1_init(&core1_main, NULL);
-    core1_init(&core1_main, NULL);
-
-    while (1) {
-        for (volatile int i = 0; i < 500; i++) {
-            __NOP();
-        };
-        gpio_toggle(OSC_DEBUG_PIN_ID_2);
-    }
 }
 
 /** @} */
