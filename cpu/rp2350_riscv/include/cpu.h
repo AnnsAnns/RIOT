@@ -47,7 +47,6 @@ typedef uint32_t gpio_t;
 
 #include "periph_cpu.h"
 #include "periph/gpio.h"
-#include "periph/uart.h"
 
 #include "irq_arch.h"
 #include "clic.h"
