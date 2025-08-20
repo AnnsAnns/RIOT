@@ -17,6 +17,7 @@ fi
 
 echo "[INFO] Converting $ELFFILE to $UF2FILE"
 "$(dirname "$0")"/picotool uf2 convert "$ELFFILE" "$UF2FILE"
+"$(dirname "$0")"/picotool info -a "$UF2FILE"
 
 # -v flag -> Verify
 # -x flag -> eXecute after loading
