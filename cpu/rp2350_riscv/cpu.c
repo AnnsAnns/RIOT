@@ -53,13 +53,6 @@ void cpu_init(void) {
 
     /* initialize the board */
     board_init();
-
-    while (1) {
-        for (volatile int i = 0; i < 500; i++) {
-            /* None */
-        };
-        gpio_toggle(OSC_DEBUG_PIN_ID_2);
-    }
 }
 
 /** @} */

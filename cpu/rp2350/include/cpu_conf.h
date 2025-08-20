@@ -35,7 +35,7 @@ extern "C" {
 /**
  * The stack used by core 1, 16 times the thread stack size
  */
-static uint32_t core_1_stack[16*THREAD_STACKSIZE_DEFAULT];
+static volatile uint32_t core_1_stack[16*THREAD_STACKSIZE_DEFAULT];
 
 /**
  * The function signature used for any function passed onto
