@@ -18,7 +18,16 @@
  #include <stdbool.h>
  #include <stdint.h>
 
+#ifdef RP2350_RISCV
+/* If we use the Hazard3 we have to trick RP2350.h
+ * into believing that core_cm33.h exists (see compat/core_cm33.h)
+ * The official SDK simply imports everything but we want to only
+ * important what matters to us (CMSIS & RP2350.h)
+ * which breaks when RISCV is selected as CM33 is CortexM33
+ * exclusive
+ */
 #include "core_cm33.h"
+#endif
 #include "RP2350.h"
 
 #include "cpu_conf_common.h"

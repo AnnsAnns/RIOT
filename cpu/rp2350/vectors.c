@@ -14,7 +14,7 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-#ifndef MODULE_RP2350_RISCV
+#ifdef MODULE_RP2350_ARM
 #include "RP2350.h"
 #include "cpu_conf.h"
 #include "vectors_cortexm.h"
