@@ -20,6 +20,7 @@
 #include <stdint.h>
 
 #include "RP2350.h"
+#include "cpu_conf.h"
 #include "clock_conf.h"
 #include "cpu.h"
 #include "gpio_conf.h"

@@ -1,17 +1,36 @@
 ifeq (,$(filter rp2350_arm,$(USEMODULE)))
-		CPU_CORE    := cortex-m33
-		CPU_FAM     := RP2350
-		CPU_ARCH    = armv8m
-		CPU_MODEL   = rp2350
+RP2350_ARM := 1
+$(info "Running RP2350 in ARM Mode")
+endif
 
-		include $(RIOTCPU)/cortexm_common/Makefile.features
+ifeq (,$(filter rp2350_riscv,$(USEMODULE)))
+RP2350_RISCV := 1
+$(info "Running RP2350 in RISCV Mode")
+ifdef RP2350_ARM
+$(error Both rp2350_arm and rp2350_riscv are defined. Only one can be enabled at a time.)
+endif
+endif
+
+ifndef (RP2350_RISCV, RP2350_ARM)
+$(error Neither rp2350_arm nor rp2350_riscv are defined.)
+endif
+
+ifdef RP2350_ARM
+CPU_CORE    := cortex-m33
+CPU_FAM     := RP2350
+CPU_ARCH    = armv8m
+CPU_MODEL   = rp2350
+
+include $(RIOTCPU)/cortexm_common/Makefile.features
+
 else
-		CPU_CORE    := rv32
-		CPU_FAM     := RP2350_RISCV
-		CPU_ARCH    = rv32
-		CPU_MODEL   = rp2350_riscv
 
-		include $(RIOTCPU)/riscv_common/Makefile.features
+CPU_CORE    := rv32
+CPU_FAM     := RP2350_RISCV
+CPU_ARCH    = rv32
+CPU_MODEL   = rp2350_riscv
+
+include $(RIOTCPU)/riscv_common/Makefile.features
 endif
 
 FEATURES_PROVIDED += periph_gpio
