@@ -16,7 +16,7 @@ INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2_common/cmsis/stub/CMSI
 INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2_common/cmsis/stub/CMSIS/Device/RP2350/Include
 INCLUDES += -isystem$(RIOTBASE)/build/pkg/picosdk/src/rp2350/hardware_regs/include/hardware
 # Linker flags
-LINKFLAGS += -mcpu=$(CPU_ARCH) -mthumb
+LINKFLAGS += -mcpu=$(CPU_ARCH)
 LINKFLAGS += -Wl,--gc-sections
 LINKFLAGS += -Wl,--start-group -lc -lm -Wl,--end-group
 
@@ -26,6 +26,8 @@ PROGRAMMER ?= picotool
 OPENOCD_DEBUG_ADAPTER ?= dap
 
 ifeq ($(RP2350_ARM), 1)
+LINKFLAGS += -mthumb
+
 include $(RIOTCPU)/cortexm_common/Makefile.features
 # Vector table configuration
 VECTORS_O       ?= $(BINDIR)/cpu/vectors.o
@@ -34,6 +36,7 @@ VECTORS_FILE    := $(RIOTCPU)/rp2350/vectors.c
 # Include the base Cortex-M makefile
 include $(RIOTMAKE)/arch/cortexm.inc.mk
 else
+INCLUDES += -I$(RIOTCPU)/rp2350/compat
 CFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs
 CFLAGS += -mabi=lp64
 LINKFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs

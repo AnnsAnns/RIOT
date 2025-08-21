@@ -15,7 +15,9 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
- /* This  */
+ #include <stdbool.h>
+ #include <stdint.h>
+
 #include "core_cm33.h"
 #include "RP2350.h"
 
@@ -63,6 +65,32 @@ void core1_init(core_1_fn_t function, void *arg);
  *  data from the stack and then jumps to the designated function
  */
 void _core1_trampoline(void);
+
+static inline void fifo_block_processor(void) {
+    #ifdef MODULE_RP2350_ARM
+        __asm__ volatile ("wfe");
+    #else
+        /* See 3.8.6.3.1 h3.block */
+        __asm__ volatile ("slt x0, x0, x0");
+    #endif
+}
+
+static inline void fifo_unblock_processor(void) {
+    #ifdef MODULE_RP2350_ARM
+        __asm__ volatile ("sev");
+    #else
+        /* See 3.8.6.3, h3.unblock */
+        __asm__ volatile ("slt x0, x0, x1");
+    #endif
+}
+
+static inline void no_operation(void) {
+    #ifdef MODULE_RP2350_ARM
+        __asm__ volatile ("nop");
+    #else
+        __asm__ volatile ("ADDI x0, x0, 0");
+    #endif
+}
 
 #ifdef __cplusplus
 }
