@@ -32,6 +32,12 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#ifndef MODULE_RP2350_ARM
+#ifndef MODULE_RP2350_RISCV
+#error "Compiled without specifiying CPU Arch (ARM/RISCV)"
+#endif
+#endif
+
 #define DEBUG_WITH_OSC
 
 void gpio_reset(void) {
@@ -44,7 +50,7 @@ void* core1_main(void* arg) {
 
     while (1) {
         for (volatile int i = 0; i < 500; i++) {
-            __NOP();
+            no_operation();
         };
         gpio_toggle(OSC_DEBUG_PIN_ID);
     }
@@ -53,7 +59,11 @@ void* core1_main(void* arg) {
 void cpu_init(void) {
     /* initialize the Cortex-M core, once UART support is moved
      * to shared driver as currently this will cause unhandled interrupts */
+    #ifdef MODULE_RP2350_ARM
     cortexm_init();
+    #else
+    riscv_init();
+    #endif
 
     /* Reset GPIO state */
     gpio_reset();

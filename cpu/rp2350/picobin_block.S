@@ -5,9 +5,9 @@
  */
 
  #ifdef MODULE_RP2350_ARM
-    #define IMAGE_TYPE_FLAGS 0b0 001 0 000 00 10 0001
+    #define IMAGE_TYPE_FLAGS 0b0001000000100001
  #elif MODULE_RP2350_RISCV
-    #define IMAGE_TYPE_FLAGS 0b0 001 0 001 00 10 0001
+    #define IMAGE_TYPE_FLAGS 0b0001000100100001
 #else
     #error "Architecture was not defined!"
 #endif
