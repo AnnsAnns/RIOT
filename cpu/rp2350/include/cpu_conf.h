@@ -15,9 +15,16 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-#include "RP2350.h"
+ /* This  */
 #include "core_cm33.h"
+#include "RP2350.h"
+
 #include "cpu_conf_common.h"
+
+#ifdef MODULE_RP2350_RISCV
+#include "irq_arch.h"
+#include "clic.h"
+#endif
 
 #define CPU_DEFAULT_IRQ_PRIO 1u
 #define CPU_IRQ_NUMOF 52u

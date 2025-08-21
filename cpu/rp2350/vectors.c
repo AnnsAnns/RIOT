@@ -14,6 +14,7 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
+#ifndef MODULE_RP2350_RISCV
 #include "RP2350.h"
 #include "cpu_conf.h"
 #include "vectors_cortexm.h"
@@ -133,5 +134,5 @@ ISR_VECTOR(1) const isr_t vector_cpu[CPU_IRQ_NUMOF] = {
     (void*)isr_spareirq_4,   /* 50 SPAREIRQ_IRQ_4 */
     (void*)isr_spareirq_5,   /* 51 SPAREIRQ_IRQ_5 */
 };
-
+#endif
 /** @} */

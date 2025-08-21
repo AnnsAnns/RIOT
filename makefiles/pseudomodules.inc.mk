@@ -589,6 +589,9 @@ NO_PSEUDOMODULES += periph_common
 # Modules to automatically start PIO programs
 PSEUDOMODULES += pio_autostart_%
 
+PSEUDOMODULES += rp2350_arm
+PSEUDOMODULES += rp2350_riscv
+
 # Submodules provided by Skald
 PSEUDOMODULES += skald_ibeacon
 PSEUDOMODULES += skald_eddystone
