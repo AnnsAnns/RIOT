@@ -1,6 +1,6 @@
 MODULE = cpu
 
-ifeq (,$(filter rp2350_arm,$(USEMODULE)))
+ifeq ($(RP2350_ARM), 1)
 DIRS += $(RIOTCPU)/cortexm_common
 else
 DIRS += $(RIOTCPU)/riscv_common

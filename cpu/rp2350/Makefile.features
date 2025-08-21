@@ -1,21 +1,21 @@
-ifeq (,$(filter rp2350_arm,$(USEMODULE)))
+ifneq (,$(filter rp2350_arm,$(USEMODULE)))
 RP2350_ARM := 1
 $(info "Running RP2350 in ARM Mode")
 endif
 
-ifeq (,$(filter rp2350_riscv,$(USEMODULE)))
+ifneq (,$(filter rp2350_riscv,$(USEMODULE)))
 RP2350_RISCV := 1
 $(info "Running RP2350 in RISCV Mode")
-ifdef RP2350_ARM
+ifeq ($(RP2350_ARM), 1)
 $(error Both rp2350_arm and rp2350_riscv are defined. Only one can be enabled at a time.)
 endif
 endif
 
-ifndef (RP2350_RISCV, RP2350_ARM)
+ifeq ($(RP2350_RISCV), $(RP2350_ARM))
 $(error Neither rp2350_arm nor rp2350_riscv are defined.)
 endif
 
-ifdef RP2350_ARM
+ifeq ($(RP2350_ARM), 1)
 CPU_CORE    := cortex-m33
 CPU_FAM     := RP2350
 CPU_ARCH    = armv8m
