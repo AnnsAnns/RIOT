@@ -16,8 +16,8 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-#include "RP2350.h"
 #include "cpu.h"
+#include "RP2350.h"
 #include "cpu_conf.h"
 #include "periph_conf.h"
 #include "periph_cpu.h"
