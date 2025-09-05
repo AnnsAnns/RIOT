@@ -2,12 +2,12 @@
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
-export async function getStaticPaths() {
-  const posts = await getCollection("boards");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
-  }));
+export function getStaticPaths() {
+  return [
+    { params: { slug: "clifford" }},
+    { params: { slug: "rover" }},
+    { params: { slug: "spot" }},
+  ];
 }
 console.log("Paths are:");
 console.log(getStaticPaths());
@@ -19,6 +19,6 @@ const post = Astro.props;
 const { Content, headings } = await render(post);
 ---
 
-<StarlightPage>
+<StarlightPage  frontmatter={{ title: 'My custom page' }}>
 blabla
 </StarlightPage>
