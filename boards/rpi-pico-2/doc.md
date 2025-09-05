@@ -1,3 +1,8 @@
+---
+title: Test
+description: Test
+---
+
 @defgroup    boards_rpi_pico_2 Raspberry Pi Pico 2
 @ingroup     boards
 @brief       Support for the RP2350 based Raspberry Pi Pico board

@@ -1,5 +1,5 @@
 ---
-title: Vision
+title: Bission
 description: From proprietary manufacturer silos to a truly open cyber-physical system
 ---
 
