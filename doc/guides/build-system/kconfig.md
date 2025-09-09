@@ -37,7 +37,6 @@ necessary checks on the values according to the parameter definition. After
 that, the `autoconf.h` header file is generated, it contains all the
 configurations in the form of (`CONFIG_` prefixed) macros.
 
----
 # User's guide to configure with Kconfig
 
 ## Configure using menuconfig
