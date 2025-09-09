@@ -95,6 +95,7 @@ export default defineConfig({
             "build-system/build_system",
             "build-system/build_system_basics",
             "build-system/kconfig",
+            "build-system/flashing",
             "build-system/build-in-docker",
             "build-system/advanced_build_system_tricks",
             "build-system/debugging_aids",
