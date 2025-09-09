@@ -83,6 +83,10 @@ export default defineConfig({
                 "rust_tutorials/create_project",
               ],
             },
+            {
+              label: "Advanced",
+              items: ["advanced_tutorials/device_drivers"],
+            },
           ],
         },
         {
