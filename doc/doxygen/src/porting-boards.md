@@ -1,4 +1,4 @@
-Porting boards                                                 {#porting-boards}
+Porting boards (Deprecated)                                                 {#porting-boards}
 ================
 
 At some point you might need to port a new `BOARD` to `RIOT`, either because

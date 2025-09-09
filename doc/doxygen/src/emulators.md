@@ -1,4 +1,4 @@
-Emulators                                                 {#emulators}
+Emulators (Deprecated)                                                 {#emulators}
 =========
 
 @deprecated Guides have moved to the [Guide Site](https://guide.riot-os.org/misc/emulators/).
