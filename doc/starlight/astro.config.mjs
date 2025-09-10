@@ -85,7 +85,10 @@ export default defineConfig({
             },
             {
               label: "Advanced",
-              items: ["advanced_tutorials/device_drivers"],
+              items: [
+                "advanced_tutorials/device_drivers",
+                "advanced_tutorials/porting_boards",
+              ],
             },
           ],
         },
