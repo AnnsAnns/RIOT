@@ -110,6 +110,7 @@ export default defineConfig({
           label: "Miscellaneous",
           items: [
             "misc/dev_best_practices",
+            "misc/io_mapping_and_shields",
             "misc/roadmap",
             "misc/release_cycle",
             "misc/emulators",
