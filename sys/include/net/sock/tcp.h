@@ -18,7 +18,9 @@
  *
  * How To Use
  * ----------
- * First you need to @ref including-modules "include" a module that implements
+ * First you need to
+ * [include](https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules)
+ * a module that implements
  * this API in your application's Makefile. For example the implementation for
  * @ref net_gnrc "GNRC" is called `gnrc_sock_tcp`.
  *
@@ -84,7 +86,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Above you see a simple TCP echo server. Don't forget to also
- * @ref including-modules "include" the IPv6 module of your networking
+ * [include](https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules)
+ * the IPv6 module of your networking
  * implementation (e.g. `gnrc_ipv6_default` for @ref net_gnrc GNRC) and at least
  * one network device.
  *
@@ -233,7 +236,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Above you see a simple TCP echo client. Again: Don't forget to also
- * @ref including-modules "include" the IPv6 module of your networking
+ * [include](https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules)
+ * the IPv6 module of your networking
  * implementation (e.g. `gnrc_ipv6_default` for @ref net_gnrc "GNRC") and at
  * least one network device. Ad0)ditionally, for the IPv6 address parsing you need
  * the @ref net_ipv6_addr "IPv6 address module".

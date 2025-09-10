@@ -19,8 +19,10 @@
  * How To Use
  * ----------
  *
- * You need to [include](@ref including-modules) at least one module that
- * implements a [`sock` API](@ref net_sock) (e.g. `gnrc_sock_udp` and
+ * You need to
+ * [include](https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules)
+ *  at least one module that implements a [`sock` API](@ref net_sock)
+ * (e.g. `gnrc_sock_udp` and
  * `gnrc_sock_async` for the [GNRC](@ref net_gnrc) implementation using UDP) and
  * the module `sock_async_event` in your application's Makefile.
  *
@@ -82,7 +84,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Above you see a simple UDP echo server using @ref sys_event. Don't forget to
- * also @ref including-modules "include" the IPv6 module of your networking
+ * also [include](https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules)
+ * the IPv6 module of your networking
  * implementation (e.g. `gnrc_ipv6_default` for @ref net_gnrc GNRC) and at least
  * one network device.
  *
