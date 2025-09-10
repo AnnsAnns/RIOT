@@ -42,13 +42,21 @@ export default defineConfig({
           ],
         },
         {
+          label: "Code of Conduct",
+          collapsed: true,
+          items: [
+            "general/code_of_conduct",
+            "general/code_of_conduct/faq",
+            "general/code_of_conduct/reporting",
+          ],
+        },
+        {
           label: "RIOT in a Nutshell",
           items: [
             { label: "Introduction", slug: "index" },
             "general/structure",
             "general/vision",
             "general/governance",
-            "general/code_of_conduct",
           ],
         },
         {
