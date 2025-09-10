@@ -102,6 +102,7 @@ export default defineConfig({
             "misc/roadmap",
             "misc/release_cycle",
             "misc/emulators",
+            "misc/terminal_config",
             "misc/how_to_doc",
           ],
         },
