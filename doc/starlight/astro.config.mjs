@@ -90,13 +90,15 @@ export default defineConfig({
           items: [
             "build-system/build_system",
             "build-system/build_system_basics",
+            "build-system/kconfig",
             "build-system/build-in-docker",
             "build-system/advanced_build_system_tricks",
+            "build-system/debugging_aids",
           ],
         },
         {
           label: "Miscellaneous",
-          items: ["misc/release_cycle", "misc/how_to_doc"],
+          items: ["misc/release_cycle", "misc/emulators", "misc/how_to_doc"],
         },
       ],
       customCss: ["./src/styles/custom.css", "./src/fonts/font-face.css"],
