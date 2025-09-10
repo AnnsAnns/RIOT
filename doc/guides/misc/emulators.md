@@ -81,7 +81,9 @@ Depending on your local system, the installation procedure is described on the
 
 ## Boards supported
 
-So far, in RIOT, only the [BBC micro:bit](https://doc.riot-os.org/group__boards__microbit.html) board is supported with qemu.
+So far, in RIOT, only the
+[BBC micro:bit](https://doc.riot-os.org/group__boards__microbit.html)
+board is supported with qemu.
 
 ## Configuration
 
