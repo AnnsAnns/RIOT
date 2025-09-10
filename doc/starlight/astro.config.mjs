@@ -98,7 +98,12 @@ export default defineConfig({
         },
         {
           label: "Miscellaneous",
-          items: ["misc/release_cycle", "misc/emulators", "misc/how_to_doc"],
+          items: [
+            "misc/roadmap",
+            "misc/release_cycle",
+            "misc/emulators",
+            "misc/how_to_doc",
+          ],
         },
       ],
       customCss: ["./src/styles/custom.css", "./src/fonts/font-face.css"],
