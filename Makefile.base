@@ -188,6 +188,7 @@ $(ASMOBJ): $(BINDIR)/$(MODULE)/%.o: %.s
 
 $(ASSMOBJ): $(BINDIR)/$(MODULE)/%.o: %.S $(OBJ_DEPS) | $(if $(SHOULD_RUN_KCONFIG),$(KCONFIG_GENERATED_AUTOCONF_HEADER_C))
 	$(Q)$(CCAS) $(CCASFLAGS) $(INCLUDES) -MQ '$@' -MD -MP -c -o $@ $(abspath $<)
+	$(info Compiling $<)
 ifneq (,$(SHOULD_RUN_KCONFIG))
 	$(Q)$(FIXDEP) $(@:.o=.d) $@ $(KCONFIG_SYNC_DIR) > $(@:.o=.tmp)
 	$(Q)mv $(@:.o=.tmp) $(@:.o=.d)

@@ -13,6 +13,8 @@ REALMODULES += $(filter-out $(PSEUDOMODULES), $(_ALLMODULES))
 REALMODULES += $(filter $(NO_PSEUDOMODULES), $(_ALLMODULES))
 BASELIBS += $(REALMODULES:%=%.module)
 
+$(error Baselibbib $(_ALLMODULES))
+
 # Add modules compiled with Makefile.base and extra archives
 GENERATED_MODULES = $(notdir $(shell find $(BINDIR) -type d)) $(basename $(notdir $(ARCHIVES)))
 

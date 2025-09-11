@@ -724,6 +724,8 @@ _BASELIBS_VALUE_BEFORE_USAGE := $(BASELIBS)
 # Only use --start-group when archives are defined
 ARCHIVES_GROUP = $(if $(ARCHIVES),$(LINKFLAGPREFIX)--start-group $(ARCHIVES) -lm $(LINKFLAGPREFIX)--end-group, -lm)
 
+$(info "Banana $(BASELIBS)")
+
 $(ELFFILE): FORCE
 ifeq ($(BUILDOSXNATIVE),1)
   _LINK = $(if $(CPPMIX),$(LINKXX),$(LINK)) $$(find $(BASELIBS:%.module=$(BINDIR)/%/) -name "*.o" 2> /dev/null | sort) $(ARCHIVES_GROUP) $(LINKFLAGS) $(LINKFLAGPREFIX)-no_pie

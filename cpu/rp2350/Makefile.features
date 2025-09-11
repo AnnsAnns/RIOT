@@ -26,12 +26,23 @@ include $(RIOTCPU)/cortexm_common/Makefile.features
 else
 
 CPU_CORE    := rv32
-CPU_FAM     := RP2350_RISCV
+CPU_FAM     := RP2350
 CPU_ARCH    = rv32
-CPU_MODEL   = rp2350_riscv
+CPU_MODEL   = rp2350
+
+$(info BEFORE: $(USEMODULE))
+USEMODULE := $(USEMODULE) riscv_common
+$(info AFTER: $(USEMODULE))
 
 include $(RIOTCPU)/riscv_common/Makefile.features
 endif
 
+$(info CPU_CORE: $(CPU_CORE))
+$(info CPU_FAM: $(CPU_FAM))
+$(info CPU_ARCH: $(CPU_ARCH))
+$(info CPU_MODEL: $(CPU_MODEL))
+
 FEATURES_PROVIDED += periph_gpio
 FEATURES_PROVIDED += periph_uart
+
+$(info FEATURES_PROVIDED: $(FEATURES_PROVIDED))
