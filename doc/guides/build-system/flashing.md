@@ -8,7 +8,7 @@ description: Guide on how to flash boards using RIOT's build system
 In general, flashing a board from RIOT is as straight forward as typing in a
 shell (with the application directory as current working directory):
 
-```
+```sh
 make BOARD=<BOARD-TO-FLASH> flash
 ```
 
@@ -16,7 +16,7 @@ This will **rebuild** ***AND*** **flash** the application in the current working
 directory for board `<BOARD-TO-FLASH>`, using its default programming tool. If
 you want to use an alternative programming tool, say `stm32flash`, use:
 
-```
+```sh
 make BOARD=<BOARD-TO-FLASH> PROGRAMMER=stm32flash flash
 ```
 
@@ -180,7 +180,7 @@ to use non-default OpenOCD configuration file.
 select a non-default transport protocol. E.g. to use JTAG rather than SWD for a
 board that defaults to SWD use:
 
-```
+```sh
 make PROGRAMMER=openocd OPENOCD_TRANSPORT=jtag
 ```
 
@@ -272,7 +272,7 @@ Procedure:
 - Create a `makefile.pre` that will query the real `PORT` and the
   `DEBUG_ADAPTER_ID` from the `SYMLINK` info
 
-```
+```makefile
     PORT = /dev/riot/tty-$(BOARD)
     DEBUG_ADAPTER_ID = $(\
         shell udevadm info -q property $(PORT) |\
@@ -282,14 +282,14 @@ Procedure:
 - You can now add `makefile.pre` to `RIOT_MAKEFILES_GLOBAL_PRE` as an environment
   variable or on each `make` call:
 
-```
+```sh
     $ RIOT_MAKEFILES_GLOBAL_PRE=/path/to/makefile.pre make -C examples/basic/hello-world flash term
 ```
 
 > **Note:** if set as an environment variable it would be a good idea to add a
       variable to enable/disable it, e.g:
 
-```
+```makefile
 ifeq (1,$(ENABLE_LOCAL_BOARDS))
     PORT = /dev/riot/tty-$(BOARD)
     DEBUG_ADAPTER_ID = $(\
@@ -309,7 +309,7 @@ having a way to identify every copy.
 
 Another way would be to map the `DEBUG_ADAPTER_ID` in the name:
 
-```
+```makefile
 SYMLINK+="riot/node-$attr{serial}
 ```
 
@@ -327,7 +327,7 @@ multiple symlinks for each board. e.g. for `samr21-xpro` number `n`:
 
 Then, when flashing, the number can be specified and the parsing adapted:
 
-```
+```makefile
     ifneq(,$(BOARD_NUM))
       PORT = /dev/riot/tty-$(BOARD)-$(BOARD_NUM)
     else
@@ -338,7 +338,7 @@ Then, when flashing, the number can be specified and the parsing adapted:
       sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
 ```
 
-```
+```sh
     BOARD=samr21-xpro BOARD_NUM=n make flash term
 ```
 
@@ -374,7 +374,7 @@ left as an exercise to the reader.
 
 The following Make snippet is used:
 
-```
+```makefile
     LOCAL_BOARD_MAP ?= 1
 
     # Adapt this list to your board collection
@@ -406,7 +406,7 @@ The array of board serial numbers has to be edited to match your local boards.
 The serial numbers used here is the USB device serial number as reported by
 the debugger hardware. With the `make list-ttys` it is reported as the 'serial':
 
-```
+```sh
 $ make list-ttys
 path         | driver  | vendor                   | model                                | model_db              | serial                   | ctime
 -------------|---------|--------------------------|--------------------------------------|-----------------------|--------------------------|---------
@@ -491,7 +491,7 @@ was found. We can still use the `ttys.py` script to detect all Arduino Mega
 2560 versions: We first try to detect a genuine Arduino Mega and fall back to
 selecting cheap USB UART bridges when that fails using the `||` shell operator:
 
-```
+```makefile
   TTY_SELECT_CMD := $(RIOTTOOLS)/usb-serial/ttys.py \
                     --most-recent \
                     --format path serial \

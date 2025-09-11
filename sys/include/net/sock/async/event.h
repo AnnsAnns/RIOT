@@ -20,7 +20,7 @@
  * ----------
  *
  * You need to
- * [include](https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules)
+ * [include][include-link]
  *  at least one module that implements a [`sock` API](@ref net_sock)
  * (e.g. `gnrc_sock_udp` and
  * `gnrc_sock_async` for the [GNRC](@ref net_gnrc) implementation using UDP) and
@@ -84,7 +84,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Above you see a simple UDP echo server using @ref sys_event. Don't forget to
- * also [include](https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules)
+ * also [include][include-link]
  * the IPv6 module of your networking
  * implementation (e.g. `gnrc_ipv6_default` for @ref net_gnrc GNRC) and at least
  * one network device.
@@ -161,6 +161,8 @@
  *     sock_udp_event_init(&sock, &queue, handler, NULL);
  *     event_loop(&queue);
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * [include-link]: https://guide.riot-os.org/advanced_tutorials/creating_application/#including-modules
  *
  * @{
  *

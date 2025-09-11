@@ -23,7 +23,7 @@ to care about device specific conversion.
 
 However, please avoid the use of `float` or `double`. Instead, multiply to the
 next SI (or appropriate) unit. E.g. if an ADC would return values like `1.23 V`,
-chose to return `1230 mV` instead.
+choose to return `1230 mV` instead.
 
 Additionally, towards ease of use, all device drivers in RIOT should provide a
 similar 'look and feel'. They should behave similarly in terms of their state
@@ -206,7 +206,7 @@ above.
 The macros that configure the driver during compilation is added to the listing
 for [Compile time configurations](https://doc.riot-os.org/group__config.html). Refer to the following example
 that exposes
-[TMP00x sensor](https://github.com/RIOT-OS/RIOT/blob/master/drivers/include/tmp00x.h#L96-L157)
+[TMP00x sensor](https://github.com/RIOT-OS/RIOT/blob/2025.07-branch/drivers/include/tmp00x.h#L96-L157)
 to [sensors group](https://doc.riot-os.org/group__config__drivers__sensors.htmls).
 
 ```c
