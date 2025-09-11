@@ -615,9 +615,12 @@ INCLUDES += $(USEMODULE_INCLUDES_:%=-I%)
 # include bindist target
 include $(RIOTMAKE)/bindist.inc.mk
 
+$(info Makefiles.include $(USEMODULE) $(USEPKG))
+
 # Add all USEMODULE modules to CFLAGS and populate BASELIBS
 include $(RIOTMAKE)/modules.inc.mk
 
+$(info modules.inc.mk after modules.inc.mk $(BASELIBS) | $(USEMODULE) $(USEPKG))
 
 .PHONY: all link clean flash flash-only termdeps term doc doc-man doc-latex debug debug-server reset objdump help info-modules
 .PHONY: print-size elffile lstfile binfile hexfile flashfile cosy

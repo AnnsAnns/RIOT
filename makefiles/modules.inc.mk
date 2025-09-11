@@ -1,3 +1,5 @@
+$(info modules.inc.mk entry $(USEMODULE) $(USEPKG))
+
 _ALLMODULES = $(sort $(USEMODULE) $(USEPKG))
 
 # Define MODULE_MODULE_NAME preprocessor macros for all modules.
@@ -13,7 +15,7 @@ REALMODULES += $(filter-out $(PSEUDOMODULES), $(_ALLMODULES))
 REALMODULES += $(filter $(NO_PSEUDOMODULES), $(_ALLMODULES))
 BASELIBS += $(REALMODULES:%=%.module)
 
-$(error Baselibbib $(_ALLMODULES))
+$(info modules.inc.mk $(_ALLMODULES))
 
 # Add modules compiled with Makefile.base and extra archives
 GENERATED_MODULES = $(notdir $(shell find $(BINDIR) -type d)) $(basename $(notdir $(ARCHIVES)))
