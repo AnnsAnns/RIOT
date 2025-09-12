@@ -8,7 +8,7 @@ multiple C file(s) with your source code and a Makefile. A template Makefile is
 available in the `dist` folder of the
 [RIOT repository](https://github.com/RIOT-OS/RIOT).
 
-## The main function
+## The `main()` Function
 
 After the board is initialized, RIOT starts two threads: the idle thread and
 the main thread. The idle thread has the lowest priority and will run whenever
@@ -29,11 +29,12 @@ int main(void)
 }
 ```
 
-## The application's Makefile
+## The Application's `Makefile`
 
-### The minimal Makefile
+### The Minimal `Makefile`
 
-At minimum the Makefile of an application (see [Creating a Project](/c_tutorials/create_project/)) needs to
+At minimum the Makefile of an application (see
+[Creating a Project](/c_tutorials/create_project/)) needs to
 define the following macros:
  * `APPLICATION`: should contain the name of your application
  * `RIOTBASE`: specifies the path to your copy of the RIOT repository (note
@@ -74,7 +75,7 @@ build in any case. A CI system can use the information provided by the
 process, since some linkers will issue an error if the code won't fit the
 target board's flash memory or RAM.
 
-### Including modules
+### Including Modules
 
 By default a RIOT application comprises only of the applications' code itself,
 the kernel, and platform specific code. In order to use additional modules,
@@ -92,9 +93,9 @@ USEMODULE += gnrc_ipv6_default
 USEMODULE += gnrc_udp
 ```
 
-Modules typically pull in all required dependencies.
+Modules typically pull in all required dependencies themselves.
 
-## Including source files in subfolders
+## Including Source Files in Subfolders
 
 By default, all source files in an application's (or any RIOT module's) directory
 are automatically compiled as part of the application. In order to organize source
@@ -131,10 +132,10 @@ ifneq (,$(filter native native32 native64,$(BOARD)))
 endif
 ```
 
-# Helper tools
+# Helper Tools
 
 To help you start writing an application within RIOT, the build system provides
-the `generate-example` `generate-test` make targets. These targets are wrappers
+the `generate-example` and `generate-test` make targets. These targets are wrappers
 around the [riotgen](https://pypi.org/project/riotgen/) command line tool and
 are helpful when starting to implement an application: all required files are
 generated with copyright headers, doxygen groups, etc, so you can concentrate
@@ -146,13 +147,13 @@ packages, required features) included.
 
 To generate an example application, e.g in the `examples` directory, from the
 RIOT base directory, run:
-```
+```sh
 make generate-example
 ```
 
 To generate a test application, e.g in the `tests` directory, from the
 RIOT base directory, run:
-```
+```sh
 make generate-test
 ```
 
@@ -165,7 +166,7 @@ Then answer a few questions about the application:
 - Target board: select the default target board. The value is set to `native`
   by default.
 - Modules: give the list of dependency modules, separated by commas. For
-  example: ztimer,fmt
+  example: `ztimer,fmt`
 - Packages: give the list of dependency packages, separated by commas.
 - Features required: give the list of CPU features (`periph_*`, etc) required
   by the application, all separated by commas.
@@ -180,7 +181,7 @@ target used.
 **Testrunner:** when using the `make generate-test`, you can also automatically
 add a testrunner Python script. Just answer 'y' when prompted.
 
-# Creating an out of tree application structure
+# Creating an Out of Tree Application Structure
 
 Applications written for RIOT do not have to reside in the RIOT tree. Out of
 tree applications, modules and boards are supported.
@@ -208,7 +209,7 @@ In this example tree, the `apps` directory contains a collection of applications
 for the project. The modules directory could contain extra modules for the
 applications.
 
-The make file inside the application needs at least the following as bare minimum:
+The Makefile inside the application needs at least the following as bare minimum:
 
 ```makefile
 APPLICATION = my_app

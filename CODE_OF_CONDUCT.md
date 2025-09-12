@@ -74,10 +74,8 @@ community][django-community].
 Questions?
 ----------
 
-If you have questions, please see
-[the FAQ][faq].
-If that doesn't answer your questions,
-feel free to [contact us][contact-us].
+If you have questions, please see [the FAQ][faq].
+If that doesn't answer your questions, feel free to [contact us][contact-us].
 
 [reporting-guidelines]: https://guide.riot-os.org/general/code_of_conduct/reporting/
 [django-community]: https://www.djangoproject.com/conduct/
