@@ -180,7 +180,7 @@ copyright headers, doxygen groups, etc, so you can concentrate on the module
 implementation.
 The module source files are created in the `sys` directory.
 
-**Usage:**
+## Usage
 
 From the RIOT base directory, run:
 ```
