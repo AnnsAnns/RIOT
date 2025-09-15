@@ -8,7 +8,7 @@ to your application. This includes also drivers and to a certain extent ports
 for CPUs and boards (with some exceptions, see the
 [porting guide](/advanced_tutorials/porting_boards/) for further information).
 
-## The general structure
+## The General Structure
 
 Like [applications](/advanced_tutorials/creating_application/), modules are directories
 containing source files and a Makefile. Additionally their API can be defined
@@ -54,7 +54,7 @@ Note: even if all boards and cpus implement the `board` and `cpu` modules, only
       one is used in an application so there is no conflict.
 
 
-## Module dependencies
+## Module Dependencies
 
 Your module may depend on other modules to minimize code duplication. These
 dependencies are defined in `Makefile.dep` with the following syntax:
@@ -70,9 +70,9 @@ Note, that `Makefile.dep` is processed only once so you have to take care to
 add the dependency block for your module *before* your dependencies pull in
 their dependencies.
 
-## Modules outside of RIOTBASE
+## Modules Outside of RIOTBASE
 
-Modules can be defined outside `RIOTBASE`. In addition to add it to `USEMODULE`
+Modules can be defined outside of `RIOTBASE`. In addition to adding it to `USEMODULE`
 the user needs to add the directory (or directories) containing external modules
 to `EXTERNAL_MODULE_DIRS`.
 
@@ -170,7 +170,7 @@ See `sys/ztimer/Makefile` for an example in code.
 `SUBMODULES` can also be true-pseudomodules, or become one by conditionally excluding
 the source files by adding them to `SUBMODULES_NO_SRC`.
 
-# Helper tools
+# Helper Tools
 
 To help you start writing a module, the RIOT build system provides the
 `generate-module` make target. It is a wrapper around the
@@ -183,7 +183,7 @@ The module source files are created in the `sys` directory.
 ## Usage
 
 From the RIOT base directory, run:
-```
+```sh
 make generate-module
 ```
 Then answer a few questions about the driver:
