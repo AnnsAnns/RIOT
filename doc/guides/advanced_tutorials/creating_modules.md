@@ -81,10 +81,12 @@ External modules can optionally define the following files:
   API headers include paths to the `USEMODULE_INCLUDES` variable.
 * `Makefile.dep` file to set module dependencies
 
-***NOTE:*** The name of an external module must be unique (both in regard to other
-            external modules, as well to native RIOT modules). Additionally, the
-            directory containing the module must match the module name, e.g.
-            module `foo` must be located in `<PATH_IN_EXTERNAL_MODULE_DIRS>/foo`.
+:::note
+The name of an external module must be unique (both in regard to other
+external modules, as well to native RIOT modules). Additionally, the
+directory containing the module must match the module name, e.g.
+module `foo` must be located in `<PATH_IN_EXTERNAL_MODULE_DIRS>/foo`.
+:::
 
 An example can be found in
 [`tests/build_system/external_module_dirs`](https://github.com/RIOT-OS/RIOT/tree/master/tests/build_system/external_module_dirs)
