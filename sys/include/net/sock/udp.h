@@ -18,9 +18,7 @@
  *
  * How To Use
  * ----------
- * First you need to
- * [include][include-link]
- * a module that implements
+ * First you need to [include][include-link] a module that implements
  * this API in your application's Makefile. For example the implementation for
  * @ref net_gnrc "GNRC" is called `gnrc_sock_udp`.
  *
