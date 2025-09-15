@@ -61,8 +61,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Above you see a simple UDP echo server. Don't forget to also
- * [include][include-link]
- * the IPv6 module of your networking
+ * [include][include-link] the IPv6 module of your networking
  * implementation (e.g. `gnrc_ipv6_default` for @ref net_gnrc GNRC) and at least
  * one network device.
  *
