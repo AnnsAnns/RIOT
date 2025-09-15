@@ -14,8 +14,8 @@
  * @brief       CPU specific definitions
  */
 
-#include "cpu_conf.h"
 #include "cpu_common.h"
+#include "cpu_conf.h"
 
 #ifdef __cplusplus
 extern "C" {

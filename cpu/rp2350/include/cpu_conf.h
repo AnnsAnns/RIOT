@@ -15,8 +15,8 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
- #include <stdbool.h>
- #include <stdint.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 #ifdef RP2350_RISCV
 /* If we use the Hazard3 we have to trick RP2350.h
@@ -28,6 +28,7 @@
  */
 #include "core_cm33.h"
 #endif
+
 #include "RP2350.h"
 
 #include "cpu_conf_common.h"
@@ -36,6 +37,20 @@
 #include "irq_arch.h"
 #include "clic.h"
 #endif
+
+/** Overwrite the default GPIO type to use uint32_t */
+#define HAVE_GPIO_T
+typedef uint32_t gpio_t;
+
+/* Im currently copying the original rp2040 def but this causes the other port to not be addressable (I think)*/
+#define GPIO_PIN(port, pin)     (((port) & 0) | (pin))
+
+/* This is a define used throughout the pico sdk */
+#define _u(x) ((uint32_t)(x))
+
+#include "periph_cpu.h"
+#include "periph/gpio.h"
+#include "periph/uart.h"
 
 #define CPU_DEFAULT_IRQ_PRIO 1u
 #define CPU_IRQ_NUMOF 52u

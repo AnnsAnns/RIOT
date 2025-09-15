@@ -27,18 +27,6 @@
 #include "helpers.h"
 #include "uart_conf.h"
 
-/** Overwrite the default GPIO type to use uint32_t */
-#define HAVE_GPIO_T
-typedef uint32_t gpio_t;
-
-/* Im currently copying the original rp2040 def but this causes the other port to not be addressable (I think)*/
-#define GPIO_PIN(port, pin)     (((port) & 0) | (pin))
-
-/* This is a define used throughout the pico sdk */
-#define _u(x) ((uint32_t)(x))
-
-#include "periph/gpio.h"
-
 /** GPIO Pin ID for oscillator debugging */
 #define OSC_DEBUG_PIN_ID 15u
 

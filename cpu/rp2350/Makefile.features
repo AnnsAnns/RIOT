@@ -1,21 +1,21 @@
-ifneq (,$(filter rp2350_arm,$(USEMODULE)))
-RP2350_ARM := 1
+ifdef RP2350_ARM
+USEMODULE += rp2350_arm
 $(info "Running RP2350 in ARM Mode")
 endif
 
-ifneq (,$(filter rp2350_riscv,$(USEMODULE)))
-RP2350_RISCV := 1
+ifdef RP2350_RISCV
+USEMODULE += rp2350_riscv
 $(info "Running RP2350 in RISCV Mode")
-ifeq ($(RP2350_ARM), 1)
+ifdef RP2350_ARM
 $(error Both rp2350_arm and rp2350_riscv are defined. Only one can be enabled at a time.)
 endif
 endif
 
 ifeq ($(RP2350_RISCV), $(RP2350_ARM))
-$(error Neither rp2350_arm nor rp2350_riscv are defined.)
+$(error Neither (or both) rp2350_arm nor rp2350_riscv are defined.)
 endif
 
-ifeq ($(RP2350_ARM), 1)
+ifdef RP2350_ARM
 CPU_CORE    := cortex-m33
 CPU_FAM     := RP2350
 CPU_ARCH    = armv8m
@@ -29,10 +29,6 @@ CPU_CORE    := rv32
 CPU_FAM     := RP2350
 CPU_ARCH    = rv32
 CPU_MODEL   = rp2350
-
-$(info BEFORE: $(USEMODULE))
-USEMODULE := $(USEMODULE) riscv_common
-$(info AFTER: $(USEMODULE))
 
 include $(RIOTCPU)/riscv_common/Makefile.features
 endif
