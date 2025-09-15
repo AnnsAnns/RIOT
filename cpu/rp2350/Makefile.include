@@ -29,19 +29,18 @@ ifdef RP2350_ARM
 
 LINKFLAGS += -mthumb
 
-include $(RIOTCPU)/cortexm_common/Makefile.features
 # Vector table configuration
 VECTORS_O       ?= $(BINDIR)/cpu/vectors.o
 VECTORS_FILE    := $(RIOTCPU)/rp2350/vectors.c
 
-# Include the base Cortex-M makefile
 include $(RIOTMAKE)/arch/cortexm.inc.mk
+
 else
+
 INCLUDES += -I$(RIOTCPU)/rp2350/compat
 CFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs
 CFLAGS += -mabi=lp64
 LINKFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs
-LINKER_SCRIPT ?= riscv.ld
 
 include $(RIOTCPU)/riscv_common/Makefile.include
 endif

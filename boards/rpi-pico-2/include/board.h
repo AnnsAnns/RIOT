@@ -22,6 +22,9 @@
 #include "periph_conf.h"
 #include "periph_cpu.h"
 
+#include "periph/gpio.h"
+#include "periph/uart.h"
+
 /** GPIO Pin ID for the onboard LED */
 #define LED0_PIN_ID 25u
 #define LED0_ON         gpio_set(LED0_PIN_ID)
