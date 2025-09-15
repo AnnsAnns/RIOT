@@ -39,7 +39,7 @@ static void delay(void)
          * compilers would detect that the loop is only wasting CPU cycles and
          * optimize it out - but here the wasting of CPU cycles is desired.
          */
-        uint32_t loops = coreclk() / 20;
+        uint32_t loops = coreclk() / 3;
         for (volatile uint32_t i = 0; i < loops; i++) { }
     }
 }

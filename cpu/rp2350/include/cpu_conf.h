@@ -31,6 +31,13 @@
 
 #include "RP2350.h"
 
+#ifdef MODULE_RP2350_ARM
+#include "core_cm33.h"
+#include "cpu_conf_common.h"
+#include "irq_arch.h"
+#include "thread_arch.h"
+#endif
+
 #include "cpu_conf_common.h"
 
 #ifdef MODULE_RP2350_RISCV
