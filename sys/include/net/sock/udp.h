@@ -194,9 +194,7 @@
  * }
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
- * Again: Don't forget to also
- * [include][include-link]
- * the IPv6 module
+ * Again: Don't forget to also [include][include-link] the IPv6 module
  * of your networking implementation (e.g. `gnrc_ipv6_default` for
  * @ref net_gnrc "GNRC") and at least one network device.
  *
