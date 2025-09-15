@@ -28,6 +28,7 @@ OPENOCD_DEBUG_ADAPTER ?= dap
 ifdef RP2350_ARM
 
 LINKFLAGS += -mthumb
+CFLAGS += -DMODULE_RP2350_ARM
 
 # Vector table configuration
 VECTORS_O       ?= $(BINDIR)/cpu/vectors.o
@@ -38,6 +39,7 @@ include $(RIOTMAKE)/arch/cortexm.inc.mk
 else
 
 INCLUDES += -I$(RIOTCPU)/rp2350/compat
+CFLAGS += -DMODULE_RP2350_RISCV
 CFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs
 CFLAGS += -mabi=lp64
 LINKFLAGS += -march=rv32imac_zicsr_zifencei_zba_zbb_zbkb_zbs
