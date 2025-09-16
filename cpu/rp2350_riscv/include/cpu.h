@@ -30,7 +30,7 @@
  #endif
 
 /** riscv_common uses inlined irq */
-#define IRQ_API_INLINED
+#include "cpu_conf_common.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -51,7 +51,6 @@ typedef uint32_t gpio_t;
 #include "irq_arch.h"
 #include "clic.h"
 #include "cpu_conf.h"
-#include "cpu_common.h"
 
 #ifdef __cplusplus
 extern "C" {

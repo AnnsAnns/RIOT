@@ -33,6 +33,24 @@ void gpio_reset(void) {
     reset_component(RESET_IO_BANK0, RESET_IO_BANK0);
 }
 
+void enable_irq(uint32_t irq_no) {
+    uint32_t index = irq_no / 16;
+    uint32_t mask = 1u << (irq_no % 16);
+    __asm__ volatile (
+        "csrs 0xbe0, %0\n"
+        : : "r" (index | (mask << 16))
+    );
+}
+
+void force_interrupt(uint32_t irq_no) {
+    uint32_t index = irq_no / 16;
+    uint32_t mask = 1u << (irq_no % 16);
+    __asm__ volatile (
+        "csrs 0xbe2, %0\n"
+        : : "r" (index | (mask << 16))
+    );
+}
+
 void cpu_init(void) {
     riscv_init();
 

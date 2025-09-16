@@ -1,6 +1,5 @@
 MODULE = cpu
 
-DIRS += $(RIOTCPU)/riscv_common
-DIRS += periph
+DIRS += periph $(RIOTCPU)/riscv_common
 
 include $(RIOTBASE)/Makefile.base

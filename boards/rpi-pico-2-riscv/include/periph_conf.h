@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "kernel_defines.h"
 #include <stdint.h>
 #include "cpu.h"
 #include "RP2350.h"
