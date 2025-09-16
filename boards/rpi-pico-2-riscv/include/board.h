@@ -17,11 +17,9 @@
  */
 
 #include "cpu.h"
-#include "periph_cpu.h"
-
-#include "RP2350.h"
-#include "cpu_conf.h"
 #include "periph_conf.h"
+
+#include "periph/gpio.h"
 
 /** GPIO Pin ID for the onboard LED */
 #define LED0_PIN_ID 25u

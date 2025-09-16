@@ -1,5 +1,7 @@
-@defgroup        cpu_rp2350 RP2350 MCUs
-@ingroup         cpu
-@brief           RP2350 MCU code and definitions
+@defgroup       cpu_fe310 SiFive fe310
+@ingroup        cpu
+@brief          SiFive fe310 RISC-V MCU specific implementation.
 
-This module contains the code and definitions for MCUs of the RP2350 family used by the Pi Pico 2.
+This module contains SiFive fe310 specific code and definition.
+
+@see            cpu_riscv_common

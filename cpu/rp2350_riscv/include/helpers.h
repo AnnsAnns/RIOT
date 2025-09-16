@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "RP2350.h"
-
 /**
  * @ingroup         cpu_rp2350
  * @{

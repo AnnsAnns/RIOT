@@ -1,27 +1,47 @@
 /*
- * SPDX-FileCopyrightText: 2025 Tom Hert <git@annsann.eu>
- * SPDX-FileCopyrightText: 2025 HAW Hamburg
- * SPDX-License-Identifier: LGPL-2.1-only
+ * Copyright (C) 2017 Ken Rabold
+ *
+ * This file is subject to the terms and conditions of the GNU Lesser General
+ * Public License v2.1. See the file LICENSE in the top level directory for more
+ * details.
  */
 
 #pragma once
 
 /**
- * @ingroup         cpu_rp2350
+ * @ingroup         cpu_fe310
  * @{
  *
  * @file
- * @brief           Peripheral CPU definitions for the RP2350
+ * @brief           CPU specific definitions for internal peripheral handling
  *
- * @author          Tom Hert <git@annsann.eu>
+ * @author          Ken Rabold
  */
 
+#include <inttypes.h>
+
+/** Overwrite the default GPIO type to use uint32_t */
+#define HAVE_GPIO_T
+typedef uint32_t gpio_t;
+
+/* Im currently copying the original rp2040 def but this causes the other port to not be addressable (I think)*/
+#define GPIO_PIN(port, pin)     (((port) & 0) | (pin))
+
+/* This is a define used throughout the pico sdk */
+#define _u(x) ((uint32_t)(x))
+
+#include "periph_cpu_common.h"
 #include "cpu.h"
+#include "core_cm33.h" /* Trick RP2350 into believing the file exists on RISCV */
 #include "RP2350.h"
-#include "clock_conf.h"
-#include "gpio_conf.h"
 #include "helpers.h"
+#include "gpio_conf.h"
+#include "clock_conf.h"
 #include "uart_conf.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /** GPIO Pin ID for oscillator debugging */
 #define OSC_DEBUG_PIN_ID 15u
@@ -85,6 +105,9 @@ static inline uint32_t calculate_gpio_io_ctrl_register_addr(gpio_t pin) {
      * starting at the base address of IO_BANK0 */
     return calculate_gpio_io_status_register_addr(pin) + 4;
 }
+
+
+/** @} */
 
 #ifdef __cplusplus
 }

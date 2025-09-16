@@ -1,57 +1,40 @@
 /*
- * SPDX-FileCopyrightText: 2025 Tom Hert <git@annsann.eu>
- * SPDX-FileCopyrightText: 2025 HAW Hamburg
- * SPDX-License-Identifier: LGPL-2.1-only
+ * Copyright (C) 2017, 2019 Ken Rabold, JP Bonn
+ *
+ * This file is subject to the terms and conditions of the GNU Lesser
+ * General Public License v2.1. See the file LICENSE in the top level
+ * directory for more details.
  */
 
 /**
- * @ingroup         cpu_rp2350
+ * @ingroup     cpu_fe310
  * @{
  *
- * @file
- * @brief           CPU initialization implementation for the RP2350
+ * @file        cpu.c
+ * @brief       Implementation of the CPU initialization for SiFive FE310
  *
- * @author          Tom Hert <git@annsann.eu>
+ * @author      Ken Rabold
+ * @}
  */
 
-#include "cpu.h"
-
-#include "RP2350.h"
 #include "board.h"
-#include "clock_conf.h"
-#include "cpu_conf_common.h"
-#include "helpers.h"
+#include "cpu.h"
 #include "kernel_init.h"
-#include "periph/gpio.h"
 #include "periph/init.h"
-#include "periph_cpu.h"
+#include "periph_conf.h"
 
-#define DEBUG_WITH_OSC
+#include "stdio_uart.h"
 
 void gpio_reset(void) {
     reset_component(RESET_PADS_BANK0, RESET_PADS_BANK0);
     reset_component(RESET_IO_BANK0, RESET_IO_BANK0);
 }
 
-void enable_irq(uint32_t irq_no) {
-    uint32_t index = irq_no / 16;
-    uint32_t mask = 1u << (irq_no % 16);
-    __asm__ volatile (
-        "csrs 0xbe0, %0\n"
-        : : "r" (index | (mask << 16))
-    );
-}
-
-void force_interrupt(uint32_t irq_no) {
-    uint32_t index = irq_no / 16;
-    uint32_t mask = 1u << (irq_no % 16);
-    __asm__ volatile (
-        "csrs 0xbe2, %0\n"
-        : : "r" (index | (mask << 16))
-    );
-}
-
-void cpu_init(void) {
+/**
+ * @brief Initialize the CPU, set IRQ priorities, clocks, peripheral
+ */
+void cpu_init(void)
+{
     riscv_init();
 
     /* Reset GPIO state */
@@ -69,8 +52,5 @@ void cpu_init(void) {
     /* trigger static peripheral initialization */
     periph_init();
 
-    /* initialize the board */
     board_init();
 }
-
-/** @} */
