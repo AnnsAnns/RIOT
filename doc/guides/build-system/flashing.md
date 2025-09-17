@@ -233,7 +233,7 @@ options is typically not needed.
 `DEBUGSERVER_PORT` is used to specify the TCP port to listen for GDB to
 connect to. It defaults to 2000.
 
-# Handling Multiple Boards with UDEV-Rules
+## Handling Multiple Boards with UDEV-Rules
 
 When developing and working with multiple boards the default `PORT`
 configuration for a particular board might not apply anymore, so `PORT` will need
@@ -247,7 +247,7 @@ boards serial port (`riot/tty-<board-name>`) and the actual serial port
 `dev` information (`DEBUG_ADAPTER_ID`, `PORT`, etc.) to always flash and open a
 terminal on the correct port.
 
-Procedure:
+### Procedure
 
 - use `udevadm info /dev/ttyACM0` to query the udev database for information on
   device on port `/dev/ttyACM0`.
@@ -286,8 +286,9 @@ Procedure:
     $ RIOT_MAKEFILES_GLOBAL_PRE=/path/to/makefile.pre make -C examples/basic/hello-world flash term
 ```
 
-> **Note:** if set as an environment variable it would be a good idea to add a
-      variable to enable/disable it, e.g:
+:::note
+  If set as an environment variable it would be a good idea to add a
+  variable to enable/disable it, e.g:
 
 ```makefile
 ifeq (1,$(ENABLE_LOCAL_BOARDS))
@@ -297,6 +298,7 @@ ifeq (1,$(ENABLE_LOCAL_BOARDS))
         sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
 endif
 ```
+:::
 
 ## Handling Multiple Versions of the same BOARD
 
