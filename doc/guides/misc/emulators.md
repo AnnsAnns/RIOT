@@ -22,7 +22,7 @@ If no emulator is specified by the board configuration (e.g. in its
 The boards with emulator supported can be listed using the
 `info-emulated-boards` target:
 
-```
+```shell
 $ make info-emulated-boards
 ```
 
@@ -42,19 +42,19 @@ line.
 
 To start an emulator and connect to the serial port of the emulated board, run:
 
-```
+```shell
 $ EMULATE=1 make BOARD=<board> -C <application directory> all term
 ```
 
 To start an emulator with a GDB server and connect a GDB client to it, run:
 
-```
+```shell
 $ EMULATE=1 make BOARD=<board> -C <application directory> all debug
 ```
 
 To start an automatic test script with the emulated board, run:
 
-```
+```shell
 $ EMULATE=1 make BOARD=<board> -C <test application directory> all test
 ```
 
@@ -110,7 +110,7 @@ hardware - but with more possibilities.
 Packages for macOS, deb-based and rpm-based systems, for Windows and for Arch
 Linux are available on [GitHub](https://github.com/renode/renode/releases/latest).
 
-### From source
+### From Source
 
 Follow the installation instructions on Renode's
 [GitHub](https://github.com/renode/renode#installation) page.
@@ -119,7 +119,7 @@ If you choose to build renode from source, after the compilation is successful,
 ensure that `renode` is available on your `PATH`.
 One way to do so, is via symlink:
 
-```
+```shell
 sudo ln -s path/to/renode/repository/renode /usr/local/bin/renode
 ```
 

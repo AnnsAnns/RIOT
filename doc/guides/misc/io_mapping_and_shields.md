@@ -81,7 +81,7 @@ digital pins to PWM settings. E.g. the PWM device connected to the digital pin
 
 :::warn
 Typically only few digital pins support PWM. For pins without PWM
-output no `ARDUINO_PIN_<NUM>_PWM_DEV` macro and no
+output, no `ARDUINO_PIN_<NUM>_PWM_DEV` macro and no
 `ARDUINO_PIN_<NUM>_PWM_DEV` is defined.
 :::
 

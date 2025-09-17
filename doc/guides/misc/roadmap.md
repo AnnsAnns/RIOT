@@ -8,7 +8,7 @@ For each area, some near-future plans and concrete next steps are indicated.
 The text and items below are tentative, up for discussion, to be updated by regular pull requests.
 
 
-# Network Stack High layers
+# Network Stack High Layers
 (contact/steering: [Martine](https://github.com/miri64))
 
 - ICN stack support clean-up
@@ -20,7 +20,7 @@ The text and items below are tentative, up for discussion, to be updated by regu
   - [ ] in legacy networks (eg. by means of tunneling)
   - [ ] with configurable on-by-default fallbacks
 
-# Network Stack Low layers
+# Network Stack Low Layers
 (contact/steering: [Peter](https://github.com/PeterKietzmann))
 
 - Point-to-Point Protocol (PPP): finalize and merge `gnrc_ppp`
@@ -42,7 +42,7 @@ The text and items below are tentative, up for discussion, to be updated by regu
 
 
 
-# Peripheral drivers
+# Peripheral Drivers
 (contact/steering: [maribu](https://github.com/maribu))
 
 ## Timers
@@ -102,7 +102,7 @@ The text and items below are tentative, up for discussion, to be updated by regu
 
 
 
-# Low-level Hardware Support
+# Low-Level Hardware Support
 (contact/steering: [Alex](https://github.com/aabadie))
 
 - radio support for TI SensorTag
@@ -124,7 +124,7 @@ The text and items below are tentative, up for discussion, to be updated by regu
 - RIOT default configuration = secure configuration (that's our goal/motto)
 
 
-## 802.15.4 link layer security
+## 802.15.4 Link Layer Security
 (contact/steering: [chrysn](https://github.com/chrysn))
 
 Current status: RIOT supports application provided keys,

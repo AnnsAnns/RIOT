@@ -64,8 +64,8 @@ decision as to how to response. Responses may include:
 -   Nothing (if we determine no violation occurred).
 -   A private reprimand from us to the individual(s) involved.
 -   A public reprimand.
--   An imposed vacation (i.e. asking someone to "take a week off" from the forum, the Matrix chats, or a mailing
-    list).
+-   An imposed vacation (i.e. asking someone to "take a week off" from the forum,
+    the Matrix chats, or a mailing list).
 -   A permanent or temporary ban from some or all RIOT spaces (forum, Matrix chats, mailing lists,
     etc.)
 -   A request for a public or private apology.
