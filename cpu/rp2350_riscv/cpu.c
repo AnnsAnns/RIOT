@@ -81,5 +81,15 @@ void cpu_init(void)
 
     board_init();
 
-    enable_irq(50);
+    xosc_sleep(1000);
+    printf("Enabling IRQ 50");
+
+    enable_irq(51);
+    //
+    // printf("Interrupt force");
+
+    printf("Send non-enabled interrupt 50");
+    force_interrupt(50);
+    printf("Send enabled interrupt 51");
+
 }

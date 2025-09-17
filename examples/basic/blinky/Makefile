@@ -18,4 +18,6 @@ QUIET ?= 1
 # Use a peripheral timer for the delay, if available
 FEATURES_OPTIONAL += periph_timer
 
+USEMODULE += stdio_uart
+
 include $(RIOTBASE)/Makefile.include
