@@ -19,15 +19,17 @@ We assume here that your `CPU` and `CPU_MODEL` is already supported
 in `RIOT` so no peripheral or cpu implementation is needed.
 :::
 
-# Porting flowchart
+# Porting Flowchart
 ![Porting flowchart](img/porting-boards.svg)
 
-# General structure
+# General Structure
 
 Like [applications](/advanced_tutorials/creating_applications/) or
 [modules](/advanced_tutorials/creating_modules),
-boards consist on a directory containing source files and
-makefiles. Usually a `BOARD` directory has the following structure
+boards consist of a directory containing source files and
+Makefiles. Usually a `BOARD` directory has the following structure,
+although not all of the subdirectories or Makefiles have to be present for
+a board implementation to work.
 
 ```
   board-foo/
@@ -45,7 +47,7 @@ makefiles. Usually a `BOARD` directory has the following structure
   |----Makefile.include
 ```
 
-## Source files
+## Source Files
 
 Header files in `board-foo/include` define physical mappings or
 configurations. e.g:
@@ -58,7 +60,7 @@ configurations. e.g:
 - `gpio_params.h`: if the board supports
   [SAUL](https://doc.riot-os.org/group__drivers__saul.html) then its
   [saul_gpio_params_t](https://doc.riot-os.org/structsaul__gpio__params__t.html)
-  is defined here. (Analogously, a `adc_params.h` can
+  is defined here. (Analogously, an `adc_params.h` can
   contain a [saul_adc_params_t](https://doc.riot-os.org/structsaul__adc__params__t.html)
   and `pwm_params.h` a
   [saul_pwm_rgb_params_t](https://doc.riot-os.org/structsaul__pwm__rgb__params__t.html)
@@ -67,7 +69,7 @@ configurations. e.g:
 
 :::note
 Header files do not need to be defined in `include/`, but if defined
-somewhere else then they must be added to the include path. In
+somewhere else then they must be added to the include path in
 `Makefile.include`: `INCLUDES += -I<some>/<directory>/<path>`
 :::
 
@@ -116,13 +118,13 @@ the dependency block for your board *before* its dependencies pull in their own
 dependencies.
 :::
 
-#### Default configurations
+#### Default Configurations
 There are two pseudomodules that are used to indicate that certain drivers of devices
 present in the platform should be enabled. Each board (or CPU) has knowledge as
 to which drivers should be enabled in each case.
 
 The previous code snippet shows how a board which has a
-[Semtech SX1272 and SX1276 radios driver](https://doc.riot-os.org/group__drivers__sx127x.html)
+[Semtech SX1272 and SX1276 radio driver](https://doc.riot-os.org/group__drivers__sx127x.html)
 device, pulls in its driver when the default network interfaces are required.
 
 When the pseudomodule `saul_default` is enabled, the board should pull in all
@@ -165,8 +167,8 @@ This file contains BSP or toolchain configurations for the `BOARD`. It
 should at least define the configuration needed for flashing (i.e. specify a
 default programmer) as well as the serial configuration (if one is available).
 The default serial port configuration is provided by
-`makefiles/tools/serial.inc.mk` and define the following values for the serial
-port (depends on the host OS):
+`makefiles/tools/serial.inc.mk` and defines the following values for the serial
+port (depending on the host OS):
 
 ```
 PORT_LINUX ?= /dev/ttyACM0
@@ -177,7 +179,7 @@ So if the board is also using this, there's no need to redefine these variables
 in the board configuration.
 
 For example a board that is using a custom serial port (via an USB to serial
-adapter) and that is flashed using openocd by default would have the following
+adapter) and that is flashed using OpenOCD by default would have the following
 content in its `Makefile.include`:
 
 ```makefile
@@ -185,7 +187,7 @@ content in its `Makefile.include`:
 PORT_LINUX ?= /dev/ttyUSB0
 PORT_DARWIN ?= $(firstword $(sort $(wildcard /dev/tty.usbserial*)))
 
-# this board uses openocd
+# this board uses OpenOCD
 PROGRAMMER ?= openocd
 ```
 
@@ -271,7 +273,7 @@ the latest version with
 pip install --upgrade riotgen
 ```
 
-# Helper tools
+# Helper Tools
 
 To help you start porting a board, the RIOT build system provides the
 `generate-board` make target. It is a wrapper around the
@@ -280,7 +282,7 @@ when starting to port a board: all required files are generated with
 copyright headers, doxygen groups, etc, so you can concentrate on the port.
 The board source files are created in the `boards/<board name>` directory.
 
-**Usage:**
+## Usage:
 
 From the RIOT base directory, run:
 
@@ -332,7 +334,7 @@ static const timer_conf_t timer_config[] = {
 /** @} */
 ```
 
-# Boards outside of RIOTBASE
+# Boards Outside of RIOTBASE
 
 All `BOARD`s in RIOT reside in `RIOTBOARD` (`RIOTBOARD` being a make variable
 set to `$(RIOTBOARD)/boards`).
@@ -396,7 +398,7 @@ In this case some special considerations must be taken with the makefiles:
 An example can be found in
 [`tests/build_system/external_board_native`](https://github.com/RIOT-OS/RIOT/tree/master/tests/build_system/external_board_native).
 
-# Board names and aliases
+# Board Names and Aliases
 
 New boards should be named according to
 [RDM0003](https://github.com/RIOT-OS/RIOT/blob/master/doc/memos/rdm0003.md).
@@ -424,7 +426,7 @@ Some scripts and tools available to ease `BOARD` porting and testing:
   - Run `dist/tools/compile_and_test_for_board/compile_and_test_for_board.py . <board> --with-test-only`
     to run all automated tests on the new board.
 
-# Further reference
+# Further Reference
 
 - [In her blog](https://blog.martine-lenders.eu/riot-board-en.html), Martine Lenders documented her approach of
   porting the [Adafruit Feather nRF52840 Express](https://doc.riot-os.org/group__boards__adafruit-feather-nrf52840-express.html)

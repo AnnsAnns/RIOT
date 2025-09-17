@@ -143,7 +143,7 @@ on the module implementation.
 For applications, the `Makefile` is generated with the dependencies (modules,
 packages, required features) included.
 
-**Usage:**
+## Usage:
 
 To generate an example application, e.g in the `examples` directory, from the
 RIOT base directory, run:

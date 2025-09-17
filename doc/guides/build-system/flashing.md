@@ -184,7 +184,7 @@ board that defaults to SWD use:
 make PROGRAMMER=openocd OPENOCD_TRANSPORT=jtag
 ```
 
-Note that OpenOCD configuration file of a given board may only support SWD or
+Note that the OpenOCD configuration file of a given board may only support SWD or
 JTAG. Also JTAG requires more signal lines to be connected compared to SWD and
 some internal programmers only have the SWD signal lines connected, so that
 JTAG will not be possible.
@@ -233,10 +233,10 @@ options is typically not needed.
 `DEBUGSERVER_PORT` is used to specify the TCP port to listen for GDB to
 connect to. It defaults to 2000.
 
-# Handling Multiple Boards With UDEV-Rules
+# Handling Multiple Boards with UDEV-Rules
 
 When developing and working with multiple boards the default `PORT`
-configuration for a particular board might not apply anymore so `PORT` will need
+configuration for a particular board might not apply anymore, so `PORT` will need
 to be specified whenever calling `make term/test`. This can also happen if
 multiple `DEBUGGERS/PROGRAMMERS` are present so `DEBUG_ADAPTER_ID` will also
 need to be passed. Keeping track of this will become annoying.
@@ -252,7 +252,7 @@ Procedure:
 - use `udevadm info /dev/ttyACM0` to query the udev database for information on
   device on port `/dev/ttyACM0`.
 
-  or use `udevadm info --attribute-walk --name /dev/ttyACM0` for more detailed
+- or: use `udevadm info --attribute-walk --name /dev/ttyACM0` for more detailed
   output when the first level of information isn't enough
 
 - create a udev rule with information of the device and one parent to create a
@@ -298,7 +298,7 @@ ifeq (1,$(ENABLE_LOCAL_BOARDS))
 endif
 ```
 
-## Handling Multiple Versions of the Same BOARD
+## Handling Multiple Versions of the same BOARD
 
 The above procedure works fine when handling different boards, but not
 multiple times the same board, e.g: multiple `samr21-xpro`.
@@ -360,14 +360,14 @@ If for some reason re-writing the serial is needed there is a windows tool:
 * Udev manpage
   http://manpages.ubuntu.com/manpages/eoan/en/man7/udev.7.html
 
-# Handling Multiple Boards Without UDEV-Rules
+# Handling Multiple Boards without UDEV-Rules
 
-This is a simpler approach to the above mentioned issue. The solution here only
-uses a makefile script for selecting the debugger and serial port. No
+This is a simpler approach than the above mentioned issue. The solution here only
+uses a Makefile for selecting the debugger and serial port. No
 administrative privileges (e.g. to configure Udev) are required.
 
 One of the limitations of the solution described here is that it currently
-doesn't work with multiple boards of the same type. This limitation is a
+doesn't work with multiple boards of the same type. This is a
 limitation of the script and not of the mechanism used, it is possible to adapt
 the script to support multiple boards of the same type. This modification is
 left as an exercise to the reader.
@@ -441,7 +441,7 @@ an integrated STLink as programmer. As long as only one TTY is provided from an
 STLink, this will reliably select the correct TTY for an Nucleo regardless of
 which TTY was most recently connected. Some boards even provide info that
 allows to always reliably identify them correctly (e.g. the firmware on the
-ATmega16U2 used as USB to UART converted on Arduino Mega2560 will provide
+ATmega16U2 used as USB to UART converter on Arduino Mega2560 will provide
 identification data unique to that board).
 
 ## Adding Board Filters
@@ -450,7 +450,7 @@ After connecting as many variants of the board you target (and maybe some others
 to test that the filter actually filters out non-matching boards). Then first
 run `./dist/tools/usb-serial/ttys.py` without arguments and study the output.
 When a genuine Arduino Mega 2560, a genuine Arduino Mega ADK (a variant of the
-Mega 2560),a cheap Arduino Mega 2560 clone, a BBC micro:bit v2, and a
+Mega 2560), a cheap Arduino Mega 2560 clone, a BBC micro:bit v2 and a
 Nucleo F767-ZI are connected, the following output is shown:
 
 path         | driver  | vendor                   | model                                | model_db                                             | serial                                           | ctime    | iface_num

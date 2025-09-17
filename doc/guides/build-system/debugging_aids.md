@@ -5,7 +5,7 @@ description: Overview of debugging tools supported in RIOT-OS
 
 ## Undefined Behavior Sanitizer (ubsan)
 
-RIOT contains makefile convenience support for gcc/clang's undefined
+RIOT contains Makefile convenience support for gcc/clang's undefined
 behaviour sanitizer.
 
 ### Overview
@@ -25,7 +25,7 @@ In this case, the signed shift would be alright unless:
 
 - it would "push out" all bits to the left, with undefined runtime result. Here,
   that happens on architectures with 16-bit integers.
-- `foo` is negative, with implementation defined runtime results.
+- `foo` is negative, with implementation-specific runtime results.
 
 Using ubsan, these can be caught at runtime.
 
@@ -43,7 +43,7 @@ the form of `libubsan`.
 The default is `trap`, or `msg_exit` if available (currently, on native:gnu only).
 
 
-### How to use
+### How to Use
 
 1. build with `make all-ubsan`.
 

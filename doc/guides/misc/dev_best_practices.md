@@ -6,13 +6,13 @@ description: Best practices and recommended tools for RIOT development
 * Use the [methodology](#methodology-emulator-first-target-iot-hardware-last) described below.
 * Use [`ccache`](/build-system/advanced_build_system_tricks/#speed-up-builds-with-ccache) to speedup compilation
 
-## Coding "Dos" and "Don'ts":
+## Coding "Dos" and "Don'ts"
 
 ### Dos
  * Use static memory. See also [Static vs. Dynamic Memory](#static-vs-dynamic-memory).
  * Select the priorities carefully.
  * Minimize stack usage with `DEVELHELP` and `CREATE_STACKTEST`.
- * Use threads to increase flexibility, modularity, and robustness by leveraging IPC.
+ * Use threads to increase flexibility, modularity and robustness by leveraging IPC.
  * Use unsigned or signed integer (`unsigned`, `int`, `size_t` or `ssize_t`) for loop variables wherever possible, but keep in mind that on some platforms an `int` has a width of only 16-bit. In general, you should avoid types like `uint8_t` for loop iterators as they will probably make it more expensive on some platforms.
  * Join and factor out parts of the code with existing code in RIOT, where it makes sense.
  * Check all `size/length` parameters when passing memory, e.g. using `sizeof(x)` or `strlen(x)` as appropriate. Make sure you don't use the wrong one with a pointer.
@@ -41,13 +41,13 @@ int bar(foo_t v)
     ...
 
     switch(v) {
-        case A:
-            abc = 23;
-            break;
-        case B:
-            abc = 42;
-            break;
-        ...
+    case A:
+        abc = 23;
+        break;
+    case B:
+        abc = 42;
+        break;
+    ...
     }
     ...
 }

@@ -13,8 +13,7 @@
  *
  * How To Use
  * ----------
- * First you need to
- * [include][include-link]
+ * First you need to [include][include-link]
  * a module that implements this API in your application's Makefile.
  *
  * The `sock_tls` module requires the `wolfssl` package.
@@ -109,8 +108,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * Above you see a simple DTLS echo server. It is important to at least include
- * [include][include-link]
- * the IPv6 module of your networking
+ * [include][include-link] the IPv6 module of your networking
  * implementation (e.g. `gnrc_ipv6_default` for @ref net_gnrc GNRC) and at least
  * one network device.
  * A separate file should define the buffers used as certificate and private key,

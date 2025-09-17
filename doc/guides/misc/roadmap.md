@@ -3,7 +3,7 @@ title: Roadmap
 description: Overview of priority areas of RIOT development & enhancements
 ---
 
-The aim of the roadmap is to identify priority areas of RIOT development & enhancements.
+The aim of the roadmap is to identify priority areas of RIOT development and enhancements.
 For each area, some near-future plans and concrete next steps are indicated.
 The text and items below are tentative, up for discussion, to be updated by regular pull requests.
 
