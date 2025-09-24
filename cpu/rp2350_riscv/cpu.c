@@ -19,6 +19,7 @@
 
 #include "board.h"
 #include "cpu.h"
+#include "clock_conf.h"
 #include "kernel_init.h"
 #include "periph/init.h"
 #include "periph/uart.h"
@@ -64,6 +65,10 @@ void cpu_init(void)
 {
     riscv_init();
 
+    uint32_t ra_register = 0;
+
+    __asm__ volatile ("mv %0, ra" : "=r"(ra_register));
+
     /* Reset GPIO state */
     gpio_reset();
 
@@ -82,14 +87,21 @@ void cpu_init(void)
     board_init();
 
     xosc_sleep(1000);
-    printf("Enabling IRQ 50");
+    printf("Enabling IRQ 50\n");
 
     enable_irq(51);
     //
-    // printf("Interrupt force");
+    // printf("Interrupt force\n");
 
-    printf("Send non-enabled interrupt 50");
+    printf("ra register at start of cpu_init: 0x%lx\n", ra_register);
+
+    printf("Send non-enabled interrupt 50\n");
     force_interrupt(50);
-    printf("Send enabled interrupt 51");
+    printf("Send enabled interrupt 51\n");
+    force_interrupt(51);
+    printf("Debugger halt message haha\n");
 
+    printf("Back from interrupt :D\n");
+
+    __asm__ volatile ("nop");
 }
