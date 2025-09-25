@@ -18,7 +18,6 @@
  * @}
  */
 
-#include "xh3irq.h"
 #include <stdio.h>
 #include <inttypes.h>
 
@@ -31,6 +30,7 @@
 #include "sched.h"
 #include "plic.h"
 #include "clic.h"
+#include "xh3irq.h"
 #include "architecture.h"
 
 #include "vendor/riscv_csr.h"
@@ -134,15 +134,14 @@ __attribute((used)) static void handle_trap(uword_t mcause)
             if (IS_ACTIVE(MODULE_PERIPH_PLIC)) {
                 plic_isr_handler();
             }
+            if (IS_ACTIVE(MODULE_PERIPH_XH3IRQ)) {
+                xh3irq_handler();
+            }
             break;
 
         default:
             if (IS_ACTIVE(MODULE_PERIPH_CLIC)) {
                 clic_isr_handler(trap);
-            }
-            /*  */
-            else if (IS_ACTIVE(MODULE_PERIPH_XH3IRQ) && xh3irq_has_pending()) {
-                xh3irq_handler();
             }
             else {
                 /* Unknown interrupt */

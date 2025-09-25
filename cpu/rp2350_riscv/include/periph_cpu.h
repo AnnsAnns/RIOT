@@ -38,6 +38,7 @@ typedef uint32_t gpio_t;
 #include "gpio_conf.h"
 #include "clock_conf.h"
 #include "uart_conf.h"
+#include "xh3irq.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -19,6 +19,7 @@
  */
 
 #include "cpu_conf.h"
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,7 +31,7 @@ void xh3irq_handler(void);
 void xh3irq_enable_irq(uint32_t irq_no);
 void xh3irq_disable_irq(uint32_t irq_no);
 void xh3irq_force_irq(uint32_t irq_no);
-uin32_t xh3irq_has_pending(void);
+uint32_t xh3irq_has_pending(void);
 
 #ifdef __cplusplus
 }
