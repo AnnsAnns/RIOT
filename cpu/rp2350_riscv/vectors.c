@@ -19,7 +19,7 @@
 #include "panic.h"
 #include <stdint.h>
 
-#define WEAK_DEFAULT    __attribute__ ((weak, alias ("dummy_handler")));
+#define WEAK_DEFAULT    __attribute__((weak, alias("dummy_handler")))
 
 /* define a local dummy handler as it needs to be in the same compilation unit
  * as the alias definition */

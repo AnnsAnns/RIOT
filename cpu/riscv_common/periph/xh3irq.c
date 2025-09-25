@@ -1,9 +1,7 @@
-#pragma once
-
 #include "xh3irq.h"
 #include <stdio.h>
 
-uin32_t xh3irq_has_pending(void) {
+uint32_t xh3irq_has_pending(void) {
     // Get MEIP at 0x344 which is the external interrupt pending bit
     uint32_t meip = (read_csr(0x344) >> 11) & 0x1;
 
