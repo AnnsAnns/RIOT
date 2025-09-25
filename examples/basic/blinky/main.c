@@ -44,8 +44,21 @@ static void delay(void)
     }
 }
 
+void force_interrupt(uint32_t irq_no)
+{
+    uint32_t index = irq_no / 16;
+    uint32_t mask = 1u << (irq_no % 16);
+
+    __asm__ volatile(
+        "csrs 0xbe2, %0\n"
+        : : "r"(index | (mask << 16))
+    );
+}
+
 int main(void)
 {
+    force_interrupt(51);
+
     while (1) {
         delay();
 #ifdef LED0_TOGGLE
