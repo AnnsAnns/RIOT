@@ -30,6 +30,7 @@
 #include "sched.h"
 #include "plic.h"
 #include "clic.h"
+#include "xh3irq.h"
 #include "architecture.h"
 
 #if MODULE_PERIPH_XH3IRQ || DOXYGEN
@@ -39,7 +40,7 @@
 #include "vendor/riscv_csr.h"
 
 /* Default state of mstatus register */
-#define MSTATUS_DEFAULT     (MSTATUS_MPP | MSTATUS_MPIE)
+#define MSTATUS_DEFAULT (MSTATUS_MPP | MSTATUS_MPIE)
 
 volatile int riscv_in_isr = 0;
 
@@ -87,8 +88,7 @@ void riscv_irq_init(void)
 /**
  * @brief Global trap and interrupt handler
  */
-__attribute((used))
-static void handle_trap(uword_t mcause)
+__attribute((used)) static void handle_trap(uword_t mcause)
 {
     /*  Tell RIOT to set sched_context_switch_request instead of
      *  calling thread_yield(). */
@@ -96,11 +96,37 @@ static void handle_trap(uword_t mcause)
 
     uword_t trap = mcause & CPU_CSR_MCAUSE_CAUSE_MSK;
 
+#ifdef DEVELHELP
+    printf("Trap: mcause=0x%" PRIx32 " mepc=0x%lx mtval=0x%lx\n",
+           (uint32_t)mcause, read_csr(mepc), read_csr(mtval));
+
+    if ((mcause & ~MCAUSE_INT) <= 0xb) {
+        const char *error_messages[] = {
+            "Instruction alignment: Does not occur on RP2350, because 16-bit compressed instructions are implemented, and it is impossible to jump to a byte-aligned address.",
+            "Instruction fetch fault: Attempted to fetch from an address that does not support instruction fetch (like APB/AHB peripherals on RP2350), or lacks PMP execute permission, or is forbidden by ACCESSCTRL, or returned a fault from the memory device itself.",
+            "Illegal instruction: Encountered an instruction that was not a valid RISC-V opcode implemented by this processor, or attempted to access a nonexistent CSR, or attempted to execute a privileged instruction or access a privileged CSR without sufficient privilege.",
+            "Breakpoint: An ebreak or c.ebreak instruction was executed, and no external debug host caught it (DCSR.EBREAKM or DCSR.EBREAKU was not set).",
+            "Load alignment: Attempted to load from an address that was not a multiple of access size.",
+            "Load fault: Attempted to load from an address that does not exist, or lacks PMP read permissions, or is forbidden by ACCESSCTRL, or returned a fault from a peripheral.",
+            "Store/AMO alignment: Attempted to write to an address that was not a multiple of access size.",
+            "Store/AMO fault: Attempted to write to an address that does not exist, or lacks PMP write permissions, or is forbidden by ACCESSCTRL, or returned a fault from a peripheral. Also raised when attempting an AMO on an address that does not support AHB5 exclusives.",
+            "An ecall instruction was executed in U-mode.",
+            NULL, /* 0x9 - not defined */
+            NULL, /* 0xa - not defined */
+            "An ecall instruction was executed in M-mode."
+        };
+
+        uword_t cause_code = mcause & ~MCAUSE_INT;
+        if (cause_code <= 0xb && error_messages[cause_code] != NULL) {
+            printf("Error 0x%lx: %s\n", cause_code, error_messages[cause_code]);
+        }
+    }
+#endif
+
     /* Check for INT or TRAP */
     if ((mcause & MCAUSE_INT) == MCAUSE_INT) {
         /* Cause is an interrupt - determine type */
         switch (mcause & MCAUSE_CAUSE) {
-
 #ifdef MODULE_PERIPH_CORETIMER
         case IRQ_M_TIMER:
             /* Handle timer interrupt */
@@ -111,6 +137,9 @@ static void handle_trap(uword_t mcause)
             /* Handle external interrupt */
             if (IS_ACTIVE(MODULE_PERIPH_PLIC)) {
                 plic_isr_handler();
+            }
+            if (IS_ACTIVE(MODULE_PERIPH_XH3IRQ)) {
+                xh3irq_handler();
             }
             break;
 
@@ -127,8 +156,8 @@ static void handle_trap(uword_t mcause)
     }
     else {
         switch (trap) {
-        case CAUSE_USER_ECALL:      /* ECALL from user mode */
-        case CAUSE_MACHINE_ECALL:   /* ECALL from machine mode */
+        case CAUSE_USER_ECALL:    /* ECALL from user mode */
+        case CAUSE_MACHINE_ECALL: /* ECALL from machine mode */
         {
             /* TODO: get the ecall arguments */
             sched_context_switch_request = 1;
@@ -201,7 +230,7 @@ static void __attribute__((interrupt)) trap_entry(void)
         "csrr a0, mcause                                    \n"
 
         /* Call trap handler, a0 contains mcause before, and the return value after
-         * the call */
+        * the call */
         "call handle_trap                                   \n"
 
         /* Load the sched_context_switch_request */
@@ -218,12 +247,12 @@ static void __attribute__((interrupt)) trap_entry(void)
 
         "no_sched:                                          \n"
         /* Restore the thread stack pointer and check if a new thread must be
-         * scheduled */
+        * scheduled */
         "mv sp, s0                                          \n"
 
         /* No context switch required, shortcut to restore. a0 contains the return
-         * value of sched_run, or the sched_context_switch_request if the sched_run
-         * was skipped */
+        * value of sched_run, or the sched_context_switch_request if the sched_run
+        * was skipped */
         "beqz a0, no_switch                                 \n"
 
         /* Skips the rest of the save if no active thread */
