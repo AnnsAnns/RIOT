@@ -24,6 +24,7 @@
 #include "timex.h"
 #include "ztimer.h"
 #include "irq.h"
+#include "xh3irq.h"
 
 static void delay(void)
 {
@@ -53,6 +54,7 @@ void isr_spareirq_5(void) {
 
 int main(void)
 {
+    printf("Starting\n");
     xh3irq_enable_irq(51);
 
     while (1) {

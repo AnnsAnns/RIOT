@@ -19,11 +19,14 @@
 #include "panic.h"
 #include <stdint.h>
 
-#define WEAK_DEFAULT    __attribute__((weak, alias("dummy_handler")))
+#define WEAK_DEFAULT __attribute__((weak, alias("dummy_handler")))
 
 /* define a local dummy handler as it needs to be in the same compilation unit
  * as the alias definition */
-void dummy_handler(void) {     core_panic(PANIC_GENERAL_ERROR, "DUMMY HANDLER CALLED"); }
+void dummy_handler(void)
+{
+    core_panic(PANIC_GENERAL_ERROR, "DUMMY HANDLER");
+}
 
 /* rp2350 specific interrupt vector */
 WEAK_DEFAULT void isr_timer0_0(void);
