@@ -15,6 +15,7 @@
  * @}
  */
 
+#include "xh3irq.h"
 #include <stdio.h>
 
 #include "clk.h"
@@ -22,6 +23,8 @@
 #include "periph_conf.h"
 #include "timex.h"
 #include "ztimer.h"
+#include "irq.h"
+#include "xh3irq.h"
 
 static void delay(void)
 {
@@ -44,12 +47,21 @@ static void delay(void)
     }
 }
 
+
+void isr_spareirq_5(void) {
+    printf("Hello :D\n");
+}
+
 int main(void)
 {
+    printf("Starting\n");
+    xh3irq_enable_irq(51);
+
     while (1) {
         delay();
 #ifdef LED0_TOGGLE
         LED0_TOGGLE;
+        xh3irq_force_irq(51);
 #else
         puts("Blink! (No LED present or configured...)");
 #endif

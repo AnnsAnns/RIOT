@@ -6,9 +6,8 @@
 
 #pragma once
 
+#include "kernel_defines.h"
 #include <stdint.h>
-
-#include "RP2350.h"
 #include "periph_cpu.h"
 
 #ifdef __cplusplus

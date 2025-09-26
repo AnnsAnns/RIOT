@@ -16,14 +16,19 @@
  * @}
  */
 
+#include "periph/gpio.h"
 #include <stdio.h>
+#include "board.h"
 
 int main(void)
 {
-    puts("Hello World!");
+    printf("Hello World!");
 
     printf("You are running RIOT on a(n) %s board.\n", RIOT_BOARD);
     printf("This board features a(n) %s CPU.\n", RIOT_CPU);
+
+    while(1) {
+    };
 
     return 0;
 }

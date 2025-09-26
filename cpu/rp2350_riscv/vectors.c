@@ -14,15 +14,19 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-#include "RP2350.h"
 #include "cpu_conf.h"
-#include "vectors_cortexm.h"
+#include "xh3irq.h"
+#include "panic.h"
+#include <stdint.h>
 
-#define WEAK_DEFAULT    __attribute__((weak,alias("dummy_handler")))
+#define WEAK_DEFAULT __attribute__((weak, alias("dummy_handler")))
 
 /* define a local dummy handler as it needs to be in the same compilation unit
  * as the alias definition */
-void dummy_handler(void) { dummy_handler_default(); }
+void dummy_handler(void)
+{
+    core_panic(PANIC_GENERAL_ERROR, "DUMMY HANDLER");
+}
 
 /* rp2350 specific interrupt vector */
 WEAK_DEFAULT void isr_timer0_0(void);
@@ -81,7 +85,7 @@ WEAK_DEFAULT void isr_spareirq_5(void);
 /** CPU specific interrupt vector table
  * @see 3.2 Interrupts and IRQn_Type in RP2350.h
  */
-ISR_VECTOR(1) const isr_t vector_cpu[CPU_IRQ_NUMOF] = {
+const void* vector_cpu[CPU_IRQ_NUMOF] = {
     (void*)isr_timer0_0,     /* 0 TIMER0_IRQ_0 */
     (void*)isr_timer0_1,     /* 1 TIMER0_IRQ_1 */
     (void*)isr_timer0_2,     /* 2 TIMER0_IRQ_2 */
@@ -135,5 +139,3 @@ ISR_VECTOR(1) const isr_t vector_cpu[CPU_IRQ_NUMOF] = {
     (void*)isr_spareirq_4,   /* 50 SPAREIRQ_IRQ_4 */
     (void*)isr_spareirq_5,   /* 51 SPAREIRQ_IRQ_5 */
 };
-
-/** @} */
