@@ -7,7 +7,7 @@
 #pragma once
 
 /**
- * @ingroup         cpu_rp2350
+ * @ingroup         cpu_rp2350_arm
  * @{
  * @file
  * @brief           CPU configuration for the RP2350
@@ -21,6 +21,7 @@
 
 #define CPU_DEFAULT_IRQ_PRIO 1u
 #define CPU_IRQ_NUMOF 52u
+#define RP2350_USE_ARM 1
 
 #ifdef __cplusplus
 extern "C" {
