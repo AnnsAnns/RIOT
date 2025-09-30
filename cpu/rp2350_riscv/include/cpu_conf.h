@@ -23,6 +23,7 @@ extern "C" {
 
 #define CPU_DEFAULT_IRQ_PRIO 1u
 #define CPU_IRQ_NUMOF 52u
+#define RP2350_USE_RISCV 1
 
 #ifdef __cplusplus
 }
