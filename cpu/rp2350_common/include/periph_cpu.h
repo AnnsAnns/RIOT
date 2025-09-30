@@ -70,6 +70,11 @@ extern "C" {
 /** Isolation bits for PADS_BANK0 */
 #define PADS_BANK0_ISO_BITS (1u << 8u)
 
+/**
+ * @brief   Initialize RP2350 specific CPU peripherals that are not
+ *          architecture specific
+ */
+void rp2350_init(void);
 
 /**
  * @brief   Calculate the address of the GPIO pad register for a given pin
