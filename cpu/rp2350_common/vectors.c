@@ -15,9 +15,14 @@
  */
 
 #include "cpu_conf.h"
-#include "xh3irq.h"
 #include "panic.h"
 #include <stdint.h>
+
+#ifdef RP2350_USE_RISCV
+#include "xh3irq.h"
+#else
+#include "vectors_cortexm.h"
+#endif
 
 #define WEAK_DEFAULT __attribute__((weak, alias("dummy_handler")))
 
@@ -85,6 +90,10 @@ WEAK_DEFAULT void isr_spareirq_5(void);
 /** CPU specific interrupt vector table
  * @see 3.2 Interrupts and IRQn_Type in RP2350.h
  */
+#ifdef RP2350_USE_ARM
+/* CortexM does some macro magic, RISCV doesnt */
+ISR_VECTOR(1)
+#endif
 const void* vector_cpu[CPU_IRQ_NUMOF] = {
     (void*)isr_timer0_0,     /* 0 TIMER0_IRQ_0 */
     (void*)isr_timer0_1,     /* 1 TIMER0_IRQ_1 */

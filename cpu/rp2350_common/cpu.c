@@ -45,9 +45,6 @@ void rp2350_init(void)
     /* initialize the CPU clock */
     cpu_clock_init();
 
-    /* initialize the RISC-V core */
-    riscv_init();
-
     /* initialize the early peripherals */
     early_init();
 
