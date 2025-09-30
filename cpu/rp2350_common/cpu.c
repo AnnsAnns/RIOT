@@ -5,7 +5,7 @@
  */
 
 /**
- * @ingroup     cpu_rp2350_riscv
+ * @ingroup     cpu_rp2350
  * @{
  *
  * @file        cpu.c

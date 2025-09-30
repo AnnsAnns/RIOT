@@ -7,7 +7,7 @@
 #pragma once
 
 /**
- * @ingroup         cpu_rp2350
+ * @ingroup         cpu_rp2350_arm
  * @{
  * @file
  * @brief           CPU configuration for the RP2350
