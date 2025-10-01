@@ -16,10 +16,10 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
- #include "cpu.h"
- #include "periph_conf.h"
+#include "cpu.h"
+#include "periph_conf.h"
 
- #include "periph/gpio.h"
+#include "periph/gpio.h"
 
 /** GPIO Pin ID for the onboard LED */
 #define LED0_PIN_ID 25u
