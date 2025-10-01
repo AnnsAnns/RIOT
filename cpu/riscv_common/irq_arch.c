@@ -112,7 +112,7 @@ __attribute((used)) static void handle_trap(uword_t mcause)
             "Store/AMO access fault",
             "Environment call from U-mode",
             "Environment call from S-mode",
-            "Reserved",
+            NULL,
             "Environment call from M-mode",
             "Instruction page fault",
             "Load page fault",
