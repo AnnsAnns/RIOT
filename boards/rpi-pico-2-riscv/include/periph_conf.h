@@ -26,8 +26,7 @@ extern "C" {
 #endif
 
 /**
- * @brief   Configuration details for an UART interface needed by the RPX0XX peripheral
-    @todo this is shared between both
+ * @brief   Configuration details for an UART interface
  */
 typedef struct {
     UART0_Type *dev;    /**< Base address of the I/O registers of the device */
