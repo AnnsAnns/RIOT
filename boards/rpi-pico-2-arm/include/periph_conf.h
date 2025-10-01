@@ -6,6 +6,16 @@
 
 #pragma once
 
+/**
+ * @ingroup         boards_rpi_pico_2_arm
+ * @{
+ *
+ * @file
+ * @brief           Board periph definitions for the Raspberry Pi Pico 2
+ *
+ * @author          Tom Hert <git@annsann.eu>
+ */
+
 #include <stdint.h>
 
 #include "RP2350.h"
@@ -16,8 +26,7 @@ extern "C" {
 #endif
 
 /**
- * @brief   Configuration details for an UART interface needed by the RPX0XX peripheral
-    @todo this is shared between both
+ * @brief   Configuration details for an UART interface
  */
 typedef struct {
     UART0_Type *dev;    /**< Base address of the I/O registers of the device */
@@ -49,3 +58,5 @@ static const uart_conf_t uart_config[] = {
 #ifdef __cplusplus
 }
 #endif
+
+/** @} */
