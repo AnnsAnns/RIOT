@@ -2,6 +2,7 @@
 MODULE = cpu
 
 # add a list of subdirectories, that should also be built
-DIRS = $(RIOTCPU)/rp2350_common $(RIOTCPU)/cortexm_common
+DIRS += $(RIOTCPU)/rp2350_common
+DIRS += $(RIOTCPU)/cortexm_common
 
 include $(RIOTBASE)/Makefile.base

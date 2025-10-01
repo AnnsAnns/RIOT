@@ -25,7 +25,7 @@
 #include "debug.h"
 
 #ifdef RP2350_USE_RISCV
-#include "xh3irq.h"
+#  include "xh3irq.h"
 #endif
 
 #include "board.h"
@@ -48,11 +48,11 @@ void _irq_enable(uart_t uart) {
     /* We set the UART Receive Interrupt Mask (Bit 4) [See p979 UART 12.1]*/
     dev->UARTIMSC = UART0_UARTIMSC_RXIM_Msk;
     /* Enable the IRQ in the NVIC */
-    #ifdef RP2350_USE_RISCV
+#ifdef RP2350_USE_RISCV
     xh3irq_enable_irq(uart_config[uart].irqn);
-    #else
+#else
     NVIC_EnableIRQ(uart_config[uart].irqn);
-    #endif
+#endif
 }
 
 int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t parity,
@@ -169,7 +169,7 @@ void uart_write(uart_t uart, const uint8_t *data, size_t len) {
 
 void uart_poweron(uart_t uart) {
     assert((unsigned)uart < UART_NUMOF);
-    /* Get into a save state where we know whats up */
+    /* Get into a save state where we know what's up */
     _reset_uart(uart);
     UART0_Type *dev = uart_config[uart].dev;
     /* Restore config from registers */
@@ -228,16 +228,16 @@ void isr_handler(uint8_t num) {
 /** Overwrites the WEAK_DEFAULT isr_uart0 */
 void isr_uart0(void) {
     isr_handler(0);
-    #ifdef RP2350_USE_ARM
+#ifdef RP2350_USE_ARM
     cortexm_isr_end();
-    #endif
+#endif
 }
 
 void isr_uart1(void) {
     isr_handler(1);
-    #ifdef RP2350_USE_ARM
+#ifdef RP2350_USE_ARM
     cortexm_isr_end();
-    #endif
+#endif
 }
 
 /** @} */

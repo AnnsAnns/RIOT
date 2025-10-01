@@ -229,7 +229,7 @@ static void __attribute__((interrupt)) trap_entry(void)
         "csrr a0, mcause                                    \n"
 
         /* Call trap handler, a0 contains mcause before, and the return value after
-        * the call */
+         * the call */
         "call handle_trap                                   \n"
 
         /* Load the sched_context_switch_request */
@@ -246,12 +246,12 @@ static void __attribute__((interrupt)) trap_entry(void)
 
         "no_sched:                                          \n"
         /* Restore the thread stack pointer and check if a new thread must be
-        * scheduled */
+         * scheduled */
         "mv sp, s0                                          \n"
 
         /* No context switch required, shortcut to restore. a0 contains the return
-        * value of sched_run, or the sched_context_switch_request if the sched_run
-        * was skipped */
+         * value of sched_run, or the sched_context_switch_request if the sched_run
+         * was skipped */
         "beqz a0, no_switch                                 \n"
 
         /* Skips the rest of the save if no active thread */

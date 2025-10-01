@@ -4,9 +4,10 @@
  * SPDX-License-Identifier: LGPL-2.1-only
  */
 
-/* Picobin block required for the binary */
-/* This defines the minimum viable image metadata to be recognized by the RP2350 bootloader */
-/* based on RP2350 Chapter 5.9.1 */
+/* Picobin block required for the binary.
+ * This defines the minimum viable image metadata to be recognized by the RP2350 bootloader
+ * based on RP2350 Chapter 5.9.1
+ */
 
 .section .picobin_block, "a" /* "a" means "allocatable" (can be moved by the linker) */
 

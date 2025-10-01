@@ -33,8 +33,8 @@ typedef uint32_t gpio_t;
 #define _u(x) ((uint32_t)(x))
 
 #ifdef RP2350_USE_RISCV
-#include "periph_cpu_common.h"
-#include "xh3irq.h"
+#  include "periph_cpu_common.h"
+#  include "xh3irq.h"
 #endif
 #include "cpu.h"
 #include "core_cm33.h" /* Trick RP2350 into believing the file exists on RISCV */
@@ -45,11 +45,11 @@ typedef uint32_t gpio_t;
 #include "uart_conf.h"
 
 #if !(defined(RP2350_USE_ARM) || defined(RP2350_USE_RISCV))
-#error "Either RP2350_USE_ARM or RP2350_USE_RISCV must be defined"
+#  error "Either RP2350_USE_ARM or RP2350_USE_RISCV must be defined"
 #endif
 
 #if (defined(RP2350_USE_ARM) && defined(RP2350_USE_RISCV))
-#error "Only one of RP2350_USE_ARM or RP2350_USE_RISCV can be defined"
+#  error "Only one of RP2350_USE_ARM or RP2350_USE_RISCV can be defined"
 #endif
 
 #ifdef __cplusplus
