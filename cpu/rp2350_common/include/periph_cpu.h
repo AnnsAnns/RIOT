@@ -91,11 +91,11 @@ void rp2350_init(void);
  * @param   pin     The GPIO pin number
  * @return  The address of the GPIO pad register for the given pin
  */
-static inline uint32_t calculate_gpio_pad_register_addr(gpio_t pin) {
+static inline uint32_t* calculate_gpio_pad_register_addr(gpio_t pin) {
     /* Each pin has a 4 byte register, so we can calculate the address
     * by adding 4 bytes for each pin, starting at the base address of PADS_BANK0
     * and adding 4 bytes to skip VOLTAGE_SELECT */
-    return PADS_BANK0_BASE + 4 * (pin + 1);
+    return (uint32_t*) (PADS_BANK0_BASE + (4 * (pin + 1)));
 }
 
 /**
@@ -105,7 +105,7 @@ static inline uint32_t calculate_gpio_pad_register_addr(gpio_t pin) {
  */
 static uint32_t calculate_gpio_io_status_register_addr(gpio_t pin) {
     /* Each status register is followed by a ctrl register */
-    return IO_BANK0_BASE + 8 * pin;
+    return IO_BANK0_BASE + (8 * pin);
 }
 
 /**
@@ -114,11 +114,11 @@ static uint32_t calculate_gpio_io_status_register_addr(gpio_t pin) {
  * @param   pin     The GPIO pin number
  * @return  The address of the GPIO IO control register for the given pin
  */
-static inline uint32_t calculate_gpio_io_ctrl_register_addr(gpio_t pin) {
+static inline uint32_t* calculate_gpio_io_ctrl_register_addr(gpio_t pin) {
     /* Each pin has a 8 byte register (4 Bytes of Status, 4 Bytes of CTRL),
      * so we can calculate the address by adding 8 bytes for each pin,
      * starting at the base address of IO_BANK0 */
-    return calculate_gpio_io_status_register_addr(pin) + 4;
+    return (uint32_t*) (calculate_gpio_io_status_register_addr(pin) + 4);
 }
 
 

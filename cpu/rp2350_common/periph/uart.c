@@ -111,14 +111,14 @@ void uart_init_pins(uart_t uart) {
     UART0_Type *dev = uart_config[uart].dev;
 
     /* Set the UART pins to the correct function */
-    *(uint32_t *)calculate_gpio_io_ctrl_register_addr(uart_config[uart].tx_pin) = FUNCTION_SELECT_UART;
-    *(uint32_t *)calculate_gpio_io_ctrl_register_addr(uart_config[uart].rx_pin) = FUNCTION_SELECT_UART;
+    *calculate_gpio_io_ctrl_register_addr(uart_config[uart].tx_pin) = FUNCTION_SELECT_UART;
+    *calculate_gpio_io_ctrl_register_addr(uart_config[uart].rx_pin) = FUNCTION_SELECT_UART;
     /* Clear the ISO bits */
-    atomic_clear((uint32_t *)calculate_gpio_pad_register_addr(uart_config[uart].tx_pin), PADS_BANK0_ISO_BITS);
-    atomic_clear((uint32_t *)calculate_gpio_pad_register_addr(uart_config[uart].rx_pin), PADS_BANK0_ISO_BITS);
+    atomic_clear(calculate_gpio_pad_register_addr(uart_config[uart].tx_pin), PADS_BANK0_ISO_BITS);
+    atomic_clear(calculate_gpio_pad_register_addr(uart_config[uart].rx_pin), PADS_BANK0_ISO_BITS);
 
     /* Set Input Enable Flag  */
-    atomic_set((uint32_t *)calculate_gpio_pad_register_addr(uart_config[uart].rx_pin), PADS_BANK0_GPIO0_IE_BITS);
+    atomic_set(calculate_gpio_pad_register_addr(uart_config[uart].rx_pin), PADS_BANK0_GPIO0_IE_BITS);
 
     /* We reset UART0 here, so we can be sure it is in a known state */
     _reset_uart(uart);
