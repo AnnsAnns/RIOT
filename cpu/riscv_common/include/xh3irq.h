@@ -29,6 +29,36 @@ extern "C" {
  */
 extern const void *vector_cpu[CPU_IRQ_NUMOF];
 
+/** Machine Interrupt Pending Register address */
+#define MIP_REGISTER 0x344
+/**
+ * Hazard3 has internal registers to individually filter which
+ * external IRQs appear in meip. When meip is 1,
+ * this indicates there is at least one external interrupt
+ * which is asserted (hence pending in mieipa), enabled in meiea,
+ * and of priority greater than or equal to the current
+ * preemption level in meicontext.preempt.
+ */
+#define MEIP_OFFSET 11
+#define MEIP_MASK 0x1
+/**
+ * Contains the index of the highest-priority external interrupt
+ * which is both asserted in meipa and enabled in meiea, left-
+ * shifted by 2 so that it can be used to index an array of 32-bit
+ * function pointers. If there is no such interrupt, the MSB is set.
+ */
+#define MEINEXT_REGISTER 0xBE4
+/**
+ * Index of the highest-priority active external interrupt.
+ * Zero when no external interrupts with sufficient priority
+ * are both pending and enabled
+ */
+#define MEINEXT_IRQ_OFFSET 2
+/** Mask to extract the IRQ number from MEINEXT */
+#define MEINEXT_MASK 0x1FF
+/** XH3IRQ Interrupt arrays have a window to access the IRQ bits */
+#define INTERRUPT_ARRAY_MASK_OFFSET 16
+
 /**
  * @brief  Check if there are any pending interrupts
  * @return 1 if there are pending interrupts, 0 otherwise
