@@ -96,28 +96,47 @@ __attribute((used)) static void handle_trap(uword_t mcause)
     uword_t trap = mcause & CPU_CSR_MCAUSE_CAUSE_MSK;
 
 #ifdef DEVELHELP
+#   define
     printf("Trap: mcause=0x%" PRIx32 " mepc=0x%lx mtval=0x%lx\n",
-           (uint32_t)mcause, read_csr(mepc), read_csr(mtval));
+        (uint32_t)mcause, read_csr(mepc), read_csr(mtval));
 
     if ((mcause & ~MCAUSE_INT) <= 0xb) {
         const char *error_messages[] = {
-            "Instruction alignment: Does not occur on RP2350, because 16-bit compressed instructions are implemented, and it is impossible to jump to a byte-aligned address.",
-            "Instruction fetch fault: Attempted to fetch from an address that does not support instruction fetch (like APB/AHB peripherals on RP2350), or lacks PMP execute permission, or is forbidden by ACCESSCTRL, or returned a fault from the memory device itself.",
-            "Illegal instruction: Encountered an instruction that was not a valid RISC-V opcode implemented by this processor, or attempted to access a nonexistent CSR, or attempted to execute a privileged instruction or access a privileged CSR without sufficient privilege.",
-            "Breakpoint: An ebreak or c.ebreak instruction was executed, and no external debug host caught it (DCSR.EBREAKM or DCSR.EBREAKU was not set).",
-            "Load alignment: Attempted to load from an address that was not a multiple of access size.",
-            "Load fault: Attempted to load from an address that does not exist, or lacks PMP read permissions, or is forbidden by ACCESSCTRL, or returned a fault from a peripheral.",
-            "Store/AMO alignment: Attempted to write to an address that was not a multiple of access size.",
-            "Store/AMO fault: Attempted to write to an address that does not exist, or lacks PMP write permissions, or is forbidden by ACCESSCTRL, or returned a fault from a peripheral. Also raised when attempting an AMO on an address that does not support AHB5 exclusives.",
-            "An ecall instruction was executed in U-mode.",
-            NULL, /* 0x9 - not defined */
-            NULL, /* 0xa - not defined */
-            "An ecall instruction was executed in M-mode."
+            "Instruction address misaligned",
+            "Instruction access fault",
+            "Illegal instruction",
+            "Breakpoint",
+            "Load address misaligned",
+            "Load access fault",
+            "Store/AMO address misaligned",
+            "Store/AMO access fault",
+            "Environment call from U-mode",
+            "Environment call from S-mode",
+            "Reserved",
+            "Environment call from M-mode",
+            "Instruction page fault",
+            "Load page fault",
+            NULL,
+            "Store/AMO page fault",
+            "Double trap",
+            NULL,
+            "Software check",
+            "Hardware error"
         };
 
         uword_t cause_code = mcause & ~MCAUSE_INT;
-        if (cause_code <= 0xb && error_messages[cause_code] != NULL) {
-            printf("Error 0x%lx: %s\n", cause_code, error_messages[cause_code]);
+        if (cause_code <= (sizeof(error_messages) / sizeof(error_messages[0]) - 1)) {
+            if (error_messages[cause_code] != NULL) {
+                printf("Machine Cause Error 0x%lx: %s\n",
+                    cause_code,
+                    error_messages[cause_code]
+                );
+            } else {
+                printf("Machine Cause indicates that 0x%lx"
+                    " is a reserved or custom cause code\n",
+                    cause_code
+                );
+            }
         }
     }
 #endif
