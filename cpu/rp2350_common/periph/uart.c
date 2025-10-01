@@ -215,13 +215,7 @@ void isr_handler(uint8_t num) {
 
     if (status & UART_UARTMIS_RXMIS_BITS) {
         uint32_t data = dev->UARTDR;
-        // if (data & (UART0_UARTDR_BE_Msk | UART0_UARTDR_PE_Msk | UART0_UARTDR_FE_Msk)) {
-        //     DEBUG_PUTS("[rpx0xx] uart RX error (parity, break, or framing error");
-        // }
-        // else {
-        printf("UART%d received: %c\n", num, (char)(data & 0xFF));
         ctx[num].rx_cb(ctx[num].arg, (uint8_t)data);
-        // }
     }
 }
 
