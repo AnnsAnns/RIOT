@@ -149,3 +149,5 @@ const void* vector_cpu[CPU_IRQ_NUMOF] = {
     (void*)isr_spareirq_4,   /* 50 SPAREIRQ_IRQ_4 */
     (void*)isr_spareirq_5,   /* 51 SPAREIRQ_IRQ_5 */
 };
+
+/** @} */
