@@ -8,7 +8,8 @@
 
 #include "xh3irq.h"
 
-uint32_t xh3irq_has_pending(void) {
+uint32_t xh3irq_has_pending(void)
+{
     /*
      * Get MEIP which is the external interrupt pending bit
      * from the Machine Interrupt Pending Register address
@@ -18,7 +19,8 @@ uint32_t xh3irq_has_pending(void) {
     return (meip != 0);
 }
 
-void xh3irq_handler(void) {
+void xh3irq_handler(void)
+{
     /*
      * Get MEINEXT at 0xbe4 which is the next highest interrupt to handle (Bit 2-10).
      * This will also automagically clear the interrupt (See 3.8.6.1.2.)
@@ -37,7 +39,8 @@ void xh3irq_handler(void) {
     isr();
 }
 
-void _meiea_set_req_bit(uint32_t irq_no, uint32_t bit_val) {
+void _meiea_set_req_bit(uint32_t irq_no, uint32_t bit_val)
+{
     uint32_t index = irq_no / INTERRUPT_ARRAY_MASK_OFFSET;
     uint32_t mask = bit_val << (irq_no % INTERRUPT_ARRAY_MASK_OFFSET);
 
@@ -77,6 +80,5 @@ void xh3irq_force_irq(uint32_t irq_no)
      */
     __asm__ volatile(
         "csrs 0xbe2, %0\n"
-        : : "r"(index | (mask << INTERRUPT_ARRAY_MASK_OFFSET))
-    );
+        : : "r"(index | (mask << INTERRUPT_ARRAY_MASK_OFFSET)));
 }
