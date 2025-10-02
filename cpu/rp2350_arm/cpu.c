@@ -15,10 +15,10 @@
  */
 
 #include "cpu.h"
-
 #include "periph_cpu.h"
 
-void cpu_init(void) {
+void cpu_init(void)
+{
     cortexm_init();
     rp2350_init();
 }
