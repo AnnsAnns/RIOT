@@ -97,7 +97,7 @@ __attribute((used)) static void handle_trap(uword_t mcause)
 
 #ifdef DEVELHELP
     printf("Trap: mcause=0x%" PRIx32 " mepc=0x%lx mtval=0x%lx\n",
-        (uint32_t)mcause, read_csr(mepc), read_csr(mtval));
+          (uint32_t)mcause, read_csr(mepc), read_csr(mtval));
 
     /* See https://riscv.github.io/riscv-isa-manual/snapshot/privileged/#mcause */
     if ((mcause & ~MCAUSE_INT) <= 0xb) {
