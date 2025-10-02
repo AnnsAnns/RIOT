@@ -128,13 +128,12 @@ __attribute((used)) static void handle_trap(uword_t mcause)
         if (cause_code <= (ARRAY_SIZE(error_messages) - 1)) {
             if (error_messages[cause_code] != NULL) {
                 printf("Machine Cause Error 0x%lx: %s\n",
-                    cause_code,
-                    error_messages[cause_code]
+                        cause_code, error_messages[cause_code]
                 );
             } else {
                 printf("Machine Cause indicates that 0x%lx"
-                    " is a reserved or custom cause code\n",
-                    cause_code
+                        " is a reserved or custom cause code\n",
+                        cause_code
                 );
             }
         }
