@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: LGPL-2.1-only
  */
 
-#include "xh3irq.h"
 #include <stdio.h>
+
+#include "xh3irq.h"
 
 uint32_t xh3irq_has_pending(void) {
     /*
