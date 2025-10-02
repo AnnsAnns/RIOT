@@ -55,7 +55,6 @@ void _meiea_set_req_bit(uint32_t irq_no, uint32_t bit_val)
     __asm__ volatile(
         "csrs 0xbe0, %0\n"
         : : "r"(index | (mask << INTERRUPT_ARRAY_MASK_OFFSET))
-
     );
 }
 
