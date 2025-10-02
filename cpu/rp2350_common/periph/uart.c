@@ -108,11 +108,17 @@ void uart_init_pins(uart_t uart)
     *calculate_gpio_io_ctrl_register_addr(uart_config[uart].tx_pin) = FUNCTION_SELECT_UART;
     *calculate_gpio_io_ctrl_register_addr(uart_config[uart].rx_pin) = FUNCTION_SELECT_UART;
     /* Clear the ISO bits */
-    atomic_clear(calculate_gpio_pad_register_addr(uart_config[uart].tx_pin), PADS_BANK0_ISO_BITS);
-    atomic_clear(calculate_gpio_pad_register_addr(uart_config[uart].rx_pin), PADS_BANK0_ISO_BITS);
+    atomic_clear(
+        calculate_gpio_pad_register_addr(uart_config[uart].tx_pin),
+        PADS_BANK0_ISO_BITS);
+    atomic_clear(
+        calculate_gpio_pad_register_addr(uart_config[uart].rx_pin),
+        PADS_BANK0_ISO_BITS);
 
     /* Set Input Enable Flag  */
-    atomic_set(calculate_gpio_pad_register_addr(uart_config[uart].rx_pin), PADS_BANK0_GPIO0_IE_BITS);
+    atomic_set(
+        calculate_gpio_pad_register_addr(uart_config[uart].rx_pin),
+        PADS_BANK0_GPIO0_IE_BITS);
 
     /* We reset UART0 here, so we can be sure it is in a known state */
     _reset_uart(uart);
@@ -135,7 +141,11 @@ int uart_init(uart_t uart, uint32_t baud, uart_rx_cb_t rx_cb, void *arg)
 
     uart_init_pins(uart);
 
-    if (uart_mode(uart, UART_DATA_BITS_8, UART_PARITY_NONE, UART_STOP_BITS_1) != UART_OK) {
+    if (uart_mode(
+            uart,
+            UART_DATA_BITS_8,
+            UART_PARITY_NONE,
+            UART_STOP_BITS_1) != UART_OK) {
         return UART_NOMODE;
     }
 
