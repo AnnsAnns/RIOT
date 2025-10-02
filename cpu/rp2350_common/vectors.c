@@ -92,7 +92,7 @@ WEAK_DEFAULT void isr_spareirq_5(void);
  * @see 3.2 Interrupts and IRQn_Type in RP2350.h
  */
 #ifdef RP2350_USE_ARM
-/* CortexM does some macro magic, RISCV does not */
+/* Cortex-M does some macro magic, RISC-V does not */
 ISR_VECTOR(1)
 #endif
 const void* vector_cpu[CPU_IRQ_NUMOF] = {
