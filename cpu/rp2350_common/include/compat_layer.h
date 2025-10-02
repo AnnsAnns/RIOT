@@ -23,6 +23,10 @@
 #  include "xh3irq.h"
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief     Enable the given IRQ
  * @param[in] irq_no IRQ number to enable
@@ -45,5 +49,9 @@ static inline void rp_end_isr(void)
     cortexm_isr_end();
 #endif
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 /** @} */
