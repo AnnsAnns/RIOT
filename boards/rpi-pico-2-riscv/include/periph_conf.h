@@ -17,8 +17,9 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-#include "kernel_defines.h"
 #include <stdint.h>
+
+#include "kernel_defines.h"
 #include "periph_cpu.h"
 
 #ifdef __cplusplus
