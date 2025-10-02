@@ -7,8 +7,9 @@
 #pragma once
 
 #include <stdio.h>
-#include "cpu_conf.h"
+
 #include "panic.h"
+#include "cpu_conf.h"
 
 /**
  * @ingroup     cpu_riscv_common
