@@ -173,8 +173,8 @@ __attribute((used)) static void handle_trap(uword_t mcause)
     }
     else {
         switch (trap) {
-        case CAUSE_USER_ECALL:    /* ECALL from user mode */
-        case CAUSE_MACHINE_ECALL: /* ECALL from machine mode */
+        case CAUSE_USER_ECALL:      /* ECALL from user mode */
+        case CAUSE_MACHINE_ECALL:   /* ECALL from machine mode */
         {
             /* TODO: get the ecall arguments */
             sched_context_switch_request = 1;
