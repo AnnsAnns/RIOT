@@ -15,6 +15,8 @@
  * @}
  */
 
+#include <sys/unistd.h>
+
 #include "board.h"
 #include "cpu.h"
 #include "clock_conf.h"
@@ -22,8 +24,6 @@
 #include "periph/init.h"
 #include "periph/uart.h"
 #include "periph_conf.h"
-
-#include <sys/unistd.h>
 
 void gpio_reset(void)
 {
