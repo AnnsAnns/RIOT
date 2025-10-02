@@ -1,4 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Tom Hert <git@annsann.eu>
+ * SPDX-FileCopyrightText: 2025 HAW Hamburg
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
 #pragma once
+
+/**
+ * @ingroup         cpu_rp2350
+ * @{
+ *
+ * @file
+ * @brief           Compatibility layer for different CPU architectures
+ *
+ * @author          Tom Hert <git@annsann.eu>
+ */
+
 
 #include "periph_cpu.h"
 
@@ -21,3 +38,5 @@ static inline void rp_end_isr(void)
     cortexm_isr_end();
 #endif
 }
+
+/** @} */
