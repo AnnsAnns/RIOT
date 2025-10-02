@@ -15,8 +15,8 @@ uint32_t xh3irq_has_pending(void)
      * Get MEIP which is the external interrupt pending bit
      * from the Machine Interrupt Pending Register address
      */
-     uint32_t mip_reg = read_csr(0x344);
-     uint32_t meip = bit_check32(&mip_reg, MEIP_OFFSET);
+    uint32_t mip_reg = read_csr(0x344);
+    uint32_t meip = bit_check32(&mip_reg, MEIP_OFFSET);
 
     return (meip != 0);
 }

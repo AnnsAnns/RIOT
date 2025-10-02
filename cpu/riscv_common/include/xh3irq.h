@@ -39,7 +39,7 @@ extern const void *vector_cpu[CPU_IRQ_NUMOF];
  * preemption level in meicontext.preempt.
  */
 #define MEIP_OFFSET 11
-/* Mask to extract the MEIP bit from MIP/MISE */
+/** Mask to extract the MEIP bit from MIP/MISE */
 #define MEIP_MASK 0x1
 /**
  * Index of the highest-priority active external interrupt.
