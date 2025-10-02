@@ -23,6 +23,10 @@
 #  include "xh3irq.h"
 #endif
 
+/**
+ * @brief     Enable the given IRQ
+ * @param[in] irq_no IRQ number to enable
+ */
 static inline void rp_irq_enable(uint32_t irq_no)
 {
 #ifdef RP2350_USE_RISCV
@@ -32,6 +36,9 @@ static inline void rp_irq_enable(uint32_t irq_no)
 #endif
 }
 
+/**
+ * @brief   Called upon the end of an ISR
+ */
 static inline void rp_end_isr(void)
 {
 #ifdef RP2350_USE_ARM
