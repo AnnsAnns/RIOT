@@ -125,7 +125,7 @@ __attribute((used)) static void handle_trap(uword_t mcause)
         };
 
         uword_t cause_code = mcause & ~MCAUSE_INT;
-        if (cause_code <= (sizeof(error_messages) / sizeof(error_messages[0]) - 1)) {
+        if (cause_code <= (ARRAY_SIZE(error_messages) - 1)) {
             if (error_messages[cause_code] != NULL) {
                 printf("Machine Cause Error 0x%lx: %s\n",
                     cause_code,
