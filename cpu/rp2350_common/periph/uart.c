@@ -225,10 +225,6 @@ void isr_handler(uint8_t num)
 
     if (status & UART_UARTMIS_RXMIS_BITS) {
         uint32_t data = dev->UARTDR;
-        if (data != 0) {
-            printf("UART%u: Received data: 0x%02lx ('%c')\n", num, data,
-                   (data >= 32 && data <= 126) ? (char)data : '.');
-        }
         ctx[num].rx_cb(ctx[num].arg, (uint8_t)data);
     }
 }
