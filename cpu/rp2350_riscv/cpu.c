@@ -31,8 +31,8 @@
  */
 void cpu_init(void)
 {
-    /* initialize the RISC-V core */
-    riscv_init();
-
+    /* rp2350 common startup routine */
     rp2350_init();
+    /* initialize the RISC-V core (Interrupts, FPU, etc) */
+    riscv_init();
 }
