@@ -16,7 +16,6 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-
 #include "periph_cpu.h"
 
 #ifdef RP2350_USE_RISCV
