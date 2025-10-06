@@ -68,12 +68,13 @@ int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t parity,
     switch (parity) {
     case UART_PARITY_NONE:
         break;
-    // case UART_PARITY_EVEN:
-    //     io_reg_atomic_set(&dev->UARTLCR_H, UART0_UARTLCR_H_EPS_Msk | UART0_UARTLCR_H_PEN_Msk);
-    //     break;
-    // case UART_PARITY_ODD:
-    //     io_reg_atomic_set(&dev->UARTLCR_H, UART0_UARTLCR_H_PEN_Msk);
-    //     break;
+    /* Currently we don't support parity settings yet
+     * case UART_PARITY_EVEN:
+     *     io_reg_atomic_set(&dev->UARTLCR_H, UART0_UARTLCR_H_EPS_Msk | UART0_UARTLCR_H_PEN_Msk);
+     *     break;
+     * case UART_PARITY_ODD:
+     *     io_reg_atomic_set(&dev->UARTLCR_H, UART0_UARTLCR_H_PEN_Msk);
+     *     break; */
     default:
         return UART_NOMODE;
     }
