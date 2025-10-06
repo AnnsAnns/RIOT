@@ -9,5 +9,8 @@ endif
 ifneq (,$(filter boards_common_seeedstudio-xiao-nrf52840,$(USEMODULE)))
   DIRS += $(RIOTBOARD)/common/seeedstudio-xiao-nrf52840
 endif
+ifneq (,$(filter boards_common_rpi_pico_2,$(USEMODULE)))
+  DIRS += $(RIOTBOARD)/common/rpi-pico-2
+endif
 
 include $(RIOTBASE)/Makefile.base
