@@ -44,6 +44,27 @@
 /** UART transmit FIFO empty flag bit in flag register */
 #define UART_UARTFR_TXFE_BITS (1u << 7u)
 
+/** UART data register break error mask */
+#define UART0_UARTDR_BE_Msk (0x400UL)
+
+/** UART data register parity error mask */
+#define UART0_UARTDR_PE_Msk (0x200UL)
+
+/** UART data register framing error mask */
+#define UART0_UARTDR_FE_Msk (0x100UL)
+
+/** UART raw interrupt status transmit interrupt mask */
+#define UART0_UARTRIS_TXRIS_Msk (0x20UL)
+
+/** UART line control register two stop bits mask */
+#define UART0_UARTLCR_H_STP2_Msk (0x8UL)
+
+/** UART line control register even parity select mask */
+#define UART0_UARTLCR_H_EPS_Msk (0x4UL)
+
+/** UART line control register parity enable mask */
+#define UART0_UARTLCR_H_PEN_Msk (0x2UL)
+
 #ifdef __cplusplus
 extern "C" {
 #endif
