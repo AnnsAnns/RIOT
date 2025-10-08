@@ -146,9 +146,6 @@ void uart_init_pins(uart_t uart)
     atomic_set(
         calculate_gpio_pad_register_addr(uart_config[uart].rx_pin),
         PADS_BANK0_GPIO0_IE_BITS);
-
-    dev->UARTIBRD = IBRD;
-    dev->UARTFBRD = FBRD;
 }
 
 int uart_init(uart_t uart, uint32_t baud, uart_rx_cb_t rx_cb, void *arg)

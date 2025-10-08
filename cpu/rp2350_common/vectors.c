@@ -26,7 +26,7 @@
 #endif
 
 #ifndef WEAK_DEFAULT
-#   define WEAK_DEFAULT __attribute__((weak, alias("dummy_handler")))
+#  define WEAK_DEFAULT __attribute__((weak, alias("dummy_handler")))
 #endif
 
 /* define a local dummy handler as it needs to be in the same compilation unit
