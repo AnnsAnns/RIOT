@@ -23,6 +23,8 @@ extern "C" {
 
 #define CPU_DEFAULT_IRQ_PRIO 1u
 #define CPU_IRQ_NUMOF 52u
+/* This tells rp2350_common that we are using the RISC-V core */
+#define RP2350_USE_RISCV 1
 
 #ifdef __cplusplus
 }
