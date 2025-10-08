@@ -8,7 +8,7 @@
  * @ingroup     cpu_rp2350
  * @{
  *
- * @file        cpu.c
+ * @file
  * @brief       Implementation of the CPU initialization for RP2350
  *
  * @author      Tom Hert <git@annsann.eu>
