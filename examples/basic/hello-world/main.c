@@ -16,14 +16,30 @@
  * @}
  */
 
+#include "multicore.h"
+#include "periph_cpu.h"
 #include <stdio.h>
+#include "periph/gpio.h"
 
-int main(void)
-{
-    puts("Hello World!");
+#define PIN_14 14u
+#define PIN_15 15u
 
-    printf("You are running RIOT on a(n) %s board.\n", RIOT_BOARD);
-    printf("This board features a(n) %s CPU.\n", RIOT_CPU);
+void* core1_main(void *arg) {
+    (void)arg;
+    gpio_init(PIN_14, GPIO_OUT);
+    while (1) {
+        gpio_set(PIN_14);
+        gpio_clear(PIN_14);
+    }
+    return NULL;
+}
 
+int main(void) {
+    core1_init(core1_main, NULL);
+    gpio_init(PIN_15, GPIO_OUT);
+    while (1) {
+        gpio_set(PIN_15);
+        gpio_clear(PIN_15);
+    }
     return 0;
 }
