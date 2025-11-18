@@ -17,9 +17,16 @@
  */
 
 #include "periph_cpu.h"
+#include <stdint.h>
 
 #ifdef RP2350_USE_RISCV
 #  include "xh3irq.h"
+/* See 3.8.6.3.1 */
+#  define __h3_block() __asm__("slt x0, x0, x0")
+/* See 3.8.6.3.2 */
+#  define __h3_unblock() __asm__("slt x0, x0, x1")
+#else
+   extern uint32_t _isr_vectors; /* Defined in the linker script */
 #endif
 
 #ifdef __cplusplus
@@ -46,6 +53,51 @@ static inline void rp_end_isr(void)
 {
 #ifdef RP2350_USE_ARM
     cortexm_isr_end();
+#endif
+}
+
+/**
+ * @brief Initialize the architecture-specific components
+ */
+static inline void rp_arch_init(void)
+{
+#ifdef RP2350_USE_RISCV
+    riscv_init();
+#else
+    cortexm_init();
+#endif
+}
+
+/**
+ * @brief Wait For Interrupt abstraction
+ */
+static inline void rp_block_core(void)
+{
+#ifdef RP2350_USE_RISCV
+    __h3_block();
+#else
+    __WFI();
+#endif
+}
+
+/**
+ * @brief Set Event abstraction
+ */
+static inline void rp_unblock_core(void)
+{
+#ifdef RP2350_USE_RISCV
+    __h3_unblock();
+#else
+    __SEV();
+#endif
+}
+
+static inline uint32_t* rp_get_vector_poiner(void)
+{
+#ifdef RP2350_USE_RISCV
+    return (uint32_t*)vector_cpu;
+#else
+    return &_isr_vectors;
 #endif
 }
 
