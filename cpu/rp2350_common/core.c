@@ -1,9 +1,9 @@
+#include "compat_layer.h"
 #include "periph_cpu.h"
 #include "multicore.h"
 
 extern uint32_t _estack;  /* End of stack based on cortex_m.ld */
 extern uint32_t _sstack; /* Start of stack based on cortex_m.ld */
-extern uint32_t _isr_vectors;
 
 void core1_reset(void) {
     /* We force core1 off via the PSM, this also puts it into reset */
@@ -11,7 +11,7 @@ void core1_reset(void) {
 }
 
 void _core1_trampoline(void) {
-    cortexm_init();
+    rp_arch_init();
 
     core_1_fn_t function = (core_1_fn_t) core_1_stack[0];
     void *arg = (void *) core_1_stack[1];
@@ -47,7 +47,7 @@ void core1_init(core_1_fn_t function, void *arg) {
         * get the address, however, the vector table should sit right at the front
         * of the ROM so *technically* it might be fine
         */
-        (uint32_t) &_isr_vectors,
+        (uint32_t) rp_get_vector_poiner(),
         /**
         * We allocate a stack "locally" instead of in the linker script
         * since that would require changes to the base cortexm script
@@ -93,7 +93,7 @@ void core1_init(core_1_fn_t function, void *arg) {
              * is waiting for FIFO space. Though, as I understand it, this shouldn't technically
              * happen since don't dynamically re-enable core1 (yet :D)
              */
-            __SEV();
+             rp_unblock_core();
         }
 
         /* This is eq. to the SDK multicore_fifo_push_blocking_inline */
@@ -104,7 +104,7 @@ void core1_init(core_1_fn_t function, void *arg) {
         /* Write data since we know we have space */
         SIO->FIFO_WR = cmd;
         /* Send event */
-        __SEV();
+        rp_unblock_core();
 
         /* This is eq. to the SDK multicore_fifo_pop_blocking_inline*/
         /* We check whether there are events */
@@ -115,7 +115,7 @@ void core1_init(core_1_fn_t function, void *arg) {
              * Also for ref, WFE -> Wait For Event
              * https://developer.arm.com/documentation/dui0552/a/the-cortex-m3-instruction-set/miscellaneous-instructions/wfe
              */
-            __WFE();
+             rp_block_core();
         };
 
         /* Get the event since this is our response */
