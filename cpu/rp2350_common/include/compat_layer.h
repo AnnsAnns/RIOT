@@ -20,13 +20,14 @@
 #include <stdint.h>
 
 #ifdef RP2350_USE_RISCV
-#  include "xh3irq.h"
-/* See 3.8.6.3.1 */
-#  define __h3_block() __asm__("slt x0, x0, x0")
-/* See 3.8.6.3.2 */
-#  define __h3_unblock() __asm__("slt x0, x0, x1")
+#   include "xh3irq.h"
+    /** See RP2350 Datasheet 3.8.6.3.1 */
+#   define __h3_block() __asm__("slt x0, x0, x0")
+    /** See RP2350 Datasheet 3.8.6.3.2 */
+#   define __h3_unblock() __asm__("slt x0, x0, x1")
 #else
-   extern uint32_t _isr_vectors; /* Defined in the linker script */
+    /** Defined in the linker script */
+    extern uint32_t _isr_vectors;
 #endif
 
 #ifdef __cplusplus
@@ -92,6 +93,10 @@ static inline void rp_unblock_core(void)
 #endif
 }
 
+/**
+ * @brief   Get a pointer to the CPU specific interrupt vector table
+ * @return  Pointer to the CPU specific interrupt vector table
+ */
 static inline uint32_t* rp_get_vector_poiner(void)
 {
 #ifdef RP2350_USE_RISCV
