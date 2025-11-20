@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Tom Hert <git@annsann.eu>
+ * SPDX-FileCopyrightText: 2025 HAW Hamburg
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
 #include "compat_layer.h"
 #include "periph_cpu.h"
 #include "multicore.h"
