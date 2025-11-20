@@ -76,10 +76,10 @@ void core1_init(core_1_fn_t function, void *arg) {
     /** We iterate through the cmd_sequence till we covered every param
      *(seq does not increase with each loop, thus we need to while loop this)
      */
-    while(seq < 6) {
+    while (seq < 6) {
         uint32_t cmd = cmd_sequence[seq];
         /* If the cmd is 0 we need to drain the READ FIFO first*/
-        if(cmd == 0) {
+        if (cmd == 0) {
             /**
              * The official SDK does this
              * ```c
@@ -89,7 +89,7 @@ void core1_init(core_1_fn_t function, void *arg) {
              * fifo_rvalid checks whether rx fifo is empty and then the value
              * gets discarded (called multicore_fifo_drain in chapter 5.3)
              */
-            while(SIO->FIFO_ST & 1<<SIO_FIFO_READ_VALID_BIT) {
+            while (SIO->FIFO_ST & 1<<SIO_FIFO_READ_VALID_BIT) {
                 (void) SIO->FIFO_RD; /* Table 39 FIFO_RD*/
             };
 
@@ -114,7 +114,7 @@ void core1_init(core_1_fn_t function, void *arg) {
 
         /* This is eq. to the SDK multicore_fifo_pop_blocking_inline*/
         /* We check whether there are events */
-        while(!(SIO->FIFO_ST & 1<<SIO_FIFO_READ_VALID_BIT)) {
+        while (!(SIO->FIFO_ST & 1<<SIO_FIFO_READ_VALID_BIT)) {
             /* If not we simply wait,
              * fun fact, it appears like WFE is not optional in this scenario
              * not using wfe causes a double fault crash

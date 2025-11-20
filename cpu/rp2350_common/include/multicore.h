@@ -15,7 +15,6 @@
  * @author          Tom Hert <git@annsann.eu>
  */
 
-
 #include "periph_cpu.h"
 
 #ifdef __cplusplus
