@@ -12,6 +12,9 @@ export default defineConfig({
   },
   integrations: [
     starlight({
+      markdown: {
+        processedDirs: ["../guides"],
+      },
       title: "RIOT Documentation",
       head: [
         {
