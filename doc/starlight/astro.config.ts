@@ -26,6 +26,7 @@ export default defineConfig({
           },
         },
       ],
+      disable404Route: true,
       social: [
         {
           icon: "github",

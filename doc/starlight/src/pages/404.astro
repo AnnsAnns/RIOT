@@ -1,0 +1,45 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { Aside, LinkButton } from "@astrojs/starlight/components";
+import Contact from "@components/contact.astro";
+---
+
+<script>
+  // Get the current URL path
+  const currentPath = window.location.pathname;
+  const suggestionDiv = document.getElementById("api-suggestion");
+
+  if (suggestionDiv && currentPath) {
+    // Create the suggestion message
+    const apiUrl = `https://api.riot-os.org${currentPath}`;
+
+    suggestionDiv.href = apiUrl;
+    suggestionDiv.textContent = `Visit API Documentation for "${currentPath}"`;
+  }
+</script>
+
+<StarlightPage
+  frontmatter={{
+    title: "404 - Page Not Found",
+    description: "The page you are looking for does not exist.",
+  }}
+>
+  <Contact />
+
+  <Aside
+    type="caution"
+    title="Are you looking for the Doxygen API documentation?"
+  >
+    We recently moved it to a new location. You can find the URL suggestion
+    below:
+    <br />
+    <LinkButton
+      href="#"
+      icon="external"
+      iconPlacement="start"
+      id="api-suggestion"
+    >
+      Loading, this requires JavaScript...
+    </LinkButton>
+  </Aside>
+</StarlightPage>
