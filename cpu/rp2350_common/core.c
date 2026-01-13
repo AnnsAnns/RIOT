@@ -19,8 +19,9 @@ void core1_reset(void) {
 void _core1_trampoline(void) {
     rp_arch_init();
 
-    core_1_fn_t function = (core_1_fn_t) core_1_stack[0];
-    void *arg = (void *) core_1_stack[1];
+    uint32_t* core_1_stack_as_u32 = (uint32_t*) (uintptr_t) core_1_stack;
+    core_1_fn_t function = (core_1_fn_t) core_1_stack_as_u32[0];
+    void *arg = (void *) core_1_stack_as_u32[1];
     (*function)(arg);
 }
 
