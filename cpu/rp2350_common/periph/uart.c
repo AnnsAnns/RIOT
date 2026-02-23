@@ -35,7 +35,7 @@ static uint32_t uartcr;
 void _irq_enable(uart_t uart)
 {
     UART0_Type *dev = uart_config[uart].dev;
-    /* We set the UART Receive Interrupt Mask (Bit 4) [See p979 UART 12.1]*/
+    /* We set the UART Receive Interrupt Mask (Bit 4) [See p979 UART 12.1] */
     dev->UARTIMSC = UART_UARTIMSC_RXIM_BITS;
     /* Enable the IRQ */
     rp_irq_enable(uart_config[uart].irqn);
@@ -101,7 +101,8 @@ int uart_mode(uart_t uart, uart_data_bits_t data_bits, uart_parity_t parity,
         return UART_NOMODE;
     }
 
-    atomic_set(&dev->UARTCR, UART_UARTCR_TXE_BITS | UART_UARTCR_UARTEN_BITS | UART_UARTCR_RXE_BITS);
+    atomic_set(&dev->UARTCR, UART_UARTCR_TXE_BITS | UART_UARTCR_RXE_BITS |
+                             UART_UARTCR_UARTEN_BITS);
 
     return UART_OK;
 }
@@ -140,7 +141,7 @@ void uart_init_pins(uart_t uart)
         calculate_gpio_pad_register_addr(uart_config[uart].rx_pin),
         PADS_BANK0_ISO_BITS);
 
-    /* Set Input Enable Flag  */
+    /* Set Input Enable Flag */
     atomic_set(
         calculate_gpio_pad_register_addr(uart_config[uart].rx_pin),
         PADS_BANK0_GPIO0_IE_BITS);
@@ -160,11 +161,7 @@ int uart_init(uart_t uart, uint32_t baud, uart_rx_cb_t rx_cb, void *arg)
 
     _set_symbolrate(uart, baud);
 
-    if (uart_mode(
-            uart,
-            UART_DATA_BITS_8,
-            UART_PARITY_NONE,
-            UART_STOP_BITS_1) != UART_OK) {
+    if (uart_mode(uart, UART_DATA_BITS_8, UART_PARITY_NONE, UART_STOP_BITS_1) != UART_OK) {
         return UART_NOMODE;
     }
 
@@ -254,7 +251,7 @@ void isr_handler(uint8_t num)
     }
 }
 
-/** Overwrites the WEAK_DEFAULT isr_uart0 */
+/* Overwrites the WEAK_DEFAULT isr_uart0 */
 void isr_uart0(void)
 {
     isr_handler(0);

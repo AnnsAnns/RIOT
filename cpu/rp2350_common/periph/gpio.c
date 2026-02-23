@@ -57,8 +57,7 @@ int gpio_init(gpio_t pin, gpio_mode_t mode)
         /* Unsupported mode */
         return -ENOTSUP;
     }
-    pad_reg =
-        calculate_gpio_pad_register_addr(pin);
+    pad_reg = calculate_gpio_pad_register_addr(pin);
 
     /* We clear all bits except the drive strength bit.
      * We set that to the highest one possible (12mA)

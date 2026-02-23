@@ -54,7 +54,8 @@ extern const void *vector_cpu[CPU_IRQ_NUMOF];
 
 /**
  * @brief  Check if there are any pending interrupts
- * @return 1 if there are pending interrupts, 0 otherwise
+ * @retval 1 if there are pending interrupts
+ * @retval 0 otherwise
  */
 uint32_t xh3irq_has_pending(void);
 
