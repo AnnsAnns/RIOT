@@ -54,10 +54,9 @@ void _meiea_set_req_bit(uint32_t irq_no, uint32_t bit_val)
      * The upper half of this register contains a 16-bit window into the full
      * 512-bit vector. The window is indexed by the 5 LSBs of the write data.
      */
-    __asm__ volatile(
+    __asm__ volatile (
         "csrs 0xbe0, %0\n"
-        : : "r"(index | (mask << INTERRUPT_ARRAY_MASK_OFFSET))
-    );
+        : : "r" (index | (mask << INTERRUPT_ARRAY_MASK_OFFSET)));
 }
 
 void xh3irq_enable_irq(uint32_t irq_no)
@@ -79,7 +78,7 @@ void xh3irq_force_irq(uint32_t irq_no)
      * 0xbe2 is the external interrupt force array.
      * See _meiea_set_req_bit / 0xbe0 for more details.
      */
-    __asm__ volatile(
+    __asm__ volatile (
         "csrs 0xbe2, %0\n"
-        : : "r"(index | (mask << INTERRUPT_ARRAY_MASK_OFFSET)));
+        : : "r" (index | (mask << INTERRUPT_ARRAY_MASK_OFFSET)));
 }

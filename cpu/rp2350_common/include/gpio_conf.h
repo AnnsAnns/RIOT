@@ -26,7 +26,7 @@ extern "C" {
 #define HAVE_GPIO_MODE_T
 
 typedef enum {
-    GPIO_IN ,               /**< configure as input without pull resistor */
+    GPIO_IN,                /**< configure as input without pull resistor */
     GPIO_IN_PD,             /**< configure as input with pull-down resistor */
     GPIO_IN_PU,             /**< configure as input with pull-up resistor */
     GPIO_OUT,               /**< configure as output in push-pull mode */
