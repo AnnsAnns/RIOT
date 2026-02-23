@@ -23,8 +23,10 @@
 extern "C" {
 #endif
 
+/** We provide our own definitions to support PIO */
 #define HAVE_GPIO_MODE_T
 
+/** gpio_mode_t but with the addition of PIO pins */
 typedef enum {
     GPIO_IN,                /**< configure as input without pull resistor */
     GPIO_IN_PD,             /**< configure as input with pull-down resistor */
