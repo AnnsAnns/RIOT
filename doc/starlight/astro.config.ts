@@ -181,6 +181,10 @@ export default defineConfig({
           ],
         },
         {
+          label: "RIOT Boards",
+          link: "boards",
+        },
+        {
           label: "Changelog",
           link: "changelog",
         },

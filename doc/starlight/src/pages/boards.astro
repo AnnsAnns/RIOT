@@ -1,0 +1,36 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { LinkCard } from "@astrojs/starlight/components";
+import { getCollection } from "astro:content";
+
+const boards = await getCollection("boards");
+
+// Sort the boards alphabetically by title
+const sortedBoards = boards.sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "RIOT Boards",
+    description: "Complete list of supported RIOT boards with documentation",
+  }}
+>
+  <div style={{ marginBottom: "1rem" }}>
+    <p>
+      Explore the comprehensive documentation for all supported RIOT boards.
+      Each board has detailed information about its features, pinout, and
+      usage.
+    </p>
+  </div>
+  {
+    sortedBoards.map((entry) => (
+      <LinkCard
+        title={entry.data.title}
+        href={`/boards/${entry.id.replace("boards/", "")}`}
+        description={entry.data.description || "Board documentation"}
+      />
+    ))
+  }
+</StarlightPage>

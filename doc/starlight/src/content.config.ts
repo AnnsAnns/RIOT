@@ -4,10 +4,19 @@ import { docsSchema } from "@astrojs/starlight/schema";
 import { promises as fs } from "node:fs";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import path from "node:path";
+import {
+  extractBoardTitleFromDoxygen,
+  filterDoxygenMarkdown,
+} from "./lib/doxygen_filter";
 
 export const collections = {
   docs: defineCollection({
     loader: glob({ pattern: "**/*.(md|mdx)", base: "../guides" }),
+    schema: docsSchema(),
+  }),
+  boards: defineCollection({
+    loader: boardsLoader(),
     schema: docsSchema(),
   }),
   changelog: defineCollection({
@@ -22,6 +31,91 @@ export const collections = {
     }),
   }),
 };
+
+/**
+ * Load board documentation from doc.md files in the boards directory.
+ * Each board directory should contain a doc.md file with markdown content.
+ * Extracts board titles from @defgroup directives like riot-index does.
+ */
+export function boardsLoader(): Loader {
+  return {
+    name: "boards-loader",
+    load: async (context): Promise<void> => {
+      const boardsDir = "../../boards";
+
+      try {
+        // Read all directories in the boards folder
+        const entries = await fs.readdir(boardsDir, { withFileTypes: true });
+        const boardDirs = entries.filter((entry) => entry.isDirectory());
+
+        for (const boardDir of boardDirs) {
+          const boardName = boardDir.name;
+          const docPath = path.join(boardsDir, boardName, "doc.md");
+
+          // Check if doc.md exists for this board
+          try {
+            const docContent = await fs.readFile(docPath, "utf-8");
+
+            // Parse frontmatter (simple YAML frontmatter between --- markers)
+            let markdown = docContent;
+            let frontmatter: Record<string, any> = {};
+
+            const frontmatterMatch = docContent.match(
+              /^---\n([\s\S]*?)\n---\n([\s\S]*)$/
+            );
+
+            if (frontmatterMatch) {
+              const frontmatterText = frontmatterMatch[1];
+              markdown = frontmatterMatch[2];
+
+              // Simple YAML parser for common frontmatter fields
+              const lines = frontmatterText.split("\n");
+              for (const line of lines) {
+                const match = line.match(/^(\w+):\s*(.+)$/);
+                if (match) {
+                  const key = match[1];
+                  let value: string | boolean = match[2].trim();
+                  // Handle boolean values
+                  if (value === "true") value = true;
+                  if (value === "false") value = false;
+                  // Remove quotes if present
+                  if (typeof value === "string" && value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                  }
+                  frontmatter[key] = value;
+                }
+              }
+            }
+
+            const fallbackTitle = frontmatter.title || boardName.replace(/-/g, " ");
+            const title = extractBoardTitleFromDoxygen(docContent, fallbackTitle);
+            const filteredMarkdown = filterDoxygenMarkdown(markdown);
+
+            // Create entry ID
+            const entryId = `boards/${boardName}`;
+
+            // Add entry to content collection
+            context.store.set({
+              id: entryId,
+              data: {
+                title: title,
+                description: frontmatter.description || "",
+                ...frontmatter,
+              },
+              body: filteredMarkdown,
+              rendered: await context.renderMarkdown(filteredMarkdown),
+            });
+          } catch (error) {
+            // doc.md file doesn't exist for this board, skip it
+            continue;
+          }
+        }
+      } catch (error) {
+        console.error("Error loading boards:", error);
+      }
+    },
+  };
+}
 
 /**
  * Generate a content collection containing the release notes of each release as an entry.
