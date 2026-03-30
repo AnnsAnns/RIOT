@@ -19,26 +19,18 @@ function stripDoxygenAnchors(line: string): string {
 	return line.replace(/\s*\{#[^}]+\}\s*/g, " ").trimEnd();
 }
 
-type CalloutKind = "note" | "tip" | "caution";
-
-function getCalloutConfig(command: string): { kind: CalloutKind; title: string } | null {
+function getCalloutLabel(command: string): string | null {
 	const key = command.toLowerCase();
 	if (key === "warning" || key === "attention" || key === "important") {
-		return { kind: "caution", title: "Warning" };
+		return "Warning";
 	}
 	if (key === "note" || key === "remark") {
-		return { kind: "note", title: "Note" };
+		return "Note";
 	}
 	if (key === "tip" || key === "hint") {
-		return { kind: "tip", title: "Tip" };
+		return "Tip";
 	}
 	return null;
-}
-
-function formatCallout(kind: CalloutKind, title: string, text: string): string[] {
-	// Loader-rendered markdown does not always apply directive transforms,
-	// so use a markdown blockquote that always renders visibly.
-	return ["", "> **" + title + ":** " + text, ""];
 }
 
 export function extractBoardTitleFromDoxygen(content: string, fallback: string): string {
@@ -80,9 +72,9 @@ export function filterDoxygenMarkdown(content: string): string {
 
 		const calloutMatch = line.match(/^[@\\](warning|attention|important|note|remark|tip|hint)\s+(.+)$/i);
 		if (calloutMatch) {
-			const config = getCalloutConfig(calloutMatch[1]);
-			if (config) {
-				out.push(...formatCallout(config.kind, config.title, cleanDoxygenText(calloutMatch[2])));
+			const label = getCalloutLabel(calloutMatch[1]);
+			if (label) {
+				out.push(`**${label}:** ${cleanDoxygenText(calloutMatch[2])}`);
 			}
 			continue;
 		}

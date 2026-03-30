@@ -2,6 +2,8 @@
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import { LinkCard, Code, Aside, CardGrid } from "@astrojs/starlight/components";
 import { getCollection, render } from "astro:content";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 export async function getStaticPaths() {
   const boards = await getCollection("boards");
@@ -19,8 +21,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 const module_name = entry.id.replace("boards/", "");
-const doxygen_group = module_name.replace(/[-_]/g, "__");
-const doxygen_url = `https://api.riot-os.org/group__boards__${doxygen_group}.html`;
+const riot_base = process.env.RIOTBASE || path.resolve(process.cwd(), "../../");
+const doc_path = path.join(riot_base, "boards", module_name, "doc.md");
+const defgroup_match = readFileSync(doc_path, "utf8").match(/@defgroup\s+([A-Za-z0-9._-]+)\s+/);
+const doxygen_group_raw = defgroup_match?.[1] || `UNKNOWN`;
+const doxygen_group = doxygen_group_raw.replaceAll("_", "__");
+const doxygen_url = `https://api.riot-os.org/group__${doxygen_group}.html`;
 ---
 
 <StarlightPage
