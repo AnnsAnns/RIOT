@@ -1,0 +1,88 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+import { getRiotIndex } from "../lib/riot-index";
+
+const { boards, cpus, drivers } = getRiotIndex();
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "CPUs, Boards and Drivers",
+    description:
+      "Clickable index of boards, CPUs, and drivers parsed from Doxygen groups.",
+  }}
+>
+  <label for="riot-search"><strong>Filter boards, CPUs, and drivers</strong></label>
+  <input
+    id="riot-search"
+    type="search"
+    placeholder="Type to filter (e.g. arduino, stm32, saul)"
+    style={{ width: "100%", margin: "0.5rem 0 1rem 0", padding: "0.5rem" }}
+  />
+  <p id="riot-no-results" hidden>No entries match this filter.</p>
+
+  <h2>Boards ({boards.length})</h2>
+  <CardGrid>
+  {
+    boards.map((item) => (
+      <div data-riot-item data-riot-name={(`${item.name} ${item.group}`).toLowerCase()}>
+        <LinkCard title={item.name} description={"Module name: " + item.module} href={item.href} />
+      </div>
+    ))
+  }
+  </CardGrid>
+
+  <h2>CPUs ({cpus.length})</h2>
+  <CardGrid>
+  {
+    cpus.map((item) => (
+      <div data-riot-item data-riot-name={(`${item.name} ${item.group}`).toLowerCase()}>
+        <LinkCard title={item.name} description={item.href} href={item.href} />
+      </div>
+    ))
+  }
+  </CardGrid>
+
+  <h2>Drivers ({drivers.length})</h2>
+  <CardGrid>
+  {
+    drivers.map((item) => (
+      <div data-riot-item data-riot-name={(`${item.name} ${item.group}`).toLowerCase()}>
+        <LinkCard title={item.name} href={item.href} />
+      </div>
+    ))
+  }
+  </CardGrid>
+
+  <script>
+    const searchInput = document.getElementById("riot-search") as HTMLInputElement | null;
+    const noResults = document.getElementById("riot-no-results") as HTMLElement | null;
+    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-riot-item]"));
+
+    function updateFilter() {
+      const query = (searchInput && searchInput.value ? searchInput.value : "")
+        .toLowerCase()
+        .trim();
+      let visible = 0;
+
+      for (const item of items) {
+        const haystack = item.getAttribute("data-riot-name") || "";
+        const matches = query.length === 0 || haystack.indexOf(query) !== -1;
+        item.hidden = !matches;
+        if (matches) {
+          visible += 1;
+        }
+      }
+
+      if (noResults) {
+        noResults.hidden = visible !== 0;
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener("input", updateFilter);
+      updateFilter();
+    }
+  </script>
+</StarlightPage>

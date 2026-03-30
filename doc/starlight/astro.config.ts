@@ -184,6 +184,10 @@ export default defineConfig({
           label: "Changelog",
           link: "changelog",
         },
+        {
+          label: "RIOT Source Index",
+          link: "riot-files",
+        },
       ],
       customCss: ["./src/styles/custom.css", "./src/fonts/font-face.css"],
       logo: {
@@ -202,7 +206,14 @@ export default defineConfig({
   vite: {
     server: {
       fs: {
-        allow: ["./", "../doxygen", "../../release-notes.txt"],
+        allow: [
+          "./",
+          "../doxygen",
+          "../../release-notes.txt",
+          "../../boards",
+          "../../cpu",
+          "../../drivers",
+        ],
       },
     },
   },
