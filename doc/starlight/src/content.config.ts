@@ -58,38 +58,14 @@ export function boardsLoader(): Loader {
 
             // Parse frontmatter (simple YAML frontmatter between --- markers)
             let markdown = docContent;
-            let frontmatter: Record<string, any> = {};
 
-            const frontmatterMatch = docContent.match(
-              /^---\n([\s\S]*?)\n---\n([\s\S]*)$/
-            );
-
-            if (frontmatterMatch) {
-              const frontmatterText = frontmatterMatch[1];
-              markdown = frontmatterMatch[2];
-
-              // Simple YAML parser for common frontmatter fields
-              const lines = frontmatterText.split("\n");
-              for (const line of lines) {
-                const match = line.match(/^(\w+):\s*(.+)$/);
-                if (match) {
-                  const key = match[1];
-                  let value: string | boolean = match[2].trim();
-                  // Handle boolean values
-                  if (value === "true") value = true;
-                  if (value === "false") value = false;
-                  // Remove quotes if present
-                  if (typeof value === "string" && value.startsWith('"') && value.endsWith('"')) {
-                    value = value.slice(1, -1);
-                  }
-                  frontmatter[key] = value;
-                }
-              }
-            }
-
-            const fallbackTitle = frontmatter.title || boardName.replace(/-/g, " ");
+            const fallbackTitle = boardName.replace(/-/g, " ");
             const title = extractBoardTitleFromDoxygen(docContent, fallbackTitle);
             const filteredMarkdown = filterDoxygenMarkdown(markdown);
+
+            // Parse @brief directives for description (take the first one as description)
+            const descriptionMatch = docContent.match(/@brief\s+(.+)/);
+            const description = descriptionMatch ? descriptionMatch[1].trim() : "";
 
             // Create entry ID
             const entryId = `boards/${boardName}`;
@@ -99,8 +75,7 @@ export function boardsLoader(): Loader {
               id: entryId,
               data: {
                 title: title,
-                description: frontmatter.description || "",
-                ...frontmatter,
+                description: description,
               },
               body: filteredMarkdown,
               rendered: await context.renderMarkdown(filteredMarkdown),

@@ -95,6 +95,10 @@ export default defineConfig({
           ],
         },
         {
+          label: "RIOT Boards",
+          link: "boards",
+        },
+        {
           label: "Tutorials",
           items: [
             {
@@ -181,16 +185,8 @@ export default defineConfig({
           ],
         },
         {
-          label: "RIOT Boards",
-          link: "boards",
-        },
-        {
           label: "Changelog",
           link: "changelog",
-        },
-        {
-          label: "RIOT Source Index",
-          link: "riot-files",
         },
       ],
       customCss: ["./src/styles/custom.css", "./src/fonts/font-face.css"],
