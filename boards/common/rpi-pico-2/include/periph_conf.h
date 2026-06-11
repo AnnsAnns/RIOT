@@ -55,6 +55,42 @@ static const uart_conf_t uart_config[] = {
 
 #define UART_NUMOF      ARRAY_SIZE(uart_config)
 
+/**
+ * @brief   I2C configuration
+ *
+ * GPIO4/GPIO5 are the default I2C pins of the Raspberry Pi Pico 2.
+ * The board has no external pull-up resistors on these pins, the driver
+ * therefore enables the internal pull-ups of the pads.
+ */
+static const i2c_conf_t i2c_config[] = {
+    {
+        .dev = I2C0,
+        .sda_pin = GPIO_PIN(0, 4),
+        .scl_pin = GPIO_PIN(0, 5),
+        .speed = I2C_SPEED_NORMAL,
+    },
+};
+
+#define I2C_NUMOF       ARRAY_SIZE(i2c_config)
+
+/**
+ * @brief   Timer configuration
+ *
+ * The entries have to be ordered by hardware instance, see
+ * @ref timer_conf_t for details.
+ */
+static const timer_conf_t timer_config[] = {
+    {
+        .dev = TIMER0,
+        .irqn_base = TIMER0_IRQ_0_IRQn,
+        .ch_numof = TIMER_CHANNEL_NUMOF,
+    },
+};
+
+/* Must be a literal matching the number of entries in timer_config, as the
+ * timer driver uses it in preprocessor conditionals to map the ISRs */
+#define TIMER_NUMOF     1
+
 #ifdef __cplusplus
 }
 #endif

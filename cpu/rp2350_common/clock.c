@@ -31,6 +31,13 @@ void cpu_clock_init(void) {
     /* Enable the XOSC */
     xosc_start();
 
+    /* Run clk_ref from the XOSC, it feeds the tick generators of the
+     * timers and the watchdog */
+    CLOCKS->CLK_REF_CTRL = CLK_REF_CTRL_SRC_VALUE_XOSC;
+    /* The SELECTED register contains one decoded (one-hot) bit per source */
+    while (CLOCKS->CLK_REF_SELECTED != (1u << CLK_REF_CTRL_SRC_VALUE_XOSC)) {
+    }
+
     /* Setup the PLL using the XOSC as the reference clock. */
     PLL_SYS->FBDIV_INT =
     PLL_FEEDBACK_DIVIDER_VALUE; /* Set the feedback divider */

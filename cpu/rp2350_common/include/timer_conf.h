@@ -1,0 +1,60 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Tom Hert <git@annsann.eu>
+ * SPDX-FileCopyrightText: 2026 HAW Hamburg
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
+#pragma once
+
+/**
+ * @ingroup         cpu_rp2350
+ * @{
+ *
+ * @file
+ * @brief           Timer configuration for the RP2350
+ *
+ * @author          Tom Hert <git@annsann.eu>
+ */
+
+#include "RP2350.h"
+#include "periph_cpu.h"
+
+/** Reset bit for the TIMER0 peripheral */
+#define RESET_TIMER0 (1u << 23u)
+
+/** Reset bit for the TIMER1 peripheral */
+#define RESET_TIMER1 (1u << 24u)
+
+/** Enable bit of a tick generator control register */
+#define TICKS_CTRL_ENABLE_BITS (1u << 0u)
+
+/** Number of alarm channels per timer block */
+#define TIMER_CHANNEL_NUMOF 4u
+
+/** The driver implements its own @ref timer_set with a zero timeout shortcut */
+#define PERIPH_TIMER_PROVIDES_SET
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * @brief   Configuration details for a timer device
+ *
+ * @note    The entries of @ref timer_config must be ordered by hardware
+ *          instance, i.e. entry 0 has to be TIMER0, entry 1 TIMER1, as the
+ *          interrupt service routines are mapped by instance.
+ */
+typedef struct {
+    TIMER0_Type *dev;   /**< Base address of the I/O registers of the device */
+    IRQn_Type irqn_base; /**< IRQ number of alarm 0, the other alarms use the
+                          *   directly following IRQ numbers */
+    uint8_t ch_numof;   /**< Number of alarm channels to use (up to
+                         *   @ref TIMER_CHANNEL_NUMOF) */
+} timer_conf_t;
+
+#ifdef __cplusplus
+}
+#endif
+
+/** @} */

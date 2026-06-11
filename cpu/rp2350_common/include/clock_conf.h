@@ -88,6 +88,8 @@
 /** Enable bit for the system clock control register to select the peripheral
  * clock */
 #define CLK_SYS_PERI_CTRL_ENABLE_BIT (1u << 0u)
+/** Source select value of the reference clock control register for the XOSC */
+#define CLK_REF_CTRL_SRC_VALUE_XOSC 0x2u
 /** Selected field value for the system clock control register
  * to select the peripheral clock */
 #define CLK_SYS_SELECTED_PERI_FIELD_VALUE 2u

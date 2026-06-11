@@ -1,20 +1,35 @@
-Hello World!
-============
+SSD1306 over I2C on the RP2350
+==============================
 
-This is a basic example how to use RIOT in your embedded application.
-It prints out the famous text `Hello World!`.
+This example drives an SSD1306 based 128x64 OLED display with the U8g2
+graphics package over the hardware I2C bus of the RP2350 (Raspberry Pi
+Pico 2). It cycles through three screens (two text screens and the
+RIOT-OS logo), one per second.
 
-This example should foremost give you an overview how to use the Makefile system:
+Wiring
+------
 
-* First you must give your application a name, which is commonly the same as the name of the directory it resides in.
-  Then you can define a default BOARD for which the application was written.
-  By using e.g. `make BOARD=msba2` you can override the default board.
+On the `rpi-pico-2-arm` / `rpi-pico-2-riscv` boards the first I2C bus is
+I2C0 with:
 
-* The variable `RIOTBASE` contains an absolute or relative path to the directory where you have checked out RIOT.
-  If your code resides in a subdirectory of RIOT, then you can use `$(CURDIR)` as it's done in here.
+| Signal | Pin   |
+|--------|-------|
+| SDA    | GPIO4 |
+| SCL    | GPIO5 |
 
-* The variable `QUIET`, which is either `1` or `0`, defines whether to print verbose compile information, or hide them, respectively.
+Connect the display's SDA/SCL to these pins, VCC to 3V3 and GND to GND.
+The driver enables the internal pull-ups of the pads, so a bare display
+breakout without its own pull-up resistors will work as well.
 
-* The last line of your Makefile must be `include $(RIOTBASE)/Makefile.include`.
+The display is expected at I2C address `0x3c` (the usual default for
+SSD1306 breakouts). The address and bus can be overridden at compile
+time, e.g.:
 
-The code itself may look like your usual *C* beginners hello-world example.
+    make BOARD=rpi-pico-2-arm CFLAGS="-DSSD1306_I2C_ADDR=0x3d"
+
+Usage
+-----
+
+Build and flash with:
+
+    make BOARD=rpi-pico-2-arm flash
