@@ -31,6 +31,9 @@
 #include "vendor/riscv_csr.h"
 #include "xh3irq.h"
 
+#define ENABLE_DEBUG 0
+#include "debug.h"
+
 /* Default state of mstatus register */
 #define MSTATUS_DEFAULT (MSTATUS_MPP | MSTATUS_MPIE)
 
@@ -91,7 +94,7 @@ __attribute((used)) static void handle_trap(uword_t mcause)
     /* Check if this is an interrupt or a trap, indicated by the left most bit */
     bool is_interrupt = (mcause & MCAUSE_INT) == MCAUSE_INT;
 
-#ifdef CONFIG_PRINT_VERBOSE_TRAP_INFO
+#if ENABLE_DEBUG
     printf("Trap: mcause=0x%" PRIx32 " mepc=0x%lx mtval=0x%lx\n",
            (uint32_t)mcause, read_csr(mepc), read_csr(mtval));
 
