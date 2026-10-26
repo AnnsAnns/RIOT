@@ -1,0 +1,24 @@
+# Baochip-1x memory layout
+#
+# RRAM (non-volatile, XIP)  0x60000000 .. 0x603fffff
+#   boot0                   0x60000000
+#   boot1                   0x60020000
+#   application (signed)    0x60060000
+#     signature block       0x60060000 .. 0x600602ff
+#     code                  0x60060300 ..
+#   reserved (security)     0x603da000 .. 0x603fffff
+# SRAM                      0x61000000 .. 0x611fffff (2 MiB)
+# IFRAM (DMA only)          0x50000000 .. 0x5001ffff (128 KiB)
+
+RAM_START_ADDR ?= 0x61000000
+RAM_LEN ?= 0x200000
+
+ROM_START_ADDR ?= 0x60060300
+# fw0 partition: 0x60060000 .. 0x60160000 (1 MiB), minus the 0x300 signature block
+ROM_LEN ?= 0xFD000
+
+LINKER_SCRIPT ?= riscv.ld
+
+CFLAGS += -DCPU_MODEL_$(call uppercase_and_underscore,$(CPU_MODEL))
+
+include $(RIOTCPU)/riscv_common/Makefile.include

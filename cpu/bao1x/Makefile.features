@@ -1,0 +1,7 @@
+CPU_CORE := rv32imac
+
+include $(RIOTCPU)/riscv_common/Makefile.features
+
+# The Baochip-1x has no standard CLINT, so the generic coretimer driver
+# cannot be used.
+FEATURES_PROVIDED := $(filter-out periph_coretimer,$(FEATURES_PROVIDED))

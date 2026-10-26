@@ -60,6 +60,7 @@ FEATURES_EXISTING := \
     cpu_atmega32u4 \
     cpu_atmega8 \
     cpu_atxmega \
+    cpu_bao1x \
     cpu_cc2538 \
     cpu_cc26x0_cc13x0 \
     cpu_cc26x2_cc13x2 \

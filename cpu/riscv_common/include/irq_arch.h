@@ -45,6 +45,17 @@ extern "C" {
 extern volatile int riscv_in_isr;
 
 /**
+ * @brief   Optional platform-specific external interrupt handler
+ *
+ * Platforms whose external interrupt controller is not a PLIC, CLIC or
+ * XH3 can provide this hook. It is called from the
+ * common trap handler for `IRQ_M_EXT` after the PLIC/XH3 handlers.
+ *
+ * The symbol is weak; platforms that do not need it simply omit it.
+ */
+void riscv_external_irq_handler(void) __attribute__((weak));
+
+/**
  * @brief Enable all maskable interrupts
  */
 static inline __attribute__((always_inline)) unsigned int irq_enable(void)

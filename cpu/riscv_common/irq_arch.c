@@ -146,6 +146,9 @@ __attribute((used)) static void handle_trap(uword_t mcause)
             if (IS_ACTIVE(MODULE_PERIPH_XH3IRQ)) {
                 xh3irq_handler();
             }
+            if (riscv_external_irq_handler) {
+                riscv_external_irq_handler();
+            }
             break;
 
         default:
