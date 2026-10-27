@@ -17,6 +17,14 @@
 extern "C" {
 #endif
 
+/**
+ * @name USB SE0 / disconnect switch
+ * @{
+ */
+#define BOARD_USB_SE0_PORT      (2)     /**< IOX port C */
+#define BOARD_USB_SE0_PIN       (13)    /**< PC13 */
+/** @} */
+
 #ifdef __cplusplus
 }
 #endif

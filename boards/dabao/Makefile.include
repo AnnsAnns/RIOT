@@ -1,6 +1,16 @@
-# The Dabao is programmed through the boot1 USB serial REPL (see doc.md).
-PORT_LINUX ?= /dev/ttyACM0
+USB_VID ?= 1d50
+USB_PID ?= 6197
+
+PROGRAMMER ?= bao1x
+PROGRAMMERS_SUPPORTED += bao1x
+
+# The boot1 REPL is exposed as a USB CDC ACM device. Prefer the stable
+# /dev/serial/by-id link, since the ttyACM number can change when the board
+# re-enumerates (e.g. after the application resets the chip).
+_DABAO_TTY := $(firstword $(wildcard /dev/serial/by-id/usb-Baochip_Baochip-1x_*-if00))
+PORT_LINUX ?= $(if $(_DABAO_TTY),$(_DABAO_TTY),/dev/ttyACM0)
 PORT_DARWIN ?= $(firstword $(sort $(wildcard /dev/tty.usbmodem*)))
 
-FLASHFILE ?= $(BINFILE)
-FLASHER ?= /bin/true
+# Allows `MOST_RECENT_PORT=1` to pick the right port when several boards are
+# connected.
+TTY_BOARD_FILTER ?= --model 'Baochip-1x'

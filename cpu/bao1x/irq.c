@@ -27,22 +27,28 @@
 static void (*timer0_cb)(void *);
 static void *timer0_arg;
 
+#ifdef MODULE_PERIPH_USBDEV
+extern void bao1x_usb_isr(void);
+#endif
+
 static inline uint32_t mim_read(void)
 {
     uint32_t v;
-    __asm__ volatile ("csrr %0, %1" : "=r"(v) : "i"(BAO1X_CSR_MIM));
+
+    __asm__ volatile ("csrr %0, %1" : "=r" (v) : "i" (BAO1X_CSR_MIM));
     return v;
 }
 
 static inline void mim_set(uint32_t mask)
 {
-    __asm__ volatile ("csrs %0, %1" :: "i"(BAO1X_CSR_MIM), "r"(mask));
+    __asm__ volatile ("csrs %0, %1" : : "i" (BAO1X_CSR_MIM), "r" (mask));
 }
 
 static inline uint32_t mip_vex_read(void)
 {
     uint32_t v;
-    __asm__ volatile ("csrr %0, %1" : "=r"(v) : "i"(BAO1X_CSR_MIP_VEX));
+
+    __asm__ volatile ("csrr %0, %1" : "=r" (v) : "i" (BAO1X_CSR_MIP_VEX));
     return v;
 }
 
@@ -73,6 +79,12 @@ void bao1x_timer0_stop(void)
 void riscv_external_irq_handler(void)
 {
     uint32_t pending = mip_vex_read();
+
+#ifdef MODULE_PERIPH_USBDEV
+    if (pending & (1U << BAO1X_USB_IRQ)) {
+        bao1x_usb_isr();
+    }
+#endif
 
     if (pending & (1U << BAO1X_TIMER0_IRQ)) {
         REG32(TIMER0_EV_PENDING) = 1;

@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "periph_cpu.h"
+
 /**
  * @ingroup     boards_dabao
  * @{

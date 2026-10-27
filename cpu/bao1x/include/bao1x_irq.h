@@ -33,6 +33,11 @@ extern "C" {
 #define BAO1X_TIMER0_IRQ    (30U)
 
 /**
+ * @brief   USB device controller interrupt line
+ */
+#define BAO1X_USB_IRQ       (1U)
+
+/**
  * @brief   Timer0 base address
  */
 #define BAO1X_TIMER0_BASE   (0xe001c000UL)

@@ -15,6 +15,14 @@
 
 #include "periph_cpu_common.h"
 
+/**
+ * @name USB device configuration
+ * @{
+ */
+#define USBDEV_NUM_ENDPOINTS            (5)
+#define USBDEV_CPU_SET_ADDR_AFTER_STATUS (0)
+/** @} */
+
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -12,12 +12,16 @@
  */
 
 #include "cpu.h"
+#include "periph/init.h"
 
 void cpu_init(void)
 {
     /* The boot ROM has already configured the PLLs, RRAM and SRAM.
      * Set up traps/interrupts and optional CPU features here. */
     riscv_init();
+
+    /* Initialize the peripheral drivers (USB, GPIO, ...). */
+    periph_init();
 }
 
 /** @} */
