@@ -29,6 +29,15 @@
 #define DEVCONFIG_USB3_DISABLE      (1U << 7)
 #define DEVCONFIG_MAX_SPEED_FS      (1U)
 
+/* Timer0: 32-bit down-counter with a reload event.  It is only used here to
+ * re-ring a pending OUT doorbell, see @ref bao1x_usb_kick_start. */
+#define TIMER0_BASE                 (0xe001c000UL)
+#define TIMER0_LOAD                 (TIMER0_BASE + 0x00)
+#define TIMER0_RELOAD               (TIMER0_BASE + 0x04)
+#define TIMER0_EN                   (TIMER0_BASE + 0x08)
+#define TIMER0_EV_PENDING           (TIMER0_BASE + 0x18)
+#define TIMER0_EV_ENABLE            (TIMER0_BASE + 0x1c)
+
 static volatile bool _kick_active;
 
 static bool _trb_ptr_valid(const trb_t *trb)
@@ -37,26 +46,6 @@ static bool _trb_ptr_valid(const trb_t *trb)
 
     return (ptr >= UDC_MEM_BASE) && (ptr + sizeof(trb_t) <= UDC_MEM_END) &&
            ((ptr & 0xf) == 0);
-}
-
-static inline uint32_t _read_csr(uint32_t csr)
-{
-    uint32_t value;
-
-    __asm__ volatile ("csrr %0, %1" : "=r" (value) : "i" (csr));
-    return value;
-}
-
-static inline void _write_csr(uint32_t csr, uint32_t value)
-{
-    __asm__ volatile ("csrw %0, %1" : : "i" (csr), "r" (value));
-}
-
-static void bao1x_usb_irq_enable(void)
-{
-    uint32_t mim = _read_csr(BAO1X_CSR_MIM);
-
-    _write_csr(BAO1X_CSR_MIM, mim | (1U << BAO1X_USB_IRQ));
 }
 
 static void _delay(void)
@@ -180,24 +169,26 @@ void bao1x_usb_doorbell(unsigned pei)
     _barrier();
 }
 
-static void _usb_kick(void *arg);
-
-/* Some revisions of the UDC only latch an OUT doorbell if it is written after
- * the host has already queued data.  Keep a low-rate timer running while an
- * OUT transfer is pending and re-ring its doorbell; nothing else uses Timer0
- * on this CPU (the generic coretimer driver is not provided). */
+/* The UDC only latches an OUT doorbell if it is written after the host has
+ * already queued data.  Keep Timer0 running at 1 kHz while an OUT transfer is
+ * pending and re-ring its doorbell. */
 void bao1x_usb_kick_start(void)
 {
     if (!_kick_active) {
-        bao1x_timer0_set_callback(_usb_kick, NULL);
-        bao1x_timer0_start(350000U); /* 1 ms at ACLK = 350 MHz */
+        BAO1X_REG32(TIMER0_EN) = 0;
+        BAO1X_REG32(TIMER0_EV_ENABLE) = 0;
+        BAO1X_REG32(TIMER0_EV_PENDING) = 1;
+        BAO1X_REG32(TIMER0_LOAD) = 350000U; /* 1 ms at ACLK = 350 MHz */
+        BAO1X_REG32(TIMER0_RELOAD) = 350000U;
+        BAO1X_REG32(TIMER0_EV_ENABLE) = 1;
+        bao1x_irq_enable(BAO1X_USB_TIMER_IRQ);
+        BAO1X_REG32(TIMER0_EN) = 1;
         _kick_active = true;
     }
 }
 
-static void _usb_kick(void *arg)
+void bao1x_usb_timer_isr(void)
 {
-    (void)arg;
     bool pending = false;
 
     for (unsigned num = 1; num < USBDEV_NUM_ENDPOINTS; num++) {
@@ -209,7 +200,8 @@ static void _usb_kick(void *arg)
     }
 
     if (!pending) {
-        bao1x_timer0_stop();
+        BAO1X_REG32(TIMER0_EN) = 0;
+        BAO1X_REG32(TIMER0_EV_ENABLE) = 0;
         _kick_active = false;
     }
 }
@@ -351,7 +343,7 @@ void bao1x_usb_hw_init(bao1x_usb_t *dev)
         1U << BAO1X_USB_IRQARRAY_BIT;
     BAO1X_REG32(BAO1X_IRQARRAY1_BASE + IRQARRAY_EV_ENABLE) |=
         1U << BAO1X_USB_IRQARRAY_BIT;
-    bao1x_usb_irq_enable();
+    bao1x_irq_enable(BAO1X_USB_IRQ);
 
     /* Controller is running now; leave SE0 so the host can enumerate us. */
     _se0_release();

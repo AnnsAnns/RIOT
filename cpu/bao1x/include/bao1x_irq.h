@@ -10,7 +10,7 @@
  * @{
  *
  * @file
- * @brief       Baochip-1x interrupt and Timer0 helpers
+ * @brief       Baochip-1x external interrupt dispatch
  */
 
 #include <stdint.h>
@@ -28,9 +28,14 @@ extern "C" {
 /** @} */
 
 /**
- * @brief   Timer0 interrupt line
+ * @brief   Timer0 interrupt line (used for the USB OUT doorbell kick)
  */
-#define BAO1X_TIMER0_IRQ    (30U)
+#define BAO1X_USB_TIMER_IRQ (30U)
+
+/**
+ * @brief   TickTimer interrupt line
+ */
+#define BAO1X_TICKTIMER_IRQ (20U)
 
 /**
  * @brief   USB device controller interrupt line
@@ -38,26 +43,11 @@ extern "C" {
 #define BAO1X_USB_IRQ       (1U)
 
 /**
- * @brief   Timer0 base address
- */
-#define BAO1X_TIMER0_BASE   (0xe001c000UL)
-
-/**
- * @brief   Register a Timer0 callback
- */
-void bao1x_timer0_set_callback(void (*cb)(void *), void *arg);
-
-/**
- * @brief   Start Timer0 as a periodic down-counter
+ * @brief   Enable an external interrupt line
  *
- * @param[in] load  reload value in ACLK cycles
+ * @param[in] irq   interrupt line to enable
  */
-void bao1x_timer0_start(uint32_t load);
-
-/**
- * @brief   Stop Timer0
- */
-void bao1x_timer0_stop(void);
+void bao1x_irq_enable(unsigned irq);
 
 #ifdef __cplusplus
 }

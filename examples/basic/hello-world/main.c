@@ -20,10 +20,12 @@
 
 int main(void)
 {
+    while (1) {
     puts("Hello World!");
 
     printf("You are running RIOT on a(n) %s board.\n", RIOT_BOARD);
     printf("This board features a(n) %s CPU.\n", RIOT_CPU);
+    };
 
     return 0;
 }

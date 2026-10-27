@@ -25,6 +25,14 @@ extern "C" {
 #define BOARD_USB_SE0_PIN       (13)    /**< PC13 */
 /** @} */
 
+/**
+ * @name Clock configuration
+ * @{
+ */
+#define CLOCK_CORECLOCK             (350000000UL)   /**< CPU clock */
+#define CONFIG_ZTIMER_USEC_BASE_FREQ (1000UL)       /**< TickTimer runs at 1 kHz */
+/** @} */
+
 #ifdef __cplusplus
 }
 #endif

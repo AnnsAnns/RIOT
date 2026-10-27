@@ -98,6 +98,13 @@ The UART2 pins are still available as a secondary serial port:
 | UART2 RX | PB13 |
 | GND | GND |
 
+### Timers
+
+`periph_timer` is provided by the SoC TickTimer and runs at 1 kHz. This is the
+only free-running timer with a compare alarm that is connected to the RISC-V
+core, so the timer API has millisecond resolution. `ztimer_msec` and
+`ztimer_sec` work out of the box.
+
 ### Manual flashing
 
 The flasher can also produce a signed UF2 without touching the board:

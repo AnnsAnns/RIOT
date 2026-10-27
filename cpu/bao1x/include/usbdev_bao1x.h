@@ -274,6 +274,7 @@ void bao1x_usb_ring_init(ring_t *ring, void *mem, unsigned count);
 trb_t *bao1x_usb_ring_get(ring_t *ring, bool *pcs);
 void bao1x_usb_doorbell(unsigned pei);
 void bao1x_usb_kick_start(void);
+void bao1x_usb_timer_isr(void);
 
 /* endpoint programming */
 void bao1x_usb_ep_enable(bao1x_usb_t *dev, bao1x_usb_ep_t *bep);

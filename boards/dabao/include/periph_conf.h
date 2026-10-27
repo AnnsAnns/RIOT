@@ -8,6 +8,16 @@
 #include "periph_cpu.h"
 
 /**
+ * @name Timer configuration
+ * @{
+ */
+#define TIMER_0_FREQ        (1000UL)        /**< TickTimer runs at 1 kHz */
+#define TIMER_0_CHANNELS    (1)
+#define TIMER_0_MAX_VALUE   (0xffffffffU)
+#define TIMER_NUMOF         (1)
+/** @} */
+
+/**
  * @ingroup     boards_dabao
  * @{
  *

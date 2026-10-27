@@ -38,6 +38,10 @@ BOARDS_TIMER_32kHz := \
     stk3700 \
     #
 
+BOARDS_TIMER_1kHz := \
+    dabao \
+    #
+
 BOARDS_TIMER_SYSCLK := \
   cc2538dk \
   openmote-b \
@@ -52,6 +56,8 @@ else ifneq (,$(filter $(BOARDS_TIMER_250kHz),$(BOARD)))
   TIMER_SPEED ?= 250000
 else ifneq (,$(filter $(BOARDS_TIMER_32kHz),$(BOARD)))
   TIMER_SPEED ?= 32768
+else ifneq (,$(filter $(BOARDS_TIMER_1kHz),$(BOARD)))
+  TIMER_SPEED ?= 1000
 else ifneq (,$(filter $(BOARDS_TIMER_SYSCLK),$(BOARD)))
   TIMER_SPEED ?= coreclk\(\)
 endif

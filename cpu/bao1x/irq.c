@@ -18,26 +18,16 @@
 
 #define REG32(a)            (*(volatile uint32_t *)(uintptr_t)(a))
 
-#define TIMER0_LOAD         (BAO1X_TIMER0_BASE + 0x00)
-#define TIMER0_RELOAD       (BAO1X_TIMER0_BASE + 0x04)
-#define TIMER0_EN           (BAO1X_TIMER0_BASE + 0x08)
-#define TIMER0_EV_PENDING   (BAO1X_TIMER0_BASE + 0x18)
-#define TIMER0_EV_ENABLE    (BAO1X_TIMER0_BASE + 0x1c)
-
-static void (*timer0_cb)(void *);
-static void *timer0_arg;
+#define TICKTIMER_EV_PENDING    (0xe001b018UL)
+#define TIMER0_EV_PENDING       (0xe001c018UL)
 
 #ifdef MODULE_PERIPH_USBDEV
 extern void bao1x_usb_isr(void);
+extern void bao1x_usb_timer_isr(void);
 #endif
-
-static inline uint32_t mim_read(void)
-{
-    uint32_t v;
-
-    __asm__ volatile ("csrr %0, %1" : "=r" (v) : "i" (BAO1X_CSR_MIM));
-    return v;
-}
+#ifdef MODULE_PERIPH_TIMER
+extern void bao1x_timer_isr(void);
+#endif
 
 static inline void mim_set(uint32_t mask)
 {
@@ -52,46 +42,33 @@ static inline uint32_t mip_vex_read(void)
     return v;
 }
 
-void bao1x_timer0_set_callback(void (*cb)(void *), void *arg)
+void bao1x_irq_enable(unsigned irq)
 {
-    timer0_cb = cb;
-    timer0_arg = arg;
-}
-
-void bao1x_timer0_start(uint32_t load)
-{
-    REG32(TIMER0_EN) = 0;
-    REG32(TIMER0_EV_ENABLE) = 0;
-    REG32(TIMER0_EV_PENDING) = 1;
-    REG32(TIMER0_LOAD) = load;
-    REG32(TIMER0_RELOAD) = load;
-    REG32(TIMER0_EV_ENABLE) = 1;
-    mim_set(1U << BAO1X_TIMER0_IRQ);
-    REG32(TIMER0_EN) = 1;
-}
-
-void bao1x_timer0_stop(void)
-{
-    REG32(TIMER0_EN) = 0;
-    REG32(TIMER0_EV_ENABLE) = 0;
+    mim_set(1U << irq);
 }
 
 void riscv_external_irq_handler(void)
 {
     uint32_t pending = mip_vex_read();
 
+    (void)pending;
+
 #ifdef MODULE_PERIPH_USBDEV
     if (pending & (1U << BAO1X_USB_IRQ)) {
         bao1x_usb_isr();
     }
+    if (pending & (1U << BAO1X_USB_TIMER_IRQ)) {
+        REG32(TIMER0_EV_PENDING) = 1;
+        bao1x_usb_timer_isr();
+    }
 #endif
 
-    if (pending & (1U << BAO1X_TIMER0_IRQ)) {
-        REG32(TIMER0_EV_PENDING) = 1;
-        if (timer0_cb) {
-            timer0_cb(timer0_arg);
-        }
+#ifdef MODULE_PERIPH_TIMER
+    if (pending & (1U << BAO1X_TICKTIMER_IRQ)) {
+        REG32(TICKTIMER_EV_PENDING) = 1;
+        bao1x_timer_isr();
     }
+#endif
 }
 
 /** @} */
