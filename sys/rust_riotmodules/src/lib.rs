@@ -12,3 +12,6 @@ pub use riot_module_lsm303agr as lsm303agr;
 
 #[cfg(feature = "riot-module-shell-democommands")]
 pub use riot_module_shell_democommands as democommands;
+
+#[cfg(feature = "riot-module-uri-parser")]
+pub use riot_module_uri_parser as uri_parser;

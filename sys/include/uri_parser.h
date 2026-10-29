@@ -15,6 +15,11 @@
  *
  * Note that fragment identifiers are not handled by the implementation.
  *
+ * This module is implemented in Rust.
+ * It needs a Rust toolchain and a platform that supports Rust.
+ * See [Porting a C Module to Rust](https://guide.riot-os.org/rust_tutorials/porting_modules/)
+ * for the build details.
+ *
  * @see https://tools.ietf.org/html/rfc3986
  *
  * @{

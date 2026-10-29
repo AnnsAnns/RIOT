@@ -216,6 +216,7 @@ export default defineConfig({
 
                   "rust_tutorials/rust_in_riot",
                   "rust_tutorials/create_project",
+                  "rust_tutorials/porting_modules",
                 ],
               },
               {

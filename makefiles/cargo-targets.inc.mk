@@ -16,6 +16,9 @@ endif
 ifneq (,$(filter shell_democommands,$(USEMODULE)))
   CARGO_OPTIONS += --features rust_riotmodules/riot-module-shell-democommands
 endif
+ifneq (,$(filter uri_parser,$(USEMODULE)))
+  CARGO_OPTIONS += --features rust_riotmodules/riot-module-uri-parser
+endif
 
 # This is duplicating the compile-commands rule because unlike in the use case
 # when a $(RIOTBASE)/compile_commands.json is built, we *want* this to be
