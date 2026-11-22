@@ -183,7 +183,7 @@
         ];
 
       # Cross-LLVM uses the unwrapped Clang.  The Nix Clang wrapper is
-      # host-specific and must not be used for cross builds.
+      # host-specific and must not be used for cross builds (only native).
       crossLlvmToolsFor =
         system:
         let
@@ -303,6 +303,13 @@
           ];
 
           serial = [ pkgs.picocom ];
+
+          # While this noticeably increases the build size of each
+          # board environment, it keeps LLVM consistent and requires the
+          # least makefile changes :)
+          # Maybe in the future we could consider [ARCH]_gcc and [ARCH]_llvm
+          # environments, but for now this is the simplest solution.
+          crossLlvm = crossLlvmToolsFor system;
         in
         {
           # Generic ARM environment
@@ -310,6 +317,7 @@
           arm =
             armToolchain
             ++ serial
+            ++ crossLlvm
             ++ (with pkgs; [
               openocd
               pyocd
@@ -327,6 +335,7 @@
             armToolchain
             ++ riscvToolchain
             ++ serial
+            ++ crossLlvm
             ++ (with pkgs; [
               openocd
               libusb1
@@ -335,6 +344,7 @@
           stm32 =
             armToolchain
             ++ serial
+            ++ crossLlvm
             ++ (with pkgs; [
               openocd
               stlink
@@ -345,6 +355,7 @@
           nrf =
             armToolchain
             ++ serial
+            ++ crossLlvm
             ++ (with pkgs; [
               openocd
               pyocd
@@ -354,6 +365,7 @@
           sam =
             armToolchain
             ++ serial
+            ++ crossLlvm
             ++ (with pkgs; [
               openocd
               bossa
@@ -363,6 +375,7 @@
           kinetis =
             armToolchain
             ++ serial
+            ++ crossLlvm
             ++ (with pkgs; [
               openocd
               teensy-loader-cli
@@ -371,14 +384,15 @@
           cc2538 =
             armToolchain
             ++ serial
+            ++ crossLlvm
             ++ (with pkgs; [
               openocd
               cc2538-bsl
             ]);
 
-          cc26xx = armToolchain ++ serial ++ (with pkgs; [ openocd ]);
+          cc26xx = armToolchain ++ serial ++ crossLlvm ++ (with pkgs; [ openocd ]);
 
-          lpc = armToolchain ++ serial ++ (with pkgs; [ openocd ]);
+          lpc = armToolchain ++ serial ++ crossLlvm ++ (with pkgs; [ openocd ]);
 
           gba =
             armToolchain
@@ -393,14 +407,7 @@
 
           esp = esp8266Toolchain ++ esp32Toolchains ++ serial ++ (with pkgs; [ esptool ]);
 
-          riscv = riscvToolchain ++ serial ++ (with pkgs; [ openocd ]);
-
-          # Cross-LLVM needs the target GCC toolchains for RIOT's system
-          # include discovery and linking.  AVR and ESP do not support LLVM.
-          # Native LLVM lives in `native`; the default shell uses
-          # `clangDispatchFor` to select between this cross compiler and the
-          # wrapped native one.
-          llvm = crossLlvmToolsFor system ++ armToolchain ++ riscvToolchain;
+          riscv = riscvToolchain ++ serial ++ crossLlvm ++ (with pkgs; [ openocd ]);
         };
 
       nativeLlvmToolsFor =
@@ -602,7 +609,6 @@
             ++ targets.gba
             ++ targets.msp430
             ++ targets.riscv
-            ++ crossLlvmToolsFor system
             ++ staticPackagesFor system
             ++ nativeExtraToolsFor system
             ++ miscToolsFor system
@@ -724,13 +730,6 @@
             inherit system;
             name = "riot-avr";
             packages = targets.avr;
-            pythonPackages = basePython;
-          };
-
-          llvm = mkDevShell {
-            inherit system;
-            name = "riot-llvm";
-            packages = targets.llvm;
             pythonPackages = basePython;
           };
 

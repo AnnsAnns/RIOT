@@ -21,22 +21,7 @@ ifeq (native,$(NIX_ENV))
   endif
 endif
 
-# Native LLVM builds stay in the native shell (which has the wrapped Clang).
-# Cross-LLVM builds use the dedicated cross shell, which is much smaller than
-# the default shell.  ESP does not support LLVM; keep the full shell so its
-# toolchains are available and the unsupported-toolchain error is clear.
-ifeq (llvm,$(TOOLCHAIN))
-  ifeq (,$(filter native nativeFull,$(NIX_ENV)))
-    ifeq (esp,$(NIX_ENV))
-      NIX_ENV := default
-    else
-      NIX_ENV := llvm
-    endif
-  endif
-endif
-
-# QEMU is only part of the full default shell.  This has to come after the
-# LLVM block so emulation also wins for TOOLCHAIN=llvm.
+# QEMU is only part of the full default shell.
 ifeq (1,$(EMULATE))
   ifeq (qemu,$(RIOT_EMULATOR))
     NIX_ENV := default
