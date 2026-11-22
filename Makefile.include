@@ -187,7 +187,23 @@ ifneq (,$(filter $(GLOBAL_GOALS) $(PRIVATE_GLOBAL_GOALS),$(MAKECMDGOALS)))
   include $(RIOTMAKE)/info-global.inc.mk
 else
 
+# Decide early whether this invocation must be re-executed inside Nix.
+# NIX_ENV itself is only known after the CPU Makefile.include has been read.
+ifeq (1,$(BUILD_IN_DOCKER))
+  ifeq (1,$(BUILD_IN_NIX))
+    $(error BUILD_IN_DOCKER and BUILD_IN_NIX are mutually exclusive)
+  endif
+endif
+
+ifeq (1,$(BUILD_IN_NIX))
+  ifneq (1,$(INSIDE_NIX))
+    _NIX_WRAP_EARLY := 1
+  endif
+endif
+
+ifeq (,$(_NIX_WRAP_EARLY))
 all: link
+endif
 
 # Folders to search: First the external boards, than the official
 BOARDSDIRS := $(EXTERNAL_BOARD_DIRS) $(RIOTBOARD)
@@ -204,8 +220,10 @@ endif
 
 include $(RIOTMAKE)/info.inc.mk
 
+ifeq (,$(_NIX_WRAP_EARLY))
 # Static code analysis tools provided by LLVM
 include $(RIOTMAKE)/scan-build.inc.mk
+endif
 
 export RIOTBUILD_CONFIG_HEADER_C = $(BINDIR)/riotbuild/riotbuild.h
 
@@ -372,6 +390,13 @@ include $(BOARDDIR)/Makefile.include
 include $(RIOTBASE)/boards/Makefile.include
 include $(RIOTCPU)/Makefile.include
 include $(RIOTCPU)/$(CPU)/Makefile.include
+
+# Select the Nix environment after the CPU/board files have been processed.
+# When BUILD_IN_NIX=1 this file also defines the wrapper target and we skip
+# the rest of the build system in the outer make.
+include $(RIOTMAKE)/nix.inc.mk
+
+ifneq (1,$(NIX_WRAP))
 
 # Include common programmer logic if available
 -include $(RIOTMAKE)/tools/$(PROGRAMMER).inc.mk
@@ -1065,11 +1090,15 @@ ifneq ($(_BASELIBS_VALUE_BEFORE_USAGE),$(BASELIBS))
   $(error BASELIBS value changed)
 endif
 
+endif # NIX_WRAP
+
 endif
 
+ifneq (1,$(NIX_WRAP))
 include $(RIOTMAKE)/cargo-targets.inc.mk
 
 # include RIOT_MAKEFILES_GLOBAL_POST configuration files
 # allows setting user specific system wide configuration parsed after the body
 # of $(RIOTBASE)/Makefile.include
 include $(RIOT_MAKEFILES_GLOBAL_POST)
+endif

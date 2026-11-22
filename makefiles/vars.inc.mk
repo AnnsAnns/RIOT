@@ -125,6 +125,12 @@ export DEVELHELP             # Set to 1 to spend ROM, RAM and CPU time for help 
 # PROGRAMMER_QUIET           # Change verbosity of programmer output (only used with flash and reset targets).
                              # Default is 1, not verbose. Use 0 to get normal programmer output.
 # USE_PROGRAMMER_WRAPPER_SCRIPT     # Use the programmer wrapper Python script. Default is 0 (wrapper not used).
+# BUILD_IN_NIX               # Set to 1 to run the complete make invocation inside the Nix shell selected by NIX_ENV.
+# NIX_ENV                    # Nix development shell used by BUILD_IN_NIX. Set by the CPU/board, defaults to "default".
+# NIX_FLAKE                  # Flake reference used by BUILD_IN_NIX. Defaults to $(RIOTBASE).
+# NIX                        # Nix command used by BUILD_IN_NIX. Defaults to "nix".
+# NIX_DEVELOP_FLAGS          # Extra flags passed to `nix develop`.
+# INSIDE_NIX                 # Set inside the Nix shell to prevent recursive re-entry.
 
 
 export DLCACHE               # Use `$(DLCACHE) $(DESTINATION) $(URL) [$(SHA512)]` to

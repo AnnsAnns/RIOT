@@ -25,9 +25,9 @@ _TRIPLES_TO_TEST := \
     riscv64-unknown-elf \
     riscv64-elf
 
-# Do not test at run time if building with docker: The host may have no
+# Do not test at run time if building in Docker or Nix: The host may have no
 # RISC-V toolchain installed or a different one
-ifeq (1,$(BUILD_IN_DOCKER))
+ifneq (,$(filter 1,$(BUILD_IN_DOCKER)$(BUILD_IN_NIX)))
   TARGET_ARCH_RISCV := riscv-none-elf
 endif
 
@@ -85,9 +85,9 @@ else
 endif
 ifneq ($(TOOLCHAIN),llvm)
   CFLAGS_NO_ASM += -mcmodel=medlow -msmall-data-limit=8
-  # We cannot invoke the compiler on the host system if build in docker.
-  # Instead, hard-code the required flags for the docker toolchain here
-  ifeq (1,$(BUILD_IN_DOCKER))
+  # We cannot invoke the compiler on the host system if building in Docker or
+  # Nix.  Instead, hard-code the required flags for the vendor toolchain here.
+  ifneq (,$(filter 1,$(BUILD_IN_DOCKER)$(BUILD_IN_NIX)))
     CFLAGS_NO_ASM += -malign-data=natural
   else
     ifneq (,$(shell $(TARGET_ARCH)-gcc --help=target | grep '\-malign-data='))
