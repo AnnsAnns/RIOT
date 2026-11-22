@@ -33,10 +33,13 @@ jobs:
             experimental-features = nix-command flakes
 
       - name: Build hello-world for native64
-        run: nix develop --command make -C examples/basic/hello-world BOARD=native64 -j"$(nproc)" all
+        run: BUILD_IN_NIX=1 nix develop --command make -C examples/basic/hello-world BOARD=native64 -j"$(nproc)" all
 
       - name: Build hello-world for rpi-pico-2-riscv
-        run: nix develop --command make -C examples/basic/hello-world BOARD=rpi-pico-2-riscv -j"$(nproc)" all
+        run: BUILD_IN_NIX=1 nix develop --command make -C examples/basic/hello-world BOARD=rpi-pico-2-riscv -j"$(nproc)" all
 
       - name: Build hello-world for rpi-pico-2-arm
-        run: nix develop --command make -C examples/basic/hello-world BOARD=rpi-pico-2-arm -j"$(nproc)" all
+        run: BUILD_IN_NIX=1 make -C examples/basic/hello-world BOARD=rpi-pico-2-arm -j"$(nproc)" all
+
+      - name: Build hello-world in LLVM for rpi-pico-2-arm
+        run: BUILD_IN_NIX=1 make -C examples/basic/hello-world BOARD=native64 TOOLCHAIN=llvm -j"$(nproc)" all
