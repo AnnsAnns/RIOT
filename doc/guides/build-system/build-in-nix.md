@@ -6,10 +6,9 @@ description: Building RIOT in a Nix-managed development environment
 RIOT provides a [Nix flake](https://nixos.wiki/wiki/Flakes) that contains the
 cross toolchains, static analysis tools, and host utilities needed to build
 RIOT. It is an alternative to the [Docker build
-environment](/build-system/build-in-docker/) and does not require root
-privileges or a Docker daemon.
+environment](/build-system/build-in-docker/).
 
-The flake lives in the repository root (`flake.nix`); the helper derivations
+The flake lives in the repository root (`flake.nix`), the helper derivations
 are under `dist/nix/`. Nix support is still highly experimental.
 
 ## Requirements
@@ -42,7 +41,38 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 The Docker image remains the recommended option for exact reproduction of the
 official CI environment.
 
-## Entering the Development Shell
+## Automatic Environment Selection
+
+Instead of entering a shell manually, set `BUILD_IN_NIX=1`:
+
+```shell
+BUILD_IN_NIX=1 make -C examples/basic/hello-world BOARD=rpi-pico
+BUILD_IN_NIX=1 make -C examples/basic/hello-world BOARD=native64 flash
+```
+
+The CPU declares the environment in its `Makefile.include`, e.g. `NIX_ENV=rp-pico` for the RP2040 and RP2350.
+
+The environment can be overridden explicitly:
+
+```shell
+BUILD_IN_NIX=1 NIX_ENV=nativeFull make -C examples/basic/hello-world BOARD=native64
+```
+
+Show the selected environment without entering it:
+
+```shell
+make -C examples/basic/hello-world BOARD=rpi-pico BUILD_IN_NIX=1 info-nix-env
+```
+
+Some environments are selected from application or board properties:
+
+- Native applications using LVGL or SDL-backed U8g2/Ucglib displays use
+  `nativeFull`.
+- Boards emulated with QEMU (`EMULATE=1`) use the `default` shell.
+
+`BUILD_IN_DOCKER` is not needed and should not be set inside the Nix shell.
+
+## Entering the Development Shell Manually
 
 From the RIOT repository root:
 
@@ -51,21 +81,23 @@ nix develop
 ```
 
 The default shell contains all supported cross toolchains and the static test
-tools. Smaller shells are available for specific tasks:
+tools. Smaller shells are available per target family:
 
 ```shell
-nix develop .#native       # host / native board only
+nix develop .#native       # native32/native6
+nix develop .#rp-pico      # RP2040 and RP2350 (Arm and RISC-V)
+nix develop .#stm32        # STM32
+nix develop .#esp          # ESP8266 and ESP32
+nix develop .#avr          # AVR
 nix develop .#static-test  # static tests only
+[...]
+nix flake show             # list all environments
 ```
-
-The `native` shell also contains the regular (wrapped) LLVM toolchain, so
-`TOOLCHAIN=llvm` can be used for native builds. The default shell contains
-LLVM for cross compilation.
 
 If you have a tool such as `direnv` installed, it should also automatically
 recognize and apply the nix development environment.
 
-## Building
+### Building
 
 Once inside the shell, use `make` as usual:
 
@@ -80,14 +112,6 @@ For non-interactive use, pass the command to `nix develop`:
 ```shell
 nix develop --command make -C examples/basic/hello-world BOARD=native64
 ```
-
-`BUILD_IN_DOCKER` is not needed and should not be set inside the Nix shell.
-
-The toolchain versions are intentionally not identical to the ones in
-[riotdocker](https://github.com/RIOT-OS/riotdocker). The Docker image pins the
-exact versions used by CI; the Nix shell tracks nixpkgs instead. For RISC-V,
-MSP430, and ESP8266 the same prebuilt vendor toolchains as in riotdocker are
-used.
 
 ## Static Tests
 
@@ -119,14 +143,24 @@ Validate the flake and build the `native64` smoke test with:
 nix flake check
 ```
 
+The Nix build-test CI workflow also builds representative native, Arm, AVR,
+cross-LLVM, LVGL, and U8g2 targets through `BUILD_IN_NIX=1`, so the shells are
+exercised instead of only evaluated.
+
 ## Limitations
 
-- `native32` is only available on `x86_64-linux`.
+- `native32` is only available on `x86_64-linux`. SDL-backed `native32`
+  applications additionally need a 32-bit SDL2, which is not part of the
+  current shell.
 - The RISC-V, MSP430, and ESP8266 toolchains are prebuilt `x86_64-linux`
-  binaries; they are not available on `aarch64-linux`.
+  binaries; they are not available on `aarch64-linux`. The ESP32 toolchains
+  are available on aarch64, so `.#esp` exists there but contains ESP32 only.
 - The ESP8266 toolchain's GDB is not included. It depends on Python 2.7 and an
   old ncurses ABI that are not available in current nixpkgs. Use an external
   GDB for ESP8266 debugging.
+- LLVM support follows RIOT's CPU support, but some boards still have
+  compiler-specific failures. In particular, `rpi-pico-2-*` (RP2350)
+  currently build with GCC but not with `TOOLCHAIN=llvm`.
 - `c2rust` is not packaged in nixpkgs and has to be installed with `cargo`
   (see above).
 - The picolibc variants built into riotdocker are not part of the Nix shell.
