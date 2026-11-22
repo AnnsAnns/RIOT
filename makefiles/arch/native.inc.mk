@@ -1,3 +1,6 @@
+# Default Nix development shell for native targets.
+NIX_ENV ?= native
+
 NATIVEINCLUDES += -DNATIVE_INCLUDES
 # the cpu/native include needs to before even core to allow native to override
 # headers, inject some ugly hacks, and do an `#include_next`

@@ -1,3 +1,7 @@
+# Default Nix development shell for Cortex-M targets.  CPU-specific files can
+# override this before including the common architecture file.
+NIX_ENV ?= arm
+
 ifeq (,$(CPU_MODEL))
   $(error CPU_MODEL must have been defined by the board/cpu Makefile.features)
 endif

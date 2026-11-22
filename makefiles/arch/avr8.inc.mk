@@ -1,3 +1,6 @@
+# Default Nix development shell for AVR targets.
+NIX_ENV ?= avr
+
 # Target architecture for the build. Use avr if you are unsure.
 TARGET_ARCH_AVR ?= avr
 TARGET_ARCH ?= $(TARGET_ARCH_AVR)

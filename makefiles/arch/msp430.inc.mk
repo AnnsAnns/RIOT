@@ -1,3 +1,6 @@
+# Default Nix development shell for MSP430 targets.
+NIX_ENV ?= msp430
+
 # Target architecture for the build. Use msp430-elf if you are unsure.
 TARGET_ARCH_MSP430 ?= msp430-elf
 TARGET_ARCH ?= $(TARGET_ARCH_MSP430)

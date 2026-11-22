@@ -1,3 +1,7 @@
+# Default Nix development shell for RISC-V targets.  CPU-specific files can
+# override this before including the common architecture file.
+NIX_ENV ?= riscv
+
 # Target architecture for the build.
 
 # The correct triple for 32 bit embedded RISC-V targets is "riscv32-none-elf".
